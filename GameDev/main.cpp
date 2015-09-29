@@ -1,10 +1,17 @@
 // SDL Portable installation
 #include "SDL.h"
+#include <Box2D\Box2D.h>
+
 int main(int argc, char* argv[])
 {
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
+
+	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s/s straight down!
+
+
+	b2World* myWorld = new b2World(gravity);
 	// Initialize SDL.
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return 1;
