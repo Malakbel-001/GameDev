@@ -3,7 +3,9 @@
 *.user 
 *.exe
 *.pdb 
-GameDev.tlog/*
+*.tlog
+*.lastbuildstate
+*.sdf
 *.cache 
 *_svn 
 *.ilk
