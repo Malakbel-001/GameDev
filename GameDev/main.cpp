@@ -1,12 +1,14 @@
 // SDL Portable installation
 #include "SDL.h"
-#include <Box2D\Box2D.h>
+#include "Box2D\Box2D.h"
+#include "rapidJSON\document.h"
 
 int main(int argc, char* argv[])
 {
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 
+	rapidjson::Document document;
 
 	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s/s straight down!
 
