@@ -7,6 +7,8 @@
 *.lastbuildstate
 *.sdf
 *.cache 
+*.idb
+*.opensdf
 *_svn 
 *.ilk
 *.pdb
