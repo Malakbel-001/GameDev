@@ -1,0 +1,14 @@
+# Ignored files
+*.suo 
+*.user 
+*.exe
+*.pdb 
+GameDev.tlog/*
+*.cache 
+*_svn 
+*.ilk
+*.pdb
+*.svn 
+*.suo 
+*.user 
+*.build-res 
