@@ -85,7 +85,47 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="CollidableBehaviour.cpp" />
+    <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="Container.cpp" />
+    <ClCompile Include="DrawableBehaviour.cpp" />
+    <ClCompile Include="DrawableContainer.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="MoveableBehaviour.cpp" />
+    <ClCompile Include="MoveableContainer.cpp" />
+    <ClCompile Include="Npc.cpp" />
+    <ClCompile Include="PauseState.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor.h" />
+    <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="CollidableBehaviour.h" />
+    <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="Container.h" />
+    <ClInclude Include="DrawableBehaviour.h" />
+    <ClInclude Include="DrawableContainer.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MoveableBehaviour.h" />
+    <ClInclude Include="MoveableContainer.h" />
+    <ClInclude Include="Npc.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
