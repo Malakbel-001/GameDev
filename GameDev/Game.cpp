@@ -45,27 +45,19 @@ void Game::inputManager() {
 
 void Game::gameLoop(){
 	
-int lastTime = GetTickCount() - 1;
+	int lastTime = SDL_GetTicks() - 1;
 	while (running){
 		//Checks if windows is not closed
 		inputManager();
 		//Time to be used by behaviours
-		int time = GetTickCount() - lastTime;
-		//std::cout << time << "/n";
+		int time = SDL_GetTicks() - lastTime;
 		//TODO UPDATE Behaviours with Time
 
-		//
-		
-		std::cout << 1000l / time << " - ";
-		lastTime = GetTickCount();
+		lastTime = SDL_GetTicks();
 		
 		// max 60 fps		
 		SDL_Delay(16);
 
-	}
-	
+	}	
 	SDL_Quit();
-	
-
-
 }
