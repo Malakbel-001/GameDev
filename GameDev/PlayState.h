@@ -5,6 +5,6 @@ class PlayState :
 {
 public:
 	PlayState();
-	~PlayState();
+	virtual ~PlayState();
 };
 

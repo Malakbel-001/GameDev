@@ -3,6 +3,6 @@ class Level
 {
 public:
 	Level();
-	~Level();
+	virtual ~Level();
 };
 

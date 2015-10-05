@@ -5,6 +5,6 @@ class MenuState :
 {
 public:
 	MenuState();
-	~MenuState();
+	virtual ~MenuState();
 };
 

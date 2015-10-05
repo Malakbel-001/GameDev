@@ -5,6 +5,6 @@ class Npc :
 {
 public:
 	Npc();
-	~Npc();
+	virtual ~Npc();
 };
 

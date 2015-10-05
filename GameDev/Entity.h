@@ -3,6 +3,6 @@ class Entity
 {
 public:
 	Entity();
-	~Entity();
+	virtual ~Entity();
 };
 

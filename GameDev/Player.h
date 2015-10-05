@@ -5,6 +5,7 @@ class Player :
 {
 public:
 	Player();
-	~Player();
+	// maybe for multieplayer ???
+	virtual ~Player();
 };
 

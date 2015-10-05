@@ -5,6 +5,6 @@ class CollidableBehaviour :
 {
 public:
 	CollidableBehaviour();
-	~CollidableBehaviour();
+	virtual ~CollidableBehaviour();
 };
 

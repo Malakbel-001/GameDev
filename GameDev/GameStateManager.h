@@ -3,6 +3,6 @@ class GameStateManager
 {
 public:
 	GameStateManager();
-	~GameStateManager();
+	virtual ~GameStateManager();
 };
 

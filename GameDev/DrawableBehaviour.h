@@ -5,6 +5,6 @@ class DrawableBehaviour :
 {
 public:
 	DrawableBehaviour();
-	~DrawableBehaviour();
+	virtual ~DrawableBehaviour();
 };
 

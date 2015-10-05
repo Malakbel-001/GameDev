@@ -5,6 +5,6 @@ class PauseState :
 {
 public:
 	PauseState();
-	~PauseState();
+	virtual ~PauseState();
 };
 
