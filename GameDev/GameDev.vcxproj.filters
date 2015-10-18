@@ -117,6 +117,9 @@
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files\Model\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviours</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviours</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

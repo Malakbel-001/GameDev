@@ -1,6 +1,7 @@
 #include "Game.h"
+#include <iostream>
 
-
+using namespace std;
 
 Game::Game(){
 
@@ -37,9 +38,45 @@ Game::~Game()
 }
 
 void Game::inputManager() {
-	while (SDL_PollEvent(&events)) {
+	while (SDL_PollEvent(&events)) 
+	{
+		//User requests quit
 		if (events.type == SDL_QUIT)
-			running = false;
+		{ 
+			running = false; 
+		}
+		//User presses a key
+		else if (events.type == SDL_KEYDOWN)
+		{ 
+			//Select surfaces based on key press 
+			switch (events.key.keysym.sym)
+			{ 
+				case SDLK_w:
+					cout << "Jumping" << endl;
+					break;
+				case SDLK_s:
+					cout << "Crouching" << endl;
+					break;
+				case SDLK_a:
+					cout << "Moving Left" << endl;
+					break;
+				case SDLK_d:
+					cout << "Moving Right" << endl;
+					break;
+				case SDLK_UP: 
+					cout << "Aiming up" << endl;
+					break; 
+				case SDLK_DOWN: 
+					cout << "Aiming down" << endl;
+					break; 
+				case SDLK_LEFT: 
+					cout << "previous weapon" << endl;
+					break; 
+				case SDLK_RIGHT: 
+					cout << "next weapon" << endl;
+					break; 
+			} 
+		}
 	}
 }
 
