@@ -4,5 +4,6 @@ class GameState
 public:
 	GameState();
 	~GameState();
+
 };
 
