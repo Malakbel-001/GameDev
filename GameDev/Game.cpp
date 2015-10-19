@@ -89,17 +89,28 @@ void Game::gameLoop(){
 				lastTime = SDL_GetTicks();
 
 				// max 60 fps		
-				SDL_Delay(16);
+				//SDL_Delay(16);
+				SDL_Delay(100);
 
 				//Clear screen
 				SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(renderer);
 
-				//Load sprite
-				spriteSheetTexture.render(renderer, 10, 10, &idleSprites[0]);
+				//Render current frame 
+				SDL_Rect* currentClip = &idleSprites[ frame / 3 ]; 
+				spriteSheetTexture.render( renderer, ( SCREEN_WIDTH - currentClip->w ) / 2, ( SCREEN_HEIGHT - currentClip->h ) / 2, currentClip );
 
 				//Update screen
 				SDL_RenderPresent(renderer);
+
+				//Go to next frame 
+				++frame; 
+				
+				//Cycle animation 
+				if (frame / IDLE_ANIMATION_FRAMES >= IDLE_ANIMATION_FRAMES)
+				{ 
+					frame = 0; 
+				}
 			}
 		}
 	}
@@ -117,7 +128,7 @@ bool Game::init()
 	// Create the window where we will draw.
 	window = SDL_CreateWindow("SDL_RenderClear",
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		512, 512, 0);
+		SCREEN_WIDTH, SCREEN_HEIGHT, 0);
 	if (window == NULL)
 	{
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError()); 
@@ -126,7 +137,7 @@ bool Game::init()
 	else
 	{
 		// We must call SDL_CreateRenderer in order for draw calls to affect this window.
-		renderer = SDL_CreateRenderer(window, -1, 0);
+		renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 		if (renderer == NULL)
 		{
@@ -184,34 +195,53 @@ bool Game::loadMedia()
 		idleSprites[2].y = 0;
 		idleSprites[2].w = 30;
 		idleSprites[2].h = 40;
+
+		walkSprites[0].x = 107;
+		walkSprites[0].y = 0;
+		walkSprites[0].w = 30;
+		walkSprites[0].h = 40;
+
+		walkSprites[1].x = walkSprites[0].x + walkSprites[0].w;
+		walkSprites[1].y = 0;
+		walkSprites[1].w = 30;
+		walkSprites[1].h = 40;
+
+		walkSprites[2].x = walkSprites[1].x + walkSprites[1].w;
+		walkSprites[2].y = 0;
+		walkSprites[2].w = 30;
+		walkSprites[2].h = 40;
+
+		walkSprites[3].x = walkSprites[2].x + walkSprites[2].w;
+		walkSprites[3].y = 0;
+		walkSprites[3].w = 30;
+		walkSprites[3].h = 40;
+
+		walkSprites[4].x = walkSprites[3].x + walkSprites[3].w;
+		walkSprites[4].y = 0;
+		walkSprites[4].w = 30;
+		walkSprites[4].h = 40;
+
+		walkSprites[5].x = walkSprites[4].x + walkSprites[4].w;
+		walkSprites[5].y = 0;
+		walkSprites[5].w = 30;
+		walkSprites[5].h = 40;
+
+		walkSprites[6].x = walkSprites[5].x + walkSprites[5].w;
+		walkSprites[6].y = 0;
+		walkSprites[6].w = 30;
+		walkSprites[6].h = 40;
+
+		walkSprites[7].x = walkSprites[6].x + walkSprites[6].w;
+		walkSprites[7].y = 0;
+		walkSprites[7].w = 30;
+		walkSprites[7].h = 40;
+
+		walkSprites[8].x = walkSprites[7].x + walkSprites[7].w;
+		walkSprites[8].y = 0;
+		walkSprites[8].w = 30;
+		walkSprites[8].h = 40;
+
 	}
 
 	return success;
-}
-
-SDL_Surface* Game::loadSurface(std::string path)
-{
-	//The final optimized image
-	SDL_Surface* optimizedSurface = NULL;
-
-	//Load image at specified path
-	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-	if (loadedSurface == NULL)
-	{
-		printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
-	}
-	else
-	{
-		//Convert surface to screen format
-		optimizedSurface = SDL_ConvertSurface(loadedSurface, screenSurface->format, NULL);
-		if (optimizedSurface == NULL)
-		{
-			printf("Unable to optimize image %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
-		}
-
-		//Get rid of old loaded surface
-		SDL_FreeSurface(loadedSurface);
-	}
-
-	return optimizedSurface;
 }

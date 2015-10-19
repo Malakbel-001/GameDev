@@ -22,16 +22,21 @@ public:
 private:
 	void inputManager();
 
+	const int SCREEN_WIDTH = 640;
+	const int SCREEN_HEIGHT = 480;
+	
+
 	SDL_Window* window;
 	SDL_Renderer* renderer;	
 	SDL_Event events;
 
-	SDL_Surface* screenSurface = NULL;
 	SDL_Surface* spriteSheet = NULL;
 	LTexture spriteSheetTexture;
-
-	int IDLE_ANIMATION_FRAMES = 3;
+		
+	const int IDLE_ANIMATION_FRAMES = 3;
+	const int WALK_ANIMATION_FRAMES = 9;
 	SDL_Rect idleSprites[3];
+	SDL_Rect walkSprites[9];
 
 	bool running;
 };
