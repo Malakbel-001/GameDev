@@ -120,6 +120,9 @@
     <ClCompile Include="PlayerMoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviours</Filter>
     </ClCompile>
+    <ClCompile Include="LTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -181,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="PlayerMoveableBehaviour.h">
       <Filter>Header Files\Model\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="LTexture.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
