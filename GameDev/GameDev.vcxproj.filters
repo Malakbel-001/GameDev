@@ -55,6 +55,21 @@
     <Filter Include="Header Files\Model\Level">
       <UniqueIdentifier>{6f95c4fb-49b9-48af-8a7b-9b1df02385f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Controller">
+      <UniqueIdentifier>{5be4118e-2a6a-4474-b20b-5ee75fba7029}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller">
+      <UniqueIdentifier>{0cc8d164-a560-4f80-a992-14c482c1b1cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{2a2ba1dc-1c0a-42a5-a98f-ecd95a5cb5e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{1cecd565-2176-43ce-847c-462ecb3f2651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Main">
+      <UniqueIdentifier>{f0df3670-528a-4e1f-b787-35f5686c0967}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,9 +111,6 @@
     <ClCompile Include="MoveableContainer.cpp">
       <Filter>Source Files\Model\Containers</Filter>
     </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Source Files\Model\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="MenuState.cpp">
       <Filter>Source Files\Model\GameStates</Filter>
     </ClCompile>
@@ -111,17 +123,29 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\Model\levels</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files\Model\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="testLevel.cpp">
+      <Filter>Source Files\Model\levels</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLInitializer.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="IGameState.cpp">
+      <Filter>Source Files\Model\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Behaviour.h">
       <Filter>Header Files\Model\Behaviours</Filter>
     </ClInclude>
@@ -158,9 +182,6 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files\Model\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files\Model\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="GameStateManager.h">
       <Filter>Header Files\Model\GameStates</Filter>
     </ClInclude>
@@ -175,6 +196,27 @@
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="testLevel.h">
+      <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="IGameState.h">
+      <Filter>Header Files\Model\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLInitializer.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="header_loader.h">
+      <Filter>Header Files\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

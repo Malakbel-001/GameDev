@@ -1,11 +1,32 @@
 #include "Level.h"
 
 
-Level::Level()
+Level::Level(int _lvlWidth, int _lvlHeight)
+	: lvlWigth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 }
 
 
 Level::~Level()
 {
+}
+
+void Level::setLvlWidth(int _lvlWigth)
+{
+	this->lvlWigth = _lvlWigth;
+}
+
+void Level::setLvlHeight(int _lvlHeight)
+{
+	this->lvlHeight = _lvlHeight;
+}
+
+int Level::getLvlHeight()
+{
+	return this->lvlHeight;
+}
+
+int Level::getLvlWidth()
+{
+	return this->lvlWigth;
 }
