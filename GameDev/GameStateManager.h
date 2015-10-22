@@ -6,7 +6,7 @@ class GameStateManager
 {
 public:
 	GameStateManager();
-	~GameStateManager();
+	virtual ~GameStateManager();
 	Level* GetLevel();
 private:
 	Level* currentLevel;

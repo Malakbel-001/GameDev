@@ -5,6 +5,6 @@ class DrawableContainer :
 {
 public:
 	DrawableContainer();
-	~DrawableContainer();
+	virtual ~DrawableContainer();
 };
 

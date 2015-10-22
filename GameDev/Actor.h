@@ -6,7 +6,10 @@ class Actor :
 {
 public:
 	Actor();
-	~Actor();
+
 	virtual Entity* EmptyClone();
+
+	virtual ~Actor();
+
 };
 

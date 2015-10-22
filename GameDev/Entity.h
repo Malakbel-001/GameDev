@@ -5,11 +5,12 @@ class Entity
 {
 public:
 	Entity();
-	~Entity();
+	virtual ~Entity();
 	virtual void Init(b2Body* _body);
 	virtual Entity* EmptyClone();
 	
 private:
 	b2Body* body;
+
 };
 

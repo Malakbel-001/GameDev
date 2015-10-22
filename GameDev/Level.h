@@ -4,12 +4,14 @@ class Level
 {
 public:
 	Level();
-	~Level();
+
+	virtual ~Level();
 
 	b2World* GetWorld();
 
 private:
 	
 	b2World* world;
+
 };
 

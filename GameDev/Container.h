@@ -3,6 +3,6 @@ class Container
 {
 public:
 	Container();
-	~Container();
+	virtual ~Container();
 };
 

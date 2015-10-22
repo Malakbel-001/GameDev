@@ -6,7 +6,9 @@ class Npc :
 {
 public:
 	Npc();
-	~Npc();
+
+	virtual ~Npc();
 	virtual Entity* EmptyClone();
+
 };
 

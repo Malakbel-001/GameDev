@@ -5,6 +5,6 @@ class CollidableContainer :
 {
 public:
 	CollidableContainer();
-	~CollidableContainer();
+	virtual ~CollidableContainer();
 };
 

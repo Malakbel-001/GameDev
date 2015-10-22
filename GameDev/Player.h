@@ -6,7 +6,9 @@ class Player :
 {
 public:
 	Player();
-	~Player();
+
+	virtual ~Player();
 	virtual Entity* EmptyClone();
+
 };
 

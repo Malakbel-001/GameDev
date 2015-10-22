@@ -3,7 +3,8 @@ class GameState
 {
 public:
 	GameState();
-	~GameState();
+
+	virtual ~GameState();
 
 };
 

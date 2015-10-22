@@ -5,6 +5,6 @@ class MoveableBehaviour :
 {
 public:
 	MoveableBehaviour();
-	~MoveableBehaviour();
+	virtual ~MoveableBehaviour();
 };
 

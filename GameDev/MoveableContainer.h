@@ -5,6 +5,6 @@ class MoveableContainer :
 {
 public:
 	MoveableContainer();
-	~MoveableContainer();
+	virtual ~MoveableContainer();
 };
 
