@@ -1,24 +1,30 @@
 #pragma once
 #include "GameStateManager.h"
 #include <iostream>
+#include "GameStateManager.h"
+#include "Level.h"
 
 class Game
 {
-private:
-	GameStateManager* gsm;
-	void inputManager(GameStateManager* gsm);
-
-	SDL_Window* window;
-	SDL_Renderer* renderer;	
-	SDL_Event events;
-
-	bool running;
-
 public:
-
+	GameStateManager gameManager;
 	Game();
 	~Game();
 
 	void gameLoop(GameStateManager* gsm);
+	
+
+private:
+	GameStateManager* gsm;
+	void inputManager(GameStateManager* gsm);
+
+	void setUpBox2D();
+
+	
+	SDL_Window* window;
+	SDL_Renderer* renderer;	
+	SDL_Event events;
+
+	bool running;	
 };
 

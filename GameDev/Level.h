@@ -1,4 +1,5 @@
 #pragma once
+#include "Box2D\Box2D.h"
 class Level
 {
 private:
@@ -15,5 +16,12 @@ public:
 
 	int getLvlWidth();
 	int getLvlHeight();
+
+	b2World* GetWorld();
+
+private:
+	
+	b2World* world;
+
 };
 

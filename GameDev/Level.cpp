@@ -4,8 +4,13 @@
 Level::Level(int _lvlWidth, int _lvlHeight)
 	: lvlWigth(_lvlWidth), lvlHeight(_lvlHeight)
 {
+	world = new b2World(b2Vec2(0.0, 9.81));
 }
 
+b2World* Level::GetWorld()
+{
+	return world;
+}
 
 Level::~Level()
 {

@@ -1,9 +1,14 @@
 #pragma once
+
 #include <SDL.h>
 #include <vector>
 #include "SDLInitializer.h"
 
 class IGameState;
+
+
+#include "Level.h"
+#include "LevelFactory.h"
 
 class GameStateManager
 {
@@ -50,4 +55,8 @@ public:
 	};
 
 	virtual ~GameStateManager();
+	Level* GetLevel();
+private:
+	Level* currentLevel;
+
 };

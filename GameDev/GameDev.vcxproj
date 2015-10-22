@@ -94,12 +94,14 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="DrawableBehaviour.cpp" />
     <ClCompile Include="DrawableContainer.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="ILevelState.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelStateManager.cpp" />
+    <ClCompile Include="LevelFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MoveableBehaviour.cpp" />
@@ -122,6 +124,8 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="DrawableBehaviour.h" />
     <ClInclude Include="DrawableContainer.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityFactory.h" />
+    <ClInclude Include="EntityType.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="header_loader.h" />
@@ -129,6 +133,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="ILevelState.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelStateManager.h" />
+    <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveableBehaviour.h" />
     <ClInclude Include="MoveableContainer.h" />
@@ -139,6 +144,10 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="SDLInitializer.h" />
     <ClInclude Include="testLevel.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameDev.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

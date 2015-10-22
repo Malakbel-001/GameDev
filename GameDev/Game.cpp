@@ -3,8 +3,10 @@
 
 Game::Game()
 {
+	//gameManager = GameStateManager();
 	//running = true;
-	//if (SDL_Init(SDL_INIT_VIDEO) < 0){
+	//if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	//{
 	//	//TODO
 	//}
 	//// Create the window where we will draw.
@@ -19,10 +21,6 @@ Game::Game()
 
 	//// Clear the entire screen to our selected color.
 	//SDL_RenderClear(renderer);
-
-	//// Up until now everything was drawn behind the scenes.
-	//// This will show the new, red contents of the window.
-	//SDL_RenderPresent(renderer);
 
 	//gameLoop();
 
@@ -50,6 +48,11 @@ void Game::inputManager(GameStateManager* gsm)
 	}
 }
 
+void Game::setUpBox2D()
+{
+
+}
+
 void Game::gameLoop(GameStateManager* gsm)
 {	
 	int lastTime = SDL_GetTicks() - 1;
@@ -58,13 +61,15 @@ void Game::gameLoop(GameStateManager* gsm)
 		//Checks if windows is not closed
 		inputManager(gsm);
 		//Time to be used by behaviours
-		int time = SDL_GetTicks() - lastTime;
+	
 		//TODO UPDATE Behaviours with Time
-
+		int time = SDL_GetTicks() - lastTime;
 		lastTime = SDL_GetTicks();
-
-		// max 60 fps		
-		SDL_Delay(16);
+	
+		// max 60 fps	
+		if (1000.0 / 60 > time){
+			SDL_Delay((1000.0 / 60) - time);
+		}
 
 	}
 	SDL_Quit();

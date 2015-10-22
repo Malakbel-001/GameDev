@@ -3,6 +3,7 @@
 
 Player::Player()
 {
+
 	//Initialize the collision box
 	mBox.x = 0;
 	mBox.y = 0;
@@ -14,6 +15,11 @@ Player::Player()
 	mVelY = 0;
 
 	texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->getRenderer(), "Resourses/images/ball.bmp");
+
+}
+Entity* Player::EmptyClone()
+{
+	return new Player();
 }
 
 Player::~Player()

@@ -16,7 +16,7 @@ private:
 
 public:
 	Player();
-	// maybe for multieplayer ???
+
 	virtual ~Player();
 
 	//The dimensions of the dot
@@ -40,5 +40,7 @@ public:
 
 	//Shows the dot on the screen
 	void draw(SDL_Rect& camera);
-};
 
+	virtual Entity* EmptyClone();
+
+};

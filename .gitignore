@@ -157,3 +157,6 @@ $RECYCLE.BIN/
 Debug/GameDev.exe
 *.sln
 GameDev.v12.suo
+GameDev/GameDev.rc
+GameDev/GameDev.rc
+GameDev/GameDev.rc
