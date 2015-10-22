@@ -3,7 +3,7 @@
 
 
 Game::Game(){
-
+	gameManager = GameStateManager();
 	running = true;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0){
 		//TODO
@@ -42,21 +42,33 @@ void Game::inputManager() {
 			running = false;
 	}
 }
+void Game::setUpBox2D(){
+
+}
 
 void Game::gameLoop(){
 	
 	int lastTime = SDL_GetTicks() - 1;
+//	gameManager.GetLevel()->GetWorld().Step(1.0 / 30.0, 1, 1);
+	//b2World* currentWorld = gameManager.GetLevel()->GetWorld();
 	while (running){
+
+		//UPDATE WORLD
+		//first parameter is fps , second end third parameter increase how precies hitcalculation are the higher the slower the program runs
+		gameManager.GetLevel()->GetWorld()->Step(1.0 / 60.0, 5, 5);
 		//Checks if windows is not closed
+		//TODO for other input
 		inputManager();
 		//Time to be used by behaviours
-		int time = SDL_GetTicks() - lastTime;
+	
 		//TODO UPDATE Behaviours with Time
-
+		int time = SDL_GetTicks() - lastTime;
 		lastTime = SDL_GetTicks();
-		
-		// max 60 fps		
-		SDL_Delay(16);
+	
+		// max 60 fps	
+		if (1000.0 / 60 > time){
+			SDL_Delay((1000.0 / 60) - time);
+		}
 
 	}	
 	SDL_Quit();
