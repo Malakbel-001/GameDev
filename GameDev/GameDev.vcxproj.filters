@@ -31,17 +31,38 @@
     <Filter Include="Source Files\Model\GameStates">
       <UniqueIdentifier>{498eb6d8-6c6a-4bc9-b3b1-96ec16a81b40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\levels">
-      <UniqueIdentifier>{76570065-621f-4eb4-b76d-911bd9c83e50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Enum">
       <UniqueIdentifier>{8d49d9ac-2a1f-4f6f-b59c-6990f5760659}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Main">
+      <UniqueIdentifier>{ea47ee57-df9b-4426-8135-50b9884795a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{31eac845-d8cd-41cd-b893-9306e1d69b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Behaviours">
+      <UniqueIdentifier>{7edfacf5-349c-43f5-86c0-7bc20ccf2d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Containers">
+      <UniqueIdentifier>{9b6d6996-1afd-4191-8561-c5cb6533bed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Entities">
+      <UniqueIdentifier>{cc6d3391-b8a0-4ecc-8f85-97519cff94d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Factories">
+      <UniqueIdentifier>{a1130f4c-c5b8-4775-ae2a-5796a03244fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\GameStates">
+      <UniqueIdentifier>{0ae9957b-afe8-4d87-b536-6982d0b38148}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Levels">
+      <UniqueIdentifier>{76570065-621f-4eb4-b76d-911bd9c83e50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Levels">
+      <UniqueIdentifier>{58516ded-4f52-4f7b-8a3f-e096760253b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Model\Entities</Filter>
     </ClCompile>
@@ -91,10 +112,7 @@
       <Filter>Source Files\Model\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Source Files\Model\levels</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Levels</Filter>
     </ClCompile>
     <ClCompile Include="EntityFactory.cpp">
       <Filter>Source Files\Model\Factories</Filter>
@@ -102,79 +120,85 @@
     <ClCompile Include="LevelFactory.cpp">
       <Filter>Source Files\Model\Factories</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameStateManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Container.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollidableContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveableContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Behaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollidableBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveableBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Npc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Level.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EntityType.h">
       <Filter>Header Files\Enum</Filter>
     </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Header Files\Model\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Model\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Npc.h">
+      <Filter>Header Files\Model\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Model\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviour.h">
+      <Filter>Header Files\Model\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="CollidableContainer.h">
+      <Filter>Header Files\Model\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableContainer.h">
+      <Filter>Header Files\Model\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveableContainer.h">
+      <Filter>Header Files\Model\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Container.h">
+      <Filter>Header Files\Model\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Model\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Header Files\Model\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Header Files\Model\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayState.h">
+      <Filter>Header Files\Model\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateManager.h">
+      <Filter>Header Files\Model\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Model\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityFactory.h">
+      <Filter>Header Files\Model\Factories</Filter>
+    </ClInclude>
     <ClInclude Include="LevelFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Factories</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
