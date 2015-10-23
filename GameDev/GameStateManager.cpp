@@ -19,6 +19,8 @@ void GameStateManager::init(const char* title, int width, int height, bool fulls
 
 	GameStateManager::Instance()->setFps(0);
 	this->updateLength = 0;
+
+	GameStateManager::Instance()->changeGameState(PlayState::Instance());
 }
 
 void GameStateManager::setUpdateLength(float updateLength)
@@ -96,10 +98,10 @@ void GameStateManager::handleEvents()
 			}
 			break;
 		case SDL_KEYUP:
-			states.back()->handleEvents(mainEvent);
+			//states.back()->handleEvents(mainEvent);
 			break;
 		default:
-			states.back()->handleEvents(mainEvent);
+			//states.back()->handleEvents(mainEvent);
 			break;
 		}
 	}
@@ -132,6 +134,11 @@ void GameStateManager::draw()
 
 	//Draw entire screen
 	GameStateManager::Instance()->sdlInitializer->drawScreen();
+}
+
+Level* GameStateManager::GetLevel()
+{
+	return currentLevel;
 }
 
 void GameStateManager::quitGame()

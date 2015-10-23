@@ -79,12 +79,6 @@
     <ClCompile Include="SDLInitializer.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
-    <ClCompile Include="ILevelState.cpp">
-      <Filter>Source Files\Model\Level\LevelSateManager</Filter>
-    </ClCompile>
-    <ClCompile Include="LevelStateManager.cpp">
-      <Filter>Source Files\Model\Level\LevelSateManager</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -148,12 +142,6 @@
       <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>Header Files\Model\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="ILevelState.h">
-      <Filter>Header Files\Model\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelStateManager.h">
       <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
     <ClInclude Include="MoveableContainer.h">
@@ -247,9 +235,6 @@
     </Filter>
     <Filter Include="Source Files\Main">
       <UniqueIdentifier>{f60e81da-3610-42e9-a57c-3b3cbf0b73d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Level\LevelSateManager">
-      <UniqueIdentifier>{29f64e23-c010-4483-ab27-4ac0e7b57148}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

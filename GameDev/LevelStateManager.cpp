@@ -1,6 +1,8 @@
 #include "LevelStateManager.h"
 #include "ILevelState.h"
 
+LevelStateManager LevelStateManager::m_Lsm;
+
 LevelStateManager::LevelStateManager()
 {
 }

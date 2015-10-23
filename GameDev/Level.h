@@ -1,27 +1,26 @@
 #pragma once
 #include "Box2D\Box2D.h"
+#include "Camera.h"
+
 class Level
 {
-private:
+	private:
 
-protected:
-	int lvlWigth, lvlHeight;
+	protected:
+		int lvlWigth, lvlHeight;
+		b2World* world;
+		Camera* camera;
 
-public:
-	Level(int _lvlWidth, int _lvlHeight);
-	virtual ~Level();
+	public:
+		Level(int _lvlWidth, int _lvlHeight);
+		virtual ~Level();
 
-	void setLvlWidth(int _lvlWidth);
-	void setLvlHeight(int _lvlHeight);
+		virtual void setLvlWidth(int _lvlWidth);
+		virtual void setLvlHeight(int _lvlHeight);
 
-	int getLvlWidth();
-	int getLvlHeight();
+		virtual int getLvlWidth();
+		virtual int getLvlHeight();
 
-	b2World* GetWorld();
-
-private:
-	
-	b2World* world;
+		virtual b2World* GetWorld();
 
 };
-

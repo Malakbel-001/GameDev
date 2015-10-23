@@ -7,6 +7,34 @@ testLevel::testLevel(int _lvlWidth, int _lvlHeight)
 
 }
 
+testLevel::~testLevel() { }
 
-testLevel::~testLevel()
-{ }
+void testLevel::cleanup()
+{
+	
+}
+
+void testLevel::pause()
+{
+
+}
+
+void testLevel::resume()
+{
+
+}
+
+void testLevel::handleEvents(SDL_Event mainEvent)
+{
+
+}
+
+void testLevel::update(double dt)
+{
+
+}
+
+void testLevel::draw()
+{
+
+}

@@ -98,9 +98,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="IGameState.cpp" />
-    <ClCompile Include="ILevelState.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="LevelStateManager.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -130,9 +128,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="header_loader.h" />
     <ClInclude Include="IGameState.h" />
-    <ClInclude Include="ILevelState.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="LevelStateManager.h" />
     <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveableBehaviour.h" />

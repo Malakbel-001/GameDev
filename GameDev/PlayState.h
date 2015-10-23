@@ -3,6 +3,7 @@
 #include "header_loader.h"
 #include "Player.h"
 #include "Camera.h"
+#include <iostream>
 
 class PlayState :
 	public IGameState
@@ -13,6 +14,7 @@ class PlayState :
 		GameStateManager* gsm;
 		Camera* camera;
 		Player* p;
+		Level* currentLevel;
 
 		std::string fileToLoad;
 
@@ -35,10 +37,9 @@ class PlayState :
 		void handleEvents(SDL_Event mainEvent);
 
 		void update(double dt);
-		void updateVisibleEntities(double dt);
-		void updateMediumAreaEntities(double dt);
-
-		void updatePlayerDarkness();
+		
+		Level* getCurrentLevel();
+		void setCurrentLevel(Level* lvl);
 
 		void loadGame();
 		void setFileToLoad(std::string fileName);

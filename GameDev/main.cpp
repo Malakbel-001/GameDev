@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
 	rapidjson::Document document;
 
-	b2Vec2 gravity(0, -9.8); //normal earth gravity, 9.8 m/s/s straight down!
+	b2Vec2 gravity(0, -9.8f); //normal earth gravity, 9.8 m/s/s straight down!
 
 	b2World* myWorld = new b2World(gravity);
 	// Initialize SDL.
