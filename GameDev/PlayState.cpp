@@ -15,12 +15,11 @@ void PlayState::init(GameStateManager *gsm)
 	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, /*levlWitdh*/100,/*levelHight*/100 );
 
 	p = new Player();
-	//gsm->GetLevel()->
+	setCurrentLevel(LevelFactory::GetFirstLevel());
 	GameStateManager::Instance()->flushEvents();
 
 	std::cout << "PlayState";
 }
-
 
 void PlayState::loadGame()
 {
@@ -61,12 +60,13 @@ void PlayState::handleEvents(SDL_Event mainEvent) {
 
 void PlayState::update(double dt)
 {
-	
+	currentLevel->update(dt);
+
 }
 
 void PlayState::draw()
 {
-
+	currentLevel->draw();
 }
 
 Level* PlayState::getCurrentLevel()
@@ -98,6 +98,7 @@ Camera* PlayState::getCamera()
 void PlayState::cleanup()
 {
 	delete p;
+	delete currentLevel;
 
 	p = nullptr;
 	camera = nullptr;

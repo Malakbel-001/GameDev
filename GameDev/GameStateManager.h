@@ -16,7 +16,6 @@ class GameStateManager
 		std::vector<IGameState*> states;
 		IGameState* currentState;
 		bool m_running;
-		Level* currentLevel;
 
 		static GameStateManager m_Gsm;
 
@@ -51,10 +50,7 @@ class GameStateManager
 		bool running();
 		void quit();
 
-		static GameStateManager* Instance()
-		{
-			return &m_Gsm;
-		};
+		static GameStateManager* Instance() { return &m_Gsm; };
 
 		virtual ~GameStateManager();
 };

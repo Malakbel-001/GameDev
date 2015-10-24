@@ -28,18 +28,16 @@ Level* LevelFactory::GetNextLevel(Level* level)
 	{
 		Init();
 	}
-	int x = 0;
 	bool foundLevel = false;
-	while (levels.size() > x)
+	for (size_t i = 0; i < levels.size(); i++)
 	{
 		if (foundLevel)
-			return levels[x];
+			return levels[i];
 
-		if (levels[x] == level)
+		if (levels[i] == level)
 			foundLevel = true;
-
-		x++;
 	}
+
 	if (foundLevel)
 	{
 		// you just finished last level

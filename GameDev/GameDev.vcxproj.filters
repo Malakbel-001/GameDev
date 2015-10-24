@@ -79,6 +79,9 @@
     <ClCompile Include="SDLInitializer.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
+    <ClCompile Include="TileLoader.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -165,16 +168,22 @@
     <ClInclude Include="LevelFactory.h">
       <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="TileLoader.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
       <UniqueIdentifier>{11581484-5438-429c-9fde-3b1889e4e770}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{567c264d-9685-4191-a558-a9fbcf76eabb}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{c5f8c652-b257-4df4-9ace-99aadb21bbbd}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\Model">
       <UniqueIdentifier>{7a39cd3c-96f5-4a4d-8144-c895f1e6f64a}</UniqueIdentifier>

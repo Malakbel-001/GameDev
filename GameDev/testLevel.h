@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include "Level.h"
+#include "Tile.h"
 
 class testLevel :
 	public Level
@@ -17,9 +18,6 @@ class testLevel :
 
 		void init();
 		void cleanup();
-
-		void pause();
-		void resume();
 
 		void handleEvents(SDL_Event mainEvent);
 		void update(double dt);

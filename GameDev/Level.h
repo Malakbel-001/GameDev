@@ -5,11 +5,13 @@
 class Level
 {
 	private:
+		int tileWitdh, tileHeight;
 
 	protected:
-		int lvlWigth, lvlHeight;
+		int lvlWigth, lvlHeight, lvlTotalTiles;
 		b2World* world;
 		Camera* camera;
+		int LevelTiles;
 
 	public:
 		Level(int _lvlWidth, int _lvlHeight);
@@ -18,8 +20,12 @@ class Level
 		virtual void setLvlWidth(int _lvlWidth);
 		virtual void setLvlHeight(int _lvlHeight);
 
-		virtual int getLvlWidth();
-		virtual int getLvlHeight();
+		int getLvlWidth();
+		int getLvlHeight();
+		int getTotalTiles();
+
+		virtual void draw() = 0;
+		virtual void update(double dt) = 0;
 
 		virtual b2World* GetWorld();
 

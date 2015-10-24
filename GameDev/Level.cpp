@@ -35,3 +35,9 @@ int Level::getLvlWidth()
 {
 	return this->lvlWigth;
 }
+
+int Level::getTotalTiles()
+{
+	return this->lvlTotalTiles;
+}
+

@@ -138,7 +138,8 @@ void GameStateManager::draw()
 
 Level* GameStateManager::GetLevel()
 {
-	return currentLevel;
+	// TODO: get current level
+	return nullptr;
 }
 
 void GameStateManager::quitGame()
@@ -154,6 +155,7 @@ bool GameStateManager::running()
 void GameStateManager::quit()
 {
 	m_running = false;
+	IMG_Quit();
 	SDL_Quit();
 }
 
