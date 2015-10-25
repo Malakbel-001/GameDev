@@ -61,6 +61,12 @@
     <Filter Include="Header Files\Model\Levels">
       <UniqueIdentifier>{58516ded-4f52-4f7b-8a3f-e096760253b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model\Menu">
+      <UniqueIdentifier>{ac2f783b-2e10-49cc-82f1-e7c6bb67bde5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Menu">
+      <UniqueIdentifier>{97f65805-32e8-4cbe-b93b-8ed3e0712932}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -128,6 +134,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Model\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="LevelFactory.h">
       <Filter>Header Files\Model\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Model\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

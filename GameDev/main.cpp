@@ -3,6 +3,7 @@
 #include "Box2D\Box2D.h"
 #include "rapidJSON\document.h"
 #include "Game.h"
+#include "MainMenu.h"
 
 int main(int argc, char* argv[])
 {
@@ -14,6 +15,9 @@ int main(int argc, char* argv[])
 
 	b2World* myWorld = new b2World(gravity);
 	// Initialize SDL.
+
+	//Main Menu
+	MainMenu* menu = new MainMenu();
 	
 	// Give us time to see the window.
 	Game* game = new Game();
