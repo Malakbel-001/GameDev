@@ -7,6 +7,7 @@ bool CreateWindow();
 bool CreateRenderer();
 void SetupRenderer();
 void HandleInput();
+void CreateHelpMenu();
 
 // Our new function for setting uo SDL_TTF
 bool SetupTTF(const std::string &fontName);
@@ -23,19 +24,27 @@ TTF_Font* textFont;
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
 SDL_Color backgroundColor = { 0, 0, 0, 255 }; // black
 
+//mainMenu
 SDL_Texture* playTexture;
 SDL_Texture* helpTexture;
 SDL_Texture* quitTexture;
-SDL_Texture* titleTexture;
+SDL_Texture* mainTitleTexture;
+//helpMenu
+SDL_Texture* helpTitleTexture;
+SDL_Texture* helpBackTexture;
 
 //amount of menu items (specific for each menu)
-const int renderItems = 4;
+const int renderItems = 6;
 SDL_Rect pos[renderItems];
 
+//mainmenu
 SDL_Rect solidRect;
 SDL_Rect blendedRect;
 SDL_Rect shadedRect;
-SDL_Rect titleRect;
+SDL_Rect mainTitleRect;
+//helpmenu
+SDL_Rect helpTitleRect;
+SDL_Rect helpBackRect;
 
 SDL_Rect windowRect = { 8, 30, 1200, 700 };
 SDL_Window* window;
@@ -43,11 +52,15 @@ SDL_Renderer* renderer;
 
 bool quit = false;
 
+int menuState;
+
+
 MainMenu::MainMenu()
 {
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
+	menuState = 1;
 	RunGame();
 
 	// Clean up font
@@ -88,16 +101,15 @@ void HandleInput(){
 			for (int i = 0; i < renderItems; i++){
 				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
 					switch (i){
-						//item 1, play
+						//item 1, mainmenu play
 					case 0:
-						std::cout << "play";
 						quit = true;
 						break;
-						//item 2, help
+						//item 2, mainmenu help
 					case 1:
-						std::cout << "help";
+						CreateHelpMenu();
 						break;
-						//item 3, quit
+						//item 3,mainmenu quit
 					case 2:
 						exit(0);
 						break;
@@ -109,19 +121,31 @@ void HandleInput(){
 	}
 }
 
+void CreateHelpMenu(){
+	HelpMenu* helpMenu = new HelpMenu();
+}
+
 void Render()
 {
-	// Clear the window and make it all red
-	SDL_RenderClear(renderer);
+	switch (menuState){
+		//mainmenu
+	case 1:
+		// Clear the window and make it all red
+		SDL_RenderClear(renderer);
 
-	// Render our text objects ( like normal )
-	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
-	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
-	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
-	SDL_RenderCopy(renderer, titleTexture, nullptr, &titleRect);
+		// Render our text objects ( like normal )
+		SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
+		SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
+		SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
+		SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
 
-	// Render the changes above
-	SDL_RenderPresent(renderer);
+		// Render the changes above
+		SDL_RenderPresent(renderer);
+		break;
+	//helpmenu
+	case 2:
+		break;
+	}
 }
 // Initialization ++
 // ==================================================================
@@ -179,13 +203,13 @@ void CreateTextTextures()
 	shadedRect.y = blendedRect.y + blendedRect.h + 20;
 	pos[2] = shadedRect;
 
-	SDL_Surface* title = TTF_RenderText_Blended(titleFont, "Jark Hunt", textColor);
-	titleTexture = SurfaceToTexture(title);
+	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Jark Hunt", textColor);
+	mainTitleTexture = SurfaceToTexture(mainTitle);
 
-	SDL_QueryTexture(titleTexture, NULL, NULL, &titleRect.w, &titleRect.h);
-	titleRect.x = 375;
-	titleRect.y = 5;
-	pos[3] = titleRect;
+	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
+	mainTitleRect.x = 375;
+	mainTitleRect.y = 5;
+	pos[3] = mainTitleRect;
 }
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
 SDL_Texture* SurfaceToTexture(SDL_Surface* surf)

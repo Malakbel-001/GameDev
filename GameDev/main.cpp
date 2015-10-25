@@ -4,6 +4,7 @@
 #include "rapidJSON\document.h"
 #include "Game.h"
 #include "MainMenu.h"
+#include "HelpMenu.h"
 
 int main(int argc, char* argv[])
 {
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
 
 	//Main Menu
 	MainMenu* menu = new MainMenu();
+	//HelpMenu* help = new HelpMenu();
 	
 	// Give us time to see the window.
 	Game* game = new Game();
