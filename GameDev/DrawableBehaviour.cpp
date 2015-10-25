@@ -1,8 +1,9 @@
 #include "DrawableBehaviour.h"
 
 
-DrawableBehaviour::DrawableBehaviour()
+DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer)
 {
+	renderer = sdl_renderer;
 }
 
 

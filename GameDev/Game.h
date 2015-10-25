@@ -5,6 +5,7 @@
 #include <stdio.h> 
 #include <string>
 #include <iostream>
+#include "DrawableContainer.h"
 
 class Game
 {
@@ -15,7 +16,6 @@ public:
 
 	void gameLoop();
 	bool loadSprites();
-	bool loadMedia();
 	bool init();
 	SDL_Surface* loadSurface(std::string path);
 
@@ -25,6 +25,7 @@ private:
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
 	
+	DrawableContainer drawableContainer;
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;	
