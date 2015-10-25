@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "GameStateManager.h"
 
-Player::Player()
+Player::Player(Camera* cam)
 {
 
 	//Initialize the collision box
@@ -15,11 +15,14 @@ Player::Player()
 	mVelY = 0;
 
 	texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->getRenderer(), "Resourses/images/ball.bmp");
+	SDL_QueryTexture(texture, NULL, NULL, &WIDTH, &HEIGHT);
+
+	this->camera = cam;
 
 }
 Entity* Player::EmptyClone()
 {
-	return new Player();
+	return new Player(camera);
 }
 
 Player::~Player()
@@ -53,6 +56,7 @@ void Player::handleEvent(SDL_Event& e)
 		}
 	}
 }
+
 /*
 void Player::move(Tile *tiles[])
 {
@@ -79,32 +83,32 @@ void Player::move(Tile *tiles[])
 */
 
 // TODO: Make camara an class
-void Player::setCamera(SDL_Rect& camera)
+void Player::setCamera()
 {
 	int SCREEN_WIDTH, SCREEN_HEIGHT;
 	SDL_GetWindowSize(GameStateManager::Instance()->sdlInitializer->getWindow(), &SCREEN_WIDTH, &SCREEN_HEIGHT);
 
 	//Center the camera over the dot
-	camera.x = (mBox.x + WIDTH / 2) - SCREEN_WIDTH / 2;
-	camera.y = (mBox.y + HEIGHT / 2) - SCREEN_HEIGHT / 2;
+	camera->setX( (mBox.x + WIDTH / 2) - SCREEN_WIDTH / 2);
+	camera->setY( (mBox.y + HEIGHT / 2) - SCREEN_HEIGHT / 2);
 
 	//Keep the camera in bounds
-	if (camera.x < 0)
-		camera.x = 0;
+	if (camera->getX() < 0)
+		camera->setX(0);
 	
-	if (camera.y < 0)
-		camera.y = 0;
+	if (camera->getY() < 0)
+		camera->setY(0);
 
-	if (camera.x > LEVEL_WIDTH - camera.w)
-		camera.x = LEVEL_WIDTH - camera.w;
+	if (camera->getX() > LEVEL_WIDTH - camera->getWidth())
+		camera->setX(LEVEL_WIDTH - camera->getWidth());
 
-	if (camera.y > LEVEL_HEIGHT - camera.h)
-		camera.y = LEVEL_HEIGHT - camera.h;
+	if (camera->getY() > LEVEL_HEIGHT - camera->getHeight())
+		camera->setY( LEVEL_HEIGHT - camera->getHeight());
 }
 
-void Player::draw(SDL_Rect& camera)
+void Player::draw()
 {
 	//Show the dot
 	//gDotTexture.render(mBox.x - camera.x, mBox.y - camera.y);
-	GameStateManager::Instance()->sdlInitializer->RenderToScreen(mBox.x - camera.x, mBox.y - camera.y, texture, NULL);
+	GameStateManager::Instance()->sdlInitializer->RenderToScreen(mBox.x - camera->getX(), mBox.y - camera->getY(), texture, NULL);
 }

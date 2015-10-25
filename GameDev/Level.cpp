@@ -5,6 +5,7 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	: lvlWigth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	world = new b2World(b2Vec2(0.0, 9.8));
+	this->tileLoader = nullptr;
 }
 
 b2World* Level::GetWorld()
@@ -16,6 +17,7 @@ Level::~Level()
 {
 	// TODO: delete box2D pointer
 	SDL_DestroyTexture(tileSheet);
+	delete tileLoader;
 }
 
 void Level::setLvlWidth(int _lvlWigth)

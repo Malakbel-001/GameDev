@@ -1,7 +1,7 @@
 #pragma once
 #include "Actor.h"
-#include <SDL.h>
-#include <SDL_image.h>
+#include "header_loader.h"
+#include "Camera.h"
 
 class Player :
 	public Actor
@@ -14,14 +14,14 @@ private:
 	//The velocity of the dot
 	int mVelX, mVelY;
 
+	Camera* camera;
 public:
-	Player();
+	Player(Camera* cam);
 
 	virtual ~Player();
 
 	//The dimensions of the dot
-	static const int WIDTH = 20;
-	static const int HEIGHT = 20;
+	int WIDTH, HEIGHT;
 
 	// TODO:: Move to level
 	int LEVEL_WIDTH = 1280, LEVEL_HEIGHT = 960;
@@ -36,10 +36,10 @@ public:
 	//void move(Tiles *tiles[]);
 
 	//Centers the camera over the dot
-	void setCamera(SDL_Rect& camera);
+	void setCamera();
 
 	//Shows the dot on the screen
-	void draw(SDL_Rect& camera);
+	void draw();
 
 	virtual Entity* EmptyClone();
 

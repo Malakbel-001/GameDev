@@ -2,9 +2,11 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 #include <SDL.h>
 #include "Tile.h"
-#include "Level.h"
+
+class Level;
 
 class TileLoader
 {

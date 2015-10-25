@@ -1,4 +1,5 @@
 #include "TileLoader.h"
+#include "Level.h"
 
 TileLoader::TileLoader(Level* lvl)
 {
@@ -103,62 +104,62 @@ void TileLoader::setTiles(std::vector<Tile*> tiles)
 		{
 			tileCrop[TILE_RED].x = 0;
 			tileCrop[TILE_RED].y = 0;
-			tileCrop[TILE_RED].w = this->levelWidth;
+			tileCrop[TILE_RED].w = this->tileWidth;
 			tileCrop[TILE_RED].h = this->tileHeight;
 
 			tileCrop[TILE_GREEN].x = 0;
 			tileCrop[TILE_GREEN].y = 80;
-			tileCrop[TILE_GREEN].w = this->levelWidth;
+			tileCrop[TILE_GREEN].w = this->tileWidth;
 			tileCrop[TILE_GREEN].h = this->tileHeight;
 
 			tileCrop[TILE_BLUE].x = 0;
 			tileCrop[TILE_BLUE].y = 160;
-			tileCrop[TILE_BLUE].w = this->levelWidth;
+			tileCrop[TILE_BLUE].w = this->tileWidth;
 			tileCrop[TILE_BLUE].h = this->tileHeight;
 
 			tileCrop[TILE_TOPLEFT].x = 80;
 			tileCrop[TILE_TOPLEFT].y = 0;
-			tileCrop[TILE_TOPLEFT].w = this->levelWidth;
+			tileCrop[TILE_TOPLEFT].w = this->tileWidth;
 			tileCrop[TILE_TOPLEFT].h = this->tileHeight;
 
 			tileCrop[TILE_LEFT].x = 80;
 			tileCrop[TILE_LEFT].y = 80;
-			tileCrop[TILE_LEFT].w = this->levelWidth;
+			tileCrop[TILE_LEFT].w = this->tileWidth;
 			tileCrop[TILE_LEFT].h = this->tileHeight;
 
 			tileCrop[TILE_BOTTOMLEFT].x = 80;
 			tileCrop[TILE_BOTTOMLEFT].y = 160;
-			tileCrop[TILE_BOTTOMLEFT].w = this->levelWidth;
+			tileCrop[TILE_BOTTOMLEFT].w = this->tileWidth;
 			tileCrop[TILE_BOTTOMLEFT].h = this->tileHeight;
 
 			tileCrop[TILE_TOP].x = 160;
 			tileCrop[TILE_TOP].y = 0;
-			tileCrop[TILE_TOP].w = this->levelWidth;
+			tileCrop[TILE_TOP].w = this->tileWidth;
 			tileCrop[TILE_TOP].h = this->tileHeight;
 
 			tileCrop[TILE_CENTER].x = 160;
 			tileCrop[TILE_CENTER].y = 80;
-			tileCrop[TILE_CENTER].w = this->levelWidth;
+			tileCrop[TILE_CENTER].w = this->tileWidth;
 			tileCrop[TILE_CENTER].h = this->tileHeight;
 
 			tileCrop[TILE_BOTTOM].x = 160;
 			tileCrop[TILE_BOTTOM].y = 160;
-			tileCrop[TILE_BOTTOM].w = this->levelWidth;
+			tileCrop[TILE_BOTTOM].w = this->tileWidth;
 			tileCrop[TILE_BOTTOM].h = this->tileHeight;
 
 			tileCrop[TILE_TOPRIGHT].x = 240;
 			tileCrop[TILE_TOPRIGHT].y = 0;
-			tileCrop[TILE_TOPRIGHT].w = this->levelWidth;
+			tileCrop[TILE_TOPRIGHT].w = this->tileWidth;
 			tileCrop[TILE_TOPRIGHT].h = this->tileHeight;
 
 			tileCrop[TILE_RIGHT].x = 240;
 			tileCrop[TILE_RIGHT].y = 80;
-			tileCrop[TILE_RIGHT].w = this->levelWidth;
+			tileCrop[TILE_RIGHT].w = this->tileWidth;
 			tileCrop[TILE_RIGHT].h = this->tileHeight;
 
 			tileCrop[TILE_BOTTOMRIGHT].x = 240;
 			tileCrop[TILE_BOTTOMRIGHT].y = 160;
-			tileCrop[TILE_BOTTOMRIGHT].w = this->levelWidth;
+			tileCrop[TILE_BOTTOMRIGHT].w = this->tileWidth;
 			tileCrop[TILE_BOTTOMRIGHT].h = this->tileHeight;
 		}
 	}

@@ -1,6 +1,5 @@
 #include "PlayState.h"
 
-
 PlayState PlayState::m_PlayState;
 
 PlayState::PlayState() { }
@@ -12,10 +11,11 @@ void PlayState::init(GameStateManager *gsm)
 	this->gameOver = false;
 	this->timesUpdate = 0;
 
-	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, /*levlWitdh*/100,/*levelHight*/100 );
-
-	p = new Player();
 	setCurrentLevel(LevelFactory::GetFirstLevel());
+	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->getLvlWidth(), currentLevel->getLvlHeight());
+	p = new Player(camera);
+
+	// flush userinput to prevent crash during loadscreen
 	GameStateManager::Instance()->flushEvents();
 
 	std::cout << "PlayState \n";
@@ -74,6 +74,7 @@ void PlayState::update(double dt)
 void PlayState::draw()
 {
 	currentLevel->draw();
+	p->draw();
 }
 
 Level* PlayState::getCurrentLevel()

@@ -3,6 +3,7 @@
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
 #include "Camera.h"
+#include "TileLoader.h"
 
 class Level
 {
@@ -17,6 +18,8 @@ class Level
 		int LevelTiles;
 		SDL_Texture* tileSheet;
 		std::vector<SDL_Rect> tileCrops;
+
+		TileLoader* tileLoader;
 
 	public:
 		Level(int _lvlWidth, int _lvlHeight);

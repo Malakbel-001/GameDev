@@ -7,8 +7,8 @@ EntityFactory::EntityFactory(b2World& b2world) : world(b2world)
 			{ EntityType::ENTITY, Entity() },
 			{ EntityType::ACTOR, Actor() },
 			{ EntityType::NPC, Npc() },
-			{ EntityType::PLAYER, Player() }
-
+			//{ EntityType::PLAYER, Player() }
+			{ EntityType::PLAYER, Player(nullptr) }
 	};
 
 }
