@@ -9,7 +9,7 @@
 class TileLoader
 {
 	private:
-		int levelWidth, levelHeight, levelTotalTiles;
+		int levelWidth, levelHeight, levelTotalTiles, levelTotalDiffrentTiles;
 		int tileWidth, tileHeight;
 
 		int TILE_RED;
@@ -25,7 +25,10 @@ class TileLoader
 		int TILE_LEFT;
 		int TILE_TOPLEFT;
 
-		SDL_Texture 
+		SDL_Texture* tileSheet;
+		std::vector<SDL_Rect> tileCrop;
+
+		void setTileTypes();
 
 	protected:
 		// stuff
@@ -34,6 +37,6 @@ class TileLoader
 		TileLoader(Level* lvl);
 		virtual ~TileLoader();
 
-		void setTiles(Tile tiles[]);
+		void setTiles(std::vector<Tile*> tiles);
 };
 

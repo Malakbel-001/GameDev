@@ -60,18 +60,21 @@ void Game::gameLoop(GameStateManager* gsm)
 	{
 		//Checks if windows is not closed
 		//inputManager(gsm);
-		gsm->Instance()->handleEvents();
+
 		//Time to be used by behaviours
 	
 		//TODO UPDATE Behaviours with Time
 		int time = SDL_GetTicks() - lastTime;
 		lastTime = SDL_GetTicks();
-	
+		double dt = 16.6666667;
 		// max 60 fps	
 		if (1000.0 / 60 > time)
 		{
 			SDL_Delay((1000.0 / 60) - time);
 		}
+		gsm->update(dt);
+		gsm->draw();
+		gsm->Instance()->handleEvents();
 
 	}
 	SDL_Quit();

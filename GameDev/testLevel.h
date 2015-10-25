@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "Level.h"
 #include "Tile.h"
+#include "GameStateManager.h"
 
 class testLevel :
 	public Level

@@ -18,7 +18,7 @@ void PlayState::init(GameStateManager *gsm)
 	setCurrentLevel(LevelFactory::GetFirstLevel());
 	GameStateManager::Instance()->flushEvents();
 
-	std::cout << "PlayState";
+	std::cout << "PlayState \n";
 }
 
 void PlayState::loadGame()
@@ -42,18 +42,26 @@ void PlayState::resume()
 }
 
 
-void PlayState::handleEvents(SDL_Event mainEvent) {
-
+void PlayState::handleEvents(SDL_Event mainEvent)
+{
 	//Retrieve input
 	int x = 0;
 	int y = 0;
 	switch (mainEvent.type) 
 	{
-	case SDLK_TAB:
-		std::cout << "handleInput tab switch";
-		break;
-	default:
-		std::cout << "handleInput default switch";
+	case SDL_KEYDOWN:
+		switch (mainEvent.key.keysym.sym)
+		{
+		case SDLK_SPACE:
+			std::cout << "PlayState handleInput spacebar switch \n";
+			break;
+		case SDL_BUTTON_LEFT:
+			std::cout << "PlayState handleInput left mouse clicked switch \n";
+			break;
+		default:
+			std::cout << "Playstate handleInput default switch \n";
+			break;
+		}
 		break;
 	}
 }
@@ -61,7 +69,6 @@ void PlayState::handleEvents(SDL_Event mainEvent) {
 void PlayState::update(double dt)
 {
 	currentLevel->update(dt);
-
 }
 
 void PlayState::draw()

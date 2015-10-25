@@ -6,8 +6,7 @@
 #include <Windows.h>
 
 GameStateManager GameStateManager::m_Gsm;
-GameStateManager::GameStateManager()
-{ }
+GameStateManager::GameStateManager() { }
 
 void GameStateManager::init(const char* title, int width, int height, bool fullscreen)
 {
@@ -101,6 +100,7 @@ void GameStateManager::handleEvents()
 			//states.back()->handleEvents(mainEvent);
 			break;
 		default:
+			// More likly to do nothing
 			//states.back()->handleEvents(mainEvent);
 			break;
 		}
@@ -118,6 +118,15 @@ void GameStateManager::flushEvents()
 		SDL_FlushEvent(SDL_KEYDOWN);
 		SDL_FlushEvent(SDL_KEYUP);
 		SDL_FlushEvent(SDL_QUIT);
+	}
+}
+
+void GameStateManager::update(double dt)
+{
+	//OPTION ONE: update all GameStates
+	for (size_t i = 0; i < states.size(); i++)
+	{
+		states.at(i)->update(dt);
 	}
 }
 
@@ -139,7 +148,7 @@ void GameStateManager::draw()
 Level* GameStateManager::GetLevel()
 {
 	// TODO: get current level
-	return nullptr;
+	return PlayState::Instance()->getCurrentLevel();
 }
 
 void GameStateManager::quitGame()
@@ -175,4 +184,6 @@ void GameStateManager::cleanup()
 }
 
 GameStateManager::~GameStateManager()
-{ }
+{
+	delete sdlInitializer;
+}

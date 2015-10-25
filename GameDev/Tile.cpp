@@ -19,6 +19,11 @@ Tile::Tile(int x, int y, int tileType)
 	{
 		std::cout << "Coudn't load tileSet";
 	}
+	else
+	{
+		// get tileText witdh and height
+		//SDL_QueryTexture(tileText, nullptr, nullptr, &)
+	}
 }
 
 Tile::~Tile() { }

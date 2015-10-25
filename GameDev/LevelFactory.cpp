@@ -7,10 +7,10 @@ LevelFactory::~LevelFactory() { }
 
 void LevelFactory::Init()
 {
-	//levels = { new testLevel()
+	levels = { new testLevel(100, 100)
 	//	//TODO add , new Level1() , new level2()
 
-	//};
+	};
 }
 
 Level* LevelFactory::GetFirstLevel()

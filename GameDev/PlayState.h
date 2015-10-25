@@ -46,9 +46,7 @@ class PlayState :
 
 		void draw();
 
-		static PlayState* Instance() {
-			return &m_PlayState;
-		};
+		static PlayState* Instance() { return &m_PlayState; };
 
 		virtual ~PlayState();
 };
