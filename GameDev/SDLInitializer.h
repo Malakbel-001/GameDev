@@ -9,16 +9,16 @@ class SDLInitializer
 
 	public:
 		SDLInitializer();
-		void init(const char* title, int width, int height, bool fullscreen);
-		void clearScreen();
-		void drawTexture(SDL_Texture* texture, const SDL_Rect* destRect, SDL_Rect* crop);
-		void drawScreen();
+		void Init(const char* title, int width, int height, bool fullscreen);
+		void ClearScreen();
+		void DrawTexture(SDL_Texture* texture, const SDL_Rect* destRect, SDL_Rect* crop);
+		void DrawScreen();
 
-		void setRenderDrawColor(int r, int g, int b);
-		void resetRenderDrawColor();
+		void SetRenderDrawColor(int r, int g, int b);
+		void ResetRenderDrawColor();
 
-		SDL_Renderer* getRenderer();
-		SDL_Window* getWindow();
+		SDL_Renderer* GetRenderer();
+		SDL_Window* GetWindow();
 	
 		void RenderToScreen(int x, int y, SDL_Texture* texture, SDL_Rect* clip);
 

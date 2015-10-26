@@ -14,7 +14,7 @@ Tile::Tile(int x, int y, int tileType)
 	//Get the tile type
 	mType = tileType;
 
-	tileText = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->getRenderer(), "Resourses/images/tileset.png");
+	tileText = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->GetRenderer(), "Resourses/images/tileset.png");
 	if (tileText == NULL)
 	{
 		std::cout << "Coudn't load tileSet";

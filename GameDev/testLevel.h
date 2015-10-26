@@ -17,11 +17,11 @@ class testLevel :
 		testLevel(int _lvlWidth, int _lvlHeight);
 		virtual ~testLevel();
 
-		void init();
-		void cleanup();
+		void Init();
+		void Cleanup();
 
-		void handleEvents(SDL_Event mainEvent);
-		void update(double dt);
-		void draw();
+		void HandleEvents(SDL_Event mainEvent);
+		void Update(double dt);
+		void Draw();
 };
 

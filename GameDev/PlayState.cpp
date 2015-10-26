@@ -4,45 +4,45 @@ PlayState PlayState::m_PlayState;
 
 PlayState::PlayState() { }
 
-void PlayState::init(GameStateManager *gsm)
+void PlayState::Init(GameStateManager *gsm)
 {
 	this->gsm = gsm;
 
 	this->gameOver = false;
 	this->timesUpdate = 0;
 
-	setCurrentLevel(LevelFactory::GetFirstLevel());
-	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->getLvlWidth(), currentLevel->getLvlHeight());
+	SetCurrentLevel(LevelFactory::GetFirstLevel());
+	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight());
 	p = new Player(camera);
 
 	// flush userinput to prevent crash during loadscreen
-	GameStateManager::Instance()->flushEvents();
+	GameStateManager::Instance()->FlushEvents();
 
 	std::cout << "PlayState \n";
 }
 
-void PlayState::loadGame()
+void PlayState::LoadGame()
 {
 	
 }
 
-void PlayState::setFileToLoad(std::string fileName)
+void PlayState::SetFileToLoad(std::string fileName)
 {
 	this->fileToLoad = fileName;
 }
 
-void PlayState::pause()
+void PlayState::Pause()
 {
 	
 }
 
-void PlayState::resume()
+void PlayState::Resume()
 {
 
 }
 
 
-void PlayState::handleEvents(SDL_Event mainEvent)
+void PlayState::HandleEvents(SDL_Event mainEvent)
 {
 	//Retrieve input
 	int x = 0;
@@ -66,44 +66,44 @@ void PlayState::handleEvents(SDL_Event mainEvent)
 	}
 }
 
-void PlayState::update(double dt)
+void PlayState::Update(double dt)
 {
-	currentLevel->update(dt);
+	currentLevel->Update(dt);
 }
 
-void PlayState::draw()
+void PlayState::Draw()
 {
-	currentLevel->draw();
-	p->draw();
+	currentLevel->Draw();
+	p->Draw();
 }
 
-Level* PlayState::getCurrentLevel()
+Level* PlayState::GetCurrentLevel()
 {
 	return this->currentLevel;
 }
 
-void PlayState::setCurrentLevel(Level* lvl)
+void PlayState::SetCurrentLevel(Level* lvl)
 {
 	this->currentLevel = lvl;
 }
 
-void PlayState::setGameOver(bool gameOver)
+void PlayState::SetGameOver(bool gameOver)
 {
 	this->gameOver = gameOver;
 }
 
-Player* PlayState::getPlayer()
+Player* PlayState::GetPlayer()
 {
 	return this->p;
 }
 
-Camera* PlayState::getCamera()
+Camera* PlayState::GetCamera()
 {
 	return this->camera;
 }
 
 
-void PlayState::cleanup()
+void PlayState::Cleanup()
 {
 	delete p;
 	delete currentLevel;
@@ -114,5 +114,5 @@ void PlayState::cleanup()
 
 PlayState::~PlayState()
 {
-	this->cleanup();
+	this->Cleanup();
 }

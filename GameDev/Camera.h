@@ -10,13 +10,13 @@ class Camera
 		double mapHeight;
 	public:
 		Camera(double x, double y, double width, double height, double mapWidth, double mapHeight);
-		double getX();
-		double getY();
-		double getWidth();
-		double getHeight();
+		double GetX();
+		double GetY();
+		double GetWidth();
+		double GetHeight();
 
-		void setX(double x);
-		void setY(double y);
+		void SetX(double x);
+		void SetY(double y);
 
 		virtual ~Camera();
 };

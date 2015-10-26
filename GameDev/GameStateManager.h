@@ -25,30 +25,30 @@ class GameStateManager
 
 		SDLInitializer* sdlInitializer;
 
-		void init(const char* title, int width, int height, bool fullscreen);
-		void cleanup();
+		void Init(const char* title, int width, int height, bool fullscreen);
+		void Cleanup();
 
-		void setFps(int fps);
-		int getFps();
+		void SetFps(int fps);
+		int GetFps();
 
-		void changeGameState(IGameState* gameState);
-		void pushGameState(IGameState* gameState);
-		void popState();
+		void ChangeGameState(IGameState* gameState);
+		void PushGameState(IGameState* gameState);
+		void PopState();
 
-		void update(double delta);
-		void handleEvents();
-		void flushEvents();
-		void draw();
+		void Update(double delta);
+		void HandleEvents();
+		void FlushEvents();
+		void Draw();
 
 		Level* GetLevel();
 		void GetLevel(Level* lvl);
 
-		void setUpdateLength(float updateLength);
-		float getUpdateLength();
+		void SetUpdateLength(float updateLength);
+		float GetUpdateLength();
 
-		void quitGame();
-		bool running();
-		void quit();
+		void QuitGame();
+		bool Running();
+		void Quit();
 
 		static GameStateManager* Instance() { return &m_Gsm; };
 

@@ -30,7 +30,7 @@ class TileLoader
 		SDL_Texture* tileSheet;
 		std::vector<SDL_Rect> tileCrop;
 
-		void setTileTypes();
+		void SetTileTypes();
 
 	protected:
 		// stuff
@@ -39,6 +39,6 @@ class TileLoader
 		TileLoader(Level* lvl);
 		virtual ~TileLoader();
 
-		void setTiles(std::vector<Tile*> tiles);
+		void SetTiles(std::vector<Tile*> tiles);
 };
 

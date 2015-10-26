@@ -8,73 +8,73 @@
 GameStateManager GameStateManager::m_Gsm;
 GameStateManager::GameStateManager() { }
 
-void GameStateManager::init(const char* title, int width, int height, bool fullscreen)
+void GameStateManager::Init(const char* title, int width, int height, bool fullscreen)
 {
 	sdlInitializer = new SDLInitializer();
-	sdlInitializer->init(title, width, height, fullscreen);
+	sdlInitializer->Init(title, width, height, fullscreen);
 
 	m_running = true;
 	showFps = false;
 
-	GameStateManager::Instance()->setFps(0);
+	GameStateManager::Instance()->SetFps(0);
 	this->updateLength = 0;
 
-	GameStateManager::Instance()->changeGameState(PlayState::Instance());
+	GameStateManager::Instance()->ChangeGameState(PlayState::Instance());
 }
 
-void GameStateManager::setUpdateLength(float updateLength)
+void GameStateManager::SetUpdateLength(float updateLength)
 {
 	this->updateLength = updateLength;
 }
 
-void GameStateManager::setFps(int fps)
+void GameStateManager::SetFps(int fps)
 {
 	GameStateManager::Instance()->fps = fps;
 }
 
-int GameStateManager::getFps()
+int GameStateManager::GetFps()
 {
 	return GameStateManager::Instance()->fps;
 }
 
-void GameStateManager::changeGameState(IGameState* gameState)
+void GameStateManager::ChangeGameState(IGameState* gameState)
 {
 	while (!states.empty())
 	{
-		states.back()->cleanup();
+		states.back()->Cleanup();
 		states.pop_back();
 	}
 
 	states.push_back(gameState);
-	states.back()->init(GameStateManager::Instance());
+	states.back()->Init(GameStateManager::Instance());
 }
 
-void GameStateManager::pushGameState(IGameState* gameState)
+void GameStateManager::PushGameState(IGameState* gameState)
 {
 	if (!states.empty())
 	{
-		states.back()->pause();
+		states.back()->Pause();
 	}
 
 	states.push_back(gameState);
-	states.back()->init(GameStateManager::Instance());
+	states.back()->Init(GameStateManager::Instance());
 }
 
-void GameStateManager::popState()
+void GameStateManager::PopState()
 {
 	if (!states.empty())
 	{
-		states.back()->cleanup();
+		states.back()->Cleanup();
 		states.pop_back();
 	}
 
 	if (!states.empty())
 	{
-		states.back()->resume();
+		states.back()->Resume();
 	}
 }
 
-void GameStateManager::handleEvents()
+void GameStateManager::HandleEvents()
 {
 	SDL_Event mainEvent;
 
@@ -92,7 +92,7 @@ void GameStateManager::handleEvents()
 				GameStateManager::Instance()->showFps = !GameStateManager::Instance()->showFps;
 				break;
 			default:
-				states.back()->handleEvents(mainEvent);
+				states.back()->HandleEvents(mainEvent);
 				break;
 			}
 			break;
@@ -107,7 +107,7 @@ void GameStateManager::handleEvents()
 	}
 }
 
-void GameStateManager::flushEvents()
+void GameStateManager::FlushEvents()
 {
 	SDL_Event mainEvent;
 	while (SDL_PollEvent(&mainEvent))
@@ -121,60 +121,60 @@ void GameStateManager::flushEvents()
 	}
 }
 
-void GameStateManager::update(double dt)
+void GameStateManager::Update(double dt)
 {
 	//OPTION ONE: update all GameStates
 	for (size_t i = 0; i < states.size(); i++)
 	{
-		states.at(i)->update(dt);
+		states.at(i)->Update(dt);
 	}
 }
 
-void GameStateManager::draw()
+void GameStateManager::Draw()
 {
 	//Clear Screen
-	GameStateManager::Instance()->sdlInitializer->clearScreen();
+	GameStateManager::Instance()->sdlInitializer->ClearScreen();
 
 	//OPTION ONE: Draw all GameStates
 	for (size_t i = 0; i < states.size(); i++)
 	{
-		states.at(i)->draw();
+		states.at(i)->Draw();
 	}
 
 	//Draw entire screen
-	GameStateManager::Instance()->sdlInitializer->drawScreen();
+	GameStateManager::Instance()->sdlInitializer->DrawScreen();
 }
 
 Level* GameStateManager::GetLevel()
 {
 	// TODO: get current level
-	return PlayState::Instance()->getCurrentLevel();
+	return PlayState::Instance()->GetCurrentLevel();
 }
 
-void GameStateManager::quitGame()
+void GameStateManager::QuitGame()
 {
 	this->m_running = false;
 }
 
-bool GameStateManager::running()
+bool GameStateManager::Running()
 {
 	return m_running;
 }
 
-void GameStateManager::quit()
+void GameStateManager::Quit()
 {
 	m_running = false;
 	IMG_Quit();
 	SDL_Quit();
 }
 
-void GameStateManager::cleanup()
+void GameStateManager::Cleanup()
 {
 	//While there are states on the stack, clean them up
 	while (!states.empty())
 	{
 		//Peek at top state and clean that state
-		states.back()->cleanup();
+		states.back()->Cleanup();
 
 		//Remove top state
 		states.pop_back();

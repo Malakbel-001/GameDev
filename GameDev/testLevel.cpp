@@ -11,17 +11,17 @@ testLevel::testLevel(int _lvlWidth, int _lvlHeight)
 
 testLevel::~testLevel() { }
 
-void testLevel::cleanup() { }
+void testLevel::Cleanup() { }
 
 
-void testLevel::handleEvents(SDL_Event mainEvent) { }
+void testLevel::HandleEvents(SDL_Event mainEvent) { }
 
-void testLevel::update(double dt)
+void testLevel::Update(double dt)
 {
 
 }
 
-void testLevel::draw()
+void testLevel::Draw()
 {
 	SDL_Rect r;
 	r.x = 50;
@@ -30,16 +30,16 @@ void testLevel::draw()
 	r.h = 50;
 
 	// Set render color to blue ( rect will be rendered in this color )
-	SDL_SetRenderDrawColor(GameStateManager::Instance()->sdlInitializer->getRenderer(), 0, 0, 255, 255);
+	SDL_SetRenderDrawColor(GameStateManager::Instance()->sdlInitializer->GetRenderer(), 0, 0, 255, 255);
 
 	// Render rect
-	SDL_RenderFillRect(GameStateManager::Instance()->sdlInitializer->getRenderer(), &r);
+	SDL_RenderFillRect(GameStateManager::Instance()->sdlInitializer->GetRenderer(), &r);
 
 	// reset the renderer to black, full alpra
-	SDL_SetRenderDrawColor(GameStateManager::Instance()->sdlInitializer->getRenderer(), 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(GameStateManager::Instance()->sdlInitializer->GetRenderer(), 0, 0, 0, 255);
 
 	// Render the rect to the screen
-	SDL_RenderPresent(GameStateManager::Instance()->sdlInitializer->getRenderer());
+	SDL_RenderPresent(GameStateManager::Instance()->sdlInitializer->GetRenderer());
 
 	// draw the tiles
 	for (size_t i = 0; i < tileCrops.size(); ++i)

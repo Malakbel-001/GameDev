@@ -11,14 +11,14 @@ public:
 	Game();
 	~Game();
 
-	void gameLoop(GameStateManager* gsm);
+	void GameLoop(GameStateManager* gsm);
 	
 
 private:
 	GameStateManager* gsm;
-	void inputManager(GameStateManager* gsm);
+	void InputManager(GameStateManager* gsm);
 
-	void setUpBox2D();
+	void SetUpBox2D();
 
 	
 	SDL_Window* window;

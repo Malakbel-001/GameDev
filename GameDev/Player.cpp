@@ -3,7 +3,6 @@
 
 Player::Player(Camera* cam)
 {
-
 	//Initialize the collision box
 	mBox.x = 0;
 	mBox.y = 0;
@@ -14,7 +13,7 @@ Player::Player(Camera* cam)
 	mVelX = 0;
 	mVelY = 0;
 
-	texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->getRenderer(), "Resourses/images/ball.bmp");
+	texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->GetRenderer(), "Resourses/images/ball.bmp");
 	SDL_QueryTexture(texture, NULL, NULL, &WIDTH, &HEIGHT);
 
 	this->camera = cam;
@@ -29,7 +28,7 @@ Player::~Player()
 {
 }
 
-void Player::handleEvent(SDL_Event& e)
+void Player::HandleEvent(SDL_Event& e)
 {
 	//If a key was pressed
 	if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
@@ -83,32 +82,32 @@ void Player::move(Tile *tiles[])
 */
 
 // TODO: Make camara an class
-void Player::setCamera()
+void Player::SetCamera()
 {
 	int SCREEN_WIDTH, SCREEN_HEIGHT;
-	SDL_GetWindowSize(GameStateManager::Instance()->sdlInitializer->getWindow(), &SCREEN_WIDTH, &SCREEN_HEIGHT);
+	SDL_GetWindowSize(GameStateManager::Instance()->sdlInitializer->GetWindow(), &SCREEN_WIDTH, &SCREEN_HEIGHT);
 
 	//Center the camera over the dot
-	camera->setX( (mBox.x + WIDTH / 2) - SCREEN_WIDTH / 2);
-	camera->setY( (mBox.y + HEIGHT / 2) - SCREEN_HEIGHT / 2);
+	camera->SetX( (mBox.x + WIDTH / 2) - SCREEN_WIDTH / 2);
+	camera->SetY( (mBox.y + HEIGHT / 2) - SCREEN_HEIGHT / 2);
 
 	//Keep the camera in bounds
-	if (camera->getX() < 0)
-		camera->setX(0);
+	if (camera->GetX() < 0)
+		camera->SetX(0);
 	
-	if (camera->getY() < 0)
-		camera->setY(0);
+	if (camera->GetY() < 0)
+		camera->SetY(0);
 
-	if (camera->getX() > LEVEL_WIDTH - camera->getWidth())
-		camera->setX(LEVEL_WIDTH - camera->getWidth());
+	if (camera->GetX() > LEVEL_WIDTH - camera->GetWidth())
+		camera->SetX(LEVEL_WIDTH - camera->GetWidth());
 
-	if (camera->getY() > LEVEL_HEIGHT - camera->getHeight())
-		camera->setY( LEVEL_HEIGHT - camera->getHeight());
+	if (camera->GetY() > LEVEL_HEIGHT - camera->GetHeight())
+		camera->SetY( LEVEL_HEIGHT - camera->GetHeight());
 }
 
-void Player::draw()
+void Player::Draw()
 {
 	//Show the dot
 	//gDotTexture.render(mBox.x - camera.x, mBox.y - camera.y);
-	GameStateManager::Instance()->sdlInitializer->RenderToScreen(mBox.x - camera->getX(), mBox.y - camera->getY(), texture, NULL);
+	GameStateManager::Instance()->sdlInitializer->RenderToScreen(mBox.x - camera->GetX(), mBox.y - camera->GetY(), texture, NULL);
 }

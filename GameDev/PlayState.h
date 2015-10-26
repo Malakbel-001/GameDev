@@ -24,27 +24,27 @@ class PlayState :
 	public:
 		PlayState();
 
-		Player* getPlayer();
-		Camera* getCamera();
+		Player* GetPlayer();
+		Camera* GetCamera();
 
-		void init(GameStateManager *gsm);
-		void cleanup();
+		void Init(GameStateManager *gsm);
+		void Cleanup();
 
-		void pause();
-		void resume();
-		void setGameOver(bool gameOver);
+		void Pause();
+		void Resume();
+		void SetGameOver(bool gameOver);
 
-		void handleEvents(SDL_Event mainEvent);
+		void HandleEvents(SDL_Event mainEvent);
 
-		void update(double dt);
+		void Update(double dt);
 		
-		Level* getCurrentLevel();
-		void setCurrentLevel(Level* lvl);
+		Level* GetCurrentLevel();
+		void SetCurrentLevel(Level* lvl);
 
-		void loadGame();
-		void setFileToLoad(std::string fileName);
+		void LoadGame();
+		void SetFileToLoad(std::string fileName);
 
-		void draw();
+		void Draw();
 
 		static PlayState* Instance() { return &m_PlayState; };
 

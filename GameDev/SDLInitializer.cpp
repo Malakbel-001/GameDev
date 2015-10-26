@@ -3,7 +3,7 @@
 
 SDLInitializer::SDLInitializer() { }
 
-void SDLInitializer::init(const char* title, int width, int height, bool fullscreen)
+void SDLInitializer::Init(const char* title, int width, int height, bool fullscreen)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow
@@ -24,37 +24,37 @@ void SDLInitializer::init(const char* title, int width, int height, bool fullscr
 	renderer = SDL_CreateRenderer(window, -1, 0);
 }
 
-void SDLInitializer::setRenderDrawColor(int r, int g, int b)
+void SDLInitializer::SetRenderDrawColor(int r, int g, int b)
 {
-	SDL_SetRenderDrawColor(this->getRenderer(), r, g, b, 255);
+	SDL_SetRenderDrawColor(this->GetRenderer(), r, g, b, 255);
 }
 
-void SDLInitializer::resetRenderDrawColor()
+void SDLInitializer::ResetRenderDrawColor()
 {
-	SDL_SetRenderDrawColor(this->getRenderer(), 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(this->GetRenderer(), 0, 0, 0, 255);
 }
 
-void SDLInitializer::clearScreen()
+void SDLInitializer::ClearScreen()
 {
 	SDL_RenderClear(renderer);
 }
 
-void SDLInitializer::drawTexture(SDL_Texture* texture, const SDL_Rect* destRect, SDL_Rect* crop)
+void SDLInitializer::DrawTexture(SDL_Texture* texture, const SDL_Rect* destRect, SDL_Rect* crop)
 {
 	SDL_RenderCopy(renderer, texture, crop, destRect);
 }
 
-void SDLInitializer::drawScreen()
+void SDLInitializer::DrawScreen()
 {
 	SDL_RenderPresent(renderer);
 }
 
-SDL_Renderer* SDLInitializer::getRenderer()
+SDL_Renderer* SDLInitializer::GetRenderer()
 {
 	return renderer;
 }
 
-SDL_Window* SDLInitializer::getWindow()
+SDL_Window* SDLInitializer::GetWindow()
 {
 	return window;
 }
@@ -74,7 +74,7 @@ void SDLInitializer::RenderToScreen(int x, int y, SDL_Texture* texture, SDL_Rect
 	}
 
 	//Render to screen
-	SDL_RenderCopy(getRenderer(), texture, clip, &renderQuad);
+	SDL_RenderCopy(GetRenderer(), texture, clip, &renderQuad);
 }
 
 SDLInitializer::~SDLInitializer()

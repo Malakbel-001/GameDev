@@ -2,7 +2,7 @@
 
 
 Level::Level(int _lvlWidth, int _lvlHeight)
-	: lvlWigth(_lvlWidth), lvlHeight(_lvlHeight)
+	: lvlWitdh(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	world = new b2World(b2Vec2(0.0, 9.8));
 	this->tileLoader = nullptr;
@@ -20,37 +20,37 @@ Level::~Level()
 	delete tileLoader;
 }
 
-void Level::setLvlWidth(int _lvlWigth)
+void Level::SetLvlWidth(int _lvlWigth)
 {
-	this->lvlWigth = _lvlWigth;
+	this->lvlWitdh = _lvlWigth;
 }
 
-void Level::setLvlHeight(int _lvlHeight)
+void Level::SetLvlHeight(int _lvlHeight)
 {
 	this->lvlHeight = _lvlHeight;
 }
 
-SDL_Texture* Level::getTileSheet()
+SDL_Texture* Level::GetTileSheet()
 {
 	return this->tileSheet;
 }
 
-int Level::getLvlHeight()
+int Level::GetLvlHeight()
 {
 	return this->lvlHeight;
 }
 
-int Level::getLvlWidth()
+int Level::GetLvlWidth()
 {
-	return this->lvlWigth;
+	return this->lvlWitdh;
 }
 
-int Level::getTotalTiles()
+int Level::GetTotalTiles()
 {
 	return this->lvlTotalTiles;
 }
 
-int Level::getTotalDiffrentTiles()
+int Level::GetTotalDiffrentTiles()
 {
 	return this->lvlTotalDiffrentTiles;
 }

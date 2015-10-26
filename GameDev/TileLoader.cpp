@@ -3,21 +3,20 @@
 
 TileLoader::TileLoader(Level* lvl)
 {
-	this->levelHeight = lvl->getLvlHeight();
-	this->levelWidth = lvl->getLvlWidth();
-	this->levelTotalTiles = lvl->getTotalTiles();
-	this->levelTotalDiffrentTiles = lvl->getTotalDiffrentTiles();
+	this->levelHeight = lvl->GetLvlHeight();
+	this->levelWidth = lvl->GetLvlWidth();
+	this->levelTotalTiles = lvl->GetTotalTiles();
+	this->levelTotalDiffrentTiles = lvl->GetTotalDiffrentTiles();
 
 	this->tileHeight = 80;
 	this->tileWidth = 80;
 
-	this->tileSheet = lvl->getTileSheet();
+	this->tileSheet = lvl->GetTileSheet();
 
-	tileSheet = lvl->getTileSheet();
-
+	tileSheet = lvl->GetTileSheet();
 }
 
-void TileLoader::setTileTypes()
+void TileLoader::SetTileTypes()
 {
 	this->TILE_RED = 0;
 	this->TILE_GREEN = 1;
@@ -38,7 +37,7 @@ TileLoader::~TileLoader()
 	// don't destroy tileSheet, shard pointer with currentLevel in GSM
 }
 
-void TileLoader::setTiles(std::vector<Tile*> tiles)
+void TileLoader::SetTiles(std::vector<Tile*> tiles)
 {
 	bool tilesLoaded = true;
 	int x = 0, y = 0;

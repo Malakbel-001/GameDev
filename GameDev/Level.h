@@ -12,7 +12,7 @@ class Level
 
 	protected:
 		int tileWitdh, tileHeight;
-		int lvlWigth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
+		int lvlWitdh, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
 		b2World* world;
 		Camera* camera;
 		int LevelTiles;
@@ -25,20 +25,19 @@ class Level
 		Level(int _lvlWidth, int _lvlHeight);
 		virtual ~Level();
 
-		virtual void setLvlWidth(int _lvlWidth);
-		virtual void setLvlHeight(int _lvlHeight);
+		virtual void SetLvlWidth(int _lvlWidth);
+		virtual void SetLvlHeight(int _lvlHeight);
 
-		SDL_Texture* getTileSheet();
+		SDL_Texture* GetTileSheet();
 
-		int getLvlWidth();
-		int getLvlHeight();
-		int getTotalTiles();
-		int getTotalDiffrentTiles();
+		int GetLvlWidth();
+		int GetLvlHeight();
+		int GetTotalTiles();
+		int GetTotalDiffrentTiles();
 		std::vector<SDL_Rect> getTileCrops();
 
-		virtual void draw() = 0;
-		virtual void update(double dt) = 0;
+		virtual void Draw() = 0;
+		virtual void Update(double dt) = 0;
 
 		virtual b2World* GetWorld();
-
 };

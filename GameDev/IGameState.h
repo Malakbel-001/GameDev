@@ -7,19 +7,19 @@ protected:
 	IGameState() { }
 public:
 
-	virtual void init(GameStateManager *gsm) = 0;
-	virtual void cleanup() = 0;
+	virtual void Init(GameStateManager *gsm) = 0;
+	virtual void Cleanup() = 0;
 
-	virtual void pause() = 0;
-	virtual void resume() = 0;
+	virtual void Pause() = 0;
+	virtual void Resume() = 0;
 
-	virtual void handleEvents(SDL_Event mainEvent) = 0;
-	virtual void update(double dt) = 0;
-	virtual void draw() = 0;
+	virtual void HandleEvents(SDL_Event mainEvent) = 0;
+	virtual void Update(double dt) = 0;
+	virtual void Draw() = 0;
 
 	void ChangeState(GameStateManager* gsm, IGameState* state)
 	{
-		gsm->changeGameState(state);
+		gsm->ChangeGameState(state);
 	}
 
 	virtual ~IGameState();

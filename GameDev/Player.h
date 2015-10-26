@@ -30,17 +30,16 @@ public:
 	static const int DOT_VEL = 10;
 
 	//Takes key presses and adjusts the dot's velocity
-	void handleEvent(SDL_Event& e);
+	void HandleEvent(SDL_Event& e);
 
 	//Moves the dot and check collision against tiles
 	//void move(Tiles *tiles[]);
 
 	//Centers the camera over the dot
-	void setCamera();
+	void SetCamera();
 
 	//Shows the dot on the screen
-	void draw();
+	void Draw();
 
 	virtual Entity* EmptyClone();
-
 };

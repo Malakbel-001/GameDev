@@ -25,11 +25,11 @@ Game::Game()
 	//gameLoop();
 
 	gsm = GameStateManager::Instance();
-	gsm->init("GameDev", ScreenWidth, ScreenHeight, fullScreen);
+	gsm->Init("GameDev", ScreenWidth, ScreenHeight, fullScreen);
 	//Non-threaded
-	this->gameLoop(gsm);
+	this->GameLoop(gsm);
 
-	gsm->cleanup();
+	gsm->Cleanup();
 }
 
 
@@ -39,24 +39,24 @@ Game::~Game()
 	//delete renderer;
 }
 
-void Game::inputManager(GameStateManager* gsm)
+void Game::InputManager(GameStateManager* gsm)
 {
 	while (SDL_PollEvent(&events))
 	{
 		if (events.type == SDL_QUIT)
-			gsm->quit();
+			gsm->Quit();
 	}
 }
 
-void Game::setUpBox2D()
+void Game::SetUpBox2D()
 {
 
 }
 
-void Game::gameLoop(GameStateManager* gsm)
+void Game::GameLoop(GameStateManager* gsm)
 {	
 	int lastTime = SDL_GetTicks() - 1;
-	while (gsm->running())
+	while (gsm->Running())
 	{
 		//Checks if windows is not closed
 		//inputManager(gsm);
@@ -72,9 +72,9 @@ void Game::gameLoop(GameStateManager* gsm)
 		{
 			SDL_Delay((1000.0 / 60) - time);
 		}
-		gsm->update(dt);
-		gsm->draw();
-		gsm->Instance()->handleEvents();
+		gsm->Update(dt);
+		gsm->Draw();
+		gsm->Instance()->HandleEvents();
 
 	}
 	SDL_Quit();
