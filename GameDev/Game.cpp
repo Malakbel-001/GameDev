@@ -24,7 +24,7 @@ Game::Game()
 
 	//gameLoop();
 
-	gsm = GameStateManager::Instance();
+	gsm = new GameStateManager();
 	gsm->Init("GameDev", ScreenWidth, ScreenHeight, fullScreen);
 	//Non-threaded
 	this->GameLoop(gsm);
@@ -70,11 +70,11 @@ void Game::GameLoop(GameStateManager* gsm)
 		// max 60 fps	
 		if (1000.0 / 60 > time)
 		{
-			SDL_Delay((1000.0 / 60) - time);
+			SDL_Delay((1000.0 / 60.0) - time);
 		}
 		gsm->Update(dt);
 		gsm->Draw();
-		gsm->Instance()->HandleEvents();
+		gsm->HandleEvents();
 
 	}
 	SDL_Quit();

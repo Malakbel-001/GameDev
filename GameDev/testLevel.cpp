@@ -23,6 +23,7 @@ void testLevel::Update(double dt)
 
 void testLevel::Draw()
 {
+	/*
 	SDL_Rect r;
 	r.x = 50;
 	r.y = 50;
@@ -46,4 +47,5 @@ void testLevel::Draw()
 	{
 		tileCrops.at(i);
 	}
+	*/
 }

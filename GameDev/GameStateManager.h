@@ -17,8 +17,6 @@ class GameStateManager
 		IGameState* currentState;
 		bool m_running;
 
-		static GameStateManager m_Gsm;
-
 	public:
 		bool showFps;
 		GameStateManager();
@@ -49,8 +47,6 @@ class GameStateManager
 		void QuitGame();
 		bool Running();
 		void Quit();
-
-		static GameStateManager* Instance() { return &m_Gsm; };
 
 		virtual ~GameStateManager();
 };

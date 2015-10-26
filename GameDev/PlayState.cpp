@@ -16,7 +16,7 @@ void PlayState::Init(GameStateManager *gsm)
 	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight(), p);
 
 	// flush userinput to prevent crash during loadscreen
-	GameStateManager::Instance()->FlushEvents();
+	// GameStateManager::Instance()->FlushEvents();
 
 	std::cout << "PlayState \n";
 }

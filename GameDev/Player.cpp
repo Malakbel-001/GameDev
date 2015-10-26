@@ -13,8 +13,8 @@ Player::Player()
 	mVelX = 0;
 	mVelY = 0;
 
-	texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->GetRenderer(), "Resourses/images/ball.bmp");
-	SDL_QueryTexture(texture, NULL, NULL, &WIDTH, &HEIGHT);
+	//texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->GetRenderer(), "Resourses/images/ball.bmp");
+	//SDL_QueryTexture(texture, NULL, NULL, &WIDTH, &HEIGHT);
 }
 
 Entity* Player::EmptyClone()

@@ -5,8 +5,6 @@
 #include <iostream>
 #include <Windows.h>
 
-GameStateManager GameStateManager::m_Gsm;
-
 GameStateManager::GameStateManager() { }
 
 void GameStateManager::Init(const char* title, int width, int height, bool fullscreen)
@@ -17,10 +15,10 @@ void GameStateManager::Init(const char* title, int width, int height, bool fulls
 	m_running = true;
 	showFps = false;
 
-	GameStateManager::Instance()->SetFps(0);
+	this->SetFps(0);
 	this->updateLength = 0;
 
-	GameStateManager::Instance()->ChangeGameState(PlayState::Instance());
+	this->ChangeGameState(PlayState::Instance());
 }
 
 void GameStateManager::SetUpdateLength(float updateLength)
@@ -30,12 +28,12 @@ void GameStateManager::SetUpdateLength(float updateLength)
 
 void GameStateManager::SetFps(int fps)
 {
-	GameStateManager::Instance()->fps = fps;
+	this->fps = fps;
 }
 
 int GameStateManager::GetFps()
 {
-	return GameStateManager::Instance()->fps;
+	return this->fps;
 }
 
 void GameStateManager::ChangeGameState(IGameState* gameState)
@@ -47,7 +45,7 @@ void GameStateManager::ChangeGameState(IGameState* gameState)
 	}
 
 	states.push_back(gameState);
-	states.back()->Init(GameStateManager::Instance());
+	states.back()->Init(this);
 }
 
 void GameStateManager::PushGameState(IGameState* gameState)
@@ -58,7 +56,7 @@ void GameStateManager::PushGameState(IGameState* gameState)
 	}
 
 	states.push_back(gameState);
-	states.back()->Init(GameStateManager::Instance());
+	states.back()->Init(this);
 }
 
 void GameStateManager::PopState()
@@ -90,7 +88,7 @@ void GameStateManager::HandleEvents()
 			switch (mainEvent.key.keysym.sym)
 			{
 			case SDLK_TAB:
-				GameStateManager::Instance()->showFps = !GameStateManager::Instance()->showFps;
+				this->showFps = !this->showFps;
 				break;
 			default:
 				states.back()->HandleEvents(mainEvent);
@@ -134,7 +132,7 @@ void GameStateManager::Update(double dt)
 void GameStateManager::Draw()
 {
 	//Clear Screen
-	GameStateManager::Instance()->sdlInitializer->ClearScreen();
+	this->sdlInitializer->ClearScreen();
 
 	//OPTION ONE: Draw all GameStates
 	for (size_t i = 0; i < states.size(); i++)
@@ -143,7 +141,7 @@ void GameStateManager::Draw()
 	}
 
 	//Draw entire screen
-	GameStateManager::Instance()->sdlInitializer->DrawScreen();
+	this->sdlInitializer->DrawScreen();
 }
 
 Level* GameStateManager::GetLevel()
