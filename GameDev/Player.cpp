@@ -1,11 +1,8 @@
 #include "Player.h"
 
 
-Player::Player(DrawableContainer dc, BehaviourFactory bf)
+Player::Player()
 {
-	drawableContainer = dc;
-	drawableBehaviour = bf.CreateDrawableBehaviour(this, drawableContainer.GetRenderer());
-	drawableContainer.Add(drawableBehaviour);
 }
 
 

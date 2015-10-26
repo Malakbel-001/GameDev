@@ -78,6 +78,9 @@
     <ClCompile Include="Behaviour.cpp">
       <Filter>Source Files\Model\Behaviours</Filter>
     </ClCompile>
+    <ClCompile Include="DrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviours</Filter>
+    </ClCompile>
     <ClCompile Include="MoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviours</Filter>
     </ClCompile>
@@ -114,20 +117,11 @@
     <ClCompile Include="GameStateManager.cpp">
       <Filter>Source Files\Model\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="LTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerMoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviours</Filter>
     </ClCompile>
-    <ClCompile Include="DrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviours</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviours</Filter>
-    </ClCompile>
-    <ClCompile Include="BehaviourFactory.cpp">
-      <Filter>Source Files\Model\Factories</Filter>
+    <ClCompile Include="LTexture.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,12 +187,6 @@
     </ClInclude>
     <ClInclude Include="LTexture.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviours</Filter>
-    </ClInclude>
-    <ClInclude Include="BehaviourFactory.h">
-      <Filter>Header Files\Model\Factories</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
