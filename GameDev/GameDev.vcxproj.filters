@@ -55,6 +55,12 @@
     <Filter Include="Header Files\Model\Level">
       <UniqueIdentifier>{6f95c4fb-49b9-48af-8a7b-9b1df02385f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Model\ActorStates">
+      <UniqueIdentifier>{bfbafe3d-5153-4f18-85e2-a7bd623dfde9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\ActorStates">
+      <UniqueIdentifier>{dd1114c9-7d69-4bc7-b4bd-f1ba549689f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -123,6 +129,12 @@
     <ClCompile Include="LTexture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ActorState.cpp">
+      <Filter>Source Files\Model\ActorStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -187,6 +199,15 @@
     </ClInclude>
     <ClInclude Include="LTexture.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorState.h">
+      <Filter>Header Files\Model\ActorStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourType.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

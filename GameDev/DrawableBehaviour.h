@@ -1,4 +1,5 @@
 #pragma once
+#include "SDL.h"
 #include "Behaviour.h"
 class DrawableBehaviour :
 	public Behaviour
@@ -6,5 +7,9 @@ class DrawableBehaviour :
 public:
 	DrawableBehaviour();
 	virtual ~DrawableBehaviour();
+
+	DrawableBehaviour* EmptyClone();
+
+	void Draw(SDL_Renderer* renderer);
 };
 

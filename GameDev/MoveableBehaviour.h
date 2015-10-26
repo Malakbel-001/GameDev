@@ -8,6 +8,8 @@ public:
 	MoveableBehaviour();
 	virtual ~MoveableBehaviour();
 
+	MoveableBehaviour* EmptyClone();
+
 	virtual void Move();
 };
 

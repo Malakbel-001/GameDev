@@ -86,7 +86,9 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="ActorState.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="BehaviourFactory.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="Container.cpp" />
@@ -110,7 +112,10 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorState.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="BehaviourFactory.h" />
+    <ClInclude Include="BehaviourType.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="Container.h" />
