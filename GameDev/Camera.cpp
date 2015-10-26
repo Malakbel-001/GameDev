@@ -1,7 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(double x, double y, double width, double height, double mapWidth, double mapHeight)
-	: x(x), y(y), width(width), height(height), mapWidth(mapWidth), mapHeight(mapHeight)
+Camera::Camera(double x, double y, double width, double height, double mapWidth, double mapHeight, Player* p)
+	: x(x), y(y), width(width), height(height), mapWidth(mapWidth), mapHeight(mapHeight), player(p)
 { }
 
 double Camera::GetX()

@@ -6,6 +6,7 @@
 #include <Windows.h>
 
 GameStateManager GameStateManager::m_Gsm;
+
 GameStateManager::GameStateManager() { }
 
 void GameStateManager::Init(const char* title, int width, int height, bool fullscreen)

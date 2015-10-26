@@ -1,7 +1,6 @@
 #pragma once
 #include "Actor.h"
 #include "header_loader.h"
-#include "Camera.h"
 
 class Player :
 	public Actor
@@ -13,11 +12,8 @@ private:
 
 	//The velocity of the dot
 	int mVelX, mVelY;
-
-	Camera* camera;
 public:
-	Player(Camera* cam);
-
+	Player();
 	virtual ~Player();
 
 	//The dimensions of the dot

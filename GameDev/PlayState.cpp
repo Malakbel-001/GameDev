@@ -12,8 +12,8 @@ void PlayState::Init(GameStateManager *gsm)
 	this->timesUpdate = 0;
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
-	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight());
-	p = new Player(camera);
+	p = new Player();
+	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight(), p);
 
 	// flush userinput to prevent crash during loadscreen
 	GameStateManager::Instance()->FlushEvents();
@@ -69,6 +69,10 @@ void PlayState::HandleEvents(SDL_Event mainEvent)
 void PlayState::Update(double dt)
 {
 	currentLevel->Update(dt);
+
+	// TODO: fix dinemic FPS count
+	// do last
+	currentLevel->GetWorld()->Step(1.0 / 60.0, 5, 5);
 }
 
 void PlayState::Draw()
@@ -102,14 +106,15 @@ Camera* PlayState::GetCamera()
 	return this->camera;
 }
 
-
 void PlayState::Cleanup()
 {
 	delete p;
+	delete camera;
 	delete currentLevel;
 
 	p = nullptr;
 	camera = nullptr;
+	currentLevel = nullptr;
 }
 
 PlayState::~PlayState()

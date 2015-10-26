@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "GameStateManager.h"
 
-Player::Player(Camera* cam)
+Player::Player()
 {
 	//Initialize the collision box
 	mBox.x = 0;
@@ -15,13 +15,11 @@ Player::Player(Camera* cam)
 
 	texture = IMG_LoadTexture(GameStateManager::Instance()->sdlInitializer->GetRenderer(), "Resourses/images/ball.bmp");
 	SDL_QueryTexture(texture, NULL, NULL, &WIDTH, &HEIGHT);
-
-	this->camera = cam;
-
 }
+
 Entity* Player::EmptyClone()
 {
-	return new Player(camera);
+	return new Player();
 }
 
 Player::~Player()
@@ -84,30 +82,10 @@ void Player::move(Tile *tiles[])
 // TODO: Make camara an class
 void Player::SetCamera()
 {
-	int SCREEN_WIDTH, SCREEN_HEIGHT;
-	SDL_GetWindowSize(GameStateManager::Instance()->sdlInitializer->GetWindow(), &SCREEN_WIDTH, &SCREEN_HEIGHT);
-
-	//Center the camera over the dot
-	camera->SetX( (mBox.x + WIDTH / 2) - SCREEN_WIDTH / 2);
-	camera->SetY( (mBox.y + HEIGHT / 2) - SCREEN_HEIGHT / 2);
-
-	//Keep the camera in bounds
-	if (camera->GetX() < 0)
-		camera->SetX(0);
 	
-	if (camera->GetY() < 0)
-		camera->SetY(0);
-
-	if (camera->GetX() > LEVEL_WIDTH - camera->GetWidth())
-		camera->SetX(LEVEL_WIDTH - camera->GetWidth());
-
-	if (camera->GetY() > LEVEL_HEIGHT - camera->GetHeight())
-		camera->SetY( LEVEL_HEIGHT - camera->GetHeight());
 }
 
 void Player::Draw()
 {
-	//Show the dot
-	//gDotTexture.render(mBox.x - camera.x, mBox.y - camera.y);
-	GameStateManager::Instance()->sdlInitializer->RenderToScreen(mBox.x - camera->GetX(), mBox.y - camera->GetY(), texture, NULL);
+	
 }
