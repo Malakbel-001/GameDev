@@ -4,7 +4,6 @@
 #include "rapidJSON\document.h"
 #include "Game.h"
 #include "MainMenu.h"
-#include "HelpMenu.h"
 
 int main(int argc, char* argv[])
 {
