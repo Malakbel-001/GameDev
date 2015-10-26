@@ -61,6 +61,12 @@
     <Filter Include="Header Files\Model\Levels">
       <UniqueIdentifier>{58516ded-4f52-4f7b-8a3f-e096760253b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Model\SoundBank">
+      <UniqueIdentifier>{e584837c-c7c3-40dd-9f4e-cb0127bc7cef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\SoundBank">
+      <UniqueIdentifier>{4f58ca7e-5c72-41b8-9672-b3b7aa85a1ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Entity.cpp">
@@ -128,6 +134,15 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundFactory.cpp">
+      <Filter>Source Files\Model\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="CSoundBank.cpp">
+      <Filter>Source Files\Model\SoundBank</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMemory.cpp">
+      <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +214,15 @@
     </ClInclude>
     <ClInclude Include="LevelFactory.h">
       <Filter>Header Files\Model\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundFactory.h">
+      <Filter>Header Files\Model\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundBank.h">
+      <Filter>Header Files\Model\SoundBank</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMemory.h">
+      <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

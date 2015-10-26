@@ -1,8 +1,10 @@
 #pragma once
 #include "SDL.h"
+#include "SDL_mixer.h"
 #include <iostream>
 #include "GameStateManager.h"
 #include "Level.h"
+#include "SoundMemory.h"
 class Game
 {
 public:
@@ -13,7 +15,7 @@ public:
 	void gameLoop();
 	
 private:
-	void inputManager();
+	void inputManager(SoundMemory sm);
 
 	void setUpBox2D();
 

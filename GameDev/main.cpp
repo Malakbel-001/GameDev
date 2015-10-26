@@ -18,7 +18,6 @@ int main(int argc, char* argv[])
 	// Give us time to see the window.
 	Game* game = new Game();
 		
-
 	// Always be sure to clean up
 	
 	return 0;

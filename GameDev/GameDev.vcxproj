@@ -90,6 +90,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="CSoundBank.cpp" />
     <ClCompile Include="DrawableBehaviour.cpp" />
     <ClCompile Include="DrawableContainer.cpp" />
     <ClCompile Include="Entity.cpp" />
@@ -107,13 +108,17 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
+    <ClCompile Include="SoundFactory.cpp" />
+    <ClCompile Include="SoundMemory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="SoundMemory.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="CSoundBank.h" />
     <ClInclude Include="DrawableBehaviour.h" />
     <ClInclude Include="DrawableContainer.h" />
     <ClInclude Include="Entity.h" />
@@ -132,6 +137,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="SoundFactory.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameDev.rc" />
