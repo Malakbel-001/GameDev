@@ -11,8 +11,8 @@ class Level
 		// stuff
 
 	protected:
-		int tileWitdh, tileHeight;
-		int lvlWitdh, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
+		int tileWidth, tileHeight;
+		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
 		b2World* world;
 		Camera* camera;
 		int LevelTiles;

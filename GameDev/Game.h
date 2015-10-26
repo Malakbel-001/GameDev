@@ -20,7 +20,6 @@ private:
 
 	void SetUpBox2D();
 
-	
 	SDL_Window* window;
 	SDL_Renderer* renderer;	
 	SDL_Event events;

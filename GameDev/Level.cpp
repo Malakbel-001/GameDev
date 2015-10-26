@@ -1,8 +1,7 @@
 #include "Level.h"
 
-
 Level::Level(int _lvlWidth, int _lvlHeight)
-	: lvlWitdh(_lvlWidth), lvlHeight(_lvlHeight)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	world = new b2World(b2Vec2(0.0, 9.8));
 	this->tileLoader = nullptr;
@@ -20,9 +19,9 @@ Level::~Level()
 	delete tileLoader;
 }
 
-void Level::SetLvlWidth(int _lvlWigth)
+void Level::SetLvlWidth(int _lvlWidth)
 {
-	this->lvlWitdh = _lvlWigth;
+	this->lvlWidth = _lvlWidth;
 }
 
 void Level::SetLvlHeight(int _lvlHeight)
@@ -42,7 +41,7 @@ int Level::GetLvlHeight()
 
 int Level::GetLvlWidth()
 {
-	return this->lvlWitdh;
+	return this->lvlWidth;
 }
 
 int Level::GetTotalTiles()
