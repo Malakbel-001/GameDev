@@ -1,7 +1,7 @@
 #include "Game.h"
-<<<<<<< HEAD
 #include "header_loader.h"
 
+using namespace std;
 Game::Game()
 {
 	//gameManager = GameStateManager();
@@ -31,24 +31,14 @@ Game::Game()
 	this->GameLoop(gsm);
 
 	gsm->Cleanup();
-=======
-#include <iostream>
-
-using namespace std;
-
-Game::Game()
-{
-	running = true;	
-	
-	gameLoop();
 }
-
 
 Game::~Game()
 {
 	//delete window;
 	//delete renderer;
 }
+
 void Game::InputManager(GameStateManager* gsm)
 {
 	while (SDL_PollEvent(&events))

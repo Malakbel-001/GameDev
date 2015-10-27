@@ -86,10 +86,9 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="ActorState.cpp" />
     <ClCompile Include="Behaviour.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="Container.cpp" />
@@ -102,8 +101,8 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
+    <ClCompile Include="SpritesLoader.cpp" />
     <ClCompile Include="TileLoader.cpp" />
-    <ClCompile Include="LTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MoveableBehaviour.cpp" />
@@ -111,7 +110,6 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerMoveableBehaviour.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDLInitializer.cpp" />
     <ClCompile Include="testLevel.cpp" />
@@ -119,12 +117,10 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="ActorState.h" />
     <ClInclude Include="Behaviour.h" />
-<<<<<<< HEAD
-    <ClInclude Include="Camera.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="Container.h" />
@@ -139,15 +135,14 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
+    <ClInclude Include="SpritesLoader.h" />
     <ClInclude Include="TileLoader.h" />
-    <ClInclude Include="LTexture.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveableBehaviour.h" />
     <ClInclude Include="MoveableContainer.h" />
     <ClInclude Include="Npc.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerMoveableBehaviour.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SDLInitializer.h" />
     <ClInclude Include="testLevel.h" />

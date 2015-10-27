@@ -1,17 +1,12 @@
 #pragma once
-<<<<<<< HEAD
-#include "GameStateManager.h"
-#include <iostream>
 #include "GameStateManager.h"
 #include "Level.h"
-=======
 #include "SDL.h"
 #include "LTexture.h"
 #include <SDL_image.h> 
 #include <stdio.h> 
 #include <string>
 #include <iostream>
->>>>>>> d04bec6786c06aeba06a89124e7bad69de24f90c
 
 class Game
 {

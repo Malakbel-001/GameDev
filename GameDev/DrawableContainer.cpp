@@ -17,8 +17,23 @@ void DrawableContainer::Add(DrawableBehaviour behaviour)
 
 void DrawableContainer::Draw(SDL_Renderer* renderer)
 {
+	ClearScreen(renderer);
 	for each (DrawableBehaviour behaviour in behaviours)
 	{
-		behaviour.Draw(renderer);
+		behaviour.Draw(renderer, spriteSheetTexture);
 	}
+	UpdateScreen(renderer);
+}
+
+void DrawableContainer::ClearScreen(SDL_Renderer* renderer)
+{
+	//Update screen
+	SDL_RenderPresent(renderer);
+}
+
+void DrawableContainer::UpdateScreen(SDL_Renderer* renderer)
+{
+	//Clear screen
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(renderer);
 }

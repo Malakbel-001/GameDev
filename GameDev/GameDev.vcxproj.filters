@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
@@ -29,18 +26,6 @@
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="MoveableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="CollidableContainer.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="Container.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawableContainer.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveableContainer.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="testLevel.cpp">
@@ -82,17 +67,26 @@
     <ClCompile Include="TileLoader.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerMoveableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviours</Filter>
+    <ClCompile Include="MoveableContainer.cpp">
+      <Filter>Source Files\Model\Container</Filter>
     </ClCompile>
-    <ClCompile Include="LTexture.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DrawableContainer.cpp">
+      <Filter>Source Files\Model\Container</Filter>
     </ClCompile>
-    <ClCompile Include="ActorState.cpp">
-      <Filter>Source Files\Model\ActorStates</Filter>
+    <ClCompile Include="CollidableContainer.cpp">
+      <Filter>Source Files\Model\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Container.cpp">
+      <Filter>Source Files\Model\Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="BehaviourFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="SpritesLoader.cpp">
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,13 +126,7 @@
     <ClInclude Include="CollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="CollidableContainer.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="DrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableContainer.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="MoveableBehaviour.h">
@@ -183,20 +171,20 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files\Main</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerMoveableBehaviour.h">
-      <Filter>Header Files\Model\Behaviours</Filter>
+    <ClInclude Include="DrawableContainer.h">
+      <Filter>Header Files\Model\Container</Filter>
     </ClInclude>
-    <ClInclude Include="LTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ActorState.h">
-      <Filter>Header Files\Model\ActorStates</Filter>
+    <ClInclude Include="CollidableContainer.h">
+      <Filter>Header Files\Model\Container</Filter>
     </ClInclude>
     <ClInclude Include="BehaviourFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
     <ClInclude Include="BehaviourType.h">
-      <Filter>Header Files\Model</Filter>
+      <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="SpritesLoader.h">
+      <Filter>Header Files\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
