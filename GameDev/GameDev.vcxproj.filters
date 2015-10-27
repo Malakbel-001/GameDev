@@ -144,9 +144,6 @@
     <ClInclude Include="MoveableContainer.h">
       <Filter>Header Files\Model\Container</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="SDLInitializer.h">
       <Filter>Header Files\Main</Filter>
     </ClInclude>
@@ -170,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Main</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

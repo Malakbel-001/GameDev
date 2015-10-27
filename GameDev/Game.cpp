@@ -84,7 +84,6 @@ void Game::GameLoop(GameStateManager* gsm)
 		// max 60 fps	
 		if (lastFpsUpdateTime >= 1000)
 		{
-			//std::cout << fps << "\n";
 			gsm->SetFps(fps);
 			lastFpsUpdateTime = 0;
 			fps = 0;

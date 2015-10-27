@@ -3,7 +3,7 @@
 Level::Level(int _lvlWidth, int _lvlHeight)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
-	world = new b2World(b2Vec2(0.0, float(9.81) ));
+	world = new b2World(b2Vec2(0.0, static_cast<float>(9.81) ));
 	this->tileLoader = nullptr;
 }
 

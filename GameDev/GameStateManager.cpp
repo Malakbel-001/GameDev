@@ -15,7 +15,8 @@ void GameStateManager::Init(const char* title, int width, int height, bool fulls
 	m_running = true;
 	showFps = false;
 
-	this->SetFps(0);
+	// set to 60 to prevent DeviteByZeroExeption for Box2D: world->Step(1 / fps, 5, 5);
+	this->SetFps(60);
 	this->updateLength = 0;
 
 	this->ChangeGameState(PlayState::Instance());
