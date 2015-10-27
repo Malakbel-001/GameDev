@@ -1,8 +1,9 @@
 #pragma once
-#include "SDL.h"
+#include "GameStateManager.h"
 #include <iostream>
 #include "GameStateManager.h"
 #include "Level.h"
+
 class Game
 {
 public:
@@ -10,18 +11,19 @@ public:
 	Game();
 	~Game();
 
-	void gameLoop();
+	void GameLoop(GameStateManager* gsm);
 	
+
 private:
-	void inputManager();
+	GameStateManager* gsm;
+	void InputManager(GameStateManager* gsm);
 
-	void setUpBox2D();
+	void SetUpBox2D();
 
-	
 	SDL_Window* window;
 	SDL_Renderer* renderer;	
 	SDL_Event events;
 
-	bool running;
+	bool running;	
 };
 
