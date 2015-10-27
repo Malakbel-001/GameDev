@@ -16,7 +16,7 @@ void PlayState::Init(GameStateManager *gsm)
 	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight(), p);
 
 	// flush userinput to prevent crash during loadscreen
-	// GameStateManager::Instance()->FlushEvents();
+	gsm->FlushEvents();
 
 	std::cout << "PlayState \n";
 }
@@ -72,7 +72,8 @@ void PlayState::Update(double dt)
 
 	// TODO: fix dinemic FPS count
 	// do last
-	currentLevel->GetWorld()->Step(1.0 / 60.0, 5, 5);
+	
+	currentLevel->GetWorld()->Step( static_cast<float32>(1 / gsm->GetFps() ), 5, 5);
 }
 
 void PlayState::Draw()

@@ -48,34 +48,63 @@ void Game::InputManager(GameStateManager* gsm)
 	}
 }
 
-void Game::SetUpBox2D()
-{
-
-}
-
 void Game::GameLoop(GameStateManager* gsm)
 {	
+	double TARGET_FPS = 60;
+	double OPTIMAL_TIME = 1000 / TARGET_FPS;
+
+	Uint32 previousLoopTime, currentLoopTime, afterLoopTime; // ticks
+
+	previousLoopTime = SDL_GetTicks();
+
+	Uint32 lastFpsUpdateTime = 0;
+	int fps = 0;
+
 	int lastTime = SDL_GetTicks() - 1;
 	while (gsm->Running())
 	{
-		//Checks if windows is not closed
-		//inputManager(gsm);
-
-		//Time to be used by behaviours
-	
 		//TODO UPDATE Behaviours with Time
-		int time = SDL_GetTicks() - lastTime;
-		lastTime = SDL_GetTicks();
-		double dt = 16.6666667;
+
+		// get current time
+		currentLoopTime = SDL_GetTicks();
+
+		// Calculate update time
+		Uint32 updateTime = currentLoopTime - previousLoopTime;
+		previousLoopTime = currentLoopTime;
+
+		// calculate DeltaTime
+		double dt = updateTime / OPTIMAL_TIME;
+
+		// Add time difrence to the lastFpsUpdateTime
+		lastFpsUpdateTime += updateTime;
+
+		// incrament fps, frame past
+		fps++;
+		
 		// max 60 fps	
-		if (1000.0 / 60 > time)
+		if (lastFpsUpdateTime >= 1000)
 		{
-			SDL_Delay((1000.0 / 60.0) - time);
+			//std::cout << fps << "\n";
+			gsm->SetFps(fps);
+			lastFpsUpdateTime = 0;
+			fps = 0;
 		}
+
+		// TODO: cap min fps?
+		//if (dt < 4) dt = 4;
+
+		gsm->HandleEvents();
 		gsm->Update(dt);
 		gsm->Draw();
-		gsm->HandleEvents();
 
+		gsm->SetUpdateLength(updateTime);
+
+		afterLoopTime = SDL_GetTicks();
+
+		if ((previousLoopTime - afterLoopTime) + OPTIMAL_TIME > 0)
+		{
+			SDL_Delay(previousLoopTime - afterLoopTime + OPTIMAL_TIME);
+		}
 	}
 	SDL_Quit();
 }

@@ -11,7 +11,7 @@ class IGameState;
 class GameStateManager
 {
 	private:
-		float updateLength;
+		Uint32 updateLength;
 		int fps;
 		std::vector<IGameState*> states;
 		IGameState* currentState;
