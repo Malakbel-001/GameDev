@@ -82,6 +82,18 @@
     <ClCompile Include="TileLoader.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerMoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviours</Filter>
+    </ClCompile>
+    <ClCompile Include="LTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ActorState.cpp">
+      <Filter>Source Files\Model\ActorStates</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -170,6 +182,21 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviours</Filter>
+    </ClInclude>
+    <ClInclude Include="LTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorState.h">
+      <Filter>Header Files\Model\ActorStates</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourType.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

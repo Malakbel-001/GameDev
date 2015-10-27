@@ -1,4 +1,5 @@
 #include "Game.h"
+<<<<<<< HEAD
 #include "header_loader.h"
 
 Game::Game()
@@ -30,6 +31,16 @@ Game::Game()
 	this->GameLoop(gsm);
 
 	gsm->Cleanup();
+=======
+#include <iostream>
+
+using namespace std;
+
+Game::Game()
+{
+	running = true;	
+	
+	gameLoop();
 }
 
 
@@ -38,13 +49,45 @@ Game::~Game()
 	//delete window;
 	//delete renderer;
 }
-
 void Game::InputManager(GameStateManager* gsm)
 {
 	while (SDL_PollEvent(&events))
 	{
 		if (events.type == SDL_QUIT)
 			gsm->Quit();
+
+		//User presses a key
+		if (events.type == SDL_KEYDOWN)
+		{ 
+			//Select surfaces based on key press 
+			switch (events.key.keysym.sym)
+			{ 
+				case SDLK_w:
+					cout << "Jumping" << endl;
+					break;
+				case SDLK_s:
+					cout << "Crouching" << endl;
+					break;
+				case SDLK_a:
+					cout << "Moving Left" << endl;
+					break;
+				case SDLK_d:
+					cout << "Moving Right" << endl;
+					break;
+				case SDLK_UP: 
+					cout << "Aiming up" << endl;
+					break; 
+				case SDLK_DOWN: 
+					cout << "Aiming down" << endl;
+					break; 
+				case SDLK_LEFT: 
+					cout << "previous weapon" << endl;
+					break; 
+				case SDLK_RIGHT: 
+					cout << "next weapon" << endl;
+					break; 
+			} 
+		}
 	}
 }
 
@@ -61,6 +104,7 @@ void Game::GameLoop(GameStateManager* gsm)
 	int fps = 0;
 
 	int lastTime = SDL_GetTicks() - 1;
+
 	while (gsm->Running())
 	{
 		//TODO UPDATE Behaviours with Time
