@@ -41,7 +41,7 @@ class GameStateManager
 		Level* GetLevel();
 		void GetLevel(Level* lvl);
 
-		void SetUpdateLength(float updateLength);
+		void SetUpdateLength(Uint32 updateLength);
 		float GetUpdateLength();
 
 		void QuitGame();

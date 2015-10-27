@@ -22,7 +22,7 @@ void GameStateManager::Init(const char* title, int width, int height, bool fulls
 	this->ChangeGameState(PlayState::Instance());
 }
 
-void GameStateManager::SetUpdateLength(float updateLength)
+void GameStateManager::SetUpdateLength(Uint32 updateLength)
 {
 	this->updateLength = updateLength;
 }
