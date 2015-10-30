@@ -4,7 +4,7 @@
 #include <iostream>
 #include "GameStateManager.h"
 #include "Level.h"
-#include "SoundMemory.h"
+
 class Game
 {
 public:
@@ -15,7 +15,7 @@ public:
 	void gameLoop();
 	
 private:
-	void inputManager(SoundMemory sm);
+	void inputManager(int* i);
 
 	void setUpBox2D();
 

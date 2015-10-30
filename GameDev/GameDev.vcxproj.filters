@@ -138,10 +138,10 @@
     <ClCompile Include="SoundFactory.cpp">
       <Filter>Source Files\Model\Factories</Filter>
     </ClCompile>
-    <ClCompile Include="CSoundBank.cpp">
+    <ClCompile Include="SoundChunk.cpp">
       <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
-    <ClCompile Include="SoundMemory.cpp">
+    <ClCompile Include="SoundBank.cpp">
       <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
   </ItemGroup>
@@ -218,10 +218,16 @@
     <ClInclude Include="SoundFactory.h">
       <Filter>Header Files\Model\Factories</Filter>
     </ClInclude>
-    <ClInclude Include="CSoundBank.h">
+    <ClInclude Include="SoundEffectType.h">
+      <Filter>Header Files\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBgmType.h">
+      <Filter>Header Files\Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundChunk.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
-    <ClInclude Include="SoundMemory.h">
+    <ClInclude Include="SoundBank.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
   </ItemGroup>
