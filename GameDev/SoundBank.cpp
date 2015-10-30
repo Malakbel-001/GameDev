@@ -58,23 +58,23 @@ void SoundBank::Play(SoundEffectType type) {
 	playingChunks.insert(typeChunk);
 }
 
-void PlayBGM(char* file) {
-	//Mix_Music* tempBGM = NULL;
-	//if ((tempBGM = Mix_LoadMUS(file)) == NULL) { //error handling
-	//	std::cout << "Error: BGM File = NULL!" << std::endl;
-	//	return;
-	//}
-	//else if (Mix_PlayingMusic()) {
-	//	Mix_FadeOutMusic(1000);
-	//	Mix_FreeMusic(SoundBank::SoundControl.currentBGM); //Because of Memory Leaks, maybe?
-	//	Mix_FadeInMusic(tempBGM, -1, 1000);
-	//	SoundBank::SoundControl.currentBGM = tempBGM;
-	//}
-	//else {
-	//	Mix_FadeInMusic(tempBGM, -1, 1000);
-	//	SoundBank::SoundControl.currentBGM = tempBGM;
-	//}
-}
+//void PlayBGM(char* file) {
+//	Mix_Music* tempBGM = NULL;
+//	if ((tempBGM = Mix_LoadMUS(file)) == NULL) { //error handling
+//		std::cout << "Error: BGM File = NULL!" << std::endl;
+//		return;
+//	}
+//	else if (Mix_PlayingMusic()) {
+//		Mix_FadeOutMusic(1000);
+//		Mix_FreeMusic(SoundBank::SoundControl.currentBGM); //Because of Memory Leaks, maybe?
+//		Mix_FadeInMusic(tempBGM, -1, 1000);
+//		SoundBank::SoundControl.currentBGM = tempBGM;
+//	}
+//	else {
+//		Mix_FadeInMusic(tempBGM, -1, 1000);
+//		SoundBank::SoundControl.currentBGM = tempBGM;
+//	}
+//}
 
 
 //std::string* SoundBank::checkValidPath(std::string* path) {
