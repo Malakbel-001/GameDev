@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "header_loader.h"
 
+using namespace std;
 Game::Game()
 {
 	//gameManager = GameStateManager();
@@ -32,7 +33,6 @@ Game::Game()
 	gsm->Cleanup();
 }
 
-
 Game::~Game()
 {
 	//delete window;
@@ -45,6 +45,39 @@ void Game::InputManager(GameStateManager* gsm)
 	{
 		if (events.type == SDL_QUIT)
 			gsm->Quit();
+
+		//User presses a key
+		if (events.type == SDL_KEYDOWN)
+		{ 
+			//Select surfaces based on key press 
+			switch (events.key.keysym.sym)
+			{ 
+				case SDLK_w:
+					cout << "Jumping" << endl;
+					break;
+				case SDLK_s:
+					cout << "Crouching" << endl;
+					break;
+				case SDLK_a:
+					cout << "Moving Left" << endl;
+					break;
+				case SDLK_d:
+					cout << "Moving Right" << endl;
+					break;
+				case SDLK_UP: 
+					cout << "Aiming up" << endl;
+					break; 
+				case SDLK_DOWN: 
+					cout << "Aiming down" << endl;
+					break; 
+				case SDLK_LEFT: 
+					cout << "previous weapon" << endl;
+					break; 
+				case SDLK_RIGHT: 
+					cout << "next weapon" << endl;
+					break; 
+			} 
+		}
 	}
 }
 
@@ -61,6 +94,7 @@ void Game::GameLoop(GameStateManager* gsm)
 	int fps = 0;
 
 	int lastTime = SDL_GetTicks() - 1;
+
 	while (gsm->Running())
 	{
 		//TODO UPDATE Behaviours with Time
@@ -100,10 +134,11 @@ void Game::GameLoop(GameStateManager* gsm)
 
 		afterLoopTime = SDL_GetTicks();
 
-		if ((previousLoopTime - afterLoopTime) + OPTIMAL_TIME > 0)
+		/*if ((previousLoopTime - afterLoopTime) + OPTIMAL_TIME > 0)
 		{
 			SDL_Delay(previousLoopTime - afterLoopTime + OPTIMAL_TIME);
-		}
+		}*/
+		SDL_Delay(100);
 	}
 	SDL_Quit();
 }
