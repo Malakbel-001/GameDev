@@ -11,7 +11,12 @@ void PlayState::Init(GameStateManager *gsm)
 	this->gameOver = false;
 	this->timesUpdate = 0;
 
+
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
+	factory = new BehaviourFactory();
+	drawableContainer = new DrawableContainer();
+
+	drawableContainer->Add(factory->CreateDrawableBehaviour(BehaviourType::DRAWABLEBEHAVIOUR));
 	p = new Player();
 	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight(), p);
 
@@ -80,6 +85,7 @@ void PlayState::Draw()
 {
 	currentLevel->Draw();
 	p->Draw();
+	drawableContainer->Draw(gsm->sdlInitializer->GetRenderer());
 }
 
 Level* PlayState::GetCurrentLevel()

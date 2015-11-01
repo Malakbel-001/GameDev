@@ -6,5 +6,7 @@ class CollidableBehaviour :
 public:
 	CollidableBehaviour();
 	virtual ~CollidableBehaviour();
+
+	CollidableBehaviour* EmptyClone();
 };
 

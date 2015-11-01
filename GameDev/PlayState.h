@@ -3,6 +3,7 @@
 #include "header_loader.h"
 #include "Player.h"
 #include "Camera.h"
+#include "BehaviourFactory.h"
 #include <iostream>
 
 class PlayState :
@@ -15,6 +16,8 @@ class PlayState :
 		Camera* camera;
 		Player* p;
 		Level* currentLevel;
+		BehaviourFactory* factory;
+		DrawableContainer* drawableContainer;
 
 		std::string fileToLoad;
 
