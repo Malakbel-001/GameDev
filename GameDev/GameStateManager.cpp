@@ -19,7 +19,8 @@ void GameStateManager::Init(const char* title, int width, int height, bool fulls
 	this->SetFps(60);
 	this->updateLength = 0;
 
-	this->ChangeGameState(PlayState::Instance());
+	//this->ChangeGameState(PlayState::Instance());
+	this->ChangeGameState(MenuState::Instance());
 }
 
 void GameStateManager::SetUpdateLength(Uint32 updateLength)
@@ -90,6 +91,10 @@ void GameStateManager::HandleEvents()
 			{
 			case SDLK_TAB:
 				this->showFps = !this->showFps;
+				break;
+			case SDLK_ESCAPE:
+				std::cout << "test";
+				//this->ChangeGameState(MenuState::Instance());
 				break;
 			default:
 				states.back()->HandleEvents(mainEvent);

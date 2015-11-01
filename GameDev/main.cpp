@@ -5,7 +5,7 @@
 #include "Box2D\Box2D.h"
 #include "rapidJSON\document.h"
 #include "Game.h"
-#include "MainMenu.h"
+//#include "MainMenu.h"
 
 int main(int argc, char* argv[])
 {
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
 	// Initialize SDL.
 
 	//Main Menu
-	MainMenu* menu = new MainMenu();
+	//MainMenu* menu = new MainMenu();
 	//HelpMenu* help = new HelpMenu();
 	
 	// Give us time to see the window.
