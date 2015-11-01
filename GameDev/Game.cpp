@@ -134,10 +134,11 @@ void Game::GameLoop(GameStateManager* gsm)
 
 		afterLoopTime = SDL_GetTicks();
 
-		if ((previousLoopTime - afterLoopTime) + OPTIMAL_TIME > 0)
+		/*if ((previousLoopTime - afterLoopTime) + OPTIMAL_TIME > 0)
 		{
 			SDL_Delay(previousLoopTime - afterLoopTime + OPTIMAL_TIME);
-		}
+		}*/
+		SDL_Delay(100);
 	}
 	SDL_Quit();
 }

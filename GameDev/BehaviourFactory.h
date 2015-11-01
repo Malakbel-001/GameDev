@@ -11,9 +11,9 @@ public:
 	BehaviourFactory();
 	~BehaviourFactory();
 
-	Behaviour* CreateDrawableBehaviour(BehaviourType type);
+	DrawableBehaviour* CreateDrawableBehaviour(BehaviourType type);
 	
 private:
-	std::unordered_map<BehaviourType, Behaviour> registery;
+	std::unordered_map<BehaviourType, DrawableBehaviour> registery;
 };
 

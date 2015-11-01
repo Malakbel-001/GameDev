@@ -88,6 +88,9 @@
     <ClCompile Include="SpritesLoader.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="LTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -145,10 +148,10 @@
       <Filter>Header Files\Model\Container</Filter>
     </ClInclude>
     <ClInclude Include="SDLInitializer.h">
-      <Filter>Header Files\Main</Filter>
+      <Filter>Header Files\Controller\Main</Filter>
     </ClInclude>
     <ClInclude Include="header_loader.h">
-      <Filter>Header Files\Main</Filter>
+      <Filter>Header Files\Controller\Main</Filter>
     </ClInclude>
     <ClInclude Include="EntityFactory.h">
       <Filter>Header Files\Model\Factory</Filter>
@@ -169,7 +172,7 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Header Files\Main</Filter>
+      <Filter>Header Files\Controller\Main</Filter>
     </ClInclude>
     <ClInclude Include="DrawableContainer.h">
       <Filter>Header Files\Model\Container</Filter>
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="SpritesLoader.h">
       <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="LTexture.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -208,9 +214,6 @@
     </Filter>
     <Filter Include="Header Files\Controller">
       <UniqueIdentifier>{015c3123-49d2-4630-8558-b972dcd7631d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Main">
-      <UniqueIdentifier>{66281234-945f-4016-b639-178ef14cf49c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Model\GameState">
       <UniqueIdentifier>{9f93b8be-386e-4ee4-8a1e-a1ff4437d865}</UniqueIdentifier>
@@ -259,6 +262,9 @@
     </Filter>
     <Filter Include="Source Files\Main">
       <UniqueIdentifier>{f60e81da-3610-42e9-a57c-3b3cbf0b73d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller\Main">
+      <UniqueIdentifier>{66281234-945f-4016-b639-178ef14cf49c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

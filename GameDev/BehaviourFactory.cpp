@@ -3,11 +3,8 @@
 
 BehaviourFactory::BehaviourFactory()
 {
-	registery = std::unordered_map<BehaviourType, Behaviour>{
-		{ BehaviourType::BEHAVIOUR, Behaviour() },
-		{ BehaviourType::DRAWABLEBEHAVIOUR, DrawableBehaviour() },
-		{ BehaviourType::MOVEABLEBEHAVIOUR, MoveableBehaviour() },
-		{ BehaviourType::COLLIDABLEBEHAVIOUR, CollidableBehaviour() }
+	registery = std::unordered_map<BehaviourType, DrawableBehaviour>{
+		{ BehaviourType::DRAWABLEBEHAVIOUR, DrawableBehaviour() }
 	};
 }
 
@@ -16,8 +13,8 @@ BehaviourFactory::~BehaviourFactory()
 {
 }
 
-Behaviour* BehaviourFactory::CreateDrawableBehaviour(BehaviourType type)
+DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(BehaviourType type)
 {
-	Behaviour* behaviour = registery.at(type).EmptyClone();
+	DrawableBehaviour* behaviour = registery.at(type).EmptyClone();
 	return behaviour;
 }
