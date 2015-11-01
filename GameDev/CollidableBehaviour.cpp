@@ -9,3 +9,8 @@ CollidableBehaviour::CollidableBehaviour()
 CollidableBehaviour::~CollidableBehaviour()
 {
 }
+
+CollidableBehaviour* CollidableBehaviour::EmptyClone()
+{
+	return new CollidableBehaviour();
+}

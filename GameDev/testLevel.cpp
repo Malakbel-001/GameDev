@@ -23,6 +23,7 @@ void testLevel::Update(double dt)
 
 void testLevel::Draw()
 {
+
 	/*
 	SDL_Rect r;
 	r.x = 50;

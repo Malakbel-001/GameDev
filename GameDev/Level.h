@@ -4,11 +4,12 @@
 #include "Box2D\Box2D.h"
 #include "Camera.h"
 #include "TileLoader.h"
+#include "DrawableContainer.h"
 
 class Level
 {
 	private:
-		// stuff
+		DrawableContainer* drawableContainer;
 
 	protected:
 		int tileWidth, tileHeight;
