@@ -82,6 +82,9 @@
     <ClCompile Include="TileLoader.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -170,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

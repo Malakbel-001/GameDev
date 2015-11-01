@@ -6,6 +6,7 @@
 #include "Actor.h"
 #include "Npc.h"
 #include "Player.h"
+#include "Ground.h"
 
 class EntityFactory
 {
@@ -13,6 +14,7 @@ public:
 	EntityFactory(b2World& world);
 	~EntityFactory();
 	Entity* CreateEntity(float x, float y, EntityType type);
+	Entity* CreateStaticEntity(float x, float y, EntityType type);
 
 private:
 
