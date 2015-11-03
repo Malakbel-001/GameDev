@@ -5,13 +5,21 @@
 #include "Camera.h"
 #include "TileLoader.h"
 #include "DrawableContainer.h"
+#include "MoveableContainer.h"
+#include "EntityFactory.h"
 
 class Level
 {
 	private:
-		
+		DrawableContainer* drawableContainer;
+		MoveableContainer* moveableContainer;
+		Player* player;
+		EntityFactory* entityFactory;
+		float startXpos;
+		float startYpos;
 
 	protected:
+
 		int tileWidth, tileHeight;
 		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
 		DrawableContainer* drawableContainer;
@@ -24,9 +32,11 @@ class Level
 		TileLoader* tileLoader;
 
 	public:
+		DrawableContainer* GetDrawableContainer();
 		Level(int _lvlWidth, int _lvlHeight);
 		virtual ~Level();
 
+		virtual void SetPlayer(Player* _player);
 		virtual void SetLvlWidth(int _lvlWidth);
 		virtual void SetLvlHeight(int _lvlHeight);
 
@@ -39,7 +49,7 @@ class Level
 		std::vector<SDL_Rect> getTileCrops();
 
 		virtual void Draw() = 0;
-		virtual void Update(double dt) = 0;
+		virtual void Update(float dt) = 0;
 
 		virtual b2World* GetWorld();
 };

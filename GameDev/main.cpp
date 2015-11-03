@@ -1,5 +1,7 @@
 
 
+#include <stdlib.h>
+#include <crtdbg.h>
 // SDL Portable installation
 #include <SDL.h>
 #include "Box2D\Box2D.h"
@@ -11,17 +13,15 @@ int main(int argc, char* argv[])
 
 	rapidjson::Document document;
 
-	b2Vec2 gravity(0, -9.8f); //normal earth gravity, 9.8 m/s/s straight down!
-
-	b2World* myWorld = new b2World(gravity);
 	// Initialize SDL.
 	
 	// Give us time to see the window.
 	Game* game = new Game();
-
+	
 	// Always be sure to clean up
 	delete game;
-	delete myWorld;
+	
 	SDL_Quit();
+	_CrtDumpMemoryLeaks();
 	return 0;
 }

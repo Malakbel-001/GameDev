@@ -1,28 +1,22 @@
 #include "PlayState.h"
 
-PlayState PlayState::m_PlayState;
 
-PlayState::PlayState() { }
+
 
 void PlayState::Init(GameStateManager *gsm)
 {
 	this->gsm = gsm;
 
 	this->gameOver = false;
-	this->timesUpdate = 0;
 
+	//TODO LOAD PLAYER FROM FILE
+	player = new Player();
+	
+	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
-	factory = new BehaviourFactory(gsm->sdlInitializer->GetRenderer(), 640, 480);
-	drawableContainer = new DrawableContainer();
-
-	drawableContainer->Add(factory->CreateDrawableBehaviour(BehaviourType::PLAYERDRAWABLEBEHAVIOUR));
-	drawableContainer->Add(factory->CreateDrawableBehaviour(BehaviourType::GROUNDDRAWABLEBEHAVIOUR));
-	p = new Player();
-	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight(), p);
-
 	// flush userinput to prevent crash during loadscreen
-	gsm->FlushEvents();
+
 
 	std::cout << "PlayState \n";
 }
@@ -34,17 +28,17 @@ void PlayState::LoadGame()
 
 void PlayState::SetFileToLoad(std::string fileName)
 {
-	this->fileToLoad = fileName;
+	std::cout << "SetFileToLoad not implemented yet";
 }
 
 void PlayState::Pause()
 {
-	
+	std::cout << "Pause not implemented yet";
 }
 
 void PlayState::Resume()
 {
-
+	std::cout << "Resume not implemented yet";
 }
 
 
@@ -72,21 +66,26 @@ void PlayState::HandleEvents(SDL_Event mainEvent)
 	}
 }
 
-void PlayState::Update(double dt)
+void PlayState::Update(float dt)
 {
 	currentLevel->Update(dt);
 
 	// TODO: fix dinemic FPS count
 	// do last
 	
-	currentLevel->GetWorld()->Step( static_cast<float32>(1 / gsm->GetFps() ), 5, 5);
+	
 }
 
-void PlayState::Draw()
+void PlayState::Draw(SDL_Renderer*  sdl)
 {
+<<<<<<< HEAD
 	/*currentLevel->Draw();
 	p->Draw();*/
 	drawableContainer->Draw();
+=======
+	currentLevel->GetDrawableContainer()->Draw(sdl);
+	
+>>>>>>> refs/remotes/origin/Develop
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -97,31 +96,24 @@ Level* PlayState::GetCurrentLevel()
 void PlayState::SetCurrentLevel(Level* lvl)
 {
 	this->currentLevel = lvl;
+	this->currentLevel->SetPlayer(player);
 }
 
-void PlayState::SetGameOver(bool gameOver)
-{
-	this->gameOver = gameOver;
-}
 
 Player* PlayState::GetPlayer()
 {
-	return this->p;
+	return this->player;
 }
 
-Camera* PlayState::GetCamera()
-{
-	return this->camera;
-}
 
 void PlayState::Cleanup()
 {
-	delete p;
-	delete camera;
+	delete player;
+	
 	delete currentLevel;
 
-	p = nullptr;
-	camera = nullptr;
+	player = nullptr;
+
 	currentLevel = nullptr;
 }
 

@@ -16,7 +16,7 @@ void testLevel::Cleanup() { }
 
 void testLevel::HandleEvents(SDL_Event mainEvent) { }
 
-void testLevel::Update(double dt)
+void testLevel::Update(float dt)
 {
 
 }
