@@ -51,17 +51,6 @@ Game::~Game()
 }
 
 void Game::inputManager(int* i) { //temp parameter
-	//AUDIO TEST! TEMPORARY PLACEMENT. Fyi, only accepts
-	//Mix_Music general rule: 10 seconds or longer
-	//Mix_Chunk general rule: shorter than 10 seconds
-	/*Mix_Music* bgm = Mix_LoadMUS("../Assets/lastcave.mp3");
-	Mix_Music* bgm2 = Mix_LoadMUS("../Assets/balcony.mp3");
-	Mix_Music* bgmEmpty = nullptr;*/
-	//Mix_LoadWAV("../Assets/lastcave.mp3");
-	/*Mix_Chunk* chunkie = Mix_LoadWAV("../Assets/soundcorrect.wav");
-	int channel;*/
-
-
 	while (SDL_PollEvent(&events)) {
 		if (events.type == SDL_QUIT)
 			running = false;
@@ -69,49 +58,26 @@ void Game::inputManager(int* i) { //temp parameter
 		else if (events.type == SDL_KEYDOWN) {
 			switch (events.key.keysym.sym) {
 				case SDLK_1:
-					SoundBank::getInstance()->Play(SoundEffectType::CORRECT);
-					std::cout << Mix_Playing(-1) << std::endl;
-					//soundBank.Play(SoundEffectType::CORRECT);
-
-					/*Mix_VolumeChunk(chunkie, 64);
-					Mix_PlayChannel(1, chunkie, 0);*/
-					//i++;
+					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+					std::cout << Mix_Playing(-1) << std::endl; //get amount channels playing
 					break;
 				case SDLK_2:
-					SoundBank::getInstance()->FreeMemory();
-					std::cout << Mix_Playing(-1) << std::endl;
-					/*Mix_VolumeChunk(chunkie, 90);
-					Mix_PlayChannel(2, chunkie, 0);*/
+					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 128);
+					std::cout << Mix_Playing(-1) << std::endl; //get amount channels playing
 					break;
 				case SDLK_3:
-					
-					/*Mix_VolumeChunk(chunkie, 30);
-					Mix_PlayChannel(3, chunkie, 0);*/
 					break;
 				case SDLK_4:
-					std::cout << Mix_AllocateChannels(-1) << std::endl; //might throw errors
-					//Mix_FreeChunk(chunkie);
-					//Mix_PlayChannel(4, chunkie, 0);
+					std::cout << Mix_AllocateChannels(-1) << std::endl;
 					break;
-				case SDLK_5:
-					SoundBank::getInstance()->PlayBGM(SoundBgmType::TESTBGM2);
-					//std::cout << Mix_PlayChannel(-1, chunkie, 0) << std::endl; //might throw errors
-					//std::cout << "playing: "+Mix_Playing(channel) << std::endl; //might throw errors
-					//Mix_PlayChannel(5, chunkie, 0);
+				case SDLK_5: //BGM1
+					SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM2, 64);
 					break;
-				case SDLK_6:
-					SoundBank::getInstance()->PlayBGM(SoundBgmType::TESTBGM1);
-					//Mix_PlayChannel(6, chunkie, 0);
+				case SDLK_6: //BGM2
+					SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1, 32);
 					break;
 				case SDLK_p:
-					//CSoundBank::SoundControl.PlayBGM("../Assets/lastcave.mp3");
-					//SoundFactory::SetNextBGM(bgm);
-					break;
-				case SDLK_t:
-					//CSoundBank::SoundControl.PlayBGM("../Assets/balcony.mp3");
-					break;
-				case SDLK_e:
-					//CSoundBank::SoundControl.PlayBGM("empty");
+					SoundBank::GetInstance()->PauseOrResume();
 					break;
 				case SDLK_s:
 					Mix_HaltMusic();
@@ -119,12 +85,6 @@ void Game::inputManager(int* i) { //temp parameter
 			}
 		}
 	}
-	
-
-	/*delete(bgm);
-	delete(bgm2);
-	delete(bgmEmpty);
-	delete(chunkie);*/
 }
 void Game::setUpBox2D(){
 
@@ -161,8 +121,7 @@ void Game::gameLoop(){
 		}
 
 	}	
-	SoundBank* soundBank = SoundBank::getInstance();
-	soundBank->FreeMemory(); //do this before Mix_Quit or destroy soundBank before Mix_Quit
+	SoundBank::GetInstance()->FreeMemory();//do this before Mix_Quit or destroy soundBank before Mix_Quit
 
 	Mix_Quit();
 	SDL_Quit();

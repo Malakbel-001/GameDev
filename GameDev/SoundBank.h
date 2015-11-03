@@ -17,8 +17,11 @@ private:
 	//Mix_Chunk currentlyPlaying;
 public:
 	~SoundBank();
-	static SoundBank* getInstance();
-	void Play(SoundEffectType type);
-	void PlayBGM(SoundBgmType type); //TODO
+	static SoundBank* GetInstance();
+
+	void Play(SoundEffectType type, int volume);
+	void PlayBGM(SoundBgmType type, int volume); //TODO
+	void PauseOrResume();
+	void StopMusic(); //arguably not needed
 	void FreeMemory();
 };
