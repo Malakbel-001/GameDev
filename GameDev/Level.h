@@ -10,19 +10,17 @@
 
 class Level
 {
-	private:
+	protected:
 		DrawableContainer* drawableContainer;
 		MoveableContainer* moveableContainer;
 		Player* player;
 		EntityFactory* entityFactory;
 		float startXpos;
+
 		float startYpos;
-
-	protected:
-
 		int tileWidth, tileHeight;
 		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
-		DrawableContainer* drawableContainer;
+
 		b2World* world;
 		Camera* camera;
 		int LevelTiles;

@@ -15,7 +15,7 @@ public:
 
 	void HandleEvents(SDL_Event mainEvent);
 	void Update(float dt);
-	void Draw(SDL_Renderer*  sdl);
+	void Draw();
 
 	virtual ~MenuState();
 };

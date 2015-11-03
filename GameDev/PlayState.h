@@ -10,8 +10,6 @@ class PlayState :
 	public IGameState
 {
 	private:
-	
-
 		GameStateManager* gsm;		
 		Player* player;
 		Level* currentLevel;	
@@ -27,13 +25,9 @@ class PlayState :
 
 		void HandleEvents(SDL_Event mainEvent);
 		void Update(float dt);
-		void Draw(SDL_Renderer*  sdl);
-
-
-		Player* GetPlayer();
-
-
+		void Draw();
 		
+		Player* GetPlayer();
 
 		Level* GetCurrentLevel();
 		void SetCurrentLevel(Level* lvl);
@@ -41,7 +35,6 @@ class PlayState :
 
 		void SetFileToLoad(std::string fileName);		
 		
-
 		virtual ~PlayState();
 };
 

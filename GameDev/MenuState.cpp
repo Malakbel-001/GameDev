@@ -29,6 +29,6 @@ void MenuState::HandleEvents(SDL_Event mainEvent){
 void MenuState::Update(float dt){
 
 }
-void MenuState::Draw(SDL_Renderer*  sdl){
+void MenuState::Draw(){
 
 }

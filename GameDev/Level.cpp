@@ -22,8 +22,7 @@ void Level::Update(float dt){
 }
 void Level::SetPlayer(Player* _player){
 	
-	player = _player;
-		
+	player = _player;		
 	player->setBody(entityFactory->CreateBody(startXpos, startYpos, 15, 15, EntityType::PLAYER));
 
 }

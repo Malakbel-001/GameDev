@@ -106,7 +106,7 @@ void Game::GameLoop()
 
 		InputManager();
 		gsm->GetCurrentState()->Update(dt);
-		gsm->GetCurrentState()->Draw(sdlInitializer->GetRenderer());
+		gsm->GetCurrentState()->Draw();
 			
 	
 		afterLoopTime = SDL_GetTicks();
