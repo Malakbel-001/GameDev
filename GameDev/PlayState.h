@@ -10,46 +10,37 @@ class PlayState :
 	public IGameState
 {
 	private:
-		static PlayState m_PlayState;
+	
 
-		GameStateManager* gsm;
-		Camera* camera;
-		Player* p;
-		Level* currentLevel;
-		BehaviourFactory* factory;
-		DrawableContainer* drawableContainer;
-
-		std::string fileToLoad;
-
-		int timesUpdate;
+		GameStateManager* gsm;		
+		Player* player;
+		Level* currentLevel;	
 		bool gameOver;
 
 	public:
-		PlayState();
-
-		Player* GetPlayer();
-		Camera* GetCamera();
 
 		void Init(GameStateManager *gsm);
 		void Cleanup();
 
 		void Pause();
 		void Resume();
-		void SetGameOver(bool gameOver);
 
 		void HandleEvents(SDL_Event mainEvent);
+		void Update(float dt);
+		void Draw(SDL_Renderer*  sdl);
 
-		void Update(double dt);
+
+		Player* GetPlayer();
+
+
 		
+
 		Level* GetCurrentLevel();
 		void SetCurrentLevel(Level* lvl);
-
 		void LoadGame();
-		void SetFileToLoad(std::string fileName);
 
-		void Draw();
-
-		static PlayState* Instance() { return &m_PlayState; };
+		void SetFileToLoad(std::string fileName);		
+		
 
 		virtual ~PlayState();
 };
