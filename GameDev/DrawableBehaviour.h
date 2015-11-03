@@ -3,21 +3,24 @@
 #include <SDL.h>
 #include "Behaviour.h"
 #include "LTexture.h"
+#include "Box2D\Box2D.h"
+
 
 using namespace std;
 class DrawableBehaviour :
 	public Behaviour
 {
 public:
+	b2Body* body;
 	DrawableBehaviour();
 	virtual ~DrawableBehaviour();
 
-	DrawableBehaviour* EmptyClone();
+	virtual DrawableBehaviour* EmptyClone();
 
-	void Draw(SDL_Renderer* renderer);
+	virtual void Draw(SDL_Renderer* renderer);
 	void SetSprites(vector<SDL_Rect> sdl_sprites);
-	bool LoadMedia(SDL_Renderer* renderer);
-private:
+	virtual bool LoadMedia(SDL_Renderer* renderer);
+protected:
 	vector<SDL_Rect> sprites;
 	int currentFrame;
 

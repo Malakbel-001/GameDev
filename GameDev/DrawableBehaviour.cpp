@@ -27,7 +27,7 @@ void DrawableBehaviour::Draw(SDL_Renderer* renderer)
 	LoadMedia(renderer);
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	SDL_Rect* currentClip = &idleSprites[currentFrame / IDLE_ANIMATION_FRAMES];
-	spriteSheetTexture->render(renderer, (640 - currentClip->w) / 2, (480 - currentClip->h) / 2, currentClip);
+	spriteSheetTexture->render(renderer, body->GetPosition().x, body->GetPosition().y, currentClip);
 
 	//Go to next frame 
 	++currentFrame;

@@ -5,12 +5,14 @@
 #include "Camera.h"
 #include "TileLoader.h"
 #include "DrawableContainer.h"
+#include "EntityFactory.h"
+#include "BehaviourFactory.h"
+
 
 class Level
 {
 	private:
-		DrawableContainer* drawableContainer;
-
+		
 	protected:
 		int tileWidth, tileHeight;
 		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
@@ -23,6 +25,8 @@ class Level
 		TileLoader* tileLoader;
 
 	public:
+		DrawableContainer* drawableContainer;
+		void Init();
 		Level(int _lvlWidth, int _lvlHeight);
 		virtual ~Level();
 

@@ -5,8 +5,13 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 {
 	world = new b2World(b2Vec2(0.0, static_cast<float>(9.81) ));
 	this->tileLoader = nullptr;
-}
 
+}
+void Level::Init(){
+	EntityFactory ent = EntityFactory(*world);
+	BehaviourFactory fac = BehaviourFactory();
+	drawableContainer->Add(fac.CreateDrawableBehaviour(BehaviourType::GROUNDDRAWABLEBEHAVIOUR, ent.CreateStaticEntity(100, 300, EntityType::PLAYER)));
+}
 b2World* Level::GetWorld()
 {
 	return world;

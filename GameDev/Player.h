@@ -26,7 +26,6 @@ public:
 	static const int DOT_VEL = 10;
 
 	//Takes key presses and adjusts the dot's velocity
-	void HandleEvent(SDL_Event& e);
 
 	//Moves the dot and check collision against tiles
 	//void move(Tiles *tiles[]);

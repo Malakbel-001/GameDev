@@ -129,6 +129,7 @@ void Game::GameLoop(GameStateManager* gsm)
 		gsm->HandleEvents();
 		gsm->Update(dt);
 		gsm->Draw();
+	
 
 		gsm->SetUpdateLength(updateTime);
 

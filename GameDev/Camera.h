@@ -10,13 +10,13 @@ class Camera
 		double height;
 		double mapWidth;
 		double mapHeight;
-		Player* player;
+	
 
 	protected:
 		// Stuff
 
 	public:
-		Camera(double x, double y, double width, double height, double mapWidth, double mapHeight, Player* p);
+		Camera(double x, double y, double width, double height, double mapWidth, double mapHeight);
 		double GetX();
 		double GetY();
 		double GetWidth();

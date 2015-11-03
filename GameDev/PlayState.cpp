@@ -15,10 +15,16 @@ void PlayState::Init(GameStateManager *gsm)
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
 	factory = new BehaviourFactory();
 	drawableContainer = new DrawableContainer();
+	currentLevel->drawableContainer = drawableContainer;
+	currentLevel->Init();
+	//drawableContainer->Add(factory->CreateDrawableBehaviour(BehaviourType::DRAWABLEBEHAVIOUR));
+	EntityFactory ent = EntityFactory(*currentLevel->GetWorld());
+	BehaviourFactory fac = BehaviourFactory();
+	p = ent.CreateEntity(100, 100, EntityType::PLAYER);
+	drawableContainer->Add(fac.CreateDrawableBehaviour(BehaviourType::DRAWABLEBEHAVIOUR,p ));
 
-	drawableContainer->Add(factory->CreateDrawableBehaviour(BehaviourType::DRAWABLEBEHAVIOUR));
-	p = new Player();
-	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight(), p);
+	
+	camera = new Camera(0, 0, ScreenWidth, ScreenHeight, currentLevel->GetLvlWidth(), currentLevel->GetLvlHeight());
 
 	// flush userinput to prevent crash during loadscreen
 	gsm->FlushEvents();
@@ -63,8 +69,9 @@ void PlayState::HandleEvents(SDL_Event mainEvent)
 		case SDL_BUTTON_LEFT:
 			std::cout << "PlayState handleInput left mouse clicked switch \n";
 			break;
+			
 		default:
-			std::cout << "Playstate handleInput default switch \n";
+			
 			break;
 		}
 		break;
@@ -73,18 +80,20 @@ void PlayState::HandleEvents(SDL_Event mainEvent)
 
 void PlayState::Update(double dt)
 {
-	currentLevel->Update(dt);
+//	currentLevel->Update(dt);
 
 	// TODO: fix dinemic FPS count
 	// do last
 	
-	currentLevel->GetWorld()->Step( static_cast<float32>(1 / gsm->GetFps() ), 5, 5);
+	currentLevel->GetWorld()->Step(1, 5, 5);
+
 }
 
 void PlayState::Draw()
 {
+	
 	currentLevel->Draw();
-	p->Draw();
+	
 	drawableContainer->Draw(gsm->sdlInitializer->GetRenderer());
 }
 
@@ -103,10 +112,6 @@ void PlayState::SetGameOver(bool gameOver)
 	this->gameOver = gameOver;
 }
 
-Player* PlayState::GetPlayer()
-{
-	return this->p;
-}
 
 Camera* PlayState::GetCamera()
 {

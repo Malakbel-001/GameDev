@@ -123,6 +123,7 @@ void GameStateManager::FlushEvents()
 
 void GameStateManager::Update(double dt)
 {
+	
 	//OPTION ONE: update all GameStates
 	for (size_t i = 0; i < states.size(); i++)
 	{
@@ -139,10 +140,13 @@ void GameStateManager::Draw()
 	for (size_t i = 0; i < states.size(); i++)
 	{
 		states.at(i)->Draw();
+		states.at(i)->Update(0);
 	}
 
 	//Draw entire screen
 	this->sdlInitializer->DrawScreen();
+	
+
 }
 
 Level* GameStateManager::GetLevel()

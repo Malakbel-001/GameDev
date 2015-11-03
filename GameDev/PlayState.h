@@ -14,10 +14,10 @@ class PlayState :
 
 		GameStateManager* gsm;
 		Camera* camera;
-		Player* p;
+		Entity* p;
 		Level* currentLevel;
 		BehaviourFactory* factory;
-		DrawableContainer* drawableContainer;
+	
 
 		std::string fileToLoad;
 
@@ -26,7 +26,7 @@ class PlayState :
 
 	public:
 		PlayState();
-
+		DrawableContainer* drawableContainer;
 		Player* GetPlayer();
 		Camera* GetCamera();
 

@@ -64,9 +64,6 @@
     <ClCompile Include="IGameState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Source Files\Model\GameState</Filter>
-    </ClCompile>
     <ClCompile Include="PauseState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
@@ -84,6 +81,21 @@
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviourFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LTexture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpritesLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundDrawableBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +178,7 @@
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files\Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
       <Filter>Header Files\Model</Filter>
@@ -177,6 +189,21 @@
     <ClInclude Include="Ground.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="BehaviourFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviourType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LTexture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpritesLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundDrawableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -186,10 +213,6 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{567c264d-9685-4191-a558-a9fbcf76eabb}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{c5f8c652-b257-4df4-9ace-99aadb21bbbd}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\Model">
       <UniqueIdentifier>{7a39cd3c-96f5-4a4d-8144-c895f1e6f64a}</UniqueIdentifier>
@@ -251,10 +274,14 @@
     <Filter Include="Source Files\Main">
       <UniqueIdentifier>{f60e81da-3610-42e9-a57c-3b3cbf0b73d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Resource Files">
+      <UniqueIdentifier>{c5f8c652-b257-4df4-9ace-99aadb21bbbd}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameDev.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>Header Files\Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

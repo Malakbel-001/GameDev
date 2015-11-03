@@ -17,7 +17,7 @@ public:
 	void Draw(SDL_Renderer* renderer);
 	void ClearScreen(SDL_Renderer* renderer);
 	void UpdateScreen(SDL_Renderer* renderer);
-private:
+protected:
 	vector<DrawableBehaviour*> behaviours;
 	SDL_Renderer* renderer;
 };
