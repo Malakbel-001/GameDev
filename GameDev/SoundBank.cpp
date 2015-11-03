@@ -5,6 +5,7 @@
 
 SoundBank* SoundBank::instance = new SoundBank();
 
+//initialize & implement Sound Effects & Background Music here
 SoundBank::SoundBank() {
 	//defining sound effects
 	soundPathList = std::unordered_map<SoundEffectType, char*> {
@@ -27,6 +28,7 @@ SoundBank* SoundBank::GetInstance() {
 	return (SoundBank::instance);
 }
 
+//SoundEffect, volume = between [0 - 128], 64 = neutral
 void SoundBank::Play(SoundEffectType type, int volume) {
 	//Get the appropriate SoundChunk depending on the SoundEffectType
 	Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
@@ -44,20 +46,21 @@ void SoundBank::Play(SoundEffectType type, int volume) {
 	playingChunks.insert(typeChunk);
 }
 
+//BackGroundMusic, volume = between [0 - 128], 64 = neutral
 void SoundBank::PlayBGM(SoundBgmType type, int volume) {
 	Mix_Music* tempMusic = Mix_LoadMUS(bgmPathList.at(type));
 	if (!Mix_PlayingMusic()) { //there is no music playing yet
 		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
 		Mix_VolumeMusic(volume);
 	}
-	else { //there is already music playing
+	else if(!Mix_PausedMusic()) { //there is already music playing
 		Mix_FadeOutMusic(1000);
 		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
 		Mix_VolumeMusic(volume);
 	}
 }
 
-void SoundBank::PauseOrResume() { //TODO not working yet
+void SoundBank::PauseOrResume() {
 	if (Mix_PausedMusic()) {
 		Mix_ResumeMusic();
 	}

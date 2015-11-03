@@ -19,7 +19,7 @@ public:
 
 private:
 	GameStateManager* gsm;
-	void InputManager(GameStateManager* gsm);
+	void InputManager();
 
 	void SetUpBox2D();
 
