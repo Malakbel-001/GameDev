@@ -14,11 +14,8 @@ public:
 	virtual ~DrawableContainer();
 		
 	void Add(DrawableBehaviour* behaviour);
-	void Draw(SDL_Renderer* renderer);
-	void ClearScreen(SDL_Renderer* renderer);
-	void UpdateScreen(SDL_Renderer* renderer);
+	void Draw();
 private:
 	vector<DrawableBehaviour*> behaviours;
-	SDL_Renderer* renderer;
 };
 

@@ -2,18 +2,23 @@
 #include <unordered_map>
 #include "BehaviourType.h"
 #include "DrawableBehaviour.h"
+#include "PlayerDrawableBehaviour.h"
+#include "GroundDrawableBehaviour.h"
 #include "MoveableBehaviour.h"
 #include "CollidableBehaviour.h"
 
 class BehaviourFactory
 {
 public:
-	BehaviourFactory();
+	BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
 	~BehaviourFactory();
 
 	DrawableBehaviour* CreateDrawableBehaviour(BehaviourType type);
 	
 private:
-	std::unordered_map<BehaviourType, DrawableBehaviour> registery;
+	int screenWidth;
+	int screenHeight;
+	SDL_Renderer* renderer;
+	std::unordered_map<BehaviourType, DrawableBehaviour*> registery;
 };
 
