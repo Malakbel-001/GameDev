@@ -1,4 +1,5 @@
 #include "SDLInitializer.h"
+#include "SDL_mixer.h"
 #include <iostream>
 
 SDLInitializer::SDLInitializer() { }
@@ -15,6 +16,16 @@ void SDLInitializer::Init(const char* title, int width, int height, bool fullscr
 		height,
 		fullscreen
 	);
+
+	// Open Audio & Start SDL_Mixer
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 < 0)) {
+		std::cout << "Error: " << Mix_GetError() << std::endl;
+	}
+
+	// Set amount of SoundMixer Sound(Effect/)Chunk Channels to 100, temporarily.
+	// Later this will most likely be changed to a dynamic amount using SoundBank and a cleanup loop every ?? seconds/updates
+	// It's probably not a good idea to change the size 1000 times a second though.
+	Mix_AllocateChannels(100); //Temporarily Hardcoded 100 Channels available.
 
 	// Set window icon
 	/*SDL_Surface *surfice = IMG_Load("FilePath");

@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "SoundBank.h"
 #include "header_loader.h"
 
 using namespace std;
@@ -76,6 +77,21 @@ void Game::InputManager(GameStateManager* gsm)
 				case SDLK_RIGHT: 
 					cout << "next weapon" << endl;
 					break; 
+
+				//sound test
+				//case SDLK_1:
+				//	SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+				//	std::cout << Mix_Playing(-1) << std::endl; //get amount channels playing
+				//	break;
+				//case SDLK_2: //BGM1
+				//	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM2, 64);
+				//	break;
+				//case SDLK_3:
+				//	SoundBank::GetInstance()->PauseOrResume();
+				//	break;
+				//case SDLK_4:
+				//	SoundBank::GetInstance()->StopMusic();
+				//	break;
 			} 
 		}
 	}
