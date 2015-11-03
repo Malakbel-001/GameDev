@@ -58,13 +58,11 @@ void SoundBank::PlayBGM(SoundBgmType type, int volume) {
 }
 
 void SoundBank::PauseOrResume() { //TODO not working yet
-	if (Mix_PlayingMusic) {
-		if (Mix_PausedMusic) {
-			Mix_PauseMusic();
-		}
-		else {
-			Mix_ResumeMusic();
-		}
+	if (Mix_PausedMusic()) {
+		Mix_ResumeMusic();
+	}
+	else {
+		Mix_PauseMusic();
 	}
 }
 
