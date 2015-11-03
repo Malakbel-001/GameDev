@@ -1,6 +1,6 @@
 #include "Actor.h"
 
-
+#include <iostream>
 Actor::Actor()
 {
 	
@@ -8,6 +8,7 @@ Actor::Actor()
 }
 
 Entity* Actor::EmptyClone(){
+	std::cout << "actor";
 	return new Actor();
 }
 
