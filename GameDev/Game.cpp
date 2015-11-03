@@ -94,12 +94,13 @@ void Game::inputManager(int* i) { //temp parameter
 					//Mix_PlayChannel(4, chunkie, 0);
 					break;
 				case SDLK_5:
+					SoundBank::getInstance()->PlayBGM(SoundBgmType::TESTBGM2);
 					//std::cout << Mix_PlayChannel(-1, chunkie, 0) << std::endl; //might throw errors
 					//std::cout << "playing: "+Mix_Playing(channel) << std::endl; //might throw errors
 					//Mix_PlayChannel(5, chunkie, 0);
 					break;
 				case SDLK_6:
-					
+					SoundBank::getInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 					//Mix_PlayChannel(6, chunkie, 0);
 					break;
 				case SDLK_p:

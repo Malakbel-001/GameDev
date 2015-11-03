@@ -6,35 +6,18 @@
 SoundBank* SoundBank::instance = new SoundBank();
 
 SoundBank::SoundBank() {
-	/*soundList = std::unordered_map<SoundEffectType, Sound>{
-		{ SoundEffectType::CORRECT, Sound("../Assets/soundcorrect.wav") }
-		};
-		soundBGMList = std::unordered_map<SoundBgmType, Sound>{
-		{ SoundBgmType::TESTBGM, Sound("") }
-		};*/
-
 	soundPathList = std::unordered_map<SoundEffectType, char*> {
 		{ SoundEffectType::CORRECT, "../Assets/soundcorrect.wav" }
 	};
-	
+	bgmPathList = std::unordered_map<SoundBgmType, char*>{
+		{ SoundBgmType::TESTBGM1, "../Assets/balcony.mp3" },
+		{ SoundBgmType::TESTBGM2, "../Assets/lastcave.mp3" }
+	};
 }
 
-//make sure to destruct SoundBank before you SDL_Mixer = closed because of FreeMemory -> FreeChunk
 SoundBank::~SoundBank(){
-	FreeMemory();
-	//delete(playingChunks);
-}
-
-void SoundBank::FreeMemory() {
-	std::unordered_map<SoundEffectType, SoundChunk*>::iterator iter = playingChunks.begin();
-	
-	while (iter != playingChunks.end()) {
-		int* channel = iter->second->GetChannel();
-		if (Mix_Playing(*channel) == 0) {
-			delete(iter->second);
-		}
-		iter++;
-	}
+	//nothing to destroy
+	//FreeMemory(); //might be scary
 }
 
 SoundBank* SoundBank::getInstance() {
@@ -51,69 +34,38 @@ void SoundBank::Play(SoundEffectType type) {
 
 	//soundChunk->Play();
 	//and let SoundChunk remember its channel
-	soundChunk->SetChannel(soundChunk->Play());
+	soundChunk->Play();
 
 	//throw SoundChunk into the playingChunks list
 	std::pair<SoundEffectType, SoundChunk*> typeChunk(type, soundChunk);
 	playingChunks.insert(typeChunk);
 }
 
-//void PlayBGM(char* file) {
-//	Mix_Music* tempBGM = NULL;
-//	if ((tempBGM = Mix_LoadMUS(file)) == NULL) { //error handling
-//		std::cout << "Error: BGM File = NULL!" << std::endl;
-//		return;
-//	}
-//	else if (Mix_PlayingMusic()) {
-//		Mix_FadeOutMusic(1000);
-//		Mix_FreeMusic(SoundBank::SoundControl.currentBGM); //Because of Memory Leaks, maybe?
-//		Mix_FadeInMusic(tempBGM, -1, 1000);
-//		SoundBank::SoundControl.currentBGM = tempBGM;
-//	}
-//	else {
-//		Mix_FadeInMusic(tempBGM, -1, 1000);
-//		SoundBank::SoundControl.currentBGM = tempBGM;
-//	}
-//}
-
-
-//std::string* SoundBank::checkValidPath(std::string* path) {
-//	if (Mix_LoadWAV(path->c_str) == NULL) {
-//		//throw error (runtime_error?)
-//		std::cout << "Unable to load <"+(*path)+">" << std::endl; //might throw errors
-//	}
-//	//else
-//	return path;
-//}
-
-
-
-//void CSoundBank::OnLoad(SoundEffectType type) {
-//	Mix_Chunk* tempSound = Mix_LoadWAV(file);
-//	Sound* sound = soundList.at(type).Clone();
-//	b2BodyDef bodydef;
-//	bodydef.position.Set(x, y);
-//	b2Body* b2body = world.CreateBody(&bodydef);
-//	ent->Init(b2body);
-//	return ent;
-//
-//	
-//
-//
-//	if (tempSound == NULL) {
-//		std::cout << "Error: Sound Effect File = NULL!" << std::endl;
-//		return -1;
-//	}
-//
-//	soundList.push_back(tempSound);
-//
-//	return (soundList.size() - 1);
-//}
-
-//void CSoundBank::OnCleanup() {
-	/*for (int i = 0; i < soundList.size(); i++) {
-		Mix_FreeChunk(soundList[i]);
+void SoundBank::PlayBGM(SoundBgmType type) {
+	if (!Mix_PlayingMusic()) { //not playing yet
+		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
 	}
+	else { //there is already music playing
+		Mix_FadeOutMusic(1000);
+		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
+	}
+}
 
-	soundList.clear();*/
-//}
+//only use this for clearing SoundBank before shutting down
+//and make sure all sounds are finished first
+void SoundBank::FreeMemory() {
+	std::unordered_map<SoundEffectType, SoundChunk*>::iterator iter = playingChunks.begin();
+	
+	playingChunks.clear();
+
+	//Mix_FreeChunk !?
+	//Mix_FreeMusic !?
+
+	//for (auto it = playingChunks.begin(); it != playingChunks.end(); ++it) {
+	//	//int* channel = iter->second->GetChannel();
+	//	//delete(iter->second);
+	//}
+
+	//delete(playingChunks);
+	//playingChunks = new std::unordered_map<SoundEffectType, SoundChunk*>();
+}

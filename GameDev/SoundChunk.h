@@ -8,10 +8,9 @@ private:
 public:
 	SoundChunk(Mix_Chunk* newChunk);
 	~SoundChunk();
-	//Sound(char* newFile);
 
-	int* Play();
+	void Play();
 
-	void SetChannel(int* newChannel);
 	int* GetChannel();
+	//void SetChannel(int* newChannel);
 };

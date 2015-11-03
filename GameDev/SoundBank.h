@@ -10,30 +10,15 @@ class SoundBank {
 private:
 	SoundBank();
 	std::unordered_map<SoundEffectType, char*> soundPathList;
-	std::string* checkValidPath(char* path); //error handling something
+	std::unordered_map<SoundBgmType, char*> bgmPathList;
 	std::unordered_map<SoundEffectType, SoundChunk*> playingChunks;
 	static SoundBank* instance;
 
-
-	//std::vector<Mix_Chunk*>     soundList;
-	/*std::unordered_map<SoundEffectType, Sound>	soundList;
-	std::unordered_map<SoundBgmType, Sound>		soundBGMList;*/
-	
-
+	//Mix_Chunk currentlyPlaying;
 public:
 	~SoundBank();
 	static SoundBank* getInstance();
 	void Play(SoundEffectType type);
-	void PlayBGM(char* file); //TODO
+	void PlayBGM(SoundBgmType type); //TODO
 	void FreeMemory();
-
-	//CSoundBank();
-
-	/*void OnLoad(SoundEffectType type);
-	void OnCleanup();*/
-
-
-
-
-
 };
