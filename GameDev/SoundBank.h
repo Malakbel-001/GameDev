@@ -5,6 +5,8 @@
 #include "SoundEffectType.h"
 #include "SoundBgmType.h"
 #include "SoundChunk.h"
+#include <iostream>
+#include <string>
 
 class SoundBank {
 private:
@@ -13,8 +15,6 @@ private:
 	std::unordered_map<SoundBgmType, char*> bgmPathList;
 	std::unordered_map<SoundEffectType, SoundChunk*> playingChunks;
 	static SoundBank* instance;
-
-	//Mix_Chunk currentlyPlaying;
 public:
 	~SoundBank();
 	static SoundBank* GetInstance();

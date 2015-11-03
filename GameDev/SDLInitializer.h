@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <SDL.h>
+#include <iostream>
+
 class SDLInitializer
 {
 	private:

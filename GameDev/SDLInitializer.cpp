@@ -1,6 +1,5 @@
 #include "SDLInitializer.h"
 #include "SDL_mixer.h"
-#include <iostream>
 
 SDLInitializer::SDLInitializer() { }
 

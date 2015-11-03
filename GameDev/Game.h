@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include "IGameState.h"
+#include "SoundBank.h"
 
 class Game
 {

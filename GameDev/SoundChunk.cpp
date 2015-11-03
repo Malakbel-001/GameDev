@@ -1,5 +1,4 @@
 #include "SoundChunk.h"
-#include <iostream> //temp
 
 SoundChunk::SoundChunk(Mix_Chunk* newChunk) {
 	chunk = newChunk;
@@ -11,14 +10,9 @@ SoundChunk::~SoundChunk() {
 
 void SoundChunk::Play() {
 	int newChannel = Mix_PlayChannel(-1, this->chunk, 0);
-	channel = &newChannel; //setChannel TODO!! fix.
+	//channel = &newChannel; //setChannel TODO!! fix.
 }
 
 int* SoundChunk::GetChannel() {
 	return channel;
 }
-
-//void SoundChunk::SetChannel(int* newChannel) {
-//	channel = newChannel;
-//	//std::cout >> "channel: " + channel >> std::endl;
-//}

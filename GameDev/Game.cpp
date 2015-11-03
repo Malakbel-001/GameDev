@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "SoundBank.h"
 #include "header_loader.h"
 
 using namespace std;

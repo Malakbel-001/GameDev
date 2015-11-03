@@ -1,7 +1,5 @@
 #pragma once
 #include "SoundBank.h"
-#include <iostream>
-#include <string>
 
 SoundBank* SoundBank::instance = new SoundBank();
 
@@ -21,7 +19,7 @@ SoundBank::SoundBank() {
 
 SoundBank::~SoundBank(){
 	//nothing to destroy
-	FreeMemory(); //might be scary and buggy
+	FreeMemory(); //might be scary in the future fyi
 }
 
 SoundBank* SoundBank::GetInstance() {
@@ -82,14 +80,4 @@ void SoundBank::FreeMemory() {
 
 	//Mix_FreeChunk TODO needed or not??
 	//Mix_FreeMusic TODO needed or not??
-
-	//old code, maybe needed in the future if memory leak and stuff
-
-	//for (auto it = playingChunks.begin(); it != playingChunks.end(); ++it) {
-	//	//int* channel = iter->second->GetChannel();
-	//	//delete(iter->second);
-	//}
-
-	//delete(playingChunks);
-	//playingChunks = new std::unordered_map<SoundEffectType, SoundChunk*>();
 }
