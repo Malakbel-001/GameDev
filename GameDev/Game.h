@@ -7,30 +7,30 @@
 #include <stdio.h> 
 #include <string>
 #include <iostream>
+#include "IGameState.h"
 
 class Game
 {
 public:
-	GameStateManager gameManager;
+	
+	
 	Game();
 	~Game();
 
-	void GameLoop(GameStateManager* gsm);
-
+	void GameLoop();
+	
 private:
+	bool running = true;
+	SDLInitializer* sdlInitializer;
 	GameStateManager* gsm;
+	IGameState* gameState;
 	void InputManager();
-
-	void SetUpBox2D();
 
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;
 	
 
-	SDL_Window* window;
-	SDL_Renderer* renderer;	
 	SDL_Event events;
 
-	bool running;	
 };
 

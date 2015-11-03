@@ -5,6 +5,8 @@
 using namespace std;
 Game::Game()
 {
+	sdlInitializer = new SDLInitializer();
+	sdlInitializer->Init("Game", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	//gameManager = GameStateManager();
 	//running = true;
 	//if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -27,15 +29,17 @@ Game::Game()
 	//gameLoop();
 
 	gsm = new GameStateManager();
-	gsm->Init("GameDev", ScreenWidth, ScreenHeight, fullScreen);
+	
 	//Non-threaded
-	this->GameLoop(gsm);
+	this->GameLoop();
 
 	gsm->Cleanup();
 }
 
 Game::~Game()
 {
+	delete gsm;
+	delete sdlInitializer;
 	//delete window;
 	//delete renderer;
 }
@@ -45,8 +49,9 @@ void Game::InputManager()
 	while (SDL_PollEvent(&events))
 	{
 		if (events.type == SDL_QUIT)
-			gsm->Quit();
-
+		{
+			running = false;
+		}
 		//User presses a key
 		if (events.type == SDL_KEYDOWN)
 		{ 
@@ -100,66 +105,38 @@ void Game::InputManager()
 	}
 }
 
-void Game::GameLoop(GameStateManager* gsm)
+void Game::GameLoop()
 {	
-	double TARGET_FPS = 60;
-	double OPTIMAL_TIME = 1000 / TARGET_FPS;
+	float TARGET_FPS = 0.016666666 * 1000;
 
-	Uint32 previousLoopTime, currentLoopTime, afterLoopTime; // ticks
 
-	previousLoopTime = SDL_GetTicks();
+	Uint32 preLoopTime, afterLoopTime; // ticks
 
-	Uint32 lastFpsUpdateTime = 0;
-	int fps = 0;
+	preLoopTime = SDL_GetTicks() -1;
 
-	int lastTime = SDL_GetTicks() - 1;
 
-	while (gsm->Running())
+
+	while (running)
 	{
-		//TODO UPDATE Behaviours with Time
+	
+		float dt = SDL_GetTicks() - preLoopTime;;
+		preLoopTime = SDL_GetTicks();
 
-		// get current time
-		currentLoopTime = SDL_GetTicks();
 
-		// Calculate update time
-		Uint32 updateTime = currentLoopTime - previousLoopTime;
-		previousLoopTime = currentLoopTime;
-
-		// calculate DeltaTime
-		double dt = updateTime / OPTIMAL_TIME;
-
-		// Add time difrence to the lastFpsUpdateTime
-		lastFpsUpdateTime += updateTime;
-
-		// incrament fps, frame past
-		fps++;
-		
-		// max 60 fps	
-		if (lastFpsUpdateTime >= 1000)
+		InputManager();
+		gsm->GetCurrentState()->Update(dt);
+		gsm->GetCurrentState()->Draw(sdlInitializer->GetRenderer());
+			
+	
+		afterLoopTime = SDL_GetTicks();
+		if (!((afterLoopTime - preLoopTime) > TARGET_FPS))
 		{
-			gsm->SetFps(fps);
-			lastFpsUpdateTime = 0;
-			fps = 0;
+			
+			SDL_Delay(TARGET_FPS - (afterLoopTime - preLoopTime));
 		}
 
-		// TODO: cap min fps?
-		//if (dt < 4) dt = 4;
-
 		InputManager(); //sound test
-
-		gsm->HandleEvents();
-		gsm->Update(dt);
-		gsm->Draw();
-
-		gsm->SetUpdateLength(updateTime);
-
-		afterLoopTime = SDL_GetTicks();
-
-		/*if ((previousLoopTime - afterLoopTime) + OPTIMAL_TIME > 0)
-		{
-			SDL_Delay(previousLoopTime - afterLoopTime + OPTIMAL_TIME);
-		}*/
-		SDL_Delay(100);
 	}
+	
 	SDL_Quit();
 }
