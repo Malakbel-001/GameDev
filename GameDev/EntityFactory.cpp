@@ -1,13 +1,14 @@
 #include "EntityFactory.h"
 
 
-EntityFactory::EntityFactory(b2World& b2world) : world(b2world)
+EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), bf(_bf), drawContainer(_drawContainer)
 {
 	entityRegistery =	std::unordered_map<EntityType, Entity*>{
 			{ EntityType::ENTITY,new Entity() },
 			{ EntityType::ACTOR, new Actor() },
 			{ EntityType::NPC, new Npc() },
-			{ EntityType::PLAYER, new Player() }
+			{ EntityType::PLAYER, new Player() },
+			{ EntityType::GROUND, new Ground() }
 	};
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
@@ -22,7 +23,8 @@ EntityFactory::EntityFactory(b2World& b2world) : world(b2world)
 			{ EntityType::ENTITY,  entDef },
 			{ EntityType::ACTOR,  ActorDef },
 			{ EntityType::NPC,  NpcDef },
-			{ EntityType::PLAYER,  PlayerDef }
+			{ EntityType::PLAYER,  PlayerDef },
+			{EntityType::GROUND, entDef}
 	};
 
 }
@@ -41,7 +43,8 @@ Entity* EntityFactory::CreateEntity(float x, float y,float height, float width, 
 {
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 
-	ent->Init(CreateBody(x, y,height,width, type),width,height);
+	ent->Init(CreateBody(x, y,height,width, type),width,height, type, bf, drawContainer);
+
 	return ent;
 
 }

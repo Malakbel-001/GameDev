@@ -13,6 +13,7 @@ Entity* Player::EmptyClone()
 }
 void Player::setBody(b2Body* _body){
 	body = _body;
+
 }
 
 Player::~Player()

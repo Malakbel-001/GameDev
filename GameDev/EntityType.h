@@ -1,4 +1,4 @@
 enum class EntityType
 {
-	ENTITY, ACTOR, NPC, PLAYER
+	ENTITY, ACTOR, NPC, PLAYER,GROUND
 };

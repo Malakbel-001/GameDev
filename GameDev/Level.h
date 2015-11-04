@@ -11,9 +11,9 @@
 class Level
 {
 	private:
-		DrawableContainer* drawableContainer;
 		MoveableContainer* moveableContainer;
 		Player* player;
+		
 		EntityFactory* entityFactory;
 		float startXpos;
 		float startYpos;
@@ -22,6 +22,7 @@ class Level
 
 		int tileWidth, tileHeight;
 		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
+		DrawableContainer* drawableContainer;
 		b2World* world;
 		Camera* camera;
 		int LevelTiles;
@@ -33,6 +34,7 @@ class Level
 	public:
 		DrawableContainer* GetDrawableContainer();
 		Level(int _lvlWidth, int _lvlHeight);
+		void init(BehaviourFactory* bf);
 		virtual ~Level();
 
 		virtual void SetPlayer(Player* _player);
@@ -47,8 +49,8 @@ class Level
 		int GetTotalDiffrentTiles();
 		std::vector<SDL_Rect> getTileCrops();
 
-		virtual void Draw() = 0;
-		virtual void Update(float dt) = 0;
+		void Draw();
+		void Update(float dt);
 
 		virtual b2World* GetWorld();
 };
