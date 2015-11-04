@@ -1,78 +1,53 @@
 #include "LTexture.h"
 
-
 LTexture::LTexture()
 {
 	//Initialize
-	texture = NULL;
-	mWidth = 0;
-	mHeight = 0;
+	this->texture = NULL;
+	this->mWidth = 0;
+	this->mHeight = 0;
 }
-
 
 LTexture::~LTexture()
 {
 	//Deallocate
-	free();
+	this->free();
 }
 
 bool LTexture::loadFromFile(SDL_Renderer* renderer, std::string path)
 {
 	//Get rid of preexisting texture
-	free();
+	this->free();
 
 	//The final texture
-	SDL_Texture* newTexture = NULL;
+	this->texture = IMG_LoadTexture(renderer, path.c_str());
 
 	//Load image at specified path
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-	if (loadedSurface == NULL)
-	{
+	if (this->texture == NULL)
 		printf("Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError());
-	}
 	else
-	{
-		//Color key image
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+		SDL_QueryTexture(this->texture, NULL, NULL, &mWidth, &mHeight);
 
-		//Create texture from surface pixels
-		newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-		if (newTexture == NULL)
-		{
-			printf("Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError());
-		}
-		else
-		{
-			//Get image dimensions
-			mWidth = loadedSurface->w;
-			mHeight = loadedSurface->h;
-		}
-
-		//Get rid of old loaded surface
-		SDL_FreeSurface(loadedSurface);
-	}
-
-	//Return success
-	texture = newTexture;
-	return texture != NULL;
+	return this->texture != NULL;
 }
 
 void LTexture::free()
 {
 	//Free texture if it exists
-	if (texture != NULL)
+	if (this->texture != NULL)
 	{
-		SDL_DestroyTexture(texture);
-		texture = NULL;
-		mWidth = 0;
-		mHeight = 0;
+		SDL_DestroyTexture(this->texture);
+		this->texture = NULL;
+		this->mWidth = 0;
+		this->mHeight = 0;
 	}
 }
 
 void LTexture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip)
 {
 	//Set rendering space and render to screen
-	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+	SDL_Rect renderQuad = { x, y, this->mWidth, this->mHeight };
 
 	//Set clip rendering dimensions
 	if (clip != NULL)
@@ -82,15 +57,15 @@ void LTexture::render(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip)
 	}
 
 	//Render to screen
-	SDL_RenderCopy(renderer, texture, clip, &renderQuad);
+	SDL_RenderCopy(renderer, this->texture, clip, &renderQuad);
 }
 
 int LTexture::getWidth()
 {
-	return mWidth;
+	return this->mWidth;
 }
 
 int LTexture::getHeight()
 {
-	return mHeight;
+	return this->mHeight;
 }
