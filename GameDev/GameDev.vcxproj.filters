@@ -1,6 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{84b5bcb2-28cc-4940-a97a-e88cea25f330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Entities">
+      <UniqueIdentifier>{64d23084-edf6-4500-a1a2-2a7c7e67dc98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enum">
+      <UniqueIdentifier>{8d49d9ac-2a1f-4f6f-b59c-6990f5760659}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main">
+      <UniqueIdentifier>{ea47ee57-df9b-4426-8135-50b9884795a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model">
+      <UniqueIdentifier>{31eac845-d8cd-41cd-b893-9306e1d69b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Menu">
+      <UniqueIdentifier>{ac2f783b-2e10-49cc-82f1-e7c6bb67bde5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Menu">
+      <UniqueIdentifier>{97f65805-32e8-4cbe-b93b-8ed3e0712932}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
@@ -91,9 +126,6 @@
     <ClCompile Include="PlayerDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="LTexture.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="GroundDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
@@ -107,6 +139,12 @@
       <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
     <ClCompile Include="FileIO.cpp">
+      <Filter>Source Files\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Model\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="LTexture.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
   </ItemGroup>
@@ -210,9 +248,6 @@
     <ClInclude Include="PlayerDrawableBehaviour.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="LTexture.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="GroundDrawableBehaviour.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
@@ -235,6 +270,12 @@
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
     <ClInclude Include="FileIO.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Model\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="LTexture.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	};
 }
 
+SDL_Renderer* BehaviourFactory::GetRenderer(){
+	return renderer;
+}
+
 
 BehaviourFactory::~BehaviourFactory()
 {

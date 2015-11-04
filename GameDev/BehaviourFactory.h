@@ -15,7 +15,7 @@ public:
 	~BehaviourFactory();
 
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
-	
+	SDL_Renderer* GetRenderer();
 private:
 	int screenWidth;
 	int screenHeight;

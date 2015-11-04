@@ -1,26 +1,166 @@
-#include "MenuState.h"
+/*#include "MainMenu.h"
+
+// Setup
+bool InitEverything();
+bool InitSDL();
+bool CreateWindow();
+bool CreateRenderer();
+void SetupRenderer();
+void HandleInput();
+void CreateHelpMenu();
+void loadMainMenu();
+void loadHelpMenu();
+void LoadCreditMenu();
+
+// Our new function for setting uo SDL_TTF
+bool SetupTTF(const std::string &fontName);
+SDL_Texture* SurfaceToTexture(SDL_Surface* surf);
+void CreateTextTextures();
+
+// Update ( happens every frame )
+void Render();
+void RunGame();
+
+// Stuff for text rendering
+TTF_Font* titleFont;
+TTF_Font* textFont;
+SDL_Color textColor = { 255, 255, 255, 255 }; // white
+SDL_Color backgroundColor = { 0, 0, 0, 255 }; // black
 
 const int renderItems = 10;
 SDL_Rect pos[renderItems];
+#pragma region textures
+//mainMenu
+SDL_Texture* playTexture; //0
+SDL_Texture* helpTexture; //1
+SDL_Texture* quitTexture; //2
+SDL_Texture* mainTitleTexture; //3
+SDL_Texture* creditTexture; //9
 
-SDL_Color textColor = { 255, 255, 255, 255 }; // white
+//helpMenu
+SDL_Texture* helpTitleTexture; //4
+SDL_Texture* helpTextTexture; //5
+SDL_Texture* backToMainTexture; //6
 
-void MenuState::Init(GameStateManager *gsm){
-	this->gsm = gsm;
+//creditmenu
+SDL_Texture* creditTextTexture; //7
+SDL_Texture* creditTitleTexture; //8
+#pragma endregion textures
+
+#pragma region rects
+//mainmenu
+SDL_Rect solidRect;
+SDL_Rect blendedRect;
+SDL_Rect shadedRect;
+SDL_Rect mainTitleRect;
+SDL_Rect creditRect;
+//helpmenu
+SDL_Rect helpTitleRect;
+SDL_Rect helpTextRect;
+SDL_Rect backToMainRect;
+//creditmenu
+SDL_Rect creditTextRect;
+SDL_Rect creditTitleRect;
+#pragma endregion rects
+
+SDL_Rect windowRect = { 8, 30, 1200, 700 };
+SDL_Window* window;
+SDL_Renderer* renderer;
+
+bool quit = false;
+
+enum State{mainMenu, helpMenu, creditMenu};
+State menuState;
+
+
+MainMenu::MainMenu()
+{
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1, 64);
 	menuState = mainMenu;
-	cout << "MenuState \n";
-	Update(0);
+	RunGame();
+
+	// Clean up font
+	TTF_CloseFont(titleFont);
+	TTF_CloseFont(textFont);
 }
 
-MenuState::MenuState()
+void RunGame()
 {
+	while (!quit){
+
+		HandleInput();
+
+		Render();
+	}
+	SDL_DestroyWindow(window);
 }
 
-void MenuState::loadMainMenu(){
+void HandleInput(){
+	SDL_Event event;
+	while (SDL_PollEvent(&event))
+	{
+		switch (event.type)
+		{
+		case SDL_QUIT:
+			quit = true;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			int x = event.button.x;
+			int y = event.button.y;
+			for (int i = 0; i < renderItems; i++)
+			{
+				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
+					switch (i){
+						//item 1, mainmenu play
+					case 0:
+						quit = true;
+						break;
+						//item 2, mainmenu help
+					case 1:
+						menuState = helpMenu;
+						break;
+						//item 3,mainmenu quit
+					case 2:
+						exit(0);
+						break;
+						//item 6, backto main
+					case 6:
+						menuState = mainMenu;
+						break;
+						//item 9, mainmenu credit
+					case 9:
+						menuState = creditMenu;
+						break;
+					}
+				}
+			}
+			break;
+		}
+	}
+}
+
+void Render()
+{
+	SDL_RenderClear(renderer);
+	switch (menuState){
+		//mainmenu
+	case mainMenu:
+		loadMainMenu();
+		break;
+	//helpmenu
+	case helpMenu:
+		loadHelpMenu();
+		break;
+	case creditMenu:
+		LoadCreditMenu();
+		break;
+	}
+	SDL_RenderPresent(renderer);
+}
+
+void loadMainMenu(){
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
@@ -28,13 +168,13 @@ void MenuState::loadMainMenu(){
 	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
 }
 
-void MenuState::loadHelpMenu(){
+void loadHelpMenu(){
 	SDL_RenderCopy(renderer, helpTextTexture, nullptr, &helpTextRect);
 	SDL_RenderCopy(renderer, helpTitleTexture, nullptr, &helpTitleRect);
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
-void MenuState::LoadCreditMenu(){
+void LoadCreditMenu(){
 	SDL_RenderCopy(renderer, creditTextTexture, nullptr, &creditTextRect);
 	SDL_RenderCopy(renderer, creditTitleTexture, nullptr, &creditTitleRect);
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
@@ -42,7 +182,7 @@ void MenuState::LoadCreditMenu(){
 
 // Initialization ++
 // ==================================================================
-bool MenuState::SetupTTF(const std::string &fontName, const std::string &fontName2)
+bool SetupTTF(const std::string &fontName, const std::string &fontName2)
 {
 	// SDL2_TTF needs to be initialized just like SDL2
 	if (TTF_Init() == -1)
@@ -53,7 +193,7 @@ bool MenuState::SetupTTF(const std::string &fontName, const std::string &fontNam
 
 	// Load our fonts, with a huge size
 	titleFont = TTF_OpenFont(fontName.c_str(), 90);
-	textFont = TTF_OpenFont(fontName2.c_str(), 23);
+	textFont = TTF_OpenFont(fontName2.c_str(), 35);
 
 	// Error check
 	if (titleFont == nullptr)
@@ -70,7 +210,7 @@ bool MenuState::SetupTTF(const std::string &fontName, const std::string &fontNam
 
 	return true;
 }
-void MenuState::CreateTextTextures()
+void CreateTextTextures()
 {
 #pragma region play
 	SDL_Surface* play = TTF_RenderText_Blended(textFont, "Play", textColor);
@@ -78,7 +218,7 @@ void MenuState::CreateTextTextures()
 
 	SDL_QueryTexture(playTexture, NULL, NULL, &solidRect.w, &solidRect.h);
 	solidRect.x = 15;
-	solidRect.y = 150;
+	solidRect.y = 250;
 	pos[0] = solidRect;
 #pragma endregion play
 #pragma region help
@@ -91,7 +231,7 @@ void MenuState::CreateTextTextures()
 	pos[1] = blendedRect;
 #pragma endregion help
 #pragma region credit
-	SDL_Surface* credit = TTF_RenderText_Blended(textFont, "Credits", textColor);
+		SDL_Surface* credit = TTF_RenderText_Blended(textFont, "Credits", textColor);
 	creditTexture = SurfaceToTexture(credit);
 
 	SDL_QueryTexture(creditTexture, NULL, NULL, &creditRect.w, &creditRect.h);
@@ -113,7 +253,7 @@ void MenuState::CreateTextTextures()
 	mainTitleTexture = SurfaceToTexture(mainTitle);
 
 	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
-	mainTitleRect.x = 150;
+	mainTitleRect.x = 375;
 	mainTitleRect.y = 5;
 	pos[3] = mainTitleRect;
 #pragma endregion maintitle
@@ -122,17 +262,17 @@ void MenuState::CreateTextTextures()
 	helpTitleTexture = SurfaceToTexture(helpTitle);
 
 	SDL_QueryTexture(helpTitleTexture, NULL, NULL, &helpTitleRect.w, &helpTitleRect.h);
-	helpTitleRect.x = 200;
+	helpTitleRect.x = 375;
 	helpTitleRect.y = 5;
 	pos[4] = helpTitleRect;
 #pragma endregion helptitle
 #pragma region helptext
-	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Dit is een help menu. Hierin wordt beschreven hoe het spel werkt en wat het doel is en eventuele extra informatie die nu nog niet bekend is maar het is gewoon een kwestie van deze string aanpassen om hier iets neer te zetten.", textColor, 600);
+	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Dit is een help menu. Hierin wordt beschreven hoe het spel werkt en wat het doel is en eventuele extra informatie die nu nog niet bekend is maar het is gewoon een kwestie van deze string aanpassen om hier iets neer te zetten.", textColor, 1000);
 	helpTextTexture = SurfaceToTexture(helpText);
 
 	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
 	helpTextRect.x = 15;
-	helpTextRect.y = 150;
+	helpTextRect.y = 250;
 	pos[5] = helpTextRect;
 #pragma endregion helptext
 #pragma region backToMain
@@ -145,12 +285,12 @@ void MenuState::CreateTextTextures()
 	pos[6] = backToMainRect;
 #pragma endregion helptext
 #pragma region creditText
-	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\nThomas de Brouwer\nJeroenGuelen\nMark-Jan de Jong\nRoel van Atteveld\nDaniël Eijkelenburg", textColor, 600);
+	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\nThomas de Brouwer\nJeroenGuelen\nMark-Jan de Jong\nRoel van Atteveld\nDaniël Eijkelenburg", textColor, 1000);
 	creditTextTexture = SurfaceToTexture(creditText);
 
 	SDL_QueryTexture(creditTextTexture, NULL, NULL, &creditTextRect.w, &creditTextRect.h);
 	creditTextRect.x = 15;
-	creditTextRect.y = 150;
+	creditTextRect.y = 250;
 	pos[7] = creditTextRect;
 #pragma endregion creditText
 #pragma region creditTitel
@@ -158,7 +298,7 @@ void MenuState::CreateTextTextures()
 	creditTitleTexture = SurfaceToTexture(creditTitle);
 
 	SDL_QueryTexture(creditTitleTexture, NULL, NULL, &creditTitleRect.w, &creditTitleRect.h);
-	creditTitleRect.x = 150;
+	creditTitleRect.x = 375;
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle
@@ -166,7 +306,7 @@ void MenuState::CreateTextTextures()
 
 }
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
-SDL_Texture* MenuState::SurfaceToTexture(SDL_Surface* surf)
+SDL_Texture* SurfaceToTexture(SDL_Surface* surf)
 {
 	SDL_Texture* text;
 
@@ -176,9 +316,12 @@ SDL_Texture* MenuState::SurfaceToTexture(SDL_Surface* surf)
 
 	return text;
 }
-bool MenuState::InitEverything()
+bool InitEverything()
 {
 	if (!InitSDL())
+		return false;
+
+	if (!CreateWindow())
 		return false;
 
 	if (!CreateRenderer())
@@ -193,7 +336,7 @@ bool MenuState::InitEverything()
 
 	return true;
 }
-bool MenuState::InitSDL()
+bool InitSDL()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 	{
@@ -203,10 +346,22 @@ bool MenuState::InitSDL()
 
 	return true;
 }
-bool MenuState::CreateRenderer()
+bool CreateWindow()
 {
-	//renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	renderer = gsm->GetBehaviour()->GetRenderer();
+	window = SDL_CreateWindow("Jark Hunt", windowRect.x, windowRect.y, windowRect.w, windowRect.h, 0);
+
+	if (window == nullptr)
+	{
+		std::cout << "Failed to create window : " << SDL_GetError();
+		return false;
+	}
+
+	return true;
+}
+bool CreateRenderer()
+{
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
 	if (renderer == nullptr)
 	{
 		std::cout << "Failed to create renderer : " << SDL_GetError();
@@ -215,109 +370,17 @@ bool MenuState::CreateRenderer()
 
 	return true;
 }
-void MenuState::SetupRenderer()
+void SetupRenderer()
 {
 	// Set size of renderer to the same as window
-	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
+	SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
 	// Set color of renderer to red
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 
-MenuState::~MenuState()
+MainMenu::~MainMenu()
 {
 }
-
-void MenuState::Cleanup(){
-	// Clean up font
-	TTF_CloseFont(titleFont);
-	TTF_CloseFont(textFont);
-}
-
-void MenuState::Pause(){
-
-}
-void MenuState::Resume(){
-
-}
-
-void MenuState::HandleEvents(SDL_Event mainEvent){
-		switch (mainEvent.type)
-		{
-		case SDL_QUIT:
-			quit = true;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			int x = mainEvent.button.x;
-			int y = mainEvent.button.y;
-			for (int i = 0; i < renderItems; i++)
-			{
-				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
-					switch (i){
-						//item 1, mainmenu play
-					case 0:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							SoundBank::GetInstance()->StopMusic();
-							this->gsm->ChangeGameState(new PlayState());
-							quit = true;
-						}
-						break;
-						//item 2, mainmenu help
-					case 1:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = helpMenu;
-						}
-						break;
-						//item 3,mainmenu quit
-					case 2:
-						if (menuState == mainMenu){
-							exit(0);
-						}
-						break;
-						//item 6, backtomain
-					case 6:
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-						menuState = mainMenu;
-						break;
-						//item 9, mainmenu credit
-					case 9:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = creditMenu;
-						}
-						break;
-					}
-				}
-			}
-			break;
-		}
-}
-
-void MenuState::Update(float dt){
-	/*while (!quit){
-
-		HandleEvents();
-
-		Draw();
-	}*/
-}
-void MenuState::Draw(){
-	SDL_RenderClear(renderer);
-	switch (menuState){
-		//mainmenu
-	case mainMenu:
-		loadMainMenu();
-		break;
-		//helpmenu
-	case helpMenu:
-		loadHelpMenu();
-		break;
-	case creditMenu:
-		LoadCreditMenu();
-		break;
-	}
-	SDL_RenderPresent(renderer);
-}
+*/

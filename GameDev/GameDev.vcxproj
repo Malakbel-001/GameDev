@@ -52,19 +52,20 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)Libraries;$(ProjectDir)Libraries\SDL2-2.0.3\include;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\include;$(ProjectDir)Libraries\SDL2_image-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Libraries;$(ProjectDir)Libraries\SDL2-2.0.3\include;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\include;$(ProjectDir)Libraries\SDL2_image-2.0.0\include;$(ProjectDir)Libraries\SDL2_ttf-2.0.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_mixer.lib;SDL2_image.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_mixer.lib;SDL2_image.lib;Box2D.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86\*" "$(OutDir)*"
 copy "$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86\*" "$(OutDir)*"
-copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
+copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"
+copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,6 +112,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="SpritesLoader.cpp" />
     <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="MoveableBehaviour.cpp" />
     <ClCompile Include="MoveableContainer.cpp" />
@@ -146,6 +148,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="LTexture.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="SoundBank.h" />
