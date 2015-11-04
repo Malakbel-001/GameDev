@@ -9,6 +9,7 @@
 #include <iostream>
 #include "IGameState.h"
 #include "BehaviourFactory.h"
+#include "SoundBank.h"
 
 class Game
 {

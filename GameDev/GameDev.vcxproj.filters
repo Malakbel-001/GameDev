@@ -100,6 +100,12 @@
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="SoundChunk.cpp">
+      <Filter>Source Files\Model\SoundBank</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundBank.cpp">
+      <Filter>Source Files\Model\SoundBank</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -213,6 +219,18 @@
     <ClInclude Include="Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SoundBank.h">
+      <Filter>Header Files\Model\SoundBank</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBgmType.h">
+      <Filter>Header Files\Model\SoundBank</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffectType.h">
+      <Filter>Header Files\Model\SoundBank</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundChunk.h">
+      <Filter>Header Files\Model\SoundBank</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -286,6 +304,12 @@
     </Filter>
     <Filter Include="Header Files\Controller\Main">
       <UniqueIdentifier>{66281234-945f-4016-b639-178ef14cf49c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\SoundBank">
+      <UniqueIdentifier>{826c77d5-898a-4537-b316-ee336ef2f29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\SoundBank">
+      <UniqueIdentifier>{f526257d-b7b3-44c5-8559-d8f11728d97b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

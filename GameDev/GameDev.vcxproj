@@ -105,6 +105,8 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="LevelFactory.cpp" />
     <ClCompile Include="LTexture.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="SoundBank.cpp" />
+    <ClCompile Include="SoundChunk.cpp" />
     <ClCompile Include="SpritesLoader.cpp" />
     <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="main.cpp" />
@@ -144,6 +146,10 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="LTexture.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="SoundBank.h" />
+    <ClInclude Include="SoundBgmType.h" />
+    <ClInclude Include="SoundChunk.h" />
+    <ClInclude Include="SoundEffectType.h" />
     <ClInclude Include="SpritesLoader.h" />
     <ClInclude Include="TileLoader.h" />
     <ClInclude Include="MenuState.h" />
