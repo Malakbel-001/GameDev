@@ -87,6 +87,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Behaviour.cpp" />
+    <ClCompile Include="BehaviourFactory.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
@@ -97,9 +98,16 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="GroundDrawableBehaviour.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
+    <ClCompile Include="LTexture.cpp" />
+    <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="SoundBank.cpp" />
+    <ClCompile Include="SoundChunk.cpp" />
+    <ClCompile Include="SpritesLoader.cpp" />
     <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
@@ -116,6 +124,8 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Behaviour.h" />
+    <ClInclude Include="BehaviourFactory.h" />
+    <ClInclude Include="BehaviourType.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
@@ -127,10 +137,20 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="EntityType.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="GameStateType.h" />
+    <ClInclude Include="Ground.h" />
+    <ClInclude Include="GroundDrawableBehaviour.h" />
     <ClInclude Include="header_loader.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
+    <ClInclude Include="LTexture.h" />
+    <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="SoundBank.h" />
+    <ClInclude Include="SoundBgmType.h" />
+    <ClInclude Include="SoundChunk.h" />
+    <ClInclude Include="SoundEffectType.h" />
+    <ClInclude Include="SpritesLoader.h" />
     <ClInclude Include="TileLoader.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveableBehaviour.h" />
