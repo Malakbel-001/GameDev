@@ -23,6 +23,7 @@ void testLevel::Update(float dt)
 
 void testLevel::Draw()
 {
+	drawableContainer->Draw();
 
 	/*
 	SDL_Rect r;

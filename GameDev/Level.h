@@ -22,6 +22,7 @@ class Level
 
 		int tileWidth, tileHeight;
 		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
+		DrawableContainer* drawableContainer;
 		b2World* world;
 		Camera* camera;
 		int LevelTiles;

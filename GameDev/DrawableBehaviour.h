@@ -3,30 +3,32 @@
 #include <SDL.h>
 #include "Behaviour.h"
 #include "LTexture.h"
+#include "Entity.h"
 
 using namespace std;
 class DrawableBehaviour :
 	public Behaviour
 {
 public:
-	DrawableBehaviour();
+	DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
 	virtual ~DrawableBehaviour();
 
-	DrawableBehaviour* EmptyClone();
+	virtual DrawableBehaviour* EmptyClone();
 
-	void Draw(SDL_Renderer* renderer);
-	void SetSprites(vector<SDL_Rect> sdl_sprites);
-	bool LoadMedia(SDL_Renderer* renderer);
-private:
+	virtual void Draw();
+	virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
+	virtual bool LoadMedia();
+protected:
+	SDL_Renderer* renderer;
+	Entity* entity;
+
 	vector<SDL_Rect> sprites;
 	int currentFrame;
-
-	SDL_Surface* spriteSheet = NULL;
 	LTexture* spriteSheetTexture;
+	string spritesheetPath;
+	string spritesheetName;
 
-	const int IDLE_ANIMATION_FRAMES = 3;
-	const int WALK_ANIMATION_FRAMES = 9;
-	SDL_Rect idleSprites[3];
-	SDL_Rect walkSprites[9];
+	int screenWidth;
+	int screenHeight;
 };
 

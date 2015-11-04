@@ -15,9 +15,6 @@ void PlayState::Init(GameStateManager *gsm)
 	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
-
-
-
 	// flush userinput to prevent crash during loadscreen
 
 
@@ -81,8 +78,14 @@ void PlayState::Update(float dt)
 
 void PlayState::Draw(SDL_Renderer*  sdl)
 {
+<<<<<<< HEAD
+	/*currentLevel->Draw();
+	p->Draw();*/
+	drawableContainer->Draw();
+=======
 	currentLevel->GetDrawableContainer()->Draw(sdl);
 	
+>>>>>>> refs/remotes/origin/Develop
 }
 
 Level* PlayState::GetCurrentLevel()
