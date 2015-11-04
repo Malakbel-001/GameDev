@@ -64,7 +64,8 @@
     <PostBuildEvent>
       <Command>copy "$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86\*" "$(OutDir)*"
 copy "$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86\*" "$(OutDir)*"
-copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
+copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"
+copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
