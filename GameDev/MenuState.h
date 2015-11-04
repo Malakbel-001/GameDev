@@ -81,8 +81,8 @@ public:
 	void Pause();
 	void Resume();
 
-	void HandleEvents(SDL_Event mainEvent);
-	/*test*/void HandleEvents();
+	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+	void HandleMouseEvents(SDL_Event mainEvent);
 	void Update(float dt);
 	void Draw();
 

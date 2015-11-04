@@ -145,7 +145,7 @@ void MenuState::CreateTextTextures()
 	pos[6] = backToMainRect;
 #pragma endregion helptext
 #pragma region creditText
-	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\nThomas de Brouwer\nJeroenGuelen\nMark-Jan de Jong\nRoel van Atteveld\nDaniÎl Eijkelenburg", textColor, 600);
+	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\nThomas de Brouwer\nJeroenGuelen\nMark-Jan de Jong\nRoel van Atteveld\nDaniÅE Eijkelenburg", textColor, 600);
 	creditTextTexture = SurfaceToTexture(creditText);
 
 	SDL_QueryTexture(creditTextTexture, NULL, NULL, &creditTextRect.w, &creditTextRect.h);
@@ -242,7 +242,8 @@ void MenuState::Resume(){
 
 }
 
-void MenuState::HandleEvents(SDL_Event mainEvent){
+void MenuState::HandleMouseEvents(SDL_Event mainEvent)
+{
 		switch (mainEvent.type)
 		{
 		case SDL_QUIT:
@@ -294,6 +295,11 @@ void MenuState::HandleEvents(SDL_Event mainEvent){
 			}
 			break;
 		}
+}
+
+void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
+{
+	std::cout << "Key events not implemented yet";
 }
 
 void MenuState::Update(float dt){

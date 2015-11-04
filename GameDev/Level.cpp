@@ -3,10 +3,11 @@
 Level::Level(int _lvlWidth, int _lvlHeight)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
+	player = nullptr;
 	startXpos = 100;
 	startYpos = 10;
 	world = new b2World(b2Vec2(0.0, static_cast<float>(9.81) ));
-
+	
 	drawableContainer = new DrawableContainer();
 
 
@@ -16,7 +17,8 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 void Level::init(BehaviourFactory* bf){
 	entityFactory = new EntityFactory(*world, bf, drawableContainer);
 	//entityFactory->CreateEntity(100, 100, 10, 10, EntityType::PLAYER);
-	entityFactory->CreateEntity(0, 400, 100, 100, EntityType::GROUND);
+	entityFactory->CreateEntity(0, 400, 255, 15, EntityType::GROUND);
+
 
 }
 
@@ -31,9 +33,13 @@ void Level::Update(float dt){
 void Level::SetPlayer(Player* _player){
 	
 //	player = _player;
-	entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER);
+	player = dynamic_cast<Player*>( entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
 
 }
+Player* Level::GetPlayer(){
+	return player;
+}
+
 
 Level::~Level()
 {

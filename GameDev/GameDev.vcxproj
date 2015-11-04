@@ -102,6 +102,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundDrawableBehaviour.cpp" />
     <ClCompile Include="IGameState.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
     <ClCompile Include="LTexture.cpp" />
@@ -144,6 +145,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GroundDrawableBehaviour.h" />
     <ClInclude Include="header_loader.h" />
     <ClInclude Include="IGameState.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="MainMenu.h" />

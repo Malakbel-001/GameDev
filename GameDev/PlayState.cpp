@@ -41,29 +41,47 @@ void PlayState::Resume()
 	std::cout << "Resume not implemented yet";
 }
 
-
-void PlayState::HandleEvents(SDL_Event mainEvent)
+void PlayState::HandleMouseEvents(SDL_Event mainEvent)
 {
-	//Retrieve input
-	int x = 0;
-	int y = 0;
-	switch (mainEvent.type) 
-	{
-	case SDL_KEYDOWN:
-		switch (mainEvent.key.keysym.sym)
-		{
-		case SDLK_SPACE:
-			std::cout << "PlayState handleInput spacebar switch \n";
-			break;
-		case SDL_BUTTON_LEFT:
-			std::cout << "PlayState handleInput left mouse clicked switch \n";
-			break;
-		default:
-			std::cout << "Playstate handleInput default switch \n";
-			break;
+	std::cout << "Mouse events not implemented yet";
+}
+
+void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
+{
+	if (currentLevel->GetPlayer() != nullptr){
+		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
+
+
+		float x = vel.x;
+		float y = vel.y;
+		
+		for (auto it = _events->begin(); it != _events->end(); ++it){
+		
+			if (it->second)
+			{
+				switch (it->first)
+				{
+				case SDLK_w:
+				
+					y = y - 1000000;
+				
+					break;
+				case SDLK_a:
+					x = x - 1000;
+					break;
+				case SDLK_s:
+					y = y + 1000;
+					break;
+				case SDLK_d:
+					x = x + 1000;
+					break;
+				}
+			}
 		}
-		break;
+		vel.Set(x, y);
+		currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 	}
+
 }
 
 void PlayState::Update(float dt)

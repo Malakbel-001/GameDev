@@ -43,9 +43,9 @@ bool GroundDrawableBehaviour::LoadMedia()
 	else
 	{
 		sprites.x = 515;
-		sprites.y = 100;
+		sprites.y = 400;
 		sprites.w = 255;
-		sprites.h = 130;
+		sprites.h = 140;
 	}
 	return success;
 }

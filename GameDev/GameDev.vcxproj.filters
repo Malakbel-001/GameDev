@@ -1,74 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Model">
-      <UniqueIdentifier>{84b5bcb2-28cc-4940-a97a-e88cea25f330}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Entities">
-      <UniqueIdentifier>{64d23084-edf6-4500-a1a2-2a7c7e67dc98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Behaviours">
-      <UniqueIdentifier>{c62102b1-cf8f-4559-928b-d284ee97b015}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Factories">
-      <UniqueIdentifier>{67222ad1-59cb-4171-9a5f-2b8c6da0453e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Containers">
-      <UniqueIdentifier>{07f3ca6f-01d0-45e1-8012-84574b86540f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\GameStates">
-      <UniqueIdentifier>{498eb6d8-6c6a-4bc9-b3b1-96ec16a81b40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Enum">
-      <UniqueIdentifier>{8d49d9ac-2a1f-4f6f-b59c-6990f5760659}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Main">
-      <UniqueIdentifier>{ea47ee57-df9b-4426-8135-50b9884795a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model">
-      <UniqueIdentifier>{31eac845-d8cd-41cd-b893-9306e1d69b56}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Behaviours">
-      <UniqueIdentifier>{7edfacf5-349c-43f5-86c0-7bc20ccf2d2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Containers">
-      <UniqueIdentifier>{9b6d6996-1afd-4191-8561-c5cb6533bed2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Entities">
-      <UniqueIdentifier>{cc6d3391-b8a0-4ecc-8f85-97519cff94d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Factories">
-      <UniqueIdentifier>{a1130f4c-c5b8-4775-ae2a-5796a03244fb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\GameStates">
-      <UniqueIdentifier>{0ae9957b-afe8-4d87-b536-6982d0b38148}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Levels">
-      <UniqueIdentifier>{76570065-621f-4eb4-b76d-911bd9c83e50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Levels">
-      <UniqueIdentifier>{58516ded-4f52-4f7b-8a3f-e096760253b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Menu">
-      <UniqueIdentifier>{ac2f783b-2e10-49cc-82f1-e7c6bb67bde5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Menu">
-      <UniqueIdentifier>{97f65805-32e8-4cbe-b93b-8ed3e0712932}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
@@ -174,8 +106,8 @@
     <ClCompile Include="SoundBank.cpp">
       <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\Model\Menu</Filter>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -302,8 +234,8 @@
     <ClInclude Include="SoundChunk.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files\Model\Menu</Filter>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

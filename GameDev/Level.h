@@ -32,6 +32,8 @@ class Level
 		TileLoader* tileLoader;
 
 	public:
+		Player* GetPlayer();
+
 		DrawableContainer* GetDrawableContainer();
 		Level(int _lvlWidth, int _lvlHeight);
 		void init(BehaviourFactory* bf);
