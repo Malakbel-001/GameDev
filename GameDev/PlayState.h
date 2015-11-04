@@ -19,7 +19,7 @@ class PlayState :
 
 	public:
 
-		void Init(GameStateManager *gsm);
+		void Init(GameStateManager *gsm,BehaviourFactory* bf);
 		void Cleanup();
 
 		void Pause();
@@ -27,7 +27,7 @@ class PlayState :
 
 		void HandleEvents(SDL_Event mainEvent);
 		void Update(float dt);
-		void Draw(SDL_Renderer*  sdl);
+		void Draw();
 
 
 		Player* GetPlayer();

@@ -7,7 +7,7 @@ public:
 	MenuState();
 	GameStateManager* gsm;
 
-	void Init(GameStateManager *gsm);
+	void Init(GameStateManager *gsm, BehaviourFactory* bf);
 	void Cleanup();
 
 	void Pause();
@@ -15,7 +15,7 @@ public:
 
 	void HandleEvents(SDL_Event mainEvent);
 	void Update(float dt);
-	void Draw(SDL_Renderer*  sdl);
+	void Draw();
 
 	virtual ~MenuState();
 };

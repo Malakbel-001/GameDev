@@ -14,6 +14,7 @@ class Level
 		DrawableContainer* drawableContainer;
 		MoveableContainer* moveableContainer;
 		Player* player;
+		
 		EntityFactory* entityFactory;
 		float startXpos;
 		float startYpos;
@@ -34,6 +35,7 @@ class Level
 	public:
 		DrawableContainer* GetDrawableContainer();
 		Level(int _lvlWidth, int _lvlHeight);
+		void init(BehaviourFactory* bf);
 		virtual ~Level();
 
 		virtual void SetPlayer(Player* _player);

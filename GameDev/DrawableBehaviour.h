@@ -3,9 +3,11 @@
 #include <SDL.h>
 #include "Behaviour.h"
 #include "LTexture.h"
-#include "Entity.h"
+
 
 using namespace std;
+
+class Entity;
 class DrawableBehaviour :
 	public Behaviour
 {
@@ -18,6 +20,8 @@ public:
 	virtual void Draw();
 	virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
 	virtual bool LoadMedia();
+
+	void SetEntity(Entity* _entity);
 protected:
 	SDL_Renderer* renderer;
 	Entity* entity;

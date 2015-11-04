@@ -8,9 +8,14 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	world = new b2World(b2Vec2(0.0, static_cast<float>(9.81) ));
 
 	drawableContainer = new DrawableContainer();
-	entityFactory = new EntityFactory(*world);
+	
 
 	this->tileLoader = nullptr;
+}
+
+void Level::init(BehaviourFactory* bf){
+	entityFactory = new EntityFactory(*world, bf);
+
 }
 
 b2World* Level::GetWorld()

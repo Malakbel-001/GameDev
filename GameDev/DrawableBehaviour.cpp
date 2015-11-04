@@ -1,8 +1,9 @@
 #include "DrawableBehaviour.h"
-
+#include "Entity.h"
 
 DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
+	
 	renderer = sdl_renderer;
 	screenWidth = screenwidth;
 	screenHeight = screenheight;
@@ -19,6 +20,12 @@ DrawableBehaviour* DrawableBehaviour::EmptyClone()
 { 
 	return nullptr; 
 }
+
+void DrawableBehaviour::SetEntity(Entity* _entity)
+{
+	entity = _entity;
+}
+
 
 void DrawableBehaviour::Draw()
 {

@@ -1,7 +1,7 @@
 #include "EntityFactory.h"
 
 
-EntityFactory::EntityFactory(b2World& b2world) : world(b2world)
+EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf) : world(b2world) ,bf(_bf)
 {
 	entityRegistery =	std::unordered_map<EntityType, Entity*>{
 			{ EntityType::ENTITY,new Entity() },
@@ -42,6 +42,7 @@ Entity* EntityFactory::CreateEntity(float x, float y,float height, float width, 
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 
 	ent->Init(CreateBody(x, y,height,width, type),width,height);
+
 	return ent;
 
 }

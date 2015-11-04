@@ -6,29 +6,10 @@ Game::Game()
 {
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Game", SCREEN_WIDTH, SCREEN_HEIGHT, false);
-	//gameManager = GameStateManager();
-	//running = true;
-	//if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	//{
-	//	//TODO
-	//}
-	//// Create the window where we will draw.
-	//window = SDL_CreateWindow("SDL_RenderClear",
-	//	SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-	//	512, 512, 0);
-	//// We must call SDL_CreateRenderer in order for draw calls to affect this window.
-	//renderer = SDL_CreateRenderer(window, -1, 0);
 
-	//// Select the color for drawing. It is set to red here.
-	//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-
-	//// Clear the entire screen to our selected color.
-	//SDL_RenderClear(renderer);
-
-	//gameLoop();
-
-	gsm = new GameStateManager();
-	
+	BehaviourFactory* bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
+	gsm = new GameStateManager(bf);
+	gsm->CreateGameState(GameStateType::PlayState);
 	//Non-threaded
 	this->GameLoop();
 
@@ -106,7 +87,7 @@ void Game::GameLoop()
 
 		InputManager();
 		gsm->GetCurrentState()->Update(dt);
-		gsm->GetCurrentState()->Draw(sdlInitializer->GetRenderer());
+		gsm->GetCurrentState()->Draw();
 			
 	
 		afterLoopTime = SDL_GetTicks();

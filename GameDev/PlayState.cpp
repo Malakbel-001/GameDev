@@ -3,7 +3,7 @@
 
 
 
-void PlayState::Init(GameStateManager *gsm)
+void PlayState::Init(GameStateManager* gsm, BehaviourFactory* bf)
 {
 	this->gsm = gsm;
 
@@ -76,16 +76,11 @@ void PlayState::Update(float dt)
 	
 }
 
-void PlayState::Draw(SDL_Renderer*  sdl)
+void PlayState::Draw()
 {
-<<<<<<< HEAD
-	/*currentLevel->Draw();
-	p->Draw();*/
-	drawableContainer->Draw();
-=======
-	currentLevel->GetDrawableContainer()->Draw(sdl);
-	
->>>>>>> refs/remotes/origin/Develop
+
+	currentLevel->GetDrawableContainer()->Draw();
+
 }
 
 Level* PlayState::GetCurrentLevel()

@@ -134,6 +134,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="EntityType.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStateManager.h" />
+    <ClInclude Include="GameStateType.h" />
     <ClInclude Include="GroundDrawableBehaviour.h" />
     <ClInclude Include="header_loader.h" />
     <ClInclude Include="IGameState.h" />
