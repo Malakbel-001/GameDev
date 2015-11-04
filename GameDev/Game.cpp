@@ -10,7 +10,7 @@ Game::Game()
 
 	BehaviourFactory* bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 	gsm = new GameStateManager(bf);
-	gsm->CreateGameState(GameStateType::PlayState);
+	gsm->CreateGameState(GameStateType::MenuState);
 
 	//Non-threaded
 	this->GameLoop();
