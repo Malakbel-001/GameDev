@@ -3,8 +3,7 @@
 // Setup
 bool InitEverything();
 bool InitSDL();
-bool CreateWindow();
-bool CreateRenderer();
+//bool CreateRenderer();
 void SetupRenderer();
 //void HandleInput();
 void CreateHelpMenu();
@@ -63,8 +62,6 @@ SDL_Rect creditTextRect;
 SDL_Rect creditTitleRect;
 #pragma endregion rects
 
-SDL_Rect windowRect = { 8, 30, 1200, 700 };
-SDL_Window* window;
 SDL_Renderer* renderer;
 
 bool quit = false;
@@ -87,100 +84,24 @@ MenuState::MenuState()
 {
 }
 
-/*void MenuState::RunGame()
-{
-	while (!quit){
-
-		//HandleInput();
-
-		//Render();
-	}
-	this->gsm->ChangeGameState(new PlayState());
-	SDL_DestroyWindow(window);
+void loadMainMenu(){
+	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
+	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
+	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
+	SDL_RenderCopy(renderer, creditTexture, nullptr, &creditRect);
+	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
 }
 
-/*void HandleInput(){
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			quit = true;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			int x = event.button.x;
-			int y = event.button.y;
-			for (int i = 0; i < renderItems; i++)
-			{
-				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
-					switch (i){
-						//item 1, mainmenu play
-					case 0:
-						
-						quit = true;
-						break;
-						//item 2, mainmenu help
-					case 1:
-						menuState = helpMenu;
-						break;
-						//item 3,mainmenu quit
-					case 2:
-						exit(0);
-						break;
-						//item 6, backto main
-					case 6:
-						menuState = mainMenu;
-						break;
-						//item 9, mainmenu credit
-					case 9:
-						menuState = creditMenu;
-						break;
-					}
-				}
-			}
-			break;
-		}
-	}
-}*/
-
-/*void Render()
-{
-	SDL_RenderClear(renderer);
-	switch (menuState){
-		//mainmenu
-	case mainMenu:
-		loadMainMenu();
-		break;
-		//helpmenu
-	case helpMenu:
-		loadHelpMenu();
-		break;
-	case creditMenu:
-		LoadCreditMenu();
-		break;
-	}
-	SDL_RenderPresent(renderer);
-}*/
-
-void loadMainMenu(SDL_Renderer*  sdl){
-	SDL_RenderCopy(sdl, playTexture, nullptr, &solidRect);
-	SDL_RenderCopy(sdl, helpTexture, nullptr, &blendedRect);
-	SDL_RenderCopy(sdl, quitTexture, nullptr, &shadedRect);
-	SDL_RenderCopy(sdl, creditTexture, nullptr, &creditRect);
-	SDL_RenderCopy(sdl, mainTitleTexture, nullptr, &mainTitleRect);
+void loadHelpMenu(){
+	SDL_RenderCopy(renderer, helpTextTexture, nullptr, &helpTextRect);
+	SDL_RenderCopy(renderer, helpTitleTexture, nullptr, &helpTitleRect);
+	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
-void loadHelpMenu(SDL_Renderer*  sdl){
-	SDL_RenderCopy(sdl, helpTextTexture, nullptr, &helpTextRect);
-	SDL_RenderCopy(sdl, helpTitleTexture, nullptr, &helpTitleRect);
-	SDL_RenderCopy(sdl, backToMainTexture, nullptr, &backToMainRect);
-}
-
-void LoadCreditMenu(SDL_Renderer*  sdl){
-	SDL_RenderCopy(sdl, creditTextTexture, nullptr, &creditTextRect);
-	SDL_RenderCopy(sdl, creditTitleTexture, nullptr, &creditTitleRect);
-	SDL_RenderCopy(sdl, backToMainTexture, nullptr, &backToMainRect);
+void LoadCreditMenu(){
+	SDL_RenderCopy(renderer, creditTextTexture, nullptr, &creditTextRect);
+	SDL_RenderCopy(renderer, creditTitleTexture, nullptr, &creditTitleRect);
+	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
 // Initialization ++
@@ -319,12 +240,9 @@ SDL_Texture* SurfaceToTexture(SDL_Surface* surf)
 
 	return text;
 }
-bool InitEverything()
+bool MenuState::InitEverything()
 {
 	if (!InitSDL())
-		return false;
-
-	if (!CreateWindow())
 		return false;
 
 	if (!CreateRenderer())
@@ -349,22 +267,10 @@ bool InitSDL()
 
 	return true;
 }
-bool CreateWindow()
+bool MenuState::CreateRenderer()
 {
-	window = SDL_CreateWindow("Jark Hunt", windowRect.x, windowRect.y, windowRect.w, windowRect.h, 0);
-
-	if (window == nullptr)
-	{
-		std::cout << "Failed to create window : " << SDL_GetError();
-		return false;
-	}
-
-	return true;
-}
-bool CreateRenderer()
-{
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
+	//renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+	renderer = gsm->GetBehaviour()->GetRenderer();
 	if (renderer == nullptr)
 	{
 		std::cout << "Failed to create renderer : " << SDL_GetError();
@@ -376,7 +282,7 @@ bool CreateRenderer()
 void SetupRenderer()
 {
 	// Set size of renderer to the same as window
-	SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
+	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
 	// Set color of renderer to red
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
@@ -464,24 +370,22 @@ void MenuState::Update(float dt){
 
 		HandleEvents();
 
-		Draw(renderer);
+		Draw();
 	}
-	//this->gsm->ChangeGameState(new PlayState());
-	SDL_DestroyWindow(window);
 }
-void MenuState::Draw(SDL_Renderer*  sdl){
+void MenuState::Draw(){
 	SDL_RenderClear(renderer);
 	switch (menuState){
 		//mainmenu
 	case mainMenu:
-		loadMainMenu(sdl);
+		loadMainMenu();
 		break;
 		//helpmenu
 	case helpMenu:
-		loadHelpMenu(sdl);
+		loadHelpMenu();
 		break;
 	case creditMenu:
-		LoadCreditMenu(sdl);
+		LoadCreditMenu();
 		break;
 	}
 	SDL_RenderPresent(renderer);

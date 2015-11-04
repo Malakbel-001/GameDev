@@ -7,13 +7,33 @@
 
 
 
-GameStateManager::GameStateManager(){
+GameStateManager::GameStateManager(BehaviourFactory* _bf){
 	states = std::vector<IGameState*>();
+	bf = _bf;
 	//TODO states onthouden
-	PushGameState(new MenuState());
-	//PushGameState(new PlayState());
-}
 
+}
+void GameStateManager::CreateGameState(GameStateType state){
+	IGameState* gamestate;
+	switch (state)
+	{
+	case GameStateType::PlayState:
+		gamestate = new PlayState();
+
+		break;
+	case GameStateType::PauseState:
+		//state = new PauseState();
+		break;
+	case GameStateType::MenuState:
+		gamestate = new MenuState();
+		break;
+	default:
+		break;
+	}
+	//gamestate->Init(this);
+
+	ChangeGameState(gamestate);
+}
 
 void GameStateManager::ChangeGameState(IGameState* gameState)
 {
@@ -83,4 +103,8 @@ GameStateManager::~GameStateManager()
 	}
 
 	
+}
+
+BehaviourFactory* GameStateManager::GetBehaviour(){
+	return bf;
 }

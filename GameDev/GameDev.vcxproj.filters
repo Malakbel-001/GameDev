@@ -156,8 +156,17 @@
     <ClCompile Include="SpritesLoader.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
     <ClCompile Include="LTexture.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
     <ClCompile Include="SoundChunk.cpp">
       <Filter>Source Files\Model\SoundBank</Filter>
@@ -266,7 +275,19 @@
     <ClInclude Include="SpritesLoader.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
     <ClInclude Include="LTexture.h">
+      <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateType.h">
+      <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoundBank.h">

@@ -12,7 +12,10 @@ class MenuState :
 public:
 	MenuState();
 	GameStateManager* gsm;
-	
+
+	bool CreateRenderer();
+	bool InitEverything();
+
 	void RunGame();
 	void Init(GameStateManager *gsm);
 	void Cleanup();
@@ -23,7 +26,7 @@ public:
 	void HandleEvents(SDL_Event mainEvent);
 	/*test*/void HandleEvents();
 	void Update(float dt);
-	void Draw(SDL_Renderer*  sdl);
+	void Draw();
 
 	virtual ~MenuState();
 };

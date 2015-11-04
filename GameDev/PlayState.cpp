@@ -3,7 +3,7 @@
 
 
 
-void PlayState::Init(GameStateManager *gsm)
+void PlayState::Init(GameStateManager* gsm)
 {
 	this->gsm = gsm;
 
@@ -15,9 +15,6 @@ void PlayState::Init(GameStateManager *gsm)
 	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
-
-
-
 	// flush userinput to prevent crash during loadscreen
 
 
@@ -79,10 +76,11 @@ void PlayState::Update(float dt)
 	
 }
 
-void PlayState::Draw(SDL_Renderer*  sdl)
+void PlayState::Draw()
 {
-	currentLevel->GetDrawableContainer()->Draw(sdl);
-	
+
+	currentLevel->GetDrawableContainer()->Draw();
+
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -93,6 +91,7 @@ Level* PlayState::GetCurrentLevel()
 void PlayState::SetCurrentLevel(Level* lvl)
 {
 	this->currentLevel = lvl;
+	this->currentLevel->init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
 }
 

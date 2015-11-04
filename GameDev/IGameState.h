@@ -15,7 +15,7 @@ public:
 
 	virtual void HandleEvents(SDL_Event mainEvent) = 0;
 	virtual void Update(float dt) = 0;
-	virtual void Draw(SDL_Renderer*  sdl) = 0;
+	virtual void Draw() = 0;
 
 	void ChangeState(GameStateManager* gsm, IGameState* state)
 	{

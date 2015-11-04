@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include "IGameState.h"
+#include "BehaviourFactory.h"
 #include "SoundBank.h"
 
 class Game
@@ -21,6 +22,7 @@ public:
 	void GameLoop();
 	
 private:
+
 	bool running = true;
 	SDLInitializer* sdlInitializer;
 	GameStateManager* gsm;
