@@ -41,8 +41,12 @@ void PlayState::Resume()
 	std::cout << "Resume not implemented yet";
 }
 
+void PlayState::HandleMouseEvents(SDL_Event mainEvent)
+{
+	std::cout << "Mouse events not implemented yet";
+}
 
-void PlayState::HandleEvents(std::unordered_map<SDL_Keycode, bool>* _events)
+void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
 	if (currentLevel->GetPlayer() != nullptr){
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();

@@ -242,7 +242,8 @@ void MenuState::Resume(){
 
 }
 
-void MenuState::HandleEvents(SDL_Event mainEvent){
+void MenuState::HandleMouseEvents(SDL_Event mainEvent)
+{
 		switch (mainEvent.type)
 		{
 		case SDL_QUIT:
@@ -294,6 +295,11 @@ void MenuState::HandleEvents(SDL_Event mainEvent){
 			}
 			break;
 		}
+}
+
+void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
+{
+	std::cout << "Key events not implemented yet";
 }
 
 void MenuState::Update(float dt){

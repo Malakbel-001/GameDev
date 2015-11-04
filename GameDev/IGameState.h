@@ -13,7 +13,8 @@ public:
 	virtual void Pause() = 0;
 	virtual void Resume() = 0;
 
-	virtual void HandleEvents(std::unordered_map<SDL_Keycode, bool>* _events) = 0;
+	virtual void HandleMouseEvents(SDL_Event mainEvent) = 0;
+	virtual void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) = 0;
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
 

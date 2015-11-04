@@ -7,11 +7,14 @@ public:
 	InputManager();
 	~InputManager();
 
-	void SetInput(SDL_Keycode key);
-	void ResetInput(SDL_Keycode key);
+	void SetKeyInput(SDL_Keycode key);
+	void ResetKeyInput(SDL_Keycode key);
+	std::unordered_map<SDL_Keycode, bool>* GetKeyInput();
 
-	std::unordered_map<SDL_Keycode, bool>* GetInput();
+	void SetMouseInput(SDL_Event _event);
+	SDL_Event GetMouseInput();
 private:
 	std::unordered_map<SDL_Keycode, bool>* input;
+	SDL_Event mouseEvent;
 };
 

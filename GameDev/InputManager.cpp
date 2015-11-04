@@ -11,7 +11,7 @@ InputManager::~InputManager()
 {
 }
 
-void InputManager::SetInput(SDL_Keycode key)
+void InputManager::SetKeyInput(SDL_Keycode key)
 {
 	if (input->find(key) == input->end())
 	{
@@ -22,7 +22,7 @@ void InputManager::SetInput(SDL_Keycode key)
 	}
 }
 
-void InputManager::ResetInput(SDL_Keycode key)
+void InputManager::ResetKeyInput(SDL_Keycode key)
 {
 	if (!(input->find(key) == input->end()))
 	{
@@ -31,6 +31,16 @@ void InputManager::ResetInput(SDL_Keycode key)
 
 }
 
-std::unordered_map<SDL_Keycode, bool>* InputManager::GetInput(){
+void InputManager::SetMouseInput(SDL_Event _event)
+{
+	mouseEvent = _event;
+}
+
+SDL_Event InputManager::GetMouseInput()
+{
+	return mouseEvent;
+}
+
+std::unordered_map<SDL_Keycode, bool>* InputManager::GetKeyInput(){
 	return input;
 }

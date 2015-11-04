@@ -37,12 +37,17 @@ void Game::SDLEvents()
 		//User presses a key
 		if (events.type == SDL_KEYDOWN)
 		{
-			inputManager->SetInput(events.key.keysym.sym);
+			inputManager->SetKeyInput(events.key.keysym.sym);
 		}
 
 		if (events.type == SDL_KEYUP)
 		{
-			inputManager->ResetInput(events.key.keysym.sym);
+			inputManager->ResetKeyInput(events.key.keysym.sym);
+		}
+
+		if (events.type == SDL_MOUSEBUTTONDOWN)
+		{
+			inputManager->SetMouseInput(events);
 		}
 	}
 }
@@ -66,7 +71,8 @@ void Game::GameLoop()
 
 
 		SDLEvents();
-		gsm->GetCurrentState()->HandleEvents(inputManager->GetInput());
+		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());
+		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
 		gsm->GetCurrentState()->Update(dt);
 		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw();
