@@ -19,3 +19,6 @@ void Player::setBody(b2Body* _body){
 Player::~Player()
 {
 }
+b2Body* Player::GetBody(){
+	return body;
+}

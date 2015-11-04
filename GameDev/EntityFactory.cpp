@@ -17,6 +17,7 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 	b2BodyDef NpcDef;
 	NpcDef.type = b2BodyType::b2_dynamicBody;
 	b2BodyDef PlayerDef;
+	PlayerDef.fixedRotation = true;
 	PlayerDef.type = b2BodyType::b2_dynamicBody;
 
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{

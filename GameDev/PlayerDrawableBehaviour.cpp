@@ -14,6 +14,7 @@ PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
 
 void PlayerDrawableBehaviour::Draw()
 {
+	sprites = walkSprites;
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
 	spriteSheetTexture->render(renderer, entity->GetXPos(), entity->GetYPos(), currentClip);

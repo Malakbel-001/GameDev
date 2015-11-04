@@ -25,7 +25,7 @@ class PlayState :
 		void Pause();
 		void Resume();
 
-		void HandleEvents(SDL_Event mainEvent);
+		void HandleEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void Update(float dt);
 		void Draw();
 

@@ -7,7 +7,7 @@ Entity::Entity()
 void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
 	type = _type;
 	body = _body;
-	width = -_width;
+	width = _width;
 	height = _height;
 	draw = bf->CreateDrawableBehaviour(type);
 	draw->SetEntity(this);

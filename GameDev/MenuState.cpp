@@ -23,7 +23,7 @@ void MenuState::Resume(){
 
 }
 
-void MenuState::HandleEvents(SDL_Event mainEvent){
+void MenuState::HandleEvents(std::unordered_map<SDL_Keycode, bool>* _events){
 
 }
 void MenuState::Update(float dt){

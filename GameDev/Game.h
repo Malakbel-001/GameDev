@@ -10,6 +10,7 @@
 #include "IGameState.h"
 #include "BehaviourFactory.h"
 #include "SoundBank.h"
+#include "InputManager.h"
 
 class Game
 {
@@ -27,7 +28,8 @@ private:
 	SDLInitializer* sdlInitializer;
 	GameStateManager* gsm;
 	IGameState* gameState;
-	void InputManager();
+	InputManager* inputManager;
+	void  SDLEvents();
 
 	const int SCREEN_WIDTH = 640;
 	const int SCREEN_HEIGHT = 480;

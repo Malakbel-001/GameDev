@@ -11,4 +11,5 @@ public:
 	virtual ~Player();
 	void setBody(b2Body* _body);
 	virtual Entity* EmptyClone();
+	b2Body* GetBody();
 };
