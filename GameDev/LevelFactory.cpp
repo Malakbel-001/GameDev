@@ -1,49 +1,45 @@
 #include "LevelFactory.h"
 
 std::vector<Level*> LevelFactory::levels;
-LevelFactory::LevelFactory()
+LevelFactory::LevelFactory() { }
+	
+LevelFactory::~LevelFactory() { }
+
+void LevelFactory::Init()
 {
-	
-	
-}
-	
-
-LevelFactory::~LevelFactory()
-{
-}
-
-void LevelFactory::Init(){
-
-	levels = { new Level()
-		//TODO add , new Level1() , new level2()
+	levels = { new testLevel(100, 100)
+	//	//TODO add , new Level1() , new level2()
 
 	};
 }
 
-Level* LevelFactory::GetFirstLevel(){
-	if (!(levels.size() > 0)){
-
+Level* LevelFactory::GetFirstLevel()
+{
+	if (!(levels.size() > 0))
+	{
 		Init();
 	}
 	return levels[0];
 }
 
-Level* LevelFactory::GetNextLevel(Level* level){
-	if (!(levels.size() > 0)){
+Level* LevelFactory::GetNextLevel(Level* level)
+{
+	if (!(levels.size() > 0))
+	{
 		Init();
 	}
-	int x = 0;
 	bool foundLevel = false;
-	while (levels.size() > x){
-		if (foundLevel){
-			return levels[x];
-		}
-		if (levels[x] == level){
+	for (size_t i = 0; i < levels.size(); i++)
+	{
+		if (foundLevel)
+			return levels[i];
+
+		if (levels[i] == level)
 			foundLevel = true;
-		}
-		x++;
 	}
-	if (foundLevel){
+
+	if (foundLevel)
+	{
 		// you just finished last level
 		// give te first level
 		//TODO back to main screen
@@ -51,5 +47,4 @@ Level* LevelFactory::GetNextLevel(Level* level){
 	}
 	//level was not in levels list get te first level
 	return levels[0];
-
 }

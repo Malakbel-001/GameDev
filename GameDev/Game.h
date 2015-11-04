@@ -1,27 +1,37 @@
 #pragma once
-#include "SDL.h"
-#include <iostream>
 #include "GameStateManager.h"
 #include "Level.h"
+#include "SDL.h"
+#include "LTexture.h"
+#include <SDL_image.h> 
+#include <stdio.h> 
+#include <string>
+#include <iostream>
+#include "IGameState.h"
+#include "SoundBank.h"
+
 class Game
 {
 public:
-	GameStateManager gameManager;
+	
+	
 	Game();
 	~Game();
 
-	void gameLoop();
+	void GameLoop();
 	
 private:
-	void inputManager();
+	bool running = true;
+	SDLInitializer* sdlInitializer;
+	GameStateManager* gsm;
+	IGameState* gameState;
+	void InputManager();
 
-	void setUpBox2D();
-
+	const int SCREEN_WIDTH = 640;
+	const int SCREEN_HEIGHT = 480;
 	
-	SDL_Window* window;
-	SDL_Renderer* renderer;	
+
 	SDL_Event events;
 
-	bool running;
 };
 

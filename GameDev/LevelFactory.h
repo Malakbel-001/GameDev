@@ -1,13 +1,15 @@
 #pragma once
-#include "Box2D\Box2D.h"
-#include "Level.h"
 #include <vector>
+#include "Box2D\Box2D.h"
+#include "testLevel.h"
+#include "GameStateManager.h"
+
+
+class Level;
 
 class LevelFactory
 {
 public:
-	
-
 	static Level* GetNextLevel(Level*);
 	static Level* GetFirstLevel();
 private:

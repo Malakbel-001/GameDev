@@ -1,4 +1,4 @@
-#include "MainMenu.h"
+/*#include "MainMenu.h"
 
 // Setup
 bool InitEverything();
@@ -383,3 +383,4 @@ void SetupRenderer()
 MainMenu::~MainMenu()
 {
 }
+*/
