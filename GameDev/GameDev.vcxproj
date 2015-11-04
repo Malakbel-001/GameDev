@@ -98,6 +98,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
+    <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundDrawableBehaviour.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -135,6 +136,7 @@ copy "$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameStateType.h" />
+    <ClInclude Include="Ground.h" />
     <ClInclude Include="GroundDrawableBehaviour.h" />
     <ClInclude Include="header_loader.h" />
     <ClInclude Include="IGameState.h" />

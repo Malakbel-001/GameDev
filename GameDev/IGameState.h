@@ -7,7 +7,7 @@ protected:
 	IGameState() { }
 public:
 
-	virtual void Init(GameStateManager *gsm, BehaviourFactory* bf) = 0;
+	virtual void Init(GameStateManager *gsm) = 0;
 	virtual void Cleanup() = 0;
 
 	virtual void Pause() = 0;

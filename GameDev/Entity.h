@@ -3,7 +3,6 @@
 #include "DrawableBehaviour.h"
 #include "BehaviourFactory.h"
 #include "DrawableContainer.h"
-#include "EntityType.h"
 class Entity
 {
 	protected:
@@ -19,4 +18,8 @@ class Entity
 		virtual ~Entity();
 		virtual void Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
 		virtual Entity* EmptyClone();
+		virtual int GetWidth();
+		virtual int GetHeight();
+		virtual int GetXPos();
+		virtual int GetYPos();
 };

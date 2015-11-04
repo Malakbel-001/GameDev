@@ -7,7 +7,7 @@ public:
 	MenuState();
 	GameStateManager* gsm;
 
-	void Init(GameStateManager *gsm, BehaviourFactory* bf);
+	void Init(GameStateManager *gsm);
 	void Cleanup();
 
 	void Pause();

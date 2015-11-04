@@ -31,9 +31,10 @@ Level* LevelFactory::GetNextLevel(Level* level)
 	bool foundLevel = false;
 	for (size_t i = 0; i < levels.size(); i++)
 	{
-		if (foundLevel)
+		if (foundLevel){
+			
 			return levels[i];
-
+		}
 		if (levels[i] == level)
 			foundLevel = true;
 	}

@@ -30,7 +30,7 @@ void GameStateManager::CreateGameState(GameStateType state){
 	default:
 		break;
 	}
-	gamestate->Init(this, bf);
+	//gamestate->Init(this);
 
 	ChangeGameState(gamestate);
 }
@@ -103,4 +103,8 @@ GameStateManager::~GameStateManager()
 	}
 
 	
+}
+
+BehaviourFactory* GameStateManager::GetBehaviour(){
+	return bf;
 }

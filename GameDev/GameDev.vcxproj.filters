@@ -97,6 +97,9 @@
     <ClCompile Include="GroundDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="Ground.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -206,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="GameStateType.h">
       <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

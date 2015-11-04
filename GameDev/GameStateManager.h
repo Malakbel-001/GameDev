@@ -16,6 +16,7 @@ class GameStateManager
 		BehaviourFactory* bf;
 
 	public:	
+		BehaviourFactory* GetBehaviour();
 		GameStateManager(BehaviourFactory* _bf);
 		void Cleanup();
 		void ChangeGameState(IGameState* gameState);

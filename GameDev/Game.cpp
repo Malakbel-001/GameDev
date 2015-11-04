@@ -10,6 +10,7 @@ Game::Game()
 	BehaviourFactory* bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 	gsm = new GameStateManager(bf);
 	gsm->CreateGameState(GameStateType::PlayState);
+
 	//Non-threaded
 	this->GameLoop();
 
@@ -87,8 +88,9 @@ void Game::GameLoop()
 
 		InputManager();
 		gsm->GetCurrentState()->Update(dt);
+		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw();
-			
+		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
 		afterLoopTime = SDL_GetTicks();
 		if (!((afterLoopTime - preLoopTime) > TARGET_FPS))
@@ -96,7 +98,7 @@ void Game::GameLoop()
 			
 			SDL_Delay(TARGET_FPS - (afterLoopTime - preLoopTime));
 		}
-
+		
 	}
 	
 	SDL_Quit();

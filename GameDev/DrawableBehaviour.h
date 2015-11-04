@@ -7,7 +7,8 @@
 
 using namespace std;
 
-class Entity;
+class Entity;	
+
 class DrawableBehaviour :
 	public Behaviour
 {

@@ -24,8 +24,8 @@ DrawableBehaviour* DrawableBehaviour::EmptyClone()
 void DrawableBehaviour::SetEntity(Entity* _entity)
 {
 	entity = _entity;
+	LoadMedia();
 }
-
 
 void DrawableBehaviour::Draw()
 {
@@ -39,6 +39,6 @@ void DrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
 
 bool DrawableBehaviour::LoadMedia()
 {
-	//printf("Behaviour not initialized");
+	printf("Behaviour not initialized");
 	return false;
 }

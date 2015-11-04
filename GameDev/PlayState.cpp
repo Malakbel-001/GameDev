@@ -3,7 +3,7 @@
 
 
 
-void PlayState::Init(GameStateManager* gsm, BehaviourFactory* bf)
+void PlayState::Init(GameStateManager* gsm)
 {
 	this->gsm = gsm;
 
@@ -91,6 +91,7 @@ Level* PlayState::GetCurrentLevel()
 void PlayState::SetCurrentLevel(Level* lvl)
 {
 	this->currentLevel = lvl;
+	this->currentLevel->init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
 }
 

@@ -11,7 +11,6 @@
 class Level
 {
 	private:
-		DrawableContainer* drawableContainer;
 		MoveableContainer* moveableContainer;
 		Player* player;
 		
@@ -50,8 +49,8 @@ class Level
 		int GetTotalDiffrentTiles();
 		std::vector<SDL_Rect> getTileCrops();
 
-		virtual void Draw() = 0;
-		virtual void Update(float dt) = 0;
+		void Draw();
+		void Update(float dt);
 
 		virtual b2World* GetWorld();
 };

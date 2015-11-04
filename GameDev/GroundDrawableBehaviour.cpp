@@ -1,4 +1,5 @@
 #include "GroundDrawableBehaviour.h"
+#include "Entity.h"
 
 
 GroundDrawableBehaviour::GroundDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : DrawableBehaviour(renderer, screenwidth, screenheight)
@@ -15,13 +16,9 @@ GroundDrawableBehaviour::~GroundDrawableBehaviour()
 
 void GroundDrawableBehaviour::Draw()
 {
-	int groundlength = 0;
 
-	while (groundlength < screenWidth)
-	{
-		spriteSheetTexture->render(renderer, groundlength, screenHeight, &sprites);
-		groundlength = groundlength + sprites.w;
-	}	
+		spriteSheetTexture->render(renderer, entity->GetXPos(), entity->GetYPos(), &sprites);
+		
 }
 
 void GroundDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
@@ -46,9 +43,9 @@ bool GroundDrawableBehaviour::LoadMedia()
 	else
 	{
 		sprites.x = 515;
-		sprites.y = 280;
+		sprites.y = 100;
 		sprites.w = 255;
-		sprites.h = 255;
+		sprites.h = 130;
 	}
 	return success;
 }
