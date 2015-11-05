@@ -7,28 +7,15 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	startXpos = 100;
 	startYpos = 10;
 
-	world = new b2World(b2Vec2(0.0, static_cast<float>(9.81,0) ));
+	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
 	
 	drawableContainer = new DrawableContainer();
-
 	this->tileLoader = nullptr;
 	this->camera = nullptr;
+
 }
 
-Level::~Level()
-{
-	delete world;
-	delete drawableContainer;
-	delete entityFactory;
-
-	delete camera;
-	delete tileLoader;
-}
-
-void Level::Init(BehaviourFactory* bf)
-{
-	entityFactory = new EntityFactory(*world, bf, drawableContainer);
-	entityFactory->CreateEntity(0, 400, 255, 15, EntityType::GROUND);
+void Level::Init(BehaviourFactory* bf){
 }
 
 b2World* Level::GetWorld()
@@ -38,7 +25,7 @@ b2World* Level::GetWorld()
 
 void Level::Update(float dt)
 {
-	world->Step(dt, 5, 5);
+	world->Step((dt/100), 5, 5);
 	camera->UpdateCamaraPosition(player->GetXPos(), player->GetYPos(), player->GetWidth(), player->GetHeight());
 }
 
@@ -50,12 +37,24 @@ void Level::SetPlayer(Player* _player)
 	this->camera = new Camera(player->GetBody()->GetPosition().x, player->GetBody()->GetPosition().y,
 		player->GetWidth(), player->GetHeight(), this->GetLvlWidth(), this->GetLvlHeight());
 }
-
-Player* Level::GetPlayer()
-{
+Player* Level::GetPlayer(){
 	return player;
 }
+DrawableContainer* Level::GetDrawableContainer()
+{
+	return drawableContainer;
+}
+#pragma endregion Get, Set
 
+Level::~Level()
+{
+	delete world;
+	delete drawableContainer;
+	delete entityFactory;
+
+	delete camera;
+
+}
 void Level::SetLvlWidth(int _lvlWidth)
 {
 	this->lvlWidth = _lvlWidth;
@@ -81,8 +80,5 @@ int Level::GetLvlWidth()
 	return this->lvlWidth;
 }
 
-DrawableContainer* Level::GetDrawableContainer()
-{
-	return drawableContainer;
-}
-#pragma endregion Get, Set
+
+

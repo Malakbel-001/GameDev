@@ -5,6 +5,7 @@
 #include "LTexture.h"
 
 
+
 using namespace std;
 
 class Entity;	
@@ -25,9 +26,16 @@ class DrawableBehaviour :
 		int screenWidth;
 		int screenHeight;
 
+	float x = 1;
+	float y = 10;
+	float Ratio = x / y;
+
+
 	public:
 		DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
 		virtual ~DrawableBehaviour();
+
+void SetEntity(Entity* _entity);
 
 		virtual DrawableBehaviour* EmptyClone();
 
@@ -35,6 +43,6 @@ class DrawableBehaviour :
 		virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
 		virtual bool LoadMedia();
 
-		void SetEntity(Entity* _entity);
+	
 };
 

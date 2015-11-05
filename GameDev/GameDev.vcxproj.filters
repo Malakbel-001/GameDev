@@ -28,6 +28,9 @@
     <ClCompile Include="MoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="testLevel.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
@@ -106,15 +109,6 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TestLevel.cpp">
-      <Filter>Source Files\Model\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -161,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="Container.h">
       <Filter>Header Files\Model\Container</Filter>
+    </ClInclude>
+    <ClInclude Include="testLevel.h">
+      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Model\Level</Filter>
@@ -222,6 +219,9 @@
     <ClInclude Include="GameStateType.h">
       <Filter>Header Files\Model\GameState</Filter>
     </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="SoundBank.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
@@ -236,18 +236,6 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TestLevel.h">
-      <Filter>Header Files\Model\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundObstacleDrawableBehavior.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

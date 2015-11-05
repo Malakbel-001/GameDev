@@ -220,10 +220,8 @@ void MenuState::SetupRenderer()
 	// Set size of renderer to the same as window
 	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
-	
-
 	// Set color of renderer to red
-	SDL_SetRenderDrawColor(renderer, 0, 206, 209, 255);
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 
@@ -246,64 +244,65 @@ void MenuState::Resume(){
 
 void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 {
-		switch (mainEvent.type)
+	switch (mainEvent.type)
+	{
+	case SDL_QUIT:
+		quit = true;
+		break;
+	case SDL_MOUSEBUTTONDOWN:
+		int x = mainEvent.button.x;
+		int y = mainEvent.button.y;
+		for (int i = 0; i < renderItems; i++)
 		{
-		case SDL_QUIT:
-			quit = true;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			int x = mainEvent.button.x;
-			int y = mainEvent.button.y;
-			for (int i = 0; i < renderItems; i++)
-			{
-				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
-					switch (i){
-						//item 1, mainmenu play
-					case 0:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							SoundBank::GetInstance()->StopMusic();
-							this->gsm->ChangeGameState(new PlayState());
-							quit = true;
-						}
-						break;
-						//item 2, mainmenu help
-					case 1:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = helpMenu;
-						}
-						break;
-						//item 3,mainmenu quit
-					case 2:
-						if (menuState == mainMenu){
-							exit(0);
-						}
-						break;
-						//item 6, backtomain
-					case 6:
-						if (menuState != mainMenu)
-						{
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = mainMenu;
-						}
-						break;
-						//item 9, mainmenu credit
-					case 9:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = creditMenu;
-						}
-						break;
+			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
+				switch (i){
+					//item 1, mainmenu play
+				case 0:
+					if (menuState == mainMenu){
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->StopMusic();
+						this->gsm->ChangeGameState(new PlayState());
+						quit = true;
 					}
+					break;
+					//item 2, mainmenu help
+				case 1:
+					if (menuState == mainMenu){
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						menuState = helpMenu;
+					}
+					break;
+					//item 3,mainmenu quit
+				case 2:
+					if (menuState == mainMenu){
+						exit(0);
+					}
+					break;
+					//item 6, backtomain
+				case 6:
+					if (menuState != mainMenu)
+					{
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						menuState = mainMenu;
+					}
+					break;
+					//item 9, mainmenu credit
+				case 9:
+					if (menuState == mainMenu){
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						menuState = creditMenu;
+					}
+					break;
 				}
 			}
-			break;
 		}
+		break;
+	}
 }
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
+	//std::cout << "Key events not implemented yet";
 }
 
 void MenuState::Update(float dt){
@@ -316,7 +315,6 @@ void MenuState::Update(float dt){
 }
 void MenuState::Draw(){
 	SDL_RenderClear(renderer);
-
 	switch (menuState){
 		//mainmenu
 	case mainMenu:

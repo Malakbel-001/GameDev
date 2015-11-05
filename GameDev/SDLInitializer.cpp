@@ -8,12 +8,12 @@ void SDLInitializer::Init(const char* title, int width, int height, bool fullscr
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow
 	(
-		title,
+		title,		
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		width,
 		height,
-		fullscreen
+		false
 	);
 
 	// Open Audio & Start SDL_Mixer
