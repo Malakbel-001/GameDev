@@ -1,3 +1,3 @@
 enum class SoundBgmType {
-	TESTBGM1, TESTBGM2
+	TESTBGM1, TESTBGM2, THUNDERSTRUCK
 };

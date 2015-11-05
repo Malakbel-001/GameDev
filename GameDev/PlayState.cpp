@@ -110,6 +110,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel = lvl;
 	this->currentLevel->Init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK, 64);
 }
 
 
