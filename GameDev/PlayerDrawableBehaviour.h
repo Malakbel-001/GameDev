@@ -14,7 +14,7 @@ public:
 	bool LoadMedia() override;
 private:
 	const int IDLE_ANIMATION_FRAMES = 3;
-	const int WALK_ANIMATION_FRAMES = 9;
+	const int WALK_ANIMATION_FRAMES = 6;
 	vector<SDL_Rect> idleSprites;
 	vector<SDL_Rect> walkSprites;
 };
