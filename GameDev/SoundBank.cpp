@@ -13,7 +13,8 @@ SoundBank::SoundBank() {
 	//defining background music
 	bgmPathList = std::unordered_map<SoundBgmType, char*>{
 		{ SoundBgmType::TESTBGM1, "../Assets/balcony.mp3" },
-		{ SoundBgmType::TESTBGM2, "../Assets/lastcave.mp3" }
+		{ SoundBgmType::TESTBGM2, "../Assets/lastcave.mp3" },
+		{ SoundBgmType::THUNDERSTRUCK, "../Assets/thunderstruck.mp3" }
 	};
 }
 

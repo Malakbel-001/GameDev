@@ -1,8 +1,12 @@
+
 #include "EntityFactory.h"
+
 
 
 EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), bf(_bf), drawContainer(_drawContainer)
 {
+
+
 	entityRegistery =	std::unordered_map<EntityType, Entity*>{
 			{ EntityType::ENTITY,new Entity() },
 			{ EntityType::ACTOR, new Actor() },
@@ -72,6 +76,7 @@ b2Body* EntityFactory::CreateBody(float x, float y,float height,float width, Ent
 
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
+
 	boxFixtureDef.density =1;
 
 

@@ -3,16 +3,11 @@
 
 DrawableContainer::DrawableContainer()
 {
-
-
 	behaviours = vector<DrawableBehaviour*>();
-
 }
 
 
-DrawableContainer::~DrawableContainer()
-{
-}
+DrawableContainer::~DrawableContainer() { }
 
 void DrawableContainer::Add(DrawableBehaviour* behaviour)
 {

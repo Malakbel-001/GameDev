@@ -3,17 +3,17 @@
 #include "MenuState.h"
 #include "PlayState.h"
 #include <iostream>
-#include <Windows.h>
 
 
-
-GameStateManager::GameStateManager(BehaviourFactory* _bf){
+GameStateManager::GameStateManager(BehaviourFactory* _bf)
+{
 	states = std::vector<IGameState*>();
 	bf = _bf;
 	//TODO states onthouden
 
 }
-void GameStateManager::CreateGameState(GameStateType state){
+void GameStateManager::CreateGameState(GameStateType state)
+{
 	IGameState* gamestate;
 	switch (state)
 	{
@@ -84,16 +84,15 @@ void GameStateManager::Cleanup()
 		//Remove top state
 		states.pop_back();
 	}
-
-	
 }
-IGameState* GameStateManager::GetCurrentState(){
+IGameState* GameStateManager::GetCurrentState()
+{
 	return states.back();
-
 }
+
 GameStateManager::~GameStateManager()
 {
-		while (!states.empty())
+	while (!states.empty())
 	{
 		//Peek at top state and clean that state
 		states.back()->Cleanup();
@@ -101,10 +100,9 @@ GameStateManager::~GameStateManager()
 		//Remove top state
 		states.pop_back();
 	}
-
-	
 }
 
-BehaviourFactory* GameStateManager::GetBehaviour(){
+BehaviourFactory* GameStateManager::GetBehaviour()
+{
 	return bf;
 }

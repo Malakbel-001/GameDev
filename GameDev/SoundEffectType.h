@@ -1,3 +1,3 @@
 enum class SoundEffectType {
-	CORRECT,
+	CORRECT, THUNDERSTRUCK
 };

@@ -3,6 +3,7 @@
 #include "header_loader.h"
 #include "Player.h"
 #include "Camera.h"
+#include "SoundBank.h"
 #include "BehaviourFactory.h"
 #include <iostream>
 
@@ -10,8 +11,6 @@ class PlayState :
 	public IGameState
 {
 	private:
-	
-
 		GameStateManager* gsm;		
 		Player* player;
 		Level* currentLevel;	

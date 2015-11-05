@@ -152,7 +152,6 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="LTexture.h" />
-    <ClInclude Include="PixelRatio.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />

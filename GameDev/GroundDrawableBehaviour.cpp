@@ -1,3 +1,4 @@
+
 #include "GroundDrawableBehaviour.h"
 #include "Entity.h"
 
@@ -16,7 +17,7 @@ GroundDrawableBehaviour::~GroundDrawableBehaviour()
 
 void GroundDrawableBehaviour::Draw()
 {
-
+	
 	float xpos = entity->GetXPos() / Ratio;
 	float ypos = entity->GetYPos() / Ratio;
 		spriteSheetTexture->render(renderer,xpos, ypos, &sprites);

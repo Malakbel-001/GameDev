@@ -14,7 +14,6 @@ GroundObstacleDrawableBehavior::~GroundObstacleDrawableBehavior()
 
 void GroundObstacleDrawableBehavior::Draw()
 {
-	
 	float xpos = entity->GetXPos() / Ratio;
 	float ypos = entity->GetYPos() / Ratio;
 	spriteSheetTexture->render(renderer, xpos, ypos, &sprites);
@@ -42,6 +41,11 @@ bool GroundObstacleDrawableBehavior::LoadMedia()
 	}
 	else
 	{
+		//sprites.x = 515;
+		//sprites.y = 655;
+	///	sprites.w = 128;
+	//	sprites.h = 128;
+
 		sprites.x = 280;
 		sprites.y = 783;
 		sprites.w = 137;
@@ -53,4 +57,5 @@ bool GroundObstacleDrawableBehavior::LoadMedia()
 GroundObstacleDrawableBehavior* GroundObstacleDrawableBehavior::EmptyClone()
 {
 	return new GroundObstacleDrawableBehavior(renderer, screenWidth, screenHeight);
+
 }

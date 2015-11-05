@@ -19,12 +19,11 @@ void TestLevel::Init(BehaviourFactory* bf){
 }
 
 TestLevel::~TestLevel() {
-	delete tileLoader;
+//	delete tileLoader;
 }
 
 void TestLevel::Cleanup() { }
 
 
 void TestLevel::HandleEvents(SDL_Event mainEvent) { }
-
 
