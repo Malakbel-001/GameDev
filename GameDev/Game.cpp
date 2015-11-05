@@ -90,16 +90,12 @@ void Game::GameLoop()
 {	
 	float TARGET_FPS = 0.016666666 * 1000;
 
-
 	Uint32 preLoopTime, afterLoopTime; // ticks
 
 	preLoopTime = SDL_GetTicks() -1;
 
-
-
 	while (running)
 	{
-	
 		float dt = SDL_GetTicks() - preLoopTime;;
 		preLoopTime = SDL_GetTicks();
 

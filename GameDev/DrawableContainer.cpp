@@ -3,10 +3,7 @@
 
 DrawableContainer::DrawableContainer()
 {
-
-
 	behaviours = vector<DrawableBehaviour*>();
-
 }
 
 

@@ -19,7 +19,6 @@ class Level
 		float startYpos;
 
 	protected:
-
 		int tileWidth, tileHeight;
 		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
 		DrawableContainer* drawableContainer;
@@ -40,8 +39,6 @@ class Level
 		virtual void SetPlayer(Player* _player);
 		virtual void SetLvlWidth(int _lvlWidth);
 		virtual void SetLvlHeight(int _lvlHeight);
-
-		SDL_Texture* GetTileSheet();
 
 		int GetLvlWidth();
 		int GetLvlHeight();

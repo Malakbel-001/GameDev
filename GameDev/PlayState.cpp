@@ -11,8 +11,6 @@ void PlayState::Init(GameStateManager* gsm)
 
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
-	
-	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
 	// flush userinput to prevent crash during loadscreen
@@ -78,9 +76,7 @@ void PlayState::Update(float dt)
 
 void PlayState::Draw()
 {
-
 	currentLevel->GetDrawableContainer()->Draw();
-
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -95,21 +91,17 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel->SetPlayer(player);
 }
 
-
 Player* PlayState::GetPlayer()
 {
 	return this->player;
 }
 
-
 void PlayState::Cleanup()
 {
 	delete player;
-	
 	delete currentLevel;
 
 	player = nullptr;
-
 	currentLevel = nullptr;
 }
 

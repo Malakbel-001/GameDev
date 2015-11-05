@@ -28,6 +28,7 @@ Level* LevelFactory::GetNextLevel(Level* level)
 	{
 		Init();
 	}
+
 	bool foundLevel = false;
 	for (size_t i = 0; i < levels.size(); i++)
 	{
