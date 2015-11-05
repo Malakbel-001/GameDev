@@ -6,7 +6,7 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	player = nullptr;
 	startXpos = 100;
 	startYpos = 10;
-	world = new b2World(b2Vec2(0.0, static_cast<float>(9.81) ));
+	world = new b2World(b2Vec2(0.0, static_cast<float>(/*9.81*/0) ));
 	
 	drawableContainer = new DrawableContainer();
 
@@ -14,12 +14,7 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	this->tileLoader = nullptr;
 }
 
-void Level::init(BehaviourFactory* bf){
-	entityFactory = new EntityFactory(*world, bf, drawableContainer);
-	//entityFactory->CreateEntity(100, 100, 10, 10, EntityType::PLAYER);
-	entityFactory->CreateEntity(0, 400, 255, 15, EntityType::GROUND);
-
-
+void Level::Init(BehaviourFactory* bf){
 }
 
 b2World* Level::GetWorld()
@@ -47,8 +42,6 @@ Level::~Level()
 	delete world;
 	delete drawableContainer;
 	delete entityFactory;
-
-	delete tileLoader;
 }
 
 void Level::SetLvlWidth(int _lvlWidth)
@@ -74,16 +67,6 @@ int Level::GetLvlHeight()
 int Level::GetLvlWidth()
 {
 	return this->lvlWidth;
-}
-
-int Level::GetTotalTiles()
-{
-	return this->lvlTotalTiles;
-}
-
-int Level::GetTotalDiffrentTiles()
-{
-	return this->lvlTotalDiffrentTiles;
 }
 DrawableContainer* Level::GetDrawableContainer(){
 	return drawableContainer;
