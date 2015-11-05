@@ -11,8 +11,6 @@ class PlayState :
 	public IGameState
 {
 	private:
-	
-
 		GameStateManager* gsm;		
 		Player* player;
 		Level* currentLevel;	

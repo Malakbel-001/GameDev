@@ -12,28 +12,29 @@ class Entity;
 class DrawableBehaviour :
 	public Behaviour
 {
-public:
-	DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
-	virtual ~DrawableBehaviour();
+	protected:
+		SDL_Renderer* renderer;
+		Entity* entity;
 
-	virtual DrawableBehaviour* EmptyClone();
+		vector<SDL_Rect> sprites;
+		int currentFrame;
+		LTexture* spriteSheetTexture;
+		string spritesheetPath;
+		string spritesheetName;
 
-	virtual void Draw();
-	virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
-	virtual bool LoadMedia();
+		int screenWidth;
+		int screenHeight;
 
-	void SetEntity(Entity* _entity);
-protected:
-	SDL_Renderer* renderer;
-	Entity* entity;
+	public:
+		DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
+		virtual ~DrawableBehaviour();
 
-	vector<SDL_Rect> sprites;
-	int currentFrame;
-	LTexture* spriteSheetTexture;
-	string spritesheetPath;
-	string spritesheetName;
+		virtual DrawableBehaviour* EmptyClone();
 
-	int screenWidth;
-	int screenHeight;
+		virtual void Draw();
+		virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
+		virtual bool LoadMedia();
+
+		void SetEntity(Entity* _entity);
 };
 

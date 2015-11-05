@@ -10,48 +10,48 @@
 
 class Level
 {
-	private:
-		MoveableContainer* moveableContainer;
-		Player* player;
-		
-		
-		float startXpos;
-		float startYpos;
+private:
+	MoveableContainer* moveableContainer;
+	Player* player;
 
-	protected:
-		EntityFactory* entityFactory;
-		int tileWidth, tileHeight;
-		int lvlWidth, lvlHeight;
-		DrawableContainer* drawableContainer;
-		b2World* world;
-		Camera* camera;
-		SDL_Texture* tileSheet;
-		std::vector<SDL_Rect> tileCrops;
 
-		TileLoader* tileLoader;
+	float startXpos;
+	float startYpos;
 
-	public:
-		Player* GetPlayer();
+protected:
+	EntityFactory* entityFactory;
+	int tileWidth, tileHeight;
+	int lvlWidth, lvlHeight;
+	DrawableContainer* drawableContainer;
+	b2World* world;
+	Camera* camera;
+	SDL_Texture* tileSheet;
+	std::vector<SDL_Rect> tileCrops;
 
-		DrawableContainer* GetDrawableContainer();
-		Level(int _lvlWidth, int _lvlHeight);
-		virtual void Init(BehaviourFactory* bf);
-		virtual ~Level();
+	TileLoader* tileLoader;
 
-		virtual void SetPlayer(Player* _player);
-		virtual void SetLvlWidth(int _lvlWidth);
-		virtual void SetLvlHeight(int _lvlHeight);
+public:
+	Player* GetPlayer();
 
-		SDL_Texture* GetTileSheet();
+	DrawableContainer* GetDrawableContainer();
+	Level(int _lvlWidth, int _lvlHeight);
+	virtual void Init(BehaviourFactory* bf);
+	virtual ~Level();
 
-		int GetLvlWidth();
-		int GetLvlHeight();
-		int GetTotalTiles();
-		int GetTotalDiffrentTiles();
-		std::vector<SDL_Rect> getTileCrops();
+	virtual void SetPlayer(Player* _player);
+	virtual void SetLvlWidth(int _lvlWidth);
+	virtual void SetLvlHeight(int _lvlHeight);
 
-		void Draw();
-		void Update(float dt);
+	SDL_Texture* GetTileSheet();
 
-		virtual b2World* GetWorld();
+	int GetLvlWidth();
+	int GetLvlHeight();
+	int GetTotalTiles();
+	int GetTotalDiffrentTiles();
+	std::vector<SDL_Rect> getTileCrops();
+
+	void Draw();
+	void Update(float dt);
+
+	virtual b2World* GetWorld();
 };

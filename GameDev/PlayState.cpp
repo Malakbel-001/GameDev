@@ -1,7 +1,5 @@
+
 #include "PlayState.h"
-
-
-
 
 void PlayState::Init(GameStateManager* gsm)
 {
@@ -11,8 +9,6 @@ void PlayState::Init(GameStateManager* gsm)
 
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
-	
-	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
 	// flush userinput to prevent crash during loadscreen
