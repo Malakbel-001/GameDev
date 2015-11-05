@@ -62,6 +62,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				switch (it->first)
 				{
 				case SDLK_w:
+
 					jump = true;
 					impulse = currentLevel->GetPlayer()->GetBody()->GetMass() * 20;
 					currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
@@ -87,7 +88,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_d:
 					x = x + 1;
-					break;
+
 				}
 			}
 		}
@@ -127,7 +128,7 @@ Level* PlayState::GetCurrentLevel()
 void PlayState::SetCurrentLevel(Level* lvl)
 {
 	this->currentLevel = lvl;
-	this->currentLevel->init(gsm->GetBehaviour());
+	this->currentLevel->Init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
 }
 

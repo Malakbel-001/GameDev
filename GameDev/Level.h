@@ -14,18 +14,17 @@ class Level
 		MoveableContainer* moveableContainer;
 		Player* player;
 		
-		EntityFactory* entityFactory;
+		
 		float startXpos;
 		float startYpos;
 
 	protected:
-
+		EntityFactory* entityFactory;
 		int tileWidth, tileHeight;
-		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
+		int lvlWidth, lvlHeight;
 		DrawableContainer* drawableContainer;
 		b2World* world;
 		Camera* camera;
-		int LevelTiles;
 		SDL_Texture* tileSheet;
 		std::vector<SDL_Rect> tileCrops;
 
@@ -36,7 +35,7 @@ class Level
 
 		DrawableContainer* GetDrawableContainer();
 		Level(int _lvlWidth, int _lvlHeight);
-		void init(BehaviourFactory* bf);
+		virtual void Init(BehaviourFactory* bf);
 		virtual ~Level();
 
 		virtual void SetPlayer(Player* _player);

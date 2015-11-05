@@ -1,19 +1,29 @@
-#include "testLevel.h"
+#include "TestLevel.h"
 
-testLevel::testLevel(int _lvlWidth, int _lvlHeight)
+TestLevel::TestLevel(int _lvlWidth, int _lvlHeight)
 	: Level(_lvlWidth, _lvlHeight)
 {
-	this->lvlTotalTiles = 192;
-	this->lvlTotalDiffrentTiles = 12;
 	this->tileLoader = new TileLoader(this);
 
 }
 
-testLevel::~testLevel() { }
+void TestLevel::Init(BehaviourFactory* bf){
+	entityFactory = new EntityFactory(*world, bf, drawableContainer);
+	entityFactory->CreateEntity(0, 400, 255, 140, EntityType::GROUND);
+	entityFactory->CreateEntity(255, 400, 255, 140, EntityType::GROUND);
+	//entityFactory->CreateEntity(510, 400, 255, 15, EntityType::GROUND);
+	//entityFactory->CreateEntity(765, 400, 255, 15, EntityType::GROUND);
+	entityFactory->CreateEntity(300, 270, 255, 140, EntityType::GROUND);
 
-void testLevel::Cleanup() { }
+}
+
+TestLevel::~TestLevel() {
+	delete tileLoader;
+}
+
+void TestLevel::Cleanup() { }
 
 
-void testLevel::HandleEvents(SDL_Event mainEvent) { }
+void TestLevel::HandleEvents(SDL_Event mainEvent) { }
 
 
