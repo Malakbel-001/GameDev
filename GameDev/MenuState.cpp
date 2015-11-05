@@ -260,7 +260,6 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 		{
 			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
 			{
-<<<<<<< HEAD
 				switch (i)
 				{
 					//item 1, mainmenu play
@@ -299,47 +298,6 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					{
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
 						menuState = creditMenu;
-=======
-				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
-					switch (i){
-						//item 1, mainmenu play
-					case 0:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							SoundBank::GetInstance()->StopMusic();
-							this->gsm->ChangeGameState(new PlayState());
-							quit = true;
-						}
-						break;
-						//item 2, mainmenu help
-					case 1:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = helpMenu;
-						}
-						break;
-						//item 3,mainmenu quit
-					case 2:
-						if (menuState == mainMenu){
-							exit(0);
-						}
-						break;
-						//item 6, backtomain
-					case 6:
-						if (menuState != mainMenu)
-						{
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = mainMenu;
-						}
-						break;
-						//item 9, mainmenu credit
-					case 9:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = creditMenu;
-						}
-						break;
->>>>>>> refs/remotes/origin/Develop
 					}
 					break;
 				}
@@ -351,10 +309,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-<<<<<<< HEAD
 	//std::cout << "Key events not implemented yet";
-=======
->>>>>>> refs/remotes/origin/Develop
 }
 
 void MenuState::Update(float dt)
