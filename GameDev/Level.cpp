@@ -7,7 +7,7 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	startXpos = 100;
 	startYpos = 10;
 
-	world = new b2World(b2Vec2(0.0, static_cast<float>(19.81)));
+	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
 	
 	drawableContainer = new DrawableContainer();
 
@@ -24,7 +24,7 @@ b2World* Level::GetWorld()
 }
 void Level::Update(float dt){
 	
-	world->Step((dt/1000), 5, 5);
+	world->Step((dt/100), 5, 5);
 }
 void Level::SetPlayer(Player* _player){
 	

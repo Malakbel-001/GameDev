@@ -2,6 +2,7 @@
 #include "Entity.h"
 
 
+
 PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : DrawableBehaviour(renderer, screenwidth, screenheight)
 {
 	
@@ -16,13 +17,12 @@ void PlayerDrawableBehaviour::Draw()
 {
 
 	sprites = walkSprites;
-	float xx = 1;
-	float yy = 20;
-	float ratio = (xx / yy);
+
+
 
 	// Render current frame SCREEN SIZE NOT YET SET!!!
-	float xpos = entity->GetXPos() / ratio;
-	float ypos = entity->GetYPos() / ratio;
+	float xpos = entity->GetXPos() / Ratio;
+	float ypos = entity->GetYPos() / Ratio;
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
 	spriteSheetTexture->render(renderer, xpos, ypos, currentClip);
 	

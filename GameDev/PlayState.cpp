@@ -63,31 +63,26 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				{
 				case SDLK_w:
 
-					jump = true;
-					impulse = currentLevel->GetPlayer()->GetBody()->GetMass() * 20;
-					currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
 					
-					//	vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-				//	currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(impulse, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(),true);
-				//	currentLevel->GetPlayer()->GetBody()->ApplyTorque(20,true);
-				//	->ApplyForce(b2Vec2(0, 500), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-			//		cout << " /n " << y;
-				//	y =  y + -1000;
-			//		cout << " - " << y;
+					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
+						jump = true;
+						impulse = 100;
+						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
+
+					}
 					break;
 				case SDLK_a:
 					
 			//		cout << "e" << x;
-					x = x  -1;
+					x =  -5;
 			//		cout << " - " << x;
 			
 					break;
 				case SDLK_s:
-					y = y + 1;
+					y = 5;
 					break;
 				case SDLK_d:
-					x = x + 1;
+					x = 5;
 
 				}
 			}

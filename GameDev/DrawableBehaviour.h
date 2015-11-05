@@ -5,6 +5,7 @@
 #include "LTexture.h"
 
 
+
 using namespace std;
 
 class Entity;	
@@ -24,6 +25,10 @@ public:
 
 	void SetEntity(Entity* _entity);
 protected:
+	float x = 1;
+	float y = 10;
+	float Ratio = x / y;
+
 	SDL_Renderer* renderer;
 	Entity* entity;
 

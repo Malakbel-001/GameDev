@@ -16,11 +16,9 @@ GroundDrawableBehaviour::~GroundDrawableBehaviour()
 
 void GroundDrawableBehaviour::Draw()
 {
-	float xx = 1;
-	float yy = 20;
-	float ratio = (xx / yy);
-	float xpos = entity->GetXPos() / ratio;
-	float ypos = entity->GetYPos() / ratio;
+
+	float xpos = entity->GetXPos() / Ratio;
+	float ypos = entity->GetYPos() / Ratio;
 		spriteSheetTexture->render(renderer,xpos, ypos, &sprites);
 		
 }

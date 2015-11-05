@@ -249,6 +249,9 @@
     <ClInclude Include="Ground.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="PixelRatio.h">
+      <Filter>Header Files\Controller\Main</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
