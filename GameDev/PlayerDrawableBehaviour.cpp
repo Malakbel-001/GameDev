@@ -1,6 +1,6 @@
+
 #include "PlayerDrawableBehaviour.h"
 #include "Entity.h"
-
 
 PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) :
 	DrawableBehaviour(renderer, screenwidth, screenheight)

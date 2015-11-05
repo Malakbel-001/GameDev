@@ -1,3 +1,4 @@
+
 #include "PlayState.h"
 
 void PlayState::Init(GameStateManager* gsm)
@@ -8,12 +9,12 @@ void PlayState::Init(GameStateManager* gsm)
 
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
-	
-	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
 	// flush userinput to prevent crash during loadscreen
 
+	// Set color of renderer to red
+	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
 	std::cout << "PlayState \n";
 }
