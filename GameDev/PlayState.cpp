@@ -7,8 +7,13 @@ void PlayState::Init(GameStateManager* gsm)
 	this->gameOver = false;
 
 	//TODO LOAD PLAYER FROM FILE
+	player = new Player();
 	
+	
+
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
+	// flush userinput to prevent crash during loadscreen
+
 
 	std::cout << "PlayState \n";
 }
@@ -35,14 +40,13 @@ void PlayState::Resume()
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
 {
-	//std::cout << "Mouse events not implemented yet";
 }
 
 void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-	if (currentLevel->GetPlayer() != nullptr)
-	{
+	if (currentLevel->GetPlayer() != nullptr){
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
+
 
 		float x = vel.x;
 		float y = vel.y;
@@ -67,10 +71,6 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_d:
 					x = +0.01;
 					break;
-				case SDLK_SPACE:
-					std::cout << "X: " << currentLevel->GetPlayer()->GetBody()->GetPosition().x << " Y: " 
-						<< currentLevel->GetPlayer()->GetBody()->GetPosition().y << "\n";
-					break;
 				}
 			}
 		}
@@ -86,11 +86,15 @@ void PlayState::Update(float dt)
 
 	// TODO: fix dinemic FPS count
 	// do last
+	
+	
 }
 
 void PlayState::Draw()
 {
+
 	currentLevel->GetDrawableContainer()->Draw();
+
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -103,14 +107,24 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel = lvl;
 	this->currentLevel->Init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK, 64);
 }
+
+
+Player* PlayState::GetPlayer()
+{
+	return this->player;
+}
+
 
 void PlayState::Cleanup()
 {
 	delete player;
+	
 	delete currentLevel;
 
 	player = nullptr;
+
 	currentLevel = nullptr;
 }
 
