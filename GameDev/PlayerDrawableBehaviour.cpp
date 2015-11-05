@@ -11,10 +11,15 @@ PlayerDrawableBehaviour::~PlayerDrawableBehaviour() { }
 void PlayerDrawableBehaviour::Draw()
 {
 	sprites = walkSprites;
+	float xx = 1;
+	float yy = 20;
+	float ratio = (xx / yy);
 	// Render current frame SCREEN SIZE NOT YET SET!!!
+	float xpos = entity->GetXPos() / ratio;
+	float ypos = entity->GetYPos() / ratio;
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
-	spriteSheetTexture->render(renderer, entity->GetXPos(), entity->GetYPos(), currentClip);
-
+	spriteSheetTexture->render(renderer, xpos, ypos, currentClip);
+	
 	//Go to next frame 
 	++currentFrame;
 

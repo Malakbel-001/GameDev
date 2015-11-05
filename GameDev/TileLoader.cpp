@@ -5,8 +5,8 @@ TileLoader::TileLoader(Level* lvl)
 {
 	this->levelHeight = lvl->GetLvlHeight();
 	this->levelWidth = lvl->GetLvlWidth();
-	this->levelTotalTiles = lvl->GetTotalTiles();
-	this->levelTotalDiffrentTiles = lvl->GetTotalDiffrentTiles();
+	//this->levelTotalTiles = lvl->GetTotalTiles();
+	//this->levelTotalDiffrentTiles = lvl->GetTotalDiffrentTiles();
 
 	this->tileHeight = 80;
 	this->tileWidth = 80;

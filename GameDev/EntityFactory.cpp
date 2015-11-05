@@ -8,10 +8,12 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 			{ EntityType::ACTOR, new Actor() },
 			{ EntityType::NPC, new Npc() },
 			{ EntityType::PLAYER, new Player() },
-			{ EntityType::GROUND, new Ground() }
+			{ EntityType::GROUND, new Ground() },
+			{ EntityType::GROUND2, new Ground() }
 	};
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
+	entDef.fixedRotation = true;
 	b2BodyDef ActorDef;
 	ActorDef.type = b2BodyType::b2_dynamicBody;
 	b2BodyDef NpcDef;
@@ -25,7 +27,8 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 			{ EntityType::ACTOR,  ActorDef },
 			{ EntityType::NPC,  NpcDef },
 			{ EntityType::PLAYER,  PlayerDef },
-			{EntityType::GROUND, entDef}
+			{EntityType::GROUND, entDef},
+			{ EntityType::GROUND2, entDef }
 	};
 
 }
@@ -53,7 +56,15 @@ b2Body* EntityFactory::CreateBody(float x, float y,float height,float width, Ent
 {
 	
 	b2PolygonShape boxShape;
-	boxShape.SetAsBox(height, width);
+	//transalte pixels -> units
+	float xx = 1;
+	float yy = 20;
+	height = height / 2;
+	width = width / 2;
+	float ratio = (xx / yy);
+	float newHeight = (height*ratio);
+	float newWidth = (width*ratio);
+	boxShape.SetAsBox(newHeight, newWidth, b2Vec2(newHeight, newWidth), 0);
 
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
@@ -64,9 +75,10 @@ b2Body* EntityFactory::CreateBody(float x, float y,float height,float width, Ent
 
 
 	b2BodyDef bodydef = bodyRegistery.at(type);	
-	bodydef.position.Set(x, y);
+	bodydef.position.Set(x*ratio, y*ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
 	b2body->CreateFixture(&boxFixtureDef);
+	b2body->SetTransform(b2Vec2(x*ratio, y*ratio),0);
 	return b2body;
 
 }

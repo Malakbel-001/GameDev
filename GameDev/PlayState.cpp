@@ -35,7 +35,10 @@ void PlayState::Resume()
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
 {
+<<<<<<< HEAD
 	//std::cout << "Mouse events not implemented yet";
+=======
+>>>>>>> refs/remotes/origin/Develop
 }
 
 void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
@@ -55,17 +58,17 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				{
 				case SDLK_w:
 				
-					y = y - 1000000;
+					y = -0.01;
 				
 					break;
 				case SDLK_a:
-					x = x - 1000;
+					x = - 0.01;
 					break;
 				case SDLK_s:
-					y = y + 1000;
+					y = +0.01;
 					break;
 				case SDLK_d:
-					x = x + 1000;
+					x = +0.01;
 					break;
 				case SDLK_SPACE:
 					std::cout << "X: " << currentLevel->GetPlayer()->GetBody()->GetPosition().x << " Y: " 
@@ -101,7 +104,7 @@ Level* PlayState::GetCurrentLevel()
 void PlayState::SetCurrentLevel(Level* lvl)
 {
 	this->currentLevel = lvl;
-	this->currentLevel->init(gsm->GetBehaviour());
+	this->currentLevel->Init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
 }
 
