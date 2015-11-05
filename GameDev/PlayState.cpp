@@ -43,7 +43,6 @@ void PlayState::Resume()
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
 {
-	std::cout << "Mouse events not implemented yet";
 }
 
 void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)

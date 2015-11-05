@@ -280,8 +280,11 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 						break;
 						//item 6, backtomain
 					case 6:
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-						menuState = mainMenu;
+						if (menuState != mainMenu)
+						{
+							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+							menuState = mainMenu;
+						}
 						break;
 						//item 9, mainmenu credit
 					case 9:
@@ -299,7 +302,6 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-	std::cout << "Key events not implemented yet";
 }
 
 void MenuState::Update(float dt){
