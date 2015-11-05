@@ -223,7 +223,7 @@ void MenuState::SetupRenderer()
 	
 
 	// Set color of renderer to red
-	//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 206, 209, 255);
 }
 
 
@@ -282,8 +282,11 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 						break;
 						//item 6, backtomain
 					case 6:
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-						menuState = mainMenu;
+						if (menuState != mainMenu)
+						{
+							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+							menuState = mainMenu;
+						}
 						break;
 						//item 9, mainmenu credit
 					case 9:
@@ -301,7 +304,6 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-	std::cout << "Key events not implemented yet";
 }
 
 void MenuState::Update(float dt){
@@ -314,8 +316,6 @@ void MenuState::Update(float dt){
 }
 void MenuState::Draw(){
 	SDL_RenderClear(renderer);
-
-	Background();
 
 	switch (menuState){
 		//mainmenu
@@ -331,18 +331,4 @@ void MenuState::Draw(){
 		break;
 	}
 	SDL_RenderPresent(renderer);
-}
-
-void MenuState::Background() { //temporary
-	// Set Image
-	LTexture background = LTexture();
-	if (!background.loadFromFile(renderer, "menu.jpg"))
-	{
-		printf("Failed to load background! \n");
-	}
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
-	background.render(renderer, 0, 0, &backgroundRect);
 }

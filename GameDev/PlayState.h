@@ -3,6 +3,7 @@
 #include "header_loader.h"
 #include "Player.h"
 #include "Camera.h"
+#include "SoundBank.h"
 #include "BehaviourFactory.h"
 #include <iostream>
 
