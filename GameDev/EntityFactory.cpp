@@ -17,7 +17,10 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 	b2BodyDef NpcDef;
 	NpcDef.type = b2BodyType::b2_dynamicBody;
 	b2BodyDef PlayerDef;
+	PlayerDef.gravityScale = 1;
 	PlayerDef.fixedRotation = true;
+	PlayerDef.linearDamping = 0.00000001f;
+	PlayerDef.angularDamping = 0.00000001f;
 	PlayerDef.type = b2BodyType::b2_dynamicBody;
 
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
@@ -57,8 +60,8 @@ b2Body* EntityFactory::CreateBody(float x, float y,float height,float width, Ent
 
 	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
-	boxFixtureDef.density = 1;
-	
+	boxFixtureDef.density =1;
+
 
 
 
