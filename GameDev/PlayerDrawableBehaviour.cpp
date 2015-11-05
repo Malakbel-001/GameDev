@@ -2,15 +2,11 @@
 #include "Entity.h"
 
 
-PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : DrawableBehaviour(renderer, screenwidth, screenheight)
-{
-	
-}
+PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) :
+	DrawableBehaviour(renderer, screenwidth, screenheight)
+{ }
 
-
-PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
-{
-}
+PlayerDrawableBehaviour::~PlayerDrawableBehaviour() { }
 
 void PlayerDrawableBehaviour::Draw()
 {

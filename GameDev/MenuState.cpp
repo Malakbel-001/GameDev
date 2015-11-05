@@ -5,9 +5,11 @@ SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
 
-void MenuState::Init(GameStateManager *gsm){
+void MenuState::Init(GameStateManager *gsm)
+{
 	this->gsm = gsm;
-	if (!InitEverything()){
+	if (!InitEverything())
+	{
 		std::cout << "-1";
 	}
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1, 64);
@@ -17,10 +19,10 @@ void MenuState::Init(GameStateManager *gsm){
 }
 
 MenuState::MenuState()
-{
-}
+{ }
 
-void MenuState::loadMainMenu(){
+void MenuState::loadMainMenu()
+{
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
@@ -28,13 +30,15 @@ void MenuState::loadMainMenu(){
 	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
 }
 
-void MenuState::loadHelpMenu(){
+void MenuState::loadHelpMenu()
+{
 	SDL_RenderCopy(renderer, helpTextTexture, nullptr, &helpTextRect);
 	SDL_RenderCopy(renderer, helpTitleTexture, nullptr, &helpTitleRect);
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
-void MenuState::LoadCreditMenu(){
+void MenuState::LoadCreditMenu()
+{
 	SDL_RenderCopy(renderer, creditTextTexture, nullptr, &creditTextRect);
 	SDL_RenderCopy(renderer, creditTitleTexture, nullptr, &creditTitleRect);
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
@@ -162,8 +166,6 @@ void MenuState::CreateTextTextures()
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle
-
-
 }
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
 SDL_Texture* MenuState::SurfaceToTexture(SDL_Surface* surf)
@@ -225,94 +227,100 @@ void MenuState::SetupRenderer()
 }
 
 
-MenuState::~MenuState()
-{
-}
+MenuState::~MenuState() { }
 
-void MenuState::Cleanup(){
+void MenuState::Cleanup()
+{
 	// Clean up font
 	TTF_CloseFont(titleFont);
 	TTF_CloseFont(textFont);
 }
 
-void MenuState::Pause(){
+void MenuState::Pause()
+{
 
 }
-void MenuState::Resume(){
+
+void MenuState::Resume()
+{
 
 }
 
 void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 {
-		switch (mainEvent.type)
+	switch (mainEvent.type)
+	{
+	case SDL_QUIT:
+		quit = true;
+		break;
+	case SDL_MOUSEBUTTONDOWN:
+		int x = mainEvent.button.x;
+		int y = mainEvent.button.y;
+		for (int i = 0; i < renderItems; i++)
 		{
-		case SDL_QUIT:
-			quit = true;
-			break;
-		case SDL_MOUSEBUTTONDOWN:
-			int x = mainEvent.button.x;
-			int y = mainEvent.button.y;
-			for (int i = 0; i < renderItems; i++)
+			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h)
 			{
-				if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
-					switch (i){
-						//item 1, mainmenu play
-					case 0:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							SoundBank::GetInstance()->StopMusic();
-							this->gsm->ChangeGameState(new PlayState());
-							quit = true;
-						}
-						break;
-						//item 2, mainmenu help
-					case 1:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = helpMenu;
-						}
-						break;
-						//item 3,mainmenu quit
-					case 2:
-						if (menuState == mainMenu){
-							exit(0);
-						}
-						break;
-						//item 6, backtomain
-					case 6:
+				switch (i)
+				{
+					//item 1, mainmenu play
+				case 0:
+					if (menuState == mainMenu)
+					{
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-						menuState = mainMenu;
-						break;
-						//item 9, mainmenu credit
-					case 9:
-						if (menuState == mainMenu){
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
-							menuState = creditMenu;
-						}
-						break;
+						SoundBank::GetInstance()->StopMusic();
+						this->gsm->ChangeGameState(new PlayState());
+						quit = true;
 					}
+					break;
+					//item 2, mainmenu help
+				case 1:
+					if (menuState == mainMenu)
+					{
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						menuState = helpMenu;
+					}
+					break;
+					//item 3,mainmenu quit
+				case 2:
+					if (menuState == mainMenu)
+					{
+						exit(0);
+					}
+					break;
+					//item 6, backtomain
+				case 6:
+					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+					menuState = mainMenu;
+					break;
+					//item 9, mainmenu credit
+				case 9:
+					if (menuState == mainMenu)
+					{
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						menuState = creditMenu;
+					}
+					break;
 				}
 			}
-			break;
 		}
+		break;
+	}
 }
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-	std::cout << "Key events not implemented yet";
+	//std::cout << "Key events not implemented yet";
 }
 
-void MenuState::Update(float dt){
-	/*while (!quit){
+void MenuState::Update(float dt)
+{
 
-		HandleEvents();
-
-		Draw();
-	}*/
 }
-void MenuState::Draw(){
+void MenuState::Draw()
+{
 	SDL_RenderClear(renderer);
-	switch (menuState){
+	switch (menuState)
+	{
 		//mainmenu
 	case mainMenu:
 		loadMainMenu();

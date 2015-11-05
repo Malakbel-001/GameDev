@@ -7,9 +7,9 @@ LevelFactory::~LevelFactory() { }
 
 void LevelFactory::Init()
 {
-	levels = { new testLevel(100, 100)
-	//	//TODO add , new Level1() , new level2()
-
+	levels = {
+		new testLevel(10000, 10000), 
+		//TODO add , new Level1() , new level2()
 	};
 }
 
