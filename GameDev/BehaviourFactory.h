@@ -3,6 +3,7 @@
 #include "BehaviourType.h"
 #include "DrawableBehaviour.h"
 #include "PlayerDrawableBehaviour.h"
+#include "EnemyDrawableBehaviour.h"
 #include "GroundDrawableBehaviour.h"
 #include "GroundObstacleDrawableBehavior.h"
 #include "MoveableBehaviour.h"

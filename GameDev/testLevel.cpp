@@ -12,8 +12,10 @@ void TestLevel::Init(BehaviourFactory* bf){
 	entityFactory->CreateEntity(0, 400, 255, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(255, 400, 255, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(505, 400, 255, 140, EntityType::GROUND);
-	entityFactory->CreateEntity(765, 400, 255, 140, EntityType::GROUND);
+	entityFactory->CreateEntity(755, 400, 255, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(300, 100, 137, 140, EntityType::GROUND2);
+
+	entityFactory->CreateEntity(750, 300, 40, 45, EntityType::PLANT);
 
 
 }

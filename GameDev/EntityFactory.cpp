@@ -12,6 +12,7 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 			{ EntityType::ACTOR, new Actor() },
 			{ EntityType::NPC, new Npc() },
 			{ EntityType::PLAYER, new Player() },
+			{ EntityType::PLANT, new Npc() },
 			{ EntityType::GROUND, new Ground() },
 			{ EntityType::GROUND2, new Ground() }
 	};
@@ -29,11 +30,19 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 	PlayerDef.angularDamping = 1;
 	PlayerDef.type = b2BodyType::b2_dynamicBody;
 
+	b2BodyDef PlantDef = b2BodyDef();
+	PlantDef.gravityScale = 1;
+	PlantDef.fixedRotation = true;
+	PlantDef.linearDamping = 0.5f;
+	PlantDef.angularDamping = 1;
+	PlantDef.type = b2BodyType::b2_dynamicBody;
+	
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
 			{ EntityType::ENTITY,  entDef },
 			{ EntityType::ACTOR,  ActorDef },
 			{ EntityType::NPC,  NpcDef },
-			{ EntityType::PLAYER,  PlayerDef },
+			{ EntityType::PLAYER,  PlayerDef },		
+			{ EntityType::PLANT, PlantDef },
 			{EntityType::GROUND, entDef},
 			{ EntityType::GROUND2, entDef }
 	};
@@ -44,10 +53,7 @@ EntityFactory::~EntityFactory()
 {
 	for (auto it = entityRegistery.begin(); it != entityRegistery.end(); ++it){
 		delete it->second;
-	}
-
-	
-	
+	}	
 }
 
 Entity* EntityFactory::CreateEntity(float x, float y,float height, float width, EntityType type)
@@ -57,7 +63,6 @@ Entity* EntityFactory::CreateEntity(float x, float y,float height, float width, 
 	ent->Init(CreateBody(x, y,height,width, type),width,height, type, bf, drawContainer);
 
 	return ent;
-
 }
 b2Body* EntityFactory::CreateBody(float x, float y,float height,float width, EntityType type)
 {

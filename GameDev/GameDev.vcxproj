@@ -95,6 +95,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="DrawableBehaviour.cpp" />
     <ClCompile Include="DrawableContainer.cpp" />
+    <ClCompile Include="EnemyDrawableBehaviour.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -136,6 +137,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Container.h" />
     <ClInclude Include="DrawableBehaviour.h" />
     <ClInclude Include="DrawableContainer.h" />
+    <ClInclude Include="EnemyDrawableBehaviour.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityFactory.h" />
     <ClInclude Include="EntityType.h" />
