@@ -13,7 +13,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 			{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, screenWidth, screenHeight) },
 			{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, screenWidth, screenHeight) },
-			{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, screenWidth, screenHeight) }
+			{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, screenWidth, screenHeight) },
+			{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, screenWidth, screenHeight) }
 	};
 }
 

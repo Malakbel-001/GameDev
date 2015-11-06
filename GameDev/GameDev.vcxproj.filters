@@ -109,6 +109,15 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -236,6 +245,15 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundObstacleDrawableBehavior.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="BarObstacleDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
