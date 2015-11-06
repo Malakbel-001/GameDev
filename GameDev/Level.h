@@ -42,8 +42,6 @@ class Level
 
 		int GetLvlWidth();
 		int GetLvlHeight();
-		int GetTotalTiles();
-		int GetTotalDiffrentTiles();
 		std::vector<SDL_Rect> getTileCrops();
 
 		void Draw();

@@ -65,10 +65,6 @@ int Level::GetLvlWidth()
 	return this->lvlWidth;
 }
 
-int Level::GetTotalTiles()
-{
-	return this->lvlTotalTiles;
-}
 #pragma endregion get, set
 
 DrawableContainer* Level::GetDrawableContainer()

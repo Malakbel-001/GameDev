@@ -16,9 +16,7 @@ GroundDrawableBehaviour::~GroundDrawableBehaviour()
 
 void GroundDrawableBehaviour::Draw()
 {
-
-		spriteSheetTexture->render(renderer, entity->GetXPos(), entity->GetYPos(), &sprites);
-		
+	spriteSheetTexture->render(renderer, entity->GetXPos(), entity->GetYPos(), &sprites);		
 }
 
 void GroundDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
