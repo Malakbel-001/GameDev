@@ -1,5 +1,6 @@
 #pragma once
 #include "DrawableBehaviour.h"
+#include "camera.h"
 
 
 class BarObstacleDrawableBehaviour :

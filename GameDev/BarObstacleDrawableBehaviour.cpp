@@ -17,8 +17,8 @@ BarObstacleDrawableBehaviour::~BarObstacleDrawableBehaviour()
 void BarObstacleDrawableBehaviour::Draw()
 {
 
-	float xpos = entity->GetXPos() / Ratio;
-	float ypos = entity->GetYPos() / Ratio;
+	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
+	float ypos = (entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio)) + ((screenHeight / 2) + (screenHeight / 4));
 	spriteSheetTexture->render(renderer, xpos, ypos, &sprites);
 
 }

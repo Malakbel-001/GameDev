@@ -10,25 +10,19 @@ TestLevel::TestLevel(int _lvlWidth, int _lvlHeight)
 void TestLevel::Init(BehaviourFactory* bf){
 	
 	entityFactory = new EntityFactory(*world, bf, drawableContainer);
-	//obstacles
+	//obstacles--------------
 	entityFactory->CreateEntity(363, 450, 137, 120, EntityType::GROUND2);
-	entityFactory->CreateEntity(750, 450, 255, 120, EntityType::GROUND);
-	//bar---
-	entityFactory->CreateEntity(1500, 300, 255, 10, EntityType::BAR);
-	//bar---
-	entityFactory->CreateEntity(2000, 300, 255, 140, EntityType::GROUND);
-	entityFactory->CreateEntity(2250, 300, 137, 140, EntityType::GROUND2);
-	entityFactory->CreateEntity(2750, 450, 255, 120, EntityType::GROUND);
-	entityFactory->CreateEntity(3000, 450, 255, 120, EntityType::GROUND);
-	//bar---
-	entityFactory->CreateEntity(3500, 300, 255, 10, EntityType::BAR);
-	//bar---
-	//bar---
-	entityFactory->CreateEntity(4000, 300, 255, 10, EntityType::BAR);
-	//bar---
+	entityFactory->CreateEntity(750, 450, 250, 120, EntityType::GROUND);
+	entityFactory->CreateEntity(1500, 450, 250, 10, EntityType::BAR);
+	entityFactory->CreateEntity(2000, 300, 137, 140, EntityType::GROUND2);
+	entityFactory->CreateEntity(2113, 300, 250, 140, EntityType::GROUND);
+	entityFactory->CreateEntity(2750, 450, 250, 120, EntityType::GROUND);
+	entityFactory->CreateEntity(3000, 450, 250, 120, EntityType::GROUND);
+	entityFactory->CreateEntity(3500, 450, 250, 10, EntityType::BAR);
+	entityFactory->CreateEntity(4000, 450, 250, 10, EntityType::BAR);
 	entityFactory->CreateEntity(4363, 450, 137, 120, EntityType::GROUND2);
-	entityFactory->CreateEntity(4500, 450, 255, 120, EntityType::GROUND);
-	//ground
+	entityFactory->CreateEntity(4495, 450, 250, 120, EntityType::GROUND);
+	//ground------------------
 	entityFactory->CreateEntity(0, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(250, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(500, 570, 250, 140, EntityType::GROUND);
