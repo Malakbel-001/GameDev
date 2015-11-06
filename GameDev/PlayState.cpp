@@ -1,4 +1,3 @@
-
 #include "PlayState.h"
 
 
@@ -13,11 +12,17 @@ void PlayState::Init(GameStateManager* gsm)
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
 	
-	
+	background = LTexture();
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "menu.jpg");
+	backgroundRect.h = background.getHeight();
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
 	// flush userinput to prevent crash during loadscreen
 
+	// Set color of renderer to red
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
 	std::cout << "PlayState \n";
@@ -45,7 +50,6 @@ void PlayState::Resume()
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
 {
-//	std::cout << "Mouse events not implemented yet";
 }
 
 void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
@@ -53,10 +57,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	if (currentLevel->GetPlayer() != nullptr){
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
 
-		bool jump = false;
+
 		float x = vel.x;
 		float y = vel.y;
-		float impulse;
+		
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 		
 			if (it->second)
@@ -64,38 +68,24 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				switch (it->first)
 				{
 				case SDLK_w:
-
-					
-					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
-						jump = true;
-						impulse = 100;
-						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
-					}
+				
+					y = -0.01;
+				
 					break;
 				case SDLK_a:
-					
-			//		cout << "e" << x;
-					x =  -5;
-			//		cout << " - " << x;
-			
+					x = - 0.01;
 					break;
 				case SDLK_s:
-					y = 5;
+					y = +0.01;
 					break;
 				case SDLK_d:
-					x = 5;
-
+					x = +0.01;
+					break;
 				}
 			}
 		}
-		if (!jump){
-			vel.Set(x, y);
-			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
-
-			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
-		}
+		vel.Set(x, y);
+		currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 	}
 
 }
@@ -112,6 +102,8 @@ void PlayState::Update(float dt)
 
 void PlayState::Draw()
 {
+
+	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, 0, &backgroundRect);
 
 	currentLevel->GetDrawableContainer()->Draw();
 
@@ -152,4 +144,3 @@ PlayState::~PlayState()
 {
 	this->Cleanup();
 }
-

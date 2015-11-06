@@ -220,8 +220,15 @@ void MenuState::SetupRenderer()
 	// Set size of renderer to the same as window
 	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
-	// Set color of renderer to red
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	/*background = LTexture();
+	background.loadFromFile(renderer, "menu.jpg");
+	backgroundRect.h = background.getHeight();
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;*/
+
+	// Set color of renderer to cyan
+	//SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 
@@ -315,6 +322,9 @@ void MenuState::Update(float dt){
 }
 void MenuState::Draw(){
 	SDL_RenderClear(renderer);
+
+	//background.render(renderer, 0, 0, &backgroundRect);
+
 	switch (menuState){
 		//mainmenu
 	case mainMenu:
