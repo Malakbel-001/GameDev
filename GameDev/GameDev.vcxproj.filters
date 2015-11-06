@@ -118,6 +118,9 @@
     <ClCompile Include="EnemyDrawableBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -253,6 +256,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyDrawableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BarObstacleDrawableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
