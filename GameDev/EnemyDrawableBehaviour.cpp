@@ -15,7 +15,7 @@ void EnemyDrawableBehaviour::Draw()
 	sprites = idleSprites;
 
 	// Render current frame SCREEN SIZE NOT YET SET!!!
-	float xpos = entity->GetXPos() / Ratio;
+	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
 	float ypos = entity->GetYPos() / Ratio;
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
 	

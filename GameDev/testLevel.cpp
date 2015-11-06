@@ -43,8 +43,25 @@ void TestLevel::Init(BehaviourFactory* bf){
 	entityFactory->CreateEntity(4250, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4500, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
+	//enemies-----------------
+	entityFactory->CreateEntity(800, 450, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(900, 450, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(1200, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(1300, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(2050, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(2150, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(2250, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(2900, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(3000, 300, 40, 45, EntityType::PLANT);
 
-	entityFactory->CreateEntity(750, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(3500, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(3600, 300, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(3700, 0, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(3800, 0, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(3900, 0, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(4000, 0, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(4100, 0, 40, 45, EntityType::PLANT);
+	entityFactory->CreateEntity(4200, 0, 40, 45, EntityType::PLANT);
 }
 
 TestLevel::~TestLevel() {
