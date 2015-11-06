@@ -127,7 +127,7 @@ void MenuState::CreateTextTextures()
 	pos[4] = helpTitleRect;
 #pragma endregion helptitle
 #pragma region helptext
-	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Spingen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\n", textColor, 1000);
+	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Spingen/Klimmen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\nNog een tip, probeer vooral op het gras te blijven, anders is de kans op overleven erg klein.", textColor, 1000);
 	helpTextTexture = SurfaceToTexture(helpText);
 
 	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
