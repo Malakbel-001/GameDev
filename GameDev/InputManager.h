@@ -17,4 +17,5 @@ class InputManager
 
 		void SetMouseInput(SDL_Event _event);
 		SDL_Event GetMouseInput();
+		void ResetMouseInput();
 };

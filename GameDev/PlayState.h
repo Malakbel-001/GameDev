@@ -28,7 +28,7 @@ class PlayState :
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void Update(float dt);
 		void Draw();
-
+		void GameOver();
 
 		Player* GetPlayer();
 
@@ -43,5 +43,12 @@ class PlayState :
 		
 
 		virtual ~PlayState();
+
+		//temp
+		LTexture background;
+		//background
+		SDL_Rect backgroundRect;
+		//background
+		SDL_Texture* backgroundTexture;
 };
 

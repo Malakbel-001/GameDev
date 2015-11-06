@@ -1,7 +1,8 @@
 #include "Level.h"
+#include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
+Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
 {
 	player = nullptr;
 	startXpos = 100;
@@ -11,11 +12,11 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	
 	drawableContainer = new DrawableContainer();
 	this->tileLoader = nullptr;
-	this->camera = nullptr;
 
 }
 
 void Level::Init(BehaviourFactory* bf){
+	cout << " jajaa ";
 }
 
 b2World* Level::GetWorld()
@@ -26,16 +27,20 @@ b2World* Level::GetWorld()
 void Level::Update(float dt)
 {
 	world->Step((dt/100), 5, 5);
-	camera->UpdateCamaraPosition(player->GetXPos(), player->GetYPos(), player->GetWidth(), player->GetHeight());
+	cout << player->GetYPos() << " - " << lvlHeight;
+	if (player->GetYPos() > lvlHeight){
+		
+		GameOver();
+	}
 }
 
 #pragma region Get, Set
-void Level::SetPlayer(Player* _player)
+Player* Level::SetPlayer(Player* _player)
 {
 	//	player = _player;
 	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
-	this->camera = new Camera(player->GetBody()->GetPosition().x, player->GetBody()->GetPosition().y,
-		player->GetWidth(), player->GetHeight(), this->GetLvlWidth(), this->GetLvlHeight());
+	return player;
+		
 }
 Player* Level::GetPlayer(){
 	return player;
@@ -52,7 +57,6 @@ Level::~Level()
 	delete drawableContainer;
 	delete entityFactory;
 
-	delete camera;
 
 }
 void Level::SetLvlWidth(int _lvlWidth)
@@ -79,6 +83,11 @@ int Level::GetLvlWidth()
 {
 	return this->lvlWidth;
 }
-
-
-
+Level* Level::CreateLevel()
+{
+	
+	return new Level(lvlWidth, lvlHeight, playState);
+}
+void Level::GameOver(){
+	playState->GameOver();
+}

@@ -13,16 +13,24 @@ void PlayState::Init(GameStateManager* gsm)
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
 	
-	
+	background = LTexture();
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
+	backgroundRect.h = background.getHeight();
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;
 
-	SetCurrentLevel(LevelFactory::GetFirstLevel());
+	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	// flush userinput to prevent crash during loadscreen
 
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
 	std::cout << "PlayState \n";
 }
-
+void PlayState::GameOver(){
+	SoundBank::GetInstance()->StopMusic();
+	gsm->ChangeGameState();
+}
 void PlayState::LoadGame()
 {
 	
@@ -54,41 +62,50 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
 
 		bool jump = false;
+		bool quit = false;
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
-		
+
 			if (it->second)
 			{
 				switch (it->first)
 				{
 				case SDLK_w:
 
-					
+
 					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
 						jump = true;
 						impulse = 100;
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 32);
 						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 
 					}
 					break;
 				case SDLK_a:
-					
-			//		cout << "e" << x;
-					x =  -5;
-			//		cout << " - " << x;
-			
+
+					//		cout << "e" << x;
+					x = -5;
+					//		cout << " - " << x;
+
 					break;
 				case SDLK_s:
 					y = 5;
 					break;
 				case SDLK_d:
 					x = 5;
+					break;
+				case SDLK_ESCAPE:
+					quit = true;
+					
+					break;
 
 				}
 			}
 		}
+		
+		
 		if (!jump){
 			vel.Set(x, y);
 			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
@@ -96,6 +113,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 		}
+		if (quit){
+			GameOver();
+		}
+		
 	}
 
 }
@@ -113,6 +134,8 @@ void PlayState::Update(float dt)
 void PlayState::Draw()
 {
 
+	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450, &backgroundRect); //TEMP!
+
 	currentLevel->GetDrawableContainer()->Draw();
 
 }
@@ -124,9 +147,13 @@ Level* PlayState::GetCurrentLevel()
 
 void PlayState::SetCurrentLevel(Level* lvl)
 {
+
+	BehaviourFactory* bf = gsm->GetBehaviour();
 	this->currentLevel = lvl;
-	this->currentLevel->Init(gsm->GetBehaviour());
-	this->currentLevel->SetPlayer(player);
+	this->currentLevel->Init(bf);
+	gsm->SetBehaviour(bf);
+	player = this->currentLevel->SetPlayer(player);
+	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK, 64);
 }
 

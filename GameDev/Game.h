@@ -21,6 +21,7 @@ class Game
 		void GameLoop();
 	
 	private:
+		BehaviourFactory* bf;
 		bool running = true;
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;
@@ -29,7 +30,7 @@ class Game
 		void  SDLEvents();
 
 		const int SCREEN_WIDTH = 1080;
-		const int SCREEN_HEIGHT = 800;
+		const int SCREEN_HEIGHT = 700;
 	
 		SDL_Event events;
 };

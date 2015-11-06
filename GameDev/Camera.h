@@ -1,28 +1,31 @@
 #pragma once
+#include <Box2D\Box2D.h>
 
 class Player;
-
 class Camera
 {
 	private:
-		double x;
-		double y;
+		
 		double camWidth;
 		double camHeight;
+
 		double lvlWidth;
 		double lvlHeight;
 
+		Player* player;
+
 	public:
-		Camera(double _x, double _y, double _width, double _height, double _lvlWidth, double _lvlHeight);
+		Camera(double _width, double _height);
 		double GetX();
 		double GetY();
 		double GetWidth();
 		double GetHeight();
+		void Init(Player* _player, double _levelwidth,double _levelheight);
+		b2Body* GetB2Body();
 
 		void SetX(double _x);
 		void SetY(double _y);
 
-		void UpdateCamaraPosition(double eX, double eY, double eWidth, double eHeight);
-
+		
 		virtual ~Camera();
 };

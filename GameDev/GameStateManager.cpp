@@ -30,29 +30,24 @@ void GameStateManager::CreateGameState(GameStateType state)
 	default:
 		break;
 	}
-	//gamestate->Init(this);
 
-	ChangeGameState(gamestate);
+
+	PushGameState(gamestate);
 }
 
-void GameStateManager::ChangeGameState(IGameState* gameState)
+void GameStateManager::ChangeGameState()
 {
-	while (!states.empty())
+	if (!states.empty())
 	{
 		states.back()->Cleanup();
 		states.pop_back();
 	}
 
-	states.push_back(gameState);
-	states.back()->Init(this);
 }
 
 void GameStateManager::PushGameState(IGameState* gameState)
 {
-	if (!states.empty())
-	{
-		states.back()->Pause();
-	}
+
 
 	states.push_back(gameState);
 	states.back()->Init(this);
@@ -102,7 +97,11 @@ GameStateManager::~GameStateManager()
 	}
 }
 
+void GameStateManager::SetBehaviour(BehaviourFactory* _bf){
+	bf = _bf;
+}
 BehaviourFactory* GameStateManager::GetBehaviour()
 {
+
 	return bf;
 }
