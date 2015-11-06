@@ -127,6 +127,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel = lvl;
 	this->currentLevel->Init(gsm->GetBehaviour());
 	this->currentLevel->SetPlayer(player);
+	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK, 64);
 }
 

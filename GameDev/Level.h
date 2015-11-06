@@ -2,7 +2,6 @@
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
-#include "Camera.h"
 #include "TileLoader.h"
 #include "DrawableContainer.h"
 #include "MoveableContainer.h"
@@ -24,7 +23,6 @@ protected:
 	int lvlWidth, lvlHeight;
 	DrawableContainer* drawableContainer;
 	b2World* world;
-	Camera* camera;
 	SDL_Texture* tileSheet;
 	std::vector<SDL_Rect> tileCrops;
 

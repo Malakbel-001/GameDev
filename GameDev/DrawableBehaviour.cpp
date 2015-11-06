@@ -1,7 +1,7 @@
 #include "DrawableBehaviour.h"
 #include "Entity.h"
 
-
+Entity;
 DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
 	

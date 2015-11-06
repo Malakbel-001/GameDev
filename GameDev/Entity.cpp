@@ -38,6 +38,7 @@ int Entity::GetXPos()
 int Entity::GetYPos()
 {
 	return static_cast<int>(body->GetPosition().y);
+
 }
 
 Entity* Entity::EmptyClone()
