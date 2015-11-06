@@ -5,28 +5,28 @@ LevelFactory::LevelFactory() { }
 	
 LevelFactory::~LevelFactory() { }
 
-void LevelFactory::Init()
+void LevelFactory::Init(PlayState* play)
 {
 	levels = {
-		new TestLevel(10000, 10000), 
+		new TestLevel(2000, 120,play), 
 		//TODO add , new Level1() , new level2()
 	};
 }
 
-Level* LevelFactory::GetFirstLevel()
+Level* LevelFactory::GetFirstLevel(PlayState* play)
 {
 	if (!(levels.size() > 0))
 	{
-		Init();
+		Init(play);
 	}
-	return levels[0];
+	return levels[0]->CreateLevel();
 }
 
-Level* LevelFactory::GetNextLevel(Level* level)
+Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 {
 	if (!(levels.size() > 0))
 	{
-		Init();
+		Init(play);
 	}
 	bool foundLevel = false;
 	for (size_t i = 0; i < levels.size(); i++)
@@ -44,8 +44,8 @@ Level* LevelFactory::GetNextLevel(Level* level)
 		// you just finished last level
 		// give te first level
 		//TODO back to main screen
-		return levels[0];
+		return levels[0]->CreateLevel();
 	}
 	//level was not in levels list get te first level
-	return levels[0];
+	return levels[0]->CreateLevel();
 }

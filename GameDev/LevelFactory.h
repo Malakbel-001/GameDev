@@ -10,12 +10,12 @@ class Level;
 class LevelFactory
 {
 public:
-	static Level* GetNextLevel(Level*);
-	static Level* GetFirstLevel();
+	static Level* GetNextLevel(Level*, PlayState* play);
+	static Level* GetFirstLevel(PlayState* play);
 private:
 	LevelFactory();
 	~LevelFactory();
-	static void Init();
+	static void Init(PlayState* play);
 	static std::vector<Level*> levels;
 	
 };

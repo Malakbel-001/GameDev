@@ -20,7 +20,7 @@ public:
 
 	void ChangeState(GameStateManager* gsm, IGameState* state)
 	{
-		gsm->ChangeGameState(state);
+		gsm->ChangeGameState();
 	}
 
 	virtual ~IGameState();

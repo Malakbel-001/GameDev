@@ -1,7 +1,7 @@
 #include "TestLevel.h"
 
-TestLevel::TestLevel(int _lvlWidth, int _lvlHeight)
-	: Level(_lvlWidth, _lvlHeight)
+TestLevel::TestLevel(int _lvlWidth, int _lvlHeight,PlayState* play)
+	: Level(_lvlWidth, _lvlHeight,play)
 {
 	this->tileLoader = new TileLoader(this);
 
@@ -23,6 +23,11 @@ TestLevel::~TestLevel() {
 //	delete tileLoader;
 }
 
+Level* TestLevel::CreateLevel()
+{
+
+	return new TestLevel(lvlWidth, lvlHeight, playState);
+}
 void TestLevel::Cleanup() { }
 
 
