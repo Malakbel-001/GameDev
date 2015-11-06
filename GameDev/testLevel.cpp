@@ -8,6 +8,7 @@ TestLevel::TestLevel(int _lvlWidth, int _lvlHeight)
 }
 
 void TestLevel::Init(BehaviourFactory* bf){
+	
 	entityFactory = new EntityFactory(*world, bf, drawableContainer);
 	entityFactory->CreateEntity(0, 400, 255, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(255, 400, 255, 140, EntityType::GROUND);

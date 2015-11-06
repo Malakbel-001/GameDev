@@ -17,9 +17,12 @@ GroundDrawableBehaviour::~GroundDrawableBehaviour()
 
 void GroundDrawableBehaviour::Draw()
 {
+	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
+	float ypos = (entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio)) + ((screenHeight / 2) + (screenHeight / 4));
+
+
 	
-	float xpos = entity->GetXPos() / Ratio;
-	float ypos = entity->GetYPos() / Ratio;
+	
 		spriteSheetTexture->render(renderer,xpos, ypos, &sprites);
 		
 }
