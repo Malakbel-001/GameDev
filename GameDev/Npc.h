@@ -9,6 +9,7 @@ public:
 
 	virtual ~Npc();
 	virtual Entity* EmptyClone();
-
+	void setBody(b2Body* _body);
+	b2Body* GetBody();
 };
 
