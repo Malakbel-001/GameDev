@@ -1,14 +1,14 @@
 #include "TestLevel.h"
 
-TestLevel::TestLevel(int _lvlWidth, int _lvlHeight,PlayState* play)
-	: Level(_lvlWidth, _lvlHeight,play)
+TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
+	: Level(_lvlWidth, _lvlHeight, play)
 {
 	this->tileLoader = new TileLoader(this);
-
 }
 
-void TestLevel::Init(BehaviourFactory* bf){
-	
+void TestLevel::Init(BehaviourFactory* bf)
+{
+
 	entityFactory = new EntityFactory(*world, bf, drawableContainer);
 	//obstacles--------------
 	entityFactory->CreateEntity(363, 450, 137, 120, EntityType::GROUND2);
@@ -44,6 +44,7 @@ void TestLevel::Init(BehaviourFactory* bf){
 	entityFactory->CreateEntity(4500, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
 	//enemies-----------------
+	entityFactory->CreateEntity(150, 600, 40, 45, EntityType::PLANT);
 	entityFactory->CreateEntity(800, 450, 40, 45, EntityType::PLANT);
 	entityFactory->CreateEntity(900, 450, 40, 45, EntityType::PLANT);
 	entityFactory->CreateEntity(1200, 300, 40, 45, EntityType::PLANT);
@@ -64,8 +65,9 @@ void TestLevel::Init(BehaviourFactory* bf){
 	entityFactory->CreateEntity(4200, 0, 40, 45, EntityType::PLANT);
 }
 
-TestLevel::~TestLevel() {
-//	delete tileLoader;
+TestLevel::~TestLevel()
+{
+	//	delete tileLoader;
 }
 
 Level* TestLevel::CreateLevel()
@@ -73,7 +75,7 @@ Level* TestLevel::CreateLevel()
 
 	return new TestLevel(lvlWidth, lvlHeight, playState);
 }
-void TestLevel::Cleanup() { }
+void TestLevel::Cleanup() {}
 
 
 void TestLevel::HandleEvents(SDL_Event mainEvent) { }

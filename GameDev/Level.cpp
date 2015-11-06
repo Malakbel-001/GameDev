@@ -9,13 +9,14 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	startYpos = 10;
 
 	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
-	
+
 	drawableContainer = new DrawableContainer();
 	this->tileLoader = nullptr;
 
 }
 
-void Level::Init(BehaviourFactory* bf){
+void Level::Init(BehaviourFactory* bf)
+{
 	cout << " jajaa ";
 }
 
@@ -26,10 +27,11 @@ b2World* Level::GetWorld()
 
 void Level::Update(float dt)
 {
-	world->Step((dt/100), 5, 5);
+	world->Step((dt / 100), 5, 5);
 	cout << player->GetYPos() << " - " << lvlHeight;
-	if (player->GetYPos() > lvlHeight){
-		
+	if (player->GetYPos() > lvlHeight)
+	{
+
 		GameOver();
 	}
 }
@@ -40,9 +42,10 @@ Player* Level::SetPlayer(Player* _player)
 	//	player = _player;
 	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
 	return player;
-		
+
 }
-Player* Level::GetPlayer(){
+Player* Level::GetPlayer()
+{
 	return player;
 }
 DrawableContainer* Level::GetDrawableContainer()
@@ -56,8 +59,6 @@ Level::~Level()
 	delete world;
 	delete drawableContainer;
 	delete entityFactory;
-
-
 }
 void Level::SetLvlWidth(int _lvlWidth)
 {
@@ -85,9 +86,10 @@ int Level::GetLvlWidth()
 }
 Level* Level::CreateLevel()
 {
-	
+
 	return new Level(lvlWidth, lvlHeight, playState);
 }
-void Level::GameOver(){
+void Level::GameOver()
+{
 	playState->GameOver();
 }
