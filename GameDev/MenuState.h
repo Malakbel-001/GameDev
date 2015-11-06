@@ -35,9 +35,6 @@ public:
 	TTF_Font* textFont;
 
 #pragma region textures
-	//background
-	SDL_Texture* backgroundTexture;
-
 	//mainMenu
 	SDL_Texture* playTexture; //0
 	SDL_Texture* helpTexture; //1
@@ -56,8 +53,6 @@ public:
 #pragma endregion textures
 
 #pragma region rects
-	//background
-	SDL_Rect backgroundRect;
 	//mainmenu
 	SDL_Rect solidRect;
 	SDL_Rect blendedRect;
@@ -93,4 +88,11 @@ public:
 	void Background();
 
 	virtual ~MenuState();
+
+	//temp
+	LTexture background;
+	//background
+	SDL_Rect backgroundRect;
+	//background
+	SDL_Texture* backgroundTexture;
 };
