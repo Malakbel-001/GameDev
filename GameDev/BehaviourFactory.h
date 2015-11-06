@@ -10,6 +10,8 @@
 #include "CollidableBehaviour.h"
 #include "EntityType.h"
 
+class Camera;
+class Player;
 class BehaviourFactory
 {
 public:
@@ -18,7 +20,10 @@ public:
 
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
 	SDL_Renderer* GetRenderer();
+
+	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 private:
+	Camera* camera;
 	int screenWidth;
 	int screenHeight;
 	SDL_Renderer* renderer;

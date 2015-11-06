@@ -8,6 +8,7 @@ TestLevel::TestLevel(int _lvlWidth, int _lvlHeight)
 }
 
 void TestLevel::Init(BehaviourFactory* bf){
+	
 	entityFactory = new EntityFactory(*world, bf, drawableContainer);
 	//obstacles
 	entityFactory->CreateEntity(363, 450, 137, 120, EntityType::GROUND2);

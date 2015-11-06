@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include "Behaviour.h"
 #include "LTexture.h"
+#include "Camera.h"
+
 
 
 
@@ -16,6 +18,7 @@ class DrawableBehaviour :
 	protected:
 		SDL_Renderer* renderer;
 		Entity* entity;
+		Camera* camera;
 
 		vector<SDL_Rect> sprites;
 		int currentFrame;
@@ -38,10 +41,11 @@ class DrawableBehaviour :
 void SetEntity(Entity* _entity);
 
 		virtual DrawableBehaviour* EmptyClone();
-
+		void SetCamera(Camera* _camera);
 		virtual void Draw();
 		virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
 		virtual bool LoadMedia();
+		
 
 	
 };
