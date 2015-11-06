@@ -1,7 +1,8 @@
 #include "Level.h"
+#include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
+Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
 {
 	player = nullptr;
 	startXpos = 100;
@@ -15,6 +16,7 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 }
 
 void Level::Init(BehaviourFactory* bf){
+	cout << " jajaa ";
 }
 
 b2World* Level::GetWorld()
@@ -25,6 +27,11 @@ b2World* Level::GetWorld()
 void Level::Update(float dt)
 {
 	world->Step((dt/100), 5, 5);
+	cout << player->GetYPos() << " - " << lvlHeight;
+	if (player->GetYPos() > lvlHeight){
+		
+		GameOver();
+	}
 }
 
 #pragma region Get, Set
@@ -76,6 +83,11 @@ int Level::GetLvlWidth()
 {
 	return this->lvlWidth;
 }
-
-
-
+Level* Level::CreateLevel()
+{
+	
+	return new Level(lvlWidth, lvlHeight, playState);
+}
+void Level::GameOver(){
+	playState->GameOver();
+}

@@ -268,7 +268,8 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					if (menuState == mainMenu){
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
 						SoundBank::GetInstance()->StopMusic();
-						this->gsm->ChangeGameState(new PlayState());
+						gsm->CreateGameState(GameStateType::PlayState);
+						
 						quit = true;
 					}
 					break;

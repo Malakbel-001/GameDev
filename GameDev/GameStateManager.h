@@ -17,8 +17,9 @@ class GameStateManager
 	public:	
 		BehaviourFactory* GetBehaviour();
 		GameStateManager(BehaviourFactory* _bf);
+		void SetBehaviour(BehaviourFactory* _bf);
 		void Cleanup();
-		void ChangeGameState(IGameState* gameState);
+		void ChangeGameState();
 		void PushGameState(IGameState* gameState);
 		void PopState();
 		void CreateGameState(GameStateType state);

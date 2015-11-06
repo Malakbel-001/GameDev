@@ -21,6 +21,7 @@ class Game
 		void GameLoop();
 	
 	private:
+		BehaviourFactory* bf;
 		bool running = true;
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;

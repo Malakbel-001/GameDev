@@ -4,11 +4,12 @@
 using namespace std;
 Game::Game()
 {
-	inputManager = new InputManager();
+		inputManager = new InputManager();
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
+	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	BehaviourFactory* bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	gsm = new GameStateManager(bf);
 	gsm->CreateGameState(GameStateType::MenuState);
 
@@ -64,8 +65,9 @@ void Game::GameLoop()
 
 		SDLEvents();
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());
+		
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
-
+		inputManager->ResetMouseInput();
 		gsm->GetCurrentState()->Update(dt);
 		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw();
