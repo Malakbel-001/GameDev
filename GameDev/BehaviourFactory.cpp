@@ -31,10 +31,10 @@ BehaviourFactory::~BehaviourFactory()
 DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
 {
 	DrawableBehaviour* behaviour = registery.at(type)->EmptyClone();
-	
+	behaviour->SetCamera(camera);
 	return behaviour;
 }
 
 void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
-	camera->Init(player->GetBody(), levelWidth, levelheight);
+	camera->Init(player, levelWidth, levelheight);
 }

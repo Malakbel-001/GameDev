@@ -28,11 +28,11 @@ void Level::Update(float dt)
 }
 
 #pragma region Get, Set
-void Level::SetPlayer(Player* _player)
+Player* Level::SetPlayer(Player* _player)
 {
 	//	player = _player;
 	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
-
+	return player;
 		
 }
 Player* Level::GetPlayer(){
@@ -50,7 +50,6 @@ Level::~Level()
 	delete drawableContainer;
 	delete entityFactory;
 
-	delete camera;
 
 }
 void Level::SetLvlWidth(int _lvlWidth)

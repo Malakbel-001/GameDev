@@ -36,7 +36,7 @@ public:
 	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();
 
-	virtual void SetPlayer(Player* _player);
+	virtual Player* SetPlayer(Player* _player);
 	virtual void SetLvlWidth(int _lvlWidth);
 	virtual void SetLvlHeight(int _lvlHeight);
 

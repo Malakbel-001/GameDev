@@ -43,3 +43,6 @@ bool DrawableBehaviour::LoadMedia()
 	printf("Behaviour not initialized");
 	return false;
 }
+void DrawableBehaviour::SetCamera(Camera* _camera){
+	camera = _camera;
+}

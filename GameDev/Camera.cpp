@@ -3,7 +3,10 @@
 
 Camera::Camera(double _camWidth, double _camHeight) :
 	 camWidth(_camWidth), camHeight(_camHeight)
-{ }
+{ 
+
+
+}
 
 Camera::~Camera() { }
 
@@ -17,14 +20,17 @@ double Camera::GetHeight()
 {
 	return lvlHeight;
 }
+double Camera::GetX(){
 
-void Camera::Init(b2Vec2* _vec, double _levelwidth, double _levelheight){
+	return player->GetBody()->GetPosition().x;
+}
+double Camera::GetY(){
+	return player->GetBody()->GetPosition().y;
+}
+void Camera::Init(Player* _player, double _levelwidth, double _levelheight){
 	lvlWidth = _levelwidth;
 	lvlHeight = _levelheight;
-	vec = _vec;
-}
-b2Vec2* Camera::GetB2Vec(){
-	return vec;
+	player = _player;
 }
 
 

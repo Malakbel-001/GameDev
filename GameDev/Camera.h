@@ -1,5 +1,7 @@
 #pragma once
+#include <Box2D\Box2D.h>
 
+class Player;
 class Camera
 {
 	private:
@@ -10,7 +12,7 @@ class Camera
 		double lvlWidth;
 		double lvlHeight;
 
-		b2Vec2* vec;
+		Player* player;
 
 	public:
 		Camera(double _width, double _height);
@@ -18,8 +20,8 @@ class Camera
 		double GetY();
 		double GetWidth();
 		double GetHeight();
-		void Init(b2Body* vec, double _levelwidth,double _levelheight);
-		b2Vec2* GetB2Vec();
+		void Init(Player* _player, double _levelwidth,double _levelheight);
+		b2Body* GetB2Body();
 
 		void SetX(double _x);
 		void SetY(double _y);
