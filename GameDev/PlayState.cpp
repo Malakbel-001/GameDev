@@ -13,7 +13,12 @@ void PlayState::Init(GameStateManager* gsm)
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
 	
-	
+	background = LTexture();
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
+	backgroundRect.h = background.getHeight();
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel());
 	// flush userinput to prevent crash during loadscreen
@@ -112,6 +117,8 @@ void PlayState::Update(float dt)
 
 void PlayState::Draw()
 {
+
+	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450, &backgroundRect); //TEMP!
 
 	currentLevel->GetDrawableContainer()->Draw();
 

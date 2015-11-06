@@ -43,5 +43,12 @@ class PlayState :
 		
 
 		virtual ~PlayState();
+
+		//temp
+		LTexture background;
+		//background
+		SDL_Rect backgroundRect;
+		//background
+		SDL_Texture* backgroundTexture;
 };
 
