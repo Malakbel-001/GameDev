@@ -4,7 +4,7 @@
 #include "Tile.h"
 #include "GameStateManager.h"
 
-class testLevel :
+class TestLevel :
 	public Level
 {
 	private:
@@ -14,12 +14,13 @@ class testLevel :
 		// stuff
 
 	public:
-		testLevel(int _lvlWidth, int _lvlHeight);
-		virtual ~testLevel();
-
-		void Init();
+		TestLevel(int _lvlWidth, int _lvlHeight , PlayState* play);
+		virtual ~TestLevel();
+		
+		void Init(BehaviourFactory* bf);
 		void Cleanup();
 
+		virtual Level* CreateLevel();
 		void HandleEvents(SDL_Event mainEvent);
 	
 		

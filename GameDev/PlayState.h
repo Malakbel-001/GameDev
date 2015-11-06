@@ -3,6 +3,7 @@
 #include "header_loader.h"
 #include "Player.h"
 #include "Camera.h"
+#include "SoundBank.h"
 #include "BehaviourFactory.h"
 #include <iostream>
 
@@ -10,8 +11,6 @@ class PlayState :
 	public IGameState
 {
 	private:
-	
-
 		GameStateManager* gsm;		
 		Player* player;
 		Level* currentLevel;	
@@ -29,7 +28,7 @@ class PlayState :
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void Update(float dt);
 		void Draw();
-
+		void GameOver();
 
 		Player* GetPlayer();
 
@@ -44,5 +43,12 @@ class PlayState :
 		
 
 		virtual ~PlayState();
+
+		//temp
+		LTexture background;
+		//background
+		SDL_Rect backgroundRect;
+		//background
+		SDL_Texture* backgroundTexture;
 };
 

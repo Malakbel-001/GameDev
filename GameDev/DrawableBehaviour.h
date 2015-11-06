@@ -3,6 +3,9 @@
 #include <SDL.h>
 #include "Behaviour.h"
 #include "LTexture.h"
+#include "Camera.h"
+
+
 
 
 using namespace std;
@@ -12,28 +15,38 @@ class Entity;
 class DrawableBehaviour :
 	public Behaviour
 {
-public:
-	DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
-	virtual ~DrawableBehaviour();
+	protected:
+		SDL_Renderer* renderer;
+		Entity* entity;
+		Camera* camera;
 
-	virtual DrawableBehaviour* EmptyClone();
+		vector<SDL_Rect> sprites;
+		int currentFrame;
+		LTexture* spriteSheetTexture;
+		string spritesheetPath;
+		string spritesheetName;
 
-	virtual void Draw();
-	virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
-	virtual bool LoadMedia();
+		int screenWidth;
+		int screenHeight;
 
-	void SetEntity(Entity* _entity);
-protected:
-	SDL_Renderer* renderer;
-	Entity* entity;
+	float x = 1;
+	float y = 10;
+	float Ratio = x / y;
 
-	vector<SDL_Rect> sprites;
-	int currentFrame;
-	LTexture* spriteSheetTexture;
-	string spritesheetPath;
-	string spritesheetName;
 
-	int screenWidth;
-	int screenHeight;
+	public:
+		DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
+		virtual ~DrawableBehaviour();
+
+void SetEntity(Entity* _entity);
+
+		virtual DrawableBehaviour* EmptyClone();
+		void SetCamera(Camera* _camera);
+		virtual void Draw();
+		virtual void SetSprites(vector<SDL_Rect> sdl_sprites);
+		virtual bool LoadMedia();
+		
+
+	
 };
 

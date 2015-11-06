@@ -3,16 +3,18 @@
 #include "DrawableBehaviour.h"
 #include "BehaviourFactory.h"
 #include "DrawableContainer.h"
+
 class Entity
 {
-	protected:
-	b2Body* body;
-	DrawableBehaviour* draw;
-	EntityType type;
 	private:
-	
 		float width;
 		float height;
+
+	protected:
+		b2Body* body;
+		DrawableBehaviour* draw;
+		EntityType type;
+
 	public:
 		Entity();
 		virtual ~Entity();

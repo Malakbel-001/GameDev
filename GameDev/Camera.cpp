@@ -1,44 +1,39 @@
 #include "Camera.h"
+#include "Player.h"
 
-Camera::Camera(double x, double y, double width, double height, double mapWidth, double mapHeight, Player* p)
-	: x(x), y(y), width(width), height(height), mapWidth(mapWidth), mapHeight(mapHeight), player(p)
-{ }
+Camera::Camera(double _camWidth, double _camHeight) :
+	 camWidth(_camWidth), camHeight(_camHeight)
+{ 
 
-double Camera::GetX()
-{
-	return x;
+
 }
 
-double Camera::GetY()
-{
-	return y;
-}
+Camera::~Camera() { }
+
 
 double Camera::GetWidth()
 {
-	return width;
+	return lvlWidth;
 }
 
 double Camera::GetHeight()
 {
-	return height;
+	return lvlHeight;
+}
+double Camera::GetX(){
+
+	return player->GetBody()->GetPosition().x;
+}
+double Camera::GetY(){
+	return player->GetBody()->GetPosition().y;
+}
+void Camera::Init(Player* _player, double _levelwidth, double _levelheight){
+	lvlWidth = _levelwidth;
+	lvlHeight = _levelheight;
+	player = _player;
 }
 
-void Camera::SetX(double x)
-{
-	if (x + this->GetWidth() < this->mapWidth && x > 0)
-	{
-		this->x = x;
-	}
-}
 
-void Camera::SetY(double y)
-{
-	if (y + this->GetHeight() < this->mapHeight && y > 0)
-	{
-		this->y = y;
-	}
-}
 
-Camera::~Camera()
-{ }
+
+

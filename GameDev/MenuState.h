@@ -85,7 +85,14 @@ public:
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void Update(float dt);
 	void Draw();
+	void Background();
 
 	virtual ~MenuState();
-};
 
+	//temp
+	LTexture background;
+	//background
+	SDL_Rect backgroundRect;
+	//background
+	SDL_Texture* backgroundTexture;
+};

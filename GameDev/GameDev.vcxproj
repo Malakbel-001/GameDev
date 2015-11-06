@@ -87,6 +87,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="BarObstacleDrawableBehaviour.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -101,6 +102,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="GroundDrawableBehaviour.cpp" />
+    <ClCompile Include="GroundObstacleDrawableBehavior.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -121,11 +123,12 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDLInitializer.cpp" />
-    <ClCompile Include="testLevel.cpp" />
+    <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="BarObstacleDrawableBehaviour.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
@@ -143,6 +146,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GameStateType.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="GroundDrawableBehaviour.h" />
+    <ClInclude Include="GroundObstacleDrawableBehavior.h" />
     <ClInclude Include="header_loader.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="InputManager.h" />
@@ -165,7 +169,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SDLInitializer.h" />
-    <ClInclude Include="testLevel.h" />
+    <ClInclude Include="TestLevel.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

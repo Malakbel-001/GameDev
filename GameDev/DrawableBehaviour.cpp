@@ -1,6 +1,7 @@
 #include "DrawableBehaviour.h"
 #include "Entity.h"
 
+Entity;
 DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
 	
@@ -41,4 +42,7 @@ bool DrawableBehaviour::LoadMedia()
 {
 	printf("Behaviour not initialized");
 	return false;
+}
+void DrawableBehaviour::SetCamera(Camera* _camera){
+	camera = _camera;
 }

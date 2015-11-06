@@ -2,57 +2,56 @@
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
-#include "Camera.h"
 #include "TileLoader.h"
 #include "DrawableContainer.h"
 #include "MoveableContainer.h"
 #include "EntityFactory.h"
 
+class PlayState;
 class Level
 {
-	private:
-		MoveableContainer* moveableContainer;
-		Player* player;
-		
-		EntityFactory* entityFactory;
-		float startXpos;
-		float startYpos;
+private:
+	MoveableContainer* moveableContainer;
+	Player* player;
 
-	protected:
 
-		int tileWidth, tileHeight;
-		int lvlWidth, lvlHeight, lvlTotalTiles, lvlTotalDiffrentTiles;
-		DrawableContainer* drawableContainer;
-		b2World* world;
-		Camera* camera;
-		int LevelTiles;
-		SDL_Texture* tileSheet;
-		std::vector<SDL_Rect> tileCrops;
+	float startXpos;
+	float startYpos;
 
-		TileLoader* tileLoader;
+protected:
+	EntityFactory* entityFactory;
+	int tileWidth, tileHeight;
+	int lvlWidth, lvlHeight;
+	DrawableContainer* drawableContainer;
+	b2World* world;
+	SDL_Texture* tileSheet;
+	std::vector<SDL_Rect> tileCrops;
+	PlayState* playState;
+	TileLoader* tileLoader;
 
-	public:
-		Player* GetPlayer();
+public:
+	Player* GetPlayer();
 
-		DrawableContainer* GetDrawableContainer();
-		Level(int _lvlWidth, int _lvlHeight);
-		void init(BehaviourFactory* bf);
-		virtual ~Level();
+	DrawableContainer* GetDrawableContainer();
+	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
+	virtual void Init(BehaviourFactory* bf);
+	virtual ~Level();
 
-		virtual void SetPlayer(Player* _player);
-		virtual void SetLvlWidth(int _lvlWidth);
-		virtual void SetLvlHeight(int _lvlHeight);
+	virtual Player* SetPlayer(Player* _player);
+	virtual void SetLvlWidth(int _lvlWidth);
+	virtual void SetLvlHeight(int _lvlHeight);
+	virtual Level* CreateLevel();
 
-		SDL_Texture* GetTileSheet();
+	SDL_Texture* GetTileSheet();
 
-		int GetLvlWidth();
-		int GetLvlHeight();
-		int GetTotalTiles();
-		int GetTotalDiffrentTiles();
-		std::vector<SDL_Rect> getTileCrops();
+	int GetLvlWidth();
+	int GetLvlHeight();
+	int GetTotalTiles();
+	int GetTotalDiffrentTiles();
+	std::vector<SDL_Rect> getTileCrops();
 
-		void Draw();
-		void Update(float dt);
-
-		virtual b2World* GetWorld();
+	void Draw();
+	void Update(float dt);
+	void GameOver();
+	virtual b2World* GetWorld();
 };
