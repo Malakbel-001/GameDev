@@ -13,7 +13,8 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 			{ EntityType::NPC, new Npc() },
 			{ EntityType::PLAYER, new Player() },
 			{ EntityType::GROUND, new Ground() },
-			{ EntityType::GROUND2, new Ground() }
+			{ EntityType::GROUND2, new Ground() },
+			{ EntityType::BAR, new Ground() }
 	};
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
@@ -35,7 +36,8 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 			{ EntityType::NPC,  NpcDef },
 			{ EntityType::PLAYER,  PlayerDef },
 			{EntityType::GROUND, entDef},
-			{ EntityType::GROUND2, entDef }
+			{ EntityType::GROUND2, entDef },
+			{ EntityType::BAR, entDef }
 	};
 
 }

@@ -78,7 +78,7 @@ void MenuState::CreateTextTextures()
 
 	SDL_QueryTexture(playTexture, NULL, NULL, &solidRect.w, &solidRect.h);
 	solidRect.x = 15;
-	solidRect.y = 150;
+	solidRect.y = 225;
 	pos[0] = solidRect;
 #pragma endregion play
 #pragma region help
@@ -113,7 +113,7 @@ void MenuState::CreateTextTextures()
 	mainTitleTexture = SurfaceToTexture(mainTitle);
 
 	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
-	mainTitleRect.x = 150;
+	mainTitleRect.x = 540 - (mainTitleRect.w / 2);
 	mainTitleRect.y = 5;
 	pos[3] = mainTitleRect;
 #pragma endregion maintitle
@@ -122,17 +122,17 @@ void MenuState::CreateTextTextures()
 	helpTitleTexture = SurfaceToTexture(helpTitle);
 
 	SDL_QueryTexture(helpTitleTexture, NULL, NULL, &helpTitleRect.w, &helpTitleRect.h);
-	helpTitleRect.x = 200;
+	helpTitleRect.x = 540 - (helpTitleRect.w / 2);
 	helpTitleRect.y = 5;
 	pos[4] = helpTitleRect;
 #pragma endregion helptitle
 #pragma region helptext
-	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Dit is een help menu. Hierin wordt beschreven hoe het spel werkt en wat het doel is en eventuele extra informatie die nu nog niet bekend is maar het is gewoon een kwestie van deze string aanpassen om hier iets neer te zetten.", textColor, 600);
+	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Spingen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\n", textColor, 1000);
 	helpTextTexture = SurfaceToTexture(helpText);
 
 	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
 	helpTextRect.x = 15;
-	helpTextRect.y = 150;
+	helpTextRect.y = 225;
 	pos[5] = helpTextRect;
 #pragma endregion helptext
 #pragma region backToMain
@@ -145,12 +145,12 @@ void MenuState::CreateTextTextures()
 	pos[6] = backToMainRect;
 #pragma endregion helptext
 #pragma region creditText
-	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\nThomas de Brouwer\nJeroenGuelen\nMark-Jan de Jong\nRoel van Atteveld\nDaniÅE Eijkelenburg", textColor, 600);
+	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\n-Thomas de Brouwer\n-Jeroen Guelen\n-Mark-Jan de Jong\n-Roel van Atteveld\n-Daniel Eijkelenboom", textColor, 1000);
 	creditTextTexture = SurfaceToTexture(creditText);
 
 	SDL_QueryTexture(creditTextTexture, NULL, NULL, &creditTextRect.w, &creditTextRect.h);
 	creditTextRect.x = 15;
-	creditTextRect.y = 150;
+	creditTextRect.y = 225;
 	pos[7] = creditTextRect;
 #pragma endregion creditText
 #pragma region creditTitel
@@ -158,7 +158,7 @@ void MenuState::CreateTextTextures()
 	creditTitleTexture = SurfaceToTexture(creditTitle);
 
 	SDL_QueryTexture(creditTitleTexture, NULL, NULL, &creditTitleRect.w, &creditTitleRect.h);
-	creditTitleRect.x = 150;
+	creditTitleRect.x = 540 - (creditTitleRect.w / 2);
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle

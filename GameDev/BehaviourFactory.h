@@ -5,6 +5,7 @@
 #include "PlayerDrawableBehaviour.h"
 #include "GroundDrawableBehaviour.h"
 #include "GroundObstacleDrawableBehavior.h"
+#include "BarObstacleDrawableBehaviour.h"
 #include "MoveableBehaviour.h"
 #include "CollidableBehaviour.h"
 #include "EntityType.h"

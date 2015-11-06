@@ -29,7 +29,7 @@ class Game
 		void  SDLEvents();
 
 		const int SCREEN_WIDTH = 1080;
-		const int SCREEN_HEIGHT = 920;
+		const int SCREEN_HEIGHT = 700;
 	
 		SDL_Event events;
 };
