@@ -109,14 +109,17 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
+    <ClCompile Include="EnemyDrawableBehaviour.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
+    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,14 +249,17 @@
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GroundObstacleDrawableBehavior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GroundObstacleDrawableBehavior.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
+    <ClInclude Include="EnemyDrawableBehaviour.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BarObstacleDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

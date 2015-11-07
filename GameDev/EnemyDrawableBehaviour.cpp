@@ -1,31 +1,25 @@
-#include "PlayerDrawableBehaviour.h"
+#include "EnemyDrawableBehaviour.h"
 #include "Entity.h"
 
-PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : DrawableBehaviour(renderer, screenwidth, screenheight)
-{
-
-}
-
-
-PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
+EnemyDrawableBehaviour::EnemyDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : DrawableBehaviour(renderer, screenwidth, screenheight)
 {
 }
 
-void PlayerDrawableBehaviour::Draw()
+
+EnemyDrawableBehaviour::~EnemyDrawableBehaviour()
 {
-	sprites = walkSprites;
+}
+
+void EnemyDrawableBehaviour::Draw()
+{
+	sprites = idleSprites;
 
 	// Render current frame SCREEN SIZE NOT YET SET!!!
-	
-	float xpos = ((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
-
-
-
-	float ypos = (entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio);
-
-
+	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
+	float ypos = entity->GetYPos() / Ratio;
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
-	spriteSheetTexture->render(renderer, xpos, ypos, currentClip);
+	
+	spriteSheetTexture->render(renderer, xpos+10, ypos+10, currentClip);
 
 	//Go to next frame 
 	++currentFrame;
@@ -37,20 +31,18 @@ void PlayerDrawableBehaviour::Draw()
 	}
 }
 
-void PlayerDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
+void EnemyDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
 {
 	sprites = sdl_sprites;
 }
 
-
-
-bool PlayerDrawableBehaviour::LoadMedia()
+bool EnemyDrawableBehaviour::LoadMedia()
 {
 	//Loading success flag
 	bool success = true;
 
 	spritesheetPath = "";
-	spritesheetName = "sprites.png";
+	spritesheetName = "plant.png";
 
 	//Load sprite sheet texture
 	if (!spriteSheetTexture->loadFromFile(renderer, spritesheetPath + spritesheetName))
@@ -62,20 +54,45 @@ bool PlayerDrawableBehaviour::LoadMedia()
 	{
 		idleSprites.resize(IDLE_ANIMATION_FRAMES);
 
-		idleSprites[0].x = 4;
-		idleSprites[0].y = 0;
-		idleSprites[0].w = 30;
-		idleSprites[0].h = 40;
+		idleSprites[0].x = 6;
+		idleSprites[0].y = 395;
+		idleSprites[0].w = 45;
+		idleSprites[0].h = 50;
 
 		idleSprites[1].x = idleSprites[0].x + idleSprites[0].w;
-		idleSprites[1].y = 0;
-		idleSprites[1].w = 30;
-		idleSprites[1].h = 40;
+		idleSprites[1].y = 395;
+		idleSprites[1].w = 45;
+		idleSprites[1].h = 50;
 
-		idleSprites[2].x = idleSprites[1].x + idleSprites[1].w;
-		idleSprites[2].y = 0;
-		idleSprites[2].w = 30;
-		idleSprites[2].h = 40;
+		idleSprites[2].x = idleSprites[1].x + idleSprites[1].w + 10;
+		idleSprites[2].y = 395;
+		idleSprites[2].w = 45;
+		idleSprites[2].h = 50;
+
+		idleSprites[3].x = idleSprites[2].x + idleSprites[2].w + 10;
+		idleSprites[3].y = 395;
+		idleSprites[3].w = 45;
+		idleSprites[3].h = 50;
+
+		idleSprites[4].x = idleSprites[3].x + idleSprites[3].w + 10;
+		idleSprites[4].y = 395;
+		idleSprites[4].w = 45;
+		idleSprites[4].h = 50;
+
+		idleSprites[5].x = idleSprites[4].x + idleSprites[4].w + 10;
+		idleSprites[5].y = 395;
+		idleSprites[5].w = 45;
+		idleSprites[5].h = 50;
+
+		idleSprites[6].x = idleSprites[5].x + idleSprites[5].w + 10;
+		idleSprites[6].y = 395;
+		idleSprites[6].w = 45;
+		idleSprites[6].h = 50;
+
+		idleSprites[7].x = idleSprites[6].x + idleSprites[6].w + 10;
+		idleSprites[7].y = 395;
+		idleSprites[7].w = 45;
+		idleSprites[7].h = 50;
 
 		walkSprites.resize(WALK_ANIMATION_FRAMES);
 
@@ -131,7 +148,7 @@ bool PlayerDrawableBehaviour::LoadMedia()
 	return success;
 }
 
-PlayerDrawableBehaviour* PlayerDrawableBehaviour::EmptyClone()
+EnemyDrawableBehaviour* EnemyDrawableBehaviour::EmptyClone()
 {
-	return new PlayerDrawableBehaviour(renderer, screenWidth, screenHeight);
+	return new EnemyDrawableBehaviour(renderer, screenWidth, screenHeight);
 }
