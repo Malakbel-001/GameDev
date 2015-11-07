@@ -1,23 +1,23 @@
 #include "SDLInitializer.h"
-#include "SDL_mixer.h"
 
-SDLInitializer::SDLInitializer() { }
+SDLInitializer::SDLInitializer() {}
 
 void SDLInitializer::Init(const char* title, int width, int height, bool fullscreen)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow
-	(
-		title,		
+		(
+		title,
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		width,
 		height,
 		false
-	);
+		);
 
 	// Open Audio & Start SDL_Mixer
-	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 < 0)) {
+	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048 < 0))
+	{
 		std::cout << "Error: " << Mix_GetError() << std::endl;
 	}
 

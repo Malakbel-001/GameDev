@@ -27,11 +27,9 @@ b2World* Level::GetWorld()
 
 void Level::Update(float dt)
 {
-
-	world->Step((dt/100), 5, 5);
-
-	if (player->GetYPos() > lvlHeight)	{
-
+	world->Step((dt / 100), 5, 5);
+	if (player->GetYPos() > lvlHeight)
+	{
 
 		GameOver();
 	}
