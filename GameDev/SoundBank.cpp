@@ -82,3 +82,37 @@ void SoundBank::FreeMemory() {
 	//Mix_FreeChunk TODO needed or not??
 	//Mix_FreeMusic TODO needed or not??
 }
+
+void SoundBank::SetMusicVolume(int newVolume) {
+	musicVolume = newVolume;
+}
+
+void SoundBank::SetMusicVolume(int newVolume) {
+	sfxVolume = newVolume;
+}
+
+void SoundBank::DisableOrEnableMusic() {
+	if (MusicEnabled) {
+		MusicEnabled = false;
+	}
+	else {
+		MusicEnabled = true;
+	}
+}
+
+void SoundBank::DisableOrEnableSFX() {
+	if (SfxEnabled) {
+		SfxEnabled = false;
+	}
+	else {
+		SfxEnabled = true;
+	}
+}
+
+bool SoundBank::IsEnabledMusic() {
+	return SfxEnabled;
+}
+
+bool SoundBank::IsEnabledSFX() {
+	return MusicEnabled;
+}
