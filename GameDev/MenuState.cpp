@@ -1,6 +1,6 @@
 #include "MenuState.h"
 
-const int renderItems = 15;
+const int renderItems = 16;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
