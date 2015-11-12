@@ -1,6 +1,6 @@
 #include "MenuState.h"
 
-const int renderItems = 15;
+const int renderItems = 16;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
@@ -10,7 +10,7 @@ void MenuState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1, 64);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 	menuState = mainMenu;
 	cout << "MenuState \n";
 	Update(0);
@@ -180,6 +180,15 @@ void MenuState::CreateTextTextures()
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle
+#pragma region optionsTitle
+	SDL_Surface* optionsTitle = TTF_RenderText_Blended(titleFont, "Options", textColor);
+	optionsTitleTexture = SurfaceToTexture(optionsTitle);
+
+	SDL_QueryTexture(optionsTitleTexture, NULL, NULL, &optionsTitleRect.w, &optionsTitleRect.h);
+	optionsTitleRect.x = 540 - (optionsTitleRect.w / 2);
+	optionsTitleRect.y = 5;
+	pos[15] = optionsTitleRect;
+#pragma endregion optionsTitle
 #pragma region sfxOn
 	SDL_Surface* sfxOnButton = TTF_RenderText_Blended(textFont, "Sound effects - On", textColor);
 	sfxOnTexture = SurfaceToTexture(sfxOnButton);
@@ -319,7 +328,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 1, mainmenu play
 				case 0:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						SoundBank::GetInstance()->StopMusic();
 						gsm->CreateGameState(GameStateType::PlayState);
 						
@@ -329,7 +338,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 2, mainmenu help
 				case 1:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = helpMenu;
 					}
 					break;
@@ -343,21 +352,21 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 				case 6:
 					if (menuState != mainMenu)
 					{
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = mainMenu;
 					}
 					break;
 					//item 9, mainmenu credit
 				case 9:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = creditMenu;
 					}
 					break;
 					//item 10, mainmenu options
 				case 10:
 					if (menuState == mainMenu) {
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = optionsMenu;
 					}
 				}

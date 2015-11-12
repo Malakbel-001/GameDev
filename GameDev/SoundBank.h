@@ -16,16 +16,16 @@ private:
 	std::unordered_map<SoundEffectType, SoundChunk*> playingChunks;
 	static SoundBank* instance;
 
-	int musicVolume; // [0 - 128]
-	int sfxVolume; // [0 - 128]
-	bool MusicEnabled;
-	bool SfxEnabled;
+	int musicVolume = 64; // [0 - 128]
+	int sfxVolume = 64; // [0 - 128]
+	bool musicEnabled;
+	bool sfxEnabled;
 public:
 	~SoundBank();
 	static SoundBank* GetInstance();
 
-	void Play(SoundEffectType type, int volume);
-	void PlayBGM(SoundBgmType type, int volume); //TODO
+	void Play(SoundEffectType type);
+	void PlayBGM(SoundBgmType type); //TODO
 	void PauseOrResume();
 	void StopMusic(); //arguably not needed
 	void FreeMemory();

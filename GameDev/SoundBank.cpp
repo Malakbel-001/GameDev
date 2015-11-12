@@ -28,34 +28,38 @@ SoundBank* SoundBank::GetInstance() {
 }
 
 //SoundEffect, volume = between [0 - 128], 64 = neutral
-void SoundBank::Play(SoundEffectType type, int volume) {
-	//Get the appropriate SoundChunk depending on the SoundEffectType
-	Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
-	SoundChunk* soundChunk = new SoundChunk(tempSound);
+void SoundBank::Play(SoundEffectType type) {
+	if (sfxEnabled) {
+		//Get the appropriate SoundChunk depending on the SoundEffectType
+		Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
+		SoundChunk* soundChunk = new SoundChunk(tempSound);
 
-	//Change Volume depending on the given volume in the parameters
-	Mix_VolumeChunk(tempSound, volume); //volume = between [0 - 128], 64 = neutral
+		//Change Volume depending on the given volume in the parameters
+		Mix_VolumeChunk(tempSound, sfxVolume); //volume = between [0 - 128], 64 = neutral
 
-	//soundChunk->Play();
-	//and let SoundChunk remember its channel (which doesn't work correctly yet)
-	soundChunk->Play();
+		//soundChunk->Play();
+		//and let SoundChunk remember its channel (which doesn't work correctly yet)
+		soundChunk->Play();
 
-	//put SoundChunk into the playingChunks list
-	std::pair<SoundEffectType, SoundChunk*> typeChunk(type, soundChunk);
-	playingChunks.insert(typeChunk);
+		//put SoundChunk into the playingChunks list
+		std::pair<SoundEffectType, SoundChunk*> typeChunk(type, soundChunk);
+		playingChunks.insert(typeChunk);
+	}
 }
 
 //BackGroundMusic, volume = between [0 - 128], 64 = neutral
-void SoundBank::PlayBGM(SoundBgmType type, int volume) {
-	Mix_Music* tempMusic = Mix_LoadMUS(bgmPathList.at(type));
-	if (!Mix_PlayingMusic()) { //there is no music playing yet
-		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
-		Mix_VolumeMusic(volume);
-	}
-	else if(!Mix_PausedMusic()) { //there is already music playing
-		Mix_FadeOutMusic(1000);
-		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
-		Mix_VolumeMusic(volume);
+void SoundBank::PlayBGM(SoundBgmType type) {
+	if (musicEnabled) {
+		Mix_Music* tempMusic = Mix_LoadMUS(bgmPathList.at(type));
+		if (!Mix_PlayingMusic()) { //there is no music playing yet
+			Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
+			Mix_VolumeMusic(musicVolume);
+		}
+		else if(!Mix_PausedMusic()) { //there is already music playing
+			Mix_FadeOutMusic(1000);
+			Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
+			Mix_VolumeMusic(musicVolume);
+		}
 	}
 }
 
@@ -92,27 +96,27 @@ void SoundBank::FreeMemory() {
 //}
 
 void SoundBank::DisableOrEnableMusic() {
-	if (MusicEnabled) {
-		MusicEnabled = false;
+	if (musicEnabled) {
+		musicEnabled = false;
 	}
 	else {
-		MusicEnabled = true;
+		musicEnabled = true;
 	}
 }
 
 void SoundBank::DisableOrEnableSFX() {
-	if (SfxEnabled) {
-		SfxEnabled = false;
+	if (sfxEnabled) {
+		sfxEnabled = false;
 	}
 	else {
-		SfxEnabled = true;
+		sfxEnabled = true;
 	}
 }
 
 bool SoundBank::IsEnabledMusic() {
-	return SfxEnabled;
+	return sfxEnabled;
 }
 
 bool SoundBank::IsEnabledSFX() {
-	return MusicEnabled;
+	return musicEnabled;
 }
