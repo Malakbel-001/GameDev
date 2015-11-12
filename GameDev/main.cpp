@@ -1,5 +1,5 @@
 
-
+#include <SDL_Main.h>
 #include <stdlib.h>
 #include <crtdbg.h>
 // SDL Portable installation

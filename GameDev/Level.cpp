@@ -28,7 +28,6 @@ b2World* Level::GetWorld()
 void Level::Update(float dt)
 {
 	world->Step((dt / 100), 5, 5);
-	cout << player->GetYPos() << " - " << lvlHeight;
 	if (player->GetYPos() > lvlHeight)
 	{
 
