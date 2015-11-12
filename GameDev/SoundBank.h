@@ -30,8 +30,8 @@ public:
 	void StopMusic(); //arguably not needed
 	void FreeMemory();
 
-	void SetMusicVolume(int newVolume);
-	void SetSfxVolume(int newVolume);
+	/*void SetMusicVolume(int newVolume);
+	void SetSfxVolume(int newVolume);*/
 	void DisableOrEnableMusic();
 	bool IsEnabledMusic();
 	void DisableOrEnableSFX();

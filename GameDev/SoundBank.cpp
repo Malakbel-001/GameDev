@@ -83,13 +83,13 @@ void SoundBank::FreeMemory() {
 	//Mix_FreeMusic TODO needed or not??
 }
 
-void SoundBank::SetMusicVolume(int newVolume) {
-	musicVolume = newVolume;
-}
-
-void SoundBank::SetMusicVolume(int newVolume) {
-	sfxVolume = newVolume;
-}
+//void SoundBank::SetMusicVolume(int newVolume) {
+//	musicVolume = newVolume;
+//}
+//
+//void SoundBank::SetMusicVolume(int newVolume) {
+//	sfxVolume = newVolume;
+//}
 
 void SoundBank::DisableOrEnableMusic() {
 	if (MusicEnabled) {

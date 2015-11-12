@@ -1,6 +1,6 @@
 #include "MenuState.h"
 
-const int renderItems = 10;
+const int renderItems = 15;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
@@ -23,6 +23,7 @@ MenuState::MenuState()
 void MenuState::loadMainMenu(){
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
+	SDL_RenderCopy(renderer, optionsTexture, nullptr, &optionsRect); //NEW
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
 	SDL_RenderCopy(renderer, creditTexture, nullptr, &creditRect);
 	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
@@ -38,6 +39,14 @@ void MenuState::LoadCreditMenu(){
 	SDL_RenderCopy(renderer, creditTextTexture, nullptr, &creditTextRect);
 	SDL_RenderCopy(renderer, creditTitleTexture, nullptr, &creditTitleRect);
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
+}
+
+void MenuState::LoadOptionsMenu() {
+	SDL_RenderCopy(renderer, sfxOnTexture, nullptr, &sfxOnRect);
+	SDL_RenderCopy(renderer, musicOnTexture, nullptr, &musicOnRect);
+	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
+	//SDL_RenderCopy(renderer, sfxOffTexture, nullptr, &sfxOffRect);
+	//SDL_RenderCopy(renderer, musicOffTexture, nullptr, &musicOffRect);
 }
 
 // Initialization ++
@@ -99,13 +108,22 @@ void MenuState::CreateTextTextures()
 	creditRect.y = blendedRect.y + blendedRect.h + 20;;
 	pos[9] = creditRect;
 #pragma endregion credit
+#pragma region options
+	SDL_Surface* options = TTF_RenderText_Blended(textFont, "Options", textColor);
+	optionsTexture = SurfaceToTexture(options);
+
+	SDL_QueryTexture(optionsTexture, NULL, NULL, &optionsRect.w, &optionsRect.h);
+	optionsRect.x = 15;
+	optionsRect.y = creditRect.y + creditRect.h + 20;
+	pos[10] = optionsRect;
+#pragma endregion options
 #pragma region quit
 	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Quit", textColor);
 	quitTexture = SurfaceToTexture(quit);
 
 	SDL_QueryTexture(quitTexture, NULL, NULL, &shadedRect.w, &shadedRect.h);
 	shadedRect.x = 15;
-	shadedRect.y = creditRect.y + creditRect.h + 20;
+	shadedRect.y = optionsRect.y + optionsRect.h + 20;
 	pos[2] = shadedRect;
 #pragma endregion quit
 #pragma region maintitle
@@ -162,7 +180,42 @@ void MenuState::CreateTextTextures()
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle
+#pragma region sfxOn
+	SDL_Surface* sfxOnButton = TTF_RenderText_Blended(textFont, "Sound effects - On", textColor);
+	sfxOnTexture = SurfaceToTexture(sfxOnButton);
 
+	SDL_QueryTexture(sfxOnTexture, NULL, NULL, &sfxOnRect.w, &sfxOnRect.h);
+	sfxOnRect.x = 15;
+	sfxOnRect.y = 225;
+	pos[11] = sfxOnRect;
+#pragma endregion sfxOn
+#pragma region musicOn
+	SDL_Surface* musicOnButton = TTF_RenderText_Blended(textFont, "Music - On", textColor);
+	musicOnTexture = SurfaceToTexture(musicOnButton);
+
+	SDL_QueryTexture(musicOnTexture, NULL, NULL, &musicOnRect.w, &musicOnRect.h);
+	musicOnRect.x = 15;
+	musicOnRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[12] = musicOnRect;
+#pragma endregion musicOn
+#pragma region sfxOff
+	SDL_Surface* sfxOffButton = TTF_RenderText_Blended(textFont, "Sound effects - Off", textColor);
+	sfxOffTexture = SurfaceToTexture(sfxOffButton);
+
+	SDL_QueryTexture(sfxOffTexture, NULL, NULL, &sfxOffRect.w, &sfxOffRect.h);
+	sfxOffRect.x = 15;
+	sfxOffRect.y = 225;
+	pos[13] = sfxOffRect;
+#pragma endregion sfxOff
+#pragma region musicOff
+	SDL_Surface* musicOffButton = TTF_RenderText_Blended(textFont, "Music - Off", textColor);
+	musicOffTexture = SurfaceToTexture(musicOffButton);
+
+	SDL_QueryTexture(musicOffTexture, NULL, NULL, &musicOffRect.w, &musicOffRect.h);
+	musicOffRect.x = 15;
+	musicOffRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[14] = musicOffRect;
+#pragma endregion musicOff
 
 }
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
@@ -301,6 +354,12 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 						menuState = creditMenu;
 					}
 					break;
+					//item 10, mainmenu options
+				case 10:
+					if (menuState == mainMenu) {
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						menuState = optionsMenu;
+					}
 				}
 			}
 		}
@@ -337,6 +396,9 @@ void MenuState::Draw(){
 		break;
 	case creditMenu:
 		LoadCreditMenu();
+		break;
+	case optionsMenu:
+		LoadOptionsMenu();
 		break;
 	}
 	SDL_RenderPresent(renderer);
