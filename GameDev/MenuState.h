@@ -54,10 +54,11 @@ public:
 	SDL_Texture* creditTitleTexture; //8
 
 	//optionsmenu
-	SDL_Texture* sfxOnTexture;
-	SDL_Texture* sfxOffTexture;
-	SDL_Texture* musicOnTexture;
-	SDL_Texture* musicOffTexture;
+	SDL_Texture* optionsTitleTexture; //15
+	SDL_Texture* sfxOnTexture; //11
+	SDL_Texture* sfxOffTexture; //12
+	SDL_Texture* musicOnTexture; //13
+	SDL_Texture* musicOffTexture; //14
 #pragma endregion textures
 
 #pragma region rects
@@ -76,6 +77,7 @@ public:
 	SDL_Rect creditTextRect;
 	SDL_Rect creditTitleRect;
 	//optionsmenu
+	SDL_Rect optionsTitleRect;
 	SDL_Rect sfxOnRect;
 	SDL_Rect sfxOffRect;
 	SDL_Rect musicOnRect;
