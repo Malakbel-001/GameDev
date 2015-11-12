@@ -1,6 +1,6 @@
 #include "MenuState.h"
 
-const int renderItems = 10;
+const int renderItems = 16;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
@@ -10,7 +10,7 @@ void MenuState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1, 64);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 	menuState = mainMenu;
 	cout << "MenuState \n";
 	Update(0);
@@ -23,6 +23,7 @@ MenuState::MenuState()
 void MenuState::loadMainMenu(){
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
+	SDL_RenderCopy(renderer, optionsTexture, nullptr, &optionsRect); //NEW
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
 	SDL_RenderCopy(renderer, creditTexture, nullptr, &creditRect);
 	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
@@ -37,6 +38,23 @@ void MenuState::loadHelpMenu(){
 void MenuState::LoadCreditMenu(){
 	SDL_RenderCopy(renderer, creditTextTexture, nullptr, &creditTextRect);
 	SDL_RenderCopy(renderer, creditTitleTexture, nullptr, &creditTitleRect);
+	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
+}
+
+void MenuState::LoadOptionsMenu() {
+	SDL_RenderCopy(renderer, optionsTitleTexture, nullptr, &optionsTitleRect);
+	if (SoundBank::GetInstance()->IsEnabledMusic()) {
+		SDL_RenderCopy(renderer, musicOnTexture, nullptr, &musicOnRect);
+	}
+	else {
+		SDL_RenderCopy(renderer, musicOffTexture, nullptr, &musicOffRect);
+	}
+	if (SoundBank::GetInstance()->IsEnabledSFX()) {
+		SDL_RenderCopy(renderer, sfxOnTexture, nullptr, &sfxOnRect);
+	}
+	else {
+		SDL_RenderCopy(renderer, sfxOffTexture, nullptr, &sfxOffRect);
+	}
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
@@ -99,13 +117,22 @@ void MenuState::CreateTextTextures()
 	creditRect.y = blendedRect.y + blendedRect.h + 20;;
 	pos[9] = creditRect;
 #pragma endregion credit
+#pragma region options
+	SDL_Surface* options = TTF_RenderText_Blended(textFont, "Options", textColor);
+	optionsTexture = SurfaceToTexture(options);
+
+	SDL_QueryTexture(optionsTexture, NULL, NULL, &optionsRect.w, &optionsRect.h);
+	optionsRect.x = 15;
+	optionsRect.y = creditRect.y + creditRect.h + 20;
+	pos[10] = optionsRect;
+#pragma endregion options
 #pragma region quit
 	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Quit", textColor);
 	quitTexture = SurfaceToTexture(quit);
 
 	SDL_QueryTexture(quitTexture, NULL, NULL, &shadedRect.w, &shadedRect.h);
 	shadedRect.x = 15;
-	shadedRect.y = creditRect.y + creditRect.h + 20;
+	shadedRect.y = optionsRect.y + optionsRect.h + 20;
 	pos[2] = shadedRect;
 #pragma endregion quit
 #pragma region maintitle
@@ -127,7 +154,7 @@ void MenuState::CreateTextTextures()
 	pos[4] = helpTitleRect;
 #pragma endregion helptitle
 #pragma region helptext
-	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Spingen/Klimmen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\nNog een tip, probeer vooral op het gras te blijven, anders is de kans op overleven erg klein.", textColor, 1000);
+	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Springen/Klimmen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\nNog een tip, probeer vooral op het gras te blijven, anders is de kans op overleven erg klein.", textColor, 1000);
 	helpTextTexture = SurfaceToTexture(helpText);
 
 	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
@@ -162,7 +189,51 @@ void MenuState::CreateTextTextures()
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle
+#pragma region optionstitle
+	SDL_Surface* optionsTitle = TTF_RenderText_Blended(titleFont, "Options", textColor);
+	optionsTitleTexture = SurfaceToTexture(optionsTitle);
 
+	SDL_QueryTexture(optionsTitleTexture, NULL, NULL, &optionsTitleRect.w, &optionsTitleRect.h);
+	optionsTitleRect.x = 540 - (optionsTitleRect.w / 2);
+	optionsTitleRect.y = 5;
+	pos[15] = optionsTitleRect;
+#pragma endregion optionstitle
+#pragma region sfxOn
+	SDL_Surface* sfxOnButton = TTF_RenderText_Blended(textFont, "Sound effects - On", textColor);
+	sfxOnTexture = SurfaceToTexture(sfxOnButton);
+
+	SDL_QueryTexture(sfxOnTexture, NULL, NULL, &sfxOnRect.w, &sfxOnRect.h);
+	sfxOnRect.x = 15;
+	sfxOnRect.y = 225;
+	pos[11] = sfxOnRect;
+#pragma endregion sfxOn
+#pragma region musicOn
+	SDL_Surface* musicOnButton = TTF_RenderText_Blended(textFont, "Music - On", textColor);
+	musicOnTexture = SurfaceToTexture(musicOnButton);
+
+	SDL_QueryTexture(musicOnTexture, NULL, NULL, &musicOnRect.w, &musicOnRect.h);
+	musicOnRect.x = 15;
+	musicOnRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[12] = musicOnRect;
+#pragma endregion musicOn
+#pragma region sfxOff
+	SDL_Surface* sfxOffButton = TTF_RenderText_Blended(textFont, "Sound effects - Off", textColor);
+	sfxOffTexture = SurfaceToTexture(sfxOffButton);
+
+	SDL_QueryTexture(sfxOffTexture, NULL, NULL, &sfxOffRect.w, &sfxOffRect.h);
+	sfxOffRect.x = 15;
+	sfxOffRect.y = 225;
+	pos[13] = sfxOffRect;
+#pragma endregion sfxOff
+#pragma region musicOff
+	SDL_Surface* musicOffButton = TTF_RenderText_Blended(textFont, "Music - Off", textColor);
+	musicOffTexture = SurfaceToTexture(musicOffButton);
+
+	SDL_QueryTexture(musicOffTexture, NULL, NULL, &musicOffRect.w, &musicOffRect.h);
+	musicOffRect.x = 15;
+	musicOffRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[14] = musicOffRect;
+#pragma endregion musicOff
 
 }
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
@@ -266,17 +337,17 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 1, mainmenu play
 				case 0:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						SoundBank::GetInstance()->StopMusic();
 						gsm->CreateGameState(GameStateType::PlayState);
-						
+
 						quit = true;
 					}
 					break;
 					//item 2, mainmenu help
 				case 1:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = helpMenu;
 					}
 					break;
@@ -290,15 +361,38 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 				case 6:
 					if (menuState != mainMenu)
 					{
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = mainMenu;
 					}
 					break;
 					//item 9, mainmenu credit
 				case 9:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = creditMenu;
+					}
+					break;
+					//item 10, mainmenu options
+				case 10:
+					if (menuState == mainMenu) {
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						menuState = optionsMenu;
+					}
+					break;
+					//item 11 & 13, sfx on
+				case 11:
+					if (menuState == optionsMenu) {
+						SoundBank::GetInstance()->DisableOrEnableSFX();
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						menuState = optionsMenu;
+					}
+					break;
+					//item 12 & 14, music on
+				case 12:
+					if (menuState == optionsMenu) {
+						SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						menuState = optionsMenu;
 					}
 					break;
 				}
@@ -337,6 +431,9 @@ void MenuState::Draw(){
 		break;
 	case creditMenu:
 		LoadCreditMenu();
+		break;
+	case optionsMenu:
+		LoadOptionsMenu();
 		break;
 	}
 	SDL_RenderPresent(renderer);

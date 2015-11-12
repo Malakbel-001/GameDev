@@ -23,6 +23,7 @@ public:
 	void loadMainMenu();
 	void loadHelpMenu();
 	void LoadCreditMenu();
+	void LoadOptionsMenu();
 	bool CreateRenderer();
 
 	// Our new function for setting uo SDL_TTF
@@ -41,6 +42,7 @@ public:
 	SDL_Texture* quitTexture; //2
 	SDL_Texture* mainTitleTexture; //3
 	SDL_Texture* creditTexture; //9
+	SDL_Texture* optionsTexture;
 
 	//helpMenu
 	SDL_Texture* helpTitleTexture; //4
@@ -50,6 +52,13 @@ public:
 	//creditmenu
 	SDL_Texture* creditTextTexture; //7
 	SDL_Texture* creditTitleTexture; //8
+
+	//optionsmenu
+	SDL_Texture* optionsTitleTexture; //15
+	SDL_Texture* sfxOnTexture; //11
+	SDL_Texture* sfxOffTexture; //12
+	SDL_Texture* musicOnTexture; //13
+	SDL_Texture* musicOffTexture; //14
 #pragma endregion textures
 
 #pragma region rects
@@ -59,6 +68,7 @@ public:
 	SDL_Rect shadedRect;
 	SDL_Rect mainTitleRect;
 	SDL_Rect creditRect;
+	SDL_Rect optionsRect;
 	//helpmenu
 	SDL_Rect helpTitleRect;
 	SDL_Rect helpTextRect;
@@ -66,13 +76,19 @@ public:
 	//creditmenu
 	SDL_Rect creditTextRect;
 	SDL_Rect creditTitleRect;
+	//optionsmenu
+	SDL_Rect optionsTitleRect;
+	SDL_Rect sfxOnRect;
+	SDL_Rect sfxOffRect;
+	SDL_Rect musicOnRect;
+	SDL_Rect musicOffRect;
 #pragma endregion rects
 
 	SDL_Renderer* renderer;
 
 	bool quit = false;
 
-	enum State{ mainMenu, helpMenu, creditMenu };
+	enum State{ mainMenu, helpMenu, creditMenu, optionsMenu };
 	State menuState;
 	
 	void Init(GameStateManager *gsm);

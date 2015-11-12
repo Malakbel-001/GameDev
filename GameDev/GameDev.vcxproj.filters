@@ -34,9 +34,6 @@
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="EntityFactory.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
@@ -107,19 +104,22 @@
       <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
     <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Controller</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyDrawableBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
     <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +231,6 @@
     <ClInclude Include="GameStateType.h">
       <Filter>Header Files\Model\GameState</Filter>
     </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SoundBank.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
@@ -246,20 +243,23 @@
     <ClInclude Include="SoundChunk.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundObstacleDrawableBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="BarObstacleDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="EnemyDrawableBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="BarObstacleDrawableBehaviour.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="GroundObstacleDrawableBehavior.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Ground.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

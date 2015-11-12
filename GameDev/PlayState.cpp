@@ -78,7 +78,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
 						jump = true;
 						impulse = 100;
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 32);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 
 					}
@@ -154,7 +154,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK, 64);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK);
 }
 
 
