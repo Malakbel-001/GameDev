@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "BehaviourFactory.h"
 #include "Ground.h"
+#include "Bullet.h"
 
 
 class EntityFactory
