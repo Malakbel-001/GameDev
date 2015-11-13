@@ -1,6 +1,6 @@
 #include "MenuState.h"
 
-const int renderItems = 16;
+const int renderItems = 18;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
@@ -234,6 +234,25 @@ void MenuState::CreateTextTextures()
 	musicOffRect.y = sfxOnRect.y + sfxOnRect.h + 20;
 	pos[14] = musicOffRect;
 #pragma endregion musicOff
+//#pragma region fullscreenOn
+//	SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen - On", textColor);
+//	fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
+//
+//	SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
+//	fullScreenOnRect.x = 15;
+//	fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
+//	pos[16] = fullScreenOnRect;
+//#pragma endregion fullscreenOn
+//#pragma region fullscreenOff
+//	SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen - Off", textColor);
+//	fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
+//
+//	SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
+//	fullScreenOffRect.x = 15;
+//	fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
+//	pos[16] = fullScreenOffRect;
+//#pragma endregion fullscreenOff
+
 
 }
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short

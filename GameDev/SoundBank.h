@@ -16,8 +16,8 @@ private:
 	std::unordered_map<SoundEffectType, SoundChunk*> playingChunks;
 	static SoundBank* instance;
 
-	int musicVolume = 64; // [0 - 128]
-	int sfxVolume = 64; // [0 - 128]
+	const int musicVolume = 64; // [0 - 128]
+	const int sfxVolume = 64; // [0 - 128]
 	bool musicEnabled = true;
 	bool sfxEnabled = true;
 public:
