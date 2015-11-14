@@ -4,7 +4,7 @@
 Npc::Npc()
 {
 }
-Entity* Npc::EmptyClone(){
+Actor* Npc::EmptyClone(){
 	return new Npc();
 }
 

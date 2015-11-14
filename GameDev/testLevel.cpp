@@ -3,7 +3,7 @@
 TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
 	: Level(_lvlWidth, _lvlHeight, play)
 {
-	this->tileLoader = new TileLoader(this);
+
 }
 
 void TestLevel::Init(BehaviourFactory* bf)
@@ -48,37 +48,37 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
 	//enemies-----------------
 	
-	entityFactory->CreateEntity(800, 450, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(900, 450, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(1200, 300, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(1300, 300, 40, 45, EntityType::PLANT);
+	actors.push_back(entityFactory->CreateActor(1000, 50, 800, 450, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 900, 450, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 1200, 300, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 1300, 300, 40, 45, EntityType::PLANT));
 
 	// enemies on top------------------------------------------------
-	entityFactory->CreateEntity(2050, 300, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(2150, 300, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(2250, 300, 40, 45, EntityType::PLANT);
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2050, 300, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2150, 300, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2250, 300, 40, 45, EntityType::PLANT));
 
 	// enemies on below------------------------------------------------
-	entityFactory->CreateEntity(2050, 600, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(2150, 600, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(2250, 400, 40, 45, EntityType::PLANT);
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2050, 600, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2150, 600, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2250, 400, 40, 45, EntityType::PLANT));
 
-	entityFactory->CreateEntity(2900, 300, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(3000, 300, 40, 45, EntityType::PLANT);
+	actors.push_back(entityFactory->CreateActor(1000, 50, 2900, 300, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 3000, 300, 40, 45, EntityType::PLANT));
 
-	entityFactory->CreateEntity(3500, 300, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(3600, 300, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(3700, 0, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(3800, 0, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(3900, 0, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(4000, 0, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(4100, 0, 40, 45, EntityType::PLANT);
-	entityFactory->CreateEntity(4200, 0, 40, 45, EntityType::PLANT);
+	actors.push_back(entityFactory->CreateActor(1000, 50, 3500, 300, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 3600, 300, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 3700, 0, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 3800, 0, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 3900, 0, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 4000, 0, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 4100, 0, 40, 45, EntityType::PLANT));
+	actors.push_back(entityFactory->CreateActor(1000, 50, 4200, 0, 40, 45, EntityType::PLANT));
 }
 
 TestLevel::~TestLevel()
 {
-	delete tileLoader;
+
 }
 
 Level* TestLevel::CreateLevel()

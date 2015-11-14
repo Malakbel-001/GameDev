@@ -1,8 +1,9 @@
 #include "BehaviourFactory.h"
 #include "Camera.h"
-
-
+#include "CollidableBehaviour.h"
 #include "Player.h"
+#include "PlayerCollidableBehaviour.h"
+
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
 	renderer = sdl_renderer;
@@ -16,6 +17,11 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 			{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, screenWidth, screenHeight) },
 			{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, screenWidth, screenHeight) },
 			{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, screenWidth, screenHeight) }
+	};
+	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
+			{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
+			{ EntityType::PLANT, new CollidableBehaviour() },
+		
 	};
 }
 
@@ -34,6 +40,12 @@ DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
 {
 	DrawableBehaviour* behaviour = registery.at(type)->EmptyClone();
 	behaviour->SetCamera(camera);
+	return behaviour;
+}
+
+CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type)
+{
+	CollidableBehaviour* behaviour = collideRegistery.at(type)->EmptyClone();
 	return behaviour;
 }
 

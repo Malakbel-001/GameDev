@@ -88,14 +88,8 @@
     <ClCompile Include="SpritesLoader.cpp">
       <Filter>Source Files\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="LTexture.cpp">
       <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files\Model\Entity</Filter>
@@ -109,17 +103,29 @@
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyDrawableBehaviour.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ContactListener.cpp">
+      <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
     <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,14 +225,8 @@
     <ClInclude Include="SpritesLoader.h">
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="LTexture.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="GameStateType.h">
       <Filter>Header Files\Model\GameState</Filter>
@@ -249,17 +249,29 @@
     <ClInclude Include="InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GroundObstacleDrawableBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ContactListener.h">
+      <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundObstacleDrawableBehavior.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundDrawableBehaviour.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
     <ClInclude Include="EnemyDrawableBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDrawableBehaviour.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
     <ClInclude Include="BarObstacleDrawableBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

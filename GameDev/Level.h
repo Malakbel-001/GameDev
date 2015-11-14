@@ -1,18 +1,21 @@
+#pragma message("level ")
 #pragma once
+#include "Entity.h"
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
-#include "TileLoader.h"
 #include "DrawableContainer.h"
 #include "MoveableContainer.h"
 #include "EntityFactory.h"
+#include "ContactListener.h"
+
 
 class PlayState;
 class Level
 {
 private:
 	MoveableContainer* moveableContainer;
-	Player* player;
+	
 
 
 	float startXpos;
@@ -25,10 +28,11 @@ protected:
 	DrawableContainer* drawableContainer;
 	b2World* world;
 	SDL_Texture* tileSheet;
-	std::vector<SDL_Rect> tileCrops;
-	PlayState* playState;
-	TileLoader* tileLoader;
 
+	PlayState* playState;
+	
+	std::vector<Actor*> actors;
+	Player* player;
 public:
 	Player* GetPlayer();
 

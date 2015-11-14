@@ -14,6 +14,7 @@ class Player :
 		Player();
 		virtual ~Player();
 		void setBody(b2Body* _body);
-		virtual Entity* EmptyClone();
+		virtual Actor* EmptyClone();
 		b2Body* GetBody();
+
 };

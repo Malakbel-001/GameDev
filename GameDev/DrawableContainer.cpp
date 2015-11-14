@@ -1,5 +1,5 @@
 #include "DrawableContainer.h"
-
+#include "Entity.h"
 
 DrawableContainer::DrawableContainer()
 {
@@ -20,4 +20,20 @@ void DrawableContainer::Draw()
 	{
 		behaviour->Draw();
 	}
+}
+void DrawableContainer::Delete(Entity* ent){
+	bool found = false;
+	size_t i = 0;
+	for (;i < behaviours.size() && !found; i++)
+	{
+		if (behaviours[i]->GetEntity() == ent){
+
+			found = true;
+		}
+		
+	}
+	i = i - 1;
+	delete behaviours[i];
+	behaviours.erase(behaviours.begin() + i);
+
 }

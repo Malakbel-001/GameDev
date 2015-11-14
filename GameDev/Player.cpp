@@ -4,7 +4,7 @@ Player::Player() { }
 
 Player::~Player() { }
 
-Entity* Player::EmptyClone()
+Actor* Player::EmptyClone()
 {
 	return new Player();
 }
@@ -17,3 +17,4 @@ b2Body* Player::GetBody()
 {
 	return body;
 }
+

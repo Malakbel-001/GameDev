@@ -6,13 +6,14 @@
 EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), bf(_bf), drawContainer(_drawContainer)
 {
 
-
+	actorRegistery = std::unordered_map<EntityType, Actor*>{
+			{ EntityType::ACTOR, new Actor() },
+			{ EntityType::NPC, new Npc() },
+			{ EntityType::PLAYER, new Player() },
+			{ EntityType::PLANT, new Npc() },
+	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
-		{ EntityType::ENTITY, new Entity() },
-		{ EntityType::ACTOR, new Actor() },
-		{ EntityType::NPC, new Npc() },
-		{ EntityType::PLAYER, new Player() },
-		{ EntityType::PLANT, new Npc() },
+		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
 		{ EntityType::GROUND2, new Ground() },
 		{ EntityType::BAR, new Ground() }
@@ -62,8 +63,18 @@ EntityFactory::~EntityFactory()
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type)
 {
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
+	b2Body* body = CreateBody(x, y, height, width, type);
+	
+	ent->Init(body, width, height, type, bf, drawContainer);
 
-	ent->Init(CreateBody(x, y, height, width, type), width, height, type, bf, drawContainer);
+
+	return ent;
+}
+Actor* EntityFactory::CreateActor(int _hitdmg,int _healt, float x, float y, float height, float width, EntityType type){
+	Actor* ent = actorRegistery.at(type)->EmptyClone();
+	b2Body* body = CreateBody(x, y, height, width, type);	
+	ent->InitActor(body, _hitdmg, _healt, width, height, type, bf, drawContainer);
+
 
 	return ent;
 }
@@ -96,6 +107,7 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, E
 	b2Body* b2body = world.CreateBody(&bodydef);
 	b2body->CreateFixture(&boxFixtureDef);
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
+	
 	return b2body;
 
 }
