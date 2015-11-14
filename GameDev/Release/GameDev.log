@@ -1,11 +1,68 @@
-﻿Build started 29-9-2015 20:42:49.
-     1>Project "C:\Users\Jeroen\school\minor SA\GameDev\GameDev\GameDev.vcxproj" on node 2 (Build target(s)).
+﻿Build started 7-11-2015 01:18:27.
+     1>Project "C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\GameDev.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'c:\users\jeroen\documents\github\project1\gamedev\gamedev\release\gamedev.res' because it is being used by another process.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2-2.0.3\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_image-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Actor.cpp BarObstacleDrawableBehaviour.cpp Behaviour.cpp BehaviourFactory.cpp Camera.cpp CollidableBehaviour.cpp CollidableContainer.cpp Container.cpp DrawableBehaviour.cpp DrawableContainer.cpp EnemyDrawableBehaviour.cpp Entity.cpp EntityFactory.cpp Game.cpp GameStateManager.cpp Ground.cpp GroundDrawableBehaviour.cpp GroundObstacleDrawableBehavior.cpp IGameState.cpp InputManager.cpp Level.cpp LevelFactory.cpp LTexture.cpp PlayerDrawableBehaviour.cpp SoundBank.cpp SoundChunk.cpp SpritesLoader.cpp TileLoader.cpp main.cpp MainMenu.cpp MenuState.cpp MoveableBehaviour.cpp MoveableContainer.cpp Npc.cpp PauseState.cpp Player.cpp PlayState.cpp SDLInitializer.cpp TestLevel.cpp Tile.cpp
+         Actor.cpp
+         BarObstacleDrawableBehaviour.cpp
+     1>BarObstacleDrawableBehaviour.cpp(20): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>BarObstacleDrawableBehaviour.cpp(22): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         Behaviour.cpp
+         BehaviourFactory.cpp
+         Camera.cpp
+         CollidableBehaviour.cpp
+         CollidableContainer.cpp
+         Container.cpp
+         DrawableBehaviour.cpp
+         DrawableContainer.cpp
+         EnemyDrawableBehaviour.cpp
+     1>EnemyDrawableBehaviour.cpp(18): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>EnemyDrawableBehaviour.cpp(22): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         Entity.cpp
+         EntityFactory.cpp
+         Game.cpp
+     1>Game.cpp(63): warning C4244: 'initializing' : conversion from 'Uint32' to 'float', possible loss of data
+     1>Game.cpp(79): warning C4244: 'argument' : conversion from 'float' to 'Uint32', possible loss of data
+         GameStateManager.cpp
+         Ground.cpp
+         GroundDrawableBehaviour.cpp
+     1>GroundDrawableBehaviour.cpp(20): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>GroundDrawableBehaviour.cpp(26): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         GroundObstacleDrawableBehavior.cpp
+     1>GroundObstacleDrawableBehavior.cpp(17): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>GroundObstacleDrawableBehavior.cpp(19): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         IGameState.cpp
+         InputManager.cpp
+         Compiling...
+         Level.cpp
+         LevelFactory.cpp
+         LTexture.cpp
+         PlayerDrawableBehaviour.cpp
+     1>PlayerDrawableBehaviour.cpp(20): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>PlayerDrawableBehaviour.cpp(28): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         SoundBank.cpp
+         SoundChunk.cpp
+         SpritesLoader.cpp
+         TileLoader.cpp
          main.cpp
-     1>main.cpp(2): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
-     1>Done Building Project "C:\Users\Jeroen\school\minor SA\GameDev\GameDev\GameDev.vcxproj" (Build target(s)) -- FAILED.
+         MainMenu.cpp
+         MenuState.cpp
+         MoveableBehaviour.cpp
+         MoveableContainer.cpp
+         Npc.cpp
+         PauseState.cpp
+         Player.cpp
+         PlayState.cpp
+     1>PlayState.cpp(78): warning C4804: '>' : unsafe use of type 'bool' in operation
+         SDLInitializer.cpp
+         TestLevel.cpp
+         Tile.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\GameDev.res" GameDev.rc 
+     1>RC : fatal error RC1109: error creating Release\GameDev.res
+         
+     1>Done Building Project "C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\GameDev.vcxproj" (Rebuild target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.39
+Time Elapsed 00:00:23.70
