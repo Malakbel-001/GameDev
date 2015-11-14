@@ -11,12 +11,14 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 			{ EntityType::NPC, new Npc() },
 			{ EntityType::PLAYER, new Player() },
 			{ EntityType::PLANT, new Npc() },
+			{ EntityType::BULLET, new Bullet() },
 	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
 		{ EntityType::GROUND2, new Ground() },
-		{ EntityType::BAR, new Ground() }
+		{ EntityType::BAR, new Ground() },
+		
 	};
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
@@ -39,6 +41,17 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 	PlantDef.angularDamping = 1;
 	PlantDef.type = b2BodyType::b2_dynamicBody;
 
+
+	b2BodyDef Bullet = b2BodyDef();
+	Bullet.gravityScale = 0;
+	Bullet.fixedRotation = true;
+	Bullet.linearDamping = 0;
+	Bullet.angularDamping = 0;
+	Bullet.type = b2BodyType::b2_dynamicBody;
+	Bullet.bullet = true;
+	
+
+
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
 		{ EntityType::ENTITY, entDef },
 		{ EntityType::ACTOR, ActorDef },
@@ -47,7 +60,8 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 		{ EntityType::PLANT, PlantDef },
 		{ EntityType::GROUND, entDef },
 		{ EntityType::GROUND2, entDef },
-		{ EntityType::BAR, entDef }
+		{ EntityType::BAR, entDef },
+		{EntityType::BULLET,Bullet}
 	};
 
 }

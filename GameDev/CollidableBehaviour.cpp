@@ -16,6 +16,7 @@ CollidableBehaviour* CollidableBehaviour::EmptyClone()
 	return new CollidableBehaviour();
 }
 void CollidableBehaviour::Hit(int dmg){
+
 	printf("Hit");
 
 

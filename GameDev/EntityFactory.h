@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include "BehaviourFactory.h"
 #include "Ground.h"
+#include "Bullet.h"
 
 
 class EntityFactory

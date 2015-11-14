@@ -127,6 +127,9 @@
     <ClCompile Include="PlayerCollidableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="PlayerCollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

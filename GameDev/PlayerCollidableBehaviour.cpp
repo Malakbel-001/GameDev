@@ -12,7 +12,7 @@ PlayerCollidableBehaviour::~PlayerCollidableBehaviour()
 void PlayerCollidableBehaviour::Hit(int dmg){
 	ent->SetHealt(ent->GetHealt() - dmg);
 	//TODO different sound
-	SoundBank::GetInstance()->Play(SoundEffectType::CORRECT,60);
+	SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 60);
 
 }
 CollidableBehaviour* PlayerCollidableBehaviour::EmptyClone(){
