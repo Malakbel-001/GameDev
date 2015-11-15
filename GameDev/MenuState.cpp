@@ -1,10 +1,5 @@
 #include "MenuState.h"
 
-const int renderItems = 18;
-SDL_Rect pos[renderItems];
-
-SDL_Color textColor = { 255, 255, 255, 255 }; // white
-
 void MenuState::Init(GameStateManager *gsm){
 	this->gsm = gsm;
 	if (!InitEverything()){
@@ -18,6 +13,8 @@ void MenuState::Init(GameStateManager *gsm){
 
 MenuState::MenuState()
 {
+	textColor = { 255, 255, 255, 255 }; // white	
+	pos.resize(renderItems);
 }
 
 void MenuState::loadMainMenu(){

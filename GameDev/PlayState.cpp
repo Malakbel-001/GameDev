@@ -31,6 +31,7 @@ void PlayState::GameOver(){
 	SoundBank::GetInstance()->StopMusic();
 	gsm->ChangeGameState();
 }
+
 void PlayState::LoadGame()
 {
 	
@@ -43,7 +44,7 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	std::cout << "Pause not implemented yet";
+	gsm->CreateGameState(GameStateType::PauseState);
 }
 
 void PlayState::Resume()
@@ -62,7 +63,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
 
 		bool jump = false;
-		bool quit = false;
+		bool pause = false;
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
@@ -97,7 +98,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					x = 5;
 					break;
 				case SDLK_ESCAPE:
-					quit = true;
+					pause = true;
 					
 					break;
 
@@ -113,8 +114,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 		}
-		if (quit){
-			GameOver();
+		if (pause){
+			Pause();
 		}
 		
 	}

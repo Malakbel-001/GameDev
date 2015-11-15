@@ -2,6 +2,7 @@
 #include "IGameState.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include "PauseState.h"
 #include <iostream>
 
 
@@ -22,7 +23,7 @@ void GameStateManager::CreateGameState(GameStateType state)
 
 		break;
 	case GameStateType::PauseState:
-		//state = new PauseState();
+		gamestate = new PauseState();
 		break;
 	case GameStateType::MenuState:
 		gamestate = new MenuState();

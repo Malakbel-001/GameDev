@@ -115,4 +115,9 @@ public:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
+	
+private:
+	SDL_Color textColor;
+	const int renderItems = 18;
+	vector<SDL_Rect> pos;
 };
