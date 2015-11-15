@@ -1,4 +1,3 @@
-
 #include "PlayState.h"
 
 
@@ -27,9 +26,10 @@ void PlayState::Init(GameStateManager* gsm)
 
 	std::cout << "PlayState \n";
 }
+
 void PlayState::GameOver(){
 	SoundBank::GetInstance()->StopMusic();
-	gsm->ChangeGameState();
+	gsm->CreateGameState(GameStateType::GameOverState);
 }
 
 void PlayState::LoadGame()
@@ -101,19 +101,16 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					pause = true;
 					
 					break;
-
 				}
 			}
-		}
-		
+		}		
 		
 		if (!jump){
 			vel.Set(x, y);
 			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
-
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 		}
+
 		if (pause){
 			Pause();
 		}
