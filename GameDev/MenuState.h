@@ -9,9 +9,29 @@
 class MenuState :
 	public IGameState
 {
+private:
+	int hoverX;
+	int hoverY;
+	int selectedCounter;
 public:
 	MenuState();
 	GameStateManager* gsm;
+
+	void MakePlayText(SDL_Color);
+	void MakeHelpText(SDL_Color);
+	void MakeQuitText(SDL_Color);
+	void MakeCreditText(SDL_Color);
+	void MakeBackToMainText(SDL_Color);
+	void MakeCredits(SDL_Color);
+	void MakeHelp(SDL_Color);
+
+	void MakeMainTitle(SDL_Color);
+	void MakeHelpTitle(SDL_Color);
+	void MakeCreditsTitle(SDL_Color);
+
+	void Highlight(int);
+
+
 
 	// Setup
 	bool InitEverything();

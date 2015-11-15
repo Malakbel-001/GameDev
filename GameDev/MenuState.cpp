@@ -4,6 +4,7 @@ const int renderItems = 10;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
+SDL_Color hoverTextColor = { 255, 0, 0, 255 }; // red
 
 void MenuState::Init(GameStateManager *gsm){
 	this->gsm = gsm;
@@ -70,8 +71,119 @@ bool MenuState::SetupTTF(const std::string &fontName, const std::string &fontNam
 
 	return true;
 }
-void MenuState::CreateTextTextures()
-{
+
+void MenuState::MakePlayText(SDL_Color color){
+	SDL_Surface* play = TTF_RenderText_Blended(textFont, "Play", color);
+	playTexture = SurfaceToTexture(play);
+
+	SDL_QueryTexture(playTexture, NULL, NULL, &solidRect.w, &solidRect.h);
+	solidRect.x = 15;
+	solidRect.y = 225;
+	pos[0] = solidRect;
+}
+
+	void MenuState::MakeHelpText(SDL_Color color){
+		SDL_Surface* help = TTF_RenderText_Blended(textFont, "Help", color);
+		helpTexture = SurfaceToTexture(help);
+
+		SDL_QueryTexture(helpTexture, NULL, NULL, &blendedRect.w, &blendedRect.h);
+		blendedRect.x = 15;
+		blendedRect.y = solidRect.y + solidRect.h + 20;
+		pos[1] = blendedRect;
+	}
+
+void MenuState::MakeQuitText(SDL_Color color){
+	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Quit", color);
+	quitTexture = SurfaceToTexture(quit);
+
+	SDL_QueryTexture(quitTexture, NULL, NULL, &shadedRect.w, &shadedRect.h);
+	shadedRect.x = 15;
+	shadedRect.y = creditRect.y + creditRect.h + 20;
+	pos[2] = shadedRect;
+}
+
+void MenuState::MakeCreditText(SDL_Color color){
+	SDL_Surface* credit = TTF_RenderText_Blended(textFont, "Credits", color);
+	creditTexture = SurfaceToTexture(credit);
+
+	SDL_QueryTexture(creditTexture, NULL, NULL, &creditRect.w, &creditRect.h);
+	creditRect.x = 15;
+	creditRect.y = blendedRect.y + blendedRect.h + 20;;
+	pos[3] = creditRect;
+}
+
+void MenuState::MakeBackToMainText(SDL_Color color){
+	SDL_Surface* backToMain = TTF_RenderText_Blended(textFont, "Back", color);
+	backToMainTexture = SurfaceToTexture(backToMain);
+
+	SDL_QueryTexture(backToMainTexture, NULL, NULL, &backToMainRect.w, &backToMainRect.h);
+	backToMainRect.x = 5;
+	backToMainRect.y = 5;
+	pos[6] = backToMainRect;
+}
+
+void MenuState::MakeCredits(SDL_Color color){
+	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\n-Thomas de Brouwer\n-Jeroen Guelen\n-Mark-Jan de Jong\n-Roel van Atteveld\n-Daniel Eijkelenboom", color, 1000);
+	creditTextTexture = SurfaceToTexture(creditText);
+
+	SDL_QueryTexture(creditTextTexture, NULL, NULL, &creditTextRect.w, &creditTextRect.h);
+	creditTextRect.x = 15;
+	creditTextRect.y = 225;
+	pos[7] = creditTextRect;
+}
+void MenuState::MakeHelp(SDL_Color color){
+	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Springen/Klimmen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\nNog een tip, probeer vooral op het gras te blijven, anders is de kans op overleven erg klein.", color, 1000);
+	helpTextTexture = SurfaceToTexture(helpText);
+
+	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
+	helpTextRect.x = 15;
+	helpTextRect.y = 225;
+	pos[5] = helpTextRect;
+}
+
+void MenuState::MakeMainTitle(SDL_Color color){
+	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Jark Hunt", color);
+	mainTitleTexture = SurfaceToTexture(mainTitle);
+
+	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
+	mainTitleRect.x = 540 - (mainTitleRect.w / 2);
+	mainTitleRect.y = 5;
+	pos[9] = mainTitleRect;
+}
+void MenuState::MakeHelpTitle(SDL_Color color){
+	SDL_Surface* helpTitle = TTF_RenderText_Blended(titleFont, "Help", color);
+	helpTitleTexture = SurfaceToTexture(helpTitle);
+
+	SDL_QueryTexture(helpTitleTexture, NULL, NULL, &helpTitleRect.w, &helpTitleRect.h);
+	helpTitleRect.x = 540 - (helpTitleRect.w / 2);
+	helpTitleRect.y = 5;
+	pos[4] = helpTitleRect;
+}
+void MenuState::MakeCreditsTitle(SDL_Color color){
+	SDL_Surface* creditTitle = TTF_RenderText_Blended(titleFont, "Credits", color);
+	creditTitleTexture = SurfaceToTexture(creditTitle);
+
+	SDL_QueryTexture(creditTitleTexture, NULL, NULL, &creditTitleRect.w, &creditTitleRect.h);
+	creditTitleRect.x = 540 - (creditTitleRect.w / 2);
+	creditTitleRect.y = 5;
+	pos[8] = creditTitleRect;
+}
+
+
+void MenuState::CreateTextTextures(){
+	MakePlayText(textColor);
+	MakeHelpText(textColor);
+	MakeCreditText(textColor);
+	MakeQuitText(textColor);
+	MakeMainTitle(textColor);
+	MakeBackToMainText(textColor);
+	MakeHelp(textColor);
+	MakeHelpTitle(textColor);
+	MakeBackToMainText(textColor);
+	MakeCredits(textColor);
+	MakeCreditsTitle(textColor);
+}
+/*{
 #pragma region play
 	SDL_Surface* play = TTF_RenderText_Blended(textFont, "Play", textColor);
 	playTexture = SurfaceToTexture(play);
@@ -109,13 +221,13 @@ void MenuState::CreateTextTextures()
 	pos[2] = shadedRect;
 #pragma endregion quit
 #pragma region maintitle
-	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Jark Hunt", textColor);
-	mainTitleTexture = SurfaceToTexture(mainTitle);
+		SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Jark Hunt", textColor);
+		mainTitleTexture = SurfaceToTexture(mainTitle);
 
-	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
-	mainTitleRect.x = 540 - (mainTitleRect.w / 2);
-	mainTitleRect.y = 5;
-	pos[3] = mainTitleRect;
+		SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
+		mainTitleRect.x = 540 - (mainTitleRect.w / 2);
+		mainTitleRect.y = 5;
+		pos[3] = mainTitleRect;
 #pragma endregion maintitle
 #pragma region helptitle
 	SDL_Surface* helpTitle = TTF_RenderText_Blended(titleFont, "Help", textColor);
@@ -164,7 +276,7 @@ void MenuState::CreateTextTextures()
 #pragma endregion creditTitle
 
 
-}
+}*/
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
 SDL_Texture* MenuState::SurfaceToTexture(SDL_Surface* surf)
 {
@@ -249,6 +361,45 @@ void MenuState::Resume(){
 
 }
 
+void MenuState::Highlight(int item){
+	switch (item){
+	case -1:
+	{
+		MakePlayText(textColor);
+		MakeHelpText(textColor);
+		MakeQuitText(textColor);
+		MakeBackToMainText(textColor);
+		MakeCreditText(textColor);
+		break;
+	}
+	case 0:
+	{
+		MakePlayText(hoverTextColor);
+		break;
+	}
+	case 1:
+	{
+		MakeHelpText(hoverTextColor);
+		break;
+	}
+	case 2:
+	{
+		MakeQuitText(hoverTextColor);
+		break;
+	}
+	case 6:
+	{
+		MakeBackToMainText(hoverTextColor);
+		break;
+	}
+	case 3:
+	{
+		MakeCreditText(hoverTextColor);
+		break;
+	}
+	}
+}
+
 void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
@@ -256,6 +407,22 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 	case SDL_QUIT:
 		quit = true;
 		break;
+	case SDL_MOUSEMOTION:
+	{hoverX = mainEvent.motion.x;
+	hoverY = mainEvent.motion.y;
+	for (int ii = 0; ii < renderItems; ii++)
+	{
+		if (hoverX >= pos[ii].x && hoverX <= pos[ii].x + pos[ii].w && hoverY >= pos[ii].y && hoverY <= pos[ii].y + pos[ii].h){
+			Highlight(ii);
+			break;
+		}
+		else {
+			Highlight(-1);
+
+		}
+	}
+	break;
+	}
 	case SDL_MOUSEBUTTONDOWN:
 		int x = mainEvent.button.x;
 		int y = mainEvent.button.y;
@@ -269,7 +436,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
 						SoundBank::GetInstance()->StopMusic();
 						gsm->CreateGameState(GameStateType::PlayState);
-						
+
 						quit = true;
 					}
 					break;
@@ -295,7 +462,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					}
 					break;
 					//item 9, mainmenu credit
-				case 9:
+				case 3:
 					if (menuState == mainMenu){
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
 						menuState = creditMenu;
