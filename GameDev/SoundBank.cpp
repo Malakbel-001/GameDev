@@ -28,34 +28,38 @@ SoundBank* SoundBank::GetInstance() {
 }
 
 //SoundEffect, volume = between [0 - 128], 64 = neutral
-void SoundBank::Play(SoundEffectType type, int volume) {
-	//Get the appropriate SoundChunk depending on the SoundEffectType
-	Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
-	SoundChunk* soundChunk = new SoundChunk(tempSound);
+void SoundBank::Play(SoundEffectType type) {
+	if (sfxEnabled) {
+		//Get the appropriate SoundChunk depending on the SoundEffectType
+		Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
+		SoundChunk* soundChunk = new SoundChunk(tempSound);
 
-	//Change Volume depending on the given volume in the parameters
-	Mix_VolumeChunk(tempSound, volume); //volume = between [0 - 128], 64 = neutral
+		//Change Volume depending on the given volume in the parameters
+		Mix_VolumeChunk(tempSound, musicVolume); //volume = between [0 - 128], 64 = neutral
 
-	//soundChunk->Play();
-	//and let SoundChunk remember its channel (which doesn't work correctly yet)
-	soundChunk->Play();
+		//soundChunk->Play();
+		//and let SoundChunk remember its channel (which doesn't work correctly yet)
+		soundChunk->Play();
 
-	//put SoundChunk into the playingChunks list
-	std::pair<SoundEffectType, SoundChunk*> typeChunk(type, soundChunk);
-	playingChunks.insert(typeChunk);
+		//put SoundChunk into the playingChunks list
+		std::pair<SoundEffectType, SoundChunk*> typeChunk(type, soundChunk);
+		playingChunks.insert(typeChunk);
+	}
 }
 
 //BackGroundMusic, volume = between [0 - 128], 64 = neutral
-void SoundBank::PlayBGM(SoundBgmType type, int volume) {
-	Mix_Music* tempMusic = Mix_LoadMUS(bgmPathList.at(type));
-	if (!Mix_PlayingMusic()) { //there is no music playing yet
-		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
-		Mix_VolumeMusic(volume);
-	}
-	else if(!Mix_PausedMusic()) { //there is already music playing
-		Mix_FadeOutMusic(1000);
-		Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
-		Mix_VolumeMusic(volume);
+void SoundBank::PlayBGM(SoundBgmType type) {
+	if (musicEnabled) {
+		Mix_Music* tempMusic = Mix_LoadMUS(bgmPathList.at(type));
+		if (!Mix_PlayingMusic()) { //there is no music playing yet
+			Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
+			Mix_VolumeMusic(sfxVolume);
+		}
+		else if(!Mix_PausedMusic()) { //there is already music playing
+			Mix_FadeOutMusic(1000);
+			Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
+			Mix_VolumeMusic(sfxVolume);
+		}
 	}
 }
 
@@ -81,4 +85,32 @@ void SoundBank::FreeMemory() {
 
 	//Mix_FreeChunk TODO needed or not??
 	//Mix_FreeMusic TODO needed or not??
+}
+
+void SoundBank::DisableOrEnableMusic(SoundBgmType type) {
+	if (musicEnabled) {
+		musicEnabled = false;
+		StopMusic();
+	}
+	else {
+		musicEnabled = true;
+		PlayBGM(type);
+	}
+}
+
+void SoundBank::DisableOrEnableSFX() {
+	if (sfxEnabled) {
+		sfxEnabled = false;
+	}
+	else {
+		sfxEnabled = true;
+	}
+}
+
+bool SoundBank::IsEnabledMusic() {
+	return musicEnabled;
+}
+
+bool SoundBank::IsEnabledSFX() {
+	return sfxEnabled;
 }
