@@ -44,18 +44,27 @@ void MenuState::LoadCreditMenu(){
 
 void MenuState::LoadOptionsMenu() {
 	SDL_RenderCopy(renderer, optionsTitleTexture, nullptr, &optionsTitleRect);
-	if (SoundBank::GetInstance()->IsEnabledMusic()) {
+	if (SoundBank::GetInstance()->IsEnabledMusic()) { //BGM
 		SDL_RenderCopy(renderer, musicOnTexture, nullptr, &musicOnRect);
 	}
-	else {
+	else { //BGM
 		SDL_RenderCopy(renderer, musicOffTexture, nullptr, &musicOffRect);
 	}
-	if (SoundBank::GetInstance()->IsEnabledSFX()) {
+	if (SoundBank::GetInstance()->IsEnabledSFX()) { //SFX
 		SDL_RenderCopy(renderer, sfxOnTexture, nullptr, &sfxOnRect);
 	}
-	else {
+	else { //SFX
 		SDL_RenderCopy(renderer, sfxOffTexture, nullptr, &sfxOffRect);
 	}
+	SDL_Window* window = SDL_GetWindowFromID(1); //works as long as we have only 1 window
+	Uint32 flags = SDL_GetWindowFlags(window); //sdl window flags including fullscreen desktop flag
+	if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP) {
+		SDL_RenderCopy(renderer, fullScreenOnTexture, nullptr, &fullScreenOnRect);
+	}
+	else {
+		SDL_RenderCopy(renderer, fullScreenOffTexture, nullptr, &fullScreenOffRect);
+	}
+
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
@@ -233,22 +242,22 @@ void MenuState::MakeMusicOff(SDL_Color color){
 	pos[11] = musicOffRect;
 }
 void MenuState::MakeFullScreenOn(SDL_Color color){
-/*		SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen - On", color);
-		fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
+	SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen-On", color);
+	fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
 	
-		SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
-		fullScreenOnRect.x = 15;
-		fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
-		pos[12] = fullScreenOnRect;*/
+	SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
+	fullScreenOnRect.x = 15;
+	fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
+	pos[12] = fullScreenOnRect;
 }
 void MenuState::MakeFullScreenOff(SDL_Color color){
-/*		SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen - Off", color);
-		fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
+	SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen-Off", color);
+	fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
 	
-		SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
-		fullScreenOffRect.x = 15;
-		fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
-		pos[13] = fullScreenOffRect;*/
+	SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
+	fullScreenOffRect.x = 15;
+	fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
+	pos[13] = fullScreenOffRect;
 }
 void MenuState::MakeOptionTitle(SDL_Color color){
 	SDL_Surface* optionsTitle = TTF_RenderText_Blended(titleFont, "Options", color);
@@ -278,8 +287,8 @@ void MenuState::CreateTextTextures(){
 	MakeSfxOff(textColor);
 	MakeMusicOn(textColor);
 	MakeMusicOff(textColor);
-	//MakeFullScreenOn(textColor);
-	//MakeFullScreenOff(textColor);
+	MakeFullScreenOn(textColor);
+	MakeFullScreenOff(textColor);
 	MakeOptionTitle(textColor);
 
 }
@@ -428,24 +437,24 @@ void MenuState::CreateTextTextures(){
 	musicOffRect.y = sfxOnRect.y + sfxOnRect.h + 20;
 	pos[14] = musicOffRect;
 #pragma endregion musicOff
-//#pragma region fullscreenOn
-//	SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen - On", textColor);
-//	fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
-//
-//	SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
-//	fullScreenOnRect.x = 15;
-//	fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
-//	pos[16] = fullScreenOnRect;
-//#pragma endregion fullscreenOn
-//#pragma region fullscreenOff
-//	SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen - Off", textColor);
-//	fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
-//
-//	SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
-//	fullScreenOffRect.x = 15;
-//	fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
-//	pos[16] = fullScreenOffRect;
-//#pragma endregion fullscreenOff
+#pragma region fullscreenOn
+	SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen - On", textColor);
+	fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
+
+	SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
+	fullScreenOnRect.x = 15;
+	fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
+	pos[16] = fullScreenOnRect;
+#pragma endregion fullscreenOn
+#pragma region fullscreenOff
+	SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen - Off", textColor);
+	fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
+
+	SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
+	fullScreenOffRect.x = 15;
+	fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
+	pos[17] = fullScreenOffRect;
+#pragma endregion fullscreenOff
 
 
 }*/
@@ -547,8 +556,8 @@ void MenuState::Highlight(int item){
 		MakeSfxOff(textColor);
 		MakeMusicOn(textColor);
 		MakeMusicOff(textColor);
-		//MakeFullScreenOn(textColor);
-		//MakeFullScreenOff(textColor);
+		MakeFullScreenOn(textColor);
+		MakeFullScreenOff(textColor);
 		break;
 	}
 	case 0:
@@ -605,7 +614,7 @@ void MenuState::Highlight(int item){
 		MakeMusicOn(hoverTextColor);
 		break;
 	}
-	/*case 12:
+	case 12:
 	{
 		MakeFullScreenOn(hoverTextColor);
 		MakeFullScreenOff(hoverTextColor);
@@ -616,7 +625,7 @@ void MenuState::Highlight(int item){
 		MakeFullScreenOff(hoverTextColor);
 		MakeFullScreenOn(hoverTextColor);		
 		break;
-	}*/
+	}
 	}
 }
 
@@ -700,7 +709,6 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					if (menuState == optionsMenu) {
 						SoundBank::GetInstance()->DisableOrEnableSFX();
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
-						menuState = optionsMenu;
 					}
 					break;
 					//item 12 & 14, music on
@@ -708,9 +716,21 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					if (menuState == optionsMenu) {
 						SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
-						menuState = optionsMenu;
 					}
 					break;
+					//items 16 & 17, full screen
+				case 12:
+					if (menuState == optionsMenu) {
+						SDL_Window* window = SDL_GetWindowFromID(1); //works as long as we have only 1 window
+						Uint32 flags = SDL_GetWindowFlags(window); //sdl window flags including fullscreen desktop flag
+						if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP) {
+							SDL_SetWindowFullscreen(window, 0); //back to windowed
+						}
+						else {
+							SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+						}
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					}
 				}
 			}
 		}
