@@ -1,6 +1,6 @@
 #include "MenuState.h"
 
-const int renderItems = 10;
+const int renderItems = 20;
 SDL_Rect pos[renderItems];
 
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
@@ -11,7 +11,7 @@ void MenuState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1, 64);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 	menuState = mainMenu;
 	cout << "MenuState \n";
 	Update(0);
@@ -24,6 +24,7 @@ MenuState::MenuState()
 void MenuState::loadMainMenu(){
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
+	SDL_RenderCopy(renderer, optionsTexture, nullptr, &optionsRect); //NEW
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
 	SDL_RenderCopy(renderer, creditTexture, nullptr, &creditRect);
 	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
@@ -38,6 +39,23 @@ void MenuState::loadHelpMenu(){
 void MenuState::LoadCreditMenu(){
 	SDL_RenderCopy(renderer, creditTextTexture, nullptr, &creditTextRect);
 	SDL_RenderCopy(renderer, creditTitleTexture, nullptr, &creditTitleRect);
+	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
+}
+
+void MenuState::LoadOptionsMenu() {
+	SDL_RenderCopy(renderer, optionsTitleTexture, nullptr, &optionsTitleRect);
+	if (SoundBank::GetInstance()->IsEnabledMusic()) {
+		SDL_RenderCopy(renderer, musicOnTexture, nullptr, &musicOnRect);
+	}
+	else {
+		SDL_RenderCopy(renderer, musicOffTexture, nullptr, &musicOffRect);
+	}
+	if (SoundBank::GetInstance()->IsEnabledSFX()) {
+		SDL_RenderCopy(renderer, sfxOnTexture, nullptr, &sfxOnRect);
+	}
+	else {
+		SDL_RenderCopy(renderer, sfxOffTexture, nullptr, &sfxOffRect);
+	}
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
@@ -82,14 +100,14 @@ void MenuState::MakePlayText(SDL_Color color){
 	pos[0] = solidRect;
 }
 
-	void MenuState::MakeHelpText(SDL_Color color){
-		SDL_Surface* help = TTF_RenderText_Blended(textFont, "Help", color);
-		helpTexture = SurfaceToTexture(help);
+void MenuState::MakeHelpText(SDL_Color color){
+	SDL_Surface* help = TTF_RenderText_Blended(textFont, "Help", color);
+	helpTexture = SurfaceToTexture(help);
 
-		SDL_QueryTexture(helpTexture, NULL, NULL, &blendedRect.w, &blendedRect.h);
-		blendedRect.x = 15;
-		blendedRect.y = solidRect.y + solidRect.h + 20;
-		pos[1] = blendedRect;
+	SDL_QueryTexture(helpTexture, NULL, NULL, &blendedRect.w, &blendedRect.h);
+	blendedRect.x = 15;
+	blendedRect.y = solidRect.y + solidRect.h + 20;
+	pos[1] = blendedRect;
 	}
 
 void MenuState::MakeQuitText(SDL_Color color){
@@ -98,7 +116,7 @@ void MenuState::MakeQuitText(SDL_Color color){
 
 	SDL_QueryTexture(quitTexture, NULL, NULL, &shadedRect.w, &shadedRect.h);
 	shadedRect.x = 15;
-	shadedRect.y = creditRect.y + creditRect.h + 20;
+	shadedRect.y = optionsRect.y + optionsRect.h + 20;
 	pos[2] = shadedRect;
 }
 
@@ -129,7 +147,7 @@ void MenuState::MakeCredits(SDL_Color color){
 	SDL_QueryTexture(creditTextTexture, NULL, NULL, &creditTextRect.w, &creditTextRect.h);
 	creditTextRect.x = 15;
 	creditTextRect.y = 225;
-	pos[7] = creditTextRect;
+	pos[14] = creditTextRect;
 }
 void MenuState::MakeHelp(SDL_Color color){
 	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Springen/Klimmen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n\nNog een tip, probeer vooral op het gras te blijven, anders is de kans op overleven erg klein.", color, 1000);
@@ -138,7 +156,7 @@ void MenuState::MakeHelp(SDL_Color color){
 	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
 	helpTextRect.x = 15;
 	helpTextRect.y = 225;
-	pos[5] = helpTextRect;
+	pos[15] = helpTextRect;
 }
 
 void MenuState::MakeMainTitle(SDL_Color color){
@@ -148,7 +166,7 @@ void MenuState::MakeMainTitle(SDL_Color color){
 	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
 	mainTitleRect.x = 540 - (mainTitleRect.w / 2);
 	mainTitleRect.y = 5;
-	pos[9] = mainTitleRect;
+	pos[16] = mainTitleRect;
 }
 void MenuState::MakeHelpTitle(SDL_Color color){
 	SDL_Surface* helpTitle = TTF_RenderText_Blended(titleFont, "Help", color);
@@ -157,7 +175,7 @@ void MenuState::MakeHelpTitle(SDL_Color color){
 	SDL_QueryTexture(helpTitleTexture, NULL, NULL, &helpTitleRect.w, &helpTitleRect.h);
 	helpTitleRect.x = 540 - (helpTitleRect.w / 2);
 	helpTitleRect.y = 5;
-	pos[4] = helpTitleRect;
+	pos[17] = helpTitleRect;
 }
 void MenuState::MakeCreditsTitle(SDL_Color color){
 	SDL_Surface* creditTitle = TTF_RenderText_Blended(titleFont, "Credits", color);
@@ -166,7 +184,80 @@ void MenuState::MakeCreditsTitle(SDL_Color color){
 	SDL_QueryTexture(creditTitleTexture, NULL, NULL, &creditTitleRect.w, &creditTitleRect.h);
 	creditTitleRect.x = 540 - (creditTitleRect.w / 2);
 	creditTitleRect.y = 5;
-	pos[8] = creditTitleRect;
+	pos[18] = creditTitleRect;
+}
+
+void MenuState::MakeOptionText(SDL_Color color){
+	SDL_Surface* options = TTF_RenderText_Blended(textFont, "Options", color);
+	optionsTexture = SurfaceToTexture(options);
+
+	SDL_QueryTexture(optionsTexture, NULL, NULL, &optionsRect.w, &optionsRect.h);
+	optionsRect.x = 15;
+	optionsRect.y = creditRect.y + creditRect.h + 20;
+	pos[7] = optionsRect;
+}
+void MenuState::MakeSfxOn(SDL_Color color){
+	SDL_Surface* sfxOnButton = TTF_RenderText_Blended(textFont, "Sound effects - On", color);
+	sfxOnTexture = SurfaceToTexture(sfxOnButton);
+
+	SDL_QueryTexture(sfxOnTexture, NULL, NULL, &sfxOnRect.w, &sfxOnRect.h);
+	sfxOnRect.x = 15;
+	sfxOnRect.y = 225;
+	pos[8] = sfxOnRect;
+}
+void MenuState::MakeSfxOff(SDL_Color color){
+	SDL_Surface* sfxOffButton = TTF_RenderText_Blended(textFont, "Sound effects - Off", color);
+	sfxOffTexture = SurfaceToTexture(sfxOffButton);
+
+	SDL_QueryTexture(sfxOffTexture, NULL, NULL, &sfxOffRect.w, &sfxOffRect.h);
+	sfxOffRect.x = 15;
+	sfxOffRect.y = 225;
+	pos[9] = sfxOffRect;
+}
+void MenuState::MakeMusicOn(SDL_Color color){
+	SDL_Surface* musicOnButton = TTF_RenderText_Blended(textFont, "Music - On", color);
+	musicOnTexture = SurfaceToTexture(musicOnButton);
+
+	SDL_QueryTexture(musicOnTexture, NULL, NULL, &musicOnRect.w, &musicOnRect.h);
+	musicOnRect.x = 15;
+	musicOnRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[10] = musicOnRect;
+}
+void MenuState::MakeMusicOff(SDL_Color color){
+	SDL_Surface* musicOffButton = TTF_RenderText_Blended(textFont, "Music - Off", color);
+	musicOffTexture = SurfaceToTexture(musicOffButton);
+
+	SDL_QueryTexture(musicOffTexture, NULL, NULL, &musicOffRect.w, &musicOffRect.h);
+	musicOffRect.x = 15;
+	musicOffRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[11] = musicOffRect;
+}
+void MenuState::MakeFullScreenOn(SDL_Color color){
+/*		SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen - On", color);
+		fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
+	
+		SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
+		fullScreenOnRect.x = 15;
+		fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
+		pos[12] = fullScreenOnRect;*/
+}
+void MenuState::MakeFullScreenOff(SDL_Color color){
+/*		SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen - Off", color);
+		fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
+	
+		SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
+		fullScreenOffRect.x = 15;
+		fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
+		pos[13] = fullScreenOffRect;*/
+}
+void MenuState::MakeOptionTitle(SDL_Color color){
+	SDL_Surface* optionsTitle = TTF_RenderText_Blended(titleFont, "Options", color);
+	optionsTitleTexture = SurfaceToTexture(optionsTitle);
+
+	SDL_QueryTexture(optionsTitleTexture, NULL, NULL, &optionsTitleRect.w, &optionsTitleRect.h);
+	optionsTitleRect.x = 540 - (optionsTitleRect.w / 2);
+	optionsTitleRect.y = 5;
+	pos[19] = optionsTitleRect;
 }
 
 
@@ -174,6 +265,7 @@ void MenuState::CreateTextTextures(){
 	MakePlayText(textColor);
 	MakeHelpText(textColor);
 	MakeCreditText(textColor);
+	MakeOptionText(textColor);
 	MakeQuitText(textColor);
 	MakeMainTitle(textColor);
 	MakeBackToMainText(textColor);
@@ -181,7 +273,15 @@ void MenuState::CreateTextTextures(){
 	MakeHelpTitle(textColor);
 	MakeBackToMainText(textColor);
 	MakeCredits(textColor);
-	MakeCreditsTitle(textColor);
+	MakeCreditsTitle(textColor);	
+	MakeSfxOn(textColor);
+	MakeSfxOff(textColor);
+	MakeMusicOn(textColor);
+	MakeMusicOff(textColor);
+	//MakeFullScreenOn(textColor);
+	//MakeFullScreenOff(textColor);
+	MakeOptionTitle(textColor);
+
 }
 /*{
 #pragma region play
@@ -211,13 +311,22 @@ void MenuState::CreateTextTextures(){
 	creditRect.y = blendedRect.y + blendedRect.h + 20;;
 	pos[9] = creditRect;
 #pragma endregion credit
+#pragma region options
+	SDL_Surface* options = TTF_RenderText_Blended(textFont, "Options", textColor);
+	optionsTexture = SurfaceToTexture(options);
+
+	SDL_QueryTexture(optionsTexture, NULL, NULL, &optionsRect.w, &optionsRect.h);
+	optionsRect.x = 15;
+	optionsRect.y = creditRect.y + creditRect.h + 20;
+	pos[10] = optionsRect;
+#pragma endregion options
 #pragma region quit
 	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Quit", textColor);
 	quitTexture = SurfaceToTexture(quit);
 
 	SDL_QueryTexture(quitTexture, NULL, NULL, &shadedRect.w, &shadedRect.h);
 	shadedRect.x = 15;
-	shadedRect.y = creditRect.y + creditRect.h + 20;
+	shadedRect.y = optionsRect.y + optionsRect.h + 20;
 	pos[2] = shadedRect;
 #pragma endregion quit
 #pragma region maintitle
@@ -274,6 +383,69 @@ void MenuState::CreateTextTextures(){
 	creditTitleRect.y = 5;
 	pos[8] = creditTitleRect;
 #pragma endregion creditTitle
+#pragma region optionstitle
+	SDL_Surface* optionsTitle = TTF_RenderText_Blended(titleFont, "Options", textColor);
+	optionsTitleTexture = SurfaceToTexture(optionsTitle);
+
+	SDL_QueryTexture(optionsTitleTexture, NULL, NULL, &optionsTitleRect.w, &optionsTitleRect.h);
+	optionsTitleRect.x = 540 - (optionsTitleRect.w / 2);
+	optionsTitleRect.y = 5;
+	pos[15] = optionsTitleRect;
+#pragma endregion optionstitle
+#pragma region sfxOn
+	SDL_Surface* sfxOnButton = TTF_RenderText_Blended(textFont, "Sound effects - On", textColor);
+	sfxOnTexture = SurfaceToTexture(sfxOnButton);
+
+	SDL_QueryTexture(sfxOnTexture, NULL, NULL, &sfxOnRect.w, &sfxOnRect.h);
+	sfxOnRect.x = 15;
+	sfxOnRect.y = 225;
+	pos[11] = sfxOnRect;
+#pragma endregion sfxOn
+#pragma region musicOn
+	SDL_Surface* musicOnButton = TTF_RenderText_Blended(textFont, "Music - On", textColor);
+	musicOnTexture = SurfaceToTexture(musicOnButton);
+
+	SDL_QueryTexture(musicOnTexture, NULL, NULL, &musicOnRect.w, &musicOnRect.h);
+	musicOnRect.x = 15;
+	musicOnRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[12] = musicOnRect;
+#pragma endregion musicOn
+#pragma region sfxOff
+	SDL_Surface* sfxOffButton = TTF_RenderText_Blended(textFont, "Sound effects - Off", textColor);
+	sfxOffTexture = SurfaceToTexture(sfxOffButton);
+
+	SDL_QueryTexture(sfxOffTexture, NULL, NULL, &sfxOffRect.w, &sfxOffRect.h);
+	sfxOffRect.x = 15;
+	sfxOffRect.y = 225;
+	pos[13] = sfxOffRect;
+#pragma endregion sfxOff
+#pragma region musicOff
+	SDL_Surface* musicOffButton = TTF_RenderText_Blended(textFont, "Music - Off", textColor);
+	musicOffTexture = SurfaceToTexture(musicOffButton);
+
+	SDL_QueryTexture(musicOffTexture, NULL, NULL, &musicOffRect.w, &musicOffRect.h);
+	musicOffRect.x = 15;
+	musicOffRect.y = sfxOnRect.y + sfxOnRect.h + 20;
+	pos[14] = musicOffRect;
+#pragma endregion musicOff
+//#pragma region fullscreenOn
+//	SDL_Surface* fullScreenOnButton = TTF_RenderText_Blended(textFont, "Fullscreen - On", textColor);
+//	fullScreenOnTexture = SurfaceToTexture(fullScreenOnButton);
+//
+//	SDL_QueryTexture(fullScreenOnTexture, NULL, NULL, &fullScreenOnRect.w, &fullScreenOnRect.h);
+//	fullScreenOnRect.x = 15;
+//	fullScreenOnRect.y = musicOnRect.y + musicOnRect.h + 20;
+//	pos[16] = fullScreenOnRect;
+//#pragma endregion fullscreenOn
+//#pragma region fullscreenOff
+//	SDL_Surface* fullScreenOffButton = TTF_RenderText_Blended(textFont, "Fullscreen - Off", textColor);
+//	fullScreenOffTexture = SurfaceToTexture(fullScreenOffButton);
+//
+//	SDL_QueryTexture(fullScreenOffTexture, NULL, NULL, &fullScreenOffRect.w, &fullScreenOffRect.h);
+//	fullScreenOffRect.x = 15;
+//	fullScreenOffRect.y = musicOnRect.y + musicOnRect.h + 20;
+//	pos[16] = fullScreenOffRect;
+//#pragma endregion fullscreenOff
 
 
 }*/
@@ -370,6 +542,13 @@ void MenuState::Highlight(int item){
 		MakeQuitText(textColor);
 		MakeBackToMainText(textColor);
 		MakeCreditText(textColor);
+		MakeOptionText(textColor);
+		MakeSfxOn(textColor);
+		MakeSfxOff(textColor);
+		MakeMusicOn(textColor);
+		MakeMusicOff(textColor);
+		//MakeFullScreenOn(textColor);
+		//MakeFullScreenOff(textColor);
 		break;
 	}
 	case 0:
@@ -397,6 +576,47 @@ void MenuState::Highlight(int item){
 		MakeCreditText(hoverTextColor);
 		break;
 	}
+	case 7:
+	{
+		MakeOptionText(hoverTextColor);
+		break;
+	}
+	case 8:
+	{
+		MakeSfxOn(hoverTextColor);
+		MakeSfxOff(hoverTextColor);
+		break;
+	}
+	case 9:
+	{
+		MakeSfxOff(hoverTextColor);
+		MakeSfxOn(hoverTextColor);
+		break;
+	}
+	case 10:
+	{
+		MakeMusicOn(hoverTextColor);
+		MakeMusicOff(hoverTextColor);
+		break;
+	}
+	case 11:
+	{
+		MakeMusicOff(hoverTextColor);
+		MakeMusicOn(hoverTextColor);
+		break;
+	}
+	/*case 12:
+	{
+		MakeFullScreenOn(hoverTextColor);
+		MakeFullScreenOff(hoverTextColor);
+		break;
+	}
+	case 13:
+	{
+		MakeFullScreenOff(hoverTextColor);
+		MakeFullScreenOn(hoverTextColor);		
+		break;
+	}*/
 	}
 }
 
@@ -433,7 +653,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 1, mainmenu play
 				case 0:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						SoundBank::GetInstance()->StopMusic();
 						gsm->CreateGameState(GameStateType::PlayState);
 
@@ -443,7 +663,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 2, mainmenu help
 				case 1:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = helpMenu;
 					}
 					break;
@@ -457,15 +677,38 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 				case 6:
 					if (menuState != mainMenu)
 					{
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = mainMenu;
 					}
 					break;
 					//item 9, mainmenu credit
 				case 3:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 64);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						menuState = creditMenu;
+					}
+					break;
+					//item 10, mainmenu options
+				case 7:
+					if (menuState == mainMenu) {
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						menuState = optionsMenu;
+					}
+					break;
+					//item 11 & 13, sfx on
+				case 8:
+					if (menuState == optionsMenu) {
+						SoundBank::GetInstance()->DisableOrEnableSFX();
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						menuState = optionsMenu;
+					}
+					break;
+					//item 12 & 14, music on
+				case 10:
+					if (menuState == optionsMenu) {
+						SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
+						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						menuState = optionsMenu;
 					}
 					break;
 				}
@@ -504,6 +747,9 @@ void MenuState::Draw(){
 		break;
 	case creditMenu:
 		LoadCreditMenu();
+		break;
+	case optionsMenu:
+		LoadOptionsMenu();
 		break;
 	}
 	SDL_RenderPresent(renderer);
