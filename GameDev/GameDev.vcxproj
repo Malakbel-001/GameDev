@@ -115,6 +115,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="SoundBank.cpp" />
     <ClCompile Include="SoundChunk.cpp" />
+    <ClCompile Include="PlayerSpriteObject.cpp" />
     <ClCompile Include="SpritesLoader.cpp" />
     <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="main.cpp" />
@@ -145,6 +146,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="EnemyDrawableBehaviour.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityFactory.h" />
+    <ClInclude Include="EntityState.h" />
     <ClInclude Include="EntityType.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameStateManager.h" />
@@ -164,6 +166,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="SoundBgmType.h" />
     <ClInclude Include="SoundChunk.h" />
     <ClInclude Include="SoundEffectType.h" />
+    <ClInclude Include="PlayerSpriteObject.h" />
     <ClInclude Include="SpritesLoader.h" />
     <ClInclude Include="TileLoader.h" />
     <ClInclude Include="MenuState.h" />

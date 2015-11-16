@@ -1,31 +1,31 @@
 #include "PlayerDrawableBehaviour.h"
 #include "Entity.h"
 
-PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : DrawableBehaviour(renderer, screenwidth, screenheight)
-{
-
-}
-
+PlayerDrawableBehaviour::PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight) : 
+	DrawableBehaviour(renderer, screenwidth, screenheight)
+{ }
 
 PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
 {
+	delete spritesObject;
 }
 
 void PlayerDrawableBehaviour::Draw()
 {
-	sprites = walkSprites;
-
+	if (GetEntity()->GetEntityState() != currentState)
+	{
+		sprites = spritesObject->GetAnimationByState(GetEntity()->GetEntityState(), &angle);
+		currentState = GetEntity()->GetEntityState();
+		currentFrame = 0;
+	}
+	
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	
-	float xpos = ((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
-
-
-
-	float ypos = (entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio);
-
+	float xpos = static_cast<float>((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
+	float ypos = static_cast<float>(entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio);
 
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
-	spriteSheetTexture->render(renderer, xpos, ypos, currentClip);
+	spriteSheetTexture->renderFlip(renderer, xpos, ypos, currentClip, angle);
 
 	//Go to next frame 
 	++currentFrame;
@@ -34,6 +34,13 @@ void PlayerDrawableBehaviour::Draw()
 	if (currentFrame / sprites.size() >= sprites.size())
 	{
 		currentFrame = 0;
+		if (currentState == EntityState::WalkLleftStart || currentState == EntityState::WalkLleftStart)
+		{
+			if (currentState == EntityState::WalkLleftStart)
+				currentState = EntityState::WalkLleft;
+			else
+				currentState = EntityState::WalkRight;
+		}
 	}
 }
 
@@ -41,8 +48,6 @@ void PlayerDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
 {
 	sprites = sdl_sprites;
 }
-
-
 
 bool PlayerDrawableBehaviour::LoadMedia()
 {
@@ -126,6 +131,8 @@ bool PlayerDrawableBehaviour::LoadMedia()
 		walkSprites[6].h = 40;
 
 		sprites = idleSprites;
+		currentState = EntityState::None;
+		spritesObject = new PlayerSpriteObject();
 	}
 
 	return success;

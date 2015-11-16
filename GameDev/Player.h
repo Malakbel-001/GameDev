@@ -1,5 +1,6 @@
 #pragma once
 #include "Actor.h"
+#include "SoundBank.h"
 
 class Player :
 	public Actor
@@ -16,4 +17,6 @@ class Player :
 		void setBody(b2Body* _body);
 		virtual Entity* EmptyClone();
 		b2Body* GetBody();
+
+		void HandleKeyEvents(SDL_Keycode _code);
 };

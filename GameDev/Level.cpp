@@ -39,7 +39,7 @@ void Level::Update(float dt)
 Player* Level::SetPlayer(Player* _player)
 {
 	//	player = _player;
-	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
+	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER, EntityState::IdleLeft));
 	return player;
 
 }
