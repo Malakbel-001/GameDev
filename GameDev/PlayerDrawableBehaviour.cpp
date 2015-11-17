@@ -25,7 +25,13 @@ void PlayerDrawableBehaviour::Draw()
 	float ypos = static_cast<float>(entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio);
 
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
-	spriteSheetTexture->renderFlip(renderer, xpos, ypos, currentClip, angle);
+	if (angle < 1)
+	{
+		//spriteSheetTexture->render(renderer, xpos, ypos, currentClip, angle);
+		spriteSheetTexture->render(renderer, xpos, ypos, currentClip);
+	}
+	else
+		spriteSheetTexture->renderFlipVertical(renderer, xpos, ypos, currentClip, angle);
 
 	//Go to next frame 
 	++currentFrame;
@@ -34,9 +40,9 @@ void PlayerDrawableBehaviour::Draw()
 	if (currentFrame / sprites.size() >= sprites.size())
 	{
 		currentFrame = 0;
-		if (currentState == EntityState::WalkLleftStart || currentState == EntityState::WalkLleftStart)
+		if (currentState == EntityState::WalkLeftStart || currentState == EntityState::WalkRightStart)
 		{
-			if (currentState == EntityState::WalkLleftStart)
+			if (currentState == EntityState::WalkLeftStart)
 				currentState = EntityState::WalkLleft;
 			else
 				currentState = EntityState::WalkRight;

@@ -3,7 +3,7 @@ enum EntityState
 {
 	None = 0,
 	IdleLeft,
-	WalkLleftStart,
+	WalkLeftStart,
 	WalkLleft,
 	CrouchLeft,
 	ShootLeft,

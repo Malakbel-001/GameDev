@@ -64,7 +64,7 @@ std::vector<SDL_Rect> PlayerSpriteObject::GetAnimationByState(EntityState _state
 			return this->GetIdle();
 			break;
 
-		case WalkLleftStart:
+		case WalkLeftStart:
 		case WalkRightStart:
 			return this->GetWalkStart();
 			break;

@@ -21,7 +21,8 @@ public:
 
 	//Renders texture at given point 
 	void render(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip = NULL);
-	void renderFlip(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip, double angle);
+	void renderFlipVertical(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip, double angle);
+	void renderFlipHorizontal(SDL_Renderer* renderer, int x, int y, SDL_Rect* clip, double angle);
 
 	//Gets image dimensions 
 	int getWidth(); int getHeight();
