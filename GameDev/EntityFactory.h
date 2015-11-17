@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "BehaviourFactory.h"
 #include "Ground.h"
+#include "EntityState.h"
 
 
 class EntityFactory
@@ -14,7 +15,7 @@ class EntityFactory
 public:
 	EntityFactory(b2World& world, BehaviourFactory* _bf, DrawableContainer* _drawContainer);
 	~EntityFactory();
-	Entity* CreateEntity(float x, float y, float height, float width, EntityType type);
+	Entity* CreateEntity(float x, float y, float height, float width, EntityType type, EntityState _state);
 	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);
 
 private:
@@ -23,6 +24,4 @@ private:
 	std::unordered_map<EntityType,Entity*> entityRegistery;
 	std::unordered_map<EntityType, b2BodyDef > bodyRegistery;
 	b2World& world;
-
 };
-

@@ -1,12 +1,7 @@
-
 #include "EntityFactory.h"
-
-
 
 EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), bf(_bf), drawContainer(_drawContainer)
 {
-
-
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },
 		{ EntityType::ACTOR, new Actor() },
@@ -38,7 +33,8 @@ EntityFactory::EntityFactory(b2World& b2world, BehaviourFactory* _bf, DrawableCo
 	PlantDef.angularDamping = 1;
 	PlantDef.type = b2BodyType::b2_dynamicBody;
 
-	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
+	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>
+	{
 		{ EntityType::ENTITY, entDef },
 		{ EntityType::ACTOR, ActorDef },
 		{ EntityType::NPC, NpcDef },
@@ -59,11 +55,11 @@ EntityFactory::~EntityFactory()
 	}
 }
 
-Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type)
+Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type, EntityState _state)
 {
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 
-	ent->Init(CreateBody(x, y, height, width, type), width, height, type, bf, drawContainer);
+	ent->Init(CreateBody(x, y, height, width, type), width, height, type, _state, bf, drawContainer);
 
 	return ent;
 }

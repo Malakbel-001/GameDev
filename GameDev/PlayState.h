@@ -32,15 +32,11 @@ class PlayState :
 
 		Player* GetPlayer();
 
-
-		
-
 		Level* GetCurrentLevel();
 		void SetCurrentLevel(Level* lvl);
 		void LoadGame();
 
 		void SetFileToLoad(std::string fileName);		
-		
 
 		virtual ~PlayState();
 
@@ -51,4 +47,3 @@ class PlayState :
 		//background
 		SDL_Texture* backgroundTexture;
 };
-

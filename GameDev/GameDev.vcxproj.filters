@@ -121,6 +121,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerSpriteObject.cpp">
+      <Filter>Source Files\Model\SpriteObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -261,6 +264,12 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="EntityState.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSpriteObject.h">
+      <Filter>Header Files\Model\SpriteObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -340,6 +349,12 @@
     </Filter>
     <Filter Include="Source Files\Model\SoundBank">
       <UniqueIdentifier>{f526257d-b7b3-44c5-8559-d8f11728d97b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\SpriteObjects">
+      <UniqueIdentifier>{459cbcb7-7f6c-45f6-a8ce-474d187d7949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\SpriteObjects">
+      <UniqueIdentifier>{7694ef2e-90ba-4dbd-8bf1-8d67ebf92669}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
