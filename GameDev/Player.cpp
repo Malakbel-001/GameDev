@@ -30,7 +30,7 @@ void Player::HandleKeyEvents(SDL_Keycode _code)
 	switch (_code)
 	{
 		case SDLK_w:
-			if (GetBody()->GetLinearVelocity().y > 0)
+			if (GetBody()->GetLinearVelocity().y == 0)
 			{
 				jump = true;
 				impulse = 100;
