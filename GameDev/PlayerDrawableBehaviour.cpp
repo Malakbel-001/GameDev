@@ -21,8 +21,8 @@ void PlayerDrawableBehaviour::Draw()
 	
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	
-	float xpos = static_cast<float>((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
-	float ypos = static_cast<float>(entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio);
+	int xpos = static_cast<int>((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
+	int ypos = static_cast<int>(entity->GetYPos() / Ratio);// - (camera->GetY() / Ratio);
 
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
 	if (angle < 1)
