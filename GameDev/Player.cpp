@@ -46,7 +46,7 @@ void Player::HandleKeyEvents(SDL_Keycode _code)
 		case SDLK_a:
 			x = -5;
 			if (!jump)
-				SetEntityState(EntityState::WalkRightStart);
+				SetEntityState(EntityState::WalkRight);
 			else
 				SetEntityState(EntityState::JumpRightMove);
 			break;
@@ -63,7 +63,7 @@ void Player::HandleKeyEvents(SDL_Keycode _code)
 		case SDLK_d:
 			x = 5;
 			if (!jump)
-				SetEntityState(EntityState::WalkLeftStart);
+				SetEntityState(EntityState::WalkLeft);
 			else
 				SetEntityState(EntityState::JumpLeftMove);
 			break;

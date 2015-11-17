@@ -4,7 +4,7 @@ enum EntityState
 	None = 0,
 	IdleLeft,
 	WalkLeftStart,
-	WalkLleft,
+	WalkLeft,
 	CrouchLeft,
 	ShootLeft,
 	JumpLeft,

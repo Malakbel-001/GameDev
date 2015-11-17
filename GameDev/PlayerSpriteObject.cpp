@@ -9,17 +9,16 @@ PlayerSpriteObject::PlayerSpriteObject()
 	idle.push_back(SDL_Rect{ 64, 0, 30, 40 });
 
 	// waling start animations
-	walkStart.push_back(SDL_Rect{ 107, 0, 31, 40 });
-	walkStart.push_back(SDL_Rect{ 139, 1, 31, 40 });
+	walkStart.push_back(SDL_Rect{ 107, 0, 29, 40 });
+	walkStart.push_back(SDL_Rect{ 139, 1, 29, 40 });
 
-	// walking animations
-	walk.push_back(SDL_Rect{ 137, 0, 32, 41 });
+	walk.push_back(SDL_Rect{ 168, 1, 32, 41 });
 	walk.push_back(SDL_Rect{ 201, 1, 32, 41 });
-	walk.push_back(SDL_Rect{ 233, 0, 32, 41 });
-	walk.push_back(SDL_Rect{ 264, 0, 32, 41 });
-	walk.push_back(SDL_Rect{ 298, 0, 32, 41 });
-	walk.push_back(SDL_Rect{ 330, 0, 36, 41 });
-	walk.push_back(SDL_Rect{ 366, 0, 32, 41 });
+	walk.push_back(SDL_Rect{ 234, 1, 32, 41 });
+	walk.push_back(SDL_Rect{ 264, 1, 32, 41 });
+	walk.push_back(SDL_Rect{ 298, 1, 32, 41 });
+	walk.push_back(SDL_Rect{ 330, 1, 36, 41 });
+	walk.push_back(SDL_Rect{ 366, 1, 32, 41 });
 
 	// crouch animations (missing ducking animation)
 	crouch.push_back(SDL_Rect{ 330, 516, 34, 25 });
@@ -68,7 +67,7 @@ std::vector<SDL_Rect> PlayerSpriteObject::GetAnimationByState(EntityState _state
 		case WalkRightStart:
 			return this->GetWalkStart();
 			break;
-		case WalkLleft:
+		case WalkLeft:
 		case WalkRight:
 			return this->GetWalk();
 			break;
