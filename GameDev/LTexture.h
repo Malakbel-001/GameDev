@@ -35,4 +35,3 @@ private:
 	int mWidth;
 	int mHeight;
 };
-

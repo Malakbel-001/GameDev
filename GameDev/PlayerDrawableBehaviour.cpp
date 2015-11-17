@@ -26,10 +26,7 @@ void PlayerDrawableBehaviour::Draw()
 
 	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
 	if (angle < 1)
-	{
-		//spriteSheetTexture->render(renderer, xpos, ypos, currentClip, angle);
 		spriteSheetTexture->render(renderer, xpos, ypos, currentClip);
-	}
 	else
 		spriteSheetTexture->renderFlipVertical(renderer, xpos, ypos, currentClip, angle);
 
