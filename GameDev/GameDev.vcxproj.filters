@@ -121,6 +121,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
+    <ClCompile Include="SettingsConfig.cpp">
+      <Filter>Source Files\Model\Config</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -261,6 +264,9 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="SettingsConfig.h">
+      <Filter>Header Files\Model\Config</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -340,6 +346,12 @@
     </Filter>
     <Filter Include="Source Files\Model\SoundBank">
       <UniqueIdentifier>{f526257d-b7b3-44c5-8559-d8f11728d97b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Config">
+      <UniqueIdentifier>{9a087843-6145-4e25-93e5-9c433411cd3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Config">
+      <UniqueIdentifier>{9f26304b-769e-4bc7-b2d2-f6db82b2e213}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

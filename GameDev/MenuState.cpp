@@ -6,6 +6,8 @@ SDL_Rect pos[renderItems];
 SDL_Color textColor = { 255, 255, 255, 255 }; // white
 
 void MenuState::Init(GameStateManager *gsm){
+	LoadSettings(settingsConfig.LoadSettings());
+
 	this->gsm = gsm;
 	if (!InitEverything()){
 		std::cout << "-1";
@@ -16,8 +18,21 @@ void MenuState::Init(GameStateManager *gsm){
 	Update(0);
 }
 
+void MenuState::LoadSettings(map<string, bool> settingsMap) {
+	if (SoundBank::GetInstance()->IsEnabledMusic() != settingsMap["music"]) {
+		SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
+	}
+	if (SoundBank::GetInstance()->IsEnabledSFX() != settingsMap["sfx"]) {
+		SoundBank::GetInstance()->DisableOrEnableSFX();
+	}
+	if (settingsMap["fullscreen"]) {
+		SDL_SetWindowFullscreen(SDL_GetWindowFromID(1), SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
+}
+
 MenuState::MenuState()
 {
+	settingsConfig = SettingsConfig();
 }
 
 void MenuState::loadMainMenu(){
@@ -55,12 +70,12 @@ void MenuState::LoadOptionsMenu() {
 	else { //SFX
 		SDL_RenderCopy(renderer, sfxOffTexture, nullptr, &sfxOffRect);
 	}
-	SDL_Window* window = SDL_GetWindowFromID(1); //works as long as we have only 1 window
-	Uint32 flags = SDL_GetWindowFlags(window); //sdl window flags including fullscreen desktop flag
-	if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP) {
+	//SDL_GetWindowFromID(1); //works as long as we have only 1 window
+	flags = SDL_GetWindowFlags(SDL_GetWindowFromID(1)); //sdl window flags including fullscreen desktop flag
+	if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP) { //fullscreen
 		SDL_RenderCopy(renderer, fullScreenOnTexture, nullptr, &fullScreenOnRect);
 	}
-	else {
+	else { //fullscreen
 		SDL_RenderCopy(renderer, fullScreenOffTexture, nullptr, &fullScreenOffRect);
 	}
 
@@ -412,6 +427,9 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					if (menuState == optionsMenu) {
 						SoundBank::GetInstance()->DisableOrEnableSFX();
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
+							SoundBank::GetInstance()->IsEnabledSFX(),
+							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
 					}
 					break;
 					//items 12 & 14, music on
@@ -419,19 +437,25 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					if (menuState == optionsMenu) {
 						SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
+							SoundBank::GetInstance()->IsEnabledSFX(),
+							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
 					}
 					break;
 					//items 16 & 17, full screen
 				case 16:
 					if (menuState == optionsMenu) {
-						SDL_Window* window = SDL_GetWindowFromID(1); //works as long as we have only 1 window
-						Uint32 flags = SDL_GetWindowFlags(window); //sdl window flags including fullscreen desktop flag
+						//SDL_GetWindowFromID(1); //works as long as we have only 1 window
+						flags = SDL_GetWindowFlags(SDL_GetWindowFromID(1)); //sdl window flags including fullscreen desktop flag
 						if ((flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP) {
-							SDL_SetWindowFullscreen(window, 0); //back to windowed
+							SDL_SetWindowFullscreen(SDL_GetWindowFromID(1), 0); //back to windowed
 						}
 						else {
-							SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+							SDL_SetWindowFullscreen(SDL_GetWindowFromID(1), SDL_WINDOW_FULLSCREEN_DESKTOP);
 						}
+						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
+													SoundBank::GetInstance()->IsEnabledSFX(),
+													(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) != SDL_WINDOW_FULLSCREEN_DESKTOP);
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 					}
 				}

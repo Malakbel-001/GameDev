@@ -6,6 +6,7 @@
 #include <iostream>
 #include "PlayState.h"
 #include "SoundBank.h"
+#include "SettingsConfig.h"
 class MenuState :
 	public IGameState
 {
@@ -115,4 +116,9 @@ public:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
+
+private:
+	SettingsConfig settingsConfig;
+	Uint32 flags;
+	void LoadSettings(map<string, bool>);
 };
