@@ -20,10 +20,10 @@ void MenuState::Init(GameStateManager *gsm){
 
 void MenuState::LoadSettings(map<string, bool> settingsMap) {
 	if (SoundBank::GetInstance()->IsEnabledMusic() != settingsMap["music"]) {
-		SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
+		SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
 	}
 	if (SoundBank::GetInstance()->IsEnabledSFX() != settingsMap["sfx"]) {
-		SoundBank::GetInstance()->DisableOrEnableSFX();
+		SoundBank::GetInstance()->ToggleSFX();
 	}
 	if (settingsMap["fullscreen"]) {
 		SDL_SetWindowFullscreen(SDL_GetWindowFromID(1), SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -425,7 +425,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//items 11 & 13, sfx on
 				case 11:
 					if (menuState == optionsMenu) {
-						SoundBank::GetInstance()->DisableOrEnableSFX();
+						SoundBank::GetInstance()->ToggleSFX();
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
 							SoundBank::GetInstance()->IsEnabledSFX(),
@@ -435,7 +435,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//items 12 & 14, music on
 				case 12:
 					if (menuState == optionsMenu) {
-						SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
+						SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
 							SoundBank::GetInstance()->IsEnabledSFX(),

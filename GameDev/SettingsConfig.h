@@ -8,7 +8,7 @@ using namespace std;
 
 class SettingsConfig {
 private:
-	const char* optionSettingsChar		= "settings.txt";
+	const char* optionSettingsChar		= "Resources/settings/settings.txt";
 	const char* musicChar				= "music=";
 	const char* sfxChar					= "sfx=";
 	const char* fullscreenChar			= "fullscreen=";
