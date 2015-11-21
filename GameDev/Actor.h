@@ -25,7 +25,7 @@ protected:
 	b2Vec2 direction;
 private:
 	bool dead;
-	int healt;
+	int health;
 	int hitdmg;
 	CollidableBehaviour* col;
 	ActorState* state;

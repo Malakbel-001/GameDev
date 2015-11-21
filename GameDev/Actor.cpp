@@ -7,10 +7,10 @@ Actor::Actor()
 }
 
 
-void Actor::InitActor(b2Body* _body, int _hitdmg, int _healt, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
+void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
 	Init(_body, _width, _height, _type, bf, drawContainer);
 	hitdmg = _hitdmg;
-	healt = _healt;
+	health = _health;
 	col = bf->CreateCollidableBehaviour(type);
 	col->Init(this);
 	body->SetUserData(col);
@@ -35,20 +35,20 @@ ActorState* Actor::GetState()
 {
 	return state;
 }
-void Actor::SetHealt(int _healt){
-	if (_healt <= 0){
+void Actor::SetHealt(int _health){
+	if (_health <= 0){
 		dead = true;
-		healt = _healt;
+		health = _health;
 	}
 	else{
-		healt = _healt;
+		health = _health;
 	}
 }
 bool Actor::IsDead(){
 	return dead;
 }
 int Actor::GetHealt(){
-	return healt;
+	return health;
 }
 int Actor::GetDamage(){
 	return hitdmg;
