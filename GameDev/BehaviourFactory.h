@@ -8,11 +8,12 @@
 #include "GroundObstacleDrawableBehavior.h"
 #include "BarObstacleDrawableBehaviour.h"
 #include "MoveableBehaviour.h"
-#include "CollidableBehaviour.h"
 #include "EntityType.h"
+
 
 class Camera;
 class Player;
+class CollidableBehaviour;
 class BehaviourFactory
 {
 public:
@@ -20,6 +21,7 @@ public:
 	~BehaviourFactory();
 
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
+	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
 	SDL_Renderer* GetRenderer();
 
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
@@ -29,5 +31,6 @@ private:
 	int screenHeight;
 	SDL_Renderer* renderer;
 	std::unordered_map<EntityType, DrawableBehaviour*> registery;
+	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
 };
 

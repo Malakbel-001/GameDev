@@ -4,8 +4,9 @@
 #include "Container.h"
 #include "DrawableBehaviour.h"
 
-using namespace std;
 
+using namespace std;
+class Entity;
 class DrawableContainer :
 	public Container
 {
@@ -15,6 +16,7 @@ public:
 		
 	void Add(DrawableBehaviour* behaviour);
 	void Draw();
+	void Delete(Entity* behaviour);
 private:
 	vector<DrawableBehaviour*> behaviours;
 };

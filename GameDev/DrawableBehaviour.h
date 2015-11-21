@@ -38,8 +38,8 @@ class DrawableBehaviour :
 		DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
 		virtual ~DrawableBehaviour();
 
-void SetEntity(Entity* _entity);
-
+		void SetEntity(Entity* _entity);
+		Entity* GetEntity();
 		virtual DrawableBehaviour* EmptyClone();
 		void SetCamera(Camera* _camera);
 		virtual void Draw();

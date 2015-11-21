@@ -17,18 +17,22 @@ void EnemyDrawableBehaviour::Draw()
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
 	float ypos = entity->GetYPos() / Ratio;
-	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
+
+	/// somethings crashes
+
+		SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
+
+		spriteSheetTexture->render(renderer, xpos + 10, ypos + 10, currentClip);
+
+		//Go to next frame 
+		++currentFrame;
+
+		//Cycle animation 
+		if (currentFrame / sprites.size() >= sprites.size())
+		{
+			currentFrame = 0;
+		}
 	
-	spriteSheetTexture->render(renderer, xpos+10, ypos+10, currentClip);
-
-	//Go to next frame 
-	++currentFrame;
-
-	//Cycle animation 
-	if (currentFrame / sprites.size() >= sprites.size())
-	{
-		currentFrame = 0;
-	}
 }
 
 void EnemyDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
