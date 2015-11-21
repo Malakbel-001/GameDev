@@ -1,9 +1,10 @@
 #include "GameStateManager.h"
 #include "IGameState.h"
-#include "MenuState.h"
 #include "PlayState.h"
+#include "PauseState.h"
+#include "GameOverState.h"
+#include "MenuState.h"
 #include <iostream>
-
 
 GameStateManager::GameStateManager(BehaviourFactory* _bf)
 {
@@ -19,13 +20,15 @@ void GameStateManager::CreateGameState(GameStateType state)
 	{
 	case GameStateType::PlayState:
 		gamestate = new PlayState();
-
 		break;
 	case GameStateType::PauseState:
-		//state = new PauseState();
+		gamestate = new PauseState();
 		break;
 	case GameStateType::MenuState:
 		gamestate = new MenuState();
+		break;
+	case GameStateType::GameOverState:
+		gamestate = new GameOverState();
 		break;
 	default:
 		break;
@@ -47,8 +50,6 @@ void GameStateManager::ChangeGameState()
 
 void GameStateManager::PushGameState(IGameState* gameState)
 {
-
-
 	states.push_back(gameState);
 	states.back()->Init(this);
 }

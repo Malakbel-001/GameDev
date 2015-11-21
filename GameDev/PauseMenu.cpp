@@ -1,6 +1,6 @@
-#include "MainMenu.h"
-#include "MenuState.h"
-MainMenu::MainMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
+#include "PauseMenu.h"
+#include "PauseState.h"
+PauseMenu::PauseMenu(PauseState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
 {
 	textColor = { 255, 255, 255, 255 }; // white;
 	hoverTextColor = { 255, 0, 0, 255 }; // red
@@ -16,12 +16,12 @@ MainMenu::MainMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, 
 	MakeMainTitle(textColor);
 }
 
-void MainMenu::Init(){
+void PauseMenu::Init(){
 
 }
 
-void MainMenu::MakePlayText(SDL_Color color){
-	SDL_Surface* play = TTF_RenderText_Blended(textFont, "Play", color);
+void PauseMenu::MakePlayText(SDL_Color color){
+	SDL_Surface* play = TTF_RenderText_Blended(textFont, "Resume", color);
 	playTexture = SurfaceToTexture(play);
 
 	SDL_QueryTexture(playTexture, NULL, NULL, &solidRect.w, &solidRect.h);
@@ -30,7 +30,7 @@ void MainMenu::MakePlayText(SDL_Color color){
 	pos[0] = solidRect;
 }
 
-void MainMenu::MakeHelpText(SDL_Color color){
+void PauseMenu::MakeHelpText(SDL_Color color){
 	SDL_Surface* help = TTF_RenderText_Blended(textFont, "Help", color);
 	helpTexture = SurfaceToTexture(help);
 
@@ -40,8 +40,8 @@ void MainMenu::MakeHelpText(SDL_Color color){
 	pos[1] = blendedRect;
 }
 
-void MainMenu::MakeQuitText(SDL_Color color){
-	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Quit", color);
+void PauseMenu::MakeQuitText(SDL_Color color){
+	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Back to main menu", color);
 	quitTexture = SurfaceToTexture(quit);
 
 	SDL_QueryTexture(quitTexture, NULL, NULL, &shadedRect.w, &shadedRect.h);
@@ -50,7 +50,7 @@ void MainMenu::MakeQuitText(SDL_Color color){
 	pos[4] = shadedRect;
 }
 
-void MainMenu::MakeCreditText(SDL_Color color){
+void PauseMenu::MakeCreditText(SDL_Color color){
 	SDL_Surface* credit = TTF_RenderText_Blended(textFont, "Credits", color);
 	creditTexture = SurfaceToTexture(credit);
 
@@ -59,19 +59,19 @@ void MainMenu::MakeCreditText(SDL_Color color){
 	creditRect.y = blendedRect.y + blendedRect.h + 20;;
 	pos[2] = creditRect;
 }
-	
-void MainMenu::MakeOptionText(SDL_Color color){
-		SDL_Surface* options = TTF_RenderText_Blended(textFont, "Options", color);
-		optionsTexture = SurfaceToTexture(options);
 
-		SDL_QueryTexture(optionsTexture, NULL, NULL, &optionsRect.w, &optionsRect.h);
-		optionsRect.x = 15;
-		optionsRect.y = creditRect.y + creditRect.h + 20;
-		pos[3] = optionsRect;
-	}
+void PauseMenu::MakeOptionText(SDL_Color color){
+	SDL_Surface* options = TTF_RenderText_Blended(textFont, "Options", color);
+	optionsTexture = SurfaceToTexture(options);
 
-void MainMenu::MakeMainTitle(SDL_Color color){
-	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Jark Hunt", color);
+	SDL_QueryTexture(optionsTexture, NULL, NULL, &optionsRect.w, &optionsRect.h);
+	optionsRect.x = 15;
+	optionsRect.y = creditRect.y + creditRect.h + 20;
+	pos[3] = optionsRect;
+}
+
+void PauseMenu::MakeMainTitle(SDL_Color color){
+	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Games Paused", color);
 	mainTitleTexture = SurfaceToTexture(mainTitle);
 
 	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
@@ -80,7 +80,7 @@ void MainMenu::MakeMainTitle(SDL_Color color){
 	pos[5] = mainTitleRect;
 }
 
-SDL_Texture* MainMenu::SurfaceToTexture(SDL_Surface* surf)
+SDL_Texture* PauseMenu::SurfaceToTexture(SDL_Surface* surf)
 {
 	SDL_Texture* text;
 
@@ -91,11 +91,11 @@ SDL_Texture* MainMenu::SurfaceToTexture(SDL_Surface* surf)
 	return text;
 }
 
-void MainMenu::SetupRenderer(){
+void PauseMenu::SetupRenderer(){
 
 }
 
-void MainMenu::Draw(){
+void PauseMenu::Draw(){
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
 	SDL_RenderCopy(renderer, optionsTexture, nullptr, &optionsRect); //NEW
@@ -104,11 +104,11 @@ void MainMenu::Draw(){
 	SDL_RenderCopy(renderer, mainTitleTexture, nullptr, &mainTitleRect);
 }
 
-void MainMenu::Update(float dt){
+void PauseMenu::Update(float dt){
 
 }
 
-void MainMenu::Highlight(int item){
+void PauseMenu::Highlight(int item){
 	switch (item){
 	case -1:
 	{
@@ -147,34 +147,34 @@ void MainMenu::Highlight(int item){
 	}
 }
 
-void MainMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
+void PauseMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
 	//std::cout << "Key events not implemented yet";
 }
 
-void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
+void PauseMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
 	{
 	case SDL_QUIT:
 		exit(0);
 		break;
-		case SDL_MOUSEMOTION:
-		{hoverX = mainEvent.motion.x;
-		hoverY = mainEvent.motion.y;
-		for (int ii = 0; ii < 6; ii++)
-		{
+	case SDL_MOUSEMOTION:
+	{hoverX = mainEvent.motion.x;
+	hoverY = mainEvent.motion.y;
+	for (int ii = 0; ii < 6; ii++)
+	{
 		if (hoverX >= pos[ii].x && hoverX <= pos[ii].x + pos[ii].w && hoverY >= pos[ii].y && hoverY <= pos[ii].y + pos[ii].h){
-		Highlight(ii);
-		break;
+			Highlight(ii);
+			break;
 		}
 		else {
-		Highlight(-1);
+			Highlight(-1);
 
 		}
-		}
-		break;
-		}
+	}
+	break;
+	}
 	case SDL_MOUSEBUTTONDOWN:
 		int x = mainEvent.button.x;
 		int y = mainEvent.button.y;
@@ -185,7 +185,7 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 				case 0:
 					//play
 					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
-					menu->updateMenu(MenuEnum::Play);
+					menu->updateMenu(MenuEnum::Resume);
 					break;
 				case 1:
 					//help
@@ -205,7 +205,7 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 				case 4:
 					//quit
 					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
-					exit(0);
+					menu->updateMenu(MenuEnum::Main);
 					break;
 				}
 			}
@@ -214,6 +214,6 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 }
 
 
-MainMenu::~MainMenu()
+PauseMenu::~PauseMenu()
 {
 }

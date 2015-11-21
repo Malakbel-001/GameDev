@@ -6,6 +6,12 @@
 #include <iostream>
 #include "PlayState.h"
 #include "SoundBank.h"
+#include "MenuBase.h"
+//#include "HelpMenu.h"
+class MainMenu;
+class HelpMenu;
+class CreditMenu;
+class OptionMenu;
 class MenuState :
 	public IGameState
 {
@@ -13,9 +19,17 @@ private:
 	int hoverX;
 	int hoverY;
 	int selectedCounter;
+	MenuBase* currentMenu;
+	MenuBase* PreviousMenu;
+	MainMenu* mainMenu;
+	HelpMenu* helpMenu;
+	CreditMenu* creditMenu;
+	OptionMenu* optionMenu;
+	
 public:
 	MenuState();
 	GameStateManager* gsm;
+
 
 	void MakePlayText(SDL_Color);
 	void MakeHelpText(SDL_Color);
@@ -58,7 +72,7 @@ public:
 	// Our new function for setting uo SDL_TTF
 	bool SetupTTF(const std::string &fontName, const std::string &fontName2);
 	SDL_Texture* SurfaceToTexture(SDL_Surface* surf);
-	void CreateTextTextures();
+	//void CreateTextTextures();
 
 	// Stuff for text rendering
 	TTF_Font* titleFont;
@@ -121,8 +135,8 @@ public:
 
 	bool quit = false;
 
-	enum State{ mainMenu, helpMenu, creditMenu, optionsMenu };
-	State menuState;
+	//enum State{ mainMenu, helpMenu, creditMenu, optionsMenu };
+	//State menuState;
 	
 	void Init(GameStateManager *gsm);
 	void Cleanup();
@@ -132,7 +146,7 @@ public:
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
-	void Update(float dt);
+	void Update(float);
 	void Draw();
 	void Background();
 
@@ -144,4 +158,11 @@ public:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
+
+	void updateMenu(MenuEnum);
+	
+private:
+	SDL_Color textColor;
+	const int renderItems = 20;
+	vector<SDL_Rect> pos;
 };
