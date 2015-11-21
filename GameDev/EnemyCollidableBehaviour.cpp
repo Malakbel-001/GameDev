@@ -10,7 +10,7 @@ void EnemyCollidableBehaviour::Hit(CollidableBehaviour* cb){
 		switch (cb->GetActor()->GetType()){
 		case EntityType::BULLET:
 			ent->SetHealt(ent->GetHealt() - cb->GetActor()->GetDamage());
-			SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 60);
+			SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 			break;
 		default:
 			break;

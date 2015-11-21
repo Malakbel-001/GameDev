@@ -22,9 +22,6 @@
     <ClCompile Include="CollidableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="DrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="MoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
@@ -103,25 +100,10 @@
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="ContactListener.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
     <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyDrawableBehaviour.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundDrawableBehaviour.cpp">
-      <Filter>Source Files\View</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerDrawableBehaviour.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCollidableBehaviour.cpp">
@@ -142,7 +124,6 @@
     <ClCompile Include="ShotGun.cpp">
       <Filter>Source Files\Model\Entity\Weapons</Filter>
     </ClCompile>
-
     <ClCompile Include="EnemyDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
@@ -154,6 +135,24 @@
     </ClCompile>
     <ClCompile Include="SettingsConfig.cpp">
       <Filter>Source Files\Model\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +190,6 @@
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="CollidableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableBehaviour.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="MoveableBehaviour.h">
@@ -271,12 +267,6 @@
     <ClInclude Include="SoundChunk.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
-    <ClInclude Include="BarObstacleDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -307,10 +297,6 @@
     <ClInclude Include="EnemyCollidableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BulletCollidableBehaviour.h">
-      <Filter>Header Files</Filter>
- </ClInclude>
-
     <ClInclude Include="GroundObstacleDrawableBehavior.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
@@ -325,13 +311,24 @@
     </ClInclude>
     <ClInclude Include="SettingsConfig.h">
       <Filter>Header Files\Model\Config</Filter>
- </ClInclude>
-
+    </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>Header Files\Model\Entity\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="ShotGun.h">
       <Filter>Header Files\Model\Entity\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletCollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDrawableBehaviour.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawableBehaviour.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="BarObstacleDrawableBehaviour.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -413,20 +410,17 @@
     <Filter Include="Source Files\Model\SoundBank">
       <UniqueIdentifier>{f526257d-b7b3-44c5-8559-d8f11728d97b}</UniqueIdentifier>
     </Filter>
-
     <Filter Include="Header Files\Model\Entity\Weapons">
       <UniqueIdentifier>{fde52e1a-ef89-4735-88c3-185e20ba9e85}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Entity\Weapons">
       <UniqueIdentifier>{190f2f2d-ee0f-406e-9597-424c55291e95}</UniqueIdentifier>
- </Filter>
-
+    </Filter>
     <Filter Include="Header Files\Model\Config">
       <UniqueIdentifier>{9a087843-6145-4e25-93e5-9c433411cd3f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Config">
       <UniqueIdentifier>{9f26304b-769e-4bc7-b2d2-f6db82b2e213}</UniqueIdentifier>
-
     </Filter>
   </ItemGroup>
   <ItemGroup>
