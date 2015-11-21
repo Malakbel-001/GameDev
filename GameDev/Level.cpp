@@ -7,7 +7,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	player = nullptr;
 	startXpos = 100;
 	startYpos = 10;
-	actors = std::vector<Actor*>();
+	actors = new std::vector<Actor*>();
 	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
 	world->SetContactListener(new ContactListener());
 	drawableContainer = new DrawableContainer();
@@ -35,15 +35,20 @@ void Level::Update(float dt)
 	}
 	else{
 		
-		for (int x = 0; actors.size() > x;x++)
+		for (int x = 0; actors->size() > x; x++)
 		{
-			if (actors[x]->IsDead()){
-				world->DestroyBody(actors[x]->GetBody());
-				drawableContainer->Delete(actors[x]);
-				delete actors[x];
-				actors.erase(actors.begin() + x);
+			if (actors->operator[](x)->IsDead()){
+				world->DestroyBody(actors->operator[](x)->GetBody());
+				drawableContainer->Delete(actors->operator[](x));
+				delete actors->operator[](x);
+				actors->erase(actors->begin() + x);
 				x--;
-				
+
+			}
+			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
+				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
+		
+
 			}
 			
 		}
@@ -96,6 +101,10 @@ SDL_Texture* Level::GetTileSheet()
 int Level::GetLvlHeight()
 {
 	return this->lvlHeight;
+}
+
+EntityFactory* Level::GetEntityFactory(){
+	return entityFactory;
 }
 
 int Level::GetLvlWidth()

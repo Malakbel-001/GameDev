@@ -31,7 +31,7 @@ protected:
 
 	PlayState* playState;
 	
-	std::vector<Actor*> actors;
+	std::vector<Actor*>* actors;
 	Player* player;
 public:
 	Player* GetPlayer();
@@ -52,6 +52,7 @@ public:
 	int GetLvlHeight();
 	int GetTotalTiles();
 	int GetTotalDiffrentTiles();
+	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
 
 	void Draw();

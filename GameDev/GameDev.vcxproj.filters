@@ -130,6 +130,18 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="BulletCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Model\Entity\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotGun.cpp">
+      <Filter>Source Files\Model\Entity\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -279,6 +291,18 @@
     <ClInclude Include="Bullet.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Model\Entity\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotGun.h">
+      <Filter>Header Files\Model\Entity\Weapons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -358,6 +382,12 @@
     </Filter>
     <Filter Include="Source Files\Model\SoundBank">
       <UniqueIdentifier>{f526257d-b7b3-44c5-8559-d8f11728d97b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Entity\Weapons">
+      <UniqueIdentifier>{fde52e1a-ef89-4735-88c3-185e20ba9e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Entity\Weapons">
+      <UniqueIdentifier>{190f2f2d-ee0f-406e-9597-424c55291e95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

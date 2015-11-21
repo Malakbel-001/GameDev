@@ -15,6 +15,7 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _healt, float _width, floa
 	col->Init(this);
 	body->SetUserData(col);
 
+
 }
 Actor* Actor::EmptyClone(){
 
@@ -35,11 +36,12 @@ ActorState* Actor::GetState()
 	return state;
 }
 void Actor::SetHealt(int _healt){
-	if (_healt < 0){
+	if (_healt <= 0){
 		dead = true;
+		healt = _healt;
 	}
 	else{
-		healt = healt;
+		healt = _healt;
 	}
 }
 bool Actor::IsDead(){
@@ -50,4 +52,11 @@ int Actor::GetHealt(){
 }
 int Actor::GetDamage(){
 	return hitdmg;
+}
+b2Vec2 Actor::GetDirection(){
+	return direction;
+}
+void Actor::SetDirection(b2Vec2 dir)
+{
+	direction = dir;
 }

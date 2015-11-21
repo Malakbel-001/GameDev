@@ -19,18 +19,20 @@ void EnemyDrawableBehaviour::Draw()
 	float ypos = entity->GetYPos() / Ratio;
 
 	/// somethings crashes
-	SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
+
+		SDL_Rect* currentClip = &sprites[currentFrame / sprites.size()];
+
+		spriteSheetTexture->render(renderer, xpos + 10, ypos + 10, currentClip);
+
+		//Go to next frame 
+		++currentFrame;
+
+		//Cycle animation 
+		if (currentFrame / sprites.size() >= sprites.size())
+		{
+			currentFrame = 0;
+		}
 	
-	spriteSheetTexture->render(renderer, xpos+10, ypos+10, currentClip);
-
-	//Go to next frame 
-	++currentFrame;
-
-	//Cycle animation 
-	if (currentFrame / sprites.size() >= sprites.size())
-	{
-		currentFrame = 0;
-	}
 }
 
 void EnemyDrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)

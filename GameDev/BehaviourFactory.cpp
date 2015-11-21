@@ -3,6 +3,8 @@
 #include "CollidableBehaviour.h"
 #include "Player.h"
 #include "PlayerCollidableBehaviour.h"
+#include "EnemyCollidableBehaviour.h"
+#include "BulletCollidableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -17,12 +19,13 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 			{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, screenWidth, screenHeight) },
 			{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, screenWidth, screenHeight) },
 			{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, screenWidth, screenHeight) },
+			{ EntityType::BULLET, new EnemyDrawableBehaviour(renderer, screenWidth, screenHeight) }
 			
 	};
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 			{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
-			{ EntityType::PLANT, new CollidableBehaviour() },
-			{ EntityType::BULLET, new CollidableBehaviour()}
+			{ EntityType::PLANT, new EnemyCollidableBehaviour() },
+			{ EntityType::BULLET, new BulletCollidableBehaviour() }
 		
 	};
 }

@@ -7,9 +7,12 @@ public:
 	Bullet();
 	virtual ~Bullet();
 
-	virtual Actor* EmptyClone();
-	void setBody(b2Body* _body);
-	b2Body* GetBody();
+
+	virtual Bullet* EmptyClone();
+	void SetBody(b2Body* _body);
 	
+	b2Body* GetBody();
+
+
 };
 

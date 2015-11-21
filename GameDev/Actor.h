@@ -19,6 +19,10 @@ public:
 	int GetHealt();
 	int GetDamage();
 	bool IsDead();
+	virtual void SetDirection(b2Vec2 dir);
+	virtual b2Vec2 GetDirection();
+protected:
+	b2Vec2 direction;
 private:
 	bool dead;
 	int healt;

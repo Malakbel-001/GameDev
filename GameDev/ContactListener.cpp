@@ -12,23 +12,23 @@ ContactListener::~ContactListener()
 void ContactListener::BeginContact(b2Contact* contact){
 	
 	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+	CollidableBehaviour* beh = nullptr;
+	CollidableBehaviour* beh2 = nullptr;
 	if (bodyUserData){
-		printf("f");
+		 beh = static_cast<CollidableBehaviour*>(bodyUserData);		
 	}
 
 
 	void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
 	if (bodyUserData2){
-		printf("f");
+		beh2 = static_cast<CollidableBehaviour*>(bodyUserData2);
+		beh2->Hit(beh);
 	}
-	if (bodyUserData && bodyUserData2){
-		CollidableBehaviour* beh = static_cast<CollidableBehaviour*>(bodyUserData);
-		CollidableBehaviour* beh2 = static_cast<CollidableBehaviour*>(bodyUserData2);
+	if (bodyUserData){
+		beh->Hit(beh2);
+	}
 
-		beh->Hit(beh2->GetHitDmg());
-		beh2->Hit(beh->GetHitDmg());
-		
-	}
+
 }
 void ContactListener::EndContact(b2Contact* contact){
 	

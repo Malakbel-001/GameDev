@@ -1,6 +1,4 @@
-#pragma message("collide=able beh")
 #pragma once
-
 #include "Behaviour.h"
 
 
@@ -12,9 +10,10 @@ public:
 	CollidableBehaviour();
 	void Init(Actor* _ent);
 	virtual ~CollidableBehaviour();
-	virtual void Hit(int dmg);
+	virtual void Hit(CollidableBehaviour* cb);
 	virtual CollidableBehaviour* EmptyClone();
 	int GetHitDmg();
+	Actor* GetActor();
 protected:
 	Actor* ent;
 

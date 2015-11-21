@@ -5,15 +5,18 @@ Bullet::Bullet()
 {
 }
 
-Actor* Bullet::EmptyClone(){
+Bullet* Bullet::EmptyClone(){
 	return new Bullet();
 }
 
 Bullet::~Bullet()
 {
+	
 }
 
-void Bullet::setBody(b2Body* _body)
+
+
+void Bullet::SetBody(b2Body* _body)
 {
 	body = _body;
 }

@@ -9,11 +9,19 @@ PlayerCollidableBehaviour::PlayerCollidableBehaviour()
 PlayerCollidableBehaviour::~PlayerCollidableBehaviour()
 {
 }
-void PlayerCollidableBehaviour::Hit(int dmg){
-	ent->SetHealt(ent->GetHealt() - dmg);
-	//TODO different sound
-	SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 60);
-
+void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
+	if (cb){
+		switch (cb->GetActor()->GetType()){
+		case EntityType::BULLET:
+			break;
+			
+		default:
+			ent->SetHealt(ent->GetHealt() - cb->GetActor()->GetDamage());
+			//TODO different sound
+			SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 60);
+			break;
+		}
+	}
 }
 CollidableBehaviour* PlayerCollidableBehaviour::EmptyClone(){
 	return new PlayerCollidableBehaviour();

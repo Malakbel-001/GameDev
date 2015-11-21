@@ -26,5 +26,6 @@ class Entity
 		virtual int GetHeight();
 		virtual int GetXPos();
 		virtual int GetYPos();
+		EntityType GetType();
 		b2Body* GetBody();
 };

@@ -32,6 +32,9 @@ int Entity::GetHeight()
 	return static_cast<int>(height);
 }
 
+EntityType Entity::GetType(){
+	return type;
+}
 int Entity::GetXPos()
 {
 	return static_cast<int>(body->GetPosition().x);

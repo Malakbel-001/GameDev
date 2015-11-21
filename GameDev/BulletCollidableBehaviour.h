@@ -1,14 +1,12 @@
 #pragma once
-#include "Actor.h"
 #include "CollidableBehaviour.h"
-#include "SoundBank.h"
-
-class PlayerCollidableBehaviour :
+#include "Actor.h"
+class BulletCollidableBehaviour:
 	public CollidableBehaviour
 {
 public:
-	PlayerCollidableBehaviour();
-	~PlayerCollidableBehaviour();
+	BulletCollidableBehaviour();
+	~BulletCollidableBehaviour();
 	void Hit(CollidableBehaviour* cb);
 	virtual CollidableBehaviour* EmptyClone();
 

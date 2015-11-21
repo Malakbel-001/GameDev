@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include "SoundBank.h"
 #include "BehaviourFactory.h"
+#include "Weapon.h"
 #include <iostream>
 
 class PlayState :
