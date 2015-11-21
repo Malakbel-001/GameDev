@@ -2,6 +2,7 @@
 #include "IGameState.h"
 #include "MenuState.h"
 #include "PlayState.h"
+#include "LoadState.h"
 #include <iostream>
 
 
@@ -26,6 +27,9 @@ void GameStateManager::CreateGameState(GameStateType state)
 		break;
 	case GameStateType::MenuState:
 		gamestate = new MenuState();
+		break;
+	case GameStateType::LoadState:
+		gamestate = new LoadState();
 		break;
 	default:
 		break;
