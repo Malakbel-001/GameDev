@@ -8,9 +8,9 @@ class LoadState : public IGameState {
 private:
 	GameStateManager* gsm;
 	DrawableContainer* drawableContainer;
-	IGameState* playState;
-	bool loadedPlay = false;
-	void LoadPlayState(GameStateManager* gsm);
+	static IGameState* playState;
+	static bool loadedPlay;
+	static void LoadPlayState(GameStateManager* gsm);
 
 public:
 	LoadState() { };

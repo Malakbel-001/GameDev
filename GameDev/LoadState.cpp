@@ -1,5 +1,8 @@
 #include "LoadState.h"
 
+bool		LoadState::loadedPlay = false;
+IGameState* LoadState::playState = NULL;
+
 LoadState::~LoadState() {
 	this->Cleanup();
 }
@@ -7,8 +10,8 @@ LoadState::~LoadState() {
 void LoadState::Init(GameStateManager* gsm) {
 	this->gsm;
 	
-	//std::thread loadingThread(Test);
-	//loadingThread.detach();
+	std::thread loadingThread(LoadPlayState, gsm);
+	loadingThread.detach();
 
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	drawableContainer = new DrawableContainer();
@@ -18,6 +21,7 @@ void LoadState::Init(GameStateManager* gsm) {
 }
 
 void LoadState::LoadPlayState(GameStateManager* gsm) {
+	loadedPlay = false;
 	playState = gsm->GetNewState(GameStateType::PlayState);
 	loadedPlay = true;
 }
