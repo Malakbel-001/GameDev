@@ -11,6 +11,8 @@
 #include "CollidableBehaviour.h"
 #include "EntityType.h"
 
+#include "CheatLoadDrawableBehaviour.h" //temp
+
 class Camera;
 class Player;
 class BehaviourFactory

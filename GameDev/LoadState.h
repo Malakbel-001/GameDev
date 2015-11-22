@@ -2,11 +2,15 @@
 #include "IGameState.h"
 #include "GameStateManager.h"
 #include "SoundBank.h"
+#include <thread>
 
 class LoadState : public IGameState {
 private:
 	GameStateManager* gsm;
 	DrawableContainer* drawableContainer;
+	IGameState* playState;
+	bool loadedPlay = false;
+	void LoadPlayState(GameStateManager* gsm);
 
 public:
 	LoadState() { };

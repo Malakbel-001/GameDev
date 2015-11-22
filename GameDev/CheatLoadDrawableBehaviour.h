@@ -1,10 +1,8 @@
 #pragma once
 #include "DrawableBehaviour.h"
-#include "Camera.h"
 
-class PlayerDrawableBehaviour :
-	public DrawableBehaviour
-{
+class CheatLoadDrawableBehaviour :
+	public DrawableBehaviour {
 	private:
 		Camera* camera;
 		const int IDLE_ANIMATION_FRAMES = 3;
@@ -13,12 +11,13 @@ class PlayerDrawableBehaviour :
 		vector<SDL_Rect> walkSprites;
 
 	public:
-		PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight);
-		~PlayerDrawableBehaviour();
+		CheatLoadDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight);
+		~CheatLoadDrawableBehaviour();
 
-		PlayerDrawableBehaviour* EmptyClone() override;
+		CheatLoadDrawableBehaviour* EmptyClone() override;
 
 		void Draw() override;
 		void SetSprites(vector<SDL_Rect> sdl_sprites) override;
 		bool LoadMedia() override;
+
 };

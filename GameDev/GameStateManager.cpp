@@ -13,7 +13,15 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 	//TODO states onthouden
 
 }
+
 void GameStateManager::CreateGameState(GameStateType state)
+{
+	IGameState* gamestate = GetNewState(state);
+	PushGameState(gamestate);
+}
+
+//Create / Load State
+IGameState* GameStateManager::GetNewState(GameStateType state) 
 {
 	IGameState* gamestate;
 	switch (state)
@@ -35,8 +43,7 @@ void GameStateManager::CreateGameState(GameStateType state)
 		break;
 	}
 
-
-	PushGameState(gamestate);
+	return gamestate;
 }
 
 void GameStateManager::ChangeGameState()

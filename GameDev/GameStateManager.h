@@ -23,6 +23,7 @@ class GameStateManager
 		void PushGameState(IGameState* gameState);
 		void PopState();
 		void CreateGameState(GameStateType state);
+		IGameState* GetNewState(GameStateType state);
 		IGameState* GetCurrentState();
 		virtual ~GameStateManager();
 };

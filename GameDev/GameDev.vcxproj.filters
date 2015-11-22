@@ -127,6 +127,9 @@
     <ClCompile Include="LoadState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="CheatLoadDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="LoadState.h">
       <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatLoadDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
