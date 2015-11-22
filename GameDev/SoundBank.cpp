@@ -28,7 +28,7 @@ SoundBank* SoundBank::GetInstance() {
 }
 
 //SoundEffect, volume = between [0 - 128], 64 = neutral
-void SoundBank::Play(SoundEffectType type) {
+void SoundBank::PlaySFX(SoundEffectType type) {
 	if (sfxEnabled) {
 		//Get the appropriate SoundChunk depending on the SoundEffectType
 		Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
@@ -47,6 +47,7 @@ void SoundBank::Play(SoundEffectType type) {
 	}
 }
 
+//Fyi, this action is also toggle-ish, when something is already playing, it will fade out and start the new BGM
 //BackGroundMusic, volume = between [0 - 128], 64 = neutral
 void SoundBank::PlayBGM(SoundBgmType type) {
 	if (musicEnabled) {

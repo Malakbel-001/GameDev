@@ -11,7 +11,7 @@ Game::Game()
 
 
 	gsm = new GameStateManager(bf);
-	gsm->CreateGameState(GameStateType::MenuState);
+	gsm->CreateGameState(GameStateType::LoadState); //temp testing
 
 	//Non-threaded
 	this->GameLoop();

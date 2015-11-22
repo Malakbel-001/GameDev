@@ -24,7 +24,7 @@ public:
 	~SoundBank();
 	static SoundBank* GetInstance();
 
-	void Play(SoundEffectType type);
+	void PlaySFX(SoundEffectType type);
 	void PlayBGM(SoundBgmType type);
 	void PauseOrResume();
 	void StopMusic(); //arguably not needed

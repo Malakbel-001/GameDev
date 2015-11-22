@@ -1,10 +1,12 @@
 #pragma once
 #include "IGameState.h"
 #include "GameStateManager.h"
+#include "SoundBank.h"
 
 class LoadState : public IGameState {
 private:
 	GameStateManager* gsm;
+	DrawableContainer* drawableContainer;
 
 public:
 	LoadState() { };

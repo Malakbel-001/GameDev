@@ -124,6 +124,9 @@
     <ClCompile Include="SettingsConfig.cpp">
       <Filter>Source Files\Model\Config</Filter>
     </ClCompile>
+    <ClCompile Include="LoadState.cpp">
+      <Filter>Source Files\Model\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -266,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="SettingsConfig.h">
       <Filter>Header Files\Model\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadState.h">
+      <Filter>Header Files\Model\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

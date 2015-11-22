@@ -380,7 +380,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 1, mainmenu play
 				case 0:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						SoundBank::GetInstance()->StopMusic();
 						gsm->CreateGameState(GameStateType::PlayState);
 
@@ -390,7 +390,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 					//item 2, mainmenu help
 				case 1:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						menuState = helpMenu;
 					}
 					break;
@@ -404,21 +404,21 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 				case 6:
 					if (menuState != mainMenu)
 					{
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						menuState = mainMenu;
 					}
 					break;
 					//item 9, mainmenu credit
 				case 9:
 					if (menuState == mainMenu){
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						menuState = creditMenu;
 					}
 					break;
 					//item 10, mainmenu options
 				case 10:
 					if (menuState == mainMenu) {
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						menuState = optionsMenu;
 					}
 					break;
@@ -426,7 +426,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 				case 11:
 					if (menuState == optionsMenu) {
 						SoundBank::GetInstance()->ToggleSFX();
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
 							SoundBank::GetInstance()->IsEnabledSFX(),
 							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -436,7 +436,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 				case 12:
 					if (menuState == optionsMenu) {
 						SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
 							SoundBank::GetInstance()->IsEnabledSFX(),
 							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
@@ -456,7 +456,7 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
 													SoundBank::GetInstance()->IsEnabledSFX(),
 													(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) != SDL_WINDOW_FULLSCREEN_DESKTOP);
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					}
 				}
 			}
