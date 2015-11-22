@@ -1,10 +1,13 @@
 #include "MenuBase.h"
 #include "LTexture.h"
+#include "SettingsConfig.h"
 class MenuState;
 class PauseState;
 class OptionMenu : public MenuBase
 {
 private:
+	Uint32 flags;
+	SettingsConfig settingsConfig;
 	int hoverX;
 	int hoverY;
 	int selectedCounter;
@@ -45,6 +48,8 @@ private:
 	SDL_Texture* fullScreenOnTexture; //16
 	SDL_Texture* fullScreenOffTexture; //16
 public:
+
+	void LoadSettings(map<string, bool>);
 	OptionMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	OptionMenu(PauseState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	void Init();

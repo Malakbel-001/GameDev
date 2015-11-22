@@ -77,11 +77,14 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 
 					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
-						jump = true;
-						impulse = 100;
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
-						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 
+					
+							jump = true;
+							impulse = 100;
+							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+
+							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
+						
 					}
 					break;
 				case SDLK_a:
@@ -96,6 +99,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_d:
 					x = 5;
+					break;
+				case SDLK_z:
+
+					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
 				case SDLK_ESCAPE:
 					pause = true;

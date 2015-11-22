@@ -10,6 +10,7 @@ SDL_Color textColor = { 255, 255, 255, 255 }; // white
 SDL_Color hoverTextColor = { 255, 0, 0, 255 }; // red
 
 void MenuState::Init(GameStateManager *gsm){
+
 	this->gsm = gsm;
 	if (!InitEverything()){
 		std::cout << "-1";

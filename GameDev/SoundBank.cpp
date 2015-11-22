@@ -7,14 +7,14 @@ SoundBank* SoundBank::instance = new SoundBank();
 SoundBank::SoundBank() {
 	//defining sound effects
 	soundPathList = std::unordered_map<SoundEffectType, char*> {
-		{ SoundEffectType::CORRECT, "../Assets/soundcorrect.wav" }
+		{ SoundEffectType::CORRECT, "Resources/sound/sfx/soundcorrect.wav" }
 	};
 
 	//defining background music
 	bgmPathList = std::unordered_map<SoundBgmType, char*>{
-		{ SoundBgmType::TESTBGM1, "../Assets/balcony.mp3" },
-		{ SoundBgmType::TESTBGM2, "../Assets/lastcave.mp3" },
-		{ SoundBgmType::THUNDERSTRUCK, "../Assets/thunderstruck.mp3" }
+		{ SoundBgmType::TESTBGM1, "Resources/sound/bg/balcony.mp3" },
+		{ SoundBgmType::TESTBGM2, "Resources/sound/bg/lastcave.mp3" },
+		{ SoundBgmType::THUNDERSTRUCK, "Resources/sound/bg/thunderstruck.mp3" }
 	};
 }
 
@@ -87,7 +87,7 @@ void SoundBank::FreeMemory() {
 	//Mix_FreeMusic TODO needed or not??
 }
 
-void SoundBank::DisableOrEnableMusic(SoundBgmType type) {
+void SoundBank::ToggleMusic(SoundBgmType type) {
 	if (musicEnabled) {
 		musicEnabled = false;
 		StopMusic();
@@ -98,7 +98,7 @@ void SoundBank::DisableOrEnableMusic(SoundBgmType type) {
 	}
 }
 
-void SoundBank::DisableOrEnableSFX() {
+void SoundBank::ToggleSFX() {
 	if (sfxEnabled) {
 		sfxEnabled = false;
 	}

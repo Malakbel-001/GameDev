@@ -7,11 +7,11 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	player = nullptr;
 	startXpos = 100;
 	startYpos = 10;
-
+	actors = new std::vector<Actor*>();
 	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
-
+	world->SetContactListener(new ContactListener());
 	drawableContainer = new DrawableContainer();
-	this->tileLoader = nullptr;
+
 
 }
 
@@ -28,18 +28,42 @@ b2World* Level::GetWorld()
 void Level::Update(float dt)
 {
 	world->Step((dt / 100), 5, 5);
-	if (player->GetYPos() > lvlHeight)
+	if (player->GetYPos() > lvlHeight || player->IsDead())
 	{
 
 		GameOver();
 	}
+	else{
+		
+		for (int x = 0; actors->size() > x; x++)
+		{
+			if (actors->operator[](x)->IsDead()){
+				world->DestroyBody(actors->operator[](x)->GetBody());
+				drawableContainer->Delete(actors->operator[](x));
+				delete actors->operator[](x);
+				actors->erase(actors->begin() + x);
+				x--;
+
+			}
+			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
+				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
+		
+
+			}
+			
+		}
+		
+		
+	}
+
+
 }
 
 #pragma region Get, Set
 Player* Level::SetPlayer(Player* _player)
 {
 	//	player = _player;
-	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
+	player = dynamic_cast<Player*>(entityFactory->CreateActor(0,100,20, 100, 15, 15, EntityType::PLAYER));
 	return player;
 
 }
@@ -77,6 +101,10 @@ SDL_Texture* Level::GetTileSheet()
 int Level::GetLvlHeight()
 {
 	return this->lvlHeight;
+}
+
+EntityFactory* Level::GetEntityFactory(){
+	return entityFactory;
 }
 
 int Level::GetLvlWidth()

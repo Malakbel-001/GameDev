@@ -3,6 +3,8 @@
 #include "PauseState.h"
 OptionMenu::OptionMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
 {
+	settingsConfig = SettingsConfig();
+	LoadSettings(settingsConfig.LoadSettings());
 	textColor = { 255, 255, 255, 255 }; // white;
 	hoverTextColor = { 255, 0, 0, 255 }; // red
 	this->mainMenu = menu;
@@ -21,6 +23,8 @@ OptionMenu::OptionMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfo
 
 OptionMenu::OptionMenu(PauseState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
 {
+	settingsConfig = SettingsConfig();
+	LoadSettings(settingsConfig.LoadSettings());
 	mainMenu = nullptr;
 	textColor = { 255, 255, 255, 255 }; // white;
 	hoverTextColor = { 255, 0, 0, 255 }; // red
@@ -131,6 +135,17 @@ void OptionMenu::SetupRenderer(){
 
 }
 
+void OptionMenu::LoadSettings(map<string, bool> settingsMap) {
+	if (SoundBank::GetInstance()->IsEnabledMusic() != settingsMap["music"]) {
+		SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
+	}
+	if (SoundBank::GetInstance()->IsEnabledSFX() != settingsMap["sfx"]) {
+		SoundBank::GetInstance()->ToggleSFX();
+	}
+	if (settingsMap["fullscreen"]) {
+		SDL_SetWindowFullscreen(SDL_GetWindowFromID(1), SDL_WINDOW_FULLSCREEN_DESKTOP);
+	}
+}
 void OptionMenu::Draw(){
 	SDL_RenderCopy(renderer, optionsTitleTexture, nullptr, &optionsTitleRect);
 	if (SoundBank::GetInstance()->IsEnabledMusic()) { //BGM
@@ -271,13 +286,19 @@ void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 					break;
 				case 1:
 					//SFX
-						SoundBank::GetInstance()->DisableOrEnableSFX();
+					SoundBank::GetInstance()->ToggleSFX();
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
+							SoundBank::GetInstance()->IsEnabledSFX(),
+							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
 					break;
 				case 3:
 					//music
-						SoundBank::GetInstance()->DisableOrEnableMusic(SoundBgmType::TESTBGM1);
+					SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
+							SoundBank::GetInstance()->IsEnabledSFX(),
+							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP);
 					break;
 				case 5:
 					//fullscreen
@@ -289,6 +310,9 @@ void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 						else {
 							SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 						}
+						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
+							SoundBank::GetInstance()->IsEnabledSFX(),
+							(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) != SDL_WINDOW_FULLSCREEN_DESKTOP);
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						break;
 				}

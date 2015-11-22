@@ -1,11 +1,15 @@
 #pragma once
 #include "Actor.h"
 
+class Weapon;
+class ShotGun;
 class Player :
 	public Actor
 {
 	private:
 		// stuff
+		Weapon* currentWep = nullptr;
+
 
 	protected:
 		// stuff
@@ -14,6 +18,8 @@ class Player :
 		Player();
 		virtual ~Player();
 		void setBody(b2Body* _body);
-		virtual Entity* EmptyClone();
+		virtual Actor* EmptyClone();
 		b2Body* GetBody();
+		Weapon* GetCurrentWeapon();
+
 };
