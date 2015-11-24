@@ -1,14 +1,16 @@
 #include "MenuBase.h"
 #include "LTexture.h"
 class MenuState;
-class MainMenu : public MenuBase
+class PauseState;
+class CreditMenu : public MenuBase
 {
 private:
 	int hoverX;
 	int hoverY;
 	int selectedCounter;
 	SDL_Renderer* renderer;
-	MenuState* menu;
+	MenuState* mainMenu;
+	PauseState* pauseMenu;
 
 	//temp
 	LTexture background;
@@ -17,7 +19,7 @@ private:
 	//background
 	SDL_Texture* backgroundTexture;
 
-	SDL_Rect pos[6];
+	SDL_Rect pos[3];
 
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
@@ -25,30 +27,22 @@ private:
 	TTF_Font* titleFont;
 	TTF_Font* textFont;
 
-	SDL_Rect solidRect;
-	SDL_Rect blendedRect;
-	SDL_Rect shadedRect;
-	SDL_Rect mainTitleRect;
-	SDL_Rect creditRect;
-	SDL_Rect optionsRect;
+	SDL_Rect backToMainRect;
+	SDL_Rect creditTextRect;
+	SDL_Rect creditTitleRect;
 
-	SDL_Texture* playTexture; //0
-	SDL_Texture* helpTexture; //1
-	SDL_Texture* quitTexture; //2
-	SDL_Texture* mainTitleTexture; //3
-	SDL_Texture* creditTexture; //9
-	SDL_Texture* optionsTexture;
+	SDL_Texture* backToMainTexture; //0
+	SDL_Texture* creditTextTexture; //1
+	SDL_Texture* helpCreditTexture; //2
 public:
-	MainMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
+	CreditMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
+	CreditMenu(PauseState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	void Init();
-	~MainMenu();
-	
-	void MakePlayText(SDL_Color);
-	void MakeHelpText(SDL_Color);
-	void MakeQuitText(SDL_Color);
+	~CreditMenu();
+
+	void MakeBackToMain(SDL_Color);
 	void MakeCreditText(SDL_Color);
-	void MakeOptionText(SDL_Color);
-	void MakeMainTitle(SDL_Color);
+	void MakeCreditTitle(SDL_Color);
 	SDL_Texture* SurfaceToTexture(SDL_Surface*);
 
 	void Highlight(int);

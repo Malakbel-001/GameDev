@@ -48,6 +48,10 @@ void Game::SDLEvents()
 		{
 			inputManager->SetMouseInput(events);
 		}
+		if (events.type == SDL_MOUSEMOTION)
+		{
+			inputManager->SetMouseMotion(events);
+		}
 	}
 }
 

@@ -4,60 +4,51 @@
 #include "SDL_ttf.h"
 #include <string>
 #include <iostream>
-#include "PlayState.h"
 #include "SoundBank.h"
-#include "MenuBase.h"
-//#include "HelpMenu.h"
-#include "SettingsConfig.h"
-class MainMenu;
-class HelpMenu;
-class CreditMenu;
-class OptionMenu;
-
-class MenuState :
+class GameOverState :
 	public IGameState
 {
-private:
-	int hoverX;
-	int hoverY;
-	int selectedCounter;
-	MenuBase* currentMenu;
-	MenuBase* PreviousMenu;
-	MainMenu* mainMenu;
-	HelpMenu* helpMenu;
-	CreditMenu* creditMenu;
-	OptionMenu* optionMenu;
-	
 public:
-	MenuState();
+	GameOverState();
 	GameStateManager* gsm;
-
-	void Highlight(int);
 
 	// Setup
 	bool InitEverything();
 	bool InitSDL();
 	void SetupRenderer();
-	void CreateHelpMenu();
 	bool CreateRenderer();
 
 	// Our new function for setting uo SDL_TTF
 	bool SetupTTF(const std::string &fontName, const std::string &fontName2);
 	SDL_Texture* SurfaceToTexture(SDL_Surface* surf);
+	void CreateTextTextures();
 
 	// Stuff for text rendering
 	TTF_Font* titleFont;
 	TTF_Font* textFont;
-	
+
+#pragma region textures
+	SDL_Texture* quitTexture; //2
+	SDL_Texture* gameoverTitleTexture; //3
+#pragma endregion textures
+
+#pragma region rects
+	//mainmenu
+	SDL_Rect quitRect;
+	SDL_Rect gameoverTitleRect;
+#pragma endregion rects
+
 	SDL_Renderer* renderer;
 
 	bool quit = false;
-		
+	
 	void Init(GameStateManager *gsm);
 	void Cleanup();
 
-	void Pause();
 	void Resume();
+	void Pause();
+	void Quit();
+	void loadQuitMenu();
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
@@ -65,7 +56,7 @@ public:
 	void Draw();
 	void Background();
 
-	virtual ~MenuState();
+	virtual ~GameOverState();
 
 	//temp
 	LTexture background;
@@ -74,10 +65,8 @@ public:
 	//background
 	SDL_Texture* backgroundTexture;
 
-	void updateMenu(MenuEnum);
-	
 private:
 	SDL_Color textColor;
-	const int renderItems = 20;
+	const int renderItems = 18;
 	vector<SDL_Rect> pos;
 };

@@ -27,7 +27,7 @@ class PlayState :
 
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
-		void Update(float dt);
+		void Update(float);
 		void Draw();
 		void GameOver();
 

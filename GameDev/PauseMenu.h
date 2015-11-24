@@ -1,14 +1,14 @@
 #include "MenuBase.h"
 #include "LTexture.h"
-class MenuState;
-class MainMenu : public MenuBase
+class PauseState;
+class PauseMenu : public MenuBase
 {
 private:
 	int hoverX;
 	int hoverY;
 	int selectedCounter;
 	SDL_Renderer* renderer;
-	MenuState* menu;
+	PauseState* menu;
 
 	//temp
 	LTexture background;
@@ -39,10 +39,10 @@ private:
 	SDL_Texture* creditTexture; //9
 	SDL_Texture* optionsTexture;
 public:
-	MainMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
+	PauseMenu(PauseState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	void Init();
-	~MainMenu();
-	
+	~PauseMenu();
+
 	void MakePlayText(SDL_Color);
 	void MakeHelpText(SDL_Color);
 	void MakeQuitText(SDL_Color);
