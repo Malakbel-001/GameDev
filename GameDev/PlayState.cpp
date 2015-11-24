@@ -95,6 +95,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					y = 5;
 					break;
 				case SDLK_d:
+					currentLevel->GetPlayer()->SetState(EntityState::WALKING);
 					x = 5;
 					break;
 				case SDLK_ESCAPE:
