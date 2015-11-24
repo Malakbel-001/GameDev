@@ -10,9 +10,12 @@ LoadState::~LoadState() {
 void LoadState::Init(GameStateManager* gsm) {
 	this->gsm = gsm;
 	this->renderer = gsm->GetBehaviour()->GetRenderer();
-	
+
+	//Create and load Thread, see also the LoadPlayState method
 	std::thread loadingThread(LoadPlayState, gsm);
 	loadingThread.detach();
+
+
 
 	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
 	BehaviourFactory* bf = gsm->GetBehaviour();
@@ -20,7 +23,6 @@ void LoadState::Init(GameStateManager* gsm) {
 	DrawableBehaviour* cheatLoad = bf->CreateDrawableBehaviour(EntityType::CHEATLOAD);
 	cheatLoad->LoadMedia();
 	drawableContainer->Add(cheatLoad);
-	//Icon Loading End.
 
 	//Textures / Display Text Loading... and Press any key to Continue
 	TTF_Init(); //Init Font
@@ -28,6 +30,8 @@ void LoadState::Init(GameStateManager* gsm) {
 	if (textFont == nullptr) {
 		std::cout << " Failed to load font : " << TTF_GetError() << std::endl; //just in case...
 	}
+
+	//Sorry for wall of code
 
 	SDL_Color textColor = { 255, 255, 255, 255 }; // white
 	//loadingTexture, based on menuState, trying to keep code short, but maybe we need a text texture utility class?
@@ -45,7 +49,10 @@ void LoadState::Init(GameStateManager* gsm) {
 	SDL_QueryTexture(finishedTexture, NULL, NULL, &finishedRect.w, &finishedRect.h);
 	finishedRect.x = 100;
 	finishedRect.y = 20;
-	//Textures End, Fyi: Error handling here is baddy bad bad, at least for now.
+	//Fyi: Error handling, compared to menuState methods @InitializationEverything, here is baddy bad bad, at least for now unless not needed.
+
+	//Advertisement placeholder
+	//Advertisement("Resources/images/ad-placeholder.png");
 }
 
 void LoadState::LoadPlayState(GameStateManager* gsm) {
@@ -54,13 +61,21 @@ void LoadState::LoadPlayState(GameStateManager* gsm) {
 	loadedPlay = true;
 }
 
-void LoadState::CreateTextures() {
-	
+//path = path of the advertisement image
+void LoadState::Advertisement(char* path) {
+	/*advertisementPic = LTexture();
+	advertisementPic.loadFromFile(renderer, path);
+	advertisementRect.h = advertisementPic.getHeight();
+	advertisementRect.w = advertisementPic.getWidth();*/
+	/*advertisementRect.x = 50;
+	advertisementRect.y = loadingRect.y + loadingRect.h + 50;*/
 }
 
 void LoadState::Cleanup() {
 	delete(playState);
 	delete(drawableContainer);
+	delete(loadingTexture);
+	delete(finishedTexture);
 }
 
 void LoadState::Pause() {
@@ -73,7 +88,7 @@ void LoadState::Resume() {
 
 void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	if (loadedPlay) {
-		for (auto it = _events->begin(); it != _events->end(); ++it){ //still needed, or will removing this bring potential bugs?
+		for (auto it = _events->begin(); it != _events->end(); ++it){ //still needed? or will removing this bring potential bugs?
 			if (it->second)	{
 				switch (it->first) {
 					default:
@@ -96,10 +111,12 @@ void LoadState::Update(float dt) {
 void LoadState::Draw() {
 	drawableContainer->Draw();
 
-	if (!loadedPlay) {
+	if (!loadedPlay) {	//Loading...
 		SDL_RenderCopy(renderer, loadingTexture, nullptr, &loadingRect);
 	}
-	else {
+	else {				//Press any key to continue
 		SDL_RenderCopy(renderer, finishedTexture, nullptr, &finishedRect);
 	}
+
+	//advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, &advertisementRect);
 }

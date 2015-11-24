@@ -15,12 +15,15 @@ private:
 	static bool loadedPlay;
 	static void LoadPlayState(GameStateManager* gsm);
 
+	TTF_Font* textFont;
+
 	SDL_Texture* loadingTexture;
 	SDL_Texture* finishedTexture;
 	SDL_Rect loadingRect;
 	SDL_Rect finishedRect;
-	void CreateTextures();
-	TTF_Font* textFont;
+
+	LTexture advertisementPic; //picture, jpg, png, etc. Look at LTexture and Advertisement() for more details
+	SDL_Rect advertisementRect;
 
 public:
 	LoadState() { };
@@ -28,6 +31,7 @@ public:
 
 	void Init(GameStateManager* gsm);
 	void Cleanup();
+	void Advertisement(char* path);
 
 	void Pause();
 	void Resume();
