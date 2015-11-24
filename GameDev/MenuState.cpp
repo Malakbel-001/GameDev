@@ -172,7 +172,7 @@ void MenuState::updateMenu(MenuEnum menu){
 		PreviousMenu = mainMenu;
 		break;
 	case MenuEnum::Play:
-		gsm->CreateGameState(GameStateType::PlayState);
+		gsm->CreateGameState(GameStateType::LoadState);
 		break;
 	default:
 		break;

@@ -4,14 +4,14 @@
 using namespace std;
 Game::Game()
 {
-		inputManager = new InputManager();
+	inputManager = new InputManager();
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 
 
 	gsm = new GameStateManager(bf);
-	gsm->CreateGameState(GameStateType::LoadState); //temp testing
+	gsm->CreateGameState(GameStateType::MenuState);
 
 	//Non-threaded
 	this->GameLoop();
