@@ -12,9 +12,6 @@ public:
 
 	virtual Entity* EmptyClone();
 
-	void SetState(ActorState* new_state);
-	ActorState* GetState();
-
 private:
 	ActorState* state;
 };

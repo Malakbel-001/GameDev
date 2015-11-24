@@ -10,12 +10,33 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	screenHeight = screenheight;
 	camera = new Camera(screenHeight, screenwidth);
 
+	groundSprite = new GroundSprite();
+	groundSprite->SetRenderer(renderer);
+	groundSprite->LoadMedia("grass.png");
+
+
+	groundobstacleSprite = new GroundObstacleSprite();
+	groundobstacleSprite->SetRenderer(renderer);
+	groundobstacleSprite->LoadMedia("grass.png");
+
+	barobstacleSprite = new BarObstacleSprite();
+	barobstacleSprite->SetRenderer(renderer);
+	barobstacleSprite->LoadMedia("grass.png");
+
+	plantSprite = new PlantSprite();
+	plantSprite->SetRenderer(renderer);
+	plantSprite->LoadMedia("plant.png");
+
+	playerSprite =  new PlayerSprite();
+	playerSprite->SetRenderer(renderer);
+	playerSprite->LoadMedia("sprites.png");
+
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
-			{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, screenWidth, screenHeight) },
-			{ EntityType::PLANT, new EnemyDrawableBehaviour(renderer, screenWidth, screenHeight) },
-			{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, screenWidth, screenHeight) },
-			{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, screenWidth, screenHeight) },
-			{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, screenWidth, screenHeight) }
+		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
+		{ EntityType::PLANT, new EnemyDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
+		{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
+		{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, groundobstacleSprite, screenWidth, screenHeight) },
+		{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) }
 	};
 }
 

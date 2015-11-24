@@ -10,6 +10,11 @@
 #include "MoveableBehaviour.h"
 #include "CollidableBehaviour.h"
 #include "EntityType.h"
+#include "GroundSprite.h"
+#include "GroundObstacleSprite.h"
+#include "BarObstacleSprite.h"
+#include "PlantSprite.h"
+#include "PlayerSprite.h"
 
 class Camera;
 class Player;
@@ -25,6 +30,12 @@ public:
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 private:
 	Camera* camera;
+	GroundSprite* groundSprite;
+	GroundObstacleSprite* groundobstacleSprite;
+	BarObstacleSprite* barobstacleSprite;
+	PlantSprite* plantSprite;
+	PlayerSprite* playerSprite;
+
 	int screenWidth;
 	int screenHeight;
 	SDL_Renderer* renderer;

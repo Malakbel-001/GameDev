@@ -14,6 +14,7 @@ class Entity
 		b2Body* body;
 		DrawableBehaviour* draw;
 		EntityType type;
+		EntityState state;
 
 	public:
 		Entity();
@@ -24,4 +25,6 @@ class Entity
 		virtual int GetHeight();
 		virtual int GetXPos();
 		virtual int GetYPos();
+		virtual EntityState GetState();
+		virtual void SetState(EntityState _state); 
 };

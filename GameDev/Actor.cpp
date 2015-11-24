@@ -14,13 +14,3 @@ Entity* Actor::EmptyClone(){
 Actor::~Actor()
 {
 }
-
-void Actor::SetState(ActorState* new_state)
-{
-	state = new_state;
-}
-
-ActorState* Actor::GetState()
-{
-	return state;
-}
