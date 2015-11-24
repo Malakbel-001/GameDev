@@ -23,7 +23,7 @@ void PlayState::Init(GameStateManager* gsm)
 	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	// flush userinput to prevent crash during loadscreen
 
-	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
+	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
 	std::cout << "PlayState \n";
 }

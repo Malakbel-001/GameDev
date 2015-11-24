@@ -8,7 +8,7 @@ LoadState::~LoadState() {
 }
 
 void LoadState::Init(GameStateManager* gsm) {
-	this->gsm;
+	this->gsm = gsm;
 	
 	std::thread loadingThread(LoadPlayState, gsm);
 	loadingThread.detach();
@@ -21,8 +21,8 @@ void LoadState::Init(GameStateManager* gsm) {
 }
 
 void LoadState::LoadPlayState(GameStateManager* gsm) {
-	loadedPlay = false;
 	playState = gsm->GetNewState(GameStateType::PlayState);
+	playState->Init(gsm);
 	loadedPlay = true;
 }
 
@@ -45,7 +45,7 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 			if (it->second)	{
 				switch (it->first) {
 				case SDLK_SPACE:
-					gsm->PushGameState(playState);
+					gsm->PushGameStateOnly(playState);
 					break;
 				default:
 					//do something?
@@ -61,7 +61,7 @@ void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
 }
 
 void LoadState::Update(float dt) {
-	//draw done with loading press key
+
 }
 
 void LoadState::Draw() {

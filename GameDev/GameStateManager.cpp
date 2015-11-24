@@ -64,6 +64,10 @@ void GameStateManager::PushGameState(IGameState* gameState)
 	states.back()->Init(this);
 }
 
+void GameStateManager::PushGameStateOnly(IGameState* gameState) {
+	states.push_back(gameState);
+}
+
 void GameStateManager::PopState()
 {
 	if (!states.empty())
