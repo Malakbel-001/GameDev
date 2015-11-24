@@ -46,3 +46,6 @@ bool DrawableBehaviour::LoadMedia()
 void DrawableBehaviour::SetCamera(Camera* _camera){
 	camera = _camera;
 }
+Entity* DrawableBehaviour::GetEntity(){
+	return entity;
+}

@@ -1,4 +1,3 @@
-
 #include "PlayState.h"
 
 
@@ -27,10 +26,12 @@ void PlayState::Init(GameStateManager* gsm)
 
 	std::cout << "PlayState \n";
 }
+
 void PlayState::GameOver(){
 	SoundBank::GetInstance()->StopMusic();
-	gsm->ChangeGameState();
+	gsm->CreateGameState(GameStateType::GameOverState);
 }
+
 void PlayState::LoadGame()
 {
 	
@@ -43,7 +44,7 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	std::cout << "Pause not implemented yet";
+	gsm->CreateGameState(GameStateType::PauseState);
 }
 
 void PlayState::Resume()
@@ -62,7 +63,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
 
 		bool jump = false;
-		bool quit = false;
+		bool pause = false;
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
@@ -73,14 +74,11 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				switch (it->first)
 				{
 				case SDLK_w:
-
-
 					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
 						jump = true;
 						impulse = 100;
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
 					}
 					break;
 				case SDLK_a:
@@ -96,25 +94,26 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_d:
 					x = 5;
 					break;
+				case SDLK_z:
+
+					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
+					break;
 				case SDLK_ESCAPE:
-					quit = true;
+					pause = true;
 					
 					break;
-
 				}
 			}
-		}
-		
+		}		
 		
 		if (!jump){
 			vel.Set(x, y);
 			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
-
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 		}
-		if (quit){
-			GameOver();
+
+		if (pause){
+			Pause();
 		}
 		
 	}
