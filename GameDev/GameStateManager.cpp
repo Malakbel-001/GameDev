@@ -66,6 +66,7 @@ void GameStateManager::PushGameState(IGameState* gameState)
 }
 
 void GameStateManager::PushGameStateOnly(IGameState* gameState) {
+	states.pop_back(); //pop loadState
 	states.push_back(gameState);
 }
 
