@@ -3,14 +3,24 @@
 #include "GameStateManager.h"
 #include "SoundBank.h"
 #include <thread>
+#include "SDL_ttf.h"
 
 class LoadState : public IGameState {
 private:
 	GameStateManager* gsm;
+	SDL_Renderer* renderer;
+
 	DrawableContainer* drawableContainer;
 	static IGameState* playState;
 	static bool loadedPlay;
 	static void LoadPlayState(GameStateManager* gsm);
+
+	SDL_Texture* loadingTexture;
+	SDL_Texture* finishedTexture;
+	SDL_Rect loadingRect;
+	SDL_Rect finishedRect;
+	void CreateTextures();
+	TTF_Font* textFont;
 
 public:
 	LoadState() { };
