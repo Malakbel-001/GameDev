@@ -52,7 +52,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	//Fyi: Error handling, compared to menuState methods @InitializationEverything, here is baddy bad bad, at least for now unless not needed.
 
 	//Advertisement placeholder
-	//Advertisement("Resources/images/ad-placeholder.png");
+	Advertisement("Resources/images/ad-placeholder.png");
 }
 
 void LoadState::LoadPlayState(GameStateManager* gsm) {
@@ -63,19 +63,26 @@ void LoadState::LoadPlayState(GameStateManager* gsm) {
 
 //path = path of the advertisement image
 void LoadState::Advertisement(char* path) {
-	/*advertisementPic = LTexture();
+	advertisementPic = LTexture();
 	advertisementPic.loadFromFile(renderer, path);
 	advertisementRect.h = advertisementPic.getHeight();
-	advertisementRect.w = advertisementPic.getWidth();*/
-	/*advertisementRect.x = 50;
-	advertisementRect.y = loadingRect.y + loadingRect.h + 50;*/
+	advertisementRect.w = advertisementPic.getWidth();
+	advertisementRect.x = 0;
+	advertisementRect.y = 0;
 }
 
 void LoadState::Cleanup() {
-	delete(playState);
-	delete(drawableContainer);
-	delete(loadingTexture);
-	delete(finishedTexture);
+	TTF_CloseFont(textFont);
+
+	delete drawableContainer;
+	drawableContainer = nullptr;
+
+	//Bugged. Uhhm? Maybe SDL deletes those pointers himself anyway?
+	/*delete loadingTexture;
+	delete finishedTexture;*/
+
+	/*loadingTexture = nullptr;
+	finishedTexture = nullptr;*/
 }
 
 void LoadState::Pause() {
@@ -88,10 +95,10 @@ void LoadState::Resume() {
 
 void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	if (loadedPlay) {
-		for (auto it = _events->begin(); it != _events->end(); ++it){ //still needed? or will removing this bring potential bugs?
+		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
 				switch (it->first) {
-					default:
+					default: //don't know how to remove warning except for creating an empty case
 						gsm->PushGameStateOnly(playState); //any key
 						break;
 				}
@@ -118,5 +125,5 @@ void LoadState::Draw() {
 		SDL_RenderCopy(renderer, finishedTexture, nullptr, &finishedRect);
 	}
 
-	//advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, &advertisementRect);
+	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, &advertisementRect);
 }
