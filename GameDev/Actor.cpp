@@ -26,16 +26,6 @@ Actor::~Actor()
 {
 }
 
-void Actor::SetState(ActorState* new_state)
-{
-	state = new_state;
-}
-
-ActorState* Actor::GetState()
-{
-	return state;
-}
-
 void Actor::SetHealt(int _health){
 	if (_health <= 0){
 		dead = true;

@@ -139,17 +139,21 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="ActorState.h" />
     <ClInclude Include="BarObstacleDrawableBehaviour.h" />
     <ClInclude Include="BarObstacleSprite.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletCollidableBehaviour.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="DrawableBehaviour.h" />
     <ClInclude Include="DrawableContainer.h" />
+    <ClInclude Include="EnemyCollidableBehaviour.h" />
     <ClInclude Include="EnemyDrawableBehaviour.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityFactory.h" />
@@ -165,15 +169,22 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GroundObstacleSprite.h" />
     <ClInclude Include="GroundSprite.h" />
     <ClInclude Include="header_loader.h" />
+    <ClInclude Include="HelpMenu.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="LTexture.h" />
+    <ClInclude Include="MenuBase.h" />
+    <ClInclude Include="MenuEnum.h" />
+    <ClInclude Include="OptionMenu.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PlantSprite.h" />
+    <ClInclude Include="PlayerCollidableBehaviour.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="PlayerSprite.h" />
+    <ClInclude Include="ShotGun.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />
     <ClInclude Include="SoundChunk.h" />

@@ -40,7 +40,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, groundobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
-		{ EntityType::BULLET, new EnemyDrawableBehaviour(renderer, screenWidth, screenHeight) }
+		{ EntityType::BULLET, new EnemyDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) }
 			
 	};
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
