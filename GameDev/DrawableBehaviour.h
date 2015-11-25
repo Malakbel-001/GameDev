@@ -35,13 +35,10 @@ public:
 	virtual ~DrawableBehaviour();
 
 	void SetEntity(Entity* _entity);
-
+	Entity* GetEntity();
 	virtual DrawableBehaviour* EmptyClone();
 	void SetCamera(Camera* _camera);
 	void SetSprite(Sprite* _sprite);
-	virtual void Draw();
-		
-
-	
+	virtual void Draw();	
 };
 

@@ -48,6 +48,10 @@ void Game::SDLEvents()
 		{
 			inputManager->SetMouseInput(events);
 		}
+		if (events.type == SDL_MOUSEMOTION)
+		{
+			inputManager->SetMouseMotion(events);
+		}
 	}
 }
 
@@ -64,8 +68,7 @@ void Game::GameLoop()
 		preLoopTime = SDL_GetTicks();
 
 		SDLEvents();
-		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());
-		
+		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
 		inputManager->ResetMouseInput();
 		gsm->GetCurrentState()->Update(dt);

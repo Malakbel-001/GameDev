@@ -1,11 +1,10 @@
 #include "GameStateManager.h"
 #include "IGameState.h"
-#include "MenuState.h"
 #include "PlayState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
+#include "MenuState.h"
 #include <iostream>
-
 
 GameStateManager::GameStateManager(BehaviourFactory* _bf)
 {
@@ -51,8 +50,6 @@ void GameStateManager::ChangeGameState()
 
 void GameStateManager::PushGameState(IGameState* gameState)
 {
-
-
 	states.push_back(gameState);
 	states.back()->Init(this);
 }

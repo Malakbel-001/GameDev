@@ -15,11 +15,12 @@ void EnemyDrawableBehaviour::Draw()
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
 	float ypos = entity->GetYPos() / Ratio;
-	
+
 	sprite->GetSpritesheet()->render(renderer, xpos, ypos, sprite->GetAnimationFrame(EntityState::IDLE, currentFrame));
 
-	//Go to next frame 
-	++currentFrame;
+	/// somethings crashes
+	////Go to next frame 
+	//++currentFrame;
 
 	//Cycle animation 
 	if (currentFrame / sprite->GetAnimationSize() >= sprite->GetAnimationSize())
