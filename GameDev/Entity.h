@@ -3,19 +3,21 @@
 #include "DrawableBehaviour.h"
 #include "BehaviourFactory.h"
 #include "DrawableContainer.h"
+#include "CollidableBehaviour.h"
 
 class Entity
 {
 	private:
+	
+	protected:
 		float width;
 		float height;
-
-	protected:
 		b2Body* body;
 		DrawableBehaviour* draw;
+		
 		EntityType type;
 		EntityState state;
-
+	
 	public:
 		Entity();
 		virtual ~Entity();
@@ -27,4 +29,6 @@ class Entity
 		virtual int GetYPos();
 		virtual EntityState GetState();
 		virtual void SetState(EntityState _state); 
+		EntityType GetType();
+		b2Body* GetBody();
 };

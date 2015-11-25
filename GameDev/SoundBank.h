@@ -30,8 +30,8 @@ public:
 	void StopMusic(); //arguably not needed
 	void FreeMemory();
 
-	void DisableOrEnableMusic(SoundBgmType type);
+	void ToggleMusic(SoundBgmType type);
 	bool IsEnabledMusic();
-	void DisableOrEnableSFX();
+	void ToggleSFX();
 	bool IsEnabledSFX();
 };

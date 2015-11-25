@@ -34,12 +34,12 @@ public:
 	DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight);
 	virtual ~DrawableBehaviour();
 
-	void SetEntity(Entity* _entity);
-
-	virtual DrawableBehaviour* EmptyClone();
-	void SetCamera(Camera* _camera);
-	void SetSprite(Sprite* _sprite);
-	virtual void Draw();
+		void SetEntity(Entity* _entity);
+		Entity* GetEntity();
+		virtual DrawableBehaviour* EmptyClone();
+		void SetCamera(Camera* _camera);
+		void SetSprite(Sprite* _sprite);
+		virtual void Draw();
 		
 
 	

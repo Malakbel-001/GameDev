@@ -94,12 +94,18 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
+	    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletCollidableBehaviour.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="ContactListener.cpp" />
+    <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="CreditMenu.cpp" />
     <ClCompile Include="DrawableBehaviour.cpp" />
     <ClCompile Include="DrawableContainer.cpp" />
+    <ClCompile Include="EnemyCollidableBehaviour.cpp" />
     <ClCompile Include="EnemyDrawableBehaviour.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
@@ -111,6 +117,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="GroundObstacleDrawableBehavior.cpp" />
     <ClCompile Include="GroundObstacleSprite.cpp" />
     <ClCompile Include="GroundSprite.cpp" />
+    <ClCompile Include="HelpMenu.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
@@ -119,6 +126,12 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlantSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="PlayerSprite.cpp" />
+    <ClCompile Include="MenuBase.cpp" />
+    <ClCompile Include="OptionMenu.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="PlayerCollidableBehaviour.cpp" />
+    <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="SoundBank.cpp" />
     <ClCompile Include="SoundChunk.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -136,6 +149,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="SDLInitializer.cpp" />
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
@@ -144,12 +158,18 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletCollidableBehaviour.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="ContactListener.h" />
+    <ClInclude Include="SettingsConfig.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="CreditMenu.h" />
     <ClInclude Include="DrawableBehaviour.h" />
     <ClInclude Include="DrawableContainer.h" />
+    <ClInclude Include="EnemyCollidableBehaviour.h" />
     <ClInclude Include="EnemyDrawableBehaviour.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityFactory.h" />
@@ -165,6 +185,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GroundObstacleSprite.h" />
     <ClInclude Include="GroundSprite.h" />
     <ClInclude Include="header_loader.h" />
+    <ClInclude Include="HelpMenu.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
@@ -174,6 +195,13 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PlantSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="PlayerSprite.h" />
+    <ClInclude Include="MenuBase.h" />
+    <ClInclude Include="MenuEnum.h" />
+    <ClInclude Include="OptionMenu.h" />
+    <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="PlayerCollidableBehaviour.h" />
+    <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="ShotGun.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />
     <ClInclude Include="SoundChunk.h" />
@@ -192,6 +220,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="TestLevel.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameDev.rc" />

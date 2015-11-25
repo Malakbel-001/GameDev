@@ -18,8 +18,7 @@ void EnemyDrawableBehaviour::Draw()
 	
 	sprite->GetSpritesheet()->render(renderer, xpos, ypos, sprite->GetAnimationFrame(EntityState::IDLE, currentFrame));
 
-	//Go to next frame 
-	++currentFrame;
+	/// somethings crashes
 
 	//Cycle animation 
 	if (currentFrame / sprite->GetAnimationSize() >= sprite->GetAnimationSize())

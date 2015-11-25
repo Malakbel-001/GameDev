@@ -52,7 +52,7 @@ public:
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
-	void Update(float dt);
+	void Update(float);
 	void Draw();
 	void Background();
 

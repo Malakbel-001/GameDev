@@ -1,6 +1,8 @@
 #pragma once
+#include <unordered_map>
+#include "IGameState.h"
+#include <SDL_events.h>
 #include "GameStateManager.h"
-
 class IGameState
 {
 protected:

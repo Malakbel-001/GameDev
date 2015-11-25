@@ -6,10 +6,12 @@ class Npc :
 {
 public:
 	Npc();
-
+	
 	virtual ~Npc();
-	virtual Entity* EmptyClone();
+	virtual Actor* EmptyClone();
 	void setBody(b2Body* _body);
 	b2Body* GetBody();
+protected:
+	
 };
 
