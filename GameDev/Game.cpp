@@ -22,7 +22,8 @@ Game::Game()
 Game::~Game()
 {
 	delete gsm;
-	delete sdlInitializer;
+	if (sdlInitializer)
+		delete sdlInitializer;
 }
 
 void Game::SDLEvents()
