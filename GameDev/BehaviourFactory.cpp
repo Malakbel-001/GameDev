@@ -47,8 +47,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 			{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 			{ EntityType::PLANT, new EnemyCollidableBehaviour() },
 			{ EntityType::BULLET, new BulletCollidableBehaviour() }
-		
->>>>>>> refs/remotes/origin/Develop
 	};
 }
 

@@ -13,8 +13,6 @@ public:
 
 	
 	virtual Actor* EmptyClone();
-	void SetState(ActorState* new_state);
-	ActorState* GetState();
 	virtual void SetHealt(int _healt);
 	int GetHealt();
 	int GetDamage();
