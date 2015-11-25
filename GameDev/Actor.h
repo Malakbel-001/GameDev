@@ -11,8 +11,5 @@ public:
 	virtual ~Actor();
 
 	virtual Entity* EmptyClone();
-
-private:
-	ActorState* state;
 };
 

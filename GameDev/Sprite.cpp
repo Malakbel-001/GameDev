@@ -23,7 +23,10 @@ SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
 	case EntityState::IDLE:
 		return &idleSprites->at(frame);
 		break;
-	case EntityState::WALKING:
+	case EntityState::WALKINGLEFT:
+		return &walkSprites->at(frame);
+		break;
+	case EntityState::WALKINGRIGHT:
 		return &walkSprites->at(frame);
 		break;
 	case EntityState::JUMPING:
@@ -53,7 +56,11 @@ void Sprite::SetAnimationSet(EntityState state)
 			currentSprites = idleSprites;
 			CURRENT_ANIMATION_FRAMES = IDLE_ANIMATION_FRAMES;
 			break;
-		case EntityState::WALKING:
+		case EntityState::WALKINGLEFT:
+			currentSprites = walkSprites;
+			CURRENT_ANIMATION_FRAMES = WALK_ANIMATION_FRAMES;
+			break;
+		case EntityState::WALKINGRIGHT:
 			currentSprites = walkSprites;
 			CURRENT_ANIMATION_FRAMES = WALK_ANIMATION_FRAMES;
 			break;
