@@ -16,12 +16,8 @@ class Entity
 		DrawableBehaviour* draw;
 		
 		EntityType type;
-<<<<<<< HEAD
 		EntityState state;
 
-=======
-	
->>>>>>> refs/remotes/origin/Develop
 	public:
 		Entity();
 		virtual ~Entity();
@@ -31,11 +27,8 @@ class Entity
 		virtual int GetHeight();
 		virtual int GetXPos();
 		virtual int GetYPos();
-<<<<<<< HEAD
 		virtual EntityState GetState();
 		virtual void SetState(EntityState _state); 
-=======
 		EntityType GetType();
 		b2Body* GetBody();
->>>>>>> refs/remotes/origin/Develop
 };
