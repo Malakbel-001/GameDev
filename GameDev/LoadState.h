@@ -11,9 +11,8 @@ private:
 	SDL_Renderer* renderer;
 
 	DrawableContainer* drawableContainer;
-	static IGameState* playState;
-	static bool loadedPlay;
-	static void LoadPlayState(GameStateManager* gsm);
+	IGameState* playState;
+
 
 	TTF_Font* textFont;
 
@@ -26,9 +25,10 @@ private:
 	SDL_Rect advertisementRect;
 
 public:
-	LoadState() { };
+	LoadState();
 	virtual ~LoadState();
-
+	bool loadedPlay;
+	void LoadPlayState();
 	void Init(GameStateManager* gsm);
 	void Cleanup();
 	void Advertisement(char* path);

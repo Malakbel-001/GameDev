@@ -1,7 +1,10 @@
 #include "LoadState.h"
 
-bool		LoadState::loadedPlay = false;
-IGameState* LoadState::playState = NULL;
+//bool		LoadState::loadedPlay = false;
+//IGameState* LoadState::playState = NULL;
+LoadState::LoadState(){
+	loadedPlay = false;
+}
 
 LoadState::~LoadState() {
 	this->Cleanup();
@@ -12,7 +15,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	this->renderer = gsm->GetBehaviour()->GetRenderer();
 
 	//Create and load Thread, see also the LoadPlayState method
-	std::thread loadingThread(LoadPlayState, gsm);
+	std::thread loadingThread(&LoadState::LoadPlayState,this);
 	loadingThread.detach();
 
 
@@ -52,11 +55,11 @@ void LoadState::Init(GameStateManager* gsm) {
 	//Fyi: Error handling, compared to menuState methods @InitializationEverything, here is baddy bad bad, at least for now unless not needed.
 
 	//Advertisement placeholder
-	Advertisement("Resources/images/ad-placeholder.png");
+	Advertisement("Resources/images/ad.png");
 }
 
-void LoadState::LoadPlayState(GameStateManager* gsm) {
-	playState = gsm->GetNewState(GameStateType::PlayState);
+void LoadState::LoadPlayState() {
+ 	playState = gsm->GetNewState(GameStateType::PlayState);
 	playState->Init(gsm);
 	loadedPlay = true;
 }
