@@ -4,7 +4,7 @@ class GroundSprite :
 	public Sprite
 {
 public:
-	GroundSprite();
+	GroundSprite(SDL_Renderer* _renderer);
 	~GroundSprite();
 
 protected:

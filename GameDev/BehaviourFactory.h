@@ -3,16 +3,15 @@
 #include "BehaviourType.h"
 #include "DrawableBehaviour.h"
 #include "PlayerDrawableBehaviour.h"
-#include "EnemyDrawableBehaviour.h"
-#include "GroundDrawableBehaviour.h"
-#include "GroundObstacleDrawableBehavior.h"
-#include "BarObstacleDrawableBehaviour.h"
+#include "AnimatedDrawableBehaviour.h"
+#include "StaticDrawableBehaviour.h"
 #include "MoveableBehaviour.h"
 #include "EntityType.h"
 #include "GroundSprite.h"
 #include "GroundObstacleSprite.h"
 #include "BarObstacleSprite.h"
 #include "PlantSprite.h"
+#include "PlantBossSprite.h"
 #include "PlayerSprite.h"
 
 
@@ -32,16 +31,12 @@ public:
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 private:
 	Camera* camera;
-	GroundSprite* groundSprite;
-	GroundObstacleSprite* groundobstacleSprite;
-	BarObstacleSprite* barobstacleSprite;
-	PlantSprite* plantSprite;
-	PlayerSprite* playerSprite;
 
 	int screenWidth;
 	int screenHeight;
 	SDL_Renderer* renderer;
 	std::unordered_map<EntityType, DrawableBehaviour*> registery;
 	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
+	std::unordered_map<EntityType, Sprite*> spriteRegistery;
 };
 

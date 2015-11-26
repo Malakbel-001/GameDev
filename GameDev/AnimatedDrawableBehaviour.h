@@ -1,22 +1,19 @@
 #pragma once
 #include "DrawableBehaviour.h"
-class EnemyDrawableBehaviour :
+class AnimatedDrawableBehaviour :
 	public DrawableBehaviour
 {
-public:
-	
-
+private:
 	const int IDLE_ANIMATION_FRAMES = 8;
 	const int WALK_ANIMATION_FRAMES = 7;
 	vector<SDL_Rect> idleSprites;
 	vector<SDL_Rect> walkSprites;
 
 public:
-	EnemyDrawableBehaviour(SDL_Renderer* renderer, Sprite* _sprite, int screenwidth, int screenheight);
-	~EnemyDrawableBehaviour();
+	AnimatedDrawableBehaviour(SDL_Renderer* renderer, Sprite* _sprite, int screenwidth, int screenheight);
+	~AnimatedDrawableBehaviour();
 
-	EnemyDrawableBehaviour* EmptyClone() override;
+	AnimatedDrawableBehaviour* EmptyClone() override;
 
 	void Draw() override;
 };
-

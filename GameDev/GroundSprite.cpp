@@ -1,7 +1,7 @@
 #include "GroundSprite.h"
 
 
-GroundSprite::GroundSprite()
+GroundSprite::GroundSprite(SDL_Renderer* _renderer) : Sprite(_renderer)
 {
 	IDLE_ANIMATION_FRAMES = -1;
 	WALK_ANIMATION_FRAMES = -1;

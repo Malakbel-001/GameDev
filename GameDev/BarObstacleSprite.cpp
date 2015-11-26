@@ -1,7 +1,7 @@
 #include "BarObstacleSprite.h"
 
 
-BarObstacleSprite::BarObstacleSprite()
+BarObstacleSprite::BarObstacleSprite(SDL_Renderer* _renderer) : Sprite(_renderer)
 {
 }
 

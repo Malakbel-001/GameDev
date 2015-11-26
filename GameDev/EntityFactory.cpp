@@ -11,6 +11,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 			{ EntityType::NPC, new Npc() },
 			{ EntityType::PLAYER, new Player() },
 			{ EntityType::PLANT, new Npc() },
+			{ EntityType::PLANTBOSS, new Npc() },
 			{ EntityType::BULLET, new Bullet() },
 	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -46,6 +47,12 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	PlantDef.angularDamping = 1;
 	PlantDef.type = b2BodyType::b2_dynamicBody;
 
+	b2BodyDef PlantBossDef = b2BodyDef();
+	PlantBossDef.gravityScale = 1;
+	PlantBossDef.fixedRotation = true;
+	PlantBossDef.linearDamping = 0.5f;
+	PlantBossDef.angularDamping = 1;
+	PlantBossDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef Bullet = b2BodyDef();
 	Bullet.gravityScale = 0.01;
@@ -63,6 +70,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::NPC, NpcDef },
 		{ EntityType::PLAYER, PlayerDef },
 		{ EntityType::PLANT, PlantDef },
+		{ EntityType::PLANTBOSS, PlantBossDef },
 		{ EntityType::GROUND, entDef },
 		{ EntityType::GROUND2, entDef },
 		{ EntityType::BAR, entDef },

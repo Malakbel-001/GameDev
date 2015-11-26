@@ -19,15 +19,6 @@
     <ClCompile Include="Behaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="CollidableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="testLevel.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
@@ -58,12 +49,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
-    <ClCompile Include="SDLInitializer.cpp">
-      <Filter>Source Files\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLoader.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
     <ClCompile Include="MoveableContainer.cpp">
       <Filter>Source Files\Model\Container</Filter>
     </ClCompile>
@@ -82,17 +67,8 @@
     <ClCompile Include="BehaviourFactory.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="SpritesLoader.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="LTexture.cpp">
       <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="Ground.cpp">
       <Filter>Source Files\Model\Entity</Filter>
@@ -103,44 +79,104 @@
     <ClCompile Include="SoundBank.cpp">
       <Filter>Source Files\Model\SoundBank</Filter>
     </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
-      <Filter>Source Files\Model\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
-    <ClCompile Include="GameOverState.cpp">
+    <ClCompile Include="SettingsConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SDLInitializer.cpp">
+      <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerSprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
-    <ClCompile Include="PlantSprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="SpritesLoader.cpp">
+      <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
-    <ClCompile Include="GroundObstacleSprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TileLoader.cpp">
+      <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
-    <ClCompile Include="GroundSprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ContactListener.cpp">
+      <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
     <ClCompile Include="BarObstacleSprite.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotGun.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="CollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Moveables</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundObstacleSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuBase.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverState.cpp">
+      <Filter>Source Files\Model\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantBossSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,15 +213,6 @@
     <ClInclude Include="Behaviour.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="CollidableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="Container.h">
       <Filter>Header Files\Model\Container</Filter>
     </ClInclude>
@@ -198,9 +225,6 @@
     <ClInclude Include="MoveableContainer.h">
       <Filter>Header Files\Model\Container</Filter>
     </ClInclude>
-    <ClInclude Include="SDLInitializer.h">
-      <Filter>Header Files\Controller\Main</Filter>
-    </ClInclude>
     <ClInclude Include="header_loader.h">
       <Filter>Header Files\Controller\Main</Filter>
     </ClInclude>
@@ -212,9 +236,6 @@
     </ClInclude>
     <ClInclude Include="LevelFactory.h">
       <Filter>Header Files\Model\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLoader.h">
-      <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
@@ -237,17 +258,8 @@
     <ClInclude Include="BehaviourType.h">
       <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
-    <ClInclude Include="SpritesLoader.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="LTexture.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="GameStateType.h">
       <Filter>Header Files\Model\GameState</Filter>
@@ -264,47 +276,110 @@
     <ClInclude Include="SoundChunk.h">
       <Filter>Header Files\Model\SoundBank</Filter>
     </ClInclude>
-    <ClInclude Include="BarObstacleDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundObstacleDrawableBehavior.h">
-      <Filter>Header Files\Model\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\Controller</Filter>
-    </ClInclude>
     <ClInclude Include="Ground.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Header Files\Model</Filter>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
-    <ClInclude Include="GameOverState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SDLInitializer.h">
+      <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SpritesLoader.h">
+      <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
-    <ClInclude Include="EntityState.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="TileLoader.h">
+      <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerSprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="DrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
-    <ClInclude Include="PlantSprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Collidables</Filter>
     </ClInclude>
-    <ClInclude Include="GroundObstacleSprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="MoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Moveables</Filter>
     </ClInclude>
     <ClInclude Include="GroundSprite.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundObstacleSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
     <ClInclude Include="BarObstacleSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletCollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Collidables</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyCollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Collidables</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCollidableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Collidables</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityState.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="ShotGun.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactListener.h">
+      <Filter>Header Files\Controller\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="CreditMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuBase.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuEnum.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverState.h">
+      <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsConfig.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBossSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +460,42 @@
     </Filter>
     <Filter Include="Source Files\Model\SoundBank">
       <UniqueIdentifier>{f526257d-b7b3-44c5-8559-d8f11728d97b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controller\Services">
+      <UniqueIdentifier>{0e4bd10a-f5b7-4a27-908a-c4089100cb6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Behaviour\Drawables">
+      <UniqueIdentifier>{21035468-52ae-4173-bfca-4927cf2333a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Behaviour\Collidables">
+      <UniqueIdentifier>{9fe272f1-ec98-4ab7-ba54-324799d24229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Behaviour\Moveables">
+      <UniqueIdentifier>{f863453c-2446-4b17-84a9-44387f651842}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Sprites">
+      <UniqueIdentifier>{9d9f186a-eda2-48a4-87ba-a1c18a35c736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\Menu">
+      <UniqueIdentifier>{19ec6bb9-5c08-41e1-b19c-5d7dc2672a31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controller\Services">
+      <UniqueIdentifier>{fc8158f5-4c98-4c1a-ad97-f4e192f16e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Sprites">
+      <UniqueIdentifier>{9011857b-01ae-4797-9cca-db5052e1ae56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Behaviour\Drawables">
+      <UniqueIdentifier>{1dfb2c77-38bd-4b0f-9f72-98da1495bc26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Behaviour\Collidables">
+      <UniqueIdentifier>{5c015265-72fe-47eb-9064-265d48ebf5dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Behaviour\Moveables">
+      <UniqueIdentifier>{b647a82f-a401-419b-8e96-9297c251983b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\Menu">
+      <UniqueIdentifier>{39f2f55b-a00e-4541-8a7d-6b3a565ad47d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@ class PlayerSprite :
 	public Sprite
 {
 public:
-	PlayerSprite();
+	PlayerSprite(SDL_Renderer* _renderer);
 	~PlayerSprite();
 
 protected:

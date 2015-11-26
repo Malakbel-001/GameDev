@@ -4,7 +4,7 @@ class PlantSprite :
 	public Sprite
 {
 public:
-	PlantSprite();
+	PlantSprite(SDL_Renderer* _renderer);
 	~PlantSprite();
 
 protected:
