@@ -178,6 +178,12 @@
     <ClCompile Include="PlantBossSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
+    <ClCompile Include="AcornSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Acorn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -380,6 +386,12 @@
     </ClInclude>
     <ClInclude Include="PlantBossSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="AcornSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Acorn.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

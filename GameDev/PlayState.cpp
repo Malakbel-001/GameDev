@@ -180,7 +180,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 
 

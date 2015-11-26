@@ -15,7 +15,7 @@ void MenuState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT2);
 	//menuState = mainMenu;
 	cout << "MenuState \n";
 	
@@ -31,6 +31,7 @@ MenuState::MenuState()
 {
 	pos.resize(renderItems);
 }
+
 // Initialization ++
 // ==================================================================
 bool MenuState::SetupTTF(const std::string &fontName, const std::string &fontName2)

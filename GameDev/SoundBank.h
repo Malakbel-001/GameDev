@@ -20,6 +20,7 @@ private:
 	const int sfxVolume = 64; // [0 - 128]
 	bool musicEnabled = true;
 	bool sfxEnabled = true;
+	SoundBgmType currentBGM;
 public:
 	~SoundBank();
 	static SoundBank* GetInstance();
@@ -30,7 +31,7 @@ public:
 	void StopMusic(); //arguably not needed
 	void FreeMemory();
 
-	void ToggleMusic(SoundBgmType type);
+	void ToggleMusic();
 	bool IsEnabledMusic();
 	void ToggleSFX();
 	bool IsEnabledSFX();

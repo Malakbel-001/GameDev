@@ -137,7 +137,7 @@ void OptionMenu::SetupRenderer(){
 
 void OptionMenu::LoadSettings(map<string, bool> settingsMap) {
 	if (SoundBank::GetInstance()->IsEnabledMusic() != settingsMap["music"]) {
-		SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
+		SoundBank::GetInstance()->ToggleMusic();
 	}
 	if (SoundBank::GetInstance()->IsEnabledSFX() != settingsMap["sfx"]) {
 		SoundBank::GetInstance()->ToggleSFX();
@@ -294,7 +294,7 @@ void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 					break;
 				case 3:
 					//music
-					SoundBank::GetInstance()->ToggleMusic(SoundBgmType::TESTBGM1);
+					SoundBank::GetInstance()->ToggleMusic();
 						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 						settingsConfig.SaveSettings(SoundBank::GetInstance()->IsEnabledMusic(),
 							SoundBank::GetInstance()->IsEnabledSFX(),

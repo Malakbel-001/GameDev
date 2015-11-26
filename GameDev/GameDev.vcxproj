@@ -89,6 +89,8 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Acorn.cpp" />
+    <ClCompile Include="AcornSprite.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimatedDrawableBehaviour.cpp" />
     <ClCompile Include="BarObstacleSprite.cpp" />
@@ -150,6 +152,8 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acorn.h" />
+    <ClInclude Include="AcornSprite.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimatedDrawableBehaviour.h" />
     <ClInclude Include="BarObstacleSprite.h" />

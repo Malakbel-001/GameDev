@@ -14,7 +14,9 @@ SoundBank::SoundBank() {
 	bgmPathList = std::unordered_map<SoundBgmType, char*>{
 		{ SoundBgmType::TESTBGM1, "Resources/sound/bg/balcony.mp3" },
 		{ SoundBgmType::TESTBGM2, "Resources/sound/bg/lastcave.mp3" },
-		{ SoundBgmType::THUNDERSTRUCK, "Resources/sound/bg/thunderstruck.mp3" }
+		{ SoundBgmType::THUNDERSTRUCK, "Resources/sound/bg/thunderstruck.mp3" },
+		{ SoundBgmType::REDALERT1, "Resources/sound/bg/17-ost-allied_combat_2-daw.mp3" },
+		{ SoundBgmType::REDALERT2, "Resources/sound/bg/33-ost-allied_-_up_yours-daw.mp3" }
 	};
 }
 
@@ -54,11 +56,13 @@ void SoundBank::PlayBGM(SoundBgmType type) {
 		if (!Mix_PlayingMusic()) { //there is no music playing yet
 			Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
 			Mix_VolumeMusic(sfxVolume);
+			currentBGM = type;
 		}
 		else if(!Mix_PausedMusic()) { //there is already music playing
 			Mix_FadeOutMusic(1000);
 			Mix_FadeInMusic(Mix_LoadMUS(bgmPathList.at(type)), -1, 1000);
 			Mix_VolumeMusic(sfxVolume);
+			currentBGM = type;
 		}
 	}
 }
@@ -87,14 +91,14 @@ void SoundBank::FreeMemory() {
 	//Mix_FreeMusic TODO needed or not??
 }
 
-void SoundBank::ToggleMusic(SoundBgmType type) {
+void SoundBank::ToggleMusic() {
 	if (musicEnabled) {
 		musicEnabled = false;
 		StopMusic();
 	}
 	else {
 		musicEnabled = true;
-		PlayBGM(type);
+		PlayBGM(currentBGM);
 	}
 }
 

@@ -13,6 +13,7 @@
 #include "PlantSprite.h"
 #include "PlantBossSprite.h"
 #include "PlayerSprite.h"
+#include "AcornSprite.h"
 
 
 class Camera;

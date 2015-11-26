@@ -47,16 +47,9 @@ void Level::Update(float dt)
 			}
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
-		
-
 			}
-			
 		}
-		
-		
 	}
-
-
 }
 
 #pragma region Get, Set
