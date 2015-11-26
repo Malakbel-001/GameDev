@@ -1,7 +1,7 @@
 #include "GroundObstacleSprite.h"
 
 
-GroundObstacleSprite::GroundObstacleSprite()
+GroundObstacleSprite::GroundObstacleSprite(SDL_Renderer* _renderer) : Sprite(_renderer)
 {
 	IDLE_ANIMATION_FRAMES = -1;
 	WALK_ANIMATION_FRAMES = -1;

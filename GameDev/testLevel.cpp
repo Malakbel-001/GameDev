@@ -74,6 +74,9 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(1000, 50, 4000, 0, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 4100, 0, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 4200, 0, 40, 45, EntityType::PLANT);
+
+	// Boss enemy
+	entityFactory->CreateActor(1000, 500, 4500, 0, 100, 100, EntityType::PLANTBOSS);
 }
 
 TestLevel::~TestLevel()

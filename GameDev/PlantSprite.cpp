@@ -1,7 +1,7 @@
 #include "PlantSprite.h"
 
 
-PlantSprite::PlantSprite()
+PlantSprite::PlantSprite(SDL_Renderer* _renderer) : Sprite(_renderer)
 {
 	IDLE_ANIMATION_FRAMES = 8;
 	WALK_ANIMATION_FRAMES = -1;

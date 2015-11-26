@@ -1,11 +1,11 @@
 #pragma once
 #include "Sprite.h"
-class BarObstacleSprite :
+class PlantBossSprite :
 	public Sprite
 {
 public:
-	BarObstacleSprite(SDL_Renderer* _renderer);
-	~BarObstacleSprite();
+	PlantBossSprite(SDL_Renderer* _renderer);
+	~PlantBossSprite();
 
 protected:
 	virtual void SetAnimations() override;

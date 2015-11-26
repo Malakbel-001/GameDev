@@ -7,7 +7,7 @@
 class Sprite
 {
 public:
-	Sprite();
+	Sprite(SDL_Renderer* _renderer);
 	~Sprite();
 
 	SDL_Rect* GetAnimationFrame(EntityState state, int frame);

@@ -124,19 +124,7 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="BarObstacleDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
-    </ClCompile>
     <ClCompile Include="DrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
-    </ClCompile>
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
       <Filter>Source Files\Model\Behaviour\Drawables</Filter>
     </ClCompile>
     <ClCompile Include="CollidableBehaviour.cpp">
@@ -180,6 +168,15 @@
     </ClCompile>
     <ClCompile Include="PlayerDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimatedDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantBossSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -294,19 +291,7 @@
     <ClInclude Include="TileLoader.h">
       <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
-    <ClInclude Include="BarObstacleDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
-    </ClInclude>
     <ClInclude Include="DrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
-    </ClInclude>
-    <ClInclude Include="GroundObstacleDrawableBehavior.h">
       <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
     <ClInclude Include="CollidableBehaviour.h">
@@ -384,8 +369,17 @@
     <ClInclude Include="SettingsConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AnimatedDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
     <ClInclude Include="PlayerDrawableBehaviour.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBossSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

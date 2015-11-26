@@ -1,9 +1,9 @@
 #include "Sprite.h"
 
 
-Sprite::Sprite()
+Sprite::Sprite(SDL_Renderer* _renderer)
 {
-	renderer = nullptr;
+	renderer = _renderer;
 	spriteSheetTexture = new LTexture();
 	currentSprites = nullptr;
 	idleSprites = new std::vector<SDL_Rect>();

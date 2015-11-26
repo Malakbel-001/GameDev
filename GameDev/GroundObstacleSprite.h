@@ -4,7 +4,7 @@ class GroundObstacleSprite :
 	public Sprite
 {
 public:
-	GroundObstacleSprite();
+	GroundObstacleSprite(SDL_Renderer* _renderer);
 	~GroundObstacleSprite();
 
 protected:

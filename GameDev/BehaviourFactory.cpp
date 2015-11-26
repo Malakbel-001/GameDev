@@ -13,40 +13,51 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	screenHeight = screenheight;
 	camera = new Camera(screenHeight, screenwidth);
 
-	groundSprite = new GroundSprite();
-	groundSprite->SetRenderer(renderer);
+	GroundSprite* groundSprite = new GroundSprite(renderer);
 	groundSprite->LoadMedia("grass.png");
 
-
-	groundobstacleSprite = new GroundObstacleSprite();
-	groundobstacleSprite->SetRenderer(renderer);
+	GroundObstacleSprite* groundobstacleSprite = new GroundObstacleSprite(renderer);
 	groundobstacleSprite->LoadMedia("grass.png");
 
-	barobstacleSprite = new BarObstacleSprite();
-	barobstacleSprite->SetRenderer(renderer);
+	BarObstacleSprite* barobstacleSprite = new BarObstacleSprite(renderer);
 	barobstacleSprite->LoadMedia("grass.png");
 
-	plantSprite = new PlantSprite();
-	plantSprite->SetRenderer(renderer);
+	PlantSprite* plantSprite = new PlantSprite(renderer);
 	plantSprite->LoadMedia("plant.png");
+	plantSprite->SetAnimationSet(EntityState::IDLE);
 
-	playerSprite =  new PlayerSprite();
-	playerSprite->SetRenderer(renderer);
+	PlantBossSprite* plantBossSprite = new PlantBossSprite(renderer);
+	plantBossSprite->LoadMedia("plantboss.png");
+
+	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
-
+		
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
-		{ EntityType::PLANT, new EnemyDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
-		{ EntityType::GROUND, new GroundDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
-		{ EntityType::GROUND2, new GroundObstacleDrawableBehavior(renderer, groundobstacleSprite, screenWidth, screenHeight) },
-		{ EntityType::BAR, new BarObstacleDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
-		{ EntityType::BULLET, new EnemyDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) }
+		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
+		{ EntityType::PLANTBOSS, new AnimatedDrawableBehaviour(renderer, plantBossSprite, screenWidth, screenHeight) },
+		{ EntityType::GROUND, new StaticDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
+		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },
+		{ EntityType::BAR, new StaticDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
+		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) }
 			
 	};
+
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 			{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 			{ EntityType::PLANT, new EnemyCollidableBehaviour() },
+			{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
 			{ EntityType::BULLET, new BulletCollidableBehaviour() }
+	};
+
+	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
+		{ EntityType::PLAYER, playerSprite },
+		{ EntityType::PLANT, plantSprite },
+		{ EntityType::GROUND, groundSprite },
+		{ EntityType::GROUND2, groundobstacleSprite },
+		{ EntityType::BAR, barobstacleSprite },
+		{ EntityType::BULLET, plantSprite },
+		{ EntityType::PLANTBOSS, plantBossSprite }
 	};
 }
 
