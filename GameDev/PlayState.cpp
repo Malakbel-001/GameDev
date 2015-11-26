@@ -103,6 +103,19 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
+				case SDLK_UP:
+
+					break;
+				case SDLK_DOWN:
+
+					break;
+				case SDLK_LEFT:
+
+					break;
+				case SDLK_RIGHT:
+
+					break;
+
 				case SDLK_ESCAPE:
 					quit = true;
 					
