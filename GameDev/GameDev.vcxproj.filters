@@ -139,9 +139,6 @@
     <ClCompile Include="GroundObstacleDrawableBehavior.cpp">
       <Filter>Source Files\Model\Behaviour\Drawables</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerDrawableBehaviour.cpp">
-      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
-    </ClCompile>
     <ClCompile Include="CollidableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Collidables</Filter>
     </ClCompile>
@@ -180,6 +177,9 @@
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -309,9 +309,6 @@
     <ClInclude Include="GroundObstacleDrawableBehavior.h">
       <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
-    </ClInclude>
     <ClInclude Include="CollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Collidables</Filter>
     </ClInclude>
@@ -385,6 +382,9 @@
       <Filter>Header Files\View\Menu</Filter>
     </ClInclude>
     <ClInclude Include="SettingsConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerDrawableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
