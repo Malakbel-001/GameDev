@@ -12,13 +12,11 @@ public:
 	vector<SDL_Rect> walkSprites;
 
 public:
-	EnemyDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight);
+	EnemyDrawableBehaviour(SDL_Renderer* renderer, Sprite* _sprite, int screenwidth, int screenheight);
 	~EnemyDrawableBehaviour();
 
 	EnemyDrawableBehaviour* EmptyClone() override;
 
 	void Draw() override;
-	void SetSprites(vector<SDL_Rect> sdl_sprites) override;
-	bool LoadMedia() override;
 };
 

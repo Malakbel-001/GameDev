@@ -15,6 +15,7 @@ void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, 
 	draw->SetEntity(this);
 		
 	drawContainer->Add(draw);
+	state = EntityState::IDLE;
 }
 
 Entity::~Entity()
@@ -44,6 +45,16 @@ int Entity::GetYPos()
 {
 	return static_cast<int>(body->GetPosition().y);
 
+}
+
+void Entity::SetState(EntityState _state)
+{
+	state = _state; 
+}
+
+EntityState Entity::GetState()
+{
+	return state;
 }
 
 Entity* Entity::EmptyClone()
