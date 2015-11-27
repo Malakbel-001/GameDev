@@ -1,4 +1,6 @@
 #include "HUD.h"
+#include <iostream> //temp
+using namespace std;
 
 HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
@@ -10,8 +12,11 @@ HUD::~HUD() {
 }
 
 void HUD::Draw() {
-	float percentage = player->GetMaxHealth() / player->GetHealth();
-	DrawHPBar(20, 20, 200, 20, percentage, Color(50, 205, 50, 255), Color(139, 0, 0, 255));
+	//amount to diminish hpBar
+	float diminisher = (float)player->GetHealth() / player->GetMaxHealth();
+	DrawHPBar(20, 20, 200, 20, diminisher, Color(75, 205, 50, 255));
+	cout << "Top fucking percentage: " << diminisher << endl;
+	cout << "HP: " << player->GetHealth() << " MaxHP: " << player->GetMaxHealth() << endl;
 
 	DrawAmmo();
 
@@ -22,23 +27,21 @@ void HUD::Draw() {
 
 
 
-void HUD::DrawHPBar(int x, int y, int w, int h, float Percent, SDL_Color FGColor, SDL_Color BGColor) {
-	Percent = Percent > 1.f ? 1.f : Percent < 0.f ? 0.f : Percent;
-	SDL_Color old;
-	SDL_GetRenderDrawColor(renderer, &old.r, &old.g, &old.g, &old.a);
-	SDL_Rect bgrect = { x, y, w, h };
+void HUD::DrawHPBar(int x, int y, int width, int height, float diminisher, SDL_Color hpColor) {
+	SDL_Color oldColor;
+	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a);
+
+	int newWidth = Clamp(diminisher * width, 0, width); //clamping just in case
+
+	SDL_SetRenderDrawColor(renderer, hpColor.r, hpColor.g * diminisher, hpColor.b, hpColor.a);
+	SDL_Rect fillRect = { x, y, newWidth, height };
+	SDL_RenderFillRect(renderer, &fillRect);
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderDrawRect(renderer, &bgrect);
+	SDL_Rect drawRect = { x, y, width, height };
+	SDL_RenderDrawRect(renderer, &drawRect);
 
-	SDL_SetRenderDrawColor(renderer, BGColor.r, BGColor.g, BGColor.b, BGColor.a);
-	SDL_RenderFillRect(renderer, &bgrect);
-	SDL_SetRenderDrawColor(renderer, FGColor.r, FGColor.g, FGColor.b, FGColor.a);
-	int pw = (int)((float)w * Percent);
-	int px = x + (w - pw);
-	SDL_Rect fgrect = { px, y, pw, h };
-	SDL_RenderFillRect(renderer, &fgrect);
-	SDL_SetRenderDrawColor(renderer, old.r, old.g, old.b, old.a);
+	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color
 }
 
 void HUD::DrawAmmo() {
@@ -49,8 +52,18 @@ void HUD::DrawScore() {
 
 }
 
-/*color - Returns an SDL_Color with the appropriate values*/
+//color - Returns an SDL_Color with the appropriate values
 SDL_Color HUD::Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
 	SDL_Color col = { r, g, b, a };
 	return col;
+}
+
+//var not higher or lower than min and max
+int HUD::Clamp(int var, int min, int max) {
+	if (var >= max)
+		return var = max;
+	else if (var <= min)
+		return var = min;
+	else
+		return var;
 }
