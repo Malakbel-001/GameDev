@@ -10,7 +10,7 @@ void PauseState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT2);
 	cout << "PauseState \n";
 
 	pauseMenu = new PauseMenu(this, renderer, textFont, titleFont);

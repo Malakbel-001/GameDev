@@ -2,14 +2,14 @@
 #include "Entity.h"
 
 Entity;
-DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
+DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight)
 {
 	
 	renderer = sdl_renderer;
+	sprite = _sprite;
 	screenWidth = screenwidth;
 	screenHeight = screenheight;
 	currentFrame = 0;	
-	spriteSheetTexture = new LTexture();
 }
 
 
@@ -25,7 +25,6 @@ DrawableBehaviour* DrawableBehaviour::EmptyClone()
 void DrawableBehaviour::SetEntity(Entity* _entity)
 {
 	entity = _entity;
-	LoadMedia();
 }
 
 void DrawableBehaviour::Draw()
@@ -33,16 +32,11 @@ void DrawableBehaviour::Draw()
 	//printf("Behaviour not initialized");
 }
 
-void DrawableBehaviour::SetSprites(vector<SDL_Rect> sdl_sprites)
+void DrawableBehaviour::SetSprite(Sprite* _sprite)
 {
-	//printf("Behaviour not initialized");
+	sprite = _sprite;
 }
 
-bool DrawableBehaviour::LoadMedia()
-{
-	printf("Behaviour not initialized");
-	return false;
-}
 void DrawableBehaviour::SetCamera(Camera* _camera){
 	camera = _camera;
 }

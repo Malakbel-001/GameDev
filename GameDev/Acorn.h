@@ -1,14 +1,15 @@
 #pragma once
 #include "Actor.h"
-class Bullet :
+class Acorn :
 	public Actor
 {
 public:
-	Bullet();
-	virtual ~Bullet();
+	Acorn();
+	~Acorn();
 
-	virtual Bullet* EmptyClone();
+	virtual Acorn* EmptyClone();
 	void SetBody(b2Body* _body);
+
 	b2Body* GetBody();
 };
 

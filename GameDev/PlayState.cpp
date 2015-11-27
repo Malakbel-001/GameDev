@@ -82,7 +82,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					}
 					break;
 				case SDLK_a:
-
+					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
 					//		cout << "e" << x;
 					x = -5;
 					//		cout << " - " << x;
@@ -92,6 +92,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					y = 5;
 					break;
 				case SDLK_d:
+					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					x = 5;
 					break;
 				case SDLK_z:
@@ -104,7 +105,27 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				}
 			}
-		}		
+			else
+			{
+				switch (it->first)
+				{
+				case SDLK_w:
+
+					break;
+				case SDLK_a:
+					if (currentLevel->GetPlayer()->GetState() == EntityState::WALKINGLEFT)
+						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
+					break;
+				case SDLK_s:
+					
+					break;
+				case SDLK_d:
+					if (currentLevel->GetPlayer()->GetState() == EntityState::WALKINGRIGHT)
+						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
+				}
+			}
+
+		}
 		
 		if (!jump){
 			vel.Set(x, y);
@@ -153,7 +174,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 
 

@@ -24,7 +24,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	drawableContainer = new DrawableContainer();
 	DrawableBehaviour* cheatLoad = bf->CreateDrawableBehaviour(EntityType::CHEATLOAD);
-	cheatLoad->LoadMedia();
+	//cheatLoad->LoadMedia();
 	drawableContainer->Add(cheatLoad);
 
 	//Textures / Display Text Loading... and Press any key to Continue

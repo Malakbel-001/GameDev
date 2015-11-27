@@ -13,12 +13,10 @@ class PlayerDrawableBehaviour :
 		vector<SDL_Rect> walkSprites;
 
 	public:
-		PlayerDrawableBehaviour(SDL_Renderer* renderer, int screenwidth, int screenheight);
+		PlayerDrawableBehaviour(SDL_Renderer* renderer, Sprite* _sprite, int screenwidth, int screenheight);
 		~PlayerDrawableBehaviour();
 
 		PlayerDrawableBehaviour* EmptyClone() override;
 
 		void Draw() override;
-		void SetSprites(vector<SDL_Rect> sdl_sprites) override;
-		bool LoadMedia() override;
 };

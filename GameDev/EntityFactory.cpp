@@ -7,11 +7,13 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 {
 
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
-			{ EntityType::ACTOR, new Actor() },
-			{ EntityType::NPC, new Npc() },
-			{ EntityType::PLAYER, new Player() },
-			{ EntityType::PLANT, new Npc() },
-			{ EntityType::BULLET, new Bullet() },
+		{ EntityType::ACTOR, new Actor() },
+		{ EntityType::NPC, new Npc() },
+		{ EntityType::PLAYER, new Player() },
+		{ EntityType::PLANT, new Npc() },
+		{ EntityType::PLANTBOSS, new Npc() },
+		{ EntityType::BULLET, new Bullet() },
+		{ EntityType::ACORN, new Acorn() }
 	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
@@ -46,15 +48,28 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	PlantDef.angularDamping = 1;
 	PlantDef.type = b2BodyType::b2_dynamicBody;
 
+	b2BodyDef PlantBossDef = b2BodyDef();
+	PlantBossDef.gravityScale = 1;
+	PlantBossDef.fixedRotation = true;
+	PlantBossDef.linearDamping = 0.5f;
+	PlantBossDef.angularDamping = 1;
+	PlantBossDef.type = b2BodyType::b2_dynamicBody;
 
-	b2BodyDef Bullet = b2BodyDef();
-	Bullet.gravityScale = 0.01;
-	Bullet.fixedRotation = true;
-	Bullet.linearDamping = 0;
-	Bullet.angularDamping = 0;
-	Bullet.type = b2BodyType::b2_dynamicBody;
-	Bullet.bullet = true;
+	b2BodyDef BulletDef = b2BodyDef();
+	BulletDef.gravityScale = 0.01;
+	BulletDef.fixedRotation = true;
+	BulletDef.linearDamping = 0;
+	BulletDef.angularDamping = 0;
+	BulletDef.type = b2BodyType::b2_dynamicBody;
+	BulletDef.bullet = true;
 	
+	b2BodyDef AcornDef = b2BodyDef();
+	AcornDef.gravityScale = 0.01;
+	AcornDef.fixedRotation = true;
+	AcornDef.linearDamping = 0;
+	AcornDef.angularDamping = 0;
+	AcornDef.type = b2BodyType::b2_dynamicBody;
+	AcornDef.bullet = true;
 
 
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
@@ -63,12 +78,13 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::NPC, NpcDef },
 		{ EntityType::PLAYER, PlayerDef },
 		{ EntityType::PLANT, PlantDef },
+		{ EntityType::PLANTBOSS, PlantBossDef },
 		{ EntityType::GROUND, entDef },
 		{ EntityType::GROUND2, entDef },
 		{ EntityType::BAR, entDef },
-		{EntityType::BULLET,Bullet}
+		{ EntityType::BULLET, BulletDef},
+		{ EntityType::ACORN, AcornDef }
 	};
-
 }
 
 EntityFactory::~EntityFactory()
