@@ -13,6 +13,11 @@ void SoundChunk::Play() {
 	//channel = &newChannel; //setChannel TODO!! fix.
 }
 
+void SoundChunk::PlayAtChannel(int channel) {
+	int newChannel = Mix_PlayChannel(channel, this->chunk, 0);
+	//channel = &newChannel; //setChannel TODO!! fix.
+}
+
 int* SoundChunk::GetChannel() {
 	return channel;
 }

@@ -16,6 +16,7 @@ class PlayState :
 		Player* player;
 		Level* currentLevel;	
 		bool gameOver;
+		bool victory;
 
 	public:
 
@@ -30,6 +31,7 @@ class PlayState :
 		void Update(float);
 		void Draw();
 		void GameOver();
+		void Victory();
 
 		Player* GetPlayer();
 
