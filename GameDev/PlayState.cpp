@@ -22,7 +22,7 @@ void PlayState::Init(GameStateManager* gsm)
 	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	// flush userinput to prevent crash during loadscreen
 
-	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
+	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
 	std::cout << "PlayState \n";
 }
@@ -79,17 +79,11 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				switch (it->first)
 				{
 				case SDLK_w:
-
-
 					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
-
-					
-							jump = true;
-							impulse = 100;
-							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
-
-							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-						
+						jump = true;
+						impulse = 100;
+						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 					}
 					break;
 				case SDLK_a:

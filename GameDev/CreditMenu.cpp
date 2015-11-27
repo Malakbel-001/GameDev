@@ -139,7 +139,7 @@ void CreditMenu::HandleMouseEvents(SDL_Event mainEvent)
 				switch (i){
 				case 0:
 					//back to main
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					if (mainMenu != nullptr){
 						mainMenu->updateMenu(MenuEnum::Previous);
 					}

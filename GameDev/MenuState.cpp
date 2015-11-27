@@ -113,9 +113,6 @@ void MenuState::SetupRenderer()
 	backgroundRect.w = background.getWidth();
 	backgroundRect.x = 0;
 	backgroundRect.y = 0;
-
-	// Set color of renderer to red
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 
@@ -139,7 +136,6 @@ void MenuState::Resume(){
 void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 {
 	currentMenu->HandleMouseEvents(mainEvent);
-	
 }
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
@@ -174,7 +170,7 @@ void MenuState::updateMenu(MenuEnum menu){
 		PreviousMenu = mainMenu;
 		break;
 	case MenuEnum::Play:
-		gsm->CreateGameState(GameStateType::PlayState);
+		gsm->CreateGameState(GameStateType::LoadState);
 		break;
 	default:
 		break;

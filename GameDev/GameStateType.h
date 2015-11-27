@@ -1,4 +1,4 @@
 enum class GameStateType
 {
-	PlayState,PauseState,MenuState,GameOverState, VictoryState
+	PlayState, PauseState, MenuState, LoadState, GameOverState, VictoryState
 };
