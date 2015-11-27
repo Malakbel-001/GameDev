@@ -24,6 +24,8 @@ void PlayState::Init(GameStateManager* gsm)
 
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
+	hud = new HUD(gsm->GetBehaviour()->GetRenderer(), player);
+
 	std::cout << "PlayState \n";
 }
 
@@ -168,6 +170,7 @@ void PlayState::Draw()
 
 	currentLevel->GetDrawableContainer()->Draw();
 
+	hud->Draw();
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -200,9 +203,13 @@ void PlayState::Cleanup()
 	
 	delete currentLevel;
 
+	delete hud;
+
 	player = nullptr;
 
 	currentLevel = nullptr;
+
+	hud = nullptr;
 }
 
 PlayState::~PlayState()

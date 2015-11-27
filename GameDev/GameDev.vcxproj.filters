@@ -187,6 +187,9 @@
     <ClCompile Include="VictoryState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\View\Head-Up Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -399,6 +402,9 @@
     <ClInclude Include="VictoryState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\View\Head-Up Display</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -514,6 +520,12 @@
     </Filter>
     <Filter Include="Source Files\View\Menu">
       <UniqueIdentifier>{39f2f55b-a00e-4541-8a7d-6b3a565ad47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\Head-Up Display">
+      <UniqueIdentifier>{9b8b8db9-7b11-4dd9-ac22-5770593e351a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\Head-Up Display">
+      <UniqueIdentifier>{a562c624-2cba-4266-9f8f-5c49d56d4f97}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

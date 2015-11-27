@@ -7,6 +7,7 @@
 #include "BehaviourFactory.h"
 #include "Weapon.h"
 #include <iostream>
+#include "HUD.h"
 
 class PlayState :
 	public IGameState
@@ -14,7 +15,8 @@ class PlayState :
 	private:
 		GameStateManager* gsm;		
 		Player* player;
-		Level* currentLevel;	
+		Level* currentLevel;
+		HUD* hud;
 		bool gameOver;
 		bool victory;
 
