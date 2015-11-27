@@ -175,19 +175,22 @@
     <ClCompile Include="PlantBossSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
+    <ClCompile Include="AcornSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Acorn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Drawables</Filter>
     </ClCompile>
-    <ClCompile Include="SettingsConfig.cpp">
-      <Filter>Source Files\Model\Config</Filter>
-    </ClCompile>
-    <ClCompile Include="AcornSprite.cpp">
-      <Filter>Source Files\Model\Sprites</Filter>
-    </ClCompile>
     <ClCompile Include="LoadState.cpp">
+      <Filter>Source Files\Model\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsConfig.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="VictoryState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
   </ItemGroup>
@@ -390,20 +393,23 @@
     <ClInclude Include="PlantBossSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
+    <ClInclude Include="AcornSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Acorn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VictoryState.h">
+      <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
     <ClInclude Include="SettingsConfig.h">
-      <Filter>Header Files\Model\Config</Filter>
-    </ClInclude>
-    <ClInclude Include="AcornSprite.h">
-      <Filter>Header Files\Model\Sprites</Filter>
-    </ClInclude>
-    <ClInclude Include="CheatLoadDrawableBehaviour.h">
-      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+      <Filter>Header Files\Model\SettingsConfig</Filter>
     </ClInclude>
     <ClInclude Include="LoadState.h">
       <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatLoadDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -521,11 +527,11 @@
     <Filter Include="Source Files\View\Menu">
       <UniqueIdentifier>{39f2f55b-a00e-4541-8a7d-6b3a565ad47d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Model\Config">
-      <UniqueIdentifier>{822be339-2f97-44be-aada-d7d3bbd5dfa3}</UniqueIdentifier>
+    <Filter Include="Source Files\Model\SettingsConfig">
+      <UniqueIdentifier>{1e13f83f-6455-4546-8f8b-5c21b488b85c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Config">
-      <UniqueIdentifier>{4c17c25a-b48d-42cb-8576-dabc1b29aaf4}</UniqueIdentifier>
+    <Filter Include="Header Files\Model\SettingsConfig">
+      <UniqueIdentifier>{5ac628fe-24d8-4e2d-a1c4-3cb2e2314dae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

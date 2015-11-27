@@ -42,6 +42,9 @@ IGameState* GameStateManager::GetNewState(GameStateType state)
 	case GameStateType::GameOverState:
 		gamestate = new GameOverState();
 		break;
+	/*case GameStateType::VictoryState:
+		gamestate = new VictoryState();
+		break;*/
 	default:
 		break;
 	}

@@ -7,7 +7,12 @@ SoundBank* SoundBank::instance = new SoundBank();
 SoundBank::SoundBank() {
 	//defining sound effects
 	soundPathList = std::unordered_map<SoundEffectType, char*> {
-		{ SoundEffectType::CORRECT, "Resources/sound/sfx/soundcorrect.wav" }
+		{ SoundEffectType::CORRECT, "Resources/sound/sfx/soundcorrect.wav" },
+		{ SoundEffectType::SHOTGUN, "Resources/sound/sfx/2x_barre-The_Pain-8022_hifi.wav" },
+		{ SoundEffectType::GAMEOVER, "Resources/sound/sfx/Announcer/ACDDATA_0088.wav" },
+		{ SoundEffectType::YOU, "Resources/sound/sfx/Announcer/ACDDATA_0082.wav" },
+		{ SoundEffectType::LOSE, "Resources/sound/sfx/Announcer/ACDDATA_0085.wav" },
+		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" }
 	};
 
 	//defining background music
@@ -50,6 +55,25 @@ void SoundBank::PlaySFX(SoundEffectType type) {
 }
 
 //Fyi, this action is also toggle-ish, when something is already playing, it will fade out and start the new BGM
+void SoundBank::PlayAtChannel(int channel, SoundEffectType type) {
+	if (sfxEnabled) {
+		//Get the appropriate SoundChunk depending on the SoundEffectType
+		Mix_Chunk* tempSound = Mix_LoadWAV(soundPathList.at(type));
+		SoundChunk* soundChunk = new SoundChunk(tempSound);
+
+		//Change Volume depending on the given volume in the parameters
+		Mix_VolumeChunk(tempSound, musicVolume); //volume = between [0 - 128], 64 = neutral
+
+		//soundChunk->Play();
+		//and let SoundChunk remember its channel (which doesn't work correctly yet)
+		soundChunk->PlayAtChannel(channel);
+
+		//put SoundChunk into the playingChunks list
+		std::pair<SoundEffectType, SoundChunk*> typeChunk(type, soundChunk);
+		playingChunks.insert(typeChunk);
+	}
+}
+
 //BackGroundMusic, volume = between [0 - 128], 64 = neutral
 void SoundBank::PlayBGM(SoundBgmType type) {
 	if (musicEnabled) {

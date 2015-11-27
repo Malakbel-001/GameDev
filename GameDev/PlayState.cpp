@@ -32,6 +32,11 @@ void PlayState::GameOver(){
 	gsm->CreateGameState(GameStateType::GameOverState);
 }
 
+void PlayState::Victory(){
+	SoundBank::GetInstance()->StopMusic();
+	gsm->CreateGameState(GameStateType::VictoryState);
+}
+
 void PlayState::LoadGame()
 {
 	
@@ -95,8 +100,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					x = 5;
 					break;
-				case SDLK_z:
-
+				case SDLK_z:					
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
 				case SDLK_ESCAPE:

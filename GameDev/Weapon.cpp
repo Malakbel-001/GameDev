@@ -22,6 +22,7 @@ void Weapon::Shoot(EntityFactory* eF){
 
 
 		eF->CreateBullet(actor->GetXPos(), actor->GetYPos(), 5, 5, 20,b2Vec2(1000,0) ,EntityType::BULLET);
+		
 		timecounter = SDL_GetTicks();
 	}
 }

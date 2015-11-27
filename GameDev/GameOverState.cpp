@@ -9,6 +9,12 @@ void GameOverState::Init(GameStateManager *gsm){
 		std::cout << "-1";
 	}
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
+
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
+	SDL_Delay(2000);
+	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
+	SDL_Delay(2000);*/
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
 	Update(0);
 }
 
