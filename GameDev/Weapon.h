@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Soundbank.h"
 
 class EntityFactory;
 class Weapon

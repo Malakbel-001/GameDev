@@ -9,6 +9,12 @@ void GameOverState::Init(GameStateManager *gsm){
 		std::cout << "-1";
 	}
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
+
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
+	SDL_Delay(2000);
+	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
+	SDL_Delay(2000);*/
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
 	Update(0);
 }
 
@@ -136,9 +142,6 @@ void GameOverState::SetupRenderer()
 	backgroundRect.w = background.getWidth();
 	backgroundRect.x = 0;
 	backgroundRect.y = 0;
-
-	// Set color of renderer to red
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 
@@ -177,7 +180,7 @@ void GameOverState::HandleMouseEvents(SDL_Event mainEvent)
 				switch (i){
 					//item 1, mainmenu play
 				case 0:
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					SoundBank::GetInstance()->StopMusic();
 
 					quit = true;

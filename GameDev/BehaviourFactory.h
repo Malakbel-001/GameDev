@@ -7,13 +7,14 @@
 #include "StaticDrawableBehaviour.h"
 #include "MoveableBehaviour.h"
 #include "EntityType.h"
+#include "CheatLoadDrawableBehaviour.h" //temp
 #include "GroundSprite.h"
 #include "GroundObstacleSprite.h"
 #include "BarObstacleSprite.h"
 #include "PlantSprite.h"
 #include "PlantBossSprite.h"
 #include "PlayerSprite.h"
-
+#include "AcornSprite.h"
 
 class Camera;
 class Player;

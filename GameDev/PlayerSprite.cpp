@@ -7,6 +7,7 @@ PlayerSprite::PlayerSprite(SDL_Renderer* _renderer) : Sprite(_renderer)
 	WALK_ANIMATION_FRAMES = 7;
 	JUMP_ANIMATION_FRAMES = -1;
 	SHOOT_ANIMATION_FRAMES = -1;
+	DYING_ANIMATION_FRAMES = -1;
 	SetAnimations();
 }
 

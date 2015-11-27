@@ -8,6 +8,7 @@ Sprite::Sprite(SDL_Renderer* _renderer)
 	currentSprites = nullptr;
 	idleSprites = new std::vector<SDL_Rect>();
 	walkSprites = new std::vector<SDL_Rect>();
+	dyingSprites = new std::vector<SDL_Rect>();
 }
 
 
@@ -32,6 +33,9 @@ SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
 	case EntityState::JUMPING:
 		break;
 	case EntityState::SHOOTING:
+		break;
+	case EntityState::DYING:
+		return &dyingSprites->at(frame);
 		break;
 	case EntityState::DEFAULT:
 		return &defaultSprite;
@@ -67,6 +71,10 @@ void Sprite::SetAnimationSet(EntityState state)
 		case EntityState::JUMPING:
 			break;
 		case EntityState::SHOOTING:
+			break;
+		case EntityState::DYING:
+			currentSprites = dyingSprites;
+			CURRENT_ANIMATION_FRAMES = DYING_ANIMATION_FRAMES;
 			break;
 		default:
 			currentSprites = idleSprites;

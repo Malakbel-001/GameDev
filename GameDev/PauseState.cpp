@@ -10,7 +10,7 @@ void PauseState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT2);
 	cout << "PauseState \n";
 
 	pauseMenu = new PauseMenu(this, renderer, textFont, titleFont);
@@ -105,9 +105,6 @@ void PauseState::SetupRenderer()
 	backgroundRect.w = background.getWidth();
 	backgroundRect.x = 0;
 	backgroundRect.y = 0;
-
-	// Set color of renderer to red
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 

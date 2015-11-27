@@ -28,6 +28,11 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	PlantBossSprite* plantBossSprite = new PlantBossSprite(renderer);
 	plantBossSprite->LoadMedia("plantboss.png");
+	plantBossSprite->SetAnimationSet(EntityState::IDLE);
+
+	AcornSprite* acornSprite = new AcornSprite(renderer);
+	acornSprite->LoadMedia("plantboss.png");
+	acornSprite->SetAnimationSet(EntityState::IDLE);
 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
@@ -39,15 +44,17 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND, new StaticDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::BAR, new StaticDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
-		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) }
-			
+		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
+		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
+		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) }
 	};
 
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
-			{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
-			{ EntityType::PLANT, new EnemyCollidableBehaviour() },
-			{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
-			{ EntityType::BULLET, new BulletCollidableBehaviour() }
+		{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
+		{ EntityType::PLANT, new EnemyCollidableBehaviour() },
+		{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
+		{ EntityType::BULLET, new BulletCollidableBehaviour() },
+		{ EntityType::ACORN, new BulletCollidableBehaviour() }
 	};
 
 	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
@@ -57,7 +64,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND2, groundobstacleSprite },
 		{ EntityType::BAR, barobstacleSprite },
 		{ EntityType::BULLET, plantSprite },
-		{ EntityType::PLANTBOSS, plantBossSprite }
+		{ EntityType::PLANTBOSS, plantBossSprite },
+		{ EntityType::ACORN, acornSprite }
 	};
 }
 
