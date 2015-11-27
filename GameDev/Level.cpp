@@ -38,6 +38,10 @@ void Level::Update(float dt)
 		for (int x = 0; actors->size() > x; x++)
 		{
 			if (actors->operator[](x)->IsDead()){
+				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS)
+				{
+					Victory();
+				}
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
@@ -109,7 +113,13 @@ Level* Level::CreateLevel()
 
 	return new Level(lvlWidth, lvlHeight, playState);
 }
+
 void Level::GameOver()
 {
 	playState->GameOver();
+}
+
+void Level::Victory()
+{
+	playState->Victory();
 }

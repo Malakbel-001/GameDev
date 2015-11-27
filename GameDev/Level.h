@@ -58,5 +58,6 @@ public:
 	void Draw();
 	void Update(float dt);
 	void GameOver();
+	void Victory();
 	virtual b2World* GetWorld();
 };
