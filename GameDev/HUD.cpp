@@ -1,22 +1,37 @@
 #include "HUD.h"
-#include <iostream> //temp
-using namespace std;
 
 HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
 	this->player = player;
+
+	SetHPBarRectangle(20, 20, 200, 20);
+	SetHUDFont("Resources/fonts/manaspc.tff", 12);
 }
 
 HUD::~HUD() {
+	this->Cleanup();
+}
 
+//setDrawRect & fillRect
+void HUD::SetHPBarRectangle(int x, int y, int width, int height) {
+	drawRect = { x, y, width, height };
+	fillRect = { x, y, width, height };
+}
+
+void HUD::SetHUDFont(char* path, int ptsize) {
+	if (TTF_Init() == -1) //initialize TTF
+		std::cout << " Failed to initialize TTF : " << TTF_GetError() << std::endl;
+
+	hudFont = TTF_OpenFont("Resources/fonts/manaspc.ttf", 12);
+
+	if (hudFont == nullptr)
+		std::cout << " Failed to load font : " << TTF_GetError() << std::endl;
 }
 
 void HUD::Draw() {
 	//amount to diminish hpBar
 	float diminisher = (float)player->GetHealth() / player->GetMaxHealth();
-	DrawHPBar(20, 20, 200, 20, diminisher, Color(75, 205, 50, 255));
-	cout << "Top fucking percentage: " << diminisher << endl;
-	cout << "HP: " << player->GetHealth() << " MaxHP: " << player->GetMaxHealth() << endl;
+	DrawHPBar(diminisher, Color(75, 205, 50, 255));
 
 	DrawAmmo();
 
@@ -25,23 +40,20 @@ void HUD::Draw() {
 	//Optional: Draw Timer
 }
 
-
-
-void HUD::DrawHPBar(int x, int y, int width, int height, float diminisher, SDL_Color hpColor) {
-	SDL_Color oldColor;
-	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a);
-
+void HUD::DrawHPBar(float diminisher, SDL_Color hpColor) {
+	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a); //keep old draw color for later
+	
+	int width = drawRect.w;
 	int newWidth = Clamp(diminisher * width, 0, width); //clamping just in case
+	fillRect.w = newWidth; //update width
 
 	SDL_SetRenderDrawColor(renderer, hpColor.r, hpColor.g * diminisher, hpColor.b, hpColor.a);
-	SDL_Rect fillRect = { x, y, newWidth, height };
-	SDL_RenderFillRect(renderer, &fillRect);
+	SDL_RenderFillRect(renderer, &fillRect); //draw HP with the right color
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_Rect drawRect = { x, y, width, height };
-	SDL_RenderDrawRect(renderer, &drawRect);
+	SDL_RenderDrawRect(renderer, &drawRect); //draw HPBar Border/Container
 
-	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color
+	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color back
 }
 
 void HUD::DrawAmmo() {
@@ -66,4 +78,11 @@ int HUD::Clamp(int var, int min, int max) {
 		return var = min;
 	else
 		return var;
+}
+
+void HUD::Cleanup() {
+	//pointers
+	
+	//fonts
+	TTF_CloseFont(hudFont);
 }
