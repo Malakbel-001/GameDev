@@ -15,6 +15,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::BULLET, new Bullet() },
 		{ EntityType::ACORN, new Acorn() }
 	};
+
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
