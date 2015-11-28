@@ -13,8 +13,9 @@ void PlayState::Init(GameStateManager* gsm)
 	player = new Player();
 	
 	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	backgroundRect.h = background.getHeight();
+	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
+	backgroundRect.h = background.getHeight()+100;
 	backgroundRect.w = background.getWidth();
 	backgroundRect.x = 0;
 	backgroundRect.y = 0;

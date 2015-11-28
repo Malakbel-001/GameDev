@@ -13,13 +13,16 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::PLANT, new Npc() },
 		{ EntityType::PLANTBOSS, new Npc() },
 		{ EntityType::BULLET, new Bullet() },
-		{ EntityType::ACORN, new Acorn() }
+		{ EntityType::ACORN, new Acorn() },
+		{ EntityType::PINGUIN, new Npc() }
 	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
 		{ EntityType::GROUND2, new Ground() },
 		{ EntityType::BAR, new Ground() },
+		//level2
+		{ EntityType::GROUNDLVL2, new Ground() },
 		
 	};
 
@@ -83,7 +86,10 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::GROUND2, entDef },
 		{ EntityType::BAR, entDef },
 		{ EntityType::BULLET, BulletDef},
-		{ EntityType::ACORN, AcornDef }
+		{ EntityType::ACORN, AcornDef },
+		//level2
+		{ EntityType::GROUNDLVL2, entDef },
+		{ EntityType::PINGUIN, PlantDef },
 	};
 }
 

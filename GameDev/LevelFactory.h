@@ -2,6 +2,7 @@
 #include <vector>
 #include "Box2D\Box2D.h"
 #include "TestLevel.h"
+#include "Level2.h"
 #include "GameStateManager.h"
 
 

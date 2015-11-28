@@ -102,8 +102,11 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="GroundLvl2Sprite.cpp" />
+    <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />
+    <ClCompile Include="PinguinSprite.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
@@ -169,8 +172,11 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CheatLoadDrawableBehaviour.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="GroundLvl2Sprite.h" />
+    <ClInclude Include="Level2.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="ContactListener.h" />
+    <ClInclude Include="PinguinSprite.h" />
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="SettingsConfig.h" />
