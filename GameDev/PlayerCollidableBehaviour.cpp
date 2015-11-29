@@ -18,7 +18,7 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 		default:
 			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
 			//TODO different sound
-			SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 			break;
 		}
 	}

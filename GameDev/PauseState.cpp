@@ -105,9 +105,6 @@ void PauseState::SetupRenderer()
 	backgroundRect.w = background.getWidth();
 	backgroundRect.x = 0;
 	backgroundRect.y = 0;
-
-	// Set color of renderer to red
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 }
 
 
