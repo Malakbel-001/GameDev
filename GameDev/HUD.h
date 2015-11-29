@@ -12,7 +12,7 @@ class HUD {
 		SDL_Renderer* renderer;
 		Player* player;
 
-		void SetHPBarRectangle(int x, int y, int width, int height);
+		void SetRectangles(int x, int y);
 		void SetHUDFont(char* path, int ptsize);
 
 		SDL_Color Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
@@ -29,7 +29,10 @@ class HUD {
 	private:
 		TTF_Font* hudFont;
 		SDL_Color oldColor;
-		SDL_Rect drawRect;
-		SDL_Rect fillRect;
-
+		SDL_Rect drawHPRect;
+		SDL_Rect fillHPRect;
+		SDL_Rect drawStatsRect;
+		SDL_Surface* ammoSurface;
+		SDL_Texture* ammoTexture;
+		SDL_Rect ammoRect;
 };
