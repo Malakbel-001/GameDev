@@ -20,8 +20,11 @@ void HUD::SetRectangles(int x, int y) {
 	drawHPRect = { x, y, hpWidth, hpHeight };
 	fillHPRect = { x, y, hpWidth, hpHeight };
 
-	drawStatsRect = { drawHPRect.x + 50 + hpWidth, y, 200, 50 };
-	ammoRect = { drawStatsRect.x + 10, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
+	drawStatsRect = { drawHPRect.x + 50 + hpWidth, y, 120, 50 }; //temp width
+	ammoRect =		{ drawStatsRect.x + 10, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
+	scoreRect = { ammoRect.x + ammoRect.w + 20, ammoRect.y, scoreSurface->w, scoreSurface->h };
+
+	drawStatsRect.w = (scoreRect.x + scoreRect.w + 10) - drawStatsRect.x; //dynamic / fix width
 }
 
 void HUD::SetHUDFont(char* path, int ptsize) {
@@ -37,6 +40,9 @@ void HUD::SetHUDFont(char* path, int ptsize) {
 	//this is better for performance reasons (when it's possible), create once, reuse whenever, FreeSurface() and DestroyTexture() in Cleanup()
 	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Color(0, 0, 0, 255));
 	ammoTexture = SDL_CreateTextureFromSurface(renderer, ammoSurface); //set ammoTexture
+
+	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Color(0, 0, 0, 255));
+	scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
 }
 
 void HUD::Draw() {
@@ -45,6 +51,10 @@ void HUD::Draw() {
 	//amount to diminish hpBar
 	float diminisher = (float)player->GetHealth() / player->GetMaxHealth();
 	DrawHPBar(diminisher, Color(75, 205, 50, 255));
+
+	//draw Stats Border/Container
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderDrawRect(renderer, &drawStatsRect);
 
 	DrawAmmo();
 
@@ -68,15 +78,40 @@ void HUD::DrawHPBar(float diminisher, SDL_Color hpColor) {
 }
 
 void HUD::DrawAmmo() {
+	//Draw Ammo
 	SDL_SetTextureBlendMode(ammoTexture, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(renderer, ammoTexture, NULL, &ammoRect);
 
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderDrawRect(renderer, &drawStatsRect); //draw HPBar Border/Container
+	//Draw AmmoCounter / Amount
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, "0", Color(0, 0, 0, 255)); //temp until I can get to ammo counter
+	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
+	SDL_Rect counterRect = { ammoRect.x, ammoRect.y + ammoRect.h + 5, counterSurface->w, counterSurface->h };
+
+	SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
+	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
+
+	//cleanup counter stuff after using them
+	SDL_FreeSurface(counterSurface);
+	SDL_DestroyTexture(counterTexture);
+
 }
 
 void HUD::DrawScore() {
+	//Draw Score
+	SDL_SetTextureBlendMode(scoreTexture, SDL_BLENDMODE_BLEND);
+	SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
 
+	//Draw ScoreCounter / Amount
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, "0", Color(0, 0, 0, 255)); //temp until I can get to ammo counter
+	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
+	SDL_Rect counterRect = { scoreRect.x, scoreRect.y + scoreRect.h + 5, counterSurface->w, counterSurface->h };
+
+	SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
+	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
+
+	//cleanup counter stuff after using them
+	SDL_FreeSurface(counterSurface);
+	SDL_DestroyTexture(counterTexture);
 }
 
 //color - Returns an SDL_Color with the appropriate values
