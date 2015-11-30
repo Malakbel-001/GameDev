@@ -1,8 +1,9 @@
 #pragma once
+#include "EntityState.h"
 #include <vector>
 #include <SDL.h>
 #include "LTexture.h"
-#include "EntityState.h"
+
 
 class Sprite
 {
@@ -16,12 +17,15 @@ public:
 	void SetRenderer(SDL_Renderer* _renderer);
 	LTexture* GetSpritesheet();
 	bool LoadMedia(std::string path);
-
+	float GetXOffSet();
+	float GetYOffSet();
 protected:
 	virtual void SetAnimations();
 	std::vector<SDL_Rect>* currentSprites;
 	LTexture* spriteSheetTexture;
 	SDL_Renderer* renderer;
+	float xOffSet;
+	float yOffSet;
 
 	int IDLE_ANIMATION_FRAMES;
 	int WALK_ANIMATION_FRAMES;

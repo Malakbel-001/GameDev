@@ -1,7 +1,7 @@
 #include "DrawableBehaviour.h"
-#include "Entity.h"
+#include "Object.h"
 
-Entity;
+//Entity;
 DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight)
 {
 	
@@ -22,7 +22,7 @@ DrawableBehaviour* DrawableBehaviour::EmptyClone()
 	return nullptr; 
 }
 
-void DrawableBehaviour::SetEntity(Entity* _entity)
+void DrawableBehaviour::SetEntity(Object* _entity)
 {
 	entity = _entity;
 }
@@ -40,6 +40,6 @@ void DrawableBehaviour::SetSprite(Sprite* _sprite)
 void DrawableBehaviour::SetCamera(Camera* _camera){
 	camera = _camera;
 }
-Entity* DrawableBehaviour::GetEntity(){
+Object* DrawableBehaviour::GetEntity(){
 	return entity;
 }

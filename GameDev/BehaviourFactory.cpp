@@ -1,3 +1,4 @@
+#pragma once
 #include "BehaviourFactory.h"
 #include "Camera.h"
 #include "CollidableBehaviour.h"
@@ -5,6 +6,13 @@
 #include "PlayerCollidableBehaviour.h"
 #include "EnemyCollidableBehaviour.h"
 #include "BulletCollidableBehaviour.h"
+#include "HealthCollidableBehaviour.h"
+#include "AmmoCollidableBehaviour.h"
+#include "HealthSprite.h"
+#include "BulletSprite.h"
+#include "AmmoSprite.h"
+#include "GunSprite.h"
+#include "JumpSensorCollidableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -31,6 +39,21 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
+
+
+	HealthSprite* healthSprite = new HealthSprite(renderer);
+	healthSprite->LoadMedia("HealthSprite.png");
+
+
+
+	BulletSprite* bulletSprite = new BulletSprite(renderer);
+	bulletSprite->LoadMedia("Bullet.png");
+
+	AmmoSprite* ammoSprite = new AmmoSprite(renderer);
+	ammoSprite->LoadMedia("AmmoBox.png");
+
+	GunSprite* gun = new GunSprite(renderer);
+	gun->LoadMedia("Gun.png");
 		
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
@@ -39,26 +62,26 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND, new StaticDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::BAR, new StaticDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
-		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) }
-			
+		{ EntityType::BULLET, new StaticDrawableBehaviour(renderer, bulletSprite, screenWidth, screenHeight) },
+		{ EntityType::HEALTH, new StaticDrawableBehaviour(renderer, healthSprite, screenWidth, screenHeight) },
+		{EntityType::AMMO, new StaticDrawableBehaviour(renderer,ammoSprite,screenWidth,screenHeight)},
+		{ EntityType::WEAPON, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) },
+		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) }
+
 	};
 
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 			{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 			{ EntityType::PLANT, new EnemyCollidableBehaviour() },
 			{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
-			{ EntityType::BULLET, new BulletCollidableBehaviour() }
+			{ EntityType::BULLET, new BulletCollidableBehaviour() },
+			{ EntityType::HEALTH, new HealthCollidableBehaviour() },
+			{ EntityType::AMMO, new AmmoCollidableBehaviour() },
+			{ EntityType::JUMP, new JumpSensorCollidableBehaviour()}
+
+
 	};
 
-	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
-		{ EntityType::PLAYER, playerSprite },
-		{ EntityType::PLANT, plantSprite },
-		{ EntityType::GROUND, groundSprite },
-		{ EntityType::GROUND2, groundobstacleSprite },
-		{ EntityType::BAR, barobstacleSprite },
-		{ EntityType::BULLET, plantSprite },
-		{ EntityType::PLANTBOSS, plantBossSprite }
-	};
 }
 
 

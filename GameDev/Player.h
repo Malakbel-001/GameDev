@@ -1,25 +1,29 @@
 #pragma once
 #include "Actor.h"
 
-class Weapon;
-class ShotGun;
+
 class Player :
 	public Actor
 {
 	private:
 		// stuff
-		Weapon* currentWep = nullptr;
-
-
+		
+		int currentwep;
+		vector<Weapon*> weps;
 	protected:
 		// stuff
-
+		
+		//in constructor
+	
 	public:
 		Player();
 		virtual ~Player();
 		void setBody(b2Body* _body);
 		virtual Actor* EmptyClone();
 		b2Body* GetBody();
-		Weapon* GetCurrentWeapon();
+		virtual void AddWeapon(Weapon* wep);
+		virtual Weapon* GetCurrentWeapon();
+		virtual void SwitchWeapon(int x);
+	
 
 };

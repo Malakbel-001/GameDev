@@ -13,6 +13,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	drawableContainer = new DrawableContainer();
 
 
+
 }
 
 void Level::Init(BehaviourFactory* bf)
@@ -27,8 +28,14 @@ b2World* Level::GetWorld()
 
 void Level::Update(float dt)
 {
+	
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+	
+
 	world->Step((dt / 100), 5, 5);
-	if (player->GetYPos() > lvlHeight || player->IsDead())
+	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
 
 		GameOver();
@@ -38,6 +45,14 @@ void Level::Update(float dt)
 		for (int x = 0; actors->size() > x; x++)
 		{
 			if (actors->operator[](x)->IsDead()){
+				if (actors->operator[](x)->GetType() == EntityType::PLANT){
+					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
+					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
+					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y + 1, 7, 7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y - 1,7,7, EntityType::HEALTH);
+					entityFactory->CreateActor(0, 1, z, y - 3, 29,17, EntityType::AMMO);
+				}
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
@@ -63,7 +78,14 @@ void Level::Update(float dt)
 Player* Level::SetPlayer(Player* _player)
 {
 	//	player = _player;
-	player = dynamic_cast<Player*>(entityFactory->CreateActor(0,100,20, 100, 15, 15, EntityType::PLAYER));
+	player = dynamic_cast<Player*>(entityFactory->CreateActor(0,100,20, 100, 15, 35, EntityType::PLAYER));
+
+	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
+	wep->Pickup(player, b2Vec2(1000, 0));
+	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
+	shot->Pickup(player, b2Vec2(1000, 0));	
+	player->AddWeapon(wep);
+	player->AddWeapon(shot);
 	return player;
 
 }

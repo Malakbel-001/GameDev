@@ -1,5 +1,5 @@
 #include "Actor.h"
-
+#include "Weapon.h"
 Actor::Actor()
 {
 	
@@ -13,8 +13,13 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 	health = _health;
 	col = bf->CreateCollidableBehaviour(type);
 	col->Init(this);
+	//jumpsensor = bf->CreateCollidableBehaviour(EntityType::JUMP);
+//	jumpsensor->Init(this);
+///	body->GetFixtureList()->SetUserData(jumpsensor);
 	body->SetUserData(col);
 
+	//direction = b2Vec2(0, 0);
+	m_jumpTimeout = 0;
 
 }
 Actor* Actor::EmptyClone(){
@@ -24,6 +29,13 @@ Actor* Actor::EmptyClone(){
 
 Actor::~Actor()
 {
+}
+
+int Actor::GetNumFootContacts(){
+	return numFootContacts;
+}
+void Actor::SetNumFootContacts(int x){
+	numFootContacts = x;
 }
 
 void Actor::SetHealt(int _health){
@@ -50,4 +62,18 @@ b2Vec2 Actor::GetDirection(){
 void Actor::SetDirection(b2Vec2 dir)
 {
 	direction = dir;
+}
+
+int Actor::GetJumpTimeOut(){
+	return m_jumpTimeout;
+}	
+
+void Actor::SetJumpTimeOut(int _m_jumpTimeout){
+	m_jumpTimeout = _m_jumpTimeout;
+}
+
+Weapon* Actor::GetCurrentWeapon(){
+
+	return currentWep;
+
 }

@@ -12,6 +12,7 @@ void PlayState::Init(GameStateManager* gsm)
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
 	
+	
 	background = LTexture();
 	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
 	backgroundRect.h = background.getHeight();
@@ -76,15 +77,17 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_w:
 
 
-					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
+					if (currentLevel->GetPlayer()->GetNumFootContacts() >  0){
+						if (!(currentLevel->GetPlayer()->GetJumpTimeOut() > 0)){
 
-					
 							jump = true;
 							impulse = 100;
 							SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 
 							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-						
+							currentLevel->GetPlayer()->SetJumpTimeOut(15);
+						}
+				
 					}
 					break;
 				case SDLK_a:
@@ -105,10 +108,56 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
+				case SDLK_UP:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);
+
+						break;
+				case SDLK_DOWN:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+1000);
+					break;
+
+				case SDLK_LEFT:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(-1000);
+					break;
+
+				case SDLK_RIGHT:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+1000);
+
+					break;
+
+				case SDLK_1:
+					currentLevel->GetPlayer()->SwitchWeapon(0);
+					break;
+				case SDLK_2:
+					currentLevel->GetPlayer()->SwitchWeapon(1);
+					break;
+				case SDLK_3:
+					currentLevel->GetPlayer()->SwitchWeapon(2);
+					break;
+				case SDLK_4:
+					currentLevel->GetPlayer()->SwitchWeapon(3);
+					break;
+				case SDLK_5:
+					currentLevel->GetPlayer()->SwitchWeapon(4);
+					break;
+				case SDLK_6:
+					currentLevel->GetPlayer()->SwitchWeapon(5);
+					break;
+				case SDLK_7:
+					currentLevel->GetPlayer()->SwitchWeapon(6);
+					break;
+				case SDLK_8:
+					currentLevel->GetPlayer()->SwitchWeapon(7);
+					break;
+				case SDLK_9:
+					currentLevel->GetPlayer()->SwitchWeapon(8);
+					break;
+				
 				case SDLK_ESCAPE:
 					pause = true;
 					
 					break;
+
 				}
 			}
 			else
@@ -128,6 +177,34 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_d:
 					if (currentLevel->GetPlayer()->GetState() == EntityState::WALKINGRIGHT)
 						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
+					break;
+				case SDLK_UP:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == -1000){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
+					}
+
+					break;
+				case SDLK_DOWN:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == 1000){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
+					}
+				
+					break;
+
+				case SDLK_LEFT:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -1000){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
+					}
+					break;
+
+				case SDLK_RIGHT:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 1000 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
+					}
+					
+					
+
+					break;
 				}
 			}
 
@@ -138,12 +215,17 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 		}
+	
+		if (currentLevel->GetPlayer()->GetJumpTimeOut() > 0){
+			currentLevel->GetPlayer()->SetJumpTimeOut(currentLevel->GetPlayer()->GetJumpTimeOut() - 1);
+		}
 
 		if (pause){
 			Pause();
 		}
 		
 	}
+	
 
 }
 
@@ -160,7 +242,7 @@ void PlayState::Update(float dt)
 void PlayState::Draw()
 {
 
-	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450, &backgroundRect); //TEMP!
+	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
 
 	currentLevel->GetDrawableContainer()->Draw();
 

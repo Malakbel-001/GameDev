@@ -7,7 +7,8 @@ SoundBank* SoundBank::instance = new SoundBank();
 SoundBank::SoundBank() {
 	//defining sound effects
 	soundPathList = std::unordered_map<SoundEffectType, char*> {
-		{ SoundEffectType::CORRECT, "Resources/sound/sfx/soundcorrect.wav" }
+		{ SoundEffectType::CORRECT, "Resources/sound/sfx/soundcorrect.wav" },
+		{SoundEffectType::SHOTGUN, "Resources/sound/sfx/shotgun.wav"}
 	};
 
 	//defining background music

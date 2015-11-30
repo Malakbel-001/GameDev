@@ -90,16 +90,25 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AmmoCollidableBehaviour.cpp" />
+    <ClCompile Include="AmmoSprite.cpp" />
     <ClCompile Include="AnimatedDrawableBehaviour.cpp" />
+    <ClCompile Include="BareEntity.cpp" />
     <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletCollidableBehaviour.cpp" />
+    <ClCompile Include="BulletSprite.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="ContactListener.cpp" />
+    <ClCompile Include="GunSprite.cpp" />
+    <ClCompile Include="HealthCollidableBehaviour.cpp" />
+    <ClCompile Include="HealthSprite.cpp" />
+    <ClCompile Include="JumpSensorCollidableBehaviour.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
@@ -151,17 +160,26 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="AmmoCollidableBehaviour.h" />
+    <ClInclude Include="AmmoSprite.h" />
     <ClInclude Include="AnimatedDrawableBehaviour.h" />
+    <ClInclude Include="BareEntity.h" />
     <ClInclude Include="BarObstacleSprite.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletCollidableBehaviour.h" />
+    <ClInclude Include="BulletSprite.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="ContactListener.h" />
+    <ClInclude Include="GunSprite.h" />
+    <ClInclude Include="HealthCollidableBehaviour.h" />
+    <ClInclude Include="HealthSprite.h" />
+    <ClInclude Include="JumpSensorCollidableBehaviour.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="SettingsConfig.h" />

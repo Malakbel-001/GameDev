@@ -3,17 +3,26 @@
 
 Sprite::Sprite(SDL_Renderer* _renderer)
 {
+	xOffSet = 0;
+	yOffSet = 0;
 	renderer = _renderer;
 	spriteSheetTexture = new LTexture();
 	currentSprites = nullptr;
 	idleSprites = new std::vector<SDL_Rect>();
 	walkSprites = new std::vector<SDL_Rect>();
+	
 }
 
 
 Sprite::~Sprite()
 {
 	delete renderer;
+}
+float Sprite::GetXOffSet(){
+	return xOffSet;
+}
+float Sprite::GetYOffSet(){
+	return yOffSet;
 }
 
 SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
