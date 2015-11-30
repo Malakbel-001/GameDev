@@ -16,11 +16,11 @@ void CheatLoadDrawableBehaviour::Draw()
 	float xpos = 20;
 	float ypos = 20;
 
-	sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0,sprite->GetAnimationFrame(EntityState::WALKINGRIGHT, currentFrame));
+	sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0,sprite->GetAnimationFrame(EntityState::WALKINGRIGHT, currentFrame/3));
 
 	//Go to next frame 
 	++currentFrame;
-	int size = sprite->GetAnimationSize();
+	int size = sprite->GetAnimationSize()/3;
 	//Cycle animation 
 
 	if (currentFrame >= size)

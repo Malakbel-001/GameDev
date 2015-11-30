@@ -62,7 +62,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	PlantDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef PlantBossDef = b2BodyDef();
-	PlantBossDef.gravityScale = 0;
+	PlantBossDef.gravityScale = 1;
 	PlantBossDef.fixedRotation = true;
 	PlantBossDef.linearDamping = 0.5f;
 	PlantBossDef.angularDamping = 1;

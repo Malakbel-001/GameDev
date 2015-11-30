@@ -175,9 +175,6 @@
     <ClCompile Include="PlantBossSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
-
-
-
     <ClCompile Include="HealthSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
@@ -237,6 +234,9 @@
     </ClCompile>
     <ClCompile Include="TreeSprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShotgunSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -438,7 +438,6 @@
     <ClInclude Include="PlantBossSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
-
     <ClInclude Include="HealthSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
@@ -465,8 +464,7 @@
     </ClInclude>
     <ClInclude Include="JumpSensorCollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Collidables</Filter>
-	</ClInclude>
-
+    </ClInclude>
     <ClInclude Include="AcornSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -499,7 +497,9 @@
     </ClInclude>
     <ClInclude Include="TreeSprite.h">
       <Filter>Header Files</Filter>
-
+    </ClInclude>
+    <ClInclude Include="ShotgunSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

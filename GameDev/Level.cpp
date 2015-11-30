@@ -55,8 +55,8 @@ void Level::Update(float dt)
 					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
 					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
 					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
-					entityFactory->CreateActor(-10, 1, z, y + 1, 7, 7, EntityType::HEALTH);
-					entityFactory->CreateActor(-10, 1, z, y - 1,7,7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y, 7, 7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y,7,7, EntityType::HEALTH);
 					entityFactory->CreateActor(0, 1, z, y - 3, 29,17, EntityType::AMMO);
 			
 				}

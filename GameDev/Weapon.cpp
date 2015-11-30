@@ -103,6 +103,7 @@ void Weapon::Shoot(EntityFactory* eF){
 
 
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
 				vec.x = 0;

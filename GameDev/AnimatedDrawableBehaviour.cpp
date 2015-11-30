@@ -19,14 +19,14 @@ void AnimatedDrawableBehaviour::Draw()
 
 
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, entity->GetAngle(), sprite->GetAnimationFrame(entity->GetState(), currentFrame));
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, entity->GetAngle(), sprite->GetAnimationFrame(entity->GetState(), currentFrame/3));
 
 		//Go to next frame 
 		++currentFrame;
 		int size = sprite->GetAnimationSize();
 		//Cycle animation 
 
-		if (currentFrame >= size)
+		if (currentFrame/3 >= size)
 		{
 			currentFrame = 0;
 		}

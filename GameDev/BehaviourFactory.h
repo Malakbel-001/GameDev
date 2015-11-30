@@ -15,6 +15,7 @@
 #include "PlantBossSprite.h"
 #include "PlayerSprite.h"
 #include "AcornSprite.h"
+#include "ShotgunSprite.h"
 //level2
 #include "GroundLvl2Sprite.h"
 #include "PinguinSprite.h"

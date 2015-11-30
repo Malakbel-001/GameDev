@@ -110,16 +110,13 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />
-
     <ClCompile Include="GunSprite.cpp" />
     <ClCompile Include="HealthCollidableBehaviour.cpp" />
     <ClCompile Include="HealthSprite.cpp" />
     <ClCompile Include="JumpSensorCollidableBehaviour.cpp" />
     <ClCompile Include="Object.cpp" />
-
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="PinguinSprite.cpp" />
-
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
@@ -149,6 +146,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PlayerCollidableBehaviour.cpp" />
     <ClCompile Include="ShotGun.cpp" />
+    <ClCompile Include="ShotgunSprite.cpp" />
     <ClCompile Include="SoundBank.cpp" />
     <ClCompile Include="SoundChunk.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -194,16 +192,13 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Level2.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="ContactListener.h" />
-
     <ClInclude Include="GunSprite.h" />
     <ClInclude Include="HealthCollidableBehaviour.h" />
     <ClInclude Include="HealthSprite.h" />
     <ClInclude Include="JumpSensorCollidableBehaviour.h" />
     <ClInclude Include="Object.h" />
-
     <ClInclude Include="HUD.h" />
     <ClInclude Include="PinguinSprite.h" />
-
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="SettingsConfig.h" />
@@ -239,6 +234,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PlayerCollidableBehaviour.h" />
     <ClInclude Include="ShotGun.h" />
+    <ClInclude Include="ShotgunSprite.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />
     <ClInclude Include="SoundChunk.h" />
