@@ -19,7 +19,6 @@ public:
 	virtual void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) = 0;
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
-
 	void ChangeState(GameStateManager* gsm, IGameState* state)
 	{
 		gsm->ChangeGameState();

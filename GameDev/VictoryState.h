@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include "SoundBank.h"
+#include "Playstate.h"
 class VictoryState :
 	public IGameState
 {
@@ -28,6 +29,7 @@ public:
 	TTF_Font* textFont;
 
 #pragma region textures
+	SDL_Texture* nextTexture;
 	SDL_Texture* quitTexture; //2
 	SDL_Texture* victoryTitleTexture; //3
 #pragma endregion textures
@@ -35,6 +37,7 @@ public:
 #pragma region rects
 	//mainmenu
 	SDL_Rect quitRect;
+	SDL_Rect nextRect;
 	SDL_Rect victoryTitleRect;
 #pragma endregion rects
 
@@ -48,6 +51,7 @@ public:
 	void Resume();
 	void Pause();
 	void Quit();
+	void Next();
 	void loadQuitMenu();
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);

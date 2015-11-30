@@ -26,5 +26,6 @@ class GameStateManager
 		void CreateGameState(GameStateType state);
 		IGameState* GetNewState(GameStateType state);
 		IGameState* GetCurrentState();
+		IGameState* GetPreviousState();
 		virtual ~GameStateManager();
 };

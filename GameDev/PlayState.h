@@ -37,9 +37,6 @@ class PlayState :
 
 		Player* GetPlayer();
 
-
-		
-
 		Level* GetCurrentLevel();
 		void SetCurrentLevel(Level* lvl);
 		void LoadGame();

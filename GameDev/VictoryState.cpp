@@ -25,6 +25,7 @@ VictoryState::VictoryState()
 
 void VictoryState::loadQuitMenu(){
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &quitRect);
+	SDL_RenderCopy(renderer, nextTexture, nullptr, &nextRect);
 	SDL_RenderCopy(renderer, victoryTitleTexture, nullptr, &victoryTitleRect);
 }
 
@@ -60,14 +61,23 @@ bool VictoryState::SetupTTF(const std::string &fontName, const std::string &font
 }
 void VictoryState::CreateTextTextures()
 {
+#pragma region next
+	SDL_Surface* next = TTF_RenderText_Blended(textFont, "Next Level", textColor);
+	nextTexture = SurfaceToTexture(next);
+
+	SDL_QueryTexture(nextTexture, NULL, NULL, &nextRect.w, &nextRect.h);
+	nextRect.x = 15;
+	nextRect.y = 255;
+	pos[0] = nextRect;
+#pragma endregion next
 #pragma region quit
 	SDL_Surface* quit = TTF_RenderText_Blended(textFont, "Back To main-menu", textColor);
 	quitTexture = SurfaceToTexture(quit);
 
 	SDL_QueryTexture(quitTexture, NULL, NULL, &quitRect.w, &quitRect.h);
 	quitRect.x = 15;
-	quitRect.y = 255;
-	pos[0] = quitRect;
+	quitRect.y = 285;
+	pos[1] = quitRect;
 #pragma endregion quit
 #pragma region victorytitle
 	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Victory", textColor);
@@ -76,7 +86,7 @@ void VictoryState::CreateTextTextures()
 	SDL_QueryTexture(victoryTitleTexture, NULL, NULL, &victoryTitleRect.w, &victoryTitleRect.h);
 	victoryTitleRect.x = 540 - (victoryTitleRect.w / 2);
 	victoryTitleRect.y = 5;
-	pos[1] = victoryTitleRect;
+	pos[2] = victoryTitleRect;
 #pragma endregion victorytitle
 }
 
@@ -163,6 +173,14 @@ void VictoryState::Quit(){
 	gsm->ChangeGameState();
 }
 
+void VictoryState::Next(){
+	if(PlayState* state = dynamic_cast <PlayState*>(gsm->GetPreviousState()))
+	{
+		state->SetCurrentLevel(LevelFactory::GetNextLevel(state->GetCurrentLevel(), state));
+	}
+	gsm->ChangeGameState();
+}
+
 void VictoryState::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
@@ -179,6 +197,13 @@ void VictoryState::HandleMouseEvents(SDL_Event mainEvent)
 				switch (i){
 					//item 1, mainmenu play
 				case 0:
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->StopMusic();
+
+					quit = true;
+					Next();
+					break;
+				case 1:
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					SoundBank::GetInstance()->StopMusic();
 

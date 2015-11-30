@@ -1,8 +1,5 @@
 #include "PlayState.h"
 
-
-
-
 void PlayState::Init(GameStateManager* gsm)
 {
 	this->gsm = gsm;

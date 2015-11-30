@@ -1,5 +1,4 @@
 #include "GameStateManager.h"
-#include "IGameState.h"
 #include "PlayState.h"
 #include "LoadState.h"
 #include "PauseState.h"
@@ -106,6 +105,11 @@ IGameState* GameStateManager::GetCurrentState()
 	return states.back();
 }
 
+IGameState* GameStateManager::GetPreviousState()
+{
+	return states.at(states.size() -2);
+
+}
 GameStateManager::~GameStateManager()
 {
 	while (!states.empty())
