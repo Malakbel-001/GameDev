@@ -31,9 +31,11 @@ protected:
 	int WALK_ANIMATION_FRAMES;
 	int JUMP_ANIMATION_FRAMES;
 	int SHOOT_ANIMATION_FRAMES;
+	int DYING_ANIMATION_FRAMES;
 	int CURRENT_ANIMATION_FRAMES;
 	SDL_Rect defaultSprite;
 	std::vector<SDL_Rect>* idleSprites;
 	std::vector<SDL_Rect>* walkSprites;
+	std::vector<SDL_Rect>* dyingSprites;
 };
 

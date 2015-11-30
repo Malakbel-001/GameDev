@@ -22,6 +22,7 @@ private:
 	float startYpos;
 
 protected:
+	int levelId;
 	EntityFactory* entityFactory;
 	int tileWidth, tileHeight;
 	int lvlWidth, lvlHeight;
@@ -33,6 +34,7 @@ protected:
 	
 	std::vector<Actor*>* actors;
 	Player* player;
+	std::string backgroundPath;
 public:
 	Player* GetPlayer();
 
@@ -58,5 +60,9 @@ public:
 	void Draw();
 	void Update(float dt);
 	void GameOver();
+	void Victory();
 	virtual b2World* GetWorld();
+
+	int GetLevelId() { return levelId; };
+	std::string GetBackgroundPath() { return backgroundPath; };
 };

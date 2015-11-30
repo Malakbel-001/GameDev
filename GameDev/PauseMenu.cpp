@@ -184,27 +184,27 @@ void PauseMenu::HandleMouseEvents(SDL_Event mainEvent)
 				switch (i){
 				case 0:
 					//play
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					menu->updateMenu(MenuEnum::Resume);
 					break;
 				case 1:
 					//help
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					menu->updateMenu(MenuEnum::Help);
 					break;
 				case 2:
 					//credits
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					menu->updateMenu(MenuEnum::Credits);
 					break;
 				case 3:
 					//options
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					menu->updateMenu(MenuEnum::Options);
 					break;
 				case 4:
 					//quit
-					SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					menu->updateMenu(MenuEnum::Main);
 					break;
 				}

@@ -17,14 +17,15 @@ void BulletCollidableBehaviour::Hit(CollidableBehaviour* cb){
 
 			break;
 		default:
-			ent->SetHealt(0);
+			ent->SetHealth(0);
 			break;
 		}
 	}
 	else{
-		ent->SetHealt(0);
+		ent->SetHealth(0);
 	}
 	
+
 }
 CollidableBehaviour* BulletCollidableBehaviour::EmptyClone(){
 	return new BulletCollidableBehaviour();

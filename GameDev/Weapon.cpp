@@ -110,5 +110,6 @@ void Weapon::Shoot(EntityFactory* eF){
 			}
 			timecounter = SDL_GetTicks();
 		}
+
 	}
 }

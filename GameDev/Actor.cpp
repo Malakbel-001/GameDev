@@ -11,6 +11,7 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 	Init(_body, _width, _height, _type, bf, drawContainer);
 	hitdmg = _hitdmg;
 	health = _health;
+	maxHealth = _health; //NEW
 	col = bf->CreateCollidableBehaviour(type);
 	col->Init(this);
 	//jumpsensor = bf->CreateCollidableBehaviour(EntityType::JUMP);
@@ -38,7 +39,9 @@ void Actor::SetNumFootContacts(int x){
 	numFootContacts = x;
 }
 
-void Actor::SetHealt(int _health){
+
+void Actor::SetHealth(int _health){
+
 	if (_health <= 0){
 		dead = true;
 		health = _health;
@@ -50,8 +53,11 @@ void Actor::SetHealt(int _health){
 bool Actor::IsDead(){
 	return dead;
 }
-int Actor::GetHealt(){
+int Actor::GetHealth(){
 	return health;
+}
+int Actor::GetMaxHealth() {
+	return maxHealth;
 }
 int Actor::GetDamage(){
 	return hitdmg;

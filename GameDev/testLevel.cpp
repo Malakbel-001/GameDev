@@ -3,12 +3,12 @@
 TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
 	: Level(_lvlWidth, _lvlHeight, play)
 {
-
+	levelId = 1;
 }
 
 void TestLevel::Init(BehaviourFactory* bf)
 {
-
+	backgroundPath = "level1.jpg";
 	entityFactory = new EntityFactory(*world, actors, bf, drawableContainer);
 
 	//obstacles--------------
@@ -49,9 +49,10 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(4250, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4500, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
-	//enemies-----------------
-	
+	//enemies-----------------	
+
 	entityFactory->CreateActor(10, 50, 800, 450, 40, 45, EntityType::PLANT);
+
 	entityFactory->CreateActor(1000, 50, 900, 450, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 1200, 300, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 1300, 300, 40, 45, EntityType::PLANT);

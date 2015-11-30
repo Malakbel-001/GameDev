@@ -11,6 +11,7 @@
 #include "BareEntity.h"
 #include "Weapon.h"
 #include "Shotgun.h"
+#include "Acorn.h"
 
 class EntityFactory
 {

@@ -4,7 +4,7 @@
 using namespace std;
 Game::Game()
 {
-		inputManager = new InputManager();
+	inputManager = new InputManager();
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -22,7 +22,8 @@ Game::Game()
 Game::~Game()
 {
 	delete gsm;
-	delete sdlInitializer;
+	if (sdlInitializer)
+		delete sdlInitializer;
 }
 
 void Game::SDLEvents()

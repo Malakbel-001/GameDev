@@ -82,9 +82,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files\Main</Filter>
     </ClCompile>
-    <ClCompile Include="SettingsConfig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SDLInitializer.cpp">
       <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
@@ -178,6 +175,9 @@
     <ClCompile Include="PlantBossSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
+
+
+
     <ClCompile Include="HealthSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
@@ -204,6 +204,39 @@
     </ClCompile>
     <ClCompile Include="JumpSensorCollidableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="AcornSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Acorn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheatLoadDrawableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Drawables</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadState.cpp">
+      <Filter>Source Files\Model\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsConfig.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="VictoryState.cpp">
+      <Filter>Source Files\Model\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Model\Head-Up Display</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundLvl2Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PinguinSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeSprite.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -393,9 +426,6 @@
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files\View\Menu</Filter>
     </ClInclude>
-    <ClInclude Include="SettingsConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AnimatedDrawableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
@@ -408,6 +438,7 @@
     <ClInclude Include="PlantBossSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
+
     <ClInclude Include="HealthSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
@@ -434,6 +465,41 @@
     </ClInclude>
     <ClInclude Include="JumpSensorCollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Collidables</Filter>
+	</ClInclude>
+
+    <ClInclude Include="AcornSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Acorn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VictoryState.h">
+      <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsConfig.h">
+      <Filter>Header Files\Model\SettingsConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadState.h">
+      <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="CheatLoadDrawableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\Model\Head-Up Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="PinguinSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundLvl2Sprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSprite.h">
+      <Filter>Header Files</Filter>
+
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +616,18 @@
     </Filter>
     <Filter Include="Source Files\View\Menu">
       <UniqueIdentifier>{39f2f55b-a00e-4541-8a7d-6b3a565ad47d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\SettingsConfig">
+      <UniqueIdentifier>{1e13f83f-6455-4546-8f8b-5c21b488b85c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\SettingsConfig">
+      <UniqueIdentifier>{5ac628fe-24d8-4e2d-a1c4-3cb2e2314dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Head-Up Display">
+      <UniqueIdentifier>{d2b93fba-94de-4caa-909e-692c7e0d5a61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Head-Up Display">
+      <UniqueIdentifier>{c83f70bf-899f-41e1-bd79-f60603635acb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -46,9 +46,8 @@ void ShotGun::Shoot(EntityFactory* eF){
 
 			}
 			ammo = ammo - 3;
-			timecounter = SDL_GetTicks();
-		
-		}
+			timecounter = SDL_GetTicks();		
+
 	}
 }
 

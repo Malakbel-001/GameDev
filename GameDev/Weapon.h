@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "SoundBank.h"
 #include "BareEntity.h"
+
 class EntityFactory;
 class Weapon : public BareEntity
 {

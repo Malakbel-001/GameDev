@@ -45,6 +45,12 @@ void Level::Update(float dt)
 		for (int x = 0; actors->size() > x; x++)
 		{
 			if (actors->operator[](x)->IsDead()){
+				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS)
+				{
+					Victory();
+
+				}
+
 				if (actors->operator[](x)->GetType() == EntityType::PLANT){
 					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
 					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
@@ -52,6 +58,7 @@ void Level::Update(float dt)
 					entityFactory->CreateActor(-10, 1, z, y + 1, 7, 7, EntityType::HEALTH);
 					entityFactory->CreateActor(-10, 1, z, y - 1,7,7, EntityType::HEALTH);
 					entityFactory->CreateActor(0, 1, z, y - 3, 29,17, EntityType::AMMO);
+			
 				}
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
@@ -62,16 +69,9 @@ void Level::Update(float dt)
 			}
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
-		
-
 			}
-			
 		}
-		
-		
 	}
-
-
 }
 
 #pragma region Get, Set
@@ -138,7 +138,13 @@ Level* Level::CreateLevel()
 
 	return new Level(lvlWidth, lvlHeight, playState);
 }
+
 void Level::GameOver()
 {
 	playState->GameOver();
+}
+
+void Level::Victory()
+{
+	playState->Victory();
 }

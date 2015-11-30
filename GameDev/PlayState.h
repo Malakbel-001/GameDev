@@ -7,6 +7,7 @@
 #include "BehaviourFactory.h"
 #include "Weapon.h"
 #include <iostream>
+#include "HUD.h"
 
 class PlayState :
 	public IGameState
@@ -14,8 +15,10 @@ class PlayState :
 	private:
 		GameStateManager* gsm;		
 		Player* player;
-		Level* currentLevel;	
+		Level* currentLevel;
+		HUD* hud;
 		bool gameOver;
+		bool victory;
 
 	public:
 
@@ -30,6 +33,7 @@ class PlayState :
 		void Update(float);
 		void Draw();
 		void GameOver();
+		void Victory();
 
 		Player* GetPlayer();
 

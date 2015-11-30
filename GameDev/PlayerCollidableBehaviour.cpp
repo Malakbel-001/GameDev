@@ -17,11 +17,13 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			break;
 			
 		default:
-				ent->SetHealt(ent->GetHealt() - cb->GetActor()->GetDamage());
-			//TODO different sound
-				ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 
-			SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
+			ent->SetHealt(ent->GetHealt() - cb->GetActor()->GetDamage());
+			//TODO different sound
+			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
+
+		
+
 			break;
 		}
 	}

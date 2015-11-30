@@ -10,12 +10,13 @@ class Actor :
 public:
 	Actor();
 	virtual ~Actor();
-	virtual void InitActor(b2Body* _body, int _hitdmg, int _healt, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
+	virtual void InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
 
 	
 	virtual Actor* EmptyClone();
-	virtual void SetHealt(int _healt);
-	int GetHealt();
+	virtual void SetHealth(int _health);
+	int GetHealth();
+	int GetMaxHealth();
 	int GetDamage();
 	bool IsDead();
 	virtual void SetDirection(b2Vec2 dir);
@@ -35,6 +36,7 @@ protected:
 private:
 	bool dead;
 	int health;
+	int maxHealth; //NEW
 	int hitdmg;
 	CollidableBehaviour* col;
 	CollidableBehaviour* jumpsensor;

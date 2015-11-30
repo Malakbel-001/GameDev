@@ -7,9 +7,12 @@ GroundObstacleSprite::GroundObstacleSprite(SDL_Renderer* _renderer) : Sprite(_re
 	WALK_ANIMATION_FRAMES = -1;
 	JUMP_ANIMATION_FRAMES = -1;
 	SHOOT_ANIMATION_FRAMES = -1;
+	DYING_ANIMATION_FRAMES = -1;
 
 	yOffSet = -20;
 	SetAnimations();
+
+	
 }
 
 

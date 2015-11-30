@@ -14,23 +14,28 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	
 	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
+	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
+	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	// flush userinput to prevent crash during loadscreen
 
-	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
+	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
+	hud = new HUD(gsm->GetBehaviour()->GetRenderer(), player);
 	std::cout << "PlayState \n";
 }
 
 void PlayState::GameOver(){
 	SoundBank::GetInstance()->StopMusic();
 	gsm->CreateGameState(GameStateType::GameOverState);
+}
+
+void PlayState::Victory(){
+	SoundBank::GetInstance()->StopMusic();
+	gsm->CreateGameState(GameStateType::VictoryState);
 }
 
 void PlayState::LoadGame()
@@ -75,8 +80,6 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				switch (it->first)
 				{
 				case SDLK_w:
-
-
 					if (currentLevel->GetPlayer()->GetNumFootContacts() >  0){
 						if (!(currentLevel->GetPlayer()->GetJumpTimeOut() > 0)){
 
@@ -88,6 +91,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 							currentLevel->GetPlayer()->SetJumpTimeOut(15);
 						}
 				
+
 					}
 					break;
 				case SDLK_a:
@@ -104,8 +108,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					x = 5;
 					break;
-				case SDLK_z:
-
+				case SDLK_z:					
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
 				case SDLK_UP:
@@ -156,6 +159,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_ESCAPE:
 					pause = true;
 					
+					break;
+
+				case SDLK_l:
+					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
 					break;
 
 				}
@@ -246,6 +253,7 @@ void PlayState::Draw()
 
 	currentLevel->GetDrawableContainer()->Draw();
 
+	hud->Draw();
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -259,10 +267,15 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	this->currentLevel = lvl;
 	this->currentLevel->Init(bf);
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
+	backgroundRect.h = background.getHeight() + 100;
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 
 
@@ -278,9 +291,13 @@ void PlayState::Cleanup()
 	
 	delete currentLevel;
 
+	delete hud;
+
 	player = nullptr;
 
 	currentLevel = nullptr;
+
+	hud = nullptr;
 }
 
 PlayState::~PlayState()

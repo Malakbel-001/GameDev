@@ -7,20 +7,27 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 {
 
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
-			{ EntityType::ACTOR, new Actor() },
-			{ EntityType::NPC, new Npc() },
-			{ EntityType::PLAYER, new Player() },
-			{ EntityType::PLANT, new Npc() },
-			{ EntityType::PLANTBOSS, new Npc() },
-			{ EntityType::BULLET, new Bullet() },
-			{ EntityType::HEALTH, new Actor()},
-			{ EntityType::AMMO, new Actor() }
+
+		{ EntityType::ACTOR, new Actor() },
+		{ EntityType::NPC, new Npc() },
+		{ EntityType::PLAYER, new Player() },
+		{ EntityType::PLANT, new Npc() },
+		{ EntityType::PLANTBOSS, new Npc() },
+		{ EntityType::BULLET, new Bullet() },
+		{ EntityType::ACORN, new Acorn() },
+		{ EntityType::PINGUIN, new Npc() },
+		{ EntityType::HEALTH, new Actor()},
+		{ EntityType::AMMO, new Actor() }
+
 	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
 		{ EntityType::GROUND2, new Ground() },
 		{ EntityType::BAR, new Ground() },
+
+		//level2
+		{ EntityType::GROUNDLVL2, new Ground() },
 
 		
 	};
@@ -61,6 +68,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	PlantBossDef.angularDamping = 1;
 	PlantBossDef.type = b2BodyType::b2_dynamicBody;
 
+
 	b2BodyDef Bullet = b2BodyDef();
 	Bullet.gravityScale = 0.05;
 	Bullet.fixedRotation = true;
@@ -82,8 +90,18 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	Ammo.fixedRotation = false;
 	Ammo.linearDamping = 0.5;
 	Ammo.angularDamping = 1;
-
 	Ammo.type = b2BodyType::b2_dynamicBody;
+
+
+	
+	b2BodyDef AcornDef = b2BodyDef();
+	AcornDef.gravityScale = 0.01;
+	AcornDef.fixedRotation = true;
+	AcornDef.linearDamping = 0;
+	AcornDef.angularDamping = 0;
+	AcornDef.type = b2BodyType::b2_dynamicBody;
+	AcornDef.bullet = true;
+
 
 
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
@@ -96,11 +114,16 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::GROUND, entDef },
 		{ EntityType::GROUND2, entDef },
 		{ EntityType::BAR, entDef },
+
 		{EntityType::BULLET,Bullet},
 		{ EntityType::HEALTH, Health },
 		{EntityType::AMMO,Ammo}
-	};
+		{ EntityType::ACORN, AcornDef },
+		//level2
+		{ EntityType::GROUNDLVL2, entDef },
+		{ EntityType::PINGUIN, PlantDef },
 
+	};
 }
 
 EntityFactory::~EntityFactory()
