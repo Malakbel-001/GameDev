@@ -34,6 +34,7 @@ protected:
 	
 	std::vector<Actor*>* actors;
 	Player* player;
+	std::string backgroundPath;
 public:
 	Player* GetPlayer();
 
@@ -61,5 +62,6 @@ public:
 	void GameOver();
 	virtual b2World* GetWorld();
 
-	int GetLevelId() { return levelId; }
+	int GetLevelId() { return levelId; };
+	std::string GetBackgroundPath() { return backgroundPath; };
 };

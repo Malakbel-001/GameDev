@@ -37,7 +37,7 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 			return levels[i];
 		}
 		if (levels[i]->GetLevelId() == level->GetLevelId()){
-			if (levels[i + 1] != nullptr){
+			if (i + 1 < levels.size()){
 				return levels[i + 1];
 			}
 		}
