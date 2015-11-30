@@ -12,7 +12,8 @@ SoundBank::SoundBank() {
 		{ SoundEffectType::GAMEOVER, "Resources/sound/sfx/Announcer/ACDDATA_0088.wav" },
 		{ SoundEffectType::YOU, "Resources/sound/sfx/Announcer/ACDDATA_0082.wav" },
 		{ SoundEffectType::LOSE, "Resources/sound/sfx/Announcer/ACDDATA_0085.wav" },
-		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" }
+		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" },
+		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" }
 	};
 
 	//defining background music

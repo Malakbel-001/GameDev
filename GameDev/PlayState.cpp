@@ -24,8 +24,8 @@ void PlayState::Init(GameStateManager* gsm)
 
 	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
 	hud = new HUD(gsm->GetBehaviour()->GetRenderer(), player);
-
 	std::cout << "PlayState \n";
 }
 
