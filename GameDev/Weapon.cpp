@@ -41,9 +41,9 @@ void Weapon::AddAmmo(int _ammo){
 }
 void Weapon::SetXVec(float x){
 	if (x < 0){
-		if (angle != 180)
+		if (angle != 2)
 		{
-			angle = angle + 180;
+			angle = angle + 2;
 		}
 	}
 	else if (x > 0){
@@ -59,10 +59,10 @@ void Weapon::SetXVec(float x){
 }
 void Weapon::SetYVec(float y){
 	if (y > 0){
-		angle = 90;
+		angle = 1;
 	}
 	else if (y < 0){
-		angle = 270;
+		angle = 3;
 	}
 	else{
 		angle = 0;
@@ -103,6 +103,7 @@ void Weapon::Shoot(EntityFactory* eF){
 
 
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
 				vec.x = 0;

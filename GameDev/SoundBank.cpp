@@ -13,7 +13,8 @@ SoundBank::SoundBank() {
 		{ SoundEffectType::YOU, "Resources/sound/sfx/Announcer/ACDDATA_0082.wav" },
 		{ SoundEffectType::LOSE, "Resources/sound/sfx/Announcer/ACDDATA_0085.wav" },
 		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" },
-		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" }
+		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" },
+		{ SoundEffectType::GUNSHOT, "Resources/sound/sfx/gunshot.wav"}
 
 	};
 
