@@ -10,6 +10,7 @@ public:
 	PlayerCollidableBehaviour();
 	~PlayerCollidableBehaviour();
 	void Hit(CollidableBehaviour* cb);
+	void Unhit(CollidableBehaviour* cb);
 	virtual CollidableBehaviour* EmptyClone();
 
 };

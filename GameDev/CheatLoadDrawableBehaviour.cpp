@@ -16,7 +16,7 @@ void CheatLoadDrawableBehaviour::Draw()
 	float xpos = 20;
 	float ypos = 20;
 
-	sprite->GetSpritesheet()->render(renderer, xpos, ypos, sprite->GetAnimationFrame(EntityState::WALKINGRIGHT, currentFrame));
+	sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0,sprite->GetAnimationFrame(EntityState::WALKINGRIGHT, currentFrame));
 
 	//Go to next frame 
 	++currentFrame;

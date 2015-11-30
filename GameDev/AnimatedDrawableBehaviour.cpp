@@ -12,22 +12,24 @@ AnimatedDrawableBehaviour::~AnimatedDrawableBehaviour()
 
 void AnimatedDrawableBehaviour::Draw()
 {
-	// Render current frame SCREEN SIZE NOT YET SET!!!
-	float xpos = ((entity->GetXPos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
-	float ypos = entity->GetYPos() / Ratio;
+	if (entity->ShouldDraw()){
+		// Render current frame SCREEN SIZE NOT YET SET!!!
+		float xpos = ((entity->GetXpos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
+		float ypos = entity->GetYpos() / Ratio;
 
 
 
-	sprite->GetSpritesheet()->render(renderer, xpos, ypos, sprite->GetAnimationFrame(entity->GetState(), currentFrame));
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, entity->GetAngle(), sprite->GetAnimationFrame(entity->GetState(), currentFrame));
 
-	//Go to next frame 
-	++currentFrame;
-	int size = sprite->GetAnimationSize();
-	//Cycle animation 
+		//Go to next frame 
+		++currentFrame;
+		int size = sprite->GetAnimationSize();
+		//Cycle animation 
 
-	if (currentFrame >= size)
-	{
-		currentFrame = 0;
+		if (currentFrame >= size)
+		{
+			currentFrame = 0;
+		}
 	}
 }
 

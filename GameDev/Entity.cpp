@@ -1,21 +1,19 @@
 #include "Entity.h"
 #include <iostream>
+
+
 Entity::Entity()
 {
 	
 }
 void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer)
 {
-	type = _type;
+	Object::Init(_type, bf,drawContainer);
 	body = _body;
 	width = _width;
 	height = _height;
 	
-	draw = bf->CreateDrawableBehaviour(type);
-	draw->SetEntity(this);
-		
-	drawContainer->Add(draw);
-	state = EntityState::IDLE;
+	
 }
 
 Entity::~Entity()
@@ -33,28 +31,19 @@ int Entity::GetHeight()
 	return static_cast<int>(height);
 }
 
-EntityType Entity::GetType(){
-	return type;
-}
-int Entity::GetXPos()
+float Entity::GetXpos()
 {
-	return static_cast<int>(body->GetPosition().x);
+	return (body->GetPosition().x);
 }
 
-int Entity::GetYPos()
+float Entity::GetYpos()
 {
-	return static_cast<int>(body->GetPosition().y);
+	return (body->GetPosition().y);
 
 }
 
-void Entity::SetState(EntityState _state)
-{
-	state = _state; 
-}
-
-EntityState Entity::GetState()
-{
-	return state;
+float Entity::GetAngle(){
+	return body->GetAngle();
 }
 
 Entity* Entity::EmptyClone()

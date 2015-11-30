@@ -13,20 +13,22 @@ PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
 
 void PlayerDrawableBehaviour::Draw()
 {
-	// Render current frame SCREEN SIZE NOT YET SET!!!	
-	float xpos = ((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
-	float ypos = (entity->GetYPos()  / Ratio);// - (camera->GetY() / Ratio);
-	
-	sprite->GetSpritesheet()->render(renderer, xpos, ypos, sprite->GetAnimationFrame(entity->GetState(), currentFrame));
+	if (entity->ShouldDraw()){
+		// Render current frame SCREEN SIZE NOT YET SET!!!	
+		float xpos = ((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
+		float ypos = (entity->GetYpos() / Ratio);// - (camera->GetY() / Ratio);
 
-	//Go to next frame 
-	++currentFrame;
-	int size = sprite->GetAnimationSize();
-	//Cycle animation 
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame));
 
-	if (currentFrame >= size)
-	{
-		currentFrame = 0;
+		//Go to next frame 
+		++currentFrame;
+		int size = sprite->GetAnimationSize();
+		//Cycle animation 
+
+		if (currentFrame >= size)
+		{
+			currentFrame = 0;
+		}
 	}
 }
 

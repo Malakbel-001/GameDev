@@ -20,6 +20,7 @@
 #include "PinguinSprite.h"
 #include "TreeSprite.h"
 
+
 class Camera;
 class Player;
 class CollidableBehaviour;

@@ -1,3 +1,4 @@
+#pragma once
 #include "BehaviourFactory.h"
 #include "Camera.h"
 #include "CollidableBehaviour.h"
@@ -5,6 +6,13 @@
 #include "PlayerCollidableBehaviour.h"
 #include "EnemyCollidableBehaviour.h"
 #include "BulletCollidableBehaviour.h"
+#include "HealthCollidableBehaviour.h"
+#include "AmmoCollidableBehaviour.h"
+#include "HealthSprite.h"
+#include "BulletSprite.h"
+#include "AmmoSprite.h"
+#include "GunSprite.h"
+#include "JumpSensorCollidableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -37,6 +45,20 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
 
+	HealthSprite* healthSprite = new HealthSprite(renderer);
+	healthSprite->LoadMedia("HealthSprite.png");
+
+
+
+	BulletSprite* bulletSprite = new BulletSprite(renderer);
+	bulletSprite->LoadMedia("Bullet.png");
+
+	AmmoSprite* ammoSprite = new AmmoSprite(renderer);
+	ammoSprite->LoadMedia("AmmoBox.png");
+
+	GunSprite* gun = new GunSprite(renderer);
+	gun->LoadMedia("Gun.png");
+
 	GroundLvl2Sprite* groundlvl2Sprite = new GroundLvl2Sprite(renderer);
 	groundlvl2Sprite->LoadMedia("snow2.png");
 
@@ -46,8 +68,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	TreeSprite* treeSprite = new TreeSprite(renderer);
 	treeSprite->LoadMedia("tree.png");
-
-		
+	
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -55,13 +76,20 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND, new StaticDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::BAR, new StaticDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
+		{ EntityType::HEALTH, new StaticDrawableBehaviour(renderer, healthSprite, screenWidth, screenHeight) },
+		{EntityType::AMMO, new StaticDrawableBehaviour(renderer,ammoSprite,screenWidth,screenHeight)},
+		{ EntityType::WEAPON, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) },
+		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) },
 		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
-		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
-		//level2
+		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
+	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
+
 	};
+
+	
 
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 		{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
@@ -69,7 +97,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
 		{ EntityType::BULLET, new BulletCollidableBehaviour() },
 		{ EntityType::ACORN, new BulletCollidableBehaviour() },
-		{ EntityType::PINGUIN, new EnemyCollidableBehaviour() }
+		{ EntityType::PINGUIN, new EnemyCollidableBehaviour() },
+		{ EntityType::HEALTH, new HealthCollidableBehaviour() },
+		{ EntityType::AMMO, new AmmoCollidableBehaviour() },
+		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()}
 	};
 
 	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
@@ -84,7 +115,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		//level2
 		{ EntityType::GROUNDLVL2, groundlvl2Sprite},
 		//{ EntityType::PINGUIN, pinguinSprite}
+
 	};
+
 }
 
 
