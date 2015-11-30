@@ -4,6 +4,7 @@
 #include "LoadState.h"
 #include "PauseState.h"
 #include "GameOverState.h"
+#include "VictoryState.h"
 #include "MenuState.h"
 #include <iostream>
 
@@ -42,9 +43,9 @@ IGameState* GameStateManager::GetNewState(GameStateType state)
 	case GameStateType::GameOverState:
 		gamestate = new GameOverState();
 		break;
-	/*case GameStateType::VictoryState:
+	case GameStateType::VictoryState:
 		gamestate = new VictoryState();
-		break;*/
+		break;
 	default:
 		break;
 	}

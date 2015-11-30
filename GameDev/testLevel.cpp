@@ -48,7 +48,7 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
 	//enemies-----------------
 	
-	entityFactory->CreateActor(1000, 50, 800, 450, 40, 45, EntityType::PLANT);
+	entityFactory->CreateActor(10, 50, 800, 450, 40, 45, EntityType::PLANT); //TEMP!!!!!!!!
 	entityFactory->CreateActor(1000, 50, 900, 450, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 1200, 300, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 1300, 300, 40, 45, EntityType::PLANT);
