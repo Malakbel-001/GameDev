@@ -11,7 +11,7 @@ BulletCollidableBehaviour::~BulletCollidableBehaviour()
 }
 
 void BulletCollidableBehaviour::Hit(CollidableBehaviour* cb){
-	ent->SetHealt(0);
+	ent->SetHealth(0);
 }
 CollidableBehaviour* BulletCollidableBehaviour::EmptyClone(){
 	return new BulletCollidableBehaviour();
