@@ -36,6 +36,17 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
+
+	GroundLvl2Sprite* groundlvl2Sprite = new GroundLvl2Sprite(renderer);
+	groundlvl2Sprite->LoadMedia("snow2.png");
+
+	PinguinSprite* pinguinSprite = new PinguinSprite(renderer);
+	pinguinSprite->LoadMedia("pinguin.png");
+	pinguinSprite->SetAnimationSet(EntityState::IDLE);
+
+	TreeSprite* treeSprite = new TreeSprite(renderer);
+	treeSprite->LoadMedia("tree.png");
+
 		
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
@@ -46,7 +57,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::BAR, new StaticDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
-		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) }
+		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
+		//level2
+		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
+		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
 	};
 
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
@@ -54,7 +68,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PLANT, new EnemyCollidableBehaviour() },
 		{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
 		{ EntityType::BULLET, new BulletCollidableBehaviour() },
-		{ EntityType::ACORN, new BulletCollidableBehaviour() }
+		{ EntityType::ACORN, new BulletCollidableBehaviour() },
+		{ EntityType::PINGUIN, new EnemyCollidableBehaviour() }
 	};
 
 	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
@@ -65,7 +80,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::BAR, barobstacleSprite },
 		{ EntityType::BULLET, plantSprite },
 		{ EntityType::PLANTBOSS, plantBossSprite },
-		{ EntityType::ACORN, acornSprite }
+		{ EntityType::ACORN, acornSprite },
+		//level2
+		{ EntityType::GROUNDLVL2, groundlvl2Sprite},
+		//{ EntityType::PINGUIN, pinguinSprite}
 	};
 }
 

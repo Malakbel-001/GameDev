@@ -13,11 +13,9 @@ void PlayState::Init(GameStateManager* gsm)
 	player = new Player();
 	
 	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
+	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
+	
 
 	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	// flush userinput to prevent crash during loadscreen
@@ -109,6 +107,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					pause = true;
 					
 					break;
+				case SDLK_l:
+					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
 				}
 			}
 			else
@@ -178,6 +178,11 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	this->currentLevel = lvl;
 	this->currentLevel->Init(bf);
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
+	backgroundRect.h = background.getHeight() + 100;
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());

@@ -64,9 +64,14 @@ public:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
-
+	void Highlight(int);
+	void MakeBackToMainText(SDL_Color);
+	void MakeGameOverTitle(SDL_Color);
 private:
 	SDL_Color textColor;
+	SDL_Color hoverTextColor;
 	const int renderItems = 18;
 	vector<SDL_Rect> pos;
+	int hoverX;
+	int hoverY;
 };

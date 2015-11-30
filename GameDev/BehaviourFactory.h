@@ -15,6 +15,10 @@
 #include "PlantBossSprite.h"
 #include "PlayerSprite.h"
 #include "AcornSprite.h"
+//level2
+#include "GroundLvl2Sprite.h"
+#include "PinguinSprite.h"
+#include "TreeSprite.h"
 
 class Camera;
 class Player;

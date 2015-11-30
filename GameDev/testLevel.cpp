@@ -3,12 +3,12 @@
 TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
 	: Level(_lvlWidth, _lvlHeight, play)
 {
-
+	levelId = 1;
 }
 
 void TestLevel::Init(BehaviourFactory* bf)
 {
-
+	backgroundPath = "level1.jpg";
 	entityFactory = new EntityFactory(*world, actors, bf, drawableContainer);
 
 	//obstacles--------------
