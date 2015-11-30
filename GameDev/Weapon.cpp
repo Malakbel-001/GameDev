@@ -113,3 +113,7 @@ void Weapon::Shoot(EntityFactory* eF){
 
 	}
 }
+
+int Weapon::GetAmmo() {
+	return ammo;
+}
