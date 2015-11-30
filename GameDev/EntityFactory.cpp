@@ -117,7 +117,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 
 		{EntityType::BULLET,Bullet},
 		{ EntityType::HEALTH, Health },
-		{EntityType::AMMO,Ammo}
+		{EntityType::AMMO,Ammo},
 		{ EntityType::ACORN, AcornDef },
 		//level2
 		{ EntityType::GROUNDLVL2, entDef },

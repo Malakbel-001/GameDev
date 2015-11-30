@@ -26,12 +26,12 @@ void ShotGun::Shoot(EntityFactory* eF){
 				dir = true;
 			}
 
-			SoundBank::GetInstance()->Play(SoundEffectType::SHOTGUN);
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::SHOTGUN);
 
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
-		
+
 			b2Vec2 temp = (vec);
-			
+
 
 			temp.x = temp.x - (temp.y / 10);
 			temp.y = temp.y - (temp.x / 10);
@@ -46,8 +46,8 @@ void ShotGun::Shoot(EntityFactory* eF){
 
 			}
 			ammo = ammo - 3;
-			timecounter = SDL_GetTicks();		
-
+			timecounter = SDL_GetTicks();
+		}
 	}
 }
 

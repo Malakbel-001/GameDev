@@ -9,7 +9,7 @@ void AmmoCollidableBehaviour::Hit(CollidableBehaviour* cb){
 	if (cb){
 		switch (cb->GetActor()->GetType()){
 		case EntityType::PLAYER:
-			ent->SetHealt(0);
+			ent->SetHealth(0);
 			cb->GetActor()->GetCurrentWeapon()->AddAmmo(10);
 			//ent->GetCurrentWeapon()->AddAmmo(100);
 

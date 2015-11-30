@@ -18,7 +18,7 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			
 		default:
 
-			ent->SetHealt(ent->GetHealt() - cb->GetActor()->GetDamage());
+			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
 			//TODO different sound
 			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 

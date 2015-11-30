@@ -11,4 +11,5 @@ public:
 	virtual void Shoot(EntityFactory* eF);
 
 	Weapon* EmptyClone();
+
 };

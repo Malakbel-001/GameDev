@@ -128,5 +128,5 @@ void LoadState::Draw() {
 		SDL_RenderCopy(renderer, finishedTexture, nullptr, &finishedRect);
 	}
 
-	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, &advertisementRect);
+	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
 }

@@ -209,7 +209,7 @@ void VictoryState::Update(float dt){
 void VictoryState::Draw(){
 	SDL_RenderClear(renderer);
 
-	background.render(renderer, 0, 0, &backgroundRect);
+	background.render(renderer, 0, 0,0, &backgroundRect);
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
 }

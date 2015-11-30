@@ -9,7 +9,7 @@ void HealthCollidableBehaviour::Hit(CollidableBehaviour* cb){
 	if (cb){
 		switch (cb->GetActor()->GetType()){
 		case EntityType::PLAYER:
-			ent->SetHealt(0);		
+			ent->SetHealth(0);		
 			break;
 		default:
 			break;
