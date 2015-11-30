@@ -24,6 +24,12 @@ private:
 	LTexture advertisementPic; //picture, jpg, png, etc. Look at LTexture and Advertisement() for more details
 	SDL_Rect advertisementRect;
 
+	//temp
+	LTexture background;
+	//background
+	SDL_Rect backgroundRect;
+	//background
+	SDL_Texture* backgroundTexture;
 public:
 	LoadState();
 	virtual ~LoadState();

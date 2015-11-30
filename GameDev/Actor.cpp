@@ -32,6 +32,9 @@ void Actor::SetHealth(int _health){
 		dead = true;
 		health = _health;
 	}
+	else if (_health > maxHealth) {
+		health = maxHealth;
+	}
 	else{
 		health = _health;
 	}
