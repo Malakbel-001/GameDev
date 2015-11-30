@@ -108,6 +108,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					pause = true;
 					
 					break;
+				case SDLK_l:
+					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
 				}
 			}
 			else

@@ -22,6 +22,7 @@ private:
 	float startYpos;
 
 protected:
+	int levelId;
 	EntityFactory* entityFactory;
 	int tileWidth, tileHeight;
 	int lvlWidth, lvlHeight;
@@ -59,4 +60,6 @@ public:
 	void Update(float dt);
 	void GameOver();
 	virtual b2World* GetWorld();
+
+	int GetLevelId() { return levelId; }
 };

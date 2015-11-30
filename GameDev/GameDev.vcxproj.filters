@@ -202,6 +202,9 @@
     <ClCompile Include="PinguinSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TreeSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -423,10 +426,13 @@
     <ClInclude Include="Level2.h">
       <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
-    <ClInclude Include="GroundLvl2Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PinguinSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundLvl2Sprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
