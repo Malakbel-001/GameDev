@@ -32,7 +32,7 @@ void Player::SwitchWeapon(int x){
 	if ((x < weps.size())){
 		weps.at(currentwep)->SetShouldDraw(false);
 		currentwep = x;
-
+		weps.at(currentwep)->SetShouldDraw(true);
 	}
 
 }

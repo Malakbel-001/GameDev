@@ -68,7 +68,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	TreeSprite* treeSprite = new TreeSprite(renderer);
 	treeSprite->LoadMedia("tree.png");
-	
+
+	ShotgunSprite* shotgun = new ShotgunSprite(renderer);
+	shotgun->LoadMedia("shotgun.png");
+
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -77,10 +80,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::BAR, new StaticDrawableBehaviour(renderer, barobstacleSprite, screenWidth, screenHeight) },
 		{ EntityType::HEALTH, new StaticDrawableBehaviour(renderer, healthSprite, screenWidth, screenHeight) },
-		{EntityType::AMMO, new StaticDrawableBehaviour(renderer,ammoSprite,screenWidth,screenHeight)},
+		{ EntityType::AMMO, new StaticDrawableBehaviour(renderer,ammoSprite,screenWidth,screenHeight)},
 		{ EntityType::WEAPON, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) },
-		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) },
-		{ EntityType::BULLET, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
+		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, shotgun, screenWidth, screenHeight) },
+		{ EntityType::BULLET, new StaticDrawableBehaviour(renderer, bulletSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
 		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
 	//level2
@@ -103,20 +106,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()}
 	};
 
-	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
-		{ EntityType::PLAYER, playerSprite },
-		{ EntityType::PLANT, plantSprite },
-		{ EntityType::GROUND, groundSprite },
-		{ EntityType::GROUND2, groundobstacleSprite },
-		{ EntityType::BAR, barobstacleSprite },
-		{ EntityType::BULLET, plantSprite },
-		{ EntityType::PLANTBOSS, plantBossSprite },
-		{ EntityType::ACORN, acornSprite },
-		//level2
-		{ EntityType::GROUNDLVL2, groundlvl2Sprite},
-		//{ EntityType::PINGUIN, pinguinSprite}
 
-	};
 
 }
 
