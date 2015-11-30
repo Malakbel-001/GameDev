@@ -1,6 +1,4 @@
 #pragma once
-#include "Entity.h"
-#include "Actor.h"
 #include "Npc.h"
 #include "Player.h"
 #include <iostream>
@@ -13,7 +11,7 @@
 class EntityFactory
 {
 public:
-	EntityFactory(b2World& world, std::vector<Actor*>* _actor,BehaviourFactory* _bf, DrawableContainer* _drawContainer);
+	EntityFactory(b2World& world, std::vector<Actor*>* _actor,BehaviourFactory* _bf, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer);
 	~EntityFactory();
 	Entity* CreateEntity(float x, float y, float height, float width, EntityType type);
 	Actor* CreateActor(int _hitdmg, int _healt, float x, float y, float height, float width, EntityType type);
@@ -24,6 +22,7 @@ public:
 
 private:
 	DrawableContainer* drawContainer;
+	MoveableContainer* moveContainer;
 	BehaviourFactory* bf;
 	std::unordered_map<EntityType,Entity*> entityRegistery;
 	std::unordered_map<EntityType, Actor*> actorRegistery;

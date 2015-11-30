@@ -1,7 +1,7 @@
 #pragma once
 #include <Box2D\Box2D.h>
+#include "Player.h"
 
-class Player;
 class Camera
 {
 	private:

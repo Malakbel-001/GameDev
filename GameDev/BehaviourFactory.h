@@ -1,13 +1,20 @@
 #pragma once
 #include <unordered_map>
 #include "BehaviourType.h"
-#include "DrawableBehaviour.h"
+
 #include "PlayerDrawableBehaviour.h"
 #include "AnimatedDrawableBehaviour.h"
 #include "StaticDrawableBehaviour.h"
-#include "MoveableBehaviour.h"
-#include "EntityType.h"
 #include "CheatLoadDrawableBehaviour.h" //temp
+
+#include "AttackMoveableBehaviour.h"
+
+#include "PlayerCollidableBehaviour.h"
+#include "EnemyCollidableBehaviour.h"
+#include "BulletCollidableBehaviour.h"
+#include "EntityType.h"
+
+
 #include "GroundSprite.h"
 #include "GroundObstacleSprite.h"
 #include "BarObstacleSprite.h"
@@ -16,9 +23,6 @@
 #include "PlayerSprite.h"
 #include "AcornSprite.h"
 
-class Camera;
-class Player;
-class CollidableBehaviour;
 class BehaviourFactory
 {
 public:
@@ -26,6 +30,7 @@ public:
 	~BehaviourFactory();
 
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
+	MoveableBehaviour* CreateMoveableBehaviour(EntityType type, EntityState state, EntityFactory* _ef);
 	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
 	SDL_Renderer* GetRenderer();
 
@@ -38,6 +43,7 @@ private:
 	SDL_Renderer* renderer;
 	std::unordered_map<EntityType, DrawableBehaviour*> registery;
 	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
+	std::unordered_map<EntityType, MoveableBehaviour*> moveRegistery;
 	std::unordered_map<EntityType, Sprite*> spriteRegistery;
 };
 

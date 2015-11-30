@@ -5,8 +5,7 @@
 #include "GameStateManager.h"
 class IGameState
 {
-protected:
-	IGameState() { }
+
 public:
 
 	virtual void Init(GameStateManager *gsm) = 0;
@@ -26,5 +25,8 @@ public:
 	}
 
 	virtual ~IGameState();
+
+protected:
+	IGameState() { }
 };
 

@@ -93,6 +93,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="AcornSprite.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="AnimatedDrawableBehaviour.cpp" />
+    <ClCompile Include="AttackMoveableBehaviour.cpp" />
     <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
@@ -159,6 +160,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="AcornSprite.h" />
     <ClInclude Include="Actor.h" />
     <ClInclude Include="AnimatedDrawableBehaviour.h" />
+    <ClInclude Include="AttackMoveableBehaviour.h" />
     <ClInclude Include="BarObstacleSprite.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />

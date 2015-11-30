@@ -1,57 +1,54 @@
 #pragma once
+#include <iostream>
 #include "IGameState.h"
 #include "header_loader.h"
-#include "Player.h"
 #include "Camera.h"
 #include "SoundBank.h"
 #include "BehaviourFactory.h"
 #include "Weapon.h"
-#include <iostream>
+
 
 class PlayState :
 	public IGameState
 {
-	private:
-		GameStateManager* gsm;		
-		Player* player;
-		Level* currentLevel;	
-		bool gameOver;
-		bool victory;
+public:
+	PlayState();
+	void Init(GameStateManager *gsm);
+	void Cleanup();
 
-	public:
+	void Pause();
+	void Resume();
 
-		void Init(GameStateManager *gsm);
-		void Cleanup();
+	void HandleMouseEvents(SDL_Event mainEvent);
+	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+	void Update(float);
+	void Draw();
+	void GameOver();
+	void Victory();
 
-		void Pause();
-		void Resume();
+	Player* GetPlayer();
 
-		void HandleMouseEvents(SDL_Event mainEvent);
-		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
-		void Update(float);
-		void Draw();
-		void GameOver();
-		void Victory();
+	Level* GetCurrentLevel();
+	void SetCurrentLevel(Level* lvl);
+	void LoadGame();
 
-		Player* GetPlayer();
+	void SetFileToLoad(std::string fileName);
 
+	virtual ~PlayState();
 
-		
+	//temp
+	LTexture background;
+	//background
+	SDL_Rect backgroundRect;
+	//background
+	SDL_Texture* backgroundTexture;
 
-		Level* GetCurrentLevel();
-		void SetCurrentLevel(Level* lvl);
-		void LoadGame();
+private:
+	GameStateManager* gsm;		
+	Player* player;
+	Level* currentLevel;	
+	bool gameOver;
+	bool victory;
 
-		void SetFileToLoad(std::string fileName);		
-		
-
-		virtual ~PlayState();
-
-		//temp
-		LTexture background;
-		//background
-		SDL_Rect backgroundRect;
-		//background
-		SDL_Texture* backgroundTexture;
 };
 

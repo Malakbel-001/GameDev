@@ -193,6 +193,9 @@
     <ClCompile Include="VictoryState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="AttackMoveableBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -410,6 +413,9 @@
     </ClInclude>
     <ClInclude Include="CheatLoadDrawableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Drawables</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 #pragma message("level ")
 #pragma once
-#include "Entity.h"
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
@@ -8,16 +7,11 @@
 #include "MoveableContainer.h"
 #include "EntityFactory.h"
 #include "ContactListener.h"
+#include "Playstate.h"
 
-
-class PlayState;
 class Level
 {
 private:
-	MoveableContainer* moveableContainer;
-	
-
-
 	float startXpos;
 	float startYpos;
 
@@ -25,6 +19,7 @@ protected:
 	EntityFactory* entityFactory;
 	int tileWidth, tileHeight;
 	int lvlWidth, lvlHeight;
+	MoveableContainer* moveableContainer;
 	DrawableContainer* drawableContainer;
 	b2World* world;
 	SDL_Texture* tileSheet;

@@ -7,8 +7,8 @@ Actor::Actor()
 }
 
 
-void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
-	Init(_body, _width, _height, _type, bf, drawContainer);
+void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, EntityFactory* ef, DrawableContainer* drawContainer, MoveableContainer* moveContainer){
+	Init(_body, _width, _height, _type, bf, ef, drawContainer, moveContainer);
 	hitdmg = _hitdmg;
 	health = _health;
 	col = bf->CreateCollidableBehaviour(type);
@@ -50,4 +50,12 @@ b2Vec2 Actor::GetDirection(){
 void Actor::SetDirection(b2Vec2 dir)
 {
 	direction = dir;
+}
+
+Weapon* Actor::GetCurrentWeapon(){
+	if (!currentWep){
+		currentWep = new ShotGun(this);
+	}
+	return currentWep;
+
 }

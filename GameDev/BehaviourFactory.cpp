@@ -1,10 +1,4 @@
 #include "BehaviourFactory.h"
-#include "Camera.h"
-#include "CollidableBehaviour.h"
-#include "Player.h"
-#include "PlayerCollidableBehaviour.h"
-#include "EnemyCollidableBehaviour.h"
-#include "BulletCollidableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -57,6 +51,11 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::ACORN, new BulletCollidableBehaviour() }
 	};
 
+	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
+		{ EntityType::PLANT, new AttackMoveableBehaviour() },
+		{ EntityType::PLANTBOSS, new AttackMoveableBehaviour() }
+	};
+
 	spriteRegistery = std::unordered_map<EntityType, Sprite*>{
 		{ EntityType::PLAYER, playerSprite },
 		{ EntityType::PLANT, plantSprite },
@@ -84,6 +83,13 @@ DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
 {
 	DrawableBehaviour* behaviour = registery.at(type)->EmptyClone();
 	behaviour->SetCamera(camera);
+	return behaviour;
+}
+
+MoveableBehaviour* BehaviourFactory::CreateMoveableBehaviour(EntityType type, EntityState state, EntityFactory* _ef)
+{
+	MoveableBehaviour* behaviour = moveRegistery.at(type)->EmptyClone();
+	behaviour->SetEntityFactory(_ef);
 	return behaviour;
 }
 

@@ -1,7 +1,9 @@
 #include "PlayState.h"
 
+PlayState::PlayState()
+{
 
-
+}
 
 void PlayState::Init(GameStateManager* gsm)
 {

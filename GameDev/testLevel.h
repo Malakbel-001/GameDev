@@ -5,12 +5,6 @@
 class TestLevel :
 	public Level
 {
-	private:
-		// stuff
-
-	protected:
-		// stuff
-
 	public:
 		TestLevel(int _lvlWidth, int _lvlHeight , PlayState* play);
 		virtual ~TestLevel();
@@ -19,8 +13,6 @@ class TestLevel :
 		void Cleanup();
 
 		virtual Level* CreateLevel();
-		void HandleEvents(SDL_Event mainEvent);
-	
-		
+		void HandleEvents(SDL_Event mainEvent);		
 };
 

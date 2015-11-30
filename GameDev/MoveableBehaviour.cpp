@@ -1,8 +1,8 @@
 #include "MoveableBehaviour.h"
 
-
 MoveableBehaviour::MoveableBehaviour()
 {
+	enf = nullptr;
 }
 
 
@@ -18,4 +18,18 @@ MoveableBehaviour* MoveableBehaviour::EmptyClone()
 void MoveableBehaviour::Move()
 {
 
+}
+
+void MoveableBehaviour::SetEntity(Entity* _entity)
+{
+	entity = _entity;
+}
+
+Entity* MoveableBehaviour::GetEntity(){
+	return entity;
+}
+
+void MoveableBehaviour::SetEntityFactory(EntityFactory* ef)
+{
+	enf = ef;
 }

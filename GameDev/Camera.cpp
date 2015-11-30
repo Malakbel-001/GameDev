@@ -1,5 +1,4 @@
 #include "Camera.h"
-#include "Player.h"
 
 Camera::Camera(double _camWidth, double _camHeight) :
 	 camWidth(_camWidth), camHeight(_camHeight)

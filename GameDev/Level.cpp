@@ -11,7 +11,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
 	world->SetContactListener(new ContactListener());
 	drawableContainer = new DrawableContainer();
-
+	moveableContainer = new MoveableContainer();
 
 }
 
@@ -44,6 +44,7 @@ void Level::Update(float dt)
 				}
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
+				moveableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
 				actors->erase(actors->begin() + x);
 				x--;

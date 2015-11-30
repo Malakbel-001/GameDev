@@ -1,10 +1,11 @@
 #include "Entity.h"
-#include <iostream>
+
 Entity::Entity()
 {
 	
 }
-void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer)
+
+void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, EntityFactory* ef, DrawableContainer* drawContainer, MoveableContainer* moveContainer)
 {
 	type = _type;
 	body = _body;
@@ -15,7 +16,13 @@ void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, 
 	draw->SetEntity(this);
 		
 	drawContainer->Add(draw);
+
 	state = EntityState::IDLE;
+
+	move = bf->CreateMoveableBehaviour(type, state, ef);
+	move->SetEntity(this);
+
+	moveContainer->Add(move);
 }
 
 Entity::~Entity()
@@ -62,6 +69,12 @@ Entity* Entity::EmptyClone()
 	std::cout << "entity";
 	return new Entity();
 }
+
 b2Body* Entity::GetBody(){
 	return body;
+}
+
+void Entity::Update()
+{
+
 }

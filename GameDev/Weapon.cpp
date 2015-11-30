@@ -1,5 +1,4 @@
 #include "Weapon.h"
-#include "EntityFactory.h"
 
 Weapon::Weapon(Actor* _actor)
 {
@@ -13,6 +12,26 @@ Weapon::Weapon(Actor* _actor)
 
 Weapon::~Weapon()
 {
+}
+
+float Weapon::GetAttackSpeed()
+{
+	return fireSpeed;
+}
+
+float Weapon::GetTimeCounter()
+{
+	return timecounter;
+}
+
+void Weapon::SetAttackSpeed(float speed)
+{
+	fireSpeed = speed;
+}
+
+void Weapon::SetTimeCounter(float time)
+{
+	timecounter = time;
 }
 
 void Weapon::Shoot(EntityFactory* eF){

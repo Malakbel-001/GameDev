@@ -13,15 +13,3 @@ Bullet::~Bullet()
 {
 	
 }
-
-
-
-void Bullet::SetBody(b2Body* _body)
-{
-	body = _body;
-}
-
-b2Body* Bullet::GetBody()
-{
-	return body;
-}
