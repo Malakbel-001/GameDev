@@ -193,6 +193,9 @@
     <ClCompile Include="VictoryState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\Model\Head-Up Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -411,6 +414,9 @@
     <ClInclude Include="CheatLoadDrawableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\Model\Head-Up Display</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -532,6 +538,12 @@
     </Filter>
     <Filter Include="Header Files\Model\SettingsConfig">
       <UniqueIdentifier>{5ac628fe-24d8-4e2d-a1c4-3cb2e2314dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Head-Up Display">
+      <UniqueIdentifier>{d2b93fba-94de-4caa-909e-692c7e0d5a61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Head-Up Display">
+      <UniqueIdentifier>{c83f70bf-899f-41e1-bd79-f60603635acb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
