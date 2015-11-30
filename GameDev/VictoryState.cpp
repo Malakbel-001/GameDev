@@ -177,8 +177,8 @@ void VictoryState::Next(){
 	if(PlayState* state = dynamic_cast <PlayState*>(gsm->GetPreviousState()))
 	{
 		state->SetCurrentLevel(LevelFactory::GetNextLevel(state->GetCurrentLevel(), state));
-	}
-	gsm->ChangeGameState();
+		gsm->ChangeGameState();
+	}	
 }
 
 void VictoryState::HandleMouseEvents(SDL_Event mainEvent)

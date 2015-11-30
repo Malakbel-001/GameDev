@@ -38,7 +38,7 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 		}
 		if (levels[i]->GetLevelId() == level->GetLevelId()){
 			if (i + 1 < levels.size()){
-				return levels[i + 1];
+				return levels[i + 1]->CreateLevel();
 			}
 		}
 			//foundLevel = true;
