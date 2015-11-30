@@ -12,11 +12,14 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory = new EntityFactory(*world, actors, bf, drawableContainer);
 
 	//obstacles--------------
+//	entityFactory->CreateWeapon(0, 500, EntityType::WEAPON);
+	entityFactory->CreateActor(-10, 1, 300, 100, 10, 10, EntityType::HEALTH);
+	
 	entityFactory->CreateEntity(363, 450, 137, 120, EntityType::GROUND2);
 	entityFactory->CreateEntity(750, 450, 250, 120, EntityType::GROUND);
 	entityFactory->CreateEntity(1500, 450, 250, 10, EntityType::BAR);
-	entityFactory->CreateEntity(2000, 300, 137, 140, EntityType::GROUND2);
-	entityFactory->CreateEntity(2113, 300, 250, 140, EntityType::GROUND);
+	entityFactory->CreateEntity(2000, 300, 137, 120, EntityType::GROUND2);
+	entityFactory->CreateEntity(2113, 300, 250, 120, EntityType::GROUND);
 	entityFactory->CreateEntity(2750, 450, 250, 120, EntityType::GROUND);
 	entityFactory->CreateEntity(3000, 450, 250, 120, EntityType::GROUND);
 	entityFactory->CreateEntity(3500, 450, 250, 10, EntityType::BAR);
@@ -46,9 +49,10 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(4250, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4500, 570, 250, 140, EntityType::GROUND);
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
-	//enemies-----------------
-	
-	entityFactory->CreateActor(10, 50, 800, 450, 40, 45, EntityType::PLANT); //TEMP!!!!!!!!
+	//enemies-----------------	
+
+	entityFactory->CreateActor(10, 50, 800, 450, 40, 45, EntityType::PLANT);
+
 	entityFactory->CreateActor(1000, 50, 900, 450, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 1200, 300, 40, 45, EntityType::PLANT);
 	entityFactory->CreateActor(1000, 50, 1300, 300, 40, 45, EntityType::PLANT);

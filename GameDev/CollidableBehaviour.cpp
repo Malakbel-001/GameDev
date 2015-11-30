@@ -21,6 +21,9 @@ void CollidableBehaviour::Hit(CollidableBehaviour* cb){
 
 
 }
+void CollidableBehaviour::Unhit(CollidableBehaviour* cb){
+
+}
 Actor* CollidableBehaviour::GetActor(){
 	return ent;
 }

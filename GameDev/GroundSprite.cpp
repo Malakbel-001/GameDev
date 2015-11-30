@@ -8,6 +8,9 @@ GroundSprite::GroundSprite(SDL_Renderer* _renderer) : Sprite(_renderer)
 	JUMP_ANIMATION_FRAMES = -1;
 	SHOOT_ANIMATION_FRAMES = -1;
 	DYING_ANIMATION_FRAMES = -1;
+	
+	yOffSet = -20;
+
 	SetAnimations();
 }
 

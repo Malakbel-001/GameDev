@@ -6,8 +6,10 @@ class ShotGun :
 	public Weapon
 {
 public:
-	ShotGun(Actor* ent);
+	ShotGun();
 	~ShotGun();
 	virtual void Shoot(EntityFactory* eF);
-};
 
+	Weapon* EmptyClone();
+
+};

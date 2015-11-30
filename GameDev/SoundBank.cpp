@@ -8,12 +8,13 @@ SoundBank::SoundBank() {
 	//defining sound effects
 	soundPathList = std::unordered_map<SoundEffectType, char*> {
 		{ SoundEffectType::CORRECT, "Resources/sound/sfx/soundcorrect.wav" },
-		{ SoundEffectType::SHOTGUN, "Resources/sound/sfx/2x_barre-The_Pain-8022_hifi.wav" },
+		{SoundEffectType::SHOTGUN, "Resources/sound/sfx/shotgun.wav"},
 		{ SoundEffectType::GAMEOVER, "Resources/sound/sfx/Announcer/ACDDATA_0088.wav" },
 		{ SoundEffectType::YOU, "Resources/sound/sfx/Announcer/ACDDATA_0082.wav" },
 		{ SoundEffectType::LOSE, "Resources/sound/sfx/Announcer/ACDDATA_0085.wav" },
 		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" },
 		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" }
+
 	};
 
 	//defining background music
