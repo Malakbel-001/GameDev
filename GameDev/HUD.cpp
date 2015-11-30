@@ -1,4 +1,5 @@
 #include "HUD.h"
+#include "Weapon.h"
 
 HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
@@ -38,10 +39,10 @@ void HUD::SetHUDFont(char* path, int ptsize) {
 
 	//FWApplication would normally create use and SDL_FreeSurface() + SDL_DestroyTexture()
 	//this is better for performance reasons (when it's possible), create once, reuse whenever, FreeSurface() and DestroyTexture() in Cleanup()
-	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Color(0, 0, 0, 255));
+	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Color(255, 255, 255, 255));
 	ammoTexture = SDL_CreateTextureFromSurface(renderer, ammoSurface); //set ammoTexture
 
-	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Color(0, 0, 0, 255));
+	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Color(255, 255, 255, 255));
 	scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
 }
 
@@ -83,7 +84,9 @@ void HUD::DrawAmmo() {
 	SDL_RenderCopy(renderer, ammoTexture, NULL, &ammoRect);
 
 	//Draw AmmoCounter / Amount
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, "0", Color(0, 0, 0, 255)); //temp until I can get to ammo counter
+	std::string ammo = std::to_string(player->GetCurrentWeapon()->GetAmmo());
+
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, ammo.c_str(), Color(0, 0, 0, 255)); //temp until I can get to ammo counter
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { ammoRect.x, ammoRect.y + ammoRect.h + 5, counterSurface->w, counterSurface->h };
 

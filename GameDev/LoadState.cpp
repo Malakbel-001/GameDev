@@ -18,7 +18,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	std::thread loadingThread(&LoadState::LoadPlayState,this);
 	loadingThread.detach();
 
-
+	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
 
 	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
 	BehaviourFactory* bf = gsm->GetBehaviour();
@@ -56,6 +56,12 @@ void LoadState::Init(GameStateManager* gsm) {
 
 	//Advertisement placeholder
 	Advertisement("Resources/images/ad.png");
+
+	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "Resources/backgrounds/loadscreen.png");
+	backgroundRect.h = background.getHeight();
+	backgroundRect.w = background.getWidth();
+	backgroundRect.x = 0;
+	backgroundRect.y = 0;
 }
 
 void LoadState::LoadPlayState() {
@@ -119,6 +125,9 @@ void LoadState::Update(float dt) {
 }
 
 void LoadState::Draw() {
+	//temp bg
+	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, &backgroundRect); //TEMP!
+
 	drawableContainer->Draw();
 
 	if (!loadedPlay) {	//Loading...

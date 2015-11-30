@@ -56,7 +56,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 
 	b2BodyDef PlantDef = b2BodyDef();
 	PlantDef.gravityScale = 1;
-	PlantDef.fixedRotation = false;
+	PlantDef.fixedRotation = true;
 	PlantDef.linearDamping = 0.5f;
 	PlantDef.angularDamping = 1;
 	PlantDef.type = b2BodyType::b2_dynamicBody;
@@ -87,7 +87,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	
 	b2BodyDef Ammo = b2BodyDef();
 	Ammo.gravityScale = 1;
-	Ammo.fixedRotation = false;
+	Ammo.fixedRotation = true;
 	Ammo.linearDamping = 0.5;
 	Ammo.angularDamping = 1;
 	Ammo.type = b2BodyType::b2_dynamicBody;

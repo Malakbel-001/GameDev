@@ -88,7 +88,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 							//SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 
 							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-							currentLevel->GetPlayer()->SetJumpTimeOut(15);
+							currentLevel->GetPlayer()->SetJumpTimeOut(5);
 						}
 				
 

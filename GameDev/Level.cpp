@@ -57,7 +57,7 @@ void Level::Update(float dt)
 					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
 					entityFactory->CreateActor(-10, 1, z, y, 7, 7, EntityType::HEALTH);
 					entityFactory->CreateActor(-10, 1, z, y,7,7, EntityType::HEALTH);
-					entityFactory->CreateActor(0, 1, z, y - 3, 29,17, EntityType::AMMO);
+					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
 			
 				}
 				world->DestroyBody(actors->operator[](x)->GetBody());

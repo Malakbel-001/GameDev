@@ -20,6 +20,7 @@ public:
 	virtual float GetXpos();
 	virtual float GetYpos();
 	virtual float GetAngle();
+	int GetAmmo();
 
 protected:
 	

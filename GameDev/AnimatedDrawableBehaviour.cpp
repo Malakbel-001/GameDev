@@ -19,7 +19,7 @@ void AnimatedDrawableBehaviour::Draw()
 
 
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, entity->GetAngle(), sprite->GetAnimationFrame(entity->GetState(), currentFrame/3));
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame/3));
 
 		//Go to next frame 
 		++currentFrame;
