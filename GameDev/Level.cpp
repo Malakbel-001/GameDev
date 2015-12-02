@@ -76,12 +76,13 @@ void Level::Update(float dt)
 
 #pragma region Get, Set
 Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
-	if (!_player->ContainsWeapons()) { //skip this when the weapons are already initialized
+	if (!_player->GetBody() != NULL) {
 		player = dynamic_cast<Player*>(entityFactory->CreateActor(0, 100, x, y, 15, 35, EntityType::PLAYER));
 	}
 	else {
 		player = entityFactory->CreatePlayer(0, 100, x, y, 15, 35, _player);
 		player->DeleteWeapons();
+		player->SetNumFootContacts(0);
 	}
 	return player;
 }
