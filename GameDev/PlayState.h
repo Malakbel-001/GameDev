@@ -5,7 +5,9 @@
 #include "Camera.h"
 #include "SoundBank.h"
 #include "BehaviourFactory.h"
+#include "Weapon.h"
 #include <iostream>
+#include "HUD.h"
 
 class PlayState :
 	public IGameState
@@ -13,8 +15,10 @@ class PlayState :
 	private:
 		GameStateManager* gsm;		
 		Player* player;
-		Level* currentLevel;	
+		Level* currentLevel;
+		HUD* hud;
 		bool gameOver;
+		bool victory;
 
 	public:
 
@@ -26,14 +30,12 @@ class PlayState :
 
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
-		void Update(float dt);
+		void Update(float);
 		void Draw();
 		void GameOver();
+		void Victory();
 
 		Player* GetPlayer();
-
-
-		
 
 		Level* GetCurrentLevel();
 		void SetCurrentLevel(Level* lvl);

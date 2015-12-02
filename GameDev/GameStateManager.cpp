@@ -1,9 +1,11 @@
 #include "GameStateManager.h"
-#include "IGameState.h"
-#include "MenuState.h"
 #include "PlayState.h"
+#include "LoadState.h"
+#include "PauseState.h"
+#include "GameOverState.h"
+#include "VictoryState.h"
+#include "MenuState.h"
 #include <iostream>
-
 
 GameStateManager::GameStateManager(BehaviourFactory* _bf)
 {
@@ -12,27 +14,42 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 	//TODO states onthouden
 
 }
+
 void GameStateManager::CreateGameState(GameStateType state)
+{
+	IGameState* gamestate = GetNewState(state);
+	PushGameState(gamestate);
+}
+
+//Create / Load State
+IGameState* GameStateManager::GetNewState(GameStateType state) 
 {
 	IGameState* gamestate;
 	switch (state)
 	{
 	case GameStateType::PlayState:
 		gamestate = new PlayState();
-
 		break;
 	case GameStateType::PauseState:
-		//state = new PauseState();
+		gamestate = new PauseState();
 		break;
 	case GameStateType::MenuState:
 		gamestate = new MenuState();
+		break;
+	case GameStateType::LoadState:
+		gamestate = new LoadState();
+		break;
+	case GameStateType::GameOverState:
+		gamestate = new GameOverState();
+		break;
+	case GameStateType::VictoryState:
+		gamestate = new VictoryState();
 		break;
 	default:
 		break;
 	}
 
-
-	PushGameState(gamestate);
+	return gamestate;
 }
 
 void GameStateManager::ChangeGameState()
@@ -47,10 +64,13 @@ void GameStateManager::ChangeGameState()
 
 void GameStateManager::PushGameState(IGameState* gameState)
 {
-
-
 	states.push_back(gameState);
 	states.back()->Init(this);
+}
+
+void GameStateManager::PushGameStateOnly(IGameState* gameState) {
+	states.pop_back(); //pop loadState
+	states.push_back(gameState);
 }
 
 void GameStateManager::PopState()
@@ -85,6 +105,11 @@ IGameState* GameStateManager::GetCurrentState()
 	return states.back();
 }
 
+IGameState* GameStateManager::GetPreviousState()
+{
+	return states.at(states.size() -2);
+
+}
 GameStateManager::~GameStateManager()
 {
 	while (!states.empty())

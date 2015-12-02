@@ -1,8 +1,6 @@
 #pragma once
 #include <SDL.h>
 #include "Level.h"
-#include "Tile.h"
-#include "GameStateManager.h"
 
 class TestLevel :
 	public Level
@@ -21,8 +19,9 @@ class TestLevel :
 		void Cleanup();
 
 		virtual Level* CreateLevel();
+		virtual Player* SetPlayer(Player* _player);
 		void HandleEvents(SDL_Event mainEvent);
-	
-		
+
+
 };
 

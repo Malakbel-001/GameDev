@@ -55,7 +55,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)Libraries;$(ProjectDir)Libraries\SDL2-2.0.3\include;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\include;$(ProjectDir)Libraries\SDL2_image-2.0.0\include;$(ProjectDir)Libraries\SDL2_ttf-2.0.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_mixer.lib;SDL2_image.lib;Box2D.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -77,42 +77,81 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)Libraries;$(ProjectDir)Libraries\SDL2-2.0.3\include;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\include;$(ProjectDir)Libraries\SDL2_image-2.0.0\include;$(ProjectDir)Libraries\SDL2_ttf-2.0.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_mixer.lib;SDL2_image.lib;..\\Box2Drelease\Box2D.lib;SDL2_ttf.lib;%(AdditionalDependencies);kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Acorn.cpp" />
+    <ClCompile Include="AcornSprite.cpp" />
     <ClCompile Include="Actor.cpp" />
-    <ClCompile Include="BarObstacleDrawableBehaviour.cpp" />
+    <ClCompile Include="AmmoCollidableBehaviour.cpp" />
+    <ClCompile Include="AmmoSprite.cpp" />
+    <ClCompile Include="AnimatedDrawableBehaviour.cpp" />
+    <ClCompile Include="BareEntity.cpp" />
+    <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletCollidableBehaviour.cpp" />
+    <ClCompile Include="BulletSprite.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CheatLoadDrawableBehaviour.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="GroundLvl2Sprite.cpp" />
+    <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="LoadState.cpp" />
+    <ClCompile Include="ContactListener.cpp" />
+    <ClCompile Include="GunSprite.cpp" />
+    <ClCompile Include="HealthCollidableBehaviour.cpp" />
+    <ClCompile Include="HealthSprite.cpp" />
+    <ClCompile Include="JumpSensorCollidableBehaviour.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="PinguinSprite.cpp" />
+    <ClCompile Include="PlantBossSprite.cpp" />
+    <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
+    <ClCompile Include="CreditMenu.cpp" />
     <ClCompile Include="DrawableBehaviour.cpp" />
     <ClCompile Include="DrawableContainer.cpp" />
-    <ClCompile Include="EnemyDrawableBehaviour.cpp" />
+    <ClCompile Include="EnemyCollidableBehaviour.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="EntityFactory.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="Ground.cpp" />
-    <ClCompile Include="GroundDrawableBehaviour.cpp" />
-    <ClCompile Include="GroundObstacleDrawableBehavior.cpp" />
+    <ClCompile Include="GroundObstacleSprite.cpp" />
+    <ClCompile Include="GroundSprite.cpp" />
+    <ClCompile Include="HelpMenu.cpp" />
     <ClCompile Include="IGameState.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
     <ClCompile Include="LTexture.cpp" />
-    <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="PlantSprite.cpp" />
+    <ClCompile Include="PlayerSprite.cpp" />
+    <ClCompile Include="MenuBase.cpp" />
+    <ClCompile Include="OptionMenu.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
+    <ClCompile Include="PlayerCollidableBehaviour.cpp" />
+    <ClCompile Include="ShotGun.cpp" />
+    <ClCompile Include="ShotgunSprite.cpp" />
     <ClCompile Include="SoundBank.cpp" />
     <ClCompile Include="SoundChunk.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpritesLoader.cpp" />
+    <ClCompile Include="StaticDrawableBehaviour.cpp" />
     <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -126,42 +165,83 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="SDLInitializer.cpp" />
     <ClCompile Include="TestLevel.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TreeSprite.cpp" />
+    <ClCompile Include="VictoryState.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Acorn.h" />
+    <ClInclude Include="AcornSprite.h" />
     <ClInclude Include="Actor.h" />
-    <ClInclude Include="BarObstacleDrawableBehaviour.h" />
+    <ClInclude Include="AmmoCollidableBehaviour.h" />
+    <ClInclude Include="AmmoSprite.h" />
+    <ClInclude Include="AnimatedDrawableBehaviour.h" />
+    <ClInclude Include="BareEntity.h" />
+    <ClInclude Include="BarObstacleSprite.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletCollidableBehaviour.h" />
+    <ClInclude Include="BulletSprite.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CheatLoadDrawableBehaviour.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="GroundLvl2Sprite.h" />
+    <ClInclude Include="Level2.h" />
+    <ClInclude Include="LoadState.h" />
+    <ClInclude Include="ContactListener.h" />
+    <ClInclude Include="GunSprite.h" />
+    <ClInclude Include="HealthCollidableBehaviour.h" />
+    <ClInclude Include="HealthSprite.h" />
+    <ClInclude Include="JumpSensorCollidableBehaviour.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="HUD.h" />
+    <ClInclude Include="PinguinSprite.h" />
+    <ClInclude Include="PlantBossSprite.h" />
+    <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="SettingsConfig.h" />
     <ClInclude Include="Container.h" />
+    <ClInclude Include="CreditMenu.h" />
     <ClInclude Include="DrawableBehaviour.h" />
     <ClInclude Include="DrawableContainer.h" />
-    <ClInclude Include="EnemyDrawableBehaviour.h" />
+    <ClInclude Include="EnemyCollidableBehaviour.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="EntityFactory.h" />
+    <ClInclude Include="EntityState.h" />
     <ClInclude Include="EntityType.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameStateType.h" />
     <ClInclude Include="Ground.h" />
-    <ClInclude Include="GroundDrawableBehaviour.h" />
-    <ClInclude Include="GroundObstacleDrawableBehavior.h" />
+    <ClInclude Include="GroundObstacleSprite.h" />
+    <ClInclude Include="GroundSprite.h" />
     <ClInclude Include="header_loader.h" />
+    <ClInclude Include="HelpMenu.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="LTexture.h" />
-    <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="PlantSprite.h" />
+    <ClInclude Include="PlayerSprite.h" />
+    <ClInclude Include="MenuBase.h" />
+    <ClInclude Include="MenuEnum.h" />
+    <ClInclude Include="OptionMenu.h" />
+    <ClInclude Include="PauseMenu.h" />
+    <ClInclude Include="PlayerCollidableBehaviour.h" />
+    <ClInclude Include="ShotGun.h" />
+    <ClInclude Include="ShotgunSprite.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />
     <ClInclude Include="SoundChunk.h" />
     <ClInclude Include="SoundEffectType.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpritesLoader.h" />
+    <ClInclude Include="StaticDrawableBehaviour.h" />
     <ClInclude Include="TileLoader.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveableBehaviour.h" />
@@ -174,6 +254,9 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="TestLevel.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="TreeSprite.h" />
+    <ClInclude Include="VictoryState.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameDev.rc" />

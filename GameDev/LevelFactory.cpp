@@ -9,6 +9,7 @@ void LevelFactory::Init(PlayState* play)
 {
 	levels = {
 		new TestLevel(2000, 120,play), 
+		new Level2(2000,120, play),
 		//TODO add , new Level1() , new level2()
 	};
 }
@@ -35,8 +36,12 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 			
 			return levels[i];
 		}
-		if (levels[i] == level)
-			foundLevel = true;
+		if (levels[i]->GetLevelId() == level->GetLevelId()){
+			if (i + 1 < levels.size()){
+				return levels[i + 1]->CreateLevel();
+			}
+		}
+			//foundLevel = true;
 	}
 
 	if (foundLevel)
