@@ -13,7 +13,7 @@ void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, 
 	width = _width;
 	height = _height;
 	
-	
+	score = 0;
 }
 
 Entity::~Entity()
@@ -53,4 +53,12 @@ Entity* Entity::EmptyClone()
 }
 b2Body* Entity::GetBody(){
 	return body;
+}
+
+void Entity::SetScore(int _score) {
+	score = _score;
+}
+
+int Entity::GetScore() {
+	return score;
 }

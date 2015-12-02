@@ -35,6 +35,7 @@ private:
 	std::unordered_map<EntityType, Actor*> actorRegistery;
 	std::unordered_map<EntityType, b2BodyDef > bodyRegistery;
 	std::unordered_map<EntityType, Bullet* > bulletRegistery;
+	std::unordered_map<EntityType, int> scoreRegistery;
 
 	b2World& world;
 	std::vector<Actor*>* actor;
