@@ -85,7 +85,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, shotgun, screenWidth, screenHeight) },
 		{ EntityType::BULLET, new StaticDrawableBehaviour(renderer, bulletSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
-		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
+	//	{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
 	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
@@ -118,7 +118,16 @@ SDL_Renderer* BehaviourFactory::GetRenderer(){
 
 BehaviourFactory::~BehaviourFactory()
 {
+
+	for each (auto var in registery)
+	{
+		delete var.second->GetSprite();
+
+	}
 	registery.clear();
+
+
+
 }
 
 DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)

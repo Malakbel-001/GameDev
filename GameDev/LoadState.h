@@ -12,7 +12,7 @@ private:
 
 	DrawableContainer* drawableContainer;
 	IGameState* playState;
-
+	BareEntity* bare;
 
 	TTF_Font* textFont;
 

@@ -17,7 +17,19 @@ Sprite::Sprite(SDL_Renderer* _renderer)
 
 Sprite::~Sprite()
 {
-	delete renderer;
+	if (idleSprites){
+		delete idleSprites;
+		idleSprites = nullptr;
+	}
+	if (walkSprites){
+		delete walkSprites;
+		walkSprites = nullptr;
+	}
+	if (dyingSprites){
+		delete dyingSprites;
+		dyingSprites = nullptr;
+	}
+
 }
 float Sprite::GetXOffSet(){
 	return xOffSet;

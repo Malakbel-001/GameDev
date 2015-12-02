@@ -1,5 +1,6 @@
 #include "MainMenu.h"
 #include "MenuState.h"
+#include "Game.h"
 MainMenu::MainMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
 {
 	textColor = { 255, 255, 255, 255 }; // white;
@@ -156,9 +157,7 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
 	{
-	case SDL_QUIT:
-		exit(0);
-		break;
+
 		case SDL_MOUSEMOTION:
 		{hoverX = mainEvent.motion.x;
 		hoverY = mainEvent.motion.y;
@@ -205,7 +204,7 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 				case 4:
 					//quit
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					exit(0);
+					Game::running = false;
 					break;
 				}
 			}

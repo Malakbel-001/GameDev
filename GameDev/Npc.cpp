@@ -10,6 +10,7 @@ Actor* Npc::EmptyClone(){
 
 Npc::~Npc()
 {
+
 }
 
 void Npc::setBody(b2Body* _body)

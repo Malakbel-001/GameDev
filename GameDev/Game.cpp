@@ -2,8 +2,11 @@
 #include "header_loader.h"
 
 using namespace std;
+
 Game::Game()
 {
+	running = true;
+	
 	inputManager = new InputManager();
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
@@ -21,6 +24,7 @@ Game::Game()
 
 Game::~Game()
 {
+	delete bf;
 	delete gsm;
 	if (sdlInitializer)
 		delete sdlInitializer;
@@ -32,7 +36,7 @@ void Game::SDLEvents()
 	{
 		if (events.type == SDL_QUIT)
 		{
-			running = false;
+			 running = false;
 		}
 		//User presses a key
 		if (events.type == SDL_KEYDOWN)
@@ -86,3 +90,4 @@ void Game::GameLoop()
 	
 	SDL_Quit();
 }
+bool Game::running;

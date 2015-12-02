@@ -31,7 +31,9 @@ void DrawableBehaviour::Draw()
 {
 	//printf("Behaviour not initialized");
 }
-
+Sprite* DrawableBehaviour::GetSprite(){
+	return sprite;
+}
 void DrawableBehaviour::SetSprite(Sprite* _sprite)
 {
 	sprite = _sprite;

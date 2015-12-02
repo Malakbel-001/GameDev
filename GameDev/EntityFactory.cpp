@@ -3,7 +3,7 @@
 
 
 
-EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor),bf(_bf), drawContainer(_drawContainer)
+EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor), bf(_bf), drawContainer(_drawContainer), entities(_ent)
 {
 
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
@@ -139,12 +139,13 @@ Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 	return wep;
 }
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type){
+	
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateBody(x, y, height, width, type);
 
 	ent->Init(body, width, height, type, bf, drawContainer);
 
-
+	entities->push_back(ent);
 	return ent;
 }
 

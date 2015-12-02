@@ -56,7 +56,7 @@ public:
 	int GetTotalDiffrentTiles();
 	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
-
+	std::vector<Entity*>* entities;
 	void Draw();
 	void Update(float dt);
 	void GameOver();

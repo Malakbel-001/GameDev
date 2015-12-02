@@ -30,6 +30,7 @@ Actor* Actor::EmptyClone(){
 
 Actor::~Actor()
 {
+	printf("aaa");
 }
 
 int Actor::GetNumFootContacts(){
