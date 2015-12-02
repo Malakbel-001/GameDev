@@ -157,6 +157,13 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _healt, float x, float y, floa
 
 	return ent;
 }
+Player* EntityFactory::CreatePlayer(int _hitdmg, int _healt, float x, float y, float height, float width, Player* _player) {
+	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER);
+	_player->InitActor(body, _hitdmg, _healt, width, height, EntityType::PLAYER, bf, drawContainer);
+	actor->push_back(_player);
+
+	return _player;
+}
 Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int dmg,b2Vec2 direction, EntityType type){
 	Bullet* bullet = bulletRegistery.at(type)->EmptyClone();
 	bullet->InitActor(CreateBody(x*10 -10, y*10 -10, height, width,500, type), dmg,1, width, height, type, bf, drawContainer);
