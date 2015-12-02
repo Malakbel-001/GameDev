@@ -8,6 +8,7 @@ class Player :
 	private:
 		// stuff
 		
+		int score;
 		int currentwep;
 		vector<Weapon*> weps;
 	protected:
@@ -26,4 +27,7 @@ class Player :
 		bool ContainsWeapons();
 		void DeleteWeapons();
 		virtual void SwitchWeapon(int x);
+
+		void AddScore(int addScore);
+		int GetScore();
 };

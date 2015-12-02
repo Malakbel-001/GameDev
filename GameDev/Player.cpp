@@ -5,7 +5,7 @@ Player::Player() {
 	currentWep = nullptr;
 	currentwep = 0;
 	weps = vector<Weapon*>();
-
+	score = 0;
 }
 
 Player::~Player() { }
@@ -49,4 +49,7 @@ void Player::DeleteWeapons() {
 b2Body* Player::GetBody()
 {
 	return body;
+}
+void Player::AddScore(int addScore) {
+	score = score + addScore;
 }
