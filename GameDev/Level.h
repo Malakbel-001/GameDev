@@ -11,7 +11,7 @@
 
 
 class PlayState;
-class Level
+class Level //abstract class now because of pure virtual method: SetPlayer() and CreateLevel(), this class cannot be instantiated anymore
 {
 private:
 	MoveableContainer* moveableContainer;
@@ -43,10 +43,12 @@ public:
 	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();
 
-	virtual Player* SetPlayer(Player* _player);
+	virtual Player* SetPlayer(Player* _player) = 0; //pure virtual
+	virtual Level* CreateLevel() = 0;				//pure virtual
+
+	Player* SetPlayerPosition(Player* _player, float x, float y);
 	virtual void SetLvlWidth(int _lvlWidth);
 	virtual void SetLvlHeight(int _lvlHeight);
-	virtual Level* CreateLevel();
 
 	SDL_Texture* GetTileSheet();
 

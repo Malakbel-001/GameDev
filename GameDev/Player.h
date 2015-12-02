@@ -23,7 +23,7 @@ class Player :
 		b2Body* GetBody();
 		virtual void AddWeapon(Weapon* wep);
 		virtual Weapon* GetCurrentWeapon();
+		bool ContainsWeapons();
+		void DeleteWeapons();
 		virtual void SwitchWeapon(int x);
-	
-
 };

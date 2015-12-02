@@ -75,19 +75,15 @@ void Level::Update(float dt)
 }
 
 #pragma region Get, Set
-Player* Level::SetPlayer(Player* _player)
-{
-	//	player = _player;
-	player = dynamic_cast<Player*>(entityFactory->CreateActor(0,100,20, 100, 15, 35, EntityType::PLAYER));
-
-	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
-	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
-	shot->Pickup(player, b2Vec2(1000, 0));	
-	player->AddWeapon(wep);
-	player->AddWeapon(shot);
+Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
+	if (!_player->ContainsWeapons()) { //skip this when the weapons are already initialized
+		player = dynamic_cast<Player*>(entityFactory->CreateActor(0, 100, x, y, 15, 35, EntityType::PLAYER));
+	}
+	else {
+		player = entityFactory->CreatePlayer(0, 100, x, y, 15, 35, _player);
+		player->DeleteWeapons();
+	}
 	return player;
-
 }
 Player* Level::GetPlayer()
 {
@@ -132,11 +128,6 @@ EntityFactory* Level::GetEntityFactory(){
 int Level::GetLvlWidth()
 {
 	return this->lvlWidth;
-}
-Level* Level::CreateLevel()
-{
-
-	return new Level(lvlWidth, lvlHeight, playState);
 }
 
 void Level::GameOver()
