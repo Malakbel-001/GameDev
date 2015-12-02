@@ -14,7 +14,7 @@ class Entity : public Object
 		float width;
 		float height;
 		b2Body* body;	
-	
+		int score;
 	
 	public:
 		Entity();
@@ -26,7 +26,8 @@ class Entity : public Object
 		virtual float GetXpos();
 		virtual float GetYpos();
 		virtual float GetAngle();
-
+		virtual void SetScore(int _score);
+		virtual int GetScore();
 
 		b2Body* GetBody();
 };
