@@ -159,8 +159,9 @@ void GameOverState::Resume() {}
 void GameOverState::Pause() {}
 
 void GameOverState::Quit(){
+	gsm->PopPrevState();
 	gsm->PopState();
-	gsm->ChangeGameState();
+
 }
 
 void GameOverState::Highlight(int item){
