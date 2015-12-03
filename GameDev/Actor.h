@@ -32,13 +32,14 @@ protected:
 	int m_jumpTimeout;
 	b2Vec2 direction;
 	Weapon* currentWep = nullptr;
+	CollidableBehaviour* col;
 	
 private:
 	bool dead;
 	int health;
 	int maxHealth; //NEW
 	int hitdmg;
-	CollidableBehaviour* col;
+	
 	CollidableBehaviour* jumpsensor;
 	ActorState* state;
 };

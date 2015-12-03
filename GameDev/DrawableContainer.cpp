@@ -7,7 +7,13 @@ DrawableContainer::DrawableContainer()
 }
 
 
-DrawableContainer::~DrawableContainer() { }
+DrawableContainer::~DrawableContainer() { 
+	for each (DrawableBehaviour* var in behaviours)
+	{
+		delete var;
+	}
+
+}
 
 void DrawableContainer::Add(DrawableBehaviour* behaviour)
 {

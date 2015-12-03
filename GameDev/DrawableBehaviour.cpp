@@ -15,6 +15,7 @@ DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite
 
 DrawableBehaviour::~DrawableBehaviour()
 {
+	
 }
 
 DrawableBehaviour* DrawableBehaviour::EmptyClone()
@@ -31,7 +32,9 @@ void DrawableBehaviour::Draw()
 {
 	//printf("Behaviour not initialized");
 }
-
+Sprite* DrawableBehaviour::GetSprite(){
+	return sprite;
+}
 void DrawableBehaviour::SetSprite(Sprite* _sprite)
 {
 	sprite = _sprite;

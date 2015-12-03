@@ -3,24 +3,25 @@
 const int renderItems = 18;
 
 void VictoryState::Init(GameStateManager *gsm){
+	textColor = { 255, 255, 255, 255 }; // white	
+	pos.resize(renderItems);
 	this->gsm = gsm;
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 
-	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
+//	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
 	/*SDL_Delay(4000);
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::YOU);*/
-	SDL_Delay(2000);
+	//SDL_Delay(2000);
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
 	Update(0);
 }
 
 VictoryState::VictoryState()
 {
-	textColor = { 255, 255, 255, 255 }; // white	
-	pos.resize(renderItems);
+
 }
 
 void VictoryState::loadQuitMenu(){
@@ -156,6 +157,7 @@ void VictoryState::SetupRenderer()
 
 VictoryState::~VictoryState()
 {
+	Cleanup();
 }
 
 void VictoryState::Cleanup(){
@@ -169,15 +171,17 @@ void VictoryState::Resume() {}
 void VictoryState::Pause() {}
 
 void VictoryState::Quit(){
+
 	gsm->PopState();
-	gsm->ChangeGameState();
+	gsm->PopState();
+
 }
 
 void VictoryState::Next(){
 	if(PlayState* state = dynamic_cast <PlayState*>(gsm->GetPreviousState()))
 	{
 		state->SetCurrentLevel(LevelFactory::GetNextLevel(state->GetCurrentLevel(), state));
-		gsm->ChangeGameState();
+		gsm->PopState();
 	}	
 }
 
@@ -212,7 +216,7 @@ void VictoryState::HandleMouseEvents(SDL_Event mainEvent)
 					break;
 				}
 			}
-			break;
+			
 		}
 	}
 }

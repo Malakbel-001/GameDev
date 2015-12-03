@@ -2,12 +2,13 @@
 
 void PlayState::Init(GameStateManager* gsm)
 {
-	this->gsm = gsm;
+ 	this->gsm = gsm;
 
 	this->gameOver = false;
-
+	currentLevel = nullptr;
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
+	
 	
 	
 	background = LTexture();
@@ -261,6 +262,10 @@ Level* PlayState::GetCurrentLevel()
 void PlayState::SetCurrentLevel(Level* lvl)
 {
 	BehaviourFactory* bf = gsm->GetBehaviour();
+	if (currentLevel != nullptr){
+		delete currentLevel;
+		currentLevel = nullptr;
+	}
 	this->currentLevel = lvl;
 	this->currentLevel->Init(bf);
 	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
@@ -283,12 +288,14 @@ Player* PlayState::GetPlayer()
 
 void PlayState::Cleanup()
 {
+	gsm->GetBehaviour()->ClearCamera();
 	delete player;
 	
 	delete currentLevel;
 
 	delete hud;
 
+	
 	player = nullptr;
 
 	currentLevel = nullptr;

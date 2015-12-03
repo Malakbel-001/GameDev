@@ -11,7 +11,7 @@ class VictoryState :
 {
 public:
 	VictoryState();
-	GameStateManager* gsm;
+	
 
 	// Setup
 	bool InitEverything();
@@ -71,6 +71,6 @@ public:
 
 private:
 	SDL_Color textColor;
-	const int renderItems = 18;
+	const int renderItems = 3;
 	vector<SDL_Rect> pos;
 };

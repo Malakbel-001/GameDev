@@ -19,11 +19,12 @@ class GameStateManager
 		GameStateManager(BehaviourFactory* _bf);
 		void SetBehaviour(BehaviourFactory* _bf);
 		void Cleanup();
-		void ChangeGameState();
+	
 		void PushGameState(IGameState* gameState);
 		void PushGameStateOnly(IGameState* gameState);
 		void PopState();
 		void CreateGameState(GameStateType state);
+		void PopPrevState();
 		IGameState* GetNewState(GameStateType state);
 		IGameState* GetCurrentState();
 		IGameState* GetPreviousState();

@@ -16,6 +16,8 @@ void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, 
 
 Entity::~Entity()
 {
+	
+	
 
 }
 
