@@ -30,19 +30,19 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(3000, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(3250, 570, 250, 140, EntityType::GROUNDLVL2);
 	//enemy
-	entityFactory->CreateActor(1000, 50, 400, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 450, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 500, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 550, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 1000, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 1070, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 1200, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 1500, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 1550, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 2000, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 2300, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 2500, 450, 24, 36, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 50, 2550, 450, 24, 36, EntityType::PINGUIN);
+	entityFactory->CreateActor(400, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(450, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(500, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(550, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(1000, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(1070, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(1200, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(1500, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(1550, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(2000, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(2300, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(2500, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(2550, 450, EntityType::PINGUIN);
 }
 
 Level* Level2::CreateLevel()
