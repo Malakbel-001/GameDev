@@ -32,11 +32,17 @@ float Sprite::GetFrameYOffSet(int frame){
 	if (spriteYOffset->size() > 0){
 		return spriteYOffset->at(frame);
 	}
+	else {
+		return 0;
+	}
 }
 
 float Sprite::GetFrameXOffSet(int frame){
 	if (spriteXOffset->size() > 0){
 		return spriteXOffset->at(frame);
+	}
+	else {
+		return 0;
 	}
 }
 

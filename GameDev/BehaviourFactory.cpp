@@ -78,7 +78,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
-		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
+		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANTBOSS, new AnimatedDrawableBehaviour(renderer, plantBossSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND, new StaticDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },
@@ -93,7 +93,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
-
+		{ EntityType::SNOWMAN, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
 	};
 
 	
@@ -107,7 +107,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PINGUIN, new EnemyCollidableBehaviour() },
 		{ EntityType::HEALTH, new HealthCollidableBehaviour() },
 		{ EntityType::AMMO, new AmmoCollidableBehaviour() },
-		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()}
+		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
+		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 	};
 
 

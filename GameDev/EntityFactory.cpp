@@ -17,7 +17,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::ACORN, new Acorn() },
 		{ EntityType::PINGUIN, new Npc() },
 		{ EntityType::HEALTH, new Actor()},
-		{ EntityType::AMMO, new Actor() }
+		{ EntityType::AMMO, new Actor() },
+		{ EntityType::SNOWMAN, new Npc() },
 
 	};
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -102,7 +103,12 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	AcornDef.type = b2BodyType::b2_dynamicBody;
 	AcornDef.bullet = true;
 
-
+	b2BodyDef SnowmanDef = b2BodyDef();
+	SnowmanDef.gravityScale = 1;
+	SnowmanDef.fixedRotation = true;
+	SnowmanDef.linearDamping = 0.5f;
+	SnowmanDef.angularDamping = 1;
+	SnowmanDef.type = b2BodyType::b2_dynamicBody;
 
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
 		{ EntityType::ENTITY, entDef },
@@ -122,7 +128,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		//level2
 		{ EntityType::GROUNDLVL2, entDef },
 		{ EntityType::PINGUIN, PlantDef },
-
+		{ EntityType::SNOWMAN, SnowmanDef },
 	};
 }
 

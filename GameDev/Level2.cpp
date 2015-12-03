@@ -14,6 +14,9 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(1625, 450, 250, 120, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(1875, 450, 250, 120, EntityType::GROUNDLVL2);
+	entityFactory->CreateEntity(4375, 450, 250, 120, EntityType::GROUNDLVL2);
+	entityFactory->CreateEntity(4625, 450, 250, 120, EntityType::GROUNDLVL2);
+	entityFactory->CreateEntity(4875, 450, 250, 120, EntityType::GROUNDLVL2);
 	//ground---------------------
 	entityFactory->CreateEntity(0, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(250, 570, 250, 140, EntityType::GROUNDLVL2);
@@ -29,7 +32,9 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(2750, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(3000, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(3250, 570, 250, 140, EntityType::GROUNDLVL2);
-	//enemy
+	entityFactory->CreateEntity(3500, 570, 250, 140, EntityType::GROUNDLVL2);
+	entityFactory->CreateEntity(3750, 570, 250, 140, EntityType::GROUNDLVL2);
+	//enemy pinguin
 	entityFactory->CreateActor(1000, 50, 400, 450, 24, 36, EntityType::PINGUIN);
 	entityFactory->CreateActor(1000, 50, 450, 450, 24, 36, EntityType::PINGUIN);
 	entityFactory->CreateActor(1000, 50, 500, 450, 24, 36, EntityType::PINGUIN);
@@ -43,6 +48,18 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(1000, 50, 2300, 450, 24, 36, EntityType::PINGUIN);
 	entityFactory->CreateActor(1000, 50, 2500, 450, 24, 36, EntityType::PINGUIN);
 	entityFactory->CreateActor(1000, 50, 2550, 450, 24, 36, EntityType::PINGUIN);
+	//enemy yeti
+	entityFactory->CreateActor(10, 50, 800, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 850, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 900, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 950, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 1170, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 1300, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 1370, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 3000, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 3050, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 3300, 450, 42, 34, EntityType::SNOWMAN);
+	entityFactory->CreateActor(10, 50, 3420, 450, 42, 34, EntityType::SNOWMAN);
 }
 
 Level* Level2::CreateLevel()
