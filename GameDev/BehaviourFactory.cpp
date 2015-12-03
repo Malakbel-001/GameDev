@@ -72,9 +72,13 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	ShotgunSprite* shotgun = new ShotgunSprite(renderer);
 	shotgun->LoadMedia("shotgun.png");
 
+	SnowmanSprite* snowman = new SnowmanSprite(renderer);
+	snowman->LoadMedia("yeti.png");
+	snowman->SetAnimationSet(EntityState::IDLE);
+
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
-		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
+		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
 		{ EntityType::PLANTBOSS, new AnimatedDrawableBehaviour(renderer, plantBossSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND, new StaticDrawableBehaviour(renderer, groundSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2, new StaticDrawableBehaviour(renderer, groundobstacleSprite, screenWidth, screenHeight) },

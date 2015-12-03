@@ -238,6 +238,9 @@
     <ClCompile Include="ShotgunSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
+    <ClCompile Include="SnowmanSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -500,6 +503,9 @@
     </ClInclude>
     <ClInclude Include="ShotgunSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowmanSprite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
