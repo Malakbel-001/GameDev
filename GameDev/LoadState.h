@@ -7,7 +7,7 @@
 
 class LoadState : public IGameState {
 private:
-	GameStateManager* gsm;
+	
 	SDL_Renderer* renderer;
 
 	DrawableContainer* drawableContainer;

@@ -2,7 +2,7 @@
 
 void PlayState::Init(GameStateManager* gsm)
 {
-	this->gsm = gsm;
+ 	this->gsm = gsm;
 
 	this->gameOver = false;
 	currentLevel = nullptr;

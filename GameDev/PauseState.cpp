@@ -149,14 +149,15 @@ void PauseState::updateMenu(MenuEnum menu){
 	switch (menu)
 	{
 	case MenuEnum::Resume:
-		gsm->ChangeGameState();
+		gsm->PopState();
 	case MenuEnum::Previous:
 		currentMenu = PreviousMenu;
 		PreviousMenu = nullptr;
 		break;
 	case MenuEnum::Main:
-		gsm->PopPrevState();
 		PreviousMenu = nullptr;
+		gsm->PopState();
+		
 		gsm->PopState();
 //		gsm->ChangeGameState();
 		

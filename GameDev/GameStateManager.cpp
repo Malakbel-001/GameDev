@@ -48,19 +48,10 @@ IGameState* GameStateManager::GetNewState(GameStateType state)
 	default:
 		break;
 	}
-
+	
 	return gamestate;
 }
 
-void GameStateManager::ChangeGameState()
-{
-	if (!states.empty())
-	{
-		states.back()->Cleanup();
-		states.pop_back();
-	}
-
-}
 
 void GameStateManager::PushGameState(IGameState* gameState)
 {
@@ -77,8 +68,9 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 void GameStateManager::PopPrevState(){
 	if (states.size() > 1){
 		IGameState* a = states[states.size() - 2];
-		states.erase(states.end() -2);
-		delete a;
+
+		states.erase(----states.end());
+	//	delete a;
 	}
 }
 void GameStateManager::PopState()
@@ -89,7 +81,7 @@ void GameStateManager::PopState()
 		//states.back()->Cleanup();
 		
 		states.pop_back();
-		delete a;
+	//	delete a;
 	}
 
 	
@@ -102,7 +94,7 @@ void GameStateManager::Cleanup()
 	while (!states.empty())
 	{
 		//Peek at top state and clean that state
-		states.back()->Cleanup();
+		
 
 		//Remove top state
 		states.pop_back();

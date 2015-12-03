@@ -6,9 +6,10 @@
 class IGameState
 {
 protected:
-	IGameState() { }
-public:
+	GameStateManager* gsm;
 
+public:
+	IGameState(){};
 	virtual void Init(GameStateManager *gsm) = 0;
 	virtual void Cleanup() = 0;
 
@@ -21,9 +22,10 @@ public:
 	virtual void Draw() = 0;
 	void ChangeState(GameStateManager* gsm, IGameState* state)
 	{
-		gsm->ChangeGameState();
+		gsm->PopState();
 	}
 
 	virtual ~IGameState();
+	
 };
 

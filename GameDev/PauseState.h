@@ -28,7 +28,7 @@ private:
 
 public:
 	PauseState();
-	GameStateManager* gsm;
+	
 
 
 	void MakePlayText(SDL_Color);
