@@ -3,7 +3,7 @@
 
 Object::Object()
 {
-	
+	draw = nullptr;
 }
 void Object::Init(EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
 	type = _type;
@@ -32,4 +32,5 @@ EntityType Object::GetType(){
 }
 Object::~Object()
 {
+	
 }

@@ -1,78 +1,139 @@
-﻿Build started 13-11-2015 09:57:14.
+﻿Build started 30-11-2015 23:14:58.
      1>Project "C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\GameDev.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2-2.0.3\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_image-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Actor.cpp BarObstacleDrawableBehaviour.cpp BehaviourFactory.cpp Camera.cpp DrawableBehaviour.cpp EnemyDrawableBehaviour.cpp Entity.cpp EntityFactory.cpp Game.cpp GameStateManager.cpp Ground.cpp GroundDrawableBehaviour.cpp GroundObstacleDrawableBehavior.cpp IGameState.cpp Level.cpp LevelFactory.cpp MenuState.cpp Npc.cpp PauseState.cpp PlayState.cpp Player.cpp PlayerDrawableBehaviour.cpp SDLInitializer.cpp SpritesLoader.cpp TestLevel.cpp Tile.cpp TileLoader.cpp main.cpp
-         Actor.cpp
-         BarObstacleDrawableBehaviour.cpp
-     1>BarObstacleDrawableBehaviour.cpp(20): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>BarObstacleDrawableBehaviour.cpp(22): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         BehaviourFactory.cpp
-         Camera.cpp
-         DrawableBehaviour.cpp
-         EnemyDrawableBehaviour.cpp
-     1>EnemyDrawableBehaviour.cpp(18): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>EnemyDrawableBehaviour.cpp(22): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         Entity.cpp
-         EntityFactory.cpp
-         Game.cpp
-     1>Game.cpp(63): warning C4244: 'initializing' : conversion from 'Uint32' to 'float', possible loss of data
-     1>Game.cpp(79): warning C4244: 'argument' : conversion from 'float' to 'Uint32', possible loss of data
-         GameStateManager.cpp
-         Ground.cpp
-         GroundDrawableBehaviour.cpp
-     1>GroundDrawableBehaviour.cpp(20): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GroundDrawableBehaviour.cpp(26): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         GroundObstacleDrawableBehavior.cpp
-     1>GroundObstacleDrawableBehavior.cpp(17): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-     1>GroundObstacleDrawableBehavior.cpp(19): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         IGameState.cpp
-         Level.cpp
-         LevelFactory.cpp
-         MenuState.cpp
-         Npc.cpp
-         PauseState.cpp
-         PlayState.cpp
-     1>PlayState.cpp(78): warning C4804: '>' : unsafe use of type 'bool' in operation
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2-2.0.3\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_image-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Acorn.cpp AcornSprite.cpp AmmoCollidableBehaviour.cpp AmmoSprite.cpp AnimatedDrawableBehaviour.cpp BareEntity.cpp BarObstacleSprite.cpp Bullet.cpp BulletCollidableBehaviour.cpp BulletSprite.cpp CheatLoadDrawableBehaviour.cpp GroundLvl2Sprite.cpp Level2.cpp LoadState.cpp ContactListener.cpp GunSprite.cpp HealthCollidableBehaviour.cpp HealthSprite.cpp JumpSensorCollidableBehaviour.cpp Object.cpp HUD.cpp PinguinSprite.cpp PlantBossSprite.cpp SettingsConfig.cpp CreditMenu.cpp EnemyCollidableBehaviour.cpp GameOverState.cpp GroundObstacleSprite.cpp GroundSprite.cpp HelpMenu.cpp LevelFactory.cpp PlantSprite.cpp PlayerSprite.cpp MenuBase.cpp OptionMenu.cpp PauseMenu.cpp PlayerCollidableBehaviour.cpp ShotGun.cpp ShotgunSprite.cpp Sprite.cpp StaticDrawableBehaviour.cpp PlayState.cpp TreeSprite.cpp VictoryState.cpp Weapon.cpp
+         Acorn.cpp
+         AcornSprite.cpp
+         AmmoCollidableBehaviour.cpp
+         AmmoSprite.cpp
+         AnimatedDrawableBehaviour.cpp
+     1>AnimatedDrawableBehaviour.cpp(17): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         BareEntity.cpp
+         BarObstacleSprite.cpp
+         Bullet.cpp
+         BulletCollidableBehaviour.cpp
+         BulletSprite.cpp
+         CheatLoadDrawableBehaviour.cpp
+         GroundLvl2Sprite.cpp
+         Level2.cpp
+         level 
+         LoadState.cpp
+         level 
+     1>LoadState.cpp(113): warning C4065: switch statement contains 'default' but no 'case' labels
+     1>LoadState.cpp(140): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         ContactListener.cpp
+         GunSprite.cpp
+         HealthCollidableBehaviour.cpp
+         HealthSprite.cpp
+         JumpSensorCollidableBehaviour.cpp
+         Object.cpp
          Compiling...
-         Player.cpp
-         PlayerDrawableBehaviour.cpp
-     1>PlayerDrawableBehaviour.cpp(20): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>PlayerDrawableBehaviour.cpp(28): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         SDLInitializer.cpp
-         SpritesLoader.cpp
-         TestLevel.cpp
-         Tile.cpp
-         TileLoader.cpp
-         main.cpp
+         HUD.cpp
+     1>HUD.cpp(71): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>HUD.cpp(74): warning C4244: 'argument' : conversion from 'float' to 'Uint8', possible loss of data
+         PinguinSprite.cpp
+         PlantBossSprite.cpp
+         SettingsConfig.cpp
+         CreditMenu.cpp
+         level 
+         EnemyCollidableBehaviour.cpp
+         GameOverState.cpp
+         level 
+         GroundObstacleSprite.cpp
+         GroundSprite.cpp
+         HelpMenu.cpp
+         level 
+         LevelFactory.cpp
+         level 
+         PlantSprite.cpp
+         PlayerSprite.cpp
+         MenuBase.cpp
+         OptionMenu.cpp
+         level 
+         PauseMenu.cpp
+         level 
+         PlayerCollidableBehaviour.cpp
+         ShotGun.cpp
+     1>ShotGun.cpp(49): warning C4244: '=' : conversion from 'Uint32' to 'float', possible loss of data
+         ShotgunSprite.cpp
+         Sprite.cpp
+     1>Sprite.cpp(20): warning C4150: deletion of pointer to incomplete type 'SDL_Renderer'; no destructor called
+                 c:\users\jeroen\documents\github\project1\gamedev\gamedev\libraries\sdl2-2.0.3\include\SDL_render.h(121) : see declaration of 'SDL_Renderer'
+         Compiling...
+         StaticDrawableBehaviour.cpp
+     1>StaticDrawableBehaviour.cpp(16): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+         PlayState.cpp
+         level 
+         TreeSprite.cpp
+         VictoryState.cpp
+         level 
+         Weapon.cpp
+     1>Weapon.cpp(112): warning C4244: '=' : conversion from 'Uint32' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2-2.0.3\lib\x86" /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\lib\x86" /LIBPATH:C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\Box2D /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_image-2.0.0\lib\x86" /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\lib\x86" SDL2main.lib SDL2.lib SDL2_mixer.lib SDL2_image.lib ..\\Box2Drelease\Box2D.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.lib" /MACHINE:X86 /SAFESEH Release\GameDev.res
+         Release\Acorn.obj
+         Release\AcornSprite.obj
          Release\Actor.obj
-         Release\BarObstacleDrawableBehaviour.obj
+         Release\AmmoCollidableBehaviour.obj
+         Release\AmmoSprite.obj
+         Release\AnimatedDrawableBehaviour.obj
+         Release\BareEntity.obj
+         Release\BarObstacleSprite.obj
          Release\Behaviour.obj
          Release\BehaviourFactory.obj
+         Release\Bullet.obj
+         Release\BulletCollidableBehaviour.obj
+         Release\BulletSprite.obj
          Release\Camera.obj
+         Release\CheatLoadDrawableBehaviour.obj
          Release\CollidableBehaviour.obj
          Release\CollidableContainer.obj
+         Release\GroundLvl2Sprite.obj
+         Release\Level2.obj
+         Release\LoadState.obj
+         Release\ContactListener.obj
+         Release\GunSprite.obj
+         Release\HealthCollidableBehaviour.obj
+         Release\HealthSprite.obj
+         Release\JumpSensorCollidableBehaviour.obj
+         Release\Object.obj
+         Release\HUD.obj
+         Release\PinguinSprite.obj
+         Release\PlantBossSprite.obj
+         Release\PlayerDrawableBehaviour.obj
+         Release\SettingsConfig.obj
          Release\Container.obj
+         Release\CreditMenu.obj
          Release\DrawableBehaviour.obj
          Release\DrawableContainer.obj
-         Release\EnemyDrawableBehaviour.obj
+         Release\EnemyCollidableBehaviour.obj
          Release\Entity.obj
          Release\EntityFactory.obj
          Release\Game.obj
+         Release\GameOverState.obj
          Release\GameStateManager.obj
          Release\Ground.obj
-         Release\GroundDrawableBehaviour.obj
-         Release\GroundObstacleDrawableBehavior.obj
+         Release\GroundObstacleSprite.obj
+         Release\GroundSprite.obj
+         Release\HelpMenu.obj
          Release\IGameState.obj
          Release\InputManager.obj
          Release\Level.obj
          Release\LevelFactory.obj
          Release\LTexture.obj
-         Release\PlayerDrawableBehaviour.obj
+         Release\PlantSprite.obj
+         Release\PlayerSprite.obj
+         Release\MenuBase.obj
+         Release\OptionMenu.obj
+         Release\PauseMenu.obj
+         Release\PlayerCollidableBehaviour.obj
+         Release\ShotGun.obj
+         Release\ShotgunSprite.obj
          Release\SoundBank.obj
          Release\SoundChunk.obj
+         Release\Sprite.obj
          Release\SpritesLoader.obj
+         Release\StaticDrawableBehaviour.obj
          Release\TileLoader.obj
          Release\main.obj
          Release\MainMenu.obj
@@ -86,11 +147,15 @@
          Release\SDLInitializer.obj
          Release\TestLevel.obj
          Release\Tile.obj
+         Release\TreeSprite.obj
+         Release\VictoryState.obj
+         Release\Weapon.obj
          Generating code
+     1>c:\users\jeroen\documents\github\project1\gamedev\gamedev\sprite.cpp(55): warning C4715: 'Sprite::GetAnimationFrame' : not all control paths return a value
          Finished generating code
          GameDev.vcxproj -> C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.exe
      1>Done Building Project "C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\GameDev.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:28.35
+Time Elapsed 00:00:40.23

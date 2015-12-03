@@ -9,15 +9,15 @@ CollidableBehaviour::CollidableBehaviour()
 
 CollidableBehaviour::~CollidableBehaviour()
 {
-}
 
+}
 CollidableBehaviour* CollidableBehaviour::EmptyClone()
 {
 	return new CollidableBehaviour();
 }
 void CollidableBehaviour::Hit(CollidableBehaviour* cb){
 
-	printf("Hit");
+	
 
 
 }

@@ -35,7 +35,7 @@ public:
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
 	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
 	SDL_Renderer* GetRenderer();
-
+	void ClearCamera();
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 private:
 	Camera* camera;
@@ -46,5 +46,6 @@ private:
 	std::unordered_map<EntityType, DrawableBehaviour*> registery;
 	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
 	std::unordered_map<EntityType, Sprite*> spriteRegistery;
+	std::vector<Sprite*> sprites;
 };
 

@@ -3,7 +3,7 @@
 
 
 
-EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor),bf(_bf), drawContainer(_drawContainer)
+EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor), bf(_bf), drawContainer(_drawContainer), entities(_ent)
 {
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
 		{ EntityType::ACTOR, new Actor() },
@@ -137,10 +137,24 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 
 EntityFactory::~EntityFactory()
 {
+	for (auto it = actorRegistery.begin(); it != actorRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+	
 	for (auto it = entityRegistery.begin(); it != entityRegistery.end(); ++it)
 	{
 		delete it->second;
 	}
+	for (auto it = weaponRegistery.begin(); it != weaponRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+	for (auto it = bulletRegistery.begin(); it != bulletRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
@@ -150,10 +164,14 @@ Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 }
 
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type){
+	
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateBody(x, y, height, width, type);
 
 	ent->Init(body, width, height, type, bf, drawContainer);
+
+
+	entities->push_back(ent);
 
 	return ent;
 }
@@ -187,8 +205,10 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 
 Player* EntityFactory::CreatePlayer(int _hitdmg, int _health, float x, float y, float height, float width, Player* _player) {
 	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER);
+
 	_player->InitActor(body, _hitdmg, _health, width, height, EntityType::PLAYER, bf, drawContainer);
-	actor->push_back(_player);
+
+
 
 	return _player;
 }

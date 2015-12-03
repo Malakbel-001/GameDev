@@ -30,7 +30,7 @@ private:
 	
 public:
 	MenuState();
-	GameStateManager* gsm;
+	
 
 	void Highlight(int);
 

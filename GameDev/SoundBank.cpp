@@ -114,7 +114,7 @@ void SoundBank::FreeMemory() {
 	std::unordered_map<SoundEffectType, SoundChunk*>::iterator iter = playingChunks.begin();
 	
 	playingChunks.clear(); //call destructor on every SoundChunk & clear playingChunks list
-
+	
 	//Mix_FreeChunk TODO needed or not??
 	//Mix_FreeMusic TODO needed or not??
 }

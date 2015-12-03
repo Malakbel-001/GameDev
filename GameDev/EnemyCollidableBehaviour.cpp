@@ -23,4 +23,5 @@ CollidableBehaviour* EnemyCollidableBehaviour::EmptyClone(){
 
 EnemyCollidableBehaviour::~EnemyCollidableBehaviour()
 {
+	
 }

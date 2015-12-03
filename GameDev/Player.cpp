@@ -8,7 +8,13 @@ Player::Player() {
 	score = 0;
 }
 
-Player::~Player() { }
+Player::~Player() { 
+	DeletePrevProp();
+	if (col){
+		delete col;
+		col = nullptr;
+	}
+}
 
 Actor* Player::EmptyClone()
 {
@@ -39,9 +45,11 @@ void Player::SwitchWeapon(int x){
 	}
 
 }
-void Player::DeleteWeapons() {
+void Player::DeletePrevProp() {
+
+	
 	for (auto weapon : weps) {
-		delete(weapon);
+		delete weapon;
 		weapon = nullptr;
 	}
 	weps.clear();

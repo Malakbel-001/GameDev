@@ -10,7 +10,6 @@ class GameOverState :
 {
 public:
 	GameOverState();
-	GameStateManager* gsm;
 
 	// Setup
 	bool InitEverything();

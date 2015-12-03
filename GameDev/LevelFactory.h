@@ -13,6 +13,7 @@ class LevelFactory
 public:
 	static Level* GetNextLevel(Level*, PlayState* play);
 	static Level* GetFirstLevel(PlayState* play);
+	static void DeletePointers();
 private:
 	LevelFactory();
 	~LevelFactory();

@@ -248,8 +248,7 @@ void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
 	{
-	case SDL_QUIT:
-		exit(0);
+	
 		break;
 		case SDL_MOUSEMOTION:
 		{hoverX = mainEvent.motion.x;

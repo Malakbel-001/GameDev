@@ -18,14 +18,18 @@ void LoadState::Init(GameStateManager* gsm) {
 	std::thread loadingThread(&LoadState::LoadPlayState,this);
 	loadingThread.detach();
 
+	BehaviourFactory* bf = gsm->GetBehaviour();
+	drawableContainer = new DrawableContainer();
+	bare = new BareEntity();
+	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer);
+
+
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
 
 	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
-	BehaviourFactory* bf = gsm->GetBehaviour();
-	drawableContainer = new DrawableContainer();
-	DrawableBehaviour* cheatLoad = bf->CreateDrawableBehaviour(EntityType::CHEATLOAD);
+	
 	//cheatLoad->LoadMedia();
-	drawableContainer->Add(cheatLoad);
+//	drawableContainer->Add(cheatLoad);
 
 	//Textures / Display Text Loading... and Press any key to Continue
 	TTF_Init(); //Init Font
@@ -86,6 +90,7 @@ void LoadState::Cleanup() {
 	delete drawableContainer;
 	drawableContainer = nullptr;
 
+	delete bare;
 	//Bugged. Uhhm? Maybe SDL deletes those pointers himself anyway?
 	/*delete loadingTexture;
 	delete finishedTexture;*/

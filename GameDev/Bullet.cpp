@@ -3,6 +3,7 @@
 
 Bullet::Bullet()
 {
+	col = nullptr;
 }
 
 Bullet* Bullet::EmptyClone(){

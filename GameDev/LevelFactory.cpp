@@ -3,7 +3,10 @@
 std::vector<Level*> LevelFactory::levels;
 LevelFactory::LevelFactory() { }
 	
-LevelFactory::~LevelFactory() { }
+LevelFactory::~LevelFactory() { 
+	
+
+}
 
 void LevelFactory::Init(PlayState* play)
 {
@@ -53,4 +56,10 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 	}
 	//level was not in levels list get te first level
 	return levels[0]->CreateLevel();
+}
+void LevelFactory::DeletePointers(){
+	for (auto it = levels.begin(); it != levels.end(); ++it)
+	{
+		delete *it;
+	}
 }

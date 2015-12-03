@@ -14,9 +14,7 @@ void ContactListener::BeginContact(b2Contact* contact){
 	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
 	CollidableBehaviour* beh = nullptr;
 	CollidableBehaviour* beh2 = nullptr;
-	if (bodyUserData == "aaaaa"){
-		printf("aaaaaaaaa");
-	}
+	
 	if (bodyUserData){
 		 beh = static_cast<CollidableBehaviour*>(bodyUserData);		
 	}

@@ -4,14 +4,16 @@
 Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
 {
+	entityFactory = nullptr;
 	player = nullptr;
 	startXpos = 100;
 	startYpos = 10;
 	actors = new std::vector<Actor*>();
 	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
-	world->SetContactListener(new ContactListener());
+	contact = new ContactListener();
+	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
-
+	entities = new std::vector<Entity*>();
 
 
 }
@@ -64,9 +66,9 @@ void Level::Update(float dt)
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
+				actors->operator[](x) = nullptr;
 				actors->erase(actors->begin() + x);
-				x--;
-
+			
 			}
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
@@ -82,8 +84,9 @@ Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
 	}
 	else {
 		player = entityFactory->CreatePlayer(0, 100, x, y, 15, 35, _player);
-		player->DeleteWeapons();
 		player->SetNumFootContacts(0);
+		player->DeletePrevProp();
+		
 	}
 	return player;
 }
@@ -99,9 +102,30 @@ DrawableContainer* Level::GetDrawableContainer()
 
 Level::~Level()
 {
+	delete contact;
 	delete world;
 	delete drawableContainer;
-	delete entityFactory;
+	if (entityFactory){
+		delete entityFactory;
+	}
+	for each (Actor* var in *actors)
+	{
+		if (var){
+			delete var;
+			var = nullptr;
+		}
+	}
+	delete actors;
+	for each (Entity* var in *entities)
+	{
+		if (var){
+			delete var;
+			var = nullptr;
+		}
+	}
+	delete entities;
+
+	
 }
 void Level::SetLvlWidth(int _lvlWidth)
 {

@@ -20,6 +20,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	screenWidth = screenwidth;
 	screenHeight = screenheight;
 	camera = new Camera(screenHeight, screenwidth);
+	sprites = std::vector<Sprite*>();
 
 	GroundSprite* groundSprite = new GroundSprite(renderer);
 	groundSprite->LoadMedia("grass.png");
@@ -66,6 +67,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	pinguinSprite->LoadMedia("pinguin.png");
 	pinguinSprite->SetAnimationSet(EntityState::IDLE);
 
+	//leaks 
 	TreeSprite* treeSprite = new TreeSprite(renderer);
 	treeSprite->LoadMedia("tree.png");
 
@@ -76,6 +78,22 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	snowman->LoadMedia("yeti.png");
 	snowman->SetAnimationSet(EntityState::IDLE);
 
+	sprites.push_back(snowman);
+	sprites.push_back(groundSprite);
+	sprites.push_back(groundobstacleSprite);
+	sprites.push_back(barobstacleSprite);
+	sprites.push_back(plantSprite);
+	sprites.push_back(plantBossSprite);
+	sprites.push_back(acornSprite);
+	sprites.push_back(playerSprite);
+	sprites.push_back(healthSprite);
+	sprites.push_back(bulletSprite);
+	sprites.push_back(ammoSprite);
+	sprites.push_back(gun);
+	sprites.push_back(groundlvl2Sprite);
+	sprites.push_back(pinguinSprite); 
+	sprites.push_back(treeSprite);
+	sprites.push_back(shotgun);
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -89,11 +107,13 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, shotgun, screenWidth, screenHeight) },
 		{ EntityType::BULLET, new StaticDrawableBehaviour(renderer, bulletSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
-		{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
+	//	{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
 	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
 		{ EntityType::SNOWMAN, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
+		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) }
+
 	};
 
 	
@@ -116,6 +136,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 }
 
 
+
 SDL_Renderer* BehaviourFactory::GetRenderer(){
 	return renderer;
 }
@@ -123,7 +144,30 @@ SDL_Renderer* BehaviourFactory::GetRenderer(){
 
 BehaviourFactory::~BehaviourFactory()
 {
+	for each(auto var in sprites){
+		delete var;
+	}
+
+	for each (auto var in registery)
+	{
+	
+		delete (var.second);
+
+	}
 	registery.clear();
+
+	for each (auto var in collideRegistery)
+	{
+		delete var.second;
+
+	}
+	collideRegistery.clear();
+	delete camera;
+
+
+
+
+
 }
 
 DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
@@ -138,7 +182,9 @@ CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type
 	CollidableBehaviour* behaviour = collideRegistery.at(type)->EmptyClone();
 	return behaviour;
 }
-
+void BehaviourFactory::ClearCamera(){
+	camera->Init(nullptr, 0, 0);
+}
 void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
 	camera->Init(player, levelWidth, levelheight);
 }

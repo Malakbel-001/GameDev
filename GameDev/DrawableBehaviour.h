@@ -32,7 +32,7 @@ protected:
 public:
 	DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight);
 	virtual ~DrawableBehaviour();
-
+	Sprite* GetSprite();
 		void SetEntity(Object* _entity);
 		Object* GetEntity();
 		virtual DrawableBehaviour* EmptyClone();
