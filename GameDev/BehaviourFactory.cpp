@@ -74,6 +74,11 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	ShotgunSprite* shotgun = new ShotgunSprite(renderer);
 	shotgun->LoadMedia("shotgun.png");
 
+	SnowmanSprite* snowman = new SnowmanSprite(renderer);
+	snowman->LoadMedia("yeti.png");
+	snowman->SetAnimationSet(EntityState::IDLE);
+
+	sprites.push_back(snowman);
 	sprites.push_back(groundSprite);
 	sprites.push_back(groundobstacleSprite);
 	sprites.push_back(barobstacleSprite);
@@ -106,6 +111,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
+		{ EntityType::SNOWMAN, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
 		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) }
 
 	};
@@ -121,7 +127,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PINGUIN, new EnemyCollidableBehaviour() },
 		{ EntityType::HEALTH, new HealthCollidableBehaviour() },
 		{ EntityType::AMMO, new AmmoCollidableBehaviour() },
-	//	{ EntityType::JUMP, new JumpSensorCollidableBehaviour()}
+		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
+		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 	};
 
 

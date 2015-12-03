@@ -20,6 +20,7 @@
 #include "GroundLvl2Sprite.h"
 #include "PinguinSprite.h"
 #include "TreeSprite.h"
+#include "SnowmanSprite.h"
 
 
 class Camera;

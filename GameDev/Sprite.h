@@ -19,6 +19,8 @@ public:
 	bool LoadMedia(std::string path);
 	float GetXOffSet();
 	float GetYOffSet();
+	float GetFrameYOffSet(int frame);
+	float GetFrameXOffSet(int frame);
 protected:
 	virtual void SetAnimations();
 	std::vector<SDL_Rect>* currentSprites;
@@ -37,5 +39,7 @@ protected:
 	std::vector<SDL_Rect>* idleSprites;
 	std::vector<SDL_Rect>* walkSprites;
 	std::vector<SDL_Rect>* dyingSprites;
+	std::vector<float>* spriteXOffset;
+	std::vector<float>* spriteYOffset;
 };
 

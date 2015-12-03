@@ -15,6 +15,8 @@ Sprite::Sprite(SDL_Renderer* _renderer)
 	idleSprites = new std::vector<SDL_Rect>();
 	walkSprites = new std::vector<SDL_Rect>();
 	dyingSprites = new std::vector<SDL_Rect>();
+	spriteYOffset = new std::vector<float>();
+	spriteXOffset = new std::vector<float>();
 
 }
 
@@ -41,6 +43,24 @@ float Sprite::GetXOffSet(){
 }
 float Sprite::GetYOffSet(){
 	return yOffSet;
+}
+
+float Sprite::GetFrameYOffSet(int frame){
+	if (spriteYOffset->size() > 0){
+		return spriteYOffset->at(frame);
+	}
+	else {
+		return 0;
+	}
+}
+
+float Sprite::GetFrameXOffSet(int frame){
+	if (spriteXOffset->size() > 0){
+		return spriteXOffset->at(frame);
+	}
+	else {
+		return 0;
+	}
 }
 
 SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)

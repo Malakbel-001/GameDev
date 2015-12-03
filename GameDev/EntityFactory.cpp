@@ -15,7 +15,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::ACORN, new Acorn() },
 		{ EntityType::PINGUIN, new Npc() },
 		{ EntityType::HEALTH, new Actor()},
-		{ EntityType::AMMO, new Actor() }
+		{ EntityType::AMMO, new Actor() },
+		{ EntityType::SNOWMAN, new Npc() },
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -99,6 +100,13 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	AcornDef.type = b2BodyType::b2_dynamicBody;
 	AcornDef.bullet = true;
 
+	b2BodyDef SnowmanDef = b2BodyDef();
+	SnowmanDef.gravityScale = 1;
+	SnowmanDef.fixedRotation = true;
+	SnowmanDef.linearDamping = 0.5f;
+	SnowmanDef.angularDamping = 1;
+	SnowmanDef.type = b2BodyType::b2_dynamicBody;
+
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
 		{ EntityType::ENTITY, entDef },
 		{ EntityType::ACTOR, ActorDef },
@@ -110,20 +118,21 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::GROUND2, entDef },
 		{ EntityType::BAR, entDef },
 
-		{ EntityType::BULLET,Bullet },
+		{ EntityType::BULLET, Bullet },
 		{ EntityType::HEALTH, Health },
-		{ EntityType::AMMO,Ammo },
+		{ EntityType::AMMO, Ammo },
 		{ EntityType::ACORN, AcornDef },
 		//level2
 		{ EntityType::GROUNDLVL2, entDef },
 		{ EntityType::PINGUIN, PlantDef },
+		{ EntityType::SNOWMAN, SnowmanDef },
 	};
-
-	npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
-		{ EntityType::PLANT,		new NpcStatsContainer(25, 50, 100, 40, 45) },
-		{ EntityType::PLANTBOSS,	new NpcStatsContainer(50, 500, 1000, 100, 100) },
-		{ EntityType::PINGUIN,		new NpcStatsContainer(34, 75, 200, 24, 36) }
-	};
+		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
+			{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
+			{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
+			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
+			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
+		};
 }
 
 EntityFactory::~EntityFactory()
