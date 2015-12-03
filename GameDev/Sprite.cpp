@@ -3,6 +3,10 @@
 
 Sprite::Sprite(SDL_Renderer* _renderer)
 {
+	idleSprites = nullptr;
+	walkSprites = nullptr;
+	dyingSprites = nullptr;
+	spriteSheetTexture = nullptr;
 	xOffSet = 0;
 	yOffSet = 0;
 	renderer = _renderer;
@@ -29,6 +33,7 @@ Sprite::~Sprite()
 		delete dyingSprites;
 		dyingSprites = nullptr;
 	}
+	delete spriteSheetTexture;
 
 }
 float Sprite::GetXOffSet(){

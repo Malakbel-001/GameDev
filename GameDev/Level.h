@@ -20,7 +20,7 @@ private:
 
 	float startXpos;
 	float startYpos;
-
+	b2ContactListener* contact;
 protected:
 	int levelId;
 	EntityFactory* entityFactory;

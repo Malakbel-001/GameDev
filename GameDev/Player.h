@@ -25,9 +25,9 @@ class Player :
 		virtual void AddWeapon(Weapon* wep);
 		virtual Weapon* GetCurrentWeapon();
 		bool ContainsWeapons();
-		void DeleteWeapons();
+		
 		virtual void SwitchWeapon(int x);
-
+		void DeletePrevProp();
 		void AddScore(int addScore);
 		int GetScore();
 };

@@ -24,6 +24,7 @@ class GameStateManager
 		void PushGameStateOnly(IGameState* gameState);
 		void PopState();
 		void CreateGameState(GameStateType state);
+		void PopPrevState();
 		IGameState* GetNewState(GameStateType state);
 		IGameState* GetCurrentState();
 		IGameState* GetPreviousState();

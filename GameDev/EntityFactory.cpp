@@ -128,10 +128,24 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 EntityFactory::~EntityFactory()
 {
+	for (auto it = actorRegistery.begin(); it != actorRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+	
 	for (auto it = entityRegistery.begin(); it != entityRegistery.end(); ++it)
 	{
 		delete it->second;
 	}
+	for (auto it = weaponRegistery.begin(); it != weaponRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+	for (auto it = bulletRegistery.begin(); it != bulletRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+
 }
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 	Weapon* wep = weaponRegistery.at(type)->EmptyClone();
@@ -160,7 +174,7 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _healt, float x, float y, floa
 Player* EntityFactory::CreatePlayer(int _hitdmg, int _healt, float x, float y, float height, float width, Player* _player) {
 	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER);
 	_player->InitActor(body, _hitdmg, _healt, width, height, EntityType::PLAYER, bf, drawContainer);
-	actor->push_back(_player);
+	
 
 	return _player;
 }

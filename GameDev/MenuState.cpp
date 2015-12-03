@@ -118,6 +118,10 @@ void MenuState::SetupRenderer()
 
 MenuState::~MenuState()
 {
+	delete mainMenu;
+	delete helpMenu;
+	delete creditMenu;
+	delete optionMenu;
 }
 
 void MenuState::Cleanup(){

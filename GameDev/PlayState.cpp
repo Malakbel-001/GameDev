@@ -10,6 +10,7 @@ void PlayState::Init(GameStateManager* gsm)
 	player = new Player();
 	
 	
+	
 	background = LTexture();
 	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
 	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
@@ -287,12 +288,14 @@ Player* PlayState::GetPlayer()
 
 void PlayState::Cleanup()
 {
+	gsm->GetBehaviour()->ClearCamera();
 	delete player;
 	
 	delete currentLevel;
 
 	delete hud;
 
+	
 	player = nullptr;
 
 	currentLevel = nullptr;

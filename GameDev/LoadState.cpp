@@ -18,14 +18,15 @@ void LoadState::Init(GameStateManager* gsm) {
 	std::thread loadingThread(&LoadState::LoadPlayState,this);
 	loadingThread.detach();
 
-	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
-
-	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	drawableContainer = new DrawableContainer();
 	bare = new BareEntity();
-	bare->Init(0, 0, 0, EntityState::WALKINGRIGHT, EntityType::PLAYER, bf, drawableContainer);
+	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer);
 
+
+	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
+
+	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
 	
 	//cheatLoad->LoadMedia();
 //	drawableContainer->Add(cheatLoad);

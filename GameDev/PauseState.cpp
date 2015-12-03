@@ -110,6 +110,11 @@ void PauseState::SetupRenderer()
 
 PauseState::~PauseState()
 {
+	delete pauseMenu;
+	
+	delete helpMenu;
+	delete creditMenu;
+	delete optionMenu;
 }
 
 void PauseState::Cleanup(){
@@ -150,9 +155,12 @@ void PauseState::updateMenu(MenuEnum menu){
 		PreviousMenu = nullptr;
 		break;
 	case MenuEnum::Main:
-		gsm->PopState();
-		gsm->ChangeGameState();
+		gsm->PopPrevState();
 		PreviousMenu = nullptr;
+		gsm->PopState();
+//		gsm->ChangeGameState();
+		
+	
 		break;
 	case MenuEnum::Help:
 		currentMenu = helpMenu;

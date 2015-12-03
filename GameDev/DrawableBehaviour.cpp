@@ -15,6 +15,7 @@ DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite
 
 DrawableBehaviour::~DrawableBehaviour()
 {
+	
 }
 
 DrawableBehaviour* DrawableBehaviour::EmptyClone()

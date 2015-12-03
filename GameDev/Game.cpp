@@ -20,12 +20,16 @@ Game::Game()
 	this->GameLoop();
 
 	gsm->Cleanup();
+	
 }
 
 Game::~Game()
 {
+	
+	delete inputManager;
 	delete bf;
 	delete gsm;
+	LevelFactory::DeletePointers();
 	if (sdlInitializer)
 		delete sdlInitializer;
 }

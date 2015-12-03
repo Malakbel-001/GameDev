@@ -69,22 +69,30 @@ void GameStateManager::PushGameState(IGameState* gameState)
 }
 
 void GameStateManager::PushGameStateOnly(IGameState* gameState) {
-	states.pop_back(); //pop loadState
+	IGameState* a = states.back();
+		states.pop_back(); //pop loadState
+		delete a;
 	states.push_back(gameState);
 }
-
+void GameStateManager::PopPrevState(){
+	if (states.size() > 1){
+		IGameState* a = states[states.size() - 2];
+		states.erase(states.end() -2);
+		delete a;
+	}
+}
 void GameStateManager::PopState()
 {
 	if (!states.empty())
 	{
-		states.back()->Cleanup();
+		IGameState* a = states.back();
+		//states.back()->Cleanup();
+		
 		states.pop_back();
+		delete a;
 	}
 
-	if (!states.empty())
-	{
-		states.back()->Resume();
-	}
+	
 }
 
 
