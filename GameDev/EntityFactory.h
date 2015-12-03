@@ -12,6 +12,7 @@
 #include "Weapon.h"
 #include "Shotgun.h"
 #include "Acorn.h"
+#include "NpcStatsContainer.h"
 
 class EntityFactory
 {
@@ -20,10 +21,11 @@ public:
 	~EntityFactory();
 	Entity* CreateEntity(float x, float y, float height, float width, EntityType type);
 	Actor* CreateActor(int _hitdmg, int _healt, float x, float y, float height, float width, EntityType type);
+	Actor* CreateActor(float x, float y, EntityType type);
 	Player* CreatePlayer(int _hitdmg, int _healt, float x, float y, float height, float width, Player* _player);
 	Bullet* CreateBullet(float x, float y, int width, int height, int dmg, b2Vec2 direction, EntityType type);
 	b2Body* CreateActorBody(float x, float y, float height, float width, float den, EntityType type);
-	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);	
+	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);
 	Weapon* CreateWeapon(float x, float y, EntityType type);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
@@ -35,6 +37,7 @@ private:
 	std::unordered_map<EntityType, Actor*> actorRegistery;
 	std::unordered_map<EntityType, b2BodyDef > bodyRegistery;
 	std::unordered_map<EntityType, Bullet* > bulletRegistery;
+	std::unordered_map<EntityType, NpcStatsContainer*> npcStatsRegistery;
 
 	b2World& world;
 	std::vector<Actor*>* actor;

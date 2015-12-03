@@ -28,6 +28,6 @@ class Player :
 		void DeleteWeapons();
 		virtual void SwitchWeapon(int x);
 
-		void AddScore(int addScore);
+		void AddScore(int _score);
 		int GetScore();
 };
