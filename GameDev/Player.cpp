@@ -5,7 +5,7 @@ Player::Player() {
 	currentWep = nullptr;
 	currentwep = 0;
 	weps = vector<Weapon*>();
-
+	score = 0;
 }
 
 Player::~Player() { }
@@ -28,6 +28,9 @@ Weapon* Player::GetCurrentWeapon(){
 	weps.at(currentwep)->SetShouldDraw(true);
 	return weps.at(currentwep);
 }
+bool Player::ContainsWeapons() {
+	return !weps.empty();
+}
 void Player::SwitchWeapon(int x){
 	if ((x < weps.size())){
 		weps.at(currentwep)->SetShouldDraw(false);
@@ -36,8 +39,20 @@ void Player::SwitchWeapon(int x){
 	}
 
 }
-
+void Player::DeleteWeapons() {
+	for (auto weapon : weps) {
+		delete(weapon);
+		weapon = nullptr;
+	}
+	weps.clear();
+}
 b2Body* Player::GetBody()
 {
 	return body;
+}
+void Player::AddScore(int _score) {
+	score = score + _score;
+}
+int Player::GetScore() {
+	return score;
 }

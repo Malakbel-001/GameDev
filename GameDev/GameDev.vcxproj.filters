@@ -221,7 +221,7 @@
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
     <ClCompile Include="HUD.cpp">
-      <Filter>Source Files\Model\Head-Up Display</Filter>
+      <Filter>Source Files\View\Head-Up Display</Filter>
     </ClCompile>
     <ClCompile Include="Level2.cpp">
       <Filter>Source Files\Model\Level</Filter>
@@ -240,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="SnowmanSprite.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NpcStatsContainer.cpp">
+      <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -487,7 +490,7 @@
       <Filter>Header Files\Model\Behaviour\Drawables</Filter>
     </ClInclude>
     <ClInclude Include="HUD.h">
-      <Filter>Header Files\Model\Head-Up Display</Filter>
+      <Filter>Header Files\View\Head-Up Display</Filter>
     </ClInclude>
     <ClInclude Include="Level2.h">
       <Filter>Header Files\Model\Level</Filter>
@@ -506,6 +509,9 @@
     </ClInclude>
     <ClInclude Include="SnowmanSprite.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NpcStatsContainer.h">
+      <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -629,11 +635,11 @@
     <Filter Include="Header Files\Model\SettingsConfig">
       <UniqueIdentifier>{5ac628fe-24d8-4e2d-a1c4-3cb2e2314dae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Model\Head-Up Display">
-      <UniqueIdentifier>{d2b93fba-94de-4caa-909e-692c7e0d5a61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Head-Up Display">
+    <Filter Include="Header Files\View\Head-Up Display">
       <UniqueIdentifier>{c83f70bf-899f-41e1-bd79-f60603635acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\Head-Up Display">
+      <UniqueIdentifier>{d2b93fba-94de-4caa-909e-692c7e0d5a61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

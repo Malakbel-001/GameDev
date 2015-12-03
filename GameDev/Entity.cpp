@@ -12,8 +12,6 @@ void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, 
 	body = _body;
 	width = _width;
 	height = _height;
-	
-	
 }
 
 Entity::~Entity()
@@ -53,4 +51,14 @@ Entity* Entity::EmptyClone()
 }
 b2Body* Entity::GetBody(){
 	return body;
+}
+
+void Entity::SetScore(int _score) {
+	//implement in NPC
+	//score = _score;
+}
+
+int Entity::GetScore() {
+	//implement in NPC
+	return 0; //score
 }

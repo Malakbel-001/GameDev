@@ -86,7 +86,7 @@ void HUD::DrawAmmo() {
 	//Draw AmmoCounter / Amount
 	std::string ammo = std::to_string(player->GetCurrentWeapon()->GetAmmo());
 
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, ammo.c_str(), Color(0, 0, 0, 255)); //temp until I can get to ammo counter
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, ammo.c_str(), Color(0, 0, 0, 255));
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { ammoRect.x, ammoRect.y + ammoRect.h + 5, counterSurface->w, counterSurface->h };
 
@@ -105,7 +105,9 @@ void HUD::DrawScore() {
 	SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
 
 	//Draw ScoreCounter / Amount
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, "0", Color(0, 0, 0, 255)); //temp until I can get to ammo counter
+	std::string score = std::to_string(player->GetScore());
+
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, score.c_str(), Color(0, 0, 0, 255));
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { scoreRect.x, scoreRect.y + scoreRect.h + 5, counterSurface->w, counterSurface->h };
 

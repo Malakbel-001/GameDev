@@ -5,9 +5,7 @@
 
 EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor),bf(_bf), drawContainer(_drawContainer)
 {
-
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
-
 		{ EntityType::ACTOR, new Actor() },
 		{ EntityType::NPC, new Npc() },
 		{ EntityType::PLAYER, new Player() },
@@ -19,8 +17,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::HEALTH, new Actor()},
 		{ EntityType::AMMO, new Actor() },
 		{ EntityType::SNOWMAN, new Npc() },
-
 	};
+
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
@@ -29,18 +27,18 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 
 		//level2
 		{ EntityType::GROUNDLVL2, new Ground() },
-
-		
 	};
+
 	weaponRegistery = std::unordered_map < EntityType, Weapon* > {
-			{EntityType::WEAPON, new Weapon()},
-			{ EntityType::SHOTGUN, new ShotGun()},
+			{ EntityType::WEAPON, new Weapon() },
+			{ EntityType::SHOTGUN, new ShotGun() },
 	};
 
 	bulletRegistery = std::unordered_map < EntityType, Bullet* > {
-			{EntityType::BULLET ,new Bullet()}
+			{ EntityType::BULLET ,new Bullet() }
 
 	};
+	
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
 	entDef.fixedRotation = true;
@@ -93,7 +91,6 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 	Ammo.angularDamping = 1;
 	Ammo.type = b2BodyType::b2_dynamicBody;
 
-
 	
 	b2BodyDef AcornDef = b2BodyDef();
 	AcornDef.gravityScale = 0.01;
@@ -121,15 +118,21 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::GROUND2, entDef },
 		{ EntityType::BAR, entDef },
 
-		{EntityType::BULLET,Bullet},
+		{ EntityType::BULLET, Bullet },
 		{ EntityType::HEALTH, Health },
-		{EntityType::AMMO,Ammo},
+		{ EntityType::AMMO, Ammo },
 		{ EntityType::ACORN, AcornDef },
 		//level2
 		{ EntityType::GROUNDLVL2, entDef },
 		{ EntityType::PINGUIN, PlantDef },
 		{ EntityType::SNOWMAN, SnowmanDef },
 	};
+		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
+			{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
+			{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
+			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
+			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
+		};
 }
 
 EntityFactory::~EntityFactory()
@@ -139,29 +142,57 @@ EntityFactory::~EntityFactory()
 		delete it->second;
 	}
 }
+
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 	Weapon* wep = weaponRegistery.at(type)->EmptyClone();
 	wep->Init(x, y, 0, EntityState::IDLE, type, bf, drawContainer);
 	return wep;
 }
+
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type){
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateBody(x, y, height, width, type);
 
 	ent->Init(body, width, height, type, bf, drawContainer);
 
-
 	return ent;
 }
 
-Actor* EntityFactory::CreateActor(int _hitdmg,int _healt, float x, float y, float height, float width, EntityType type){
+//temporarily still here
+Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, float height, float width, EntityType type){
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateActorBody(x, y, height, width,1, type);
-	ent->InitActor(body, _hitdmg, _healt, width, height, type, bf, drawContainer);
+	ent->InitActor(body, _hitdmg, _health, width, height, type, bf, drawContainer);
 	actor->push_back(ent);
 
 	return ent;
 }
+
+Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
+	Actor* ent = actorRegistery.at(type)->EmptyClone();
+	if (npcStatsRegistery.find(type) == npcStatsRegistery.end()) { //error handling, avoid crashing
+		std::cout << "Actor: " << "[insert EntityType here] " << "is not found in the npcStatsRegistery - CreateActor!" << std::endl;
+	}
+	else {
+		NpcStatsContainer* npcStats = npcStatsRegistery.at(type);
+		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
+		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
+			, type, bf, drawContainer);
+		ent->SetScore(npcStats->GetScore());
+		actor->push_back(ent);
+	}
+
+	return ent;
+}
+
+Player* EntityFactory::CreatePlayer(int _hitdmg, int _health, float x, float y, float height, float width, Player* _player) {
+	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER);
+	_player->InitActor(body, _hitdmg, _health, width, height, EntityType::PLAYER, bf, drawContainer);
+	actor->push_back(_player);
+
+	return _player;
+}
+
 Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int dmg,b2Vec2 direction, EntityType type){
 	Bullet* bullet = bulletRegistery.at(type)->EmptyClone();
 	bullet->InitActor(CreateBody(x*10 -10, y*10 -10, height, width,500, type), dmg,1, width, height, type, bf, drawContainer);
@@ -169,9 +200,10 @@ Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int d
 	actor->push_back(bullet);
 	 return bullet;
 }
+
 b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type){
 	b2PolygonShape boxShape;
-	//transalte pixels -> units
+	//translate pixels -> units
 
 	height = height / 2;
 	width = width / 2;
@@ -204,9 +236,9 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	*/
 	return b2body;
 }
+
 b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, float den,EntityType type)
 {
-
 	b2PolygonShape boxShape;
 	//transalte pixels -> units
 
@@ -234,19 +266,11 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, f
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 
 	return b2body;
-
 }
 b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, EntityType type)
 {
-
-
-
-	
-
-
-
 	b2PolygonShape boxShape;
-	//transalte pixels -> units
+	//translate pixels -> units
 
 	height = height / 2;
 	width = width / 2;
@@ -263,10 +287,7 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, E
 
 	boxFixtureDef.density = 1;
 
-
-
-
-
+	///////////////////////////////////////////////
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	
 	bodydef.position.Set(x*Ratio, y*Ratio);
@@ -275,5 +296,4 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, E
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 	
 	return b2body;
-
 }

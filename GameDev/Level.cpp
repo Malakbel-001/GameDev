@@ -60,6 +60,7 @@ void Level::Update(float dt)
 					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
 			
 				}
+				player->AddScore(actors->operator[](x)->GetScore());
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
@@ -75,19 +76,16 @@ void Level::Update(float dt)
 }
 
 #pragma region Get, Set
-Player* Level::SetPlayer(Player* _player)
-{
-	//	player = _player;
-	player = dynamic_cast<Player*>(entityFactory->CreateActor(0,100,20, 100, 15, 35, EntityType::PLAYER));
-
-	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
-	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
-	shot->Pickup(player, b2Vec2(1000, 0));	
-	player->AddWeapon(wep);
-	player->AddWeapon(shot);
+Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
+	if (!_player->GetBody() != NULL) {
+		player = dynamic_cast<Player*>(entityFactory->CreateActor(0, 100, x, y, 15, 35, EntityType::PLAYER));
+	}
+	else {
+		player = entityFactory->CreatePlayer(0, 100, x, y, 15, 35, _player);
+		player->DeleteWeapons();
+		player->SetNumFootContacts(0);
+	}
 	return player;
-
 }
 Player* Level::GetPlayer()
 {
@@ -132,11 +130,6 @@ EntityFactory* Level::GetEntityFactory(){
 int Level::GetLvlWidth()
 {
 	return this->lvlWidth;
-}
-Level* Level::CreateLevel()
-{
-
-	return new Level(lvlWidth, lvlHeight, playState);
 }
 
 void Level::GameOver()
