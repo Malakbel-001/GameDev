@@ -169,6 +169,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer);
+		ent->SetScore(npcStats->GetScore());
 		actor->push_back(ent);
 	}
 
