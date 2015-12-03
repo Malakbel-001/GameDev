@@ -8,7 +8,7 @@
 #include "rapidJSON\document.h"
 #include "Game.h"
 #include "MainMenu.h"
-#include <vld.h>
+
 
 int main(int argc, char* argv[])
 {
