@@ -27,7 +27,11 @@ class Player :
 		bool ContainsWeapons();
 		
 		virtual void SwitchWeapon(int x);
+
 		void DeletePrevProp();
-		void AddScore(int addScore);
+
+
+		void AddScore(int _score);
+
 		int GetScore();
 };

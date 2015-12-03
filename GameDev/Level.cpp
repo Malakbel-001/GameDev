@@ -62,6 +62,7 @@ void Level::Update(float dt)
 					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
 			
 				}
+				player->AddScore(actors->operator[](x)->GetScore());
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);

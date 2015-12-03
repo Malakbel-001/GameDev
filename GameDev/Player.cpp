@@ -58,6 +58,9 @@ b2Body* Player::GetBody()
 {
 	return body;
 }
-void Player::AddScore(int addScore) {
-	score = score + addScore;
+void Player::AddScore(int _score) {
+	score = score + _score;
+}
+int Player::GetScore() {
+	return score;
 }
