@@ -40,6 +40,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 			{EntityType::BULLET ,new Bullet()}
 
 	};
+	
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
 	entDef.fixedRotation = true;
@@ -124,6 +125,12 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor , Beh
 		{ EntityType::PINGUIN, PlantDef },
 
 	};
+
+	scoreRegistery = std::unordered_map < EntityType, int > {
+		{ EntityType::PLANT, 100 },
+		{ EntityType::PLANTBOSS, 1000 },
+		{ EntityType::PINGUIN, 200 }
+	};
 }
 
 EntityFactory::~EntityFactory()
@@ -153,6 +160,9 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _healt, float x, float y, floa
 	b2Body* body = CreateActorBody(x, y, height, width,1, type);
 	ent->InitActor(body, _hitdmg, _healt, width, height, type, bf, drawContainer);
 	actor->push_back(ent);
+	if (scoreRegistery.find(type) != scoreRegistery.end()) {
+		ent->SetScore(scoreRegistery.at(type));
+	}
 
 	return ent;
 }
@@ -172,7 +182,7 @@ Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int d
 }
 b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type){
 	b2PolygonShape boxShape;
-	//transalte pixels -> units
+	//translate pixels -> units
 
 	height = height / 2;
 	width = width / 2;
@@ -247,7 +257,7 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, E
 
 
 	b2PolygonShape boxShape;
-	//transalte pixels -> units
+	//translate pixels -> units
 
 	height = height / 2;
 	width = width / 2;
