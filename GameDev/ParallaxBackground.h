@@ -10,6 +10,9 @@ class ParallaxBackground {
 		LTexture* firstLayer;
 		LTexture* lastLayer;
 
+		float scrollingSpeedFirstLayer;
+		float scrollingSpeedLastLayer;
+
 		int screenWidth;
 		int screenHeight;
 		int xOffset;

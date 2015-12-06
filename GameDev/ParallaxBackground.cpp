@@ -38,15 +38,12 @@ void ParallaxBackground::SetSettings(int _yOffset) {
 }
 
 void ParallaxBackground::Draw() {
-	//x = 250
-	//
 	int drawPosition = 0;
 
 	while (drawPosition - camera->GetX() < screenWidth) {
-		cout << "D:" << drawPosition << "math: " << drawPosition - camera->GetX() << endl;
+		cout << "D:" << drawPosition << " X: " << drawPosition - camera->GetX() << endl;
 		SDL_Rect bgRect = { 0, 0, firstLayer->getWidth(), firstLayer->getHeight() };
 		if (drawPosition - camera->GetX() > 0) { //draw one more to the left side if condition check, NOT WORKING YET!
-			cout << "inside" << endl;
 			SDL_Rect leftRect = bgRect; //copy
 
 			firstLayer->render(renderer, -camera->GetX() + drawPosition - firstLayer->getWidth(), yOffset, 0, &leftRect);
