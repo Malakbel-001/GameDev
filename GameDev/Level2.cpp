@@ -82,6 +82,7 @@ Level* Level2::CreateLevel()
 void Level2::SetParallaxBackground(SDL_Renderer* renderer) {
 	parallaxBackground = new ParallaxBackground(renderer);
 	parallaxBackground->LoadMedia("Resources\backgrounds\game\level2.jpg", "Resources\backgrounds\game\level2.jpg");
+	parallaxBackground->SetSettings(0);
 }
 
 void Level2::SetBackgroundLayers() {

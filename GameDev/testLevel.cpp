@@ -96,6 +96,7 @@ Level* TestLevel::CreateLevel()
 void TestLevel::SetParallaxBackground(SDL_Renderer* renderer) {
 	parallaxBackground = new ParallaxBackground(renderer);
 	parallaxBackground->LoadMedia("Resources/backgrounds/game/level1.jpg", "Resources/backgrounds/game/level1.jpg");
+	parallaxBackground->SetSettings(-200);
 }
 
 void TestLevel::SetBackgroundLayers() {

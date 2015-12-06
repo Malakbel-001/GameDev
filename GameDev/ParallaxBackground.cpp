@@ -4,8 +4,8 @@
 ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer) {
 	renderer = _renderer;
 	//sets screenWidth and screenHeight, dynamically
-	screenWidth = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->w;
-	screenHeight = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->h;
+	screenWidth = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->w; //temporary solution!
+	screenHeight = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->h; //temporary solution!
 
 	firstLayer = new LTexture();
 	lastLayer = new LTexture();
@@ -30,6 +30,10 @@ void ParallaxBackground::LoadMedia(char* pathFirstLayer, char* pathLastLayer) {
 	//lastLayer->loadFromFile(renderer, pathLastLayer);
 }
 
+void ParallaxBackground::SetSettings(int _yOffset) {
+	yOffset = _yOffset;
+}
+
 void ParallaxBackground::SetCamera(Camera* _camera) {
 	camera = _camera;
 }
@@ -37,8 +41,15 @@ void ParallaxBackground::SetCamera(Camera* _camera) {
 void ParallaxBackground::Draw() {
 	//x = 250
 	//
+	int drawPosition = 0;
 
-
-	SDL_Rect bgRect = { camera->GetX(), 0, firstLayer->getWidth(), firstLayer->getHeight() };
-	firstLayer->render(renderer, camera->GetX(), 0, 1, &bgRect);
+	while (drawPosition < screenWidth) {
+		SDL_Rect bgRect = { 0, 0, firstLayer->getWidth(), firstLayer->getHeight() };
+		if (-camera->GetX() + drawPosition < 0) { //draw one more to the left side if condition check, NOT WORKING YET!
+			SDL_Rect leftRect = bgRect; //copy
+			firstLayer->render(renderer, -camera->GetX() + drawPosition - firstLayer->getWidth(), yOffset, 0, &leftRect);
+		}
+		firstLayer->render(renderer, -camera->GetX() + drawPosition, yOffset, 0, &bgRect);
+		drawPosition = drawPosition + firstLayer->getWidth();
+	}
 }
