@@ -247,7 +247,9 @@ void PlayState::Update(float dt)
 void PlayState::Draw()
 {
 
-	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
+	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
+
+	currentLevel->GetParallaxBackGround()->Draw();
 
 	currentLevel->GetDrawableContainer()->Draw();
 
@@ -268,13 +270,15 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	}
 	this->currentLevel = lvl;
 	this->currentLevel->Init(bf);
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
+	/*background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
 	backgroundRect.h = background.getHeight() + 100;
 	backgroundRect.w = background.getWidth();
 	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	backgroundRect.y = 0;*/
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
+	this->currentLevel->SetParallaxBackground(gsm->GetBehaviour()->GetRenderer());
+	this->currentLevel->GetParallaxBackGround()->SetCamera(bf->GetCamera()); //temp solution
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }

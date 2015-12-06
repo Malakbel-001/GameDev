@@ -244,6 +244,9 @@
     <ClCompile Include="NpcStatsContainer.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="ParallaxBackground.cpp">
+      <Filter>Source Files\View\Parallax Background</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -513,6 +516,9 @@
     <ClInclude Include="NpcStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="ParallaxBackground.h">
+      <Filter>Header Files\View\Parallax Background</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -640,6 +646,12 @@
     </Filter>
     <Filter Include="Source Files\View\Head-Up Display">
       <UniqueIdentifier>{d2b93fba-94de-4caa-909e-692c7e0d5a61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\Parallax Background">
+      <UniqueIdentifier>{1d934314-e830-4b21-94fb-46dfced61765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\Parallax Background">
+      <UniqueIdentifier>{a7dd8566-00e0-40fa-986c-e88257e9eee4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -37,6 +37,7 @@ public:
 	SDL_Renderer* GetRenderer();
 	void ClearCamera();
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
+	Camera* GetCamera(); //temp cheat mode!
 private:
 	Camera* camera;
 

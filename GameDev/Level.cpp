@@ -14,8 +14,6 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
 	entities = new std::vector<Entity*>();
-
-
 }
 
 void Level::Init(BehaviourFactory* bf)

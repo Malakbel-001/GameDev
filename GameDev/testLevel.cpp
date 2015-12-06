@@ -90,9 +90,17 @@ TestLevel::~TestLevel()
 
 Level* TestLevel::CreateLevel()
 {
-
 	return new TestLevel(lvlWidth, lvlHeight, playState);
 }
+
+void TestLevel::SetParallaxBackground(SDL_Renderer* renderer) {
+	parallaxBackground = new ParallaxBackground(renderer);
+	parallaxBackground->LoadMedia("Resources/backgrounds/game/level1.jpg", "Resources/backgrounds/game/level1.jpg");
+}
+
+void TestLevel::SetBackgroundLayers() {
+}
+
 
 Player* TestLevel::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
@@ -105,6 +113,10 @@ Player* TestLevel::SetPlayer(Player* _player) {
 	player->AddWeapon(shot);
 
 	return player;
+}
+
+ParallaxBackground* TestLevel::GetParallaxBackGround() {
+	return parallaxBackground;
 }
 
 void TestLevel::Cleanup() {}

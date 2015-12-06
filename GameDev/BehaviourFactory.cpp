@@ -188,3 +188,6 @@ void BehaviourFactory::ClearCamera(){
 void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
 	camera->Init(player, levelWidth, levelheight);
 }
+Camera* BehaviourFactory::GetCamera() { //temp
+	return camera;
+}

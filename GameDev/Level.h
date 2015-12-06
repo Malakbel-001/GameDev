@@ -8,6 +8,7 @@
 #include "MoveableContainer.h"
 #include "EntityFactory.h"
 #include "ContactListener.h"
+#include "ParallaxBackground.h"
 
 
 class PlayState;
@@ -15,8 +16,6 @@ class Level //abstract class now because of pure virtual method: SetPlayer() and
 {
 private:
 	MoveableContainer* moveableContainer;
-	
-
 
 	float startXpos;
 	float startYpos;
@@ -43,8 +42,8 @@ public:
 	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();
 
-	virtual Player* SetPlayer(Player* _player) = 0; //pure virtual
-	virtual Level* CreateLevel() = 0;				//pure virtual
+	virtual Player* SetPlayer(Player* _player) = 0;				//pure virtual
+	virtual Level* CreateLevel() = 0;	//pure virtual
 
 	Player* SetPlayerPosition(Player* _player, float x, float y);
 	virtual void SetLvlWidth(int _lvlWidth);
@@ -67,4 +66,9 @@ public:
 
 	int GetLevelId() { return levelId; };
 	std::string GetBackgroundPath() { return backgroundPath; };
+
+	//virtual void SetParallaxBackground() = 0;
+	virtual void SetParallaxBackground(SDL_Renderer*) = 0;
+	virtual void SetBackgroundLayers() = 0;
+	virtual ParallaxBackground* GetParallaxBackGround() = 0;
 };

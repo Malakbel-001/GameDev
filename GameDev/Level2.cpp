@@ -73,11 +73,20 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);
 }
 
+//also sets parallaxBackground
 Level* Level2::CreateLevel()
 {
-
 	return new Level2(lvlWidth, lvlHeight, playState);
 }
+
+void Level2::SetParallaxBackground(SDL_Renderer* renderer) {
+	parallaxBackground = new ParallaxBackground(renderer);
+	parallaxBackground->LoadMedia("Resources\backgrounds\game\level2.jpg", "Resources\backgrounds\game\level2.jpg");
+}
+
+void Level2::SetBackgroundLayers() {
+}
+
 Player* Level2::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
@@ -90,6 +99,13 @@ Player* Level2::SetPlayer(Player* _player) {
 
 	return player;
 }
+
+
+
+ParallaxBackground* Level2::GetParallaxBackGround() {
+	return parallaxBackground;
+}
+
 void Level2::Cleanup() {}
 
 
