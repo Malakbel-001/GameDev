@@ -19,10 +19,12 @@ void LayerContainer::AddX(float addX) {
 	//new drawPosition
 	drawPosition = drawPosition + addX;
 
-	if (drawPosition > 0) //make sure to draw on 0 or lower so we don't have empty space on the left side
+	if (drawPosition >= 0) //make sure to draw on 0 or lower so we don't have empty space on the left side
 		drawPosition - textureLayer->getWidth();
 	else if (drawPosition < (-textureLayer->getWidth())) //don't go to deep beneath 0 or we have to draw a lot of times eventually
 		drawPosition + textureLayer->getWidth();
+
+	cout << "DPos: " << drawPosition << endl;
 }
 
 float LayerContainer::GetDrawPosition()		{ return drawPosition; }
