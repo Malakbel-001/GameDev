@@ -1,5 +1,6 @@
 #include "ParallaxBackground.h"
 #include <iostream>
+using namespace std;
 
 ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera) {
 	renderer = _renderer;
@@ -41,13 +42,19 @@ void ParallaxBackground::Draw() {
 	//
 	int drawPosition = 0;
 
-	while (drawPosition < screenWidth) {
+	while (drawPosition - camera->GetX() < screenWidth) {
+		cout << "D:" << drawPosition << "math: " << drawPosition - camera->GetX() << endl;
 		SDL_Rect bgRect = { 0, 0, firstLayer->getWidth(), firstLayer->getHeight() };
-		if (-camera->GetX() + drawPosition < 0) { //draw one more to the left side if condition check, NOT WORKING YET!
+		if (drawPosition - camera->GetX() > 0) { //draw one more to the left side if condition check, NOT WORKING YET!
+			cout << "inside" << endl;
 			SDL_Rect leftRect = bgRect; //copy
+
 			firstLayer->render(renderer, -camera->GetX() + drawPosition - firstLayer->getWidth(), yOffset, 0, &leftRect);
 		}
 		firstLayer->render(renderer, -camera->GetX() + drawPosition, yOffset, 0, &bgRect);
 		drawPosition = drawPosition + firstLayer->getWidth();
 	}
+
+	/*SDL_Rect bgRect = { 0, 0, firstLayer->getWidth(), firstLayer->getHeight() };
+	firstLayer->render(renderer, 0-firstLayer->getWidth(), yOffset, 0, &bgRect);*/
 }

@@ -1,3 +1,4 @@
+#pragma once
 #include <SDL.h>
 #include "Camera.h"
 #include "LTexture.h"
