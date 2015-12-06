@@ -35,21 +35,18 @@ void ParallaxBackground::SetLayer(char* path, int yOffset, float scrollingSpeed)
 }
 
 void ParallaxBackground::Draw() {
-	int drawPosition = 0;
+	float drawPosition = 0;
 
-	int addX = camera->GetX() - previousXPos;
-	int modAddX;
+	float addX = camera->GetX() - previousXPos;
+	float modAddX;
+
 	//loop and draw layers
 	for (auto layerContainer : layerContainers) {
 		//every layer has its own Rectangle
 		SDL_Rect bgRect = { 0, 0, layerContainer->GetTextureLayer()->getWidth(), layerContainer->GetTextureLayer()->getHeight() };
 
-		if (addX != 0) {
-			cout << "here we go" << endl;
-		}
-
 		modAddX = addX * layerContainer->GetScrollingSpeed();
-		layerContainer->AddX(- modAddX); //negative modAddX
+		layerContainer->AddX(modAddX * -1); //negative modAddX
 		drawPosition = layerContainer->GetDrawPosition();
 
 		//keep repeating the background to fill the screen

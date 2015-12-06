@@ -13,10 +13,9 @@ class ParallaxBackground {
 
 		int screenWidth;
 		int screenHeight;
-		int xOffset;
 		int yOffset;
 
-		int previousXPos;
+		float previousXPos;
 
 	public:
 		ParallaxBackground(SDL_Renderer*, Camera*);
