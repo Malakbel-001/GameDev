@@ -116,8 +116,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	};
 
-	
-
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 		{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 		{ EntityType::PLANT, new EnemyCollidableBehaviour() },
@@ -130,9 +128,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 	};
-
-
-
 }
 
 
@@ -140,6 +135,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 SDL_Renderer* BehaviourFactory::GetRenderer(){
 	return renderer;
 }
+
 
 
 BehaviourFactory::~BehaviourFactory()
@@ -163,11 +159,10 @@ BehaviourFactory::~BehaviourFactory()
 	}
 	collideRegistery.clear();
 	delete camera;
+}
 
-
-
-
-
+ParallaxBackground* BehaviourFactory::CreateEmptyParallaxBehaviour() {
+	return new ParallaxBackground(renderer, camera);
 }
 
 DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
@@ -187,7 +182,4 @@ void BehaviourFactory::ClearCamera(){
 }
 void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
 	camera->Init(player, levelWidth, levelheight);
-}
-Camera* BehaviourFactory::GetCamera() { //temp
-	return camera;
 }

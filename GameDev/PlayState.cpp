@@ -277,8 +277,6 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	backgroundRect.y = 0;*/
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
-	this->currentLevel->SetParallaxBackground(gsm->GetBehaviour()->GetRenderer());
-	this->currentLevel->GetParallaxBackGround()->SetCamera(bf->GetCamera()); //temp solution
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }

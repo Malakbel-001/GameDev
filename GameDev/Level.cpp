@@ -16,11 +16,6 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	entities = new std::vector<Entity*>();
 }
 
-void Level::Init(BehaviourFactory* bf)
-{
-	cout << " jajaa ";
-}
-
 b2World* Level::GetWorld()
 {
 	return world;

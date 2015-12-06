@@ -13,12 +13,12 @@ class ParallaxBackground {
 		int screenHeight;
 		int xOffset;
 		int yOffset;
+
 	public:
-		ParallaxBackground(SDL_Renderer* _renderer);
+		ParallaxBackground(SDL_Renderer*, Camera*);
 		~ParallaxBackground();
 		void LoadMedia(char* pathFirstLayer, char* pathLastLayer);
 		void SetSettings(int _yOffset);
-		void SetCamera(Camera* _camera);
 		void Cleanup();
 		void Draw();
 

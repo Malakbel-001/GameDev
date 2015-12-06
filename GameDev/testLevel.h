@@ -8,6 +8,9 @@ class TestLevel :
 	private:
 		ParallaxBackground* parallaxBackground;
 
+	protected:
+		virtual void LoadParallaxBackgroundSettings();
+
 	public:
 		TestLevel(int _lvlWidth, int _lvlHeight , PlayState* play);
 		virtual ~TestLevel();
@@ -19,8 +22,6 @@ class TestLevel :
 		virtual Player* SetPlayer(Player* _player);
 		void HandleEvents(SDL_Event mainEvent);
 
-		virtual void SetParallaxBackground(SDL_Renderer*);
-		virtual void SetBackgroundLayers();
 		virtual ParallaxBackground* GetParallaxBackGround();
 };
 

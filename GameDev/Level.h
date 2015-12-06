@@ -34,16 +34,18 @@ protected:
 	std::vector<Actor*>* actors;
 	Player* player;
 	std::string backgroundPath;
+
+	virtual void LoadParallaxBackgroundSettings() = 0;			//pure virtual
 public:
 	Player* GetPlayer();
 
 	DrawableContainer* GetDrawableContainer();
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
-	virtual void Init(BehaviourFactory* bf);
+	virtual void Init(BehaviourFactory* bf) = 0;				//pure virtual
 	virtual ~Level();
 
 	virtual Player* SetPlayer(Player* _player) = 0;				//pure virtual
-	virtual Level* CreateLevel() = 0;	//pure virtual
+	virtual Level* CreateLevel() = 0;							//pure virtual
 
 	Player* SetPlayerPosition(Player* _player, float x, float y);
 	virtual void SetLvlWidth(int _lvlWidth);
@@ -67,8 +69,5 @@ public:
 	int GetLevelId() { return levelId; };
 	std::string GetBackgroundPath() { return backgroundPath; };
 
-	//virtual void SetParallaxBackground() = 0;
-	virtual void SetParallaxBackground(SDL_Renderer*) = 0;
-	virtual void SetBackgroundLayers() = 0;
-	virtual ParallaxBackground* GetParallaxBackGround() = 0;
+	virtual ParallaxBackground* GetParallaxBackGround() = 0;	//pure virtual
 };

@@ -6,6 +6,9 @@ class Level2 : public Level
 	private:
 		ParallaxBackground* parallaxBackground;
 
+	protected:
+		virtual void LoadParallaxBackgroundSettings();
+
 	public:
 		Level2(int _lvlWidth, int _lvlHeight, PlayState* play);
 		virtual ~Level2();
@@ -17,8 +20,6 @@ class Level2 : public Level
 		virtual Player* SetPlayer(Player* _player);
 		void HandleEvents(SDL_Event mainEvent);
 
-		virtual void SetParallaxBackground(SDL_Renderer*);
-		virtual void SetBackgroundLayers();
 		virtual ParallaxBackground* GetParallaxBackGround();
 };
 

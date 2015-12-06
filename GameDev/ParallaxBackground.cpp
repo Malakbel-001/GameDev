@@ -1,11 +1,13 @@
 #include "ParallaxBackground.h"
 #include <iostream>
 
-ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer) {
+ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera) {
 	renderer = _renderer;
 	//sets screenWidth and screenHeight, dynamically
 	screenWidth = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->w; //temporary solution!
 	screenHeight = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->h; //temporary solution!
+
+	camera = _camera;
 
 	firstLayer = new LTexture();
 	lastLayer = new LTexture();
@@ -32,10 +34,6 @@ void ParallaxBackground::LoadMedia(char* pathFirstLayer, char* pathLastLayer) {
 
 void ParallaxBackground::SetSettings(int _yOffset) {
 	yOffset = _yOffset;
-}
-
-void ParallaxBackground::SetCamera(Camera* _camera) {
-	camera = _camera;
 }
 
 void ParallaxBackground::Draw() {

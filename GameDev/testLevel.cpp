@@ -8,7 +8,13 @@ TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
 
 void TestLevel::Init(BehaviourFactory* bf)
 {
-	backgroundPath = "level1.jpg";
+	backgroundPath = "level1.jpg"; //todo delete
+
+	//background
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
+	LoadParallaxBackgroundSettings();
+
+	//Entities Initialization
 	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
 
 	//obstacles--------------
@@ -83,25 +89,15 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(4500, 0, EntityType::PLANTBOSS);
 }
 
-TestLevel::~TestLevel()
-{
-
-}
-
 Level* TestLevel::CreateLevel()
 {
 	return new TestLevel(lvlWidth, lvlHeight, playState);
 }
 
-void TestLevel::SetParallaxBackground(SDL_Renderer* renderer) {
-	parallaxBackground = new ParallaxBackground(renderer);
+void TestLevel::LoadParallaxBackgroundSettings() {
 	parallaxBackground->LoadMedia("Resources/backgrounds/game/level1.jpg", "Resources/backgrounds/game/level1.jpg");
 	parallaxBackground->SetSettings(-200);
 }
-
-void TestLevel::SetBackgroundLayers() {
-}
-
 
 Player* TestLevel::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
@@ -120,7 +116,8 @@ ParallaxBackground* TestLevel::GetParallaxBackGround() {
 	return parallaxBackground;
 }
 
-void TestLevel::Cleanup() {}
-
+void TestLevel::Cleanup() { }
 
 void TestLevel::HandleEvents(SDL_Event mainEvent) { }
+
+TestLevel::~TestLevel() { }

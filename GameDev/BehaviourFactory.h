@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include "ParallaxBackground.h"
 #include "BehaviourType.h"
 #include "DrawableBehaviour.h"
 #include "PlayerDrawableBehaviour.h"
@@ -28,25 +29,25 @@ class Player;
 class CollidableBehaviour;
 class BehaviourFactory
 {
-public:
-	BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
-	~BehaviourFactory();
+	public:
+		BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
+		~BehaviourFactory();
 
-	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
-	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
-	SDL_Renderer* GetRenderer();
-	void ClearCamera();
-	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
-	Camera* GetCamera(); //temp cheat mode!
-private:
-	Camera* camera;
+		ParallaxBackground* CreateEmptyParallaxBehaviour();
+		DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
+		CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
+		SDL_Renderer* GetRenderer();
+		void ClearCamera();
+		void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
+	private:
+		Camera* camera;
 
-	int screenWidth;
-	int screenHeight;
-	SDL_Renderer* renderer;
-	std::unordered_map<EntityType, DrawableBehaviour*> registery;
-	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
-	std::unordered_map<EntityType, Sprite*> spriteRegistery;
-	std::vector<Sprite*> sprites;
+		int screenWidth;
+		int screenHeight;
+		SDL_Renderer* renderer;
+		std::unordered_map<EntityType, DrawableBehaviour*> registery;
+		std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
+		std::unordered_map<EntityType, Sprite*> spriteRegistery;
+		std::vector<Sprite*> sprites;
 };
 

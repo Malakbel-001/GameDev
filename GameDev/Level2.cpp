@@ -8,8 +8,15 @@ Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 
 void Level2::Init(BehaviourFactory* bf)
 {
-	backgroundPath = "level2.jpg";
+	backgroundPath = "level2.jpg"; //todo delete
+	//background--------------------
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
+	LoadParallaxBackgroundSettings();
+
+
+	//Entities Initialization
 	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
+
 	//obstacles--------------------
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(1625, 450, 250, 120, EntityType::GROUNDLVL2);
@@ -79,13 +86,9 @@ Level* Level2::CreateLevel()
 	return new Level2(lvlWidth, lvlHeight, playState);
 }
 
-void Level2::SetParallaxBackground(SDL_Renderer* renderer) {
-	parallaxBackground = new ParallaxBackground(renderer);
+void Level2::LoadParallaxBackgroundSettings() {
 	parallaxBackground->LoadMedia("Resources\backgrounds\game\level2.jpg", "Resources\backgrounds\game\level2.jpg");
 	parallaxBackground->SetSettings(0);
-}
-
-void Level2::SetBackgroundLayers() {
 }
 
 Player* Level2::SetPlayer(Player* _player) {
@@ -107,12 +110,10 @@ ParallaxBackground* Level2::GetParallaxBackGround() {
 	return parallaxBackground;
 }
 
-void Level2::Cleanup() {}
+void Level2::Cleanup() { }
 
 
 void Level2::HandleEvents(SDL_Event mainEvent) { }
 
 
-Level2::~Level2()
-{
-}
+Level2::~Level2() { }
