@@ -95,8 +95,7 @@ Level* TestLevel::CreateLevel()
 }
 
 void TestLevel::LoadParallaxBackgroundSettings() {
-	parallaxBackground->LoadMedia("Resources/backgrounds/game/level1.jpg", "Resources/backgrounds/game/level1.jpg");
-	parallaxBackground->SetSettings(-200);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1.jpg", -200, 1);
 }
 
 Player* TestLevel::SetPlayer(Player* _player) {

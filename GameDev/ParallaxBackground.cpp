@@ -4,14 +4,13 @@ using namespace std;
 
 ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera) {
 	renderer = _renderer;
-	//sets screenWidth and screenHeight, dynamically
+	//sets screenWidth and screenHeight, WTB dynamically - TODO
 	screenWidth = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->w; //temporary solution!
 	screenHeight = SDL_GetWindowSurface(SDL_GetWindowFromID(1))->h; //temporary solution!
 
 	camera = _camera;
 
-	firstLayer = new LTexture();
-	lastLayer = new LTexture();
+	layerContainers = std::vector<LayerContainer*>();
 }
 
 ParallaxBackground::~ParallaxBackground() {
@@ -19,39 +18,40 @@ ParallaxBackground::~ParallaxBackground() {
 }
 
 void ParallaxBackground::Cleanup() {
-	if (firstLayer == nullptr)
-		delete firstLayer; //frees texture
-	if (lastLayer == nullptr)
-		delete lastLayer; //frees texture
-
-	firstLayer = nullptr;
-	lastLayer = nullptr;
+	for (auto layerContainer : layerContainers) {
+		delete layerContainer;
+		layerContainer = nullptr;
+	}
+	layerContainers.clear();
 }
 
-void ParallaxBackground::LoadMedia(char* pathFirstLayer, char* pathLastLayer) {
-	firstLayer->loadFromFile(renderer, pathFirstLayer);
-	//lastLayer->loadFromFile(renderer, pathLastLayer);
-}
-
-void ParallaxBackground::SetSettings(int _yOffset) {
-	yOffset = _yOffset;
+//keep in mind the sequence you set the layers
+void ParallaxBackground::SetLayer(char* path, int yOffset, float scrollingSpeed) {
+	layerContainers.push_back(new LayerContainer(renderer, path, yOffset, scrollingSpeed));
 }
 
 void ParallaxBackground::Draw() {
 	int drawPosition = 0;
 
-	while (drawPosition - camera->GetX() < screenWidth) {
-		cout << "D:" << drawPosition << " X: " << drawPosition - camera->GetX() << endl;
-		SDL_Rect bgRect = { 0, 0, firstLayer->getWidth(), firstLayer->getHeight() };
-		if (drawPosition - camera->GetX() > 0) { //draw one more to the left side if condition check, NOT WORKING YET!
-			SDL_Rect leftRect = bgRect; //copy
+	//loop and draw layers
+	for (auto layerContainer : layerContainers) {
+		//keep repeating the background to fill the screen
+		while (drawPosition - camera->GetX() < screenWidth) {
+			SDL_Rect bgRect = { 0, 0, layerContainer->GetTextureLayer()->getWidth(), layerContainer->GetTextureLayer()->getHeight() };
 
-			firstLayer->render(renderer, -camera->GetX() + drawPosition - firstLayer->getWidth(), yOffset, 0, &leftRect);
+			if (drawPosition - camera->GetX() > 0) { //if the current position to draw > 0 ----> draw another background to the left
+				DrawBackground(layerContainer, bgRect, drawPosition - layerContainer->GetTextureLayer()->getWidth());
+			}
+
+			DrawBackground(layerContainer, bgRect, drawPosition);
+
+			//setNewDrawPosition
+			drawPosition = drawPosition + layerContainer->GetTextureLayer()->getWidth();
 		}
-		firstLayer->render(renderer, -camera->GetX() + drawPosition, yOffset, 0, &bgRect);
-		drawPosition = drawPosition + firstLayer->getWidth();
+		drawPosition = 0;
 	}
+}
 
-	/*SDL_Rect bgRect = { 0, 0, firstLayer->getWidth(), firstLayer->getHeight() };
-	firstLayer->render(renderer, 0-firstLayer->getWidth(), yOffset, 0, &bgRect);*/
+void ParallaxBackground::DrawBackground(LayerContainer* layerContainer, SDL_Rect bgRect, int xDrawPos) {
+	layerContainer->GetTextureLayer()->render(renderer, xDrawPos - camera->GetX(), layerContainer->GetYOffset(), 0, &bgRect);
 }

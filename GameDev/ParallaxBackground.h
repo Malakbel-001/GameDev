@@ -2,27 +2,26 @@
 #include <SDL.h>
 #include "Camera.h"
 #include "LTexture.h"
+#include "LayerContainer.h"
+#include <vector>
 
 class ParallaxBackground {
 	private:
 		SDL_Renderer* renderer;
 		Camera* camera;
-		LTexture* firstLayer;
-		LTexture* lastLayer;
-
-		float scrollingSpeedFirstLayer;
-		float scrollingSpeedLastLayer;
+		std::vector<LayerContainer*> layerContainers;
 
 		int screenWidth;
 		int screenHeight;
 		int xOffset;
 		int yOffset;
 
+		void DrawBackground(LayerContainer*, SDL_Rect, int xDrawPos);
+
 	public:
 		ParallaxBackground(SDL_Renderer*, Camera*);
 		~ParallaxBackground();
-		void LoadMedia(char* pathFirstLayer, char* pathLastLayer);
-		void SetSettings(int _yOffset);
+		void SetLayer(char* path, int _yOffset, float _scrollingSpeed);
 		void Cleanup();
 		void Draw();
 

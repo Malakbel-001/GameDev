@@ -87,8 +87,7 @@ Level* Level2::CreateLevel()
 }
 
 void Level2::LoadParallaxBackgroundSettings() {
-	parallaxBackground->LoadMedia("Resources\backgrounds\game\level2.jpg", "Resources\backgrounds\game\level2.jpg");
-	parallaxBackground->SetSettings(0);
+	parallaxBackground->SetLayer("Resources\backgrounds\game\level2.jpg", 0, 1);
 }
 
 Player* Level2::SetPlayer(Player* _player) {

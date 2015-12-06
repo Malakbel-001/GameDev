@@ -247,6 +247,9 @@
     <ClCompile Include="ParallaxBackground.cpp">
       <Filter>Source Files\View\Parallax Background</Filter>
     </ClCompile>
+    <ClCompile Include="LayerContainer.cpp">
+      <Filter>Source Files\View\Parallax Background</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -517,6 +520,9 @@
       <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
     <ClInclude Include="ParallaxBackground.h">
+      <Filter>Header Files\View\Parallax Background</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerContainer.h">
       <Filter>Header Files\View\Parallax Background</Filter>
     </ClInclude>
   </ItemGroup>
