@@ -278,6 +278,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 

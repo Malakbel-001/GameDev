@@ -16,13 +16,15 @@ class ParallaxBackground {
 		int xOffset;
 		int yOffset;
 
-		void DrawBackground(LayerContainer*, SDL_Rect, int xDrawPos);
+		int previousXPos;
 
 	public:
 		ParallaxBackground(SDL_Renderer*, Camera*);
 		~ParallaxBackground();
+
+		void InitializeFixXPos();
+
 		void SetLayer(char* path, int _yOffset, float _scrollingSpeed);
 		void Cleanup();
 		void Draw();
-
 };

@@ -8,6 +8,8 @@ class LayerContainer {
 		int yOffset;
 		float scrollingSpeed;
 
+		int drawPosition;
+
 	public:
 		LayerContainer(SDL_Renderer* _renderer, char* path, int _yOffset, float _scrollingSpeed);
 		~LayerContainer();
@@ -15,4 +17,7 @@ class LayerContainer {
 		LTexture* GetTextureLayer();
 		int GetYOffset();
 		int GetScrollingSpeed();
+		
+		void AddX(int);
+		int GetDrawPosition();
 };
