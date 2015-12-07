@@ -2,9 +2,14 @@
 #include <iostream> //temp
 using namespace std;
 
-LayerContainer::LayerContainer(SDL_Renderer* renderer, int* _screenWidth, int* _screenHeight, char* _path, float _yOffset, float _scrollingSpeed) {
+LayerContainer::LayerContainer(SDL_Renderer* renderer, int* _screenWidth, int* _screenHeight, char* _path, float _yOffset, float _scrollingSpeed, int _alphaValue) {
 	textureLayer = new LTexture();
 	textureLayer->loadFromFile(renderer, _path);
+
+	alphaValue = _alphaValue;
+	if (alphaValue < 255) {
+		textureLayer->SetTextureAlphaMod(alphaValue);
+	}
 
 	screenWidth = _screenWidth;
 	screenHeight = _screenHeight;
@@ -35,7 +40,8 @@ void LayerContainer::AddX(float addX) {
 	cout << "DPos: " << drawPosition << endl; //debug purposes
 }
 
-float LayerContainer::GetDrawPosition()		{ return drawPosition; }
+
 LTexture* LayerContainer::GetTextureLayer() { return textureLayer; }
+float LayerContainer::GetDrawPosition()		{ return drawPosition; }
 float LayerContainer::GetYOffset()			{ return yOffset; }
 float LayerContainer::GetScrollingSpeed()	{ return scrollingSpeed; }

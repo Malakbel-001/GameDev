@@ -25,7 +25,7 @@ class ParallaxBackground {
 
 		void InitializeFixXPos();
 
-		void SetLayer(char* path, int _yOffset, float _scrollingSpeed);
+		void SetLayer(char* path, int yOffset, float scrollingSpeed, int alphaValue);
 		void Cleanup();
 		void Draw();
 

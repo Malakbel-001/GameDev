@@ -37,8 +37,8 @@ void ParallaxBackground::Cleanup() {
 }
 
 //keep in mind the sequence you set the layers
-void ParallaxBackground::SetLayer(char* path, int yOffset, float scrollingSpeed) {
-	layerContainers.push_back(new LayerContainer(renderer, screenWidth, screenHeight, path, yOffset, scrollingSpeed));
+void ParallaxBackground::SetLayer(char* path, int yOffset, float scrollingSpeed, int alphaValue) {
+	layerContainers.push_back(new LayerContainer(renderer, screenWidth, screenHeight, path, yOffset, scrollingSpeed, alphaValue));
 }
 
 void ParallaxBackground::Draw() {
