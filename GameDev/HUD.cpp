@@ -54,7 +54,9 @@ void HUD::Draw() {
 	DrawHPBar(diminisher, Color(75, 205, 50, 255));
 
 	//draw Stats Border/Container
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0.01); //opacity/alpha is lower for the rectangle behind
+	SDL_RenderFillRect(renderer, &drawStatsRect);
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //draw border
 	SDL_RenderDrawRect(renderer, &drawStatsRect);
 
 	DrawAmmo();
@@ -86,7 +88,7 @@ void HUD::DrawAmmo() {
 	//Draw AmmoCounter / Amount
 	std::string ammo = std::to_string(player->GetCurrentWeapon()->GetAmmo());
 
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, ammo.c_str(), Color(0, 0, 0, 255));
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, ammo.c_str(), Color(255, 255, 255, 255));
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { ammoRect.x, ammoRect.y + ammoRect.h + 5, counterSurface->w, counterSurface->h };
 
@@ -107,7 +109,7 @@ void HUD::DrawScore() {
 	//Draw ScoreCounter / Amount
 	std::string score = std::to_string(player->GetScore());
 
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, score.c_str(), Color(0, 0, 0, 255));
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, score.c_str(), Color(255, 255, 255, 255));
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { scoreRect.x, scoreRect.y + scoreRect.h + 5, counterSurface->w, counterSurface->h };
 
