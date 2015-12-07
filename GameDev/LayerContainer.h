@@ -4,7 +4,6 @@
 class LayerContainer {
 	private:
 		LTexture* textureLayer;
-		SDL_Surface* windowSurface;
 		char* path;
 
 		int* screenWidth;

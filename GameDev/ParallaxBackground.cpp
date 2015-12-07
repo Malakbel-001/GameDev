@@ -67,6 +67,7 @@ void ParallaxBackground::Draw() {
 			drawPosition = drawPosition + bgRect.w;
 		}
 	}
+	cout << endl; //end layers - debug purposes
 
 	previousXPos = camera->GetX();
 }
