@@ -42,42 +42,42 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(3500, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(3750, 570, 250, 140, EntityType::GROUNDLVL2);
 	//enemy pinguin
-	entityFactory->CreateActor(400, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(450, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(500, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(550, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(1000, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(1070, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(1200, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(1500, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(1550, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(2000, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(2300, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(2500, 450, EntityType::PINGUIN);
-	entityFactory->CreateActor(2550, 450, EntityType::PINGUIN);
-	//enemy yeti
-	/*entityFactory->CreateActor(10, 50, 800, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 850, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 900, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 950, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 1170, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 1300, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 1370, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 3000, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 3050, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 3300, 450, 42, 34, EntityType::SNOWMAN);
-	entityFactory->CreateActor(10, 50, 3420, 450, 42, 34, EntityType::SNOWMAN);*/
-	entityFactory->CreateActor(800, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(850, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(900, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(950, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(1170, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(1300, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(1370, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(3000, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(3050, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(3300, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(400, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(450, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(500, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(550, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(1000, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(1070, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(1200, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(1500, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(1550, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(2000, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(2300, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(2500, 450, EntityType::PINGUIN);
+	//entityFactory->CreateActor(2550, 450, EntityType::PINGUIN);
+	////enemy yeti
+	///*entityFactory->CreateActor(10, 50, 800, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 850, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 900, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 950, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 1170, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 1300, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 1370, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 3000, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 3050, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 3300, 450, 42, 34, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(10, 50, 3420, 450, 42, 34, EntityType::SNOWMAN);*/
+	//entityFactory->CreateActor(800, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(850, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(900, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(950, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(1170, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(1300, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(1370, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(3000, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(3050, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(3300, 450, EntityType::SNOWMAN);
+	//entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);
 }
 
 //also sets parallaxBackground
@@ -87,7 +87,11 @@ Level* Level2::CreateLevel()
 }
 
 void Level2::LoadParallaxBackgroundSettings() {
-	parallaxBackground->SetLayer("Resources\backgrounds\game\level2.jpg", 0, 1);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-bg.png", 0, 0);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountain-far.png", 0, 0.5);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountains.png", 0, 1);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-trees.png", 0, 2);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-foreground-trees.png", 0, 3);
 }
 
 Player* Level2::SetPlayer(Player* _player) {
