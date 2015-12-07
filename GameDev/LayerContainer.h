@@ -4,15 +4,22 @@
 class LayerContainer {
 	private:
 		LTexture* textureLayer;
-		
+		SDL_Surface* windowSurface;
+		char* path;
+
+		int* screenWidth;
+		int* screenHeight;
+
 		float yOffset;
 		float scrollingSpeed;
 
 		float drawPosition;
 
 	public:
-		LayerContainer(SDL_Renderer* _renderer, char* path, float _yOffset, float _scrollingSpeed);
+		LayerContainer(SDL_Renderer*, int* _screenWidth, int* _screenHeight, char* path, float _yOffset, float _scrollingSpeed);
 		~LayerContainer();
+
+		void LoadAgain(SDL_Renderer*);
 
 		LTexture* GetTextureLayer();
 		float GetYOffset();

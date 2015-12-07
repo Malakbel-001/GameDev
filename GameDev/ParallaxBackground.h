@@ -11,8 +11,10 @@ class ParallaxBackground {
 		Camera* camera;
 		std::vector<LayerContainer*> layerContainers;
 
-		int screenWidth;
-		int screenHeight;
+		int* screenWidth;
+		int* screenHeight;
+
+		//SDL_Surface* windowSurface;
 		int yOffset;
 
 		float previousXPos;
@@ -26,4 +28,5 @@ class ParallaxBackground {
 		void SetLayer(char* path, int _yOffset, float _scrollingSpeed);
 		void Cleanup();
 		void Draw();
+
 };
