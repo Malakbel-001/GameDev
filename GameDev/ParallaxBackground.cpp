@@ -7,8 +7,8 @@ ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera)
 	//sets screenWidth and screenHeight, WTB dynamically - TODO
 	screenWidth = new int;
 	screenHeight = new int;
-
 	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+
 
 	camera = _camera;
 
