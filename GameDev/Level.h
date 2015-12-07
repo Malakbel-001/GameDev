@@ -33,7 +33,6 @@ protected:
 	
 	std::vector<Actor*>* actors;
 	Player* player;
-	std::string backgroundPath;
 
 	virtual void LoadParallaxBackgroundSettings() = 0;			//pure virtual
 public:
@@ -67,7 +66,6 @@ public:
 	virtual b2World* GetWorld();
 
 	int GetLevelId() { return levelId; };
-	std::string GetBackgroundPath() { return backgroundPath; };
 
 	virtual ParallaxBackground* GetParallaxBackGround() = 0;	//pure virtual
 };

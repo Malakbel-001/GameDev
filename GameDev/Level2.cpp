@@ -8,7 +8,6 @@ Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 
 void Level2::Init(BehaviourFactory* bf)
 {
-	backgroundPath = "level2.jpg"; //todo delete
 	//background--------------------
 	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
 	LoadParallaxBackgroundSettings();
@@ -88,7 +87,7 @@ Level* Level2::CreateLevel()
 
 void Level2::LoadParallaxBackgroundSettings() {
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-bg.png", 0, 0);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountain-far.png", 0, 0.5);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountain-far.png", 0, 0.5f);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountains.png", 0, 1);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-trees.png", 0, 2);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-foreground-trees.png", 0, 3);

@@ -8,8 +8,6 @@ TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
 
 void TestLevel::Init(BehaviourFactory* bf)
 {
-	backgroundPath = "level1.jpg"; //todo delete
-
 	//background
 	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
 	LoadParallaxBackgroundSettings();
@@ -95,10 +93,10 @@ Level* TestLevel::CreateLevel()
 }
 
 void TestLevel::LoadParallaxBackgroundSettings() {
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f);
 }
 
 Player* TestLevel::SetPlayer(Player* _player) {
