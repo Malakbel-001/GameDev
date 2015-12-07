@@ -47,15 +47,18 @@ void HUD::SetHUDFont(char* path, int ptsize) {
 }
 
 void HUD::Draw() {
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); //enabling alpha values on (SDL)Render methods: Fill(Rect) and Line
+
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a); //keep old draw color for later
 
 	//amount to diminish hpBar
 	float diminisher = (float)player->GetHealth() / player->GetMaxHealth();
-	DrawHPBar(diminisher, Color(75, 205, 50, 255));
+	DrawHPBar(diminisher, Color(75, 205, 50, 225)); //NEW - little bit alpha
 
 	//draw Stats Border/Container
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0.01); //opacity/alpha is lower for the rectangle behind
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 100); //alpha number = 100 in order to make it transparent
 	SDL_RenderFillRect(renderer, &drawStatsRect);
+
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //draw border
 	SDL_RenderDrawRect(renderer, &drawStatsRect);
 
@@ -82,7 +85,7 @@ void HUD::DrawHPBar(float diminisher, SDL_Color hpColor) {
 
 void HUD::DrawAmmo() {
 	//Draw Ammo
-	SDL_SetTextureBlendMode(ammoTexture, SDL_BLENDMODE_BLEND);
+	//SDL_SetTextureBlendMode(ammoTexture, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(renderer, ammoTexture, NULL, &ammoRect);
 
 	//Draw AmmoCounter / Amount
@@ -92,7 +95,7 @@ void HUD::DrawAmmo() {
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { ammoRect.x, ammoRect.y + ammoRect.h + 5, counterSurface->w, counterSurface->h };
 
-	SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
+	//SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
 	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
 
 	//cleanup counter stuff after using them
@@ -103,7 +106,7 @@ void HUD::DrawAmmo() {
 
 void HUD::DrawScore() {
 	//Draw Score
-	SDL_SetTextureBlendMode(scoreTexture, SDL_BLENDMODE_BLEND);
+	//SDL_SetTextureBlendMode(scoreTexture, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
 
 	//Draw ScoreCounter / Amount
@@ -113,7 +116,7 @@ void HUD::DrawScore() {
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
 	SDL_Rect counterRect = { scoreRect.x, scoreRect.y + scoreRect.h + 5, counterSurface->w, counterSurface->h };
 
-	SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
+	//SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
 	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
 
 	//cleanup counter stuff after using them

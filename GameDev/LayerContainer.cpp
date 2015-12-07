@@ -26,11 +26,11 @@ void LayerContainer::AddX(float addX) {
 	//new drawPosition
 	drawPosition = drawPosition + addX;
 
-	if (drawPosition >= (float)0) { //make sure to draw on 0 or lower so we don't have empty space on the left side
-		drawPosition - static_cast<float> (*screenWidth);
+	if (drawPosition > (float)0) { //make sure to draw on 0 or lower so we don't have empty space on the left side
+		drawPosition = drawPosition - static_cast<float>(*screenWidth);
 	}
-	else if (drawPosition <= static_cast<float>(*screenWidth * -1)) { //don't go to deep beneath 0 or we have to draw a lot of times eventually
-		drawPosition + static_cast<float>(*screenHeight);
+	else if (drawPosition < static_cast<float>(*screenWidth * -1)) { //don't go to deep beneath 0 or we have to draw a lot of times eventually
+		drawPosition = drawPosition + static_cast<float>(*screenWidth);
 	}
 	cout << "DPos: " << drawPosition << endl; //debug purposes
 }
