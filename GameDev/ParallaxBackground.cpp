@@ -1,6 +1,4 @@
 #include "ParallaxBackground.h"
-#include <iostream> //temp
-using namespace std; //tmep
 
 ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera) {
 	renderer = _renderer;
@@ -70,7 +68,6 @@ void ParallaxBackground::Draw() {
 			drawPosition = drawPosition + bgRect.w;
 		}
 	}
-	cout << endl; //end layers - debug purposes
 
 	previousXPos = camera->GetX();
 }

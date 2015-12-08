@@ -1,6 +1,4 @@
 #include "LayerContainer.h"
-#include <iostream> //temp
-using namespace std;
 
 LayerContainer::LayerContainer(SDL_Renderer* renderer, int* _screenWidth, int* _screenHeight, char* _path, float _yOffset, float _scrollingSpeed, int _alphaValue) {
 	textureLayer = new LTexture();
@@ -42,7 +40,6 @@ void LayerContainer::AddX(float addX) {
 	else if (drawPosition < static_cast<float>(*screenWidth * -1)) { //don't go to deep beneath 0 or we have to draw a lot of times eventually
 		drawPosition = drawPosition + static_cast<float>(*screenWidth);
 	}
-	cout << "DPos: " << drawPosition << endl; //debug purposes
 }
 
 
