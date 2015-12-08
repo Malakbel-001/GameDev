@@ -50,7 +50,8 @@ void PlayState::Pause()
 
 void PlayState::Resume()
 {
-	std::cout << "Resume not implemented yet";
+	//if screen changed, reload all layerContainers
+	currentLevel->GetParallaxBackGround()->CheckIfScreenChanged();
 }
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)

@@ -7,24 +7,29 @@ LayerContainer::LayerContainer(SDL_Renderer* renderer, int* _screenWidth, int* _
 	textureLayer->loadFromFile(renderer, _path);
 
 	alphaValue = _alphaValue;
-	if (alphaValue < 255) {
-		textureLayer->SetTextureAlphaMod(alphaValue);
-	}
-
 	screenWidth = _screenWidth;
 	screenHeight = _screenHeight;
 	path = _path;
 	drawPosition = 0;
 	yOffset = _yOffset;
 	scrollingSpeed = _scrollingSpeed;
+
+	SetTransparencyIfNeeded();
 }
 
 LayerContainer::~LayerContainer() {
 	delete textureLayer;
 }
 
+void LayerContainer::SetTransparencyIfNeeded() {
+	if (alphaValue < 255) {
+		textureLayer->SetTextureAlphaMod(alphaValue);
+	}
+}
+
 void LayerContainer::LoadAgain(SDL_Renderer* renderer) {
 	textureLayer->loadFromFile(renderer, path);
+	SetTransparencyIfNeeded();
 }
 
 void LayerContainer::AddX(float addX) {

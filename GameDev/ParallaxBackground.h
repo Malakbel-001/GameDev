@@ -13,11 +13,11 @@ class ParallaxBackground {
 
 		int* screenWidth;
 		int* screenHeight;
-
-		//SDL_Surface* windowSurface;
 		int yOffset;
-
 		float previousXPos;
+
+		bool wasFullScreen; //was before
+		bool CheckFullScreen();
 
 	public:
 		ParallaxBackground(SDL_Renderer*, Camera*);
@@ -29,4 +29,5 @@ class ParallaxBackground {
 		void Cleanup();
 		void Draw();
 
+		void CheckIfScreenChanged();
 };
