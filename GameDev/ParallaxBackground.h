@@ -29,5 +29,5 @@ class ParallaxBackground {
 		void Cleanup();
 		void Draw();
 
-		void CheckIfScreenChanged();
+		void CheckIfScreenSizeChanged();
 };

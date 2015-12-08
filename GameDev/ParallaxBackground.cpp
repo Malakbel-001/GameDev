@@ -86,7 +86,7 @@ bool ParallaxBackground::CheckFullScreen() {
 }
 
 //if screen changed, reload all layerContainers
-void ParallaxBackground::CheckIfScreenChanged() {
+void ParallaxBackground::CheckIfScreenSizeChanged() {
 	bool isFullScreen = CheckFullScreen();
 
 	//check if the screen changed
