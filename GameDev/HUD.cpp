@@ -5,7 +5,7 @@ HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
 	this->player = player;
 
-	SetHUDFont("Resources/fonts/manaspc.tff", 50);
+	SetHUDFont("Resources/fonts/manaspc.ttf", 12);
 	SetRectangles(20, 20);
 }
 
@@ -35,7 +35,7 @@ void HUD::SetHUDFont(char* path, int ptsize) {
 	if (TTF_Init() == -1) //initialize TTF
 		std::cout << " Failed to initialize TTF : " << TTF_GetError() << std::endl;
 
-	hudFont = TTF_OpenFont("Resources/fonts/manaspc.ttf", 12);
+	hudFont = TTF_OpenFont(path, ptsize);
 
 	if (hudFont == nullptr)
 		std::cout << " Failed to load font : " << TTF_GetError() << std::endl;
