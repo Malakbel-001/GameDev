@@ -250,6 +250,9 @@
     <ClCompile Include="LayerContainer.cpp">
       <Filter>Source Files\View\Parallax Background</Filter>
     </ClCompile>
+    <ClCompile Include="FramesPerSecond.cpp">
+      <Filter>Source Files\View\FramesPerSecond</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -525,6 +528,9 @@
     <ClInclude Include="LayerContainer.h">
       <Filter>Header Files\View\Parallax Background</Filter>
     </ClInclude>
+    <ClInclude Include="FramesPerSecond.h">
+      <Filter>Header Files\View\FramesPerSecond</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -658,6 +664,12 @@
     </Filter>
     <Filter Include="Header Files\View\Parallax Background">
       <UniqueIdentifier>{a7dd8566-00e0-40fa-986c-e88257e9eee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View\FramesPerSecond">
+      <UniqueIdentifier>{134ed93c-448e-48b0-bdac-c1d60a4e923b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View\FramesPerSecond">
+      <UniqueIdentifier>{1ae6a8ee-e598-401b-9acc-4161bc373a7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
