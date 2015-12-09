@@ -3,9 +3,6 @@
 #include "Level.h"
 class Level2 : public Level
 {
-	private:
-		ParallaxBackground* parallaxBackground;
-
 	protected:
 		virtual void LoadParallaxBackgroundSettings();
 

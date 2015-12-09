@@ -14,6 +14,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
 	entities = new std::vector<Entity*>();
+	parallaxBackground = nullptr;
 }
 
 b2World* Level::GetWorld()
@@ -95,6 +96,8 @@ DrawableContainer* Level::GetDrawableContainer()
 
 Level::~Level()
 {
+	if (parallaxBackground)
+		delete parallaxBackground;
 	delete contact;
 	delete world;
 	delete drawableContainer;
@@ -117,8 +120,6 @@ Level::~Level()
 		}
 	}
 	delete entities;
-
-	
 }
 void Level::SetLvlWidth(int _lvlWidth)
 {

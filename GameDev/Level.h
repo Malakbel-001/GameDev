@@ -34,6 +34,7 @@ protected:
 	std::vector<Actor*>* actors;
 	Player* player;
 
+	ParallaxBackground* parallaxBackground;
 	virtual void LoadParallaxBackgroundSettings() = 0;			//pure virtual
 public:
 	Player* GetPlayer();

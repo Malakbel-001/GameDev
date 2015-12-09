@@ -17,6 +17,7 @@ LayerContainer::LayerContainer(SDL_Renderer* renderer, int* _screenWidth, int* _
 
 LayerContainer::~LayerContainer() {
 	delete textureLayer;
+	textureLayer = nullptr;
 }
 
 void LayerContainer::SetTransparencyIfNeeded() {

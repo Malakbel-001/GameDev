@@ -5,9 +5,6 @@
 class TestLevel :
 	public Level
 {
-	private:
-		ParallaxBackground* parallaxBackground;
-
 	protected:
 		virtual void LoadParallaxBackgroundSettings();
 
