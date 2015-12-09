@@ -11,7 +11,7 @@ Game::Game()
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
-
+	fps = FramesPerSecond();
 
 	gsm = new GameStateManager(bf);
 	gsm->CreateGameState(GameStateType::MenuState);
@@ -76,6 +76,7 @@ void Game::GameLoop()
 		float dt = SDL_GetTicks() - preLoopTime;;
 		preLoopTime = SDL_GetTicks();
 
+
 		SDLEvents();
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
@@ -83,6 +84,8 @@ void Game::GameLoop()
 		gsm->GetCurrentState()->Update(dt);
 		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw();
+		fps.UpdateCount();
+		
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
 		afterLoopTime = SDL_GetTicks();

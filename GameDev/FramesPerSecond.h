@@ -4,15 +4,18 @@
 
 class FramesPerSecond {
 	private:
+		float ticks;
 		int fpsCounter;
+		int currentFPS;
 		TTF_Font* fpsFont;
 
 		void SetFPSFont(char* path, int ptsize);
-		void DrawFPS();
 
 	public:
 		FramesPerSecond();
 		~FramesPerSecond();
+		void Cleanup();
 		void UpdateCount();
-
+		void DrawFPS();
+		
 };
