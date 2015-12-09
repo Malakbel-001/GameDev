@@ -10,7 +10,7 @@ class Actor :
 public:
 	Actor();
 	virtual ~Actor();
-	virtual void InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
+	virtual void InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer);
 
 	
 	virtual Actor* EmptyClone();

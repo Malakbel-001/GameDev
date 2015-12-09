@@ -9,7 +9,7 @@ TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
 void TestLevel::Init(BehaviourFactory* bf)
 {
 	backgroundPath = "level1.jpg";
-	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
+	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer, moveableContainer);
 
 	//obstacles--------------
 //	entityFactory->CreateWeapon(0, 500, EntityType::WEAPON);

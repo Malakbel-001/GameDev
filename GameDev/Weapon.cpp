@@ -10,8 +10,8 @@ Weapon::Weapon(){
 	vec = b2Vec2(0, 0);
 	actor = nullptr;
 }
-void Weapon::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
-	BareEntity::Init(_xpos, _ypos, _angle, _state, _type, bf, drawContainer);
+void Weapon::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer){
+	BareEntity::Init(_xpos, _ypos, _angle, _state, _type, bf, drawContainer, moveContainer);
 
 }
 void Weapon::Pickup(Actor* _actor, b2Vec2 _defaultShootingDirection)

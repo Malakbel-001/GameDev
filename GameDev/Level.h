@@ -14,7 +14,7 @@ class PlayState;
 class Level //abstract class now because of pure virtual method: SetPlayer() and CreateLevel(), this class cannot be instantiated anymore
 {
 private:
-	MoveableContainer* moveableContainer;
+	
 	
 
 
@@ -27,6 +27,7 @@ protected:
 	int tileWidth, tileHeight;
 	int lvlWidth, lvlHeight;
 	DrawableContainer* drawableContainer;
+	MoveableContainer* moveableContainer;
 	b2World* world;
 	SDL_Texture* tileSheet;
 

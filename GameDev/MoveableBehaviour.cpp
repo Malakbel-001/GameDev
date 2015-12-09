@@ -1,4 +1,4 @@
-#include "MoveableBehaviour.h"
+ #include "MoveableBehaviour.h"
 
 
 MoveableBehaviour::MoveableBehaviour()
@@ -9,6 +9,11 @@ MoveableBehaviour::MoveableBehaviour()
 MoveableBehaviour::~MoveableBehaviour()
 {
 }
+
+//void MoveableBehaviour::SetEntity(Entity* _entity)
+//{
+//	entity = _entity;
+//}
 
 MoveableBehaviour* MoveableBehaviour::EmptyClone()
 {

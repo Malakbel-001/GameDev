@@ -11,6 +11,7 @@ private:
 	SDL_Renderer* renderer;
 
 	DrawableContainer* drawableContainer;
+	MoveableContainer* moveableContainer;
 	IGameState* playState;
 	BareEntity* bare;
 

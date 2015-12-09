@@ -6,9 +6,9 @@ Entity::Entity()
 {
 	
 }
-void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer)
+void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer)
 {
-	Object::Init(_type, bf,drawContainer);
+	Object::Init(_type, bf,drawContainer, moveContainer);
 	body = _body;
 	width = _width;
 	height = _height;

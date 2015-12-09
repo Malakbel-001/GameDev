@@ -9,7 +9,7 @@ Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 void Level2::Init(BehaviourFactory* bf)
 {
 	backgroundPath = "level2.jpg";
-	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
+	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer, moveableContainer);
 	//obstacles--------------------
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(1625, 450, 250, 120, EntityType::GROUNDLVL2);

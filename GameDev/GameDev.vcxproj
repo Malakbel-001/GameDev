@@ -119,6 +119,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="PinguinSprite.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
+    <ClCompile Include="PlantMoveableBehaviour.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
@@ -192,6 +193,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="EntityDirection.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />
+    <ClInclude Include="IdleMoveableBehaviour.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="ContactListener.h" />
@@ -204,6 +206,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="HUD.h" />
     <ClInclude Include="PinguinSprite.h" />
     <ClInclude Include="PlantBossSprite.h" />
+    <ClInclude Include="PlantMoveableBehaviour.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
     <ClInclude Include="SettingsConfig.h" />
     <ClInclude Include="Container.h" />

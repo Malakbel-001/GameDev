@@ -2,17 +2,17 @@
 #include "BehaviourFactory.h"
 #include "Camera.h"
 #include "CollidableBehaviour.h"
-#include "Player.h"
 #include "PlayerCollidableBehaviour.h"
 #include "EnemyCollidableBehaviour.h"
 #include "BulletCollidableBehaviour.h"
 #include "HealthCollidableBehaviour.h"
 #include "AmmoCollidableBehaviour.h"
+#include "JumpSensorCollidableBehaviour.h"
 #include "HealthSprite.h"
 #include "BulletSprite.h"
 #include "AmmoSprite.h"
 #include "GunSprite.h"
-#include "JumpSensorCollidableBehaviour.h"
+
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -131,7 +131,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 	};
 
-
+	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
+		{ EntityType::PLANTBOSS, new PlantMoveableBehaviour() }
+	};
 
 }
 
@@ -163,11 +165,6 @@ BehaviourFactory::~BehaviourFactory()
 	}
 	collideRegistery.clear();
 	delete camera;
-
-
-
-
-
 }
 
 DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
@@ -182,6 +179,15 @@ CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type
 	CollidableBehaviour* behaviour = collideRegistery.at(type)->EmptyClone();
 	return behaviour;
 }
+
+MoveableBehaviour* BehaviourFactory::CreateMoveableBehaviour(EntityType type)
+{ 
+	MoveableBehaviour* behaviour = moveRegistery.at(type)->EmptyClone();
+	//behaviour->SetEntity(entity);
+	return behaviour;
+}
+
+
 void BehaviourFactory::ClearCamera(){
 	camera->Init(nullptr, 0, 0);
 }

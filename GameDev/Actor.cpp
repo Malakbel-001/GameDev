@@ -1,5 +1,7 @@
 #include "Actor.h"
 #include "Weapon.h"
+#include "CollidableBehaviour.h"
+
 Actor::Actor()
 {
 	col = nullptr;
@@ -8,8 +10,8 @@ Actor::Actor()
 }
 
 
-void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
-	Init(_body, _width, _height, _type, bf, drawContainer);
+void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer){
+	Init(_body, _width, _height, _type, bf, drawContainer, moveContainer);
 	
 	hitdmg = _hitdmg;
 	health = _health;
