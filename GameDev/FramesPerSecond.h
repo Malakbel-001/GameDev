@@ -9,12 +9,16 @@ class FramesPerSecond {
 		SDL_Renderer* renderer;
 		TTF_Font* fpsFont;
 
+		bool run;
 		int* screenWidth;
 		int* screenHeight;
 
-		float ticks;
+		Uint32 timerTicks;
+		Uint32 lockButtonTicks;
 		int fpsCounter;
 		int currentFPS;
+
+		void ToggleFps();
 
 	public:
 		FramesPerSecond(SDL_Renderer* renderer);
@@ -22,5 +26,6 @@ class FramesPerSecond {
 		void Cleanup();
 		void UpdateCount();
 		void DrawFPS();
-		
+		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+
 };

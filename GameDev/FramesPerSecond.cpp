@@ -7,9 +7,12 @@ FramesPerSecond::FramesPerSecond(SDL_Renderer* _renderer) {
 	screenHeight = new int;
 	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
 	
+	run = false;
 	fpsCounter = 0;
 	currentFPS = 0;
 	fpsFont = Utilities::GetInstance()->SetFont("Resources/fonts/manaspc.ttf", 30);
+	timerTicks = SDL_GetTicks();
+	lockButtonTicks = SDL_GetTicks();
 }
 
 FramesPerSecond::~FramesPerSecond() {
@@ -29,16 +32,41 @@ void FramesPerSecond::Cleanup() {
 void FramesPerSecond::UpdateCount() {
 	fpsCounter++;
 
-	if (ticks + 1000 < SDL_GetTicks()) { //not sure if this is correct
+	if (timerTicks + 1000 < SDL_GetTicks()) { //not sure if this is correct
 		currentFPS = fpsCounter;
-		ticks = SDL_GetTicks();
+		timerTicks = SDL_GetTicks();
 		fpsCounter = 0;
 	}
 }
 
 void FramesPerSecond::DrawFPS() {
-	//draw
-	std::cout << "FPS: " << currentFPS << std::endl;
+	if (run) {
+		Utilities::GetInstance()->DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), *screenWidth - 50, 10, Utilities::GetInstance()->Color(255, 0, 0, 255));
+	}
+}
 
-	Utilities::GetInstance()->DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), *screenWidth - 50, 10, Utilities::GetInstance()->Color(255, 100, 100, 255));
+void FramesPerSecond::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
+	for (auto it = _events->begin(); it != _events->end(); ++it){
+		if (it->second)
+		{
+			switch (it->first)
+			{
+			case SDLK_m:
+				ToggleFps();
+				break;
+			}
+		}
+	}
+}
+
+void FramesPerSecond::ToggleFps() {
+	if (lockButtonTicks + 100 < SDL_GetTicks()) {
+		run = !run; //toggle boolean
+
+		if (run) {
+			SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+		}
+
+		lockButtonTicks = SDL_GetTicks(); //make sure the button isn't being immediately pressed afterwards
+	}
 }
