@@ -124,5 +124,3 @@ void Level1::Cleanup() {}
 
 
 void Level1::HandleEvents(SDL_Event mainEvent) { }
-
-Level1::~Level1() { }
