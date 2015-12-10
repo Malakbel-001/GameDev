@@ -5,7 +5,7 @@ HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
 	this->player = player;
 
-	SetHUDFont("Resources/fonts/manaspc.tff", 50);
+	SetHUDFont("Resources/fonts/manaspc.ttf", 12);
 	SetRectangles(20, 20);
 }
 
@@ -16,14 +16,17 @@ HUD::~HUD() {
 //setDrawRect & fillRect
 void HUD::SetRectangles(int x, int y) {
 	int hpWidth = 200;
-	int hpHeight = 20;
+	int hpHeight = 30;
 
 	drawHPRect = { x, y, hpWidth, hpHeight };
 	fillHPRect = { x, y, hpWidth, hpHeight };
 
+	amountHPRect =	{ drawHPRect.x + 20, drawHPRect.y + drawHPRect.h, drawHPRect.w - 40, 20 };
+	hpRect =		{ amountHPRect.x + 30, amountHPRect.y + 5, hpSurface->w, hpSurface->h };
+
 	drawStatsRect = { drawHPRect.x + 50 + hpWidth, y, 120, 50 }; //temp width
 	ammoRect =		{ drawStatsRect.x + 10, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
-	scoreRect = { ammoRect.x + ammoRect.w + 20, ammoRect.y, scoreSurface->w, scoreSurface->h };
+	scoreRect =		{ ammoRect.x + ammoRect.w + 20, ammoRect.y, scoreSurface->w, scoreSurface->h };
 
 	drawStatsRect.w = (scoreRect.x + scoreRect.w + 10) - drawStatsRect.x; //dynamic / fix width
 }
@@ -32,7 +35,7 @@ void HUD::SetHUDFont(char* path, int ptsize) {
 	if (TTF_Init() == -1) //initialize TTF
 		std::cout << " Failed to initialize TTF : " << TTF_GetError() << std::endl;
 
-	hudFont = TTF_OpenFont("Resources/fonts/manaspc.ttf", 12);
+	hudFont = TTF_OpenFont(path, ptsize);
 
 	if (hudFont == nullptr)
 		std::cout << " Failed to load font : " << TTF_GetError() << std::endl;
@@ -44,74 +47,80 @@ void HUD::SetHUDFont(char* path, int ptsize) {
 
 	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Color(255, 255, 255, 255));
 	scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
+
+	hpSurface = TTF_RenderText_Blended(hudFont, "Health:", Color(255, 255, 255, 255));
+	hpTexture = SDL_CreateTextureFromSurface(renderer, hpSurface);
 }
 
 void HUD::Draw() {
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); //enabling alpha values on (SDL)Render methods: Fill(Rect) and Line
+
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a); //keep old draw color for later
 
-	//amount to diminish hpBar
-	float diminisher = (float)player->GetHealth() / player->GetMaxHealth();
-	DrawHPBar(diminisher, Color(75, 205, 50, 255));
+	DrawHealth(); //NEW - little bit alpha
 
 	//draw Stats Border/Container
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 100); //alpha number = 100 in order to make it transparent
+	SDL_RenderFillRect(renderer, &drawStatsRect);
+
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //draw border
 	SDL_RenderDrawRect(renderer, &drawStatsRect);
 
 	DrawAmmo();
-
 	DrawScore();
-
-	//Optional: Draw Timer
+	//Optional: Draw Timer()
 
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color back
 }
 
-void HUD::DrawHPBar(float diminisher, SDL_Color hpColor) {
+void HUD::DrawHealth() {
+	//Draw HealthBar ------------------
+	float diminisher = (float)player->GetHealth() / player->GetMaxHealth(); //amount to diminish hpBar
+
 	int width = drawHPRect.w;
-	int newWidth = Clamp(diminisher * width, 0, width); //clamping just in case
+	int newWidth = diminisher * width;
 	fillHPRect.w = newWidth; //update width
 
-	SDL_SetRenderDrawColor(renderer, hpColor.r, hpColor.g * diminisher, hpColor.b, hpColor.a);
+	SDL_SetRenderDrawColor(renderer, 75, 205 * diminisher, 50, 225);
 	SDL_RenderFillRect(renderer, &fillHPRect); //draw HP with the right color
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderDrawRect(renderer, &drawHPRect); //draw HPBar Border/Container
+
+	//Draw HP Amount ------------------
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 225); //black + transparent
+	SDL_RenderFillRect(renderer, &amountHPRect);
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //black border
+	SDL_RenderDrawRect(renderer, &amountHPRect);
+
+	SDL_RenderCopy(renderer, hpTexture, NULL, &hpRect);
+
+	DrawTextHelper(std::to_string(player->GetHealth()), hpRect.x + hpRect.w + 10, hpRect.y);
 }
 
 void HUD::DrawAmmo() {
 	//Draw Ammo
-	SDL_SetTextureBlendMode(ammoTexture, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(renderer, ammoTexture, NULL, &ammoRect);
 
 	//Draw AmmoCounter / Amount
-	std::string ammo = std::to_string(player->GetCurrentWeapon()->GetAmmo());
-
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, ammo.c_str(), Color(0, 0, 0, 255));
-	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
-	SDL_Rect counterRect = { ammoRect.x, ammoRect.y + ammoRect.h + 5, counterSurface->w, counterSurface->h };
-
-	SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
-	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
-
-	//cleanup counter stuff after using them
-	SDL_FreeSurface(counterSurface);
-	SDL_DestroyTexture(counterTexture);
-
+	DrawTextHelper(std::to_string(player->GetCurrentWeapon()->GetAmmo()), ammoRect.x, ammoRect.y + ammoRect.h + 5);
 }
 
 void HUD::DrawScore() {
 	//Draw Score
-	SDL_SetTextureBlendMode(scoreTexture, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
 
 	//Draw ScoreCounter / Amount
-	std::string score = std::to_string(player->GetScore());
+	DrawTextHelper(std::to_string(player->GetScore()), scoreRect.x, scoreRect.y + scoreRect.h + 5);
+}
 
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, score.c_str(), Color(0, 0, 0, 255));
+//code reducer helper
+void HUD::DrawTextHelper(std::string text, int x, int y) {
+	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, text.c_str(), Color(255, 255, 255, 255));
 	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
-	SDL_Rect counterRect = { scoreRect.x, scoreRect.y + scoreRect.h + 5, counterSurface->w, counterSurface->h };
+	SDL_Rect counterRect = { x, y, counterSurface->w, counterSurface->h };
 
-	SDL_SetTextureBlendMode(counterTexture, SDL_BLENDMODE_BLEND); //tbh not sure what this does nor if it is needed... the internetwebz didn't make it very clear to me either
 	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
 
 	//cleanup counter stuff after using them
@@ -123,16 +132,6 @@ void HUD::DrawScore() {
 SDL_Color HUD::Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
 	SDL_Color col = { r, g, b, a };
 	return col;
-}
-
-//var not higher or lower than min and max
-int HUD::Clamp(int var, int min, int max) {
-	if (var >= max)
-		return var = max;
-	else if (var <= min)
-		return var = min;
-	else
-		return var;
 }
 
 void HUD::Cleanup() {

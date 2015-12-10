@@ -82,6 +82,8 @@ void GameStateManager::PopState()
 		
 		states.pop_back();
 	//	delete a;
+
+		states.back()->Resume(); //tell the state it is being resumed
 	}
 
 	

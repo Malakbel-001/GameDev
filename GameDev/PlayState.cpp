@@ -16,9 +16,6 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	
 	background = LTexture();
-	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
-	
 
 	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
@@ -63,7 +60,8 @@ void PlayState::Pause()
 
 void PlayState::Resume()
 {
-	std::cout << "Resume not implemented yet";
+	//if screen changed, reload all layerContainers
+	currentLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
 }
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
@@ -257,7 +255,9 @@ void PlayState::Update(float dt)
 void PlayState::Draw()
 {
 
-	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
+	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
+
+	currentLevel->GetParallaxBackGround()->Draw();
 
 	currentLevel->GetDrawableContainer()->Draw();
 
@@ -278,14 +278,10 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	}
 	this->currentLevel = lvl;
 	this->currentLevel->Init(bf);
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
-	backgroundRect.h = background.getHeight() + 100;
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 

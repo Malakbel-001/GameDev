@@ -107,6 +107,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
+    <ClCompile Include="LayerContainer.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LevelConfig.cpp" />
     <ClCompile Include="LoadState.cpp" />
@@ -118,6 +119,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="NpcStatsContainer.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="ParallaxBackground.cpp" />
     <ClCompile Include="PinguinSprite.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
@@ -193,6 +195,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />
+    <ClInclude Include="LayerContainer.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="LevelConfig.h" />
     <ClInclude Include="LoadState.h" />
@@ -204,6 +207,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="NpcStatsContainer.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="ParallaxBackground.h" />
     <ClInclude Include="PinguinSprite.h" />
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />

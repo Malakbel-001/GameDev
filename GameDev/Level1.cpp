@@ -8,7 +8,11 @@ Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
 
 void Level1::Init(BehaviourFactory* bf)
 {
-	backgroundPath = "level1.jpg";
+	//background
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
+	LoadParallaxBackgroundSettings();
+
+	//Entities Initialization
 	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
 
 	//obstacles--------------
@@ -90,8 +94,14 @@ Level1::~Level1()
 
 Level* Level1::CreateLevel()
 {
-
 	return new Level1(lvlWidth, lvlHeight, playState);
+}
+
+void Level1::LoadParallaxBackgroundSettings() {
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
 Player* Level1::SetPlayer(Player* _player) {
@@ -107,7 +117,12 @@ Player* Level1::SetPlayer(Player* _player) {
 	return player;
 }
 
+ParallaxBackground* Level1::GetParallaxBackGround() {
+	return parallaxBackground;
+}
 void Level1::Cleanup() {}
 
 
 void Level1::HandleEvents(SDL_Event mainEvent) { }
+
+Level1::~Level1() { }
