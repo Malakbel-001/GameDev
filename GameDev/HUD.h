@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "SDL_ttf.h"
 #include <iostream>
+#include "Utitilies.h"
 
 class HUD {
 	public:
@@ -12,15 +13,12 @@ class HUD {
 		SDL_Renderer* renderer;
 		Player* player;
 
+		void SetSurfacesAndTextures();
 		void SetRectangles(int x, int y);
-		void SetHUDFont(char* path, int ptsize);
-
-		SDL_Color Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 
 		void DrawHealth();
 		void DrawAmmo();
 		void DrawScore();
-		void DrawTextHelper(std::string, int x, int y);
 		//draw timer
 
 	public:

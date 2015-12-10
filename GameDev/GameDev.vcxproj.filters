@@ -253,6 +253,9 @@
     <ClCompile Include="FramesPerSecond.cpp">
       <Filter>Source Files\View\FramesPerSecond</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files\Model\Utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -531,6 +534,9 @@
     <ClInclude Include="FramesPerSecond.h">
       <Filter>Header Files\View\FramesPerSecond</Filter>
     </ClInclude>
+    <ClInclude Include="Utitilies.h">
+      <Filter>Header Files\Model\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -670,6 +676,12 @@
     </Filter>
     <Filter Include="Header Files\View\FramesPerSecond">
       <UniqueIdentifier>{1ae6a8ee-e598-401b-9acc-4161bc373a7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Utilities">
+      <UniqueIdentifier>{18147bf9-631b-431e-94d1-778997daa852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Utilities">
+      <UniqueIdentifier>{255723e8-314a-4f88-9385-8b88741e0738}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

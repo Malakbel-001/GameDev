@@ -26,7 +26,7 @@ class Game
 	private:
 		BehaviourFactory* bf;
 		
-		FramesPerSecond fps;
+		FramesPerSecond* fps;
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;
 		IGameState* gameState;

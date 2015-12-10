@@ -1,8 +1,15 @@
 #include "FramesPerSecond.h"
 
-FramesPerSecond::FramesPerSecond() {
+FramesPerSecond::FramesPerSecond(SDL_Renderer* _renderer) {
+	renderer = _renderer;
+
+	screenWidth = new int;
+	screenHeight = new int;
+	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+	
 	fpsCounter = 0;
 	currentFPS = 0;
+	fpsFont = Utilities::GetInstance()->SetFont("Resources/fonts/manaspc.ttf", 30);
 }
 
 FramesPerSecond::~FramesPerSecond() {
@@ -12,16 +19,11 @@ FramesPerSecond::~FramesPerSecond() {
 void FramesPerSecond::Cleanup() {
 	//fonts
 	TTF_CloseFont(fpsFont);
-}
 
-void FramesPerSecond::SetFPSFont(char* path, int ptsize) {
-	if (TTF_Init() == -1) //initialize TTF
-		std::cout << " Failed to initialize TTF : " << TTF_GetError() << std::endl;
-
-	fpsFont = TTF_OpenFont("Resources/fonts/manaspc.ttf", 12);
-
-	if (fpsFont == nullptr)
-		std::cout << " Failed to load font : " << TTF_GetError() << std::endl;
+	delete screenWidth;
+	delete screenHeight;
+	screenWidth = nullptr;
+	screenHeight = nullptr;
 }
 
 void FramesPerSecond::UpdateCount() {
@@ -36,7 +38,7 @@ void FramesPerSecond::UpdateCount() {
 
 void FramesPerSecond::DrawFPS() {
 	//draw
-	std::cout << "FPS: " << fpsCounter << std::endl;
+	std::cout << "FPS: " << currentFPS << std::endl;
 
-	
+	Utilities::GetInstance()->DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), *screenWidth - 50, 10, Utilities::GetInstance()->Color(255, 100, 100, 255));
 }

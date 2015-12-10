@@ -1,18 +1,23 @@
 #pragma once
 #include "SDL_ttf.h"
 #include <iostream>
+#include "Utitilies.h"
+#include "SoundBank.h"
 
 class FramesPerSecond {
 	private:
+		SDL_Renderer* renderer;
+		TTF_Font* fpsFont;
+
+		int* screenWidth;
+		int* screenHeight;
+
 		float ticks;
 		int fpsCounter;
 		int currentFPS;
-		TTF_Font* fpsFont;
-
-		void SetFPSFont(char* path, int ptsize);
 
 	public:
-		FramesPerSecond();
+		FramesPerSecond(SDL_Renderer* renderer);
 		~FramesPerSecond();
 		void Cleanup();
 		void UpdateCount();

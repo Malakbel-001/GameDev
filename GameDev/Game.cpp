@@ -11,11 +11,11 @@ Game::Game()
 	sdlInitializer = new SDLInitializer();
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
-	fps = FramesPerSecond();
 
 	gsm = new GameStateManager(bf);
 	gsm->CreateGameState(GameStateType::MenuState);
 
+	fps = new FramesPerSecond(sdlInitializer->GetRenderer());
 	//Non-threaded
 	this->GameLoop();
 
@@ -84,7 +84,9 @@ void Game::GameLoop()
 		gsm->GetCurrentState()->Update(dt);
 		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw();
-		fps.UpdateCount();
+
+		fps->UpdateCount(); //NEW
+		fps->DrawFPS();
 		
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
