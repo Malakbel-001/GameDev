@@ -19,9 +19,6 @@
     <ClCompile Include="Behaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="testLevel.cpp">
-      <Filter>Source Files\Model\Level</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
@@ -244,6 +241,15 @@
     <ClCompile Include="NpcStatsContainer.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="PlayMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -281,9 +287,6 @@
     </ClInclude>
     <ClInclude Include="Container.h">
       <Filter>Header Files\Model\Container</Filter>
-    </ClInclude>
-    <ClInclude Include="testLevel.h">
-      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Model\Level</Filter>
@@ -512,6 +515,15 @@
     </ClInclude>
     <ClInclude Include="NpcStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

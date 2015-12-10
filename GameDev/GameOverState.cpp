@@ -161,7 +161,8 @@ void GameOverState::Pause() {}
 void GameOverState::Quit(){
 	gsm->PopPrevState();
 	gsm->PopState();
-
+	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+	tempState->updateMenu(MenuEnum::Previous);
 }
 
 void GameOverState::Highlight(int item){

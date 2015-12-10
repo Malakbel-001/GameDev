@@ -171,9 +171,10 @@ void VictoryState::Resume() {}
 void VictoryState::Pause() {}
 
 void VictoryState::Quit(){
-
 	gsm->PopState();
 	gsm->PopState();
+	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+	tempState->updateMenu(MenuEnum::Previous);
 
 }
 

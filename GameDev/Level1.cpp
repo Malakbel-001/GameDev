@@ -1,12 +1,12 @@
-#include "TestLevel.h"
+#include "Level1.h"
 
-TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
+Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
 	: Level(_lvlWidth, _lvlHeight, play)
 {
 	levelId = 1;
 }
 
-void TestLevel::Init(BehaviourFactory* bf)
+void Level1::Init(BehaviourFactory* bf)
 {
 	backgroundPath = "level1.jpg";
 	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
@@ -83,18 +83,18 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(4500, 0, EntityType::PLANTBOSS);
 }
 
-TestLevel::~TestLevel()
+Level1::~Level1()
 {
 
 }
 
-Level* TestLevel::CreateLevel()
+Level* Level1::CreateLevel()
 {
 
-	return new TestLevel(lvlWidth, lvlHeight, playState);
+	return new Level1(lvlWidth, lvlHeight, playState);
 }
 
-Player* TestLevel::SetPlayer(Player* _player) {
+Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
@@ -107,7 +107,7 @@ Player* TestLevel::SetPlayer(Player* _player) {
 	return player;
 }
 
-void TestLevel::Cleanup() {}
+void Level1::Cleanup() {}
 
 
-void TestLevel::HandleEvents(SDL_Event mainEvent) { }
+void Level1::HandleEvents(SDL_Event mainEvent) { }

@@ -108,6 +108,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="LevelConfig.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="GunSprite.cpp" />
@@ -120,6 +121,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PinguinSprite.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="PlayMenu.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="CreditMenu.cpp" />
@@ -165,7 +167,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDLInitializer.cpp" />
-    <ClCompile Include="TestLevel.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TreeSprite.cpp" />
     <ClCompile Include="VictoryState.cpp" />
@@ -192,6 +194,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />
     <ClInclude Include="Level2.h" />
+    <ClInclude Include="LevelConfig.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="GunSprite.h" />
@@ -204,6 +207,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PinguinSprite.h" />
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="PlayMenu.h" />
     <ClInclude Include="SettingsConfig.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="CreditMenu.h" />
@@ -255,7 +259,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SDLInitializer.h" />
-    <ClInclude Include="TestLevel.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="TreeSprite.h" />
