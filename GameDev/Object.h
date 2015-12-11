@@ -23,6 +23,6 @@ protected:
 	DrawableBehaviour* draw;
 	MoveableBehaviour* move;
 	EntityType type;
-	EntityState state;
+	EntityState state;	
 };
 

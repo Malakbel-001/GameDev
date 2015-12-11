@@ -132,7 +132,22 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	};
 
 	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
-		{ EntityType::PLANTBOSS, new PlantMoveableBehaviour() }
+		{ EntityType::ACORN, new MoveableBehaviour() },
+		{ EntityType::AMMO, new MoveableBehaviour() },
+		{ EntityType::BAR, new MoveableBehaviour() },
+		{ EntityType::BULLET, new MoveableBehaviour() },
+		{ EntityType::GROUND, new MoveableBehaviour() },
+		{ EntityType::GROUND2, new MoveableBehaviour() },
+		{ EntityType::GROUNDLVL2, new MoveableBehaviour() },
+		{ EntityType::HEALTH, new MoveableBehaviour() },
+		{ EntityType::PINGUIN, new MoveableBehaviour() },
+		{ EntityType::PLANT, new PlantMoveableBehaviour() },
+		{ EntityType::PLAYER, new MoveableBehaviour() },
+		{ EntityType::PLAYERSPRITE, new MoveableBehaviour() },
+		{ EntityType::PLANTBOSS, new MoveableBehaviour() },
+		{ EntityType::SHOTGUN, new MoveableBehaviour() },
+		{ EntityType::SNOWMAN, new MoveableBehaviour() },
+		{ EntityType::WEAPON, new MoveableBehaviour() }
 	};
 
 }
@@ -183,10 +198,8 @@ CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type
 MoveableBehaviour* BehaviourFactory::CreateMoveableBehaviour(EntityType type)
 { 
 	MoveableBehaviour* behaviour = moveRegistery.at(type)->EmptyClone();
-	//behaviour->SetEntity(entity);
 	return behaviour;
 }
-
 
 void BehaviourFactory::ClearCamera(){
 	camera->Init(nullptr, 0, 0);

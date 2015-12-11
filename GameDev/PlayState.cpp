@@ -237,7 +237,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 void PlayState::Update(float dt)
 {
 	currentLevel->Update(dt);
-
+	Draw();
+	Move(dt);
 	// TODO: fix dinemic FPS count
 	// do last
 	
@@ -252,6 +253,10 @@ void PlayState::Draw()
 	currentLevel->GetDrawableContainer()->Draw();
 
 	hud->Draw();
+}
+
+void PlayState::Move(float dt){
+	currentLevel->GetMoveableContainer()->Move(dt);
 }
 
 Level* PlayState::GetCurrentLevel()

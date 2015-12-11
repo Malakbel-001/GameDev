@@ -9,6 +9,6 @@ public:
 
 	PlantMoveableBehaviour* EmptyClone();
 
-	virtual void Move() override;
+	virtual void Move(float dt) override;
 };
 

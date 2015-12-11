@@ -10,7 +10,7 @@ class Entity : public Object
 		float width;
 		float height;
 		b2Body* body;	
-	
+
 	public:
 		Entity();
 		virtual ~Entity();

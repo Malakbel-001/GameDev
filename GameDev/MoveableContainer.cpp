@@ -1,8 +1,9 @@
 #include "MoveableContainer.h"
-
+#include "Entity.h"
 
 MoveableContainer::MoveableContainer()
 {
+	behaviours = vector<MoveableBehaviour*>();
 }
 
 
@@ -15,19 +16,19 @@ void MoveableContainer::Add(MoveableBehaviour* behaviour)
 	behaviours.push_back(behaviour);
 }
 
-void MoveableContainer::Move()
+void MoveableContainer::Move(float dt)
 {
 	for each (MoveableBehaviour* behaviour in behaviours)
 	{
-		behaviour->Move();
+		behaviour->Move(dt);
 	}
 }
-void MoveableContainer::Delete(MoveableBehaviour* b){
+void MoveableContainer::Delete(Entity* ent){
 	bool found = false;
 	size_t i = 0;
 	for (; i < behaviours.size() && !found; i++)
 	{
-		if (behaviours[i] == b){
+		if (behaviours[i]->GetEntity() == ent){
 
 			found = true;
 		}

@@ -10,17 +10,22 @@ MoveableBehaviour::~MoveableBehaviour()
 {
 }
 
-//void MoveableBehaviour::SetEntity(Entity* _entity)
-//{
-//	entity = _entity;
-//}
+void MoveableBehaviour::SetEntity(Object* _entity)
+{
+	entity = _entity;
+}
+
+Object* MoveableBehaviour::GetEntity()
+{
+	return entity;
+}
 
 MoveableBehaviour* MoveableBehaviour::EmptyClone()
 {
 	return new MoveableBehaviour();
 }
 
-void MoveableBehaviour::Move()
+void MoveableBehaviour::Move(float dt)
 {
 
 }

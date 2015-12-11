@@ -20,14 +20,14 @@ void PlayerDrawableBehaviour::Draw()
 
 		int size = sprite->GetAnimationSize();
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetState());
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame/3), entity->GetState());
 
 		//Go to next frame 
 		++currentFrame;
 		
 		//Cycle animation 
 
-		if (currentFrame  >= size)
+		if (currentFrame /3 >= size)
 		{
 			currentFrame = 0;
 		}

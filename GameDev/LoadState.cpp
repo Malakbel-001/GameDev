@@ -127,7 +127,7 @@ void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
 }
 
 void LoadState::Update(float dt) {
-	//nope
+	Draw();
 }
 
 void LoadState::Draw() {
@@ -144,4 +144,7 @@ void LoadState::Draw() {
 	}
 
 	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
+}
+
+void LoadState::Move(float dt){
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include "Behaviour.h"
 
-class Entity;
+class Object;
 
 class MoveableBehaviour :
 	public Behaviour
@@ -10,14 +10,15 @@ public:
 	MoveableBehaviour();
 	virtual ~MoveableBehaviour();
 
-	void SetEntity(Entity* _entity);
+	void SetEntity(Object* _entity);
+	Object* GetEntity();
 
 	MoveableBehaviour* EmptyClone();
 
-	virtual void Move();
+	virtual void Move(float dt);
 
 protected:
-	Entity* entity;
+	Object* entity;
 };
 
 

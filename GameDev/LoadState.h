@@ -47,4 +47,5 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void Update(float dt);
 	void Draw();
+	void Move(float dt);
 };

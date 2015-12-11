@@ -118,6 +118,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="PinguinSprite.cpp" />
+    <ClCompile Include="PlantBossMoveableBehaviour.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlantMoveableBehaviour.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
@@ -205,6 +206,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Object.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="PinguinSprite.h" />
+    <ClInclude Include="PlantBossMoveableBehaviour.h" />
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlantMoveableBehaviour.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />

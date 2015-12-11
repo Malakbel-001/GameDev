@@ -245,7 +245,10 @@
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
     <ClCompile Include="PlantMoveableBehaviour.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Model\Behaviour\Moveables</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantBossMoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Moveables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +526,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlantMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBossMoveableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

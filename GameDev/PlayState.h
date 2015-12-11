@@ -32,6 +32,7 @@ class PlayState :
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void Update(float);
 		void Draw();
+		void Move(float dt);
 		void GameOver();
 		void Victory();
 

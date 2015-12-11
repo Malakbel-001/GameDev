@@ -3,6 +3,9 @@
 #include "Container.h"
 #include "MoveableBehaviour.h"
 
+using namespace std;
+
+class Entity;
 class MoveableContainer :
 	public Container
 {
@@ -11,8 +14,8 @@ public:
 	virtual ~MoveableContainer();
 
 	void Add(MoveableBehaviour* behaviour);
-	void Move();
-	void Delete(MoveableBehaviour* behaviour);
+	void Move(float dt);
+	void Delete(Entity* ent);
 private:
 	std::vector<MoveableBehaviour*> behaviours;
 };

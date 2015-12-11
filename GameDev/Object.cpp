@@ -12,6 +12,7 @@ void Object::Init(EntityType _type, BehaviourFactory* bf, DrawableContainer* dra
 	draw->SetEntity(this);
 
 	move = bf->CreateMoveableBehaviour(type);
+	move->SetEntity(this);
 
 	drawContainer->Add(draw);
 	moveContainer->Add(move);	

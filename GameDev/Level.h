@@ -40,6 +40,7 @@ public:
 	Player* GetPlayer();
 
 	DrawableContainer* GetDrawableContainer();
+	MoveableContainer* GetMoveableContainer();
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
 	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();

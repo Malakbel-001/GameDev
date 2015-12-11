@@ -13,6 +13,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	contact = new ContactListener();
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
+	moveableContainer = new MoveableContainer();
 	entities = new std::vector<Entity*>();
 
 
@@ -65,6 +66,7 @@ void Level::Update(float dt)
 				player->AddScore(actors->operator[](x)->GetScore());
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
+				moveableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
 				actors->operator[](x) = nullptr;
 				actors->erase(actors->begin() + x);
@@ -97,6 +99,11 @@ Player* Level::GetPlayer()
 DrawableContainer* Level::GetDrawableContainer()
 {
 	return drawableContainer;
+}
+
+MoveableContainer* Level::GetMoveableContainer()
+{
+	return moveableContainer;
 }
 #pragma endregion Get, Set
 
