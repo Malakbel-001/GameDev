@@ -244,6 +244,9 @@
     <ClCompile Include="NpcStatsContainer.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="KeyMapping.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -512,6 +515,12 @@
     </ClInclude>
     <ClInclude Include="NpcStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMapping.h">
+      <Filter>Header Files\Model\SettingsConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
