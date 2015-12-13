@@ -5,7 +5,7 @@ HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
 	this->player = player;
 
-	hudFont = Utilities::GetInstance()->SetFont("Resources/fonts/manaspc.ttf", 12);
+	hudFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 12);
 	SetSurfacesAndTextures();
 	SetRectangles(20, 20);
 }
@@ -35,13 +35,13 @@ void HUD::SetRectangles(int x, int y) {
 void HUD::SetSurfacesAndTextures() {
 	//FWApplication would normally create use and SDL_FreeSurface() + SDL_DestroyTexture()
 	//this is better for performance reasons (when it's possible), create once, reuse whenever, FreeSurface() and DestroyTexture() in Cleanup()
-	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Utilities::GetInstance()->Color(255, 255, 255, 255));
+	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Utilities::GetColor(255, 255, 255, 255));
 	ammoTexture = SDL_CreateTextureFromSurface(renderer, ammoSurface); //set ammoTexture
 
-	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Utilities::GetInstance()->Color(255, 255, 255, 255));
+	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Utilities::GetColor(255, 255, 255, 255));
 	scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
 
-	hpSurface = TTF_RenderText_Blended(hudFont, "Health:", Utilities::GetInstance()->Color(255, 255, 255, 255));
+	hpSurface = TTF_RenderText_Blended(hudFont, "Health:", Utilities::GetColor(255, 255, 255, 255));
 	hpTexture = SDL_CreateTextureFromSurface(renderer, hpSurface);
 }
 
@@ -89,8 +89,8 @@ void HUD::DrawHealth() {
 
 	SDL_RenderCopy(renderer, hpTexture, NULL, &hpRect);
 
-	Utilities::GetInstance()->DrawTextHelper(renderer, hudFont, std::to_string(player->GetHealth()), hpRect.x + hpRect.w + 10, 
-		hpRect.y, Utilities::GetInstance()->Color(255, 255, 255, 255));
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetHealth()), hpRect.x + hpRect.w + 10, 
+		hpRect.y, Utilities::GetColor(255, 255, 255, 255));
 }
 
 void HUD::DrawAmmo() {
@@ -98,8 +98,8 @@ void HUD::DrawAmmo() {
 	SDL_RenderCopy(renderer, ammoTexture, NULL, &ammoRect);
 
 	//Draw AmmoCounter / Amount
-	Utilities::GetInstance()->DrawTextHelper(renderer, hudFont, std::to_string(player->GetCurrentWeapon()->GetAmmo()), ammoRect.x, 
-		ammoRect.y + ammoRect.h + 5, Utilities::GetInstance()->Color(255, 255, 255, 255));
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetCurrentWeapon()->GetAmmo()), ammoRect.x, 
+		ammoRect.y + ammoRect.h + 5, Utilities::GetColor(255, 255, 255, 255));
 }
 
 void HUD::DrawScore() {
@@ -107,8 +107,8 @@ void HUD::DrawScore() {
 	SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
 
 	//Draw ScoreCounter / Amount
-	Utilities::GetInstance()->DrawTextHelper(renderer, hudFont, std::to_string(player->GetScore()), scoreRect.x, 
-		scoreRect.y + scoreRect.h + 5, Utilities::GetInstance()->Color(255, 255, 255, 255));
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetScore()), scoreRect.x, 
+		scoreRect.y + scoreRect.h + 5, Utilities::GetColor(255, 255, 255, 255));
 }
 
 void HUD::Cleanup() {

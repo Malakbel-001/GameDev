@@ -10,7 +10,7 @@ FramesPerSecond::FramesPerSecond(SDL_Renderer* _renderer) {
 	run = false;
 	fpsCounter = 0;
 	currentFPS = 0;
-	fpsFont = Utilities::GetInstance()->SetFont("Resources/fonts/manaspc.ttf", 30);
+	fpsFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 30);
 	timerTicks = SDL_GetTicks();
 	lockButtonTicks = SDL_GetTicks();
 }
@@ -41,7 +41,7 @@ void FramesPerSecond::UpdateCount() {
 
 void FramesPerSecond::DrawFPS() {
 	if (run) {
-		Utilities::GetInstance()->DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), *screenWidth - 50, 10, Utilities::GetInstance()->Color(255, 0, 0, 255));
+		Utilities::DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), *screenWidth - 50, 10, Utilities::GetColor(255, 0, 0, 255));
 	}
 }
 
