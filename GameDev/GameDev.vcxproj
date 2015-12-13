@@ -57,7 +57,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;$(projectDir)Libraries\rapidxml-1.13;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_mixer.lib;SDL2_image.lib;Box2D.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
@@ -109,6 +109,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="KeyMapping.cpp" />
     <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="LoadedLevel.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="GunSprite.cpp" />
@@ -195,6 +196,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Input.h" />
     <ClInclude Include="KeyMapping.h" />
     <ClInclude Include="Level2.h" />
+    <ClInclude Include="LoadedLevel.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="GunSprite.h" />

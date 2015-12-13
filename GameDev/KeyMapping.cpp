@@ -1,8 +1,8 @@
 #include "KeyMapping.h"
 
-
 KeyMapping::KeyMapping()
 {
+	
 	KeyCodeMap = std::unordered_map < std::string, SDL_Keycode > {
 			{"a", SDLK_a},
 			{ "b", SDLK_b },

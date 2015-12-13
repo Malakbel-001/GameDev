@@ -247,6 +247,9 @@
     <ClCompile Include="KeyMapping.cpp">
       <Filter>Source Files\Model\SettingsConfig</Filter>
     </ClCompile>
+    <ClCompile Include="LoadedLevel.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -521,6 +524,9 @@
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Controller\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadedLevel.h">
+      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

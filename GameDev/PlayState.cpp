@@ -10,7 +10,6 @@ void PlayState::Init(GameStateManager* gsm)
 	player = new Player();
 	
 	
-	
 	background = LTexture();
 	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
 	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
@@ -277,6 +276,8 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
+	LevelFactory::LoadLevel(this, bf, "test");
 }
 
 

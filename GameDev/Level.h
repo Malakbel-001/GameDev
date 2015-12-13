@@ -33,13 +33,17 @@ protected:
 	PlayState* playState;
 	
 	std::vector<Actor*>* actors;
+	std::vector<Entity*>* entities;
 	Player* player;
 	std::string backgroundPath;
 public:
-	Player* GetPlayer();
 
+	Player* GetPlayer();
+	std::vector<Actor*>* GetActors();
+	std::vector<Entity*>* GetEntities();
 	DrawableContainer* GetDrawableContainer();
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
 	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();
 
@@ -58,7 +62,7 @@ public:
 	int GetTotalDiffrentTiles();
 	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
-	std::vector<Entity*>* entities;
+	
 	void Draw();
 	void Update(float dt);
 	void GameOver();

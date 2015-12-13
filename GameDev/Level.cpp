@@ -17,17 +17,38 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 
 
 }
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+{
+	entityFactory = nullptr;
+	player = nullptr;
+	startXpos = 100;
+	startYpos = 10;
+	actors = new std::vector<Actor*>();
+	world = new b2World(vec);
+	contact = new ContactListener();
+	world->SetContactListener(contact);
+	drawableContainer = new DrawableContainer();
+	entities = new std::vector<Entity*>();
+
+
+}
 
 void Level::Init(BehaviourFactory* bf)
 {
-	cout << " jajaa ";
+
 }
 
 b2World* Level::GetWorld()
 {
 	return world;
 }
-
+std::vector<Actor*>* Level::GetActors(){
+	return actors;
+}
+std::vector<Entity*>* Level::GetEntities(){
+	return entities;
+}
 void Level::Update(float dt)
 {
 	
@@ -39,7 +60,7 @@ void Level::Update(float dt)
 	world->Step((dt / 100), 5, 5);
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
-
+		LevelFactory::SaveLevel(this,"test");
 		GameOver();
 	}
 	else{
