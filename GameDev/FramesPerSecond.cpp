@@ -29,10 +29,11 @@ void FramesPerSecond::Cleanup() {
 	screenHeight = nullptr;
 }
 
+//UpdateCount and every second, set the currentFPS for that second
 void FramesPerSecond::UpdateCount() {
 	fpsCounter++;
 
-	if (timerTicks + 1000 < SDL_GetTicks()) { //not sure if this is correct
+	if (timerTicks + 1000 < SDL_GetTicks()) {
 		currentFPS = fpsCounter;
 		timerTicks = SDL_GetTicks();
 		fpsCounter = 0;
