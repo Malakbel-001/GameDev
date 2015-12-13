@@ -4,6 +4,7 @@
 HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->renderer = renderer;
 	this->player = player;
+	timer = Timer();
 
 	hudFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 12);
 	SetSurfacesAndTextures();
@@ -61,7 +62,7 @@ void HUD::Draw() {
 
 	DrawAmmo();
 	DrawScore();
-	//Optional: Draw Timer()
+	DrawTimer();
 
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color back
 }
@@ -109,6 +110,18 @@ void HUD::DrawScore() {
 	//Draw ScoreCounter / Amount
 	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetScore()), scoreRect.x, 
 		scoreRect.y + scoreRect.h + 5, Utilities::GetColor(255, 255, 255, 255));
+}
+
+void HUD::DrawTimer() {
+	timer.CalcDifference();
+
+	//Draw Timer
+	//cheat
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(timer.GetCurrentMinutes()), drawStatsRect.x + drawStatsRect.w + 20,
+		drawStatsRect.y, Utilities::GetColor(0, 0, 0, 0));
+
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(timer.GetCurrentSeconds()), drawStatsRect.x + drawStatsRect.w + 40,
+		drawStatsRect.y, Utilities::GetColor(0, 0, 0, 0));
 }
 
 void HUD::Cleanup() {

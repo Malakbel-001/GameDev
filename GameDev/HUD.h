@@ -3,6 +3,7 @@
 #include "SDL_ttf.h"
 #include <iostream>
 #include "Utitilies.h"
+#include "Timer.h"
 
 class HUD {
 	public:
@@ -19,7 +20,7 @@ class HUD {
 		void DrawHealth();
 		void DrawAmmo();
 		void DrawScore();
-		//draw timer
+		void DrawTimer();
 
 	public:
 		void Draw();
@@ -28,6 +29,7 @@ class HUD {
 	private:
 		TTF_Font* hudFont;
 		SDL_Color oldColor;
+		Timer timer;
 		
 		SDL_Rect drawHPRect;
 		SDL_Rect fillHPRect;

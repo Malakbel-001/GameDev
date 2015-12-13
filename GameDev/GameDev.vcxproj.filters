@@ -256,6 +256,9 @@
     <ClCompile Include="Utilities.cpp">
       <Filter>Source Files\Model\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files\View\Head-Up Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -536,6 +539,9 @@
     </ClInclude>
     <ClInclude Include="Utitilies.h">
       <Filter>Header Files\Model\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files\View\Head-Up Display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
