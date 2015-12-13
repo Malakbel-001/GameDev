@@ -1,5 +1,4 @@
 #include "Timer.h"
-#include <iostream> //temp
 
 Timer::Timer() {
 	timeLapsedMilliSeconds = 0;
@@ -17,8 +16,6 @@ void Timer::ResumeTimer() {
 void Timer::CalcDifference() {
 	timeLapsedMilliSeconds += SDL_GetTicks() - previousTicks;
 	previousTicks = SDL_GetTicks();
-
-	std::cout << timeLapsedMilliSeconds << std::endl;
 }
 
 int Timer::GetCurrentMinutes() {

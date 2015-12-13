@@ -2,6 +2,16 @@
 #include "Utitilies.h"
 
 namespace Utilities {
+	//returns boolean if the game is currently in fullscreen or not
+	bool Utilities::IsFullScreen() {
+		SDL_Window* window = SDL_GetWindowFromID(1); //works as long as we have only 1 window
+		Uint32 flags = SDL_GetWindowFlags(window); //sdl window flags including fullscreen desktop flag
+
+		bool isFullScreen = (flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP;
+
+		return isFullScreen;
+	}
+
 	TTF_Font* Utilities::SetFont(char* path, int ptsize) {
 		if (TTF_Init() == -1) //initialize TTF
 			std::cout << " Failed to initialize TTF : " << TTF_GetError() << std::endl;

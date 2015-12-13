@@ -6,9 +6,15 @@ HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	this->player = player;
 	timer = Timer();
 
+	screenWidth = new int;
+	screenHeight = new int;
+	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+	wasFullScreen = Utilities::IsFullScreen();
+
 	hudFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 12);
+	timerFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 20);
 	SetSurfacesAndTextures();
-	SetRectangles(20, 20);
+	SetRectangles();
 }
 
 HUD::~HUD() {
@@ -16,21 +22,34 @@ HUD::~HUD() {
 }
 
 //setDrawRect & fillRect
-void HUD::SetRectangles(int x, int y) {
+void HUD::SetRectangles() {
+	//HP Upper Left, Always Standard
+	int leftX = 20;
+	int allY = 20; //y to draw all
 	int hpWidth = 200;
 	int hpHeight = 30;
 
-	drawHPRect = { x, y, hpWidth, hpHeight };
-	fillHPRect = { x, y, hpWidth, hpHeight };
+	drawHPRect = { leftX, allY, hpWidth, hpHeight };
+	fillHPRect = { leftX, allY, hpWidth, hpHeight };
 
 	amountHPRect =	{ drawHPRect.x + 20, drawHPRect.y + drawHPRect.h, drawHPRect.w - 40, 20 };
 	hpRect =		{ amountHPRect.x + 30, amountHPRect.y + 5, hpSurface->w, hpSurface->h };
 
-	drawStatsRect = { drawHPRect.x + 50 + hpWidth, y, 120, 50 }; //temp width
-	ammoRect =		{ drawStatsRect.x + 10, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
-	scoreRect =		{ ammoRect.x + ammoRect.w + 20, ammoRect.y, scoreSurface->w, scoreSurface->h };
+	//Stats Upper Middle, Calculate Width!
+	int spaceFromStatsRect = 10;
+	int spaceInBetween = 20;
+	int calcWidthStats = spaceFromStatsRect + ammoSurface->w + spaceInBetween + scoreSurface->w + spaceFromStatsRect;
+	//height = magic number, durr.
 
-	drawStatsRect.w = (scoreRect.x + scoreRect.w + 10) - drawStatsRect.x; //dynamic / fix width
+	int middleX = (*screenWidth / 2) - (calcWidthStats / 2);
+	drawStatsRect =	{ middleX, allY, calcWidthStats, 50 };
+	ammoRect = { drawStatsRect.x + spaceFromStatsRect, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
+	scoreRect = { ammoRect.x + ammoRect.w + spaceInBetween, ammoRect.y, scoreSurface->w, scoreSurface->h };
+
+	//Timer Upper Right
+	//Cannot set (temp maybe)
+
+
 }
 
 void HUD::SetSurfacesAndTextures() {
@@ -117,11 +136,11 @@ void HUD::DrawTimer() {
 
 	//Draw Timer
 	//cheat
-	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(timer.GetCurrentMinutes()), drawStatsRect.x + drawStatsRect.w + 20,
-		drawStatsRect.y, Utilities::GetColor(0, 0, 0, 0));
+	Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentMinutes()), *screenWidth - 70,
+		drawStatsRect.y + 10, Utilities::GetColor(0, 0, 0, 0));
 
-	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(timer.GetCurrentSeconds()), drawStatsRect.x + drawStatsRect.w + 40,
-		drawStatsRect.y, Utilities::GetColor(0, 0, 0, 0));
+	Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentSeconds()), *screenWidth - 40,
+		drawStatsRect.y + 10, Utilities::GetColor(0, 0, 0, 0));
 }
 
 void HUD::Cleanup() {
@@ -133,6 +152,23 @@ void HUD::Cleanup() {
 	TTF_CloseFont(hudFont);
 }
 
-void HUD::ResumeTimer() {
+void HUD::ResumeChecks() {
 	timer.ResumeTimer();
+	CheckIfScreenSizeChanged();
+}
+
+void HUD::CheckIfScreenSizeChanged() {
+	//Screen Changed
+	bool isFullScreen = Utilities::IsFullScreen();
+
+	//check if the screen changed
+	if (wasFullScreen != isFullScreen) {
+		//set screenWidth & screenHeight
+		SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+		//this will also update the screenWidth and screenHeight inside the LayerContainers, because they have int pointers
+
+		SetRectangles(); //set again on the right positions
+	}
+
+	wasFullScreen = isFullScreen; //keep the result for later check
 }

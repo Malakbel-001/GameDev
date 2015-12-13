@@ -14,21 +14,28 @@ class HUD {
 		SDL_Renderer* renderer;
 		Player* player;
 
+		int* screenWidth;
+		int* screenHeight;
+
 		void SetSurfacesAndTextures();
-		void SetRectangles(int x, int y);
+		void SetRectangles();
 
 		void DrawHealth();
 		void DrawAmmo();
 		void DrawScore();
 		void DrawTimer();
+		void CheckIfScreenSizeChanged();
+
+		bool wasFullScreen; //was before
 
 	public:
 		void Draw();
 		void Cleanup();
-		void ResumeTimer();
+		void ResumeChecks();
 
 	private:
 		TTF_Font* hudFont;
+		TTF_Font* timerFont;
 		SDL_Color oldColor;
 		Timer timer;
 		
