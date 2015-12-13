@@ -131,23 +131,35 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 	};
 
+	IdleCommand* idle = new IdleCommand();
+	DefaultPatrolCommand* patrol = new DefaultPatrolCommand();
+
+	defaultComamnds = std::unordered_map<EntityState, BaseCommand*> {
+		{ EntityState::IDLE, idle }
+	};
+
+	plantComamnds = std::unordered_map<EntityState, BaseCommand*> {
+		{ EntityState::IDLE, patrol },
+		{ EntityState::PATROL, idle }
+	};
+
 	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
-		{ EntityType::ACORN, new MoveableBehaviour() },
-		{ EntityType::AMMO, new MoveableBehaviour() },
-		{ EntityType::BAR, new MoveableBehaviour() },
-		{ EntityType::BULLET, new MoveableBehaviour() },
-		{ EntityType::GROUND, new MoveableBehaviour() },
-		{ EntityType::GROUND2, new MoveableBehaviour() },
-		{ EntityType::GROUNDLVL2, new MoveableBehaviour() },
-		{ EntityType::HEALTH, new MoveableBehaviour() },
-		{ EntityType::PINGUIN, new MoveableBehaviour() },
-		{ EntityType::PLANT, new PlantMoveableBehaviour() },
-		{ EntityType::PLAYER, new MoveableBehaviour() },
-		{ EntityType::PLAYERSPRITE, new MoveableBehaviour() },
-		{ EntityType::PLANTBOSS, new MoveableBehaviour() },
-		{ EntityType::SHOTGUN, new MoveableBehaviour() },
-		{ EntityType::SNOWMAN, new MoveableBehaviour() },
-		{ EntityType::WEAPON, new MoveableBehaviour() }
+		{ EntityType::ACORN, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::AMMO, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::BAR, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::BULLET, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::GROUND, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::GROUND2, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::GROUNDLVL2, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::HEALTH, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::PINGUIN, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::PLANT, new PlantMoveableBehaviour(plantComamnds) },
+		{ EntityType::PLAYER, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::PLAYERSPRITE, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::PLANTBOSS, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::SHOTGUN, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::SNOWMAN, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::WEAPON, new MoveableBehaviour(defaultComamnds) }
 	};
 
 }

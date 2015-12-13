@@ -1,13 +1,15 @@
 #pragma once
+#include <unordered_map>
 #include "Behaviour.h"
+#include "EntityState.h"
 
 class Object;
-
+class BaseCommand;
 class MoveableBehaviour :
 	public Behaviour
 {
 public:
-	MoveableBehaviour();
+	MoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands);
 	virtual ~MoveableBehaviour();
 
 	void SetEntity(Object* _entity);
@@ -19,6 +21,7 @@ public:
 
 protected:
 	Object* entity;
+	std::unordered_map<EntityState, BaseCommand*> commands;
 };
 
 

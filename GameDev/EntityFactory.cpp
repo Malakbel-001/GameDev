@@ -198,6 +198,11 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 			, type, bf, drawContainer, moveContainer);
 		ent->SetScore(npcStats->GetScore());
 		ent->SetLevel(level);
+		ent->SetState(EntityState::IDLE);
+		b2Vec2 dir;
+		dir.y = 0;
+		dir.x = 0;
+		ent->SetDirection(dir);
 		actor->push_back(ent);
 	}
 

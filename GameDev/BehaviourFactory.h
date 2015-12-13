@@ -23,7 +23,8 @@
 #include "PinguinSprite.h"
 #include "TreeSprite.h"
 #include "SnowmanSprite.h"
-
+#include "IdleCommand.h"
+#include "DefaultPatrolCommand.h"
 
 class Camera;
 class CollidableBehaviour;
@@ -50,6 +51,8 @@ private:
 	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
 	std::unordered_map<EntityType, MoveableBehaviour*> moveRegistery;
 	std::unordered_map<EntityType, Sprite*> spriteRegistery;
+	std::unordered_map<EntityState, BaseCommand*> defaultComamnds;
+	std::unordered_map<EntityState, BaseCommand*> plantComamnds;
 	std::vector<Sprite*> sprites;
 };
 

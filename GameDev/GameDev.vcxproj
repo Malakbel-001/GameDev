@@ -97,6 +97,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="AnimatedDrawableBehaviour.cpp" />
     <ClCompile Include="BareEntity.cpp" />
     <ClCompile Include="BarObstacleSprite.cpp" />
+    <ClCompile Include="BaseCommand.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
     <ClCompile Include="Bullet.cpp" />
@@ -106,7 +107,9 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="DefaultPatrolCommand.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
+    <ClCompile Include="IdleCommand.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />
@@ -182,6 +185,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="AnimatedDrawableBehaviour.h" />
     <ClInclude Include="BareEntity.h" />
     <ClInclude Include="BarObstacleSprite.h" />
+    <ClInclude Include="BaseCommand.h" />
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
@@ -192,8 +196,10 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CheatLoadDrawableBehaviour.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="DefaultPatrolCommand.h" />
     <ClInclude Include="EntityDirection.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />
+    <ClInclude Include="IdleCommand.h" />
     <ClInclude Include="IdleMoveableBehaviour.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="LoadState.h" />

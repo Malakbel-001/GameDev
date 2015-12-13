@@ -4,7 +4,7 @@ class PlantMoveableBehaviour :
 	public MoveableBehaviour
 {
 public:
-	PlantMoveableBehaviour();
+	PlantMoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands);
 	~PlantMoveableBehaviour();
 
 	PlantMoveableBehaviour* EmptyClone();

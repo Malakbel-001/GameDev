@@ -1,8 +1,9 @@
  #include "MoveableBehaviour.h"
 
 
-MoveableBehaviour::MoveableBehaviour()
+MoveableBehaviour::MoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands)
 {
+	commands = _commands;
 }
 
 
@@ -22,7 +23,7 @@ Object* MoveableBehaviour::GetEntity()
 
 MoveableBehaviour* MoveableBehaviour::EmptyClone()
 {
-	return new MoveableBehaviour();
+	return new MoveableBehaviour(commands);
 }
 
 void MoveableBehaviour::Move(float dt)

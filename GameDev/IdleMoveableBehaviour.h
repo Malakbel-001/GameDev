@@ -4,7 +4,7 @@ class IdleMoveableBehaviour :
 	public MoveableBehaviour
 {
 public:
-	IdleMoveableBehaviour();
+	IdleMoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands);
 	~IdleMoveableBehaviour();
 
 	IdleMoveableBehaviour* EmptyClone();

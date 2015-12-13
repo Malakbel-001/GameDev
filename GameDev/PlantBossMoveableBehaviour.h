@@ -4,7 +4,7 @@ class PlantBossMoveableBehaviour :
 	public MoveableBehaviour
 {
 public:
-	PlantBossMoveableBehaviour();
+	PlantBossMoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands);
 	~PlantBossMoveableBehaviour();
 
 	PlantBossMoveableBehaviour* EmptyClone();

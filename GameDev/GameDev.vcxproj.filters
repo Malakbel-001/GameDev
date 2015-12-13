@@ -250,6 +250,15 @@
     <ClCompile Include="PlantBossMoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Moveables</Filter>
     </ClCompile>
+    <ClCompile Include="BaseCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultPatrolCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -529,6 +538,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlantBossMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultPatrolCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
