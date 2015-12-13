@@ -132,3 +132,7 @@ void HUD::Cleanup() {
 	//fonts
 	TTF_CloseFont(hudFont);
 }
+
+void HUD::ResumeTimer() {
+	timer.ResumeTimer();
+}

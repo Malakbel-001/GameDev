@@ -25,6 +25,7 @@ class HUD {
 	public:
 		void Draw();
 		void Cleanup();
+		void ResumeTimer();
 
 	private:
 		TTF_Font* hudFont;

@@ -52,6 +52,7 @@ void PlayState::Resume()
 {
 	//if screen changed, reload all layerContainers
 	currentLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
+	hud->ResumeTimer();
 }
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
