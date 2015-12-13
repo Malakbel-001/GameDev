@@ -12,7 +12,14 @@ void EnemyCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
 			//SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 			break;
+		case EntityType::PLANT:
+			//do something
+			break;
+		case EntityType::PLANTBOSS:
+			//do something
+			break;
 		default:
+
 			break;
 		}
 	}

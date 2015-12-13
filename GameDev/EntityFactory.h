@@ -17,7 +17,7 @@
 class EntityFactory
 {
 public:
-	EntityFactory(b2World& world, std::vector<Actor*>* _actor,std::vector<Entity*>*_ent,BehaviourFactory* _bf, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer);
+	EntityFactory(b2World& world, std::vector<Actor*>* _actor,std::vector<Entity*>*_ent,BehaviourFactory* _bf, Level* _level, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer);
 	~EntityFactory();
 	Entity* CreateEntity(float x, float y, float height, float width, EntityType type);
 	Actor* CreateActor(int _hitdmg, int _healt, float x, float y, float height, float width, EntityType type);
@@ -43,5 +43,6 @@ private:
 	b2World& world;
 	std::vector<Actor*>* actor;
 	std::vector<Entity*>* entities;
+	Level* level;
 };
 

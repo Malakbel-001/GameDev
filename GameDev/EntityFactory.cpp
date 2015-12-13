@@ -3,7 +3,7 @@
 
 
 
-EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer) : world(b2world), actor(_actor), bf(_bf), drawContainer(_drawContainer), moveContainer(_moveContainer), entities(_ent)
+EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, Level* _level, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer) : world(b2world), actor(_actor), bf(_bf), level(_level), drawContainer(_drawContainer), moveContainer(_moveContainer), entities(_ent)
 {
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
 		{ EntityType::ACTOR, new Actor() },
@@ -172,7 +172,7 @@ Entity* EntityFactory::CreateEntity(float x, float y, float height, float width,
 
 
 	entities->push_back(ent);
-
+	ent->SetLevel(level);
 	return ent;
 }
 
@@ -182,7 +182,7 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, flo
 	b2Body* body = CreateActorBody(x, y, height, width,1, type);
 	ent->InitActor(body, _hitdmg, _health, width, height, type, bf, drawContainer, moveContainer);
 	actor->push_back(ent);
-
+	ent->SetLevel(level);
 	return ent;
 }
 
@@ -197,6 +197,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer, moveContainer);
 		ent->SetScore(npcStats->GetScore());
+		ent->SetLevel(level);
 		actor->push_back(ent);
 	}
 
@@ -217,6 +218,7 @@ Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int d
 	Bullet* bullet = bulletRegistery.at(type)->EmptyClone();
 	bullet->InitActor(CreateBody(x * 10 - 10, y * 10 - 10, height, width, 500, type), dmg, 1, width, height, type, bf, drawContainer, moveContainer);
 	bullet->SetDirection(direction);
+	bullet->SetLevel(level);
 	actor->push_back(bullet);
 	 return bullet;
 }

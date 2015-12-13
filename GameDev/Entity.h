@@ -2,6 +2,7 @@
 #include "Box2D\Box2D.h"
 #include "Object.h"
 
+class Level;
 class Entity : public Object
 {
 	private:
@@ -10,6 +11,7 @@ class Entity : public Object
 		float width;
 		float height;
 		b2Body* body;	
+		Level* level;
 
 	public:
 		Entity();
@@ -25,4 +27,7 @@ class Entity : public Object
 		virtual int GetScore();				//NPC needed method
 
 		b2Body* GetBody();
+
+		virtual Level* GetLevel();
+		virtual void SetLevel(Level* _level);
 };
