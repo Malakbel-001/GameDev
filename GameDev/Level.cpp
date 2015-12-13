@@ -60,7 +60,7 @@ void Level::Update(float dt)
 	world->Step((dt / 100), 5, 5);
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
-		LevelFactory::SaveLevel(this,"test");
+	//	LevelFactory::SaveLevel(this,"test");
 		GameOver();
 	}
 	else{

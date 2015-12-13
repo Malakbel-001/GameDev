@@ -15,23 +15,39 @@ Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::strin
 	xml_node<>* levelnode = doc.first_node();
 
 
-	LoadedLevel* lvl = new LoadedLevel(2000, 200, b2Vec2(*levelnode->first_attribute("gravity_x")->value(), *levelnode->first_attribute("gravity_y")->value()), play);
+	LoadedLevel* lvl = new LoadedLevel(2000, 200, b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())), play);
 	lvl->Init(bf);
 	EntityFactory* ent = lvl->GetEntityFactory();
-	xml_node<>* currentnode = levelnode->first_node("actors")->first_node();
+
+	xml_node<>* currentnode = levelnode->first_node("entities")->first_node();
 	while (currentnode != nullptr){
-		lvl->AddActor(ent->CreateActor(atoi(currentnode->first_node("xpos")->value()), atoi(currentnode->first_node("ypos")->value())
-			, static_cast<EntityType>(atoi(currentnode->first_node("type")->value()))));
-		
+		ent->CreateEntity(
+			atoi(currentnode->first_node("xpos")->value()),
+			atoi(currentnode->first_node("ypos")->value()),
+			atoi(currentnode->first_node("height")->value()),
+			atoi(currentnode->first_node("width")->value()),
+			static_cast<EntityType>(atoi(currentnode->first_node("type")->value()))
+			);
+
 
 		currentnode = currentnode->next_sibling();
 
 	}
 
 
+	 currentnode = levelnode->first_node("actors")->first_node();
+	while (currentnode != nullptr){
+		ent->CreateActor(atoi(currentnode->first_node("xpos")->value()), atoi(currentnode->first_node("ypos")->value())
+			, static_cast<EntityType>(atoi(currentnode->first_node("type")->value())));
+		
+
+		currentnode = currentnode->next_sibling();
+
+	}
+
 	//Level* lvl = new Level(2000,200,play);
 
-	return nullptr;
+	return lvl;
 }
 bool LevelFactory::SaveLevel(Level* l,std::string name){
 	xml_document<> doc;
@@ -60,8 +76,8 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 	{
 
 		char _xpos[50], _ypos[50], _type[50];
-		sprintf_s(_xpos, "%f", actors->operator[](i)->GetXpos());
-		sprintf_s(_ypos, "%f", actors->operator[](i)->GetYpos());
+		sprintf_s(_xpos, "%f", actors->operator[](i)->GetXpos()*10);
+		sprintf_s(_ypos, "%f", actors->operator[](i)->GetYpos() * 10);
 		sprintf_s(_type, "%i", static_cast<int>(actors->operator[](i)->GetType()));
 		
 		xml_node<> *actornode = doc.allocate_node(node_element, "actor");
@@ -82,8 +98,8 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 	{
 
 		char _xpos[50], _ypos[50], _type[50], _width[50], _height[50];
-		sprintf_s(_xpos, "%f", entities->operator[](i)->GetXpos());
-		sprintf_s(_ypos, "%f", entities->operator[](i)->GetYpos());
+		sprintf_s(_xpos, "%f", entities->operator[](i)->GetXpos() * 10);
+		sprintf_s(_ypos, "%f", entities->operator[](i)->GetYpos() * 10);
 		sprintf_s(_type, "%i", static_cast<int>(entities->operator[](i)->GetType()));
 		sprintf_s(_width, "%i", entities->operator[](i)->GetWidth());
 		sprintf_s(_height, "%i", entities->operator[](i)->GetHeight());

@@ -8,8 +8,7 @@ public:
 	~LoadedLevel();
 	virtual Player* SetPlayer(Player* _player); //pure virtual
 	virtual Level* CreateLevel();			//pure virtual
-	void AddEntity(Entity* ent);
-	void AddActor(Actor* act);
+
 	void Init(BehaviourFactory* bf);
 };
 

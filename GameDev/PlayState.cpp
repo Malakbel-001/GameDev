@@ -265,7 +265,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
-	this->currentLevel = lvl;
+	this->currentLevel = LevelFactory::LoadLevel(this, bf, "test");
 	this->currentLevel->Init(bf);
 	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
 	backgroundRect.h = background.getHeight() + 100;
@@ -277,7 +277,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 
-	LevelFactory::LoadLevel(this, bf, "test");
+	
 }
 
 

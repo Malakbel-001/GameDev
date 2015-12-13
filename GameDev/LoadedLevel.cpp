@@ -13,12 +13,6 @@ void LoadedLevel::Init(BehaviourFactory* bf){
 
 }
 
-void LoadedLevel::AddEntity(Entity* ent){
-	entities->push_back(ent);
-}
-void LoadedLevel::AddActor(Actor* act){
-	actors->push_back(act);
-}
 LoadedLevel::~LoadedLevel()
 {
 }
