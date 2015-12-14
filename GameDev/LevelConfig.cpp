@@ -45,14 +45,6 @@ void LevelConfig::SaveLevelProgress(string s){
 		}
 		levels << it->first << "=" << it->second << endl;
 	}
-	/*for (auto lvl : levelsMap){
-		if (lvl.first == s){
-			lvl.second = 1;
-		}
-	}
-	for (auto lvl : levelsMap){
-		levels << lvl.first << "=" << lvl.second << endl;
-	}*/
 	levels.close();
 }
 

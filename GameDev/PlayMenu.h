@@ -24,7 +24,7 @@ private:
 
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
-	SDL_Color diseabledTextColor;
+	SDL_Color disabledTextColor;
 
 	TTF_Font* titleFont;
 	TTF_Font* textFont;

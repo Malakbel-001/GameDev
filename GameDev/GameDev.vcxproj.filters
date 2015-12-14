@@ -256,6 +256,12 @@
     <ClCompile Include="Level1.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
+    <ClCompile Include="BigGroundSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowBossSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -536,6 +542,12 @@
     </ClInclude>
     <ClInclude Include="Level1.h">
       <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="BigGroundSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowBossSprite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

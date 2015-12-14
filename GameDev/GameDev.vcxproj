@@ -99,6 +99,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
+    <ClCompile Include="BigGroundSprite.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletCollidableBehaviour.cpp" />
     <ClCompile Include="BulletSprite.cpp" />
@@ -152,6 +153,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlayerCollidableBehaviour.cpp" />
     <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="ShotgunSprite.cpp" />
+    <ClCompile Include="SnowBossSprite.cpp" />
     <ClCompile Include="SnowmanSprite.cpp" />
     <ClCompile Include="SoundBank.cpp" />
     <ClCompile Include="SoundChunk.cpp" />
@@ -187,6 +189,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
+    <ClInclude Include="BigGroundSprite.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletCollidableBehaviour.h" />
     <ClInclude Include="BulletSprite.h" />
@@ -246,6 +249,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PlayerCollidableBehaviour.h" />
     <ClInclude Include="ShotGun.h" />
     <ClInclude Include="ShotgunSprite.h" />
+    <ClInclude Include="SnowBossSprite.h" />
     <ClInclude Include="SnowmanSprite.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />

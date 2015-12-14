@@ -7,7 +7,7 @@ PlayMenu::PlayMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, 
 	LoadLevels();
 	textColor = { 255, 255, 255, 255 }; // white
 	hoverTextColor = { 255, 0, 0, 255 }; // red
-	diseabledTextColor = { 42, 42, 42, 255 }; // grey
+	disabledTextColor = { 42, 42, 42, 255 }; // grey
 	this->mainMenu = menu;
 	this->renderer = renderer;
 	this->textFont = textfont;
@@ -46,7 +46,7 @@ void PlayMenu::MakeNewGame(SDL_Color color){
 
 void PlayMenu::MakeLevel1(SDL_Color color){
 	if (!levelsMap->at("Level1")){
-		color = diseabledTextColor;
+		color = disabledTextColor;
 	}
 	SDL_Surface* level1Button = TTF_RenderText_Blended(textFont, "Level 1", color);
 	level1Texture = SurfaceToTexture(level1Button);
@@ -59,7 +59,7 @@ void PlayMenu::MakeLevel1(SDL_Color color){
 
 void PlayMenu::MakeLevel2(SDL_Color color){
 	if (!levelsMap->at("Level2")){
-		color = diseabledTextColor;
+		color = disabledTextColor;
 	}
 	SDL_Surface* level2Button = TTF_RenderText_Blended(textFont, "Level 2", color);
 	level2Texture = SurfaceToTexture(level2Button);
@@ -72,7 +72,7 @@ void PlayMenu::MakeLevel2(SDL_Color color){
 
 void PlayMenu::MakeLevel3(SDL_Color color){
 	/*if (!levelsMap->at("level3")){
-		color = diseabledTextColor;
+		color = disabledTextColor;
 	}
 	SDL_Surface* level3Button = TTF_RenderText_Blended(textFont, "Level 3", color);
 	level3Texture = SurfaceToTexture(level3Button);
