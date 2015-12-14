@@ -24,7 +24,7 @@ void PlayState::Init(GameStateManager* gsm)
 
 	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
-	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
+	
 	std::cout << "PlayState \n";
 	hud->Initialize(gsm->GetBehaviour()->GetRenderer(), player);
 }
@@ -34,12 +34,12 @@ void PlayState::InitStartLevel(int lvl){
 }
 
 void PlayState::GameOver(){
-	SoundBank::GetInstance()->StopMusic();
+	//SoundBank::GetInstance()->StopMusic(); //not needed
 	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
-	SoundBank::GetInstance()->StopMusic();
+	//SoundBank::GetInstance()->StopMusic(); //not needed
 	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
 	gsm->CreateGameState(GameStateType::VictoryState,0);
 }
@@ -61,6 +61,9 @@ void PlayState::Pause()
 
 void PlayState::Resume()
 {
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
 	//if screen changed, reload all layerContainers
 	currentLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
 	hud->ResumeChecks();
@@ -241,20 +244,15 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		if (pause){
 			Pause();
 		}
-		
 	}
-	
-
 }
 
 void PlayState::Update(float dt)
 {
 	currentLevel->Update(dt);
 
-	// TODO: fix dinemic FPS count
+	// TODO: fix dynamic FPS count
 	// do last
-	
-	
 }
 
 void PlayState::Draw()
@@ -285,7 +283,6 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
 	this->hud->SetTimer(currentLevel->GetTimer());
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 
 
@@ -299,16 +296,11 @@ void PlayState::Cleanup()
 {
 	gsm->GetBehaviour()->ClearCamera();
 	delete player;
-	
 	delete currentLevel;
-
 	delete hud;
 
-	
 	player = nullptr;
-
 	currentLevel = nullptr;
-
 	hud = nullptr;
 }
 
