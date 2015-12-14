@@ -8,6 +8,7 @@
 //This helps for reusing code and preventing to write code again
 namespace Utilities {
 	void DrawTextHelper(SDL_Renderer* renderer, TTF_Font* font, std::string text, int x, int y, SDL_Color color);
+	void DrawTextHelper(SDL_Renderer* renderer, TTF_Font* font, std::string text, int minusX, int y, SDL_Color color, int screenWidth);
 	SDL_Color GetColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 	TTF_Font* SetFont(char* path, int ptsize);
 };
