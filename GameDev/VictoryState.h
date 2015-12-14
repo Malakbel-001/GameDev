@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SoundBank.h"
 #include "Playstate.h"
+#include "MenuState.h"
 class VictoryState :
 	public IGameState
 {

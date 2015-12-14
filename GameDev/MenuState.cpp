@@ -3,6 +3,7 @@
 #include "HelpMenu.h"
 #include "CreditMenu.h"
 #include "OptionMenu.h"
+#include "PlayMenu.h"
 const int renderItems = 20;
 SDL_Rect pos[renderItems];
 
@@ -23,6 +24,7 @@ void MenuState::Init(GameStateManager *gsm){
 	helpMenu = new HelpMenu(this, renderer, textFont, titleFont);
 	creditMenu = new CreditMenu(this, renderer, textFont, titleFont);
 	optionMenu = new OptionMenu(this, renderer, textFont, titleFont);
+	playMenu = new PlayMenu(this, renderer, textFont, titleFont);
 	currentMenu = mainMenu;
 	Update(0);
 }
@@ -122,6 +124,7 @@ MenuState::~MenuState()
 	delete helpMenu;
 	delete creditMenu;
 	delete optionMenu;
+	delete playMenu;
 }
 
 void MenuState::Cleanup(){
@@ -174,7 +177,10 @@ void MenuState::updateMenu(MenuEnum menu){
 		PreviousMenu = mainMenu;
 		break;
 	case MenuEnum::Play:
-		gsm->CreateGameState(GameStateType::LoadState);
+		playMenu->LoadLevels();
+		currentMenu = playMenu;
+		PreviousMenu = mainMenu;
+		//gsm->CreateGameState(GameStateType::LoadState);
 		break;
 	default:
 		break;

@@ -30,8 +30,10 @@ private:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
+
+	int levelToLoad;
 public:
-	LoadState();
+	LoadState(int lvl);
 	virtual ~LoadState();
 	bool loadedPlay;
 	void LoadPlayState();

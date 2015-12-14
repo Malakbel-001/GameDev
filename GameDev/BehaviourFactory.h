@@ -22,7 +22,8 @@
 #include "PinguinSprite.h"
 #include "TreeSprite.h"
 #include "SnowmanSprite.h"
-
+#include "BigGroundSprite.h"
+#include "SnowBossSprite.h"
 
 class Camera;
 class Player;

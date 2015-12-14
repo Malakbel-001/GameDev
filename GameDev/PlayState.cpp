@@ -1,7 +1,11 @@
 #include "PlayState.h"
-
+PlayState::PlayState(int lvl){
+	levelToLoad = lvl;
+}
 void PlayState::Init(GameStateManager* gsm)
 {
+
+	levelConfig = LevelConfig();
  	this->gsm = gsm;
 
 	this->gameOver = false;
@@ -13,7 +17,8 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	background = LTexture();
 
-	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
 	// flush userinput to prevent crash during loadscreen
 
 	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
@@ -23,14 +28,19 @@ void PlayState::Init(GameStateManager* gsm)
 	std::cout << "PlayState \n";
 }
 
+void PlayState::InitStartLevel(int lvl){
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, lvl));
+}
+
 void PlayState::GameOver(){
 	SoundBank::GetInstance()->StopMusic();
-	gsm->CreateGameState(GameStateType::GameOverState);
+	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
 	SoundBank::GetInstance()->StopMusic();
-	gsm->CreateGameState(GameStateType::VictoryState);
+	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+	gsm->CreateGameState(GameStateType::VictoryState,0);
 }
 
 void PlayState::LoadGame()
@@ -45,7 +55,7 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	gsm->CreateGameState(GameStateType::PauseState);
+	gsm->CreateGameState(GameStateType::PauseState,0);
 }
 
 void PlayState::Resume()

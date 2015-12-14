@@ -7,6 +7,7 @@
 #include "PlayState.h"
 #include "SoundBank.h"
 #include "MenuBase.h"
+#include "MenuState.h"
 //#include "HelpMenu.h"
 class PauseMenu;
 class HelpMenu;
