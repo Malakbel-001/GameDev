@@ -14,15 +14,17 @@
 
 class Game
 {
+	
 	public:
+		static bool running;
 		Game();
 		~Game();
 
 		void GameLoop();
-	
+		
 	private:
 		BehaviourFactory* bf;
-		bool running = true;
+		
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;
 		IGameState* gameState;

@@ -5,19 +5,26 @@
 #include "Camera.h"
 #include "SoundBank.h"
 #include "BehaviourFactory.h"
+#include "Weapon.h"
 #include <iostream>
+#include "HUD.h"
+#include "LevelConfig.h"
 
 class PlayState :
 	public IGameState
 {
 	private:
-		GameStateManager* gsm;		
+	
+		LevelConfig levelConfig;
+
 		Player* player;
-		Level* currentLevel;	
+		Level* currentLevel;
+		HUD* hud;
 		bool gameOver;
-
+		bool victory;
+		int levelToLoad;
 	public:
-
+		PlayState(int lvl);
 		void Init(GameStateManager *gsm);
 		void Cleanup();
 
@@ -26,16 +33,15 @@ class PlayState :
 
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
-		void Update(float dt);
+		void Update(float);
 		void Draw();
 		void GameOver();
+		void Victory();
 
 		Player* GetPlayer();
 
-
-		
-
 		Level* GetCurrentLevel();
+		void InitStartLevel(int lvl);
 		void SetCurrentLevel(Level* lvl);
 		void LoadGame();
 

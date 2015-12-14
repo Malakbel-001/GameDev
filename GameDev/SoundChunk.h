@@ -10,6 +10,7 @@ public:
 	~SoundChunk();
 
 	void Play();
+	void PlayAtChannel(int channel);
 
 	int* GetChannel();
 	//void SetChannel(int* newChannel);

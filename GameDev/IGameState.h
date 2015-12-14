@@ -1,12 +1,15 @@
 #pragma once
+#include <unordered_map>
+#include "IGameState.h"
+#include <SDL_events.h>
 #include "GameStateManager.h"
-
 class IGameState
 {
 protected:
-	IGameState() { }
-public:
+	GameStateManager* gsm;
 
+public:
+	IGameState(){};
 	virtual void Init(GameStateManager *gsm) = 0;
 	virtual void Cleanup() = 0;
 
@@ -17,12 +20,14 @@ public:
 	virtual void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) = 0;
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
-
 	void ChangeState(GameStateManager* gsm, IGameState* state)
 	{
-		gsm->ChangeGameState();
+		gsm->PopState();
 	}
 
+	GameStateManager* GetGSM();
+
 	virtual ~IGameState();
+	
 };
 

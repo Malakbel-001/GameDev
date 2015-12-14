@@ -1,22 +1,23 @@
 #include "Entity.h"
 #include <iostream>
+
+
 Entity::Entity()
 {
-
+	
 }
 void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer)
 {
-	type = _type;
+	Object::Init(_type, bf,drawContainer);
 	body = _body;
 	width = _width;
 	height = _height;
-	draw = bf->CreateDrawableBehaviour(type);
-	draw->SetEntity(this);
-	drawContainer->Add(draw);
 }
 
 Entity::~Entity()
 {
+	
+	
 
 }
 
@@ -30,19 +31,36 @@ int Entity::GetHeight()
 	return static_cast<int>(height);
 }
 
-int Entity::GetXPos()
+float Entity::GetXpos()
 {
-	return static_cast<int>(body->GetPosition().x);
+	return (body->GetPosition().x);
 }
 
-int Entity::GetYPos()
+float Entity::GetYpos()
 {
-	return static_cast<int>(body->GetPosition().y);
+	return (body->GetPosition().y);
 
+}
+
+float Entity::GetAngle(){
+	return body->GetAngle();
 }
 
 Entity* Entity::EmptyClone()
 {
 	std::cout << "entity";
 	return new Entity();
+}
+b2Body* Entity::GetBody(){
+	return body;
+}
+
+void Entity::SetScore(int _score) {
+	//implement in NPC
+	//score = _score;
+}
+
+int Entity::GetScore() {
+	//implement in NPC
+	return 0; //score
 }

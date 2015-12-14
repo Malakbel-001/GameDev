@@ -1,46 +1,55 @@
+#pragma message("level ")
 #pragma once
+#include "Entity.h"
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
-#include "TileLoader.h"
 #include "DrawableContainer.h"
 #include "MoveableContainer.h"
 #include "EntityFactory.h"
+#include "ContactListener.h"
+#include "ParallaxBackground.h"
+
 
 class PlayState;
-class Level
+class Level //abstract class now because of pure virtual method: SetPlayer() and CreateLevel(), this class cannot be instantiated anymore
 {
 private:
 	MoveableContainer* moveableContainer;
-	Player* player;
-
 
 	float startXpos;
 	float startYpos;
-
+	b2ContactListener* contact;
 protected:
+	int levelId;
 	EntityFactory* entityFactory;
 	int tileWidth, tileHeight;
 	int lvlWidth, lvlHeight;
 	DrawableContainer* drawableContainer;
 	b2World* world;
 	SDL_Texture* tileSheet;
-	std::vector<SDL_Rect> tileCrops;
-	PlayState* playState;
-	TileLoader* tileLoader;
 
+	PlayState* playState;
+	
+	std::vector<Actor*>* actors;
+	Player* player;
+
+	ParallaxBackground* parallaxBackground;
+	virtual void LoadParallaxBackgroundSettings() = 0;			//pure virtual
 public:
 	Player* GetPlayer();
 
 	DrawableContainer* GetDrawableContainer();
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
-	virtual void Init(BehaviourFactory* bf);
+	virtual void Init(BehaviourFactory* bf) = 0;				//pure virtual
 	virtual ~Level();
 
-	virtual Player* SetPlayer(Player* _player);
+	virtual Player* SetPlayer(Player* _player) = 0;				//pure virtual
+	virtual Level* CreateLevel() = 0;							//pure virtual
+
+	Player* SetPlayerPosition(Player* _player, float x, float y);
 	virtual void SetLvlWidth(int _lvlWidth);
 	virtual void SetLvlHeight(int _lvlHeight);
-	virtual Level* CreateLevel();
 
 	SDL_Texture* GetTileSheet();
 
@@ -48,10 +57,16 @@ public:
 	int GetLvlHeight();
 	int GetTotalTiles();
 	int GetTotalDiffrentTiles();
+	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
-
+	std::vector<Entity*>* entities;
 	void Draw();
 	void Update(float dt);
 	void GameOver();
+	void Victory();
 	virtual b2World* GetWorld();
+
+	int GetLevelId() { return levelId; };
+
+	virtual ParallaxBackground* GetParallaxBackGround() = 0;	//pure virtual
 };

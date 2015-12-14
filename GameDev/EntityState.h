@@ -1,0 +1,5 @@
+#pragma once
+enum class EntityState
+{
+	DEFAULT, IDLE, WALKINGLEFT, WALKINGRIGHT, JUMPING, SHOOTING, DYING
+};
