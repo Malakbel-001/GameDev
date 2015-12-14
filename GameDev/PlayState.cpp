@@ -170,6 +170,9 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_l:
 					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
 					break;
+				case SDLK_k:
+					Victory();
+					break;
 
 				}
 			}

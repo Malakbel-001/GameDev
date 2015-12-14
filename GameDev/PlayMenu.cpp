@@ -163,7 +163,13 @@ void PlayMenu::Highlight(int item){
 
 void PlayMenu::LoadLevels(){
 	levelconfig.LoadLevels();
-	levelsMap = levelconfig.GetLevels();
+	if (levelconfig.GetLevels()->size() == 0){
+		levelconfig.ResetLevels();
+		levelsMap = levelconfig.GetLevels();
+	}
+	else {
+		levelsMap = levelconfig.GetLevels();
+	}
 }
 
 void PlayMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)

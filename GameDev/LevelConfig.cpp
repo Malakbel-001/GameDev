@@ -43,7 +43,9 @@ void LevelConfig::SaveLevelProgress(string s){
 		if (it->first == s){
 			levels << it->first << "=" << '1' << endl;
 		}
-		levels << it->first << "=" << it->second << endl;
+		else {
+			levels << it->first << "=" << it->second << endl;
+		}
 	}
 	levels.close();
 }
