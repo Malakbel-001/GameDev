@@ -106,6 +106,10 @@ void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SD
 	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, renderFlip);
 }
 
+void LTexture::SetTextureAlphaMod(int alpha) {
+	SDL_SetTextureAlphaMod(texture, alpha);
+}
+
 int LTexture::getWidth()
 {
 	return mWidth;

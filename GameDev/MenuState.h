@@ -13,6 +13,7 @@ class MainMenu;
 class HelpMenu;
 class CreditMenu;
 class OptionMenu;
+class PlayMenu;
 
 class MenuState :
 	public IGameState
@@ -27,6 +28,7 @@ private:
 	HelpMenu* helpMenu;
 	CreditMenu* creditMenu;
 	OptionMenu* optionMenu;
+	PlayMenu* playMenu;
 	
 public:
 	MenuState();

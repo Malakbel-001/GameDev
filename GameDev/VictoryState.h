@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SoundBank.h"
 #include "Playstate.h"
+#include "MenuState.h"
 class VictoryState :
 	public IGameState
 {
@@ -22,7 +23,6 @@ public:
 	// Our new function for setting uo SDL_TTF
 	bool SetupTTF(const std::string &fontName, const std::string &fontName2);
 	SDL_Texture* SurfaceToTexture(SDL_Surface* surf);
-	void CreateTextTextures();
 
 	// Stuff for text rendering
 	TTF_Font* titleFont;
@@ -32,6 +32,7 @@ public:
 	SDL_Texture* nextTexture;
 	SDL_Texture* quitTexture; //2
 	SDL_Texture* victoryTitleTexture; //3
+	SDL_Texture* scoreTexture;
 #pragma endregion textures
 
 #pragma region rects
@@ -39,6 +40,7 @@ public:
 	SDL_Rect quitRect;
 	SDL_Rect nextRect;
 	SDL_Rect victoryTitleRect;
+	SDL_Rect scoreRect;
 #pragma endregion rects
 
 	SDL_Renderer* renderer;
@@ -68,9 +70,18 @@ public:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
+	void Highlight(int);
+	void MakeNextLevelText(SDL_Color);
+	void MakeQuitText(SDL_Color);
+	void MakeVictorytitle(SDL_Color);
+	void MakeScoreText(SDL_Color);
 
 private:
 	SDL_Color textColor;
-	const int renderItems = 3;
+	SDL_Color hoverTextColor;
+	const int renderItems = 4;
 	vector<SDL_Rect> pos;
+	int hoverX;
+	int hoverY;
+	int score;
 };

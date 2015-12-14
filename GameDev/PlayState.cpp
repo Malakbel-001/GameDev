@@ -1,7 +1,11 @@
 #include "PlayState.h"
-
+PlayState::PlayState(int lvl){
+	levelToLoad = lvl;
+}
 void PlayState::Init(GameStateManager* gsm)
 {
+
+	levelConfig = LevelConfig();
  	this->gsm = gsm;
 
 	this->gameOver = false;
@@ -12,11 +16,9 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	
 	background = LTexture();
-	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
-	
 
-	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
 	// flush userinput to prevent crash during loadscreen
 
 	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
@@ -26,14 +28,19 @@ void PlayState::Init(GameStateManager* gsm)
 	std::cout << "PlayState \n";
 }
 
+void PlayState::InitStartLevel(int lvl){
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, lvl));
+}
+
 void PlayState::GameOver(){
 	SoundBank::GetInstance()->StopMusic();
-	gsm->CreateGameState(GameStateType::GameOverState);
+	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
 	SoundBank::GetInstance()->StopMusic();
-	gsm->CreateGameState(GameStateType::VictoryState);
+	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+	gsm->CreateGameState(GameStateType::VictoryState,0);
 }
 
 void PlayState::LoadGame()
@@ -48,12 +55,13 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	gsm->CreateGameState(GameStateType::PauseState);
+	gsm->CreateGameState(GameStateType::PauseState,0);
 }
 
 void PlayState::Resume()
 {
-	std::cout << "Resume not implemented yet";
+	//if screen changed, reload all layerContainers
+	currentLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
 }
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
@@ -164,6 +172,9 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_l:
 					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
 					break;
+				case SDLK_k:
+					Victory();
+					break;
 
 				}
 			}
@@ -249,7 +260,9 @@ void PlayState::Update(float dt)
 void PlayState::Draw()
 {
 
-	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
+	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
+
+	currentLevel->GetParallaxBackGround()->Draw();
 
 	currentLevel->GetDrawableContainer()->Draw();
 
@@ -270,14 +283,10 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	}
 	this->currentLevel = lvl;
 	this->currentLevel->Init(bf);
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
-	backgroundRect.h = background.getHeight() + 100;
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 
