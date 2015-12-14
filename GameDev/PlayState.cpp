@@ -94,6 +94,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_a:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
+					currentLevel->GetPlayer()->SetFlipped(true);
 					//		cout << "e" << x;
 					x = -5;
 					//		cout << " - " << x;
@@ -104,6 +105,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_d:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
+					currentLevel->GetPlayer()->SetFlipped(false);
 					x = 5;
 					break;
 				case SDLK_z:					
