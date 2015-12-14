@@ -69,7 +69,7 @@ void LTexture::free()
 	}
 }
 
-void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip = NULL)
+void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip)
 {
 
 	//Set rendering space and render to screen

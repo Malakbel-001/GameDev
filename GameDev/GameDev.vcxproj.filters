@@ -513,9 +513,6 @@
     <ClInclude Include="NpcStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="EntityDirection.h">
-      <Filter>Header Files\Model\Entity</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
