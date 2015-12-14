@@ -56,4 +56,6 @@ class HUD {
 		SDL_Surface* hpSurface;
 		SDL_Texture* hpTexture;
 		SDL_Rect hpRect;
+
+		SDL_Rect timerRect;
 };

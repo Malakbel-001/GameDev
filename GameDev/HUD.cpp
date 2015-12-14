@@ -47,9 +47,8 @@ void HUD::SetRectangles() {
 	scoreRect = { ammoRect.x + ammoRect.w + spaceInBetween, ammoRect.y, scoreSurface->w, scoreSurface->h };
 
 	//Timer Upper Right
-	//Cannot set (temp maybe)
-
-
+	int rightX = *screenWidth - 100;
+	timerRect = { rightX, allY, 95, 35 };
 }
 
 void HUD::SetSurfacesAndTextures() {
@@ -134,22 +133,46 @@ void HUD::DrawScore() {
 void HUD::DrawTimer() {
 	timer.CalcDifference();
 
-	//Draw Timer
-	//cheat
-	Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentMinutes()), *screenWidth - 70,
-		drawStatsRect.y + 10, Utilities::GetColor(0, 0, 0, 0));
+	//Draw Timer Rectangle & Border
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 225);
+	SDL_RenderFillRect(renderer, &timerRect);
 
-	Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentSeconds()), *screenWidth - 40,
-		drawStatsRect.y + 10, Utilities::GetColor(0, 0, 0, 0));
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //white border
+	SDL_RenderDrawRect(renderer, &timerRect);
+
+	//Draw Timer
+	if (timer.GetCurrentMinutes() < 10) {
+		Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer.GetCurrentMinutes()), *screenWidth - 90,
+			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+	}
+	else {
+		Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentMinutes()), *screenWidth - 90,
+			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+	}
+	Utilities::DrawTextHelper(renderer, timerFont,":", *screenWidth - 60,
+		drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+	if (timer.GetCurrentSeconds() < 10) {
+		Utilities::DrawTextHelper(renderer, timerFont, "0"+std::to_string(timer.GetCurrentSeconds()), *screenWidth - 40,
+			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+	}
+	else {
+		Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentSeconds()), *screenWidth - 40,
+			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+	}
 }
 
 void HUD::Cleanup() {
 	//pointers
 	SDL_FreeSurface(ammoSurface);
 	SDL_DestroyTexture(ammoTexture);
-	
+	SDL_FreeSurface(scoreSurface);
+	SDL_DestroyTexture(scoreTexture);
+	SDL_FreeSurface(hpSurface);
+	SDL_DestroyTexture(hpTexture);
+
 	//fonts
 	TTF_CloseFont(hudFont);
+	TTF_CloseFont(timerFont);
 }
 
 void HUD::ResumeChecks() {
