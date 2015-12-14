@@ -1,12 +1,12 @@
-#include "TestLevel.h"
+#include "Level1.h"
 
-TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
+Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
 	: Level(_lvlWidth, _lvlHeight, play)
 {
 	levelId = 1;
 }
 
-void TestLevel::Init(BehaviourFactory* bf)
+void Level1::Init(BehaviourFactory* bf)
 {
 	//background
 	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
@@ -87,19 +87,24 @@ void TestLevel::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(4500, 0, EntityType::PLANTBOSS);
 }
 
-Level* TestLevel::CreateLevel()
+Level1::~Level1()
 {
-	return new TestLevel(lvlWidth, lvlHeight, playState);
+
 }
 
-void TestLevel::LoadParallaxBackgroundSettings() {
+Level* Level1::CreateLevel()
+{
+	return new Level1(lvlWidth, lvlHeight, playState);
+}
+
+void Level1::LoadParallaxBackgroundSettings() {
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
-Player* TestLevel::SetPlayer(Player* _player) {
+Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
@@ -112,12 +117,10 @@ Player* TestLevel::SetPlayer(Player* _player) {
 	return player;
 }
 
-ParallaxBackground* TestLevel::GetParallaxBackGround() {
+ParallaxBackground* Level1::GetParallaxBackGround() {
 	return parallaxBackground;
 }
+void Level1::Cleanup() {}
 
-void TestLevel::Cleanup() { }
 
-void TestLevel::HandleEvents(SDL_Event mainEvent) { }
-
-TestLevel::~TestLevel() { }
+void Level1::HandleEvents(SDL_Event mainEvent) { }

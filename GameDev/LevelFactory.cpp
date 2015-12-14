@@ -11,7 +11,7 @@ LevelFactory::~LevelFactory() {
 void LevelFactory::Init(PlayState* play)
 {
 	levels = {
-		new TestLevel(2000, 120,play), 
+		new Level1(2000, 120,play), 
 		new Level2(2000,120, play),
 		//TODO add , new Level1() , new level2()
 	};
@@ -57,6 +57,15 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 	//level was not in levels list get te first level
 	return levels[0]->CreateLevel();
 }
+
+Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
+	if (!(levels.size() > 0))
+	{
+		Init(play);
+	}
+	return levels[lvl-1]->CreateLevel();
+}
+
 void LevelFactory::DeletePointers(){
 	for (auto it = levels.begin(); it != levels.end(); ++it)
 	{

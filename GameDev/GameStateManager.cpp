@@ -15,20 +15,20 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 
 }
 
-void GameStateManager::CreateGameState(GameStateType state)
+void GameStateManager::CreateGameState(GameStateType state, int lvl)
 {
-	IGameState* gamestate = GetNewState(state);
+	IGameState* gamestate = GetNewState(state, lvl);
 	PushGameState(gamestate);
 }
 
 //Create / Load State
-IGameState* GameStateManager::GetNewState(GameStateType state) 
+IGameState* GameStateManager::GetNewState(GameStateType state, int lvl) 
 {
 	IGameState* gamestate;
 	switch (state)
 	{
 	case GameStateType::PlayState:
-		gamestate = new PlayState();
+		gamestate = new PlayState(lvl);
 		break;
 	case GameStateType::PauseState:
 		gamestate = new PauseState();
@@ -37,7 +37,7 @@ IGameState* GameStateManager::GetNewState(GameStateType state)
 		gamestate = new MenuState();
 		break;
 	case GameStateType::LoadState:
-		gamestate = new LoadState();
+		gamestate = new LoadState(lvl);
 		break;
 	case GameStateType::GameOverState:
 		gamestate = new GameOverState();

@@ -19,9 +19,6 @@
     <ClCompile Include="Behaviour.cpp">
       <Filter>Source Files\Model\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="testLevel.cpp">
-      <Filter>Source Files\Model\Level</Filter>
-    </ClCompile>
     <ClCompile Include="Level.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
@@ -202,12 +199,6 @@
     <ClCompile Include="JumpSensorCollidableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Collidables</Filter>
     </ClCompile>
-    <ClCompile Include="AcornSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Acorn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Drawables</Filter>
     </ClCompile>
@@ -226,20 +217,8 @@
     <ClCompile Include="Level2.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
-    <ClCompile Include="GroundLvl2Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PinguinSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TreeSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShotgunSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
-    </ClCompile>
-    <ClCompile Include="SnowmanSprite.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NpcStatsContainer.cpp">
       <Filter>Source Files\Model\Factory</Filter>
@@ -250,11 +229,38 @@
     <ClCompile Include="LayerContainer.cpp">
       <Filter>Source Files\View\Parallax Background</Filter>
     </ClCompile>
-    <ClCompile Include="FramesPerSecond.cpp">
-      <Filter>Source Files\View\FramesPerSecond</Filter>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities.cpp">
-      <Filter>Source Files\Model\Utilities</Filter>
+    <ClCompile Include="TreeSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowmanSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowBossSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="PinguinSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="BigGroundSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="AcornSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundLvl2Sprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelConfig.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="Acorn.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,9 +299,6 @@
     </ClInclude>
     <ClInclude Include="Container.h">
       <Filter>Header Files\Model\Container</Filter>
-    </ClInclude>
-    <ClInclude Include="testLevel.h">
-      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
     <ClInclude Include="Level.h">
       <Filter>Header Files\Model\Level</Filter>
@@ -483,12 +486,6 @@
     <ClInclude Include="JumpSensorCollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Collidables</Filter>
     </ClInclude>
-    <ClInclude Include="AcornSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Acorn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VictoryState.h">
       <Filter>Header Files\Model\GameState</Filter>
     </ClInclude>
@@ -513,14 +510,8 @@
     <ClInclude Include="GroundLvl2Sprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
-    <ClInclude Include="TreeSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShotgunSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowmanSprite.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NpcStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
@@ -531,11 +522,32 @@
     <ClInclude Include="LayerContainer.h">
       <Filter>Header Files\View\Parallax Background</Filter>
     </ClInclude>
-    <ClInclude Include="FramesPerSecond.h">
-      <Filter>Header Files\View\FramesPerSecond</Filter>
+    <ClInclude Include="Level1.h">
+      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Utitilies.h">
-      <Filter>Header Files\Model\Utilities</Filter>
+    <ClInclude Include="Acorn.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="AcornSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="BigGroundSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowBossSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowmanSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelConfig.h">
+      <Filter>Header Files\Model\SettingsConfig</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -670,18 +682,6 @@
     </Filter>
     <Filter Include="Header Files\View\Parallax Background">
       <UniqueIdentifier>{a7dd8566-00e0-40fa-986c-e88257e9eee4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\View\FramesPerSecond">
-      <UniqueIdentifier>{134ed93c-448e-48b0-bdac-c1d60a4e923b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\View\FramesPerSecond">
-      <UniqueIdentifier>{1ae6a8ee-e598-401b-9acc-4161bc373a7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Utilities">
-      <UniqueIdentifier>{18147bf9-631b-431e-94d1-778997daa852}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Model\Utilities">
-      <UniqueIdentifier>{255723e8-314a-4f88-9385-8b88741e0738}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

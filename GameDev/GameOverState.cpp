@@ -23,7 +23,7 @@ void GameOverState::Init(GameStateManager *gsm){
 GameOverState::GameOverState()
 {
 	textColor = { 255, 255, 255, 255 }; // white
-	hoverTextColor = { 255, 0, 0, 255 };
+	hoverTextColor = { 255, 0, 0, 255 }; // red
 	pos.resize(renderItems);
 }
 
@@ -146,6 +146,7 @@ void GameOverState::SetupRenderer()
 
 GameOverState::~GameOverState()
 {
+	Cleanup();
 }
 
 void GameOverState::Cleanup(){
@@ -161,7 +162,8 @@ void GameOverState::Pause() {}
 void GameOverState::Quit(){
 	gsm->PopPrevState();
 	gsm->PopState();
-
+	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+	tempState->updateMenu(MenuEnum::Previous);
 }
 
 void GameOverState::Highlight(int item){
