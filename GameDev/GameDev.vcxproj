@@ -99,6 +99,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="Behaviour.cpp" />
     <ClCompile Include="BehaviourFactory.cpp" />
+    <ClCompile Include="BigGroundSprite.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletCollidableBehaviour.cpp" />
     <ClCompile Include="BulletSprite.cpp" />
@@ -110,6 +111,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="LayerContainer.cpp" />
     <ClCompile Include="Level2.cpp" />
+    <ClCompile Include="LevelConfig.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />
     <ClCompile Include="GunSprite.cpp" />
@@ -123,6 +125,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PinguinSprite.cpp" />
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="PlayMenu.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="CreditMenu.cpp" />
@@ -151,6 +154,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlayerCollidableBehaviour.cpp" />
     <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="ShotgunSprite.cpp" />
+    <ClCompile Include="SnowBossSprite.cpp" />
     <ClCompile Include="SnowmanSprite.cpp" />
     <ClCompile Include="SoundBank.cpp" />
     <ClCompile Include="SoundChunk.cpp" />
@@ -169,7 +173,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SDLInitializer.cpp" />
-    <ClCompile Include="TestLevel.cpp" />
+    <ClCompile Include="Level1.cpp" />
     <ClCompile Include="TreeSprite.cpp" />
     <ClCompile Include="VictoryState.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -186,6 +190,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Behaviour.h" />
     <ClInclude Include="BehaviourFactory.h" />
     <ClInclude Include="BehaviourType.h" />
+    <ClInclude Include="BigGroundSprite.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletCollidableBehaviour.h" />
     <ClInclude Include="BulletSprite.h" />
@@ -199,6 +204,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GroundLvl2Sprite.h" />
     <ClInclude Include="LayerContainer.h" />
     <ClInclude Include="Level2.h" />
+    <ClInclude Include="LevelConfig.h" />
     <ClInclude Include="LoadState.h" />
     <ClInclude Include="ContactListener.h" />
     <ClInclude Include="GunSprite.h" />
@@ -212,6 +218,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PinguinSprite.h" />
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="PlayMenu.h" />
     <ClInclude Include="SettingsConfig.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="CreditMenu.h" />
@@ -246,6 +253,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PlayerCollidableBehaviour.h" />
     <ClInclude Include="ShotGun.h" />
     <ClInclude Include="ShotgunSprite.h" />
+    <ClInclude Include="SnowBossSprite.h" />
     <ClInclude Include="SnowmanSprite.h" />
     <ClInclude Include="SoundBank.h" />
     <ClInclude Include="SoundBgmType.h" />
@@ -262,7 +270,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SDLInitializer.h" />
-    <ClInclude Include="TestLevel.h" />
+    <ClInclude Include="Level1.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="TreeSprite.h" />
     <ClInclude Include="VictoryState.h" />

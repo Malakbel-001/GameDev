@@ -1,21 +1,21 @@
-#include "TestLevel.h"
+#include "Level1.h"
 
-TestLevel::TestLevel(int _lvlWidth, int _lvlHeight, PlayState* play)
+Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
 	: Level(_lvlWidth, _lvlHeight, play)
 {
 	levelId = 1;
 }
 
 //Always perform these procedures
-void TestLevel::Init(BehaviourFactory* bf) {
-	TestLevel::SetEntityFactory(bf);
-	TestLevel::CreateMap();
-	TestLevel::CreateNPCs();
-	TestLevel::CreateTimer();
-	TestLevel::CreateParallaxBackground(bf);
+void Level1::Init(BehaviourFactory* bf) {
+	Level1::SetEntityFactory(bf);
+	Level1::CreateMap();
+	Level1::CreateNPCs();
+	Level1::CreateTimer();
+	Level1::CreateParallaxBackground(bf);
 }
 
-void TestLevel::CreateMap() {
+void Level1::CreateMap() {
 	//obstacles--------------
 	//	entityFactory->CreateWeapon(0, 500, EntityType::WEAPON);
 	//	entityFactory->CreateActor(-10, 1, 300, 100, 10, 10, EntityType::HEALTH);
@@ -56,7 +56,7 @@ void TestLevel::CreateMap() {
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
 }
 
-void TestLevel::CreateNPCs() {
+void Level1::CreateNPCs() {
 	//enemies-----------------	
 
 	entityFactory->CreateActor(800, 450, EntityType::PLANT);
@@ -91,7 +91,7 @@ void TestLevel::CreateNPCs() {
 	entityFactory->CreateActor(4500, 0, EntityType::PLANTBOSS);
 }
 
-void TestLevel::CreateParallaxBackground(BehaviourFactory* bf) {
+void Level1::CreateParallaxBackground(BehaviourFactory* bf) {
 	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
@@ -99,13 +99,13 @@ void TestLevel::CreateParallaxBackground(BehaviourFactory* bf) {
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
-Level* TestLevel::CreateLevel()
+Level* Level1::CreateLevel()
 {
-	return new TestLevel(lvlWidth, lvlHeight, playState);
+	return new Level1(lvlWidth, lvlHeight, playState);
 }
 
 
-Player* TestLevel::SetPlayer(Player* _player) {
+Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
@@ -119,6 +119,6 @@ Player* TestLevel::SetPlayer(Player* _player) {
 }
 
 
-void TestLevel::Cleanup() { }
-void TestLevel::HandleEvents(SDL_Event mainEvent) { }
-TestLevel::~TestLevel() { }
+Level1::~Level1() { }
+void Level1::Cleanup() { }
+void Level1::HandleEvents(SDL_Event mainEvent) { }

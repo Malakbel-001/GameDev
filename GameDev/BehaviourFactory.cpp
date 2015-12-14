@@ -63,6 +63,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	GroundLvl2Sprite* groundlvl2Sprite = new GroundLvl2Sprite(renderer);
 	groundlvl2Sprite->LoadMedia("snow2.png");
 
+	BigGroundSprite* bigGroundSprite = new BigGroundSprite(renderer);
+	bigGroundSprite->LoadMedia("snow2.png");
+
 	PinguinSprite* pinguinSprite = new PinguinSprite(renderer);
 	pinguinSprite->LoadMedia("pinguin.png");
 	pinguinSprite->SetAnimationSet(EntityState::IDLE);
@@ -77,6 +80,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	SnowmanSprite* snowman = new SnowmanSprite(renderer);
 	snowman->LoadMedia("yeti.png");
 	snowman->SetAnimationSet(EntityState::IDLE);
+
+	SnowBossSprite* snowBoss = new SnowBossSprite(renderer);
+	snowBoss->LoadMedia("snowball.png");
 
 	sprites.push_back(snowman);
 	sprites.push_back(groundSprite);
@@ -94,6 +100,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(pinguinSprite); 
 	sprites.push_back(treeSprite);
 	sprites.push_back(shotgun);
+	sprites.push_back(bigGroundSprite);
+	sprites.push_back(snowBoss);
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -112,7 +120,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
 		{ EntityType::SNOWMAN, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
-		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) }
+		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
+		{ EntityType::GROUND2LVL2, new StaticDrawableBehaviour(renderer, bigGroundSprite, screenWidth, screenHeight) },
+		{ EntityType::SNOWBOSS, new StaticDrawableBehaviour(renderer, snowBoss, screenWidth, screenHeight) },
 
 	};
 
@@ -127,6 +137,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::AMMO, new AmmoCollidableBehaviour() },
 		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
+		{ EntityType::SNOWBOSS, new EnemyCollidableBehaviour() },
 	};
 }
 

@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "Level.h"
 
-class TestLevel :
+class Level1 :
 	public Level
 {
 	protected:
@@ -11,8 +11,8 @@ class TestLevel :
 		virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 	public:
-		TestLevel(int _lvlWidth, int _lvlHeight , PlayState* play);
-		virtual ~TestLevel();
+		Level1(int _lvlWidth, int _lvlHeight , PlayState* play);
+		virtual ~Level1();
 		
 		void Init(BehaviourFactory* bf);
 		void Cleanup();
@@ -21,4 +21,3 @@ class TestLevel :
 		virtual Player* SetPlayer(Player* _player);
 		void HandleEvents(SDL_Event mainEvent);
 };
-

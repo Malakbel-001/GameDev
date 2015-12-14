@@ -25,6 +25,8 @@ public:
 		gsm->PopState();
 	}
 
+	GameStateManager* GetGSM();
+
 	virtual ~IGameState();
 	
 };
