@@ -23,7 +23,7 @@ void GameOverState::Init(GameStateManager *gsm){
 GameOverState::GameOverState()
 {
 	textColor = { 255, 255, 255, 255 }; // white
-	hoverTextColor = { 255, 0, 0, 255 };
+	hoverTextColor = { 255, 0, 0, 255 }; // red
 	pos.resize(renderItems);
 }
 
@@ -146,6 +146,7 @@ void GameOverState::SetupRenderer()
 
 GameOverState::~GameOverState()
 {
+	Cleanup();
 }
 
 void GameOverState::Cleanup(){
