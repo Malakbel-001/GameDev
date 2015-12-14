@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include <stdio.h>
 #include <string>
+#include "EntityState.h"
 
 class LTexture
 {
@@ -20,7 +21,8 @@ public:
 	void free();
 
 	//Renders texture at given point 
-	void render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip = NULL);
+	void render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip);
+	void render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, bool flip);
 
 	//Gets image dimensions 
 	int getWidth(); int getHeight();
