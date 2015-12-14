@@ -4,7 +4,9 @@
 class Level2 : public Level
 {
 	protected:
-		virtual void LoadParallaxBackgroundSettings();
+		virtual void CreateMap();
+		virtual void CreateNPCs();
+		virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 	public:
 		Level2(int _lvlWidth, int _lvlHeight, PlayState* play);

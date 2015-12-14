@@ -1,10 +1,10 @@
 #include "HUD.h"
 #include "Weapon.h"
 
-HUD::HUD(SDL_Renderer* renderer, Player* player) {
-	this->renderer = renderer;
-	this->player = player;
-	timer = Timer();
+HUD::HUD(SDL_Renderer* _renderer, Player* _player) {
+	this->renderer = _renderer;
+	this->player = _player;
+	this->timer = nullptr;
 
 	screenWidth = new int;
 	screenHeight = new int;
@@ -14,27 +14,28 @@ HUD::HUD(SDL_Renderer* renderer, Player* player) {
 	hudFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 12);
 	timerFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 20);
 	SetSurfacesAndTextures();
-	SetRectangles();
+	SetUpperLeftRectangles(20, y);
+	SetUpperMiddleRectangles(y);
+	SetUpperRightRectangles(y);
 }
 
 HUD::~HUD() {
 	this->Cleanup();
 }
 
-//setDrawRect & fillRect
-void HUD::SetRectangles() {
+void HUD::SetUpperLeftRectangles(int x, int y) {
 	//HP Upper Left, Always Standard
-	int leftX = 20;
-	int allY = 20; //y to draw all
 	int hpWidth = 200;
 	int hpHeight = 30;
 
-	drawHPRect = { leftX, allY, hpWidth, hpHeight };
-	fillHPRect = { leftX, allY, hpWidth, hpHeight };
+	drawHPRect = { x, y, hpWidth, hpHeight };
+	fillHPRect = { x, y, hpWidth, hpHeight };
 
-	amountHPRect =	{ drawHPRect.x + 20, drawHPRect.y + drawHPRect.h, drawHPRect.w - 40, 20 };
-	hpRect =		{ amountHPRect.x + 30, amountHPRect.y + 5, hpSurface->w, hpSurface->h };
+	amountHPRect = { drawHPRect.x + 20, drawHPRect.y + drawHPRect.h, drawHPRect.w - 40, 20 };
+	hpRect = { amountHPRect.x + 30, amountHPRect.y + 5, hpSurface->w, hpSurface->h };
+}
 
+void HUD::SetUpperMiddleRectangles(int y) {
 	//Stats Upper Middle, Calculate Width!
 	int spaceFromStatsRect = 10;
 	int spaceInBetween = 20;
@@ -42,13 +43,15 @@ void HUD::SetRectangles() {
 	//height = magic number, durr.
 
 	int middleX = (*screenWidth / 2) - (calcWidthStats / 2);
-	drawStatsRect =	{ middleX, allY, calcWidthStats, 50 };
+	drawStatsRect = { middleX, y, calcWidthStats, 50 };
 	ammoRect = { drawStatsRect.x + spaceFromStatsRect, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
 	scoreRect = { ammoRect.x + ammoRect.w + spaceInBetween, ammoRect.y, scoreSurface->w, scoreSurface->h };
+}
 
+void HUD::SetUpperRightRectangles(int y) {
 	//Timer Upper Right
 	int rightX = *screenWidth - 100;
-	timerRect = { rightX, allY, 95, 35 };
+	timerRect = { rightX, y, 95, 35 };
 }
 
 void HUD::SetSurfacesAndTextures() {
@@ -69,7 +72,7 @@ void HUD::Draw() {
 
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a); //keep old draw color for later
 
-	DrawHealth(); //NEW - little bit alpha
+	DrawHealth(); //little bit alpha / transparency
 
 	//draw Stats Border/Container
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 100); //alpha number = 100 in order to make it transparent
@@ -131,33 +134,35 @@ void HUD::DrawScore() {
 }
 
 void HUD::DrawTimer() {
-	timer.CalcDifference();
-
 	//Draw Timer Rectangle & Border
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 225);
 	SDL_RenderFillRect(renderer, &timerRect);
 
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //white border
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //black border
 	SDL_RenderDrawRect(renderer, &timerRect);
 
 	//Draw Timer
-	if (timer.GetCurrentMinutes() < 10) {
-		Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer.GetCurrentMinutes()), *screenWidth - 90,
+	if (timer != nullptr) {
+		timer->CalcDifference();
+
+		if (timer->GetCurrentMinutes() < 10) {
+			Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer->GetCurrentMinutes()), *screenWidth - 90,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+		else {
+			Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer->GetCurrentMinutes()), *screenWidth - 90,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+		Utilities::DrawTextHelper(renderer, timerFont,":", *screenWidth - 60,
 			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
-	}
-	else {
-		Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentMinutes()), *screenWidth - 90,
-			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
-	}
-	Utilities::DrawTextHelper(renderer, timerFont,":", *screenWidth - 60,
-		drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
-	if (timer.GetCurrentSeconds() < 10) {
-		Utilities::DrawTextHelper(renderer, timerFont, "0"+std::to_string(timer.GetCurrentSeconds()), *screenWidth - 40,
-			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
-	}
-	else {
-		Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer.GetCurrentSeconds()), *screenWidth - 40,
-			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		if (timer->GetCurrentSeconds() < 10) {
+			Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer->GetCurrentSeconds()), *screenWidth - 40,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+		else {
+			Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer->GetCurrentSeconds()), *screenWidth - 40,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
 	}
 }
 
@@ -176,7 +181,9 @@ void HUD::Cleanup() {
 }
 
 void HUD::ResumeChecks() {
-	timer.ResumeTimer();
+	if (timer != nullptr)
+		timer->ResumeTimer();
+
 	CheckIfScreenSizeChanged();
 }
 
@@ -190,8 +197,17 @@ void HUD::CheckIfScreenSizeChanged() {
 		SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
 		//this will also update the screenWidth and screenHeight inside the LayerContainers, because they have int pointers
 
-		SetRectangles(); //set again on the right positions
+		SetUpperMiddleRectangles(y); //set again on the right positions
+		SetUpperRightRectangles(y);
 	}
 
 	wasFullScreen = isFullScreen; //keep the result for later check
+}
+
+void HUD::SetTimer(Timer* _timer) {
+	this->timer = _timer;
+}
+
+Timer* HUD::GetTimer() {
+	return timer;
 }

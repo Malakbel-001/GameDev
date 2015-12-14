@@ -64,6 +64,7 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 		states.pop_back(); //pop loadState
 		delete a;
 	states.push_back(gameState);
+	states.back()->Resume();
 }
 void GameStateManager::PopPrevState(){
 	if (states.size() > 1){

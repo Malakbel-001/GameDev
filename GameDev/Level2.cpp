@@ -6,16 +6,16 @@ Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 	levelId = 2;
 }
 
-void Level2::Init(BehaviourFactory* bf)
-{
-	//background--------------------
-	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
-	LoadParallaxBackgroundSettings();
+//Always perform these procedures
+void Level2::Init(BehaviourFactory* bf) {
+	Level2::SetEntityFactory(bf);
+	Level2::CreateMap();
+	Level2::CreateNPCs();
+	Level2::CreateTimer();
+	Level2::CreateParallaxBackground(bf);
+}
 
-
-	//Entities Initialization
-	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
-
+void Level2::CreateMap() {
 	//obstacles--------------------
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(1625, 450, 250, 120, EntityType::GROUNDLVL2);
@@ -40,6 +40,9 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(3250, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(3500, 570, 250, 140, EntityType::GROUNDLVL2);
 	entityFactory->CreateEntity(3750, 570, 250, 140, EntityType::GROUNDLVL2);
+}
+
+void Level2::CreateNPCs() {
 	//enemy pinguin
 	entityFactory->CreateActor(400, 450, EntityType::PINGUIN);
 	entityFactory->CreateActor(450, 450, EntityType::PINGUIN);
@@ -79,18 +82,18 @@ void Level2::Init(BehaviourFactory* bf)
 	entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);
 }
 
-//also sets parallaxBackground
-Level* Level2::CreateLevel()
-{
-	return new Level2(lvlWidth, lvlHeight, playState);
-}
-
-void Level2::LoadParallaxBackgroundSettings() {
+void Level2::CreateParallaxBackground(BehaviourFactory* bf) {
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-bg.png", 0, 0, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountain-far.png", 0, 0.5f, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountains.png", 0, 1, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-trees.png", 0, 2, 255);
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-foreground-trees.png", 0, 3, 255);
+}
+
+Level* Level2::CreateLevel()
+{
+	return new Level2(lvlWidth, lvlHeight, playState);
 }
 
 Player* Level2::SetPlayer(Player* _player) {
@@ -105,8 +108,6 @@ Player* Level2::SetPlayer(Player* _player) {
 
 	return player;
 }
-
-
 
 ParallaxBackground* Level2::GetParallaxBackGround() {
 	return parallaxBackground;

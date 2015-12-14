@@ -7,7 +7,7 @@
 
 class HUD {
 	public:
-		HUD(SDL_Renderer* renderer, Player* player);
+		HUD(SDL_Renderer* _renderer, Player* _player);
 		~HUD();
 
 	private:
@@ -18,7 +18,11 @@ class HUD {
 		int* screenHeight;
 
 		void SetSurfacesAndTextures();
-		void SetRectangles();
+
+		const int y = 20;
+		void SetUpperLeftRectangles(int x, int y);
+		void SetUpperMiddleRectangles(int y);
+		void SetUpperRightRectangles(int y);
 
 		void DrawHealth();
 		void DrawAmmo();
@@ -32,12 +36,14 @@ class HUD {
 		void Draw();
 		void Cleanup();
 		void ResumeChecks();
+		void SetTimer(Timer* timer);
+		Timer* GetTimer();
 
 	private:
 		TTF_Font* hudFont;
 		TTF_Font* timerFont;
 		SDL_Color oldColor;
-		Timer timer;
+		Timer* timer;
 		
 		SDL_Rect drawHPRect;
 		SDL_Rect fillHPRect;
