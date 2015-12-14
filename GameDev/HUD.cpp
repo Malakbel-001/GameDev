@@ -1,13 +1,10 @@
 #include "HUD.h"
 #include "Weapon.h"
 
-HUD::HUD(SDL_Renderer* _renderer, Player* _player) {
+void HUD::Initialize(SDL_Renderer* _renderer, Player* _player) {
 	this->renderer = _renderer;
 	this->player = _player;
-	this->timer = nullptr;
-
-	screenWidth = new int;
-	screenHeight = new int;
+	
 	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
 	wasFullScreen = Utilities::IsFullScreen();
 
@@ -17,6 +14,15 @@ HUD::HUD(SDL_Renderer* _renderer, Player* _player) {
 	SetUpperLeftRectangles(20, y);
 	SetUpperMiddleRectangles(y);
 	SetUpperRightRectangles(y);
+}
+
+HUD::HUD() { 
+	this->renderer = nullptr;
+	this->player = nullptr;
+	this->timer = nullptr;
+	wasFullScreen = true;
+	screenWidth = new int;
+	screenHeight = new int;
 }
 
 HUD::~HUD() {

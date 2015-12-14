@@ -18,7 +18,5 @@ class Level2 : public Level
 		virtual Level* CreateLevel();
 		virtual Player* SetPlayer(Player* _player);
 		void HandleEvents(SDL_Event mainEvent);
-
-		virtual ParallaxBackground* GetParallaxBackGround();
 };
 

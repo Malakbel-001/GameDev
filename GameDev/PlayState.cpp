@@ -13,14 +13,15 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	background = LTexture();
 
+	hud = new HUD();
 	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	// flush userinput to prevent crash during loadscreen
 
 	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
-	hud = new HUD(gsm->GetBehaviour()->GetRenderer(), player);
 	std::cout << "PlayState \n";
+	hud->Initialize(gsm->GetBehaviour()->GetRenderer(), player);
 }
 
 void PlayState::GameOver(){
@@ -245,13 +246,8 @@ void PlayState::Update(float dt)
 
 void PlayState::Draw()
 {
-
-	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
-
 	currentLevel->GetParallaxBackGround()->Draw();
-
 	currentLevel->GetDrawableContainer()->Draw();
-
 	hud->Draw();
 }
 
@@ -264,6 +260,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 {
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	if (currentLevel != nullptr){
+		delete currentLevel->GetTimer();
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
@@ -273,6 +270,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
 	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
+	this->hud->SetTimer(currentLevel->GetTimer());
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 }
 

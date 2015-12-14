@@ -7,7 +7,7 @@
 
 class HUD {
 	public:
-		HUD(SDL_Renderer* _renderer, Player* _player);
+		HUD();
 		~HUD();
 
 	private:
@@ -33,6 +33,7 @@ class HUD {
 		bool wasFullScreen; //was before
 
 	public:
+		void Initialize(SDL_Renderer* _renderer, Player* _player);
 		void Draw();
 		void Cleanup();
 		void ResumeChecks();

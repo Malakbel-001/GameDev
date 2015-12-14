@@ -251,7 +251,7 @@
       <Filter>Source Files\Model\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Source Files\View\Head-Up Display</Filter>
+      <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -529,7 +529,7 @@
       <Filter>Header Files\Model\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
-      <Filter>Header Files\View\Head-Up Display</Filter>
+      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

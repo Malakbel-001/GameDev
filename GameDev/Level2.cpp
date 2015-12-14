@@ -109,14 +109,7 @@ Player* Level2::SetPlayer(Player* _player) {
 	return player;
 }
 
-ParallaxBackground* Level2::GetParallaxBackGround() {
-	return parallaxBackground;
-}
 
 void Level2::Cleanup() { }
-
-
 void Level2::HandleEvents(SDL_Event mainEvent) { }
-
-
 Level2::~Level2() { }

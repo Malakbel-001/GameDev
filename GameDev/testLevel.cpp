@@ -118,12 +118,7 @@ Player* TestLevel::SetPlayer(Player* _player) {
 	return player;
 }
 
-ParallaxBackground* TestLevel::GetParallaxBackGround() {
-	return parallaxBackground;
-}
 
 void TestLevel::Cleanup() { }
-
 void TestLevel::HandleEvents(SDL_Event mainEvent) { }
-
 TestLevel::~TestLevel() { }

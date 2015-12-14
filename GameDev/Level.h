@@ -60,9 +60,10 @@ public:
 	EntityFactory* GetEntityFactory();
 	std::vector<Entity*>* entities;									//probably not public!
 
-	virtual ParallaxBackground* GetParallaxBackGround() = 0;		//pure virtual
 	virtual Player* SetPlayer(Player* _player) = 0;					//pure virtual
 	virtual Level* CreateLevel() = 0;								//pure virtual
+	ParallaxBackground* GetParallaxBackGround();
+	Timer* GetTimer();
 
 	Player* SetPlayerPosition(Player* _player, float x, float y);
 	virtual void SetLvlWidth(int _lvlWidth);

@@ -6,6 +6,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 {
 	entityFactory = nullptr;
 	player = nullptr;
+	timer = nullptr;
 	startXpos = 100;
 	startYpos = 10;
 	actors = new std::vector<Actor*>();
@@ -52,6 +53,8 @@ Level::~Level()
 		}
 	}
 	delete entities;
+	if (timer)
+		delete timer;
 }
 
 void Level::Update(float dt)
@@ -134,7 +137,12 @@ b2World* Level::GetWorld() {
 	return world;
 }
 
-
+ParallaxBackground* Level::GetParallaxBackGround() {
+	return parallaxBackground;
+}
+Timer* Level::GetTimer() {
+	return timer;
+}
 void Level::SetLvlWidth(int _lvlWidth) {
 	this->lvlWidth = _lvlWidth;
 }
