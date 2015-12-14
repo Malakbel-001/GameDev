@@ -260,11 +260,12 @@ void PlayState::SetCurrentLevel(Level* lvl)
 {
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	if (currentLevel != nullptr){
-		delete currentLevel->GetTimer();
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
 	this->currentLevel = lvl;
+
+	//Note CurrentLevel is now new level
 	this->currentLevel->Init(bf);
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
