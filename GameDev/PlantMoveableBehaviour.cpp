@@ -25,6 +25,6 @@ void PlantMoveableBehaviour::Move(float dt)
 
 	b2Vec2 vel = plant->GetBody()->GetLinearVelocity();	
 	b2Vec2 dir = plant->GetDirection();
-	vel.x = vel.x - 0.1;
-	plant->GetBody()->SetLinearVelocity(dir);*/
+	vel.x = vel.x - 1;
+	plant->GetBody()->SetLinearVelocity(vel);*/
 }

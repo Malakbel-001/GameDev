@@ -51,8 +51,8 @@ private:
 	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
 	std::unordered_map<EntityType, MoveableBehaviour*> moveRegistery;
 	std::unordered_map<EntityType, Sprite*> spriteRegistery;
-	std::unordered_map<EntityState, BaseCommand*> defaultComamnds;
-	std::unordered_map<EntityState, BaseCommand*> plantComamnds;
+	std::unordered_map<EntityState, BaseCommand*> defaultCommands;
+	std::unordered_map<EntityState, BaseCommand*> plantCommands;
 	std::vector<Sprite*> sprites;
 };
 
