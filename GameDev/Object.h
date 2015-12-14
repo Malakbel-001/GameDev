@@ -17,10 +17,13 @@ public:
 	EntityType GetType();
 	virtual bool ShouldDraw();
 	void SetShouldDraw(bool _shoulddraw);
+	void SetFlipped(bool _flipped);
+	bool GetFlipped();
 protected:
 	bool shouldDraw = true;
 	DrawableBehaviour* draw;
 	EntityType type;
 	EntityState state;
+	bool flipped;
 };
 

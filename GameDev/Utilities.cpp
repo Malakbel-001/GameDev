@@ -24,10 +24,24 @@ namespace Utilities {
 		return font;
 	}
 
+	//Draw Text on the specificied location
 	void Utilities::DrawTextHelper(SDL_Renderer* renderer, TTF_Font* font, std::string text, int x, int y, SDL_Color color) {
 		SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_Rect counterRect = { x, y, surface->w, surface->h };
+
+		SDL_RenderCopy(renderer, texture, NULL, &counterRect);
+
+		//cleanup counter stuff after using them
+		SDL_FreeSurface(surface);
+		SDL_DestroyTexture(texture);
+	}
+
+	//Draw Text on the specified location, minusX and minus the text-surface-width
+	void Utilities::DrawTextHelper(SDL_Renderer* renderer, TTF_Font* font, std::string text, int minusX, int y, SDL_Color color, int screenWidth) {
+		SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+		SDL_Rect counterRect = { screenWidth - (minusX + surface->w), y, surface->w, surface->h };
 
 		SDL_RenderCopy(renderer, texture, NULL, &counterRect);
 

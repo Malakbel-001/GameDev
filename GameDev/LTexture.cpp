@@ -71,6 +71,7 @@ void LTexture::free()
 
 void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip)
 {
+
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
 
@@ -83,6 +84,26 @@ void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SD
 
 	//Render to screen
 	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, SDL_FLIP_NONE);
+}
+
+void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, bool flip)
+{
+	SDL_RendererFlip renderFlip = SDL_FLIP_NONE;
+	if (flip)
+		renderFlip = SDL_FLIP_HORIZONTAL;
+
+	//Set rendering space and render to screen
+	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
+
+	//Set clip rendering dimensions
+	if (clip != NULL)
+	{
+		renderQuad.w = clip->w;
+		renderQuad.h = clip->h;
+	}
+
+	//Render to screen
+	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, renderFlip);
 }
 
 void LTexture::SetTextureAlphaMod(int alpha) {
