@@ -34,12 +34,10 @@ void PlayState::InitStartLevel(int lvl){
 }
 
 void PlayState::GameOver(){
-	//SoundBank::GetInstance()->StopMusic(); //not needed
 	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
-	//SoundBank::GetInstance()->StopMusic(); //not needed
 	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
 	gsm->CreateGameState(GameStateType::VictoryState,0);
 }

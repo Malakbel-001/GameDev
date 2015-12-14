@@ -74,6 +74,7 @@ void Game::GameLoop()
 	while (running)
 	{
 		float dt = SDL_GetTicks() - preLoopTime;;
+		dt *= 2; //amplifier cheat modus
 		preLoopTime = SDL_GetTicks();
 
 

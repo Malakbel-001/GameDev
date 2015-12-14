@@ -63,6 +63,8 @@ void Level::Update(float dt)
 	float _y = 10;
 	float Ratio = _x / _y;
 
+	//world->Step((dt / 100), 5, 5);
+
 	world->Step((dt / 100), 5, 5);
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
