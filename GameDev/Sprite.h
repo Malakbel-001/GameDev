@@ -13,7 +13,7 @@ public:
 
 	SDL_Rect* GetAnimationFrame(EntityState state, int frame);
 	void SetAnimationSet(EntityState state);
-	int GetAnimationSize();
+	int GetAnimationSize(EntityState state);
 	void SetRenderer(SDL_Renderer* _renderer);
 	LTexture* GetSpritesheet();
 	bool LoadMedia(std::string path);
