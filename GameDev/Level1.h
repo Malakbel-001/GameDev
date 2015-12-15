@@ -14,7 +14,6 @@ class Level1 :
 		Level1(int _lvlWidth, int _lvlHeight , PlayState* play);
 		virtual ~Level1();
 		
-		void Init(BehaviourFactory* bf);
 		void Cleanup();
 
 		virtual Level* CreateLevel();

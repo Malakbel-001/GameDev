@@ -6,15 +6,6 @@ Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
 	levelId = 1;
 }
 
-//Always perform these procedures
-void Level1::Init(BehaviourFactory* bf) {
-	Level1::SetEntityFactory(bf);
-	Level1::CreateMap();
-	Level1::CreateNPCs();
-	Level1::CreateTimer();
-	Level1::CreateParallaxBackground(bf);
-}
-
 void Level1::CreateMap() {
 	//obstacles--------------
 	//	entityFactory->CreateWeapon(0, 500, EntityType::WEAPON);
