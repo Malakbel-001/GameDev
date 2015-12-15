@@ -202,12 +202,6 @@
     <ClCompile Include="JumpSensorCollidableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Collidables</Filter>
     </ClCompile>
-    <ClCompile Include="AcornSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Acorn.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Drawables</Filter>
     </ClCompile>
@@ -226,20 +220,8 @@
     <ClCompile Include="Level2.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
-    <ClCompile Include="GroundLvl2Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PinguinSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TreeSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ShotgunSprite.cpp">
       <Filter>Source Files\Model\Sprites</Filter>
-    </ClCompile>
-    <ClCompile Include="SnowmanSprite.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="NpcStatsContainer.cpp">
       <Filter>Source Files\Model\Factory</Filter>
@@ -250,13 +232,43 @@
     <ClCompile Include="PlantBossMoveableBehaviour.cpp">
       <Filter>Source Files\Model\Behaviour\Moveables</Filter>
     </ClCompile>
-    <ClCompile Include="BaseCommand.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="TreeSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
-    <ClCompile Include="IdleCommand.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="PinguinSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowmanSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="AcornSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
     </ClCompile>
     <ClCompile Include="DefaultPatrolCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleCommand.cpp">
+      <Filter>Source Files\Model\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Acorn.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundLvl2Sprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="DesertGroundSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="TankSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MechSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -486,12 +498,6 @@
     <ClInclude Include="JumpSensorCollidableBehaviour.h">
       <Filter>Header Files\Model\Behaviour\Collidables</Filter>
     </ClInclude>
-    <ClInclude Include="AcornSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Acorn.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VictoryState.h">
       <Filter>Header Files\Model\GameState</Filter>
     </ClInclude>
@@ -516,14 +522,8 @@
     <ClInclude Include="GroundLvl2Sprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
-    <ClInclude Include="TreeSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ShotgunSprite.h">
       <Filter>Header Files\Model\Sprites</Filter>
-    </ClInclude>
-    <ClInclude Include="SnowmanSprite.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NpcStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
@@ -531,22 +531,46 @@
     <ClInclude Include="EntityDirection.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="IdleMoveableBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlantMoveableBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlantBossMoveableBehaviour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BaseCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IdleCommand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Model\Commands</Filter>
     </ClInclude>
     <ClInclude Include="DefaultPatrolCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleCommand.h">
+      <Filter>Header Files\Model\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleMoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Moveables</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBossMoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Moveables</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantMoveableBehaviour.h">
+      <Filter>Header Files\Model\Behaviour\Moveables</Filter>
+    </ClInclude>
+    <ClInclude Include="AcornSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowmanSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
+    </ClInclude>
+    <ClInclude Include="Acorn.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DesertGroundSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TankSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MechSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -676,6 +700,12 @@
     </Filter>
     <Filter Include="Source Files\View\Head-Up Display">
       <UniqueIdentifier>{d2b93fba-94de-4caa-909e-692c7e0d5a61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Commands">
+      <UniqueIdentifier>{ea278bfa-6997-4a19-8613-6963c07ac046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Model\Commands">
+      <UniqueIdentifier>{92cafd7e-bf21-4df6-bbb9-43aeb7c3b6f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

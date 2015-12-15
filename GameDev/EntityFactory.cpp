@@ -7,6 +7,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 {
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
 		{ EntityType::ACTOR, new Actor() },
+		{ EntityType::TANK, new Npc() },
+		{ EntityType::MECH, new Npc() },
 		{ EntityType::NPC, new Npc() },
 		{ EntityType::PLAYER, new Player() },
 		{ EntityType::PLANT, new Npc() },
@@ -27,6 +29,9 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level2
 		{ EntityType::GROUNDLVL2, new Ground() },
+
+		//level3
+		{ EntityType::DESERTFLOOR, new Ground() },
 	};
 
 	weaponRegistery = std::unordered_map < EntityType, Weapon* > {
@@ -42,16 +47,33 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	b2BodyDef entDef = b2BodyDef();
 	entDef.type = b2BodyType::b2_staticBody;
 	entDef.fixedRotation = true;
+
 	b2BodyDef ActorDef;
 	ActorDef.type = b2BodyType::b2_dynamicBody;
+
 	b2BodyDef NpcDef;
 	NpcDef.type = b2BodyType::b2_dynamicBody;
+
 	b2BodyDef PlayerDef;
 	PlayerDef.gravityScale = 1;
 	PlayerDef.fixedRotation = true;
 	PlayerDef.linearDamping = 0.5f;
 	PlayerDef.angularDamping = 1;
 	PlayerDef.type = b2BodyType::b2_dynamicBody;
+
+	b2BodyDef TankDef;
+	TankDef.gravityScale = 1;
+	TankDef.fixedRotation = true;
+	TankDef.linearDamping = 0.5f;
+	TankDef.angularDamping = 1;
+	TankDef.type = b2BodyType::b2_dynamicBody;
+
+	b2BodyDef MechDef;
+	MechDef.gravityScale = 1;
+	MechDef.fixedRotation = true;
+	MechDef.linearDamping = 0.5f;
+	MechDef.angularDamping = 1;
+	MechDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef PlantDef = b2BodyDef();
 	PlantDef.gravityScale = 1;
@@ -122,16 +144,24 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::HEALTH, Health },
 		{ EntityType::AMMO, Ammo },
 		{ EntityType::ACORN, AcornDef },
+		
 		//level2
 		{ EntityType::GROUNDLVL2, entDef },
 		{ EntityType::PINGUIN, PlantDef },
 		{ EntityType::SNOWMAN, SnowmanDef },
+
+		//level3
+		{ EntityType::DESERTFLOOR, entDef },
+		{ EntityType::TANK, TankDef },
+		{ EntityType::MECH, MechDef },
 	};
 		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
 			{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
 			{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
 			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
 			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
+			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
+			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
 		};
 }
 

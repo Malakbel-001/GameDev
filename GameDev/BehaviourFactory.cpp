@@ -46,6 +46,12 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
 
+	TankSprite* tankSprite = new TankSprite(renderer);
+	tankSprite->LoadMedia("MetalSlugTank.png");
+
+	MechSprite* mechSprite = new MechSprite(renderer);
+	mechSprite->LoadMedia("mech.png");
+
 	HealthSprite* healthSprite = new HealthSprite(renderer);
 	healthSprite->LoadMedia("HealthSprite.png");
 
@@ -62,6 +68,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	GroundLvl2Sprite* groundlvl2Sprite = new GroundLvl2Sprite(renderer);
 	groundlvl2Sprite->LoadMedia("snow2.png");
+
+	DesertGroundSprite* desertgroundSprite = new DesertGroundSprite(renderer);
+	desertgroundSprite->LoadMedia("Desert.png");
 
 	PinguinSprite* pinguinSprite = new PinguinSprite(renderer);
 	pinguinSprite->LoadMedia("pinguin.png");
@@ -86,11 +95,13 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(plantBossSprite);
 	sprites.push_back(acornSprite);
 	sprites.push_back(playerSprite);
+	sprites.push_back(tankSprite);
 	sprites.push_back(healthSprite);
 	sprites.push_back(bulletSprite);
 	sprites.push_back(ammoSprite);
 	sprites.push_back(gun);
 	sprites.push_back(groundlvl2Sprite);
+	sprites.push_back(desertgroundSprite);
 	sprites.push_back(pinguinSprite); 
 	sprites.push_back(treeSprite);
 	sprites.push_back(shotgun);
@@ -108,16 +119,19 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::BULLET, new StaticDrawableBehaviour(renderer, bulletSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
 	//	{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
+	
 	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
 		{ EntityType::SNOWMAN, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
-		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) }
-
-	};
-
+		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 	
-
+	//level3
+		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
+		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
+		{ EntityType::MECH, new AnimatedDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
+	};
+	
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 		{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 		{ EntityType::PLANT, new EnemyCollidableBehaviour() },
@@ -129,6 +143,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::AMMO, new AmmoCollidableBehaviour() },
 		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
+		{ EntityType::TANK, new EnemyCollidableBehaviour() },
+		{ EntityType::MECH, new EnemyCollidableBehaviour() },
 	};
 
 	IdleCommand* idle = new IdleCommand();
@@ -151,6 +167,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUND, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::GROUND2, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::GROUNDLVL2, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::DESERTFLOOR, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::HEALTH, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::PINGUIN, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::PLANT, new PlantMoveableBehaviour(plantComamnds) },
@@ -159,6 +176,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PLANTBOSS, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::SHOTGUN, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::SNOWMAN, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::TANK, new MoveableBehaviour(defaultComamnds) },
+		{ EntityType::MECH, new MoveableBehaviour(defaultComamnds) },
 		{ EntityType::WEAPON, new MoveableBehaviour(defaultComamnds) }
 	};
 
