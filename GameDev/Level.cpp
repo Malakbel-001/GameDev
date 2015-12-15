@@ -19,13 +19,13 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 }
 
 //Always perform these procedures
-//void Level::Init(BehaviourFactory* bf) { //TODO get this to work
-//	Level::SetEntityFactory(bf);
-//	Level::CreateMap();
-//	Level::CreateNPCs();
-//	Level::CreateTimer();
-//	Level::CreateParallaxBackground(bf);
-//}
+void Level::Init(BehaviourFactory* bf) { //TODO get this to work
+	SetEntityFactory(bf);
+	CreateMap();
+	CreateNPCs();
+	CreateTimer();
+	CreateParallaxBackground(bf);
+}
 
 Level::~Level()
 {

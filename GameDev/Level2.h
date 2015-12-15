@@ -12,7 +12,6 @@ class Level2 : public Level
 		Level2(int _lvlWidth, int _lvlHeight, PlayState* play);
 		virtual ~Level2();
 
-		void Init(BehaviourFactory* bf);
 		void Cleanup();
 
 		virtual Level* CreateLevel();

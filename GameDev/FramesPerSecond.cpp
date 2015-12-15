@@ -42,19 +42,15 @@ void FramesPerSecond::UpdateCount() {
 
 void FramesPerSecond::DrawFPS() {
 	if (run) {
-		Utilities::DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), *screenWidth - 50, 10, Utilities::GetColor(255, 0, 0, 255));
+		Utilities::DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), 20, 10, Utilities::GetColor(255, 0, 0, 255), *screenWidth);
 	}
 }
 
 void FramesPerSecond::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	for (auto it = _events->begin(); it != _events->end(); ++it){
-		if (it->second)
-		{
-			switch (it->first)
-			{
-			case SDLK_m:
+		if (it->second)	{
+			if (it->first == SDLK_m) {
 				ToggleFps();
-				break;
 			}
 		}
 	}

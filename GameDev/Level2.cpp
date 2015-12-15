@@ -6,15 +6,6 @@ Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 	levelId = 2;
 }
 
-//Always perform these procedures
-void Level2::Init(BehaviourFactory* bf) {
-	Level2::SetEntityFactory(bf);
-	Level2::CreateMap();
-	Level2::CreateNPCs();
-	Level2::CreateTimer();
-	Level2::CreateParallaxBackground(bf);
-}
-
 void Level2::CreateMap() {
 	//obstacles--------------------
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);

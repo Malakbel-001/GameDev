@@ -47,7 +47,7 @@ protected:
 public:
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
 
-	virtual void Init(BehaviourFactory* bf) = 0;					//TODO get this to work
+	virtual void Init(BehaviourFactory* bf);						//TODO get this to work
 	virtual ~Level();
 	void Draw();
 	void Update(float dt);
