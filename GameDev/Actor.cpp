@@ -1,6 +1,6 @@
 #include "Actor.h"
 #include "Weapon.h"
-#include "CollidableBehaviour.h"
+#include "StepCollidableBehaviour.h"
 
 Actor::Actor()
 {
@@ -25,6 +25,9 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 	//jumpsensor->Init(this);
 ///	body->GetFixtureList()->SetUserData(jumpsensor);
 	body->SetUserData(col);
+	StepCollidableBehaviour* col2 = new StepCollidableBehaviour();
+	col2->Init(this);
+	body->GetFixtureList()[0].GetBody()->SetUserData(col2);
 
 	//direction = b2Vec2(0, 0);
 	m_jumpTimeout = 0;

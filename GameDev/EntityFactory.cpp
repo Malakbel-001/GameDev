@@ -241,7 +241,7 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	float newWidth = (width*Ratio);
 	boxShape.SetAsBox(newHeight, newWidth, b2Vec2(newHeight, newWidth), 0);
 
-	b2FixtureDef boxFixtureDef;
+	b2FixtureDef boxFixtureDef; 
 	boxFixtureDef.shape = &boxShape;
 
 	boxFixtureDef.density = den;
@@ -253,6 +253,13 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	bodydef.position.Set(x*Ratio, y*Ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
 	b2body->CreateFixture(&boxFixtureDef);
+
+	boxShape.SetAsBox(10, 10, b2Vec2(newHeight, 0), 0);
+	b2FixtureDef leftStepDef;
+	leftStepDef.shape = &boxShape;	
+	b2Fixture* leftStepFixture = b2body->CreateFixture(&leftStepDef);
+	
+
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 	/*
 	boxShape.SetAsBox(0.2, 0.2, b2Vec2(0,-500), 0);
@@ -289,11 +296,13 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, f
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
+
 	b2body->CreateFixture(&boxFixtureDef);
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 
 	return b2body;
 }
+
 b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, EntityType type)
 {
 	b2PolygonShape boxShape;
