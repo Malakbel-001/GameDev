@@ -96,6 +96,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(acornSprite);
 	sprites.push_back(playerSprite);
 	sprites.push_back(tankSprite);
+	sprites.push_back(mechSprite);
 	sprites.push_back(healthSprite);
 	sprites.push_back(bulletSprite);
 	sprites.push_back(ammoSprite);
@@ -235,6 +236,7 @@ MoveableBehaviour* BehaviourFactory::CreateMoveableBehaviour(EntityType type)
 void BehaviourFactory::ClearCamera(){
 	camera->Init(nullptr, 0, 0);
 }
+
 void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
 	camera->Init(player, levelWidth, levelheight);
 }
