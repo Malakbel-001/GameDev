@@ -48,9 +48,11 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	TankSprite* tankSprite = new TankSprite(renderer);
 	tankSprite->LoadMedia("MetalSlugTank.png");
+	tankSprite->SetAnimationSet(EntityState::IDLE);
 
 	MechSprite* mechSprite = new MechSprite(renderer);
 	mechSprite->LoadMedia("mech.png");
+	mechSprite->SetAnimationSet(EntityState::IDLE);
 
 	HealthSprite* healthSprite = new HealthSprite(renderer);
 	healthSprite->LoadMedia("HealthSprite.png");
