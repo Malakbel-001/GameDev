@@ -19,10 +19,10 @@ void PlayerDrawableBehaviour::Draw()
 		float ypos = (entity->GetYpos() / Ratio);// - (camera->GetY() / Ratio);
 
 		int size = sprite->GetAnimationSize(entity->GetState());
-		if (currentFrame >= size)
+		if (currentFrame / 3 >= size)
 			currentFrame = 0;
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetFlipped());
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame / 3), entity->GetFlipped());
 
 		//Go to next frame 
 		++currentFrame;

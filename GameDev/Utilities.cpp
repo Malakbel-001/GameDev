@@ -55,4 +55,16 @@ namespace Utilities {
 		SDL_Color col = { r, g, b, a };
 		return col;
 	}
+
+	bool Utilities::ToggleDraw(Uint32 lockButtonTicks, int* screenWidth, int* screenHeight, bool run) {
+		if (lockButtonTicks + 100 < SDL_GetTicks()) {
+			run = !run; //toggle boolean
+
+			if (run) {
+				SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+			}
+		}
+
+		return run;
+	}
 }

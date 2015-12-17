@@ -15,7 +15,9 @@ Game::Game()
 	gsm = new GameStateManager(bf);
 	gsm->CreateGameState(GameStateType::MenuState,0);
 
-	fps = new FramesPerSecond(sdlInitializer->GetRenderer());
+	fps = new FPS(sdlInitializer->GetRenderer());
+	gameSpeedManipulator = new GameSpeedManipulator(sdlInitializer->GetRenderer());
+
 	//Non-threaded
 	this->GameLoop();
 
@@ -74,9 +76,11 @@ void Game::GameLoop()
 	while (running)
 	{
 		float dt = SDL_GetTicks() - preLoopTime;;
-		//dt *= 2; //amplifier cheat modus
-		preLoopTime = SDL_GetTicks();
+		
+		//manipulate game speed
+		dt *= gameSpeedManipulator->GetManipulator();
 
+		preLoopTime = SDL_GetTicks();
 
 		SDLEvents();
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
@@ -88,7 +92,10 @@ void Game::GameLoop()
 		
 		fps->HandleKeyEvents(inputManager->GetKeyInput());
 		fps->UpdateCount(); //NEW
-		fps->DrawFPS();
+		fps->Draw();
+
+		gameSpeedManipulator->HandleKeyEvents(inputManager->GetKeyInput());
+		gameSpeedManipulator->Draw();
 		
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	

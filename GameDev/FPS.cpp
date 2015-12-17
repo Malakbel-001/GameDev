@@ -1,7 +1,7 @@
-#include "FramesPerSecond.h"
+#include "FPS.h"
 
-FramesPerSecond::FramesPerSecond(SDL_Renderer* _renderer) {
-	renderer = _renderer;
+FPS::FPS(SDL_Renderer* _renderer) {
+	this->renderer = _renderer;
 
 	screenWidth = new int;
 	screenHeight = new int;
@@ -15,11 +15,11 @@ FramesPerSecond::FramesPerSecond(SDL_Renderer* _renderer) {
 	lockButtonTicks = SDL_GetTicks();
 }
 
-FramesPerSecond::~FramesPerSecond() {
+FPS::~FPS() {
 	this->Cleanup();
 }
 
-void FramesPerSecond::Cleanup() {
+void FPS::Cleanup() {
 	//fonts
 	TTF_CloseFont(fpsFont);
 
@@ -30,7 +30,7 @@ void FramesPerSecond::Cleanup() {
 }
 
 //UpdateCount and every second, set the currentFPS for that second
-void FramesPerSecond::UpdateCount() {
+void FPS::UpdateCount() {
 	fpsCounter++;
 
 	if (timerTicks + 1000 < SDL_GetTicks()) {
@@ -40,30 +40,19 @@ void FramesPerSecond::UpdateCount() {
 	}
 }
 
-void FramesPerSecond::DrawFPS() {
+void FPS::Draw() {
 	if (run) {
 		Utilities::DrawTextHelper(renderer, fpsFont, std::to_string(currentFPS), 20, 10, Utilities::GetColor(255, 0, 0, 255), *screenWidth);
 	}
 }
 
-void FramesPerSecond::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
-	for (auto it = _events->begin(); it != _events->end(); ++it){
+void FPS::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
+	for (auto it = _events->begin(); it != _events->end(); ++it) {
 		if (it->second)	{
 			if (it->first == SDLK_m) {
-				ToggleFps();
+				run = Utilities::ToggleDraw(lockButtonTicks, screenWidth, screenHeight, run);
+				lockButtonTicks = SDL_GetTicks();
 			}
 		}
-	}
-}
-
-void FramesPerSecond::ToggleFps() {
-	if (lockButtonTicks + 100 < SDL_GetTicks()) {
-		run = !run; //toggle boolean
-
-		if (run) {
-			SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
-		}
-
-		lockButtonTicks = SDL_GetTicks(); //make sure the button isn't being immediately pressed afterwards
 	}
 }

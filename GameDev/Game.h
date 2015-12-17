@@ -11,7 +11,8 @@
 #include "LTexture.h"
 #include "GameStateManager.h"
 #include "Level.h"
-#include "FramesPerSecond.h"
+#include "FPS.h"
+#include "GameSpeedManipulator.h"
 
 class Game
 {
@@ -24,9 +25,10 @@ class Game
 		void GameLoop();
 		
 	private:
+		FPS* fps;									//TODO this shouldn't be a pointer
+		GameSpeedManipulator* gameSpeedManipulator;	//TODO this shouldn't be a pointer
+
 		BehaviourFactory* bf;
-		
-		FramesPerSecond* fps;
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;
 		IGameState* gameState;
