@@ -93,12 +93,12 @@ void LoadState::Cleanup() {
 	drawableContainer = nullptr;
 
 	delete bare;
-	//Bugged. Uhhm? Maybe SDL deletes those pointers himself anyway?
-	/*delete loadingTexture;
-	delete finishedTexture;*/
 
-	/*loadingTexture = nullptr;
-	finishedTexture = nullptr;*/
+	//Delete/Destroy texture pointers and make them null
+	SDL_DestroyTexture(loadingTexture);
+	SDL_DestroyTexture(finishedTexture);
+	loadingTexture = nullptr;
+	finishedTexture = nullptr;
 }
 
 void LoadState::Pause() {
@@ -113,11 +113,7 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 	if (loadedPlay) {
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
-				switch (it->first) {
-					default: //don't know how to remove warning except for creating an empty case
-						gsm->PushGameStateOnly(playState); //any key
-						break;
-				}
+				gsm->PushGameStateOnly(playState); //any key
 			}
 		}
 	}

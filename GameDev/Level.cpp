@@ -10,7 +10,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	startXpos = 100;
 	startYpos = 10;
 	actors = new std::vector<Actor*>();
-	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
+	world = new b2World(b2Vec2(0.0, static_cast<float>(50)));
 	contact = new ContactListener();
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
@@ -65,7 +65,7 @@ void Level::Update(float dt)
 
 	//world->Step((dt / 100), 5, 5);
 
-	world->Step((dt / 100), 5, 5);
+	world->Step((dt / 1000), 5, 5);
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
 

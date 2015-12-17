@@ -74,7 +74,7 @@ void Game::GameLoop()
 	while (running)
 	{
 		float dt = SDL_GetTicks() - preLoopTime;;
-		dt *= 2; //amplifier cheat modus
+		//dt *= 2; //amplifier cheat modus
 		preLoopTime = SDL_GetTicks();
 
 
@@ -93,7 +93,7 @@ void Game::GameLoop()
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
 		afterLoopTime = SDL_GetTicks();
-		if (!((afterLoopTime - preLoopTime) > TARGET_FPS))
+		if (!((afterLoopTime - preLoopTime) > TARGET_FPS)) //Ensures 60 FPS
 		{
 			SDL_Delay(TARGET_FPS - (afterLoopTime - preLoopTime));
 		}

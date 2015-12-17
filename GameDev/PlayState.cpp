@@ -93,11 +93,13 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 						if (!(currentLevel->GetPlayer()->GetJumpTimeOut() > 0)){
 
 							jump = true;
-							impulse = 100;
+							impulse = 200; //temp
 							//SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 
 							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 							currentLevel->GetPlayer()->SetJumpTimeOut(15);
+
+							//TODO fix bounce effect -> jumping higher than intended! Not good.
 						}
 				
 
@@ -107,19 +109,19 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
 					currentLevel->GetPlayer()->SetFlipped(true);
 					//		cout << "e" << x;
-					x = -5;
+					x = -30;
 					//		cout << " - " << x;
 
 					break;
 				case SDLK_s:
-					y = 5;
+					//y = 5; //temp disabled
 					break;
 				case SDLK_d:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					currentLevel->GetPlayer()->SetFlipped(false);
-					x = 5;
+					x = 30;
 					break;
-				case SDLK_z:					
+				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
 				case SDLK_UP:
@@ -216,22 +218,25 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -1000){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
 					}
+
 					break;
 
 				case SDLK_RIGHT:
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 1000 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
 					}
-					
-					
 
 					break;
+
 				}
 			}
 
 		}
 		
 		if (!jump){
+			if (currentLevel->GetPlayer()->GetState() == EntityState::IDLE) { //TODO not sure, at least fix for now
+				x = 0;
+			}
 			vel.Set(x, y);
 			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
