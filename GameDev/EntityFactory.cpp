@@ -166,11 +166,10 @@ Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type){
 	
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
-	b2Body* body = CreateBody(x, y, height, width, type);
+	b2Body* body = CreateBody(x, y, height, width, 1, type);
 
 	ent->Init(body, width, height, type, bf, drawContainer, moveContainer);
-
-
+	
 	entities->push_back(ent);
 	ent->SetLevel(level);
 	return ent;
@@ -179,7 +178,7 @@ Entity* EntityFactory::CreateEntity(float x, float y, float height, float width,
 //temporarily still here
 Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, float height, float width, EntityType type){
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
-	b2Body* body = CreateActorBody(x, y, height, width,1, type);
+	b2Body* body = CreateActorBody(x, y, height, width,1, type, ent);
 	ent->InitActor(body, _hitdmg, _health, width, height, type, bf, drawContainer, moveContainer);
 	actor->push_back(ent);
 	ent->SetLevel(level);
@@ -193,9 +192,11 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 	}
 	else {
 		NpcStatsContainer* npcStats = npcStatsRegistery.at(type);
-		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
+		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer, moveContainer);
+
+
 		ent->SetScore(npcStats->GetScore());
 		ent->SetLevel(level);
 		ent->SetState(EntityState::IDLE);
@@ -210,12 +211,10 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 }
 
 Player* EntityFactory::CreatePlayer(int _hitdmg, int _health, float x, float y, float height, float width, Player* _player) {
-	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER);
+
+	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER, _player);
 
 	_player->InitActor(body, _hitdmg, _health, width, height, EntityType::PLAYER, bf, drawContainer, moveContainer);
-
-
-
 	return _player;
 }
 
@@ -228,9 +227,7 @@ Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int d
 	 return bullet;
 }
 
-b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type){
-	b2PolygonShape boxShape;
-	//translate pixels -> units
+b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent){
 
 	height = height / 2;
 	width = width / 2;
@@ -239,35 +236,38 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	float Ratio = _x / _y;
 	float newHeight = (height*Ratio);
 	float newWidth = (width*Ratio);
-	boxShape.SetAsBox(newHeight, newWidth, b2Vec2(newHeight, newWidth), 0);
 
-	b2FixtureDef boxFixtureDef; 
-	boxFixtureDef.shape = &boxShape;
+	CollidableBehaviour* col = bf->CreateCollidableBehaviour(type, ent);
+	col->Init(ent);
 
-	boxFixtureDef.density = den;
 
-	boxFixtureDef.friction = 0.1;
-	boxFixtureDef.restitution = 0.7;
 
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
-	b2body->CreateFixture(&boxFixtureDef);
 
-	boxShape.SetAsBox(10, 10, b2Vec2(newHeight, 0), 0);
+	b2PolygonShape boxShape;
+
+	//fixture for jumping
+	boxShape.SetAsBox(newHeight, newWidth, b2Vec2(newHeight, newWidth), 0);
+	b2FixtureDef boxFixtureDef; 
+	boxFixtureDef.shape = &boxShape;
+	boxFixtureDef.density = den;
+	boxFixtureDef.friction = 0.1;
+	boxFixtureDef.restitution = 0.7;	
+	auto bodyFixture = b2body->CreateFixture(&boxFixtureDef);
+	bodyFixture->SetUserData(ent->GetCollidableBehaviour());
+
+	//fixture for stepping left
+	boxShape.SetAsBox(0.1, 0.1, b2Vec2(newHeight, 0), 0);
 	b2FixtureDef leftStepDef;
 	leftStepDef.shape = &boxShape;	
-	b2Fixture* leftStepFixture = b2body->CreateFixture(&leftStepDef);
-	
+	leftStepDef.isSensor = true;
+	auto leftStepFixture = b2body->CreateFixture(&leftStepDef);
+	leftStepFixture->SetUserData(ent->GetSensorBehaviour());
 
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
-	/*
-	boxShape.SetAsBox(0.2, 0.2, b2Vec2(0,-500), 0);
-	boxFixtureDef.isSensor = true;
-	b2Fixture* footSensorFixture = b2body->CreateFixture(&boxFixtureDef);
-	
-	footSensorFixture->SetUserData("aaaaa");
-	*/
+
 	return b2body;
 }
 
@@ -300,36 +300,5 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, f
 	b2body->CreateFixture(&boxFixtureDef);
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 
-	return b2body;
-}
-
-b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, EntityType type)
-{
-	b2PolygonShape boxShape;
-	//translate pixels -> units
-
-	height = height / 2;
-	width = width / 2;
-	float _x = 1;
-	float _y = 10;
-	float Ratio = _x / _y;
-	float newHeight = (height*Ratio);
-	float newWidth = (width*Ratio);
-
-	boxShape.SetAsBox(newHeight, newWidth, b2Vec2(newHeight, newWidth), 0);
-
-	b2FixtureDef boxFixtureDef;
-	boxFixtureDef.shape = &boxShape;
-
-	boxFixtureDef.density = 1;
-
-	///////////////////////////////////////////////
-	b2BodyDef bodydef = bodyRegistery.at(type);
-	
-	bodydef.position.Set(x*Ratio, y*Ratio);
-	b2Body* b2body = world.CreateBody(&bodydef);
-	b2body->CreateFixture(&boxFixtureDef);
-	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
-	
 	return b2body;
 }

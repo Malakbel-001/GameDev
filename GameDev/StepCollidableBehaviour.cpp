@@ -11,31 +11,29 @@ StepCollidableBehaviour::~StepCollidableBehaviour()
 }
 
 void StepCollidableBehaviour::Hit(CollidableBehaviour* cb){
+	//printf("step");
+	//if (cb){
+	//	switch (cb->GetActor()->GetType()){
+	//	case EntityType::BULLET:
+	//		break;
 
-	if (cb){
-		switch (cb->GetActor()->GetType()){
-		case EntityType::BULLET:
-			break;
-
-		default:
-
-			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
-			//TODO different sound
-			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
+	//	default:
+	//		//TODO different sound
+	//		ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 
 
 
-			break;
-		}
-	}
-	else{
-		ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
+	//		break;
+	//	}
+	//}
+	//else{
+	//	ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 
-	}
+	//}
 }
 
 void StepCollidableBehaviour::Unhit(CollidableBehaviour* cb){
-	if (cb){
+	/*if (cb){
 		switch (cb->GetActor()->GetType()){
 		case EntityType::BULLET:
 			break;
@@ -47,7 +45,7 @@ void StepCollidableBehaviour::Unhit(CollidableBehaviour* cb){
 	}
 	else{
 		ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
-	}
+	}*/
 }
 CollidableBehaviour* StepCollidableBehaviour::EmptyClone(){
 	return new StepCollidableBehaviour();

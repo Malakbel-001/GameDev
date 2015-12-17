@@ -27,13 +27,17 @@ public:
 	int GetNumFootContacts();
 	void SetNumFootContacts(int x);
 
+	CollidableBehaviour* GetCollidableBehaviour();
+	CollidableBehaviour* GetSensorBehaviour();
+
 protected:
 	int numFootContacts;
 	int m_jumpTimeout;
 	b2Vec2 direction;
 	Weapon* currentWep = nullptr;
 	CollidableBehaviour* col;
-	
+	CollidableBehaviour* stepSensor;
+
 private:
 	bool dead;
 	int health;

@@ -8,6 +8,7 @@
 #include "HealthCollidableBehaviour.h"
 #include "AmmoCollidableBehaviour.h"
 #include "JumpSensorCollidableBehaviour.h"
+#include "StepCollidableBehaviour.h"
 #include "HealthSprite.h"
 #include "BulletSprite.h"
 #include "AmmoSprite.h"
@@ -201,10 +202,16 @@ DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
 	return behaviour;
 }
 
-CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type)
+CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type, Actor* actor)
 {
 	CollidableBehaviour* behaviour = collideRegistery.at(type)->EmptyClone();
+	
 	return behaviour;
+}
+
+CollidableBehaviour* BehaviourFactory::CreateStepCollidableBehaviour()
+{
+	return new StepCollidableBehaviour();
 }
 
 MoveableBehaviour* BehaviourFactory::CreateMoveableBehaviour(EntityType type)

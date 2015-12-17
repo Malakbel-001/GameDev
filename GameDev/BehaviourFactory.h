@@ -36,7 +36,8 @@ public:
 	~BehaviourFactory();
 
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
-	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
+	CollidableBehaviour* CreateCollidableBehaviour(EntityType type, Actor* actor);
+	CollidableBehaviour* CreateStepCollidableBehaviour();
 	MoveableBehaviour* CreateMoveableBehaviour(EntityType type);
 	SDL_Renderer* GetRenderer();
 	void ClearCamera();

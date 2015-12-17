@@ -5,8 +5,7 @@
 Actor::Actor()
 {
 	col = nullptr;
-	dead = false;
-	
+	dead = false;	
 }
 
 
@@ -19,16 +18,12 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 	if (col){
 		delete col;
 	}
-	col = bf->CreateCollidableBehaviour(type);
+	col = bf->CreateCollidableBehaviour(type, this);
 	col->Init(this);
-	//jumpsensor = bf->CreateCollidableBehaviour(EntityType::JUMP);
-	//jumpsensor->Init(this);
-///	body->GetFixtureList()->SetUserData(jumpsensor);
-	body->SetUserData(col);
-	StepCollidableBehaviour* col2 = new StepCollidableBehaviour();
-	col2->Init(this);
-	body->GetFixtureList()[0].GetBody()->SetUserData(col2);
 
+	stepSensor = new StepCollidableBehaviour();
+	stepSensor->Init(this);
+		
 	//direction = b2Vec2(0, 0);
 	m_jumpTimeout = 0;
 
@@ -44,8 +39,6 @@ Actor::~Actor()
 		delete col;
 		col = nullptr;
 	}
-	
-
 }
 
 int Actor::GetNumFootContacts(){
@@ -54,7 +47,6 @@ int Actor::GetNumFootContacts(){
 void Actor::SetNumFootContacts(int x){
 	numFootContacts = x;
 }
-
 
 void Actor::SetHealth(int _health){
 
@@ -101,4 +93,14 @@ Weapon* Actor::GetCurrentWeapon(){
 
 	return currentWep;
 
+}
+
+CollidableBehaviour* Actor::GetCollidableBehaviour()
+{
+	return col;
+}
+
+CollidableBehaviour* Actor::GetSensorBehaviour()
+{
+	return stepSensor;
 }
