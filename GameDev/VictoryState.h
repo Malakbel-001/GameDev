@@ -33,6 +33,7 @@ public:
 	SDL_Texture* quitTexture; //2
 	SDL_Texture* victoryTitleTexture; //3
 	SDL_Texture* scoreTexture;
+	SDL_Texture* timeTexture;
 #pragma endregion textures
 
 #pragma region rects
@@ -41,6 +42,7 @@ public:
 	SDL_Rect nextRect;
 	SDL_Rect victoryTitleRect;
 	SDL_Rect scoreRect;
+	SDL_Rect timeRect;
 #pragma endregion rects
 
 	SDL_Renderer* renderer;
@@ -58,6 +60,7 @@ public:
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
+	void HandleTextInputEvents(SDL_Event event);
 	void Update(float);
 	void Draw();
 	void Background();
@@ -75,13 +78,15 @@ public:
 	void MakeQuitText(SDL_Color);
 	void MakeVictorytitle(SDL_Color);
 	void MakeScoreText(SDL_Color);
+	void MakeTimeText(SDL_Color);
 
 private:
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
-	const int renderItems = 4;
+	const int renderItems = 5;
 	vector<SDL_Rect> pos;
 	int hoverX;
 	int hoverY;
 	int score;
+	vector<Uint32> time;
 };

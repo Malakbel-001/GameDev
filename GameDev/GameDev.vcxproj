@@ -109,6 +109,8 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="FramesPerSecond.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
+    <ClCompile Include="HighscoreConfig.cpp" />
+    <ClCompile Include="HighscoreMenu.cpp" />
     <ClCompile Include="LayerContainer.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LevelConfig.cpp" />
@@ -126,6 +128,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="PlayMenu.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="CreditMenu.cpp" />
@@ -199,6 +202,9 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="FramesPerSecond.h" />
+    <ClInclude Include="HighscoreConfig.h" />
+    <ClInclude Include="HighscoreMenu.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Utitilies.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />

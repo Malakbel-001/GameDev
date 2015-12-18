@@ -45,6 +45,18 @@ void InputManager::ResetMouseInput()
 	mouseEvent = SDL_Event();
 }
 
+void InputManager::SetTextInput(SDL_Event _event)
+{
+	TextInputEvent = _event;
+}
+void InputManager::ResetTextInput(){
+	TextInputEvent = SDL_Event();
+}
+
+SDL_Event InputManager::GetTextInput(){
+	return TextInputEvent;
+}
+
 
 SDL_Event InputManager::GetMouseInput()
 {

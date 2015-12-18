@@ -141,6 +141,10 @@ void PauseState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
+void PauseState::HandleTextInputEvents(SDL_Event event){
+
+}
+
 void PauseState::Update(float dt){
 
 }

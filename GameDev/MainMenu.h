@@ -17,7 +17,7 @@ private:
 	//background
 	SDL_Texture* backgroundTexture;
 
-	SDL_Rect pos[6];
+	SDL_Rect pos[7];
 
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
@@ -31,6 +31,7 @@ private:
 	SDL_Rect mainTitleRect;
 	SDL_Rect creditRect;
 	SDL_Rect optionsRect;
+	SDL_Rect highscoreRect;
 
 	SDL_Texture* playTexture; //0
 	SDL_Texture* helpTexture; //1
@@ -38,6 +39,7 @@ private:
 	SDL_Texture* mainTitleTexture; //3
 	SDL_Texture* creditTexture; //9
 	SDL_Texture* optionsTexture;
+	SDL_Texture* highscoreTexture;
 public:
 	MainMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	void Init();
@@ -49,6 +51,7 @@ public:
 	void MakeCreditText(SDL_Color);
 	void MakeOptionText(SDL_Color);
 	void MakeMainTitle(SDL_Color);
+	void MakeHighscoreText(SDL_Color);
 	SDL_Texture* SurfaceToTexture(SDL_Surface*);
 
 	void Highlight(int);
