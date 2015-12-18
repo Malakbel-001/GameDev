@@ -1,7 +1,11 @@
 #include "PlayState.h"
-
+PlayState::PlayState(int lvl){
+	levelToLoad = lvl;
+}
 void PlayState::Init(GameStateManager* gsm)
 {
+
+	levelConfig = LevelConfig();
  	this->gsm = gsm;
 
 	this->gameOver = false;
@@ -11,28 +15,34 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	
 	background = LTexture();
-	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	//background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level2.jpg");
-	
 
-	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	hud = new HUD();
+	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
 	// flush userinput to prevent crash during loadscreen
 
 	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
 
-	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
-	hud = new HUD(gsm->GetBehaviour()->GetRenderer(), player);
+	
 	std::cout << "PlayState \n";
+	hud->Initialize(gsm->GetBehaviour()->GetRenderer(), player);
+}
+
+void PlayState::InitStartLevel(int lvl){
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, lvl));
 }
 
 void PlayState::GameOver(){
-	SoundBank::GetInstance()->StopMusic();
-	gsm->CreateGameState(GameStateType::GameOverState);
+	//SoundBank::GetInstance()->StopMusic(); //not needed
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
+	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
-	SoundBank::GetInstance()->StopMusic();
-	gsm->CreateGameState(GameStateType::VictoryState);
+	//SoundBank::GetInstance()->StopMusic(); //not needed
+	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
+	gsm->CreateGameState(GameStateType::VictoryState,0);
 }
 
 void PlayState::LoadGame()
@@ -47,12 +57,17 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	gsm->CreateGameState(GameStateType::PauseState);
+	gsm->CreateGameState(GameStateType::PauseState,0);
 }
 
 void PlayState::Resume()
 {
-	std::cout << "Resume not implemented yet";
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
+	//if screen changed, reload all layerContainers
+	currentLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
+	hud->ResumeChecks();
 }
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
@@ -93,6 +108,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_a:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
+					currentLevel->GetPlayer()->SetFlipped(true);
 					//		cout << "e" << x;
 					x = -5;
 					//		cout << " - " << x;
@@ -103,6 +119,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_d:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
+					currentLevel->GetPlayer()->SetFlipped(false);
 					x = 5;
 					break;
 				case SDLK_z:					
@@ -160,6 +177,9 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 				case SDLK_l:
 					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
+					break;
+				case SDLK_k:
+					Victory();
 					break;
 
 				}
@@ -227,9 +247,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		if (pause){
 			Pause();
 		}
-		
 	}
-	
+}
+
+void PlayState::HandleTextInputEvents(SDL_Event event){
 
 }
 
@@ -237,19 +258,14 @@ void PlayState::Update(float dt)
 {
 	currentLevel->Update(dt);
 
-	// TODO: fix dinemic FPS count
+	// TODO: fix dynamic FPS count
 	// do last
-	
-	
 }
 
 void PlayState::Draw()
 {
-
-	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450,0, &backgroundRect); //TEMP!
-
+	currentLevel->GetParallaxBackGround()->Draw();
 	currentLevel->GetDrawableContainer()->Draw();
-
 	hud->Draw();
 }
 
@@ -265,19 +281,23 @@ void PlayState::SetCurrentLevel(Level* lvl)
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
-	this->currentLevel = LevelFactory::LoadLevel(this, bf, "test");
+
+	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
+
+	//Note CurrentLevel is now new level
+
 	this->currentLevel->Init(bf);
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), currentLevel->GetBackgroundPath());
-	backgroundRect.h = background.getHeight() + 100;
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
 
-	
+
+	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
+	this->hud->SetTimer(currentLevel->GetTimer());
+
 }
 
 
@@ -291,16 +311,11 @@ void PlayState::Cleanup()
 {
 	gsm->GetBehaviour()->ClearCamera();
 	delete player;
-	
 	delete currentLevel;
-
 	delete hud;
 
-	
 	player = nullptr;
-
 	currentLevel = nullptr;
-
 	hud = nullptr;
 }
 
