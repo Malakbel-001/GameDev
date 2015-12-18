@@ -49,7 +49,7 @@ void FPS::Draw() {
 void FPS::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	for (auto it = _events->begin(); it != _events->end(); ++it) {
 		if (it->second)	{
-			if (it->first == SDLK_m) {
+			if (it->first == SDLK_PERIOD) {
 				run = Utilities::ToggleDraw(lockButtonTicks, screenWidth, screenHeight, run);
 				lockButtonTicks = SDL_GetTicks();
 			}

@@ -139,13 +139,20 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::GROUND2LVL2, entDef },
 		{ EntityType::SNOWBOSS, SnowBossDef },
 	};
-		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
-			{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
-			{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
-			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
-			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
-			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
-		};
+
+	npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
+		{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
+		{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
+		{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
+		{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
+		{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
+	};
+
+	//bounciness
+	restitutionRegistery = std::unordered_map < EntityType, float > {
+		{ EntityType::PLAYER, 0.0f }
+		//SnowBoss?
+	};
 }
 
 EntityFactory::~EntityFactory()
@@ -269,7 +276,10 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	boxFixtureDef.density = den;
 
 	boxFixtureDef.friction = 0.1;
-	boxFixtureDef.restitution = 0.7;
+	if (restitutionRegistery.find(type) == restitutionRegistery.end())
+		boxFixtureDef.restitution = 0.7;
+	else //define other restitution in the restitutionRegistery
+		boxFixtureDef.restitution = restitutionRegistery.at(type);
 
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);

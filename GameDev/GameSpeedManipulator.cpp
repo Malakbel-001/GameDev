@@ -59,7 +59,7 @@ void GameSpeedManipulator::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>
 						lockButtonTicks = SDL_GetTicks();
 					}
 					break;
-				case SDLK_n:
+				case SDLK_COMMA:
 					// toggle draw manipulator amount on/off
 					run = Utilities::ToggleDraw(lockButtonTicks, screenWidth, screenHeight, run);
 					lockButtonTicks = SDL_GetTicks();
