@@ -20,7 +20,7 @@ void CheatLoadDrawableBehaviour::Draw()
 
 	//Go to next frame 
 	++currentFrame;
-	int size = sprite->GetAnimationSize()/3;
+	int size = sprite->GetAnimationSize(EntityState::WALKINGRIGHT) / 3;
 	//Cycle animation 
 
 	if (currentFrame >= size)

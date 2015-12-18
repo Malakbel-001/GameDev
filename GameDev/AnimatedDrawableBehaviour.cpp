@@ -21,11 +21,11 @@ void AnimatedDrawableBehaviour::Draw()
 		xpos = xpos - sprite->GetFrameXOffSet(currentFrame / 3);
 
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame/3));
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame / 3), entity->GetFlipped());
 
 		//Go to next frame 
 		++currentFrame;
-		int size = sprite->GetAnimationSize();
+		int size = sprite->GetAnimationSize(entity->GetState());
 		//Cycle animation 
 
 		if (currentFrame/3 >= size)

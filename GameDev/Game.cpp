@@ -12,10 +12,10 @@ Game::Game()
 	sdlInitializer->Init("Jark Hunter", SCREEN_WIDTH, SCREEN_HEIGHT, false);
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 
-
 	gsm = new GameStateManager(bf);
-	gsm->CreateGameState(GameStateType::MenuState);
+	gsm->CreateGameState(GameStateType::MenuState,0);
 
+	fps = new FramesPerSecond(sdlInitializer->GetRenderer());
 	//Non-threaded
 	this->GameLoop();
 
@@ -42,17 +42,19 @@ void Game::SDLEvents()
 		{
 			 running = false;
 		}
+		if (events.type == SDL_TEXTINPUT)
+		{
+			inputManager->SetTextInput(events);
+		}
 		//User presses a key
 		if (events.type == SDL_KEYDOWN)
 		{
 			inputManager->SetKeyInput(events.key.keysym.sym);
 		}
-
 		if (events.type == SDL_KEYUP)
 		{
 			inputManager->ResetKeyInput(events.key.keysym.sym);
 		}
-
 		if (events.type == SDL_MOUSEBUTTONDOWN)
 		{
 			inputManager->SetMouseInput(events);
@@ -76,13 +78,21 @@ void Game::GameLoop()
 		float dt = SDL_GetTicks() - preLoopTime;;
 		preLoopTime = SDL_GetTicks();
 
+
 		SDLEvents();
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
+		gsm->GetCurrentState()->HandleTextInputEvents(inputManager->GetTextInput());
 		inputManager->ResetMouseInput();
+		inputManager->ResetTextInput();
 		gsm->GetCurrentState()->Update(dt);
 		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw();
+		
+		fps->HandleKeyEvents(inputManager->GetKeyInput());
+		fps->UpdateCount(); //NEW
+		fps->DrawFPS();
+		
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
 		afterLoopTime = SDL_GetTicks();
