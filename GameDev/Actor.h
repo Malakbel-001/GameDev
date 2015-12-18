@@ -28,7 +28,8 @@ public:
 	void SetNumFootContacts(int x);
 
 	CollidableBehaviour* GetCollidableBehaviour();
-	CollidableBehaviour* GetSensorBehaviour();
+	CollidableBehaviour* GetLeftSensorBehaviour();
+	CollidableBehaviour* GetRightSensorBehaviour();
 
 protected:
 	int numFootContacts;
@@ -36,7 +37,8 @@ protected:
 	b2Vec2 direction;
 	Weapon* currentWep = nullptr;
 	CollidableBehaviour* col;
-	CollidableBehaviour* stepSensor;
+	CollidableBehaviour* stepLeftSensor;
+	CollidableBehaviour* stepRightSensor;
 
 private:
 	bool dead;

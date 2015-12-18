@@ -15,15 +15,47 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 	hitdmg = _hitdmg;
 	health = _health;
 	maxHealth = _health; //NEW
+
+	height = height / 2;
+	width = width / 2;
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+	float newHeight = (height*Ratio);
+	float newWidth = (width*Ratio);
+
 	if (col){
 		delete col;
 	}
 	col = bf->CreateCollidableBehaviour(type, this);
 	col->Init(this);
 
-	stepSensor = new StepCollidableBehaviour();
-	stepSensor->Init(this);
-		
+	stepLeftSensor = new StepCollidableBehaviour();
+	stepLeftSensor->Init(this);
+
+	stepRightSensor = new StepCollidableBehaviour();
+	stepRightSensor->Init(this);
+
+	b2PolygonShape boxShape;	
+
+	_body->GetFixtureList()->SetUserData(col);
+
+	//fixture for stepping left
+	boxShape.SetAsBox(0.5f, 0.5f, b2Vec2(-2, newHeight + 3), 0);
+	b2FixtureDef leftStepDef;
+	leftStepDef.shape = &boxShape;
+	leftStepDef.isSensor = true;
+	auto leftStepFixture = _body->CreateFixture(&leftStepDef);
+	leftStepFixture->SetUserData(stepLeftSensor);
+
+	//fixture for stepping right
+	boxShape.SetAsBox(0.5f, 0.5f, b2Vec2(newWidth + 2, newHeight + 3), 0);
+	b2FixtureDef rightStepDef;
+	rightStepDef.shape = &boxShape;
+	rightStepDef.isSensor = true;
+	auto rightStepFixture = _body->CreateFixture(&rightStepDef);
+	rightStepFixture->SetUserData(stepRightSensor);
+
 	//direction = b2Vec2(0, 0);
 	m_jumpTimeout = 0;
 
@@ -100,7 +132,12 @@ CollidableBehaviour* Actor::GetCollidableBehaviour()
 	return col;
 }
 
-CollidableBehaviour* Actor::GetSensorBehaviour()
+CollidableBehaviour* Actor::GetLeftSensorBehaviour()
 {
-	return stepSensor;
+	return stepLeftSensor;
+}
+
+CollidableBehaviour* Actor::GetRightSensorBehaviour()
+{
+	return stepRightSensor;
 }

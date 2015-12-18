@@ -1,12 +1,13 @@
 #pragma once
 #include "Actor.h"
 #include "CollidableBehaviour.h"
-class StepCollidableBehaviour :
+
+class LeftStepCollidableBehaviour :
 	public CollidableBehaviour
 {
 public:
-	StepCollidableBehaviour();
-	~StepCollidableBehaviour();
+	LeftStepCollidableBehaviour();
+	~LeftStepCollidableBehaviour();
 	void Hit(CollidableBehaviour* cb);
 	void Unhit(CollidableBehaviour* cb);
 	virtual CollidableBehaviour* EmptyClone();

@@ -17,7 +17,5 @@ public:
 	Actor* GetActor();
 protected:
 	Actor* ent;
-
-
 };
 

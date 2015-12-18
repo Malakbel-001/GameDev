@@ -1,8 +1,9 @@
 #include "StepCollidableBehaviour.h"
-
+#include <iostream>
 
 StepCollidableBehaviour::StepCollidableBehaviour()
 {
+	steps = 0;
 }
 
 
@@ -11,42 +12,32 @@ StepCollidableBehaviour::~StepCollidableBehaviour()
 }
 
 void StepCollidableBehaviour::Hit(CollidableBehaviour* cb){
-	//printf("step");
-	//if (cb){
-	//	switch (cb->GetActor()->GetType()){
-	//	case EntityType::BULLET:
-	//		break;
-
-	//	default:
-	//		//TODO different sound
-	//		ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
-
-
-
-	//		break;
-	//	}
-	//}
-	//else{
-	//	ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
-
-	//}
+	steps++;
 }
 
 void StepCollidableBehaviour::Unhit(CollidableBehaviour* cb){
-	/*if (cb){
-		switch (cb->GetActor()->GetType()){
-		case EntityType::BULLET:
-			break;
-
-		default:
-			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
-			break;
+	steps--;
+	
+	if (steps == 0)
+	{
+		b2Vec2 vec = ent->GetBody()->GetLinearVelocity();
+		if (vec.x >= 0)
+		{
+			vec.x = -vec.x;
 		}
+		else
+		{
+			vec.x = fabs(vec.x);
+		}
+
+		ent->GetBody()->SetLinearVelocity(vec);
 	}
-	else{
-		ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
-	}*/
 }
 CollidableBehaviour* StepCollidableBehaviour::EmptyClone(){
 	return new StepCollidableBehaviour();
+}
+
+void StepCollidableBehaviour::SetLeft(bool l)
+{
+	left = l;
 }

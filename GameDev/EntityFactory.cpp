@@ -237,34 +237,20 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	float newHeight = (height*Ratio);
 	float newWidth = (width*Ratio);
 
-	CollidableBehaviour* col = bf->CreateCollidableBehaviour(type, ent);
-	col->Init(ent);
-
-
-
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
-
+	
 	b2PolygonShape boxShape;
 
 	//fixture for jumping
 	boxShape.SetAsBox(newHeight, newWidth, b2Vec2(newHeight, newWidth), 0);
-	b2FixtureDef boxFixtureDef; 
+	b2FixtureDef boxFixtureDef;
 	boxFixtureDef.shape = &boxShape;
 	boxFixtureDef.density = den;
 	boxFixtureDef.friction = 0.1;
-	boxFixtureDef.restitution = 0.7;	
-	auto bodyFixture = b2body->CreateFixture(&boxFixtureDef);
-	bodyFixture->SetUserData(ent->GetCollidableBehaviour());
-
-	//fixture for stepping left
-	boxShape.SetAsBox(0.1, 0.1, b2Vec2(newHeight, 0), 0);
-	b2FixtureDef leftStepDef;
-	leftStepDef.shape = &boxShape;	
-	leftStepDef.isSensor = true;
-	auto leftStepFixture = b2body->CreateFixture(&leftStepDef);
-	leftStepFixture->SetUserData(ent->GetSensorBehaviour());
+	boxFixtureDef.restitution = 0.7;
+	b2body->CreateFixture(&boxFixtureDef);
 
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 
