@@ -35,12 +35,14 @@ void PlayState::InitStartLevel(int lvl){
 
 void PlayState::GameOver(){
 	//SoundBank::GetInstance()->StopMusic(); //not needed
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
 	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
 	//SoundBank::GetInstance()->StopMusic(); //not needed
 	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
 	gsm->CreateGameState(GameStateType::VictoryState,0);
 }
 
@@ -247,6 +249,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 			Pause();
 		}
 	}
+}
+
+void PlayState::HandleTextInputEvents(SDL_Event event){
+
 }
 
 void PlayState::Update(float dt)

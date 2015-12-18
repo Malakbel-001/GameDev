@@ -265,6 +265,15 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
+    <ClCompile Include="HighscoreConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -554,6 +563,15 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreMenu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@ class InputManager
 	private:
 		std::unordered_map<SDL_Keycode, bool>* input;
 		SDL_Event mouseEvent;
+		SDL_Event TextInputEvent;
 
 	public:
 		InputManager();
@@ -19,4 +20,8 @@ class InputManager
 		void SetMouseMotion(SDL_Event _event);
 		SDL_Event GetMouseInput();
 		void ResetMouseInput();
+
+		void SetTextInput(SDL_Event _event);
+		SDL_Event GetTextInput();
+		void ResetTextInput();
 };

@@ -14,7 +14,7 @@ class HelpMenu;
 class CreditMenu;
 class OptionMenu;
 class PlayMenu;
-
+class HighscoreMenu;
 class MenuState :
 	public IGameState
 {
@@ -29,7 +29,7 @@ private:
 	CreditMenu* creditMenu;
 	OptionMenu* optionMenu;
 	PlayMenu* playMenu;
-	
+	HighscoreMenu* highscoreMenu;
 public:
 	MenuState();
 	
@@ -63,6 +63,7 @@ public:
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
+	void HandleTextInputEvents(SDL_Event event);
 	void Update(float);
 	void Draw();
 	void Background();
