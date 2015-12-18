@@ -110,7 +110,6 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="DefaultPatrolCommand.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="IdleCommand.cpp" />
-    <ClCompile Include="LeftStepCollidableBehaviour.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LoadState.cpp" />
     <ClCompile Include="ContactListener.cpp" />

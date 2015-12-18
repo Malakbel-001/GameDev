@@ -11,10 +11,8 @@ public:
 	void Unhit(CollidableBehaviour* cb);
 	virtual CollidableBehaviour* EmptyClone();
 
-	void SetLeft(bool l);
 
 private:
 	int steps;
-	bool left;
 };
 

@@ -36,8 +36,3 @@ void StepCollidableBehaviour::Unhit(CollidableBehaviour* cb){
 CollidableBehaviour* StepCollidableBehaviour::EmptyClone(){
 	return new StepCollidableBehaviour();
 }
-
-void StepCollidableBehaviour::SetLeft(bool l)
-{
-	left = l;
-}

@@ -53,34 +53,34 @@ void TestLevel::Init(BehaviourFactory* bf)
 
 	entityFactory->CreateActor(400, 400, EntityType::PLANT);
 
-	//entityFactory->CreateActor(900, 450, EntityType::PLANT);
-	//entityFactory->CreateActor(1200, 300, EntityType::PLANT);
-	//entityFactory->CreateActor(1300, 300, EntityType::PLANT);
+	entityFactory->CreateActor(900, 450, EntityType::PLANT);
+	entityFactory->CreateActor(1200, 300, EntityType::PLANT);
+	entityFactory->CreateActor(1300, 300, EntityType::PLANT);
 
-	//// enemies on top------------------------------------------------
-	//entityFactory->CreateActor(2050, 300, EntityType::PLANT);
-	//entityFactory->CreateActor(2150, 300, EntityType::PLANT);
-	//entityFactory->CreateActor(2250, 300, EntityType::PLANT);
+	// enemies on top------------------------------------------------
+	entityFactory->CreateActor(2050, 300, EntityType::PLANT);
+	entityFactory->CreateActor(2150, 300, EntityType::PLANT);
+	entityFactory->CreateActor(2250, 300, EntityType::PLANT);
 
-	//// enemies on below------------------------------------------------
-	//entityFactory->CreateActor(2050, 600, EntityType::PLANT);
-	//entityFactory->CreateActor(2150, 600, EntityType::PLANT);
-	//entityFactory->CreateActor(2250, 400, EntityType::PLANT);
+	// enemies on below------------------------------------------------
+	entityFactory->CreateActor(2050, 600, EntityType::PLANT);
+	entityFactory->CreateActor(2150, 600, EntityType::PLANT);
+	entityFactory->CreateActor(2250, 400, EntityType::PLANT);
 
-	//entityFactory->CreateActor(2900, 300, EntityType::PLANT);
-	//entityFactory->CreateActor(3000, 300, EntityType::PLANT);
+	entityFactory->CreateActor(2900, 300, EntityType::PLANT);
+	entityFactory->CreateActor(3000, 300, EntityType::PLANT);
 
-	//entityFactory->CreateActor(3500, 300, EntityType::PLANT);
-	//entityFactory->CreateActor(3600, 300, EntityType::PLANT);
-	//entityFactory->CreateActor(3700, 0, EntityType::PLANT);
-	//entityFactory->CreateActor(3800, 0, EntityType::PLANT);
-	//entityFactory->CreateActor(3900, 0, EntityType::PLANT);
-	//entityFactory->CreateActor(4000, 0, EntityType::PLANT);
-	//entityFactory->CreateActor(4100, 0, EntityType::PLANT);
-	//entityFactory->CreateActor(4200, 0, EntityType::PLANT);
+	entityFactory->CreateActor(3500, 300, EntityType::PLANT);
+	entityFactory->CreateActor(3600, 300, EntityType::PLANT);
+	entityFactory->CreateActor(3700, 0, EntityType::PLANT);
+	entityFactory->CreateActor(3800, 0, EntityType::PLANT);
+	entityFactory->CreateActor(3900, 0, EntityType::PLANT);
+	entityFactory->CreateActor(4000, 0, EntityType::PLANT);
+	entityFactory->CreateActor(4100, 0, EntityType::PLANT);
+	entityFactory->CreateActor(4200, 0, EntityType::PLANT);
 
-	//// Boss enemy
-	//entityFactory->CreateActor(4500, 0, EntityType::PLANTBOSS);
+	// Boss enemy
+	entityFactory->CreateActor(4500, 0, EntityType::PLANTBOSS);
 }
 
 TestLevel::~TestLevel()

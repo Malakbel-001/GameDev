@@ -30,31 +30,34 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 	col = bf->CreateCollidableBehaviour(type, this);
 	col->Init(this);
 
-	stepLeftSensor = new StepCollidableBehaviour();
-	stepLeftSensor->Init(this);
-
-	stepRightSensor = new StepCollidableBehaviour();
-	stepRightSensor->Init(this);
-
-	b2PolygonShape boxShape;	
-
 	_body->GetFixtureList()->SetUserData(col);
 
-	//fixture for stepping left
-	boxShape.SetAsBox(0.5f, 0.5f, b2Vec2(-2, newHeight + 3), 0);
-	b2FixtureDef leftStepDef;
-	leftStepDef.shape = &boxShape;
-	leftStepDef.isSensor = true;
-	auto leftStepFixture = _body->CreateFixture(&leftStepDef);
-	leftStepFixture->SetUserData(stepLeftSensor);
+	if (_type == EntityType::PLANT || _type == EntityType::PINGUIN || _type == EntityType::SNOWMAN || _type == EntityType::NPC || _type == EntityType::ENEMY)
+	{
+		stepLeftSensor = new StepCollidableBehaviour();
+		stepLeftSensor->Init(this);
 
-	//fixture for stepping right
-	boxShape.SetAsBox(0.5f, 0.5f, b2Vec2(newWidth + 2, newHeight + 3), 0);
-	b2FixtureDef rightStepDef;
-	rightStepDef.shape = &boxShape;
-	rightStepDef.isSensor = true;
-	auto rightStepFixture = _body->CreateFixture(&rightStepDef);
-	rightStepFixture->SetUserData(stepRightSensor);
+		stepRightSensor = new StepCollidableBehaviour();
+		stepRightSensor->Init(this);
+
+		b2PolygonShape boxShape;
+
+		//fixture for stepping left
+		boxShape.SetAsBox(0.5f, 0.5f, b2Vec2(-2, newHeight + 3), 0);
+		b2FixtureDef leftStepDef;
+		leftStepDef.shape = &boxShape;
+		leftStepDef.isSensor = true;
+		auto leftStepFixture = _body->CreateFixture(&leftStepDef);
+		leftStepFixture->SetUserData(stepLeftSensor);
+
+		//fixture for stepping right
+		boxShape.SetAsBox(0.5f, 0.5f, b2Vec2(newWidth + 2, newHeight + 3), 0);
+		b2FixtureDef rightStepDef;
+		rightStepDef.shape = &boxShape;
+		rightStepDef.isSensor = true;
+		auto rightStepFixture = _body->CreateFixture(&rightStepDef);
+		rightStepFixture->SetUserData(stepRightSensor);
+	}
 
 	//direction = b2Vec2(0, 0);
 	m_jumpTimeout = 0;
