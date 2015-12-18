@@ -6,6 +6,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 {
 	entityFactory = nullptr;
 	player = nullptr;
+	timer = nullptr;
 	startXpos = 100;
 	startYpos = 10;
 	actors = new std::vector<Actor*>();
@@ -14,8 +15,7 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
 	entities = new std::vector<Entity*>();
-
-
+	parallaxBackground = nullptr;
 }
 Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
@@ -34,14 +34,45 @@ Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 
 }
 
-void Level::Init(BehaviourFactory* bf)
-{
+
+//Always perform these procedures
+void Level::Init(BehaviourFactory* bf) { //TODO get this to work
+	SetEntityFactory(bf);
+	CreateMap();
+	CreateNPCs();
+	CreateTimer();
+	CreateParallaxBackground(bf);
 
 }
 
-b2World* Level::GetWorld()
+Level::~Level()
 {
-	return world;
+	if (parallaxBackground)
+		delete parallaxBackground;
+	delete contact;
+	delete world;
+	delete drawableContainer;
+	if (entityFactory){
+		delete entityFactory;
+	}
+	for each (Actor* var in *actors)
+	{
+		if (var){
+			delete var;
+			var = nullptr;
+		}
+	}
+	delete actors;
+	for each (Entity* var in *entities)
+	{
+		if (var){
+			delete var;
+			var = nullptr;
+		}
+	}
+	delete entities;
+	if (timer)
+		delete timer;
 }
 std::vector<Actor*>* Level::GetActors(){
 	return actors;
@@ -51,11 +82,9 @@ std::vector<Entity*>* Level::GetEntities(){
 }
 void Level::Update(float dt)
 {
-	
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
-	
 
 	world->Step((dt / 100), 5, 5);
 	if (player->GetYpos() > lvlHeight || player->IsDead())
@@ -63,7 +92,7 @@ void Level::Update(float dt)
 	//	LevelFactory::SaveLevel(this,"test");
 		GameOver();
 	}
-	else{
+	else {
 		
 		for (int x = 0; actors->size() > x; x++)
 		{
@@ -98,7 +127,7 @@ void Level::Update(float dt)
 	}
 }
 
-#pragma region Get, Set
+#pragma region Get, Set, & more
 Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
 	if (!_player->GetBody() != NULL) {
 		player = dynamic_cast<Player*>(entityFactory->CreateActor(0, 100, x, y, 15, 35, EntityType::PLAYER));
@@ -107,82 +136,55 @@ Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
 		player = entityFactory->CreatePlayer(0, 100, x, y, 15, 35, _player);
 		player->SetNumFootContacts(0);
 		player->DeletePrevProp();
-		
+
 	}
 	return player;
 }
-Player* Level::GetPlayer()
-{
+Player* Level::GetPlayer() {
 	return player;
 }
-DrawableContainer* Level::GetDrawableContainer()
-{
+DrawableContainer* Level::GetDrawableContainer() {
 	return drawableContainer;
 }
-#pragma endregion Get, Set
 
-Level::~Level()
-{
-	delete contact;
-	delete world;
-	delete drawableContainer;
-	if (entityFactory){
-		delete entityFactory;
-	}
-	for each (Actor* var in *actors)
-	{
-		if (var){
-			delete var;
-			var = nullptr;
-		}
-	}
-	delete actors;
-	for each (Entity* var in *entities)
-	{
-		if (var){
-			delete var;
-			var = nullptr;
-		}
-	}
-	delete entities;
 
-	
+void Level::SetEntityFactory(BehaviourFactory* bf) {
+	entityFactory = new EntityFactory(*world, actors, entities, bf, drawableContainer);
 }
-void Level::SetLvlWidth(int _lvlWidth)
-{
+void Level::CreateTimer() {
+	timer = new Timer();
+}
+
+
+b2World* Level::GetWorld() {
+	return world;
+}
+
+ParallaxBackground* Level::GetParallaxBackGround() {
+	return parallaxBackground;
+}
+Timer* Level::GetTimer() {
+	return timer;
+}
+void Level::SetLvlWidth(int _lvlWidth) {
 	this->lvlWidth = _lvlWidth;
 }
-
-void Level::SetLvlHeight(int _lvlHeight)
-{
+void Level::SetLvlHeight(int _lvlHeight) {
 	this->lvlHeight = _lvlHeight;
 }
-
-SDL_Texture* Level::GetTileSheet()
-{
-	return this->tileSheet;
-}
-
-int Level::GetLvlHeight()
-{
+int Level::GetLvlHeight() {
 	return this->lvlHeight;
 }
-
-EntityFactory* Level::GetEntityFactory(){
+EntityFactory* Level::GetEntityFactory() {
 	return entityFactory;
 }
-
-int Level::GetLvlWidth()
-{
+int Level::GetLvlWidth() {
 	return this->lvlWidth;
 }
-
-void Level::GameOver()
-{
+void Level::GameOver() {
 	playState->GameOver();
 }
-
-void Level::Victory()
-{
+void Level::Victory() {
 	playState->Victory();
 }
+#pragma endregion Get, Set, & more

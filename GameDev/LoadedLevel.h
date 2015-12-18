@@ -9,6 +9,10 @@ public:
 	virtual Player* SetPlayer(Player* _player); //pure virtual
 	virtual Level* CreateLevel();			//pure virtual
 
-	void Init(BehaviourFactory* bf);
+	
+protected:
+	virtual void CreateMap();
+	virtual void CreateNPCs();
+	virtual void CreateParallaxBackground(BehaviourFactory* bf);
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "Box2D\Box2D.h"
-#include "TestLevel.h"
+#include "Level1.h"
 #include "Level2.h"
 #include "GameStateManager.h"
 #include "rapidxml-1.13\rapidxml.hpp"
@@ -20,6 +20,7 @@ public:
 	static Level* GetFirstLevel(PlayState* play);
 	static Level* LoadLevel(PlayState* play, BehaviourFactory* bf, std::string name);
 	static bool SaveLevel(Level* l,std::string name);
+	static Level* GetSpecificLevel(PlayState* play,int lvl);
 	static void DeletePointers();
 private:
 	LevelFactory();

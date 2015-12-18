@@ -30,8 +30,10 @@ private:
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
+
+	int levelToLoad;
 public:
-	LoadState();
+	LoadState(int lvl);
 	virtual ~LoadState();
 	bool loadedPlay;
 	void LoadPlayState();
@@ -44,6 +46,7 @@ public:
 
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+	void HandleTextInputEvents(SDL_Event event);
 	void Update(float dt);
 	void Draw();
 };

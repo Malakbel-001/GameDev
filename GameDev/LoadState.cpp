@@ -2,7 +2,8 @@
 
 //bool		LoadState::loadedPlay = false;
 //IGameState* LoadState::playState = NULL;
-LoadState::LoadState(){
+LoadState::LoadState(int lvl){
+	levelToLoad = lvl;
 	loadedPlay = false;
 }
 
@@ -69,8 +70,9 @@ void LoadState::Init(GameStateManager* gsm) {
 }
 
 void LoadState::LoadPlayState() {
- 	playState = gsm->GetNewState(GameStateType::PlayState);
+	playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
 	playState->Init(gsm);
+	//playState->InitStartLevel(levelToLoad);
 	loadedPlay = true;
 }
 
@@ -123,6 +125,10 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 
 void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
 	//temp nothing
+}
+
+void LoadState::HandleTextInputEvents(SDL_Event event){
+
 }
 
 void LoadState::Update(float dt) {
