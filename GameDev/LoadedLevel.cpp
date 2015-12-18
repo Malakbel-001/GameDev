@@ -9,7 +9,7 @@ LoadedLevel::LoadedLevel(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* p
 
 void LoadedLevel::Init(BehaviourFactory* bf){
 	entityFactory = new EntityFactory(*world, actors, entities, bf, drawableContainer);
-
+	backgroundPath = "level1.jpg";
 
 }
 
