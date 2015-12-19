@@ -22,11 +22,22 @@ void DrawableContainer::Add(DrawableBehaviour* behaviour)
 
 void DrawableContainer::Draw(float dt)
 {
+	bool cycle = CycleFrames(dt);
+
 	for each (DrawableBehaviour* behaviour in behaviours)
 	{
-		behaviour->Draw(dt);
+		behaviour->Draw();
+		behaviour->CycleFrames(cycle);
 	}
 }
+
+bool DrawableContainer::CycleFrames(float dt) {
+	dtAccumulator += dt;
+	bool cycle = dtAccumulator > dtCycleFrame;
+	dtAccumulator = static_cast<float>((int)dtAccumulator % (int)dtCycleFrame); //dunno
+	return cycle;
+}
+
 void DrawableContainer::Delete(Entity* ent){
 	bool found = false;
 	size_t i = 0;

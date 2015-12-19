@@ -16,6 +16,7 @@ class CheatLoadDrawableBehaviour :
 
 		CheatLoadDrawableBehaviour* EmptyClone() override;
 
-		void Draw(float dt) override;
+		void Draw() override;
+		virtual void CycleFrames(bool cycle) override;
 
 };

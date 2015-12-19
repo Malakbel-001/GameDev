@@ -19,8 +19,18 @@ DrawableBehaviour::~DrawableBehaviour()
 }
 
 
-void DrawableBehaviour::CycleFrames(float dt) {
+void DrawableBehaviour::CycleFrames(bool cycle) {
+	if (cycle) {
+		currentFrame++;
+		int size = sprite->GetAnimationSize(EntityState::WALKINGRIGHT); // /3
+		//Cycle animation 
 
+		if (currentFrame >= size)
+		{
+			currentFrame = 0;
+		}
+	}
+		
 }
 
 

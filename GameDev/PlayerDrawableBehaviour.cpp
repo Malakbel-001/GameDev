@@ -11,7 +11,7 @@ PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
 {
 }
 
-void PlayerDrawableBehaviour::Draw(float dt)
+void PlayerDrawableBehaviour::Draw()
 {
 	if (entity->ShouldDraw()){
 		// Render current frame SCREEN SIZE NOT YET SET!!!	
@@ -22,12 +22,26 @@ void PlayerDrawableBehaviour::Draw(float dt)
 		if (currentFrame / 3 >= size)
 			currentFrame = 0;
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame / 3), entity->GetFlipped());
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0, sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetFlipped());
 
 		//Go to next frame 
-		++currentFrame;
+		//++currentFrame;
 	}
 }
+
+//void PlayerDrawableBehaviour::CycleFrames(bool cycle) {
+//	if (cycle) {
+//		int size = sprite->GetAnimationSize(entity->GetState()); // /3
+//		//Cycle animation 
+//
+//		if (currentFrame >= size)
+//		{
+//			currentFrame = 0;
+//		}
+//
+//		currentFrame++;
+//	}
+//}
 
 PlayerDrawableBehaviour* PlayerDrawableBehaviour::EmptyClone()
 {

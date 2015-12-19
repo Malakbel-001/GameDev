@@ -149,7 +149,7 @@ void HUD::DrawTimer(float dt) {
 
 	//Draw Timer
 	if (timer != nullptr) {
-		timer->CalcDifference(dt);
+		timer->AddDeltaTime(dt);
 
 		if (timer->GetCurrentMinutes() < 10) {
 			Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer->GetCurrentMinutes()), *screenWidth - 90,
@@ -187,9 +187,6 @@ void HUD::Cleanup() {
 }
 
 void HUD::ResumeChecks() {
-	if (timer != nullptr)
-		timer->ResumeTimer();
-
 	CheckIfScreenSizeChanged();
 }
 

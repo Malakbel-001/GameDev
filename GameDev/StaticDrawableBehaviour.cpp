@@ -10,7 +10,7 @@ StaticDrawableBehaviour::~StaticDrawableBehaviour()
 {
 }
 
-void StaticDrawableBehaviour::Draw(float dt)
+void StaticDrawableBehaviour::Draw()
 {
 	if (entity->ShouldDraw()){
 		float xpos = (((entity->GetXpos()) / Ratio) + sprite->GetXOffSet() - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));

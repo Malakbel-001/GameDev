@@ -27,8 +27,6 @@ protected:
 	
 	float Ratio = 1.0F / 10.0F;
 
-	virtual void CycleFrames(float dt);
-
 public:
 	DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight);
 	virtual ~DrawableBehaviour();
@@ -38,7 +36,8 @@ public:
 	virtual DrawableBehaviour* EmptyClone();
 	void SetCamera(Camera* _camera);
 	void SetSprite(Sprite* _sprite);
-	virtual void Draw(float dt) = 0; //pure virtual
+	virtual void Draw() = 0; //pure virtual
+	virtual void CycleFrames(bool cycle);
 	
 };
 
