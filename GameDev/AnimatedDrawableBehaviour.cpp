@@ -10,7 +10,7 @@ AnimatedDrawableBehaviour::~AnimatedDrawableBehaviour()
 {
 }
 
-void AnimatedDrawableBehaviour::Draw()
+void AnimatedDrawableBehaviour::Draw(bool cycle)
 {
 	if (entity->ShouldDraw()){
 		// Render current frame SCREEN SIZE NOT YET SET!!!
@@ -24,13 +24,16 @@ void AnimatedDrawableBehaviour::Draw()
 		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetFlipped()); // /3
 
 		//Go to next frame 
-		//++currentFrame;
-		int size = sprite->GetAnimationSize(entity->GetState());
-		//Cycle animation 
+		if (cycle) {
+				++currentFrame;
 
-		if (currentFrame >= size) // /3
-		{
-			currentFrame = 0;
+			int size = sprite->GetAnimationSize(entity->GetState());
+			//Cycle animation 
+
+			if (currentFrame >= size) // /3
+			{
+				currentFrame = 0;
+			}
 		}
 	}
 }

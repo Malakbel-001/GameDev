@@ -26,8 +26,7 @@ void DrawableContainer::Draw(float dt)
 
 	for each (DrawableBehaviour* behaviour in behaviours)
 	{
-		behaviour->Draw();
-		behaviour->CycleFrames(cycle);
+		behaviour->Draw(cycle);
 	}
 }
 

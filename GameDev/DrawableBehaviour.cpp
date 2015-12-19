@@ -18,22 +18,6 @@ DrawableBehaviour::~DrawableBehaviour()
 	
 }
 
-
-void DrawableBehaviour::CycleFrames(bool cycle) {
-	if (cycle) {
-		currentFrame++;
-		int size = sprite->GetAnimationSize(EntityState::WALKINGRIGHT); // /3
-		//Cycle animation 
-
-		if (currentFrame >= size)
-		{
-			currentFrame = 0;
-		}
-	}
-		
-}
-
-
 DrawableBehaviour* DrawableBehaviour::EmptyClone()
 { 
 	return nullptr; 
@@ -58,3 +42,18 @@ void DrawableBehaviour::SetCamera(Camera* _camera){
 Object* DrawableBehaviour::GetEntity(){
 	return entity;
 }
+
+//The Dream! To make this properly work. This'd fix some repeated code
+//void DrawableBehaviour::CycleFrames(bool cycle) {
+//	if (cycle) {
+//		int size = sprite->GetAnimationSize(entity->GetState()); // /3
+//		//Cycle animation 
+//
+//		if (currentFrame >= size)
+//		{
+//			currentFrame = 0;
+//		}
+//
+//		currentFrame++;
+//	}
+//}

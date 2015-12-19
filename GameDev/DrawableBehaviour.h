@@ -36,8 +36,9 @@ public:
 	virtual DrawableBehaviour* EmptyClone();
 	void SetCamera(Camera* _camera);
 	void SetSprite(Sprite* _sprite);
-	virtual void Draw() = 0; //pure virtual
-	virtual void CycleFrames(bool cycle);
+	virtual void Draw(bool cycle) = 0; //pure virtual
+	
+	//virtual void CycleFrames(bool cycle);
 	
 };
 

@@ -18,6 +18,6 @@ class PlayerDrawableBehaviour :
 
 		PlayerDrawableBehaviour* EmptyClone() override;
 
-		void Draw() override;
+		void Draw(bool cycle) override;
 		//void CycleFrames(bool cycle) override;
 };
