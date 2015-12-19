@@ -73,7 +73,7 @@ void HUD::SetSurfacesAndTextures() {
 	hpTexture = SDL_CreateTextureFromSurface(renderer, hpSurface);
 }
 
-void HUD::Draw() {
+void HUD::Draw(float dt) {
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND); //enabling alpha values on (SDL)Render methods: Fill(Rect) and Line
 
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a); //keep old draw color for later
@@ -89,7 +89,7 @@ void HUD::Draw() {
 
 	DrawAmmo();
 	DrawScore();
-	DrawTimer();
+	DrawTimer(dt);
 
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color back
 }
@@ -139,7 +139,7 @@ void HUD::DrawScore() {
 		scoreRect.y + scoreRect.h + 5, Utilities::GetColor(255, 255, 255, 255));
 }
 
-void HUD::DrawTimer() {
+void HUD::DrawTimer(float dt) {
 	//Draw Timer Rectangle & Border
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 225);
 	SDL_RenderFillRect(renderer, &timerRect);
@@ -149,7 +149,7 @@ void HUD::DrawTimer() {
 
 	//Draw Timer
 	if (timer != nullptr) {
-		timer->CalcDifference();
+		timer->CalcDifference(dt);
 
 		if (timer->GetCurrentMinutes() < 10) {
 			Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer->GetCurrentMinutes()), *screenWidth - 90,

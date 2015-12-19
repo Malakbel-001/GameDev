@@ -260,11 +260,11 @@ void PlayState::Update(float dt)
 	// do last
 }
 
-void PlayState::Draw()
+void PlayState::Draw(float dt)
 {
 	currentLevel->GetParallaxBackGround()->Draw();
-	currentLevel->GetDrawableContainer()->Draw();
-	hud->Draw();
+	currentLevel->GetDrawableContainer()->Draw(dt);
+	hud->Draw(dt);
 }
 
 Level* PlayState::GetCurrentLevel()

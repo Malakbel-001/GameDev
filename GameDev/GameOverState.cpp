@@ -239,7 +239,7 @@ void GameOverState::Update(float dt){
 	}*/
 }
 
-void GameOverState::Draw(){
+void GameOverState::Draw(float dt){
 	SDL_RenderClear(renderer);
 
 	background.render(renderer, 0, 0,0, &backgroundRect);

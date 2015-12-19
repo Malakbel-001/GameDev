@@ -127,11 +127,11 @@ void LoadState::Update(float dt) {
 	//nope
 }
 
-void LoadState::Draw() {
+void LoadState::Draw(float dt) {
 	//temp bg
 	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, &backgroundRect); //TEMP!
 
-	drawableContainer->Draw();
+	drawableContainer->Draw(dt);
 
 	if (!loadedPlay) {	//Loading...
 		SDL_RenderCopy(renderer, loadingTexture, nullptr, &loadingRect);

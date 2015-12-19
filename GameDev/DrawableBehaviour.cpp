@@ -18,6 +18,12 @@ DrawableBehaviour::~DrawableBehaviour()
 	
 }
 
+
+void DrawableBehaviour::CycleFrames(float dt) {
+
+}
+
+
 DrawableBehaviour* DrawableBehaviour::EmptyClone()
 { 
 	return nullptr; 
@@ -28,10 +34,6 @@ void DrawableBehaviour::SetEntity(Object* _entity)
 	entity = _entity;
 }
 
-void DrawableBehaviour::Draw()
-{
-	//printf("Behaviour not initialized");
-}
 Sprite* DrawableBehaviour::GetSprite(){
 	return sprite;
 }

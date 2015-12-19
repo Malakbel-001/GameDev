@@ -24,23 +24,21 @@ protected:
 	int currentFrame;
 	int screenWidth;
 	int screenHeight;
-
 	
 	float Ratio = 1.0F / 10.0F;
 
+	virtual void CycleFrames(float dt);
 
 public:
 	DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight);
 	virtual ~DrawableBehaviour();
 	Sprite* GetSprite();
-		void SetEntity(Object* _entity);
-		Object* GetEntity();
-		virtual DrawableBehaviour* EmptyClone();
-		void SetCamera(Camera* _camera);
-		void SetSprite(Sprite* _sprite);
-		virtual void Draw();
-		
-
+	void SetEntity(Object* _entity);
+	Object* GetEntity();
+	virtual DrawableBehaviour* EmptyClone();
+	void SetCamera(Camera* _camera);
+	void SetSprite(Sprite* _sprite);
+	virtual void Draw(float dt) = 0; //pure virtual
 	
 };
 

@@ -15,7 +15,7 @@ public:
 	virtual ~DrawableContainer();
 		
 	void Add(DrawableBehaviour* behaviour);
-	void Draw();
+	void Draw(float dt);
 	void Delete(Entity* behaviour);
 private:
 	vector<DrawableBehaviour*> behaviours;

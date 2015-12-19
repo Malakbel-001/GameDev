@@ -11,7 +11,7 @@ PlayerDrawableBehaviour::~PlayerDrawableBehaviour()
 {
 }
 
-void PlayerDrawableBehaviour::Draw()
+void PlayerDrawableBehaviour::Draw(float dt)
 {
 	if (entity->ShouldDraw()){
 		// Render current frame SCREEN SIZE NOT YET SET!!!	

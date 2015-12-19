@@ -13,15 +13,17 @@ void Timer::ResumeTimer() {
 	previousTicks = SDL_GetTicks();
 }
 
-void Timer::CalcDifference() {
-	timeLapsedMilliSeconds += SDL_GetTicks() - previousTicks;
-	previousTicks = SDL_GetTicks();
+void Timer::CalcDifference(float dt) {
+	timeLapsedMilliSeconds += dt;
+	
+	/*timeLapsedMilliSeconds += SDL_GetTicks() - previousTicks;
+	previousTicks = SDL_GetTicks();*/
 }
 
 int Timer::GetCurrentMinutes() {
-	return (timeLapsedMilliSeconds / 1000) / 60;
+	return (int)(timeLapsedMilliSeconds / 1000) / 60;
 }
 
 int Timer::GetCurrentSeconds() {
-	return (timeLapsedMilliSeconds / 1000) % 60;
+	return (int)(timeLapsedMilliSeconds / 1000) % 60;
 }

@@ -88,7 +88,7 @@ void Game::GameLoop()
 		inputManager->ResetMouseInput();
 		gsm->GetCurrentState()->Update(dt);
 		SDL_RenderClear(sdlInitializer->GetRenderer());
-		gsm->GetCurrentState()->Draw();
+		gsm->GetCurrentState()->Draw(dt);
 		
 		fps->HandleKeyEvents(inputManager->GetKeyInput());
 		fps->UpdateCount(); //NEW

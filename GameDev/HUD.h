@@ -27,14 +27,14 @@ class HUD {
 		void DrawHealth();
 		void DrawAmmo();
 		void DrawScore();
-		void DrawTimer();
+		void DrawTimer(float dt);
 		void CheckIfScreenSizeChanged();
 
 		bool wasFullScreen; //was before
 
 	public:
 		void Initialize(SDL_Renderer* _renderer, Player* _player);
-		void Draw();
+		void Draw(float dt);
 		void Cleanup();
 		void ResumeChecks();
 		void SetTimer(Timer* timer);

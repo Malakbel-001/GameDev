@@ -10,7 +10,7 @@ AnimatedDrawableBehaviour::~AnimatedDrawableBehaviour()
 {
 }
 
-void AnimatedDrawableBehaviour::Draw()
+void AnimatedDrawableBehaviour::Draw(float dt)
 {
 	if (entity->ShouldDraw()){
 		// Render current frame SCREEN SIZE NOT YET SET!!!

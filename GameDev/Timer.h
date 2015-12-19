@@ -3,14 +3,15 @@
 
 class Timer {
 	private:
-		Uint32 timeLapsedMilliSeconds;
+		//Uint32 timeLapsedMilliSeconds;
+		float timeLapsedMilliSeconds;
 		Uint32 previousTicks;
 
 	public:
 		Timer();
 		~Timer();
 		void ResumeTimer();
-		void CalcDifference();
+		void CalcDifference(float dt);
 		int GetCurrentMinutes();
 		int GetCurrentSeconds();
 

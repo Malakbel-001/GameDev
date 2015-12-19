@@ -15,5 +15,5 @@ public:
 
 	AnimatedDrawableBehaviour* EmptyClone() override;
 
-	void Draw() override;
+	void Draw(float dt) override;
 };

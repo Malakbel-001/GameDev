@@ -10,7 +10,7 @@ CheatLoadDrawableBehaviour::~CheatLoadDrawableBehaviour()
 {
 }
 
-void CheatLoadDrawableBehaviour::Draw()
+void CheatLoadDrawableBehaviour::Draw(float dt)
 {
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	float xpos = 20;

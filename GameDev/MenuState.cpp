@@ -186,7 +186,7 @@ void MenuState::updateMenu(MenuEnum menu){
 		break;
 	}
 }
-void MenuState::Draw(){
+void MenuState::Draw(float dt){
 	SDL_RenderClear(renderer);
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	currentMenu->Draw();

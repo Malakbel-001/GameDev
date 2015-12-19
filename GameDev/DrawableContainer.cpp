@@ -20,11 +20,11 @@ void DrawableContainer::Add(DrawableBehaviour* behaviour)
 	behaviours.push_back(behaviour);
 }
 
-void DrawableContainer::Draw()
+void DrawableContainer::Draw(float dt)
 {
 	for each (DrawableBehaviour* behaviour in behaviours)
 	{
-		behaviour->Draw();
+		behaviour->Draw(dt);
 	}
 }
 void DrawableContainer::Delete(Entity* ent){
