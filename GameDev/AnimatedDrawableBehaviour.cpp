@@ -25,7 +25,7 @@ void AnimatedDrawableBehaviour::Draw(bool cycle)
 
 		//Go to next frame 
 		if (cycle) {
-				++currentFrame;
+			++currentFrame;
 
 			int size = sprite->GetAnimationSize(entity->GetState());
 			//Cycle animation 

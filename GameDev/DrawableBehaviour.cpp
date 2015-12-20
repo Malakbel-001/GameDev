@@ -4,7 +4,6 @@
 //Entity;
 DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite, int screenwidth, int screenheight)
 {
-	
 	renderer = sdl_renderer;
 	sprite = _sprite;
 	screenWidth = screenwidth;
@@ -15,7 +14,6 @@ DrawableBehaviour::DrawableBehaviour(SDL_Renderer* sdl_renderer, Sprite* _sprite
 
 DrawableBehaviour::~DrawableBehaviour()
 {
-	
 }
 
 DrawableBehaviour* DrawableBehaviour::EmptyClone()
