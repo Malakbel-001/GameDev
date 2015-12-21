@@ -7,7 +7,7 @@ class Player :
 {
 	private:
 		// stuff
-		
+		Object* vehicleNearby;
 		int score;
 		int currentwep;
 		vector<Weapon*> weps;
@@ -32,6 +32,8 @@ class Player :
 
 
 		void AddScore(int _score);
-
 		int GetScore();
+
+		void SetVehicleNearby(Object* vehicle);
+		void EnterVehicle();
 };

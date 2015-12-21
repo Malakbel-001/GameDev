@@ -6,6 +6,7 @@ Player::Player() {
 	currentwep = 0;
 	weps = vector<Weapon*>();
 	score = 0;
+	vehicleNearby = nullptr;
 }
 
 Player::~Player() { 
@@ -63,4 +64,17 @@ void Player::AddScore(int _score) {
 }
 int Player::GetScore() {
 	return score;
+}
+
+void Player::SetVehicleNearby(Object* vehicle)
+{
+	vehicleNearby = vehicle;
+}
+
+void Player::EnterVehicle()
+{	
+	if (vehicleNearby)
+	{
+		printf("trying to enter vehicle");
+	}
 }

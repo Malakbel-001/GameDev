@@ -109,6 +109,9 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_z:					
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
 					break;
+				case SDLK_e:
+					currentLevel->GetPlayer()->EnterVehicle();
+					break;
 				case SDLK_UP:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);
 

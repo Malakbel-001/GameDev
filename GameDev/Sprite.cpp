@@ -68,7 +68,6 @@ SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
 	switch (state)
 	{
 	case EntityState::IDLE:
-		std::cout << "Idle " << frame << std::endl;
 		return &idleSprites->at(frame);
 		break;
 	case EntityState::WALKINGLEFT:		
