@@ -6,7 +6,6 @@ Weapon::Weapon(){
 	ammo = 100;
 	maxAmmo = 200;
 	fireSpeed = 250;
-	timecounter = 0;
 	vec = b2Vec2(0, 0);
 	actor = nullptr;
 }
@@ -90,10 +89,8 @@ float Weapon::GetAngle(){
 	
 	return angle;
 }
-void Weapon::Shoot(EntityFactory* eF){
-
-
-	if (SDL_GetTicks() > timecounter + fireSpeed){
+bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt){
+	if (accumulatedDt > fireSpeed){ //HERE!
 		if (ammo > 0){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
@@ -109,10 +106,12 @@ void Weapon::Shoot(EntityFactory* eF){
 				vec.x = 0;
 				vec.y = 0;
 			}
-			timecounter = SDL_GetTicks();
-		}
 
+			return true;
+		}
 	}
+
+	return false;
 }
 
 int Weapon::GetAmmo() {

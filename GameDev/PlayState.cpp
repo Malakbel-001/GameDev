@@ -13,7 +13,7 @@ void PlayState::Init(GameStateManager* gsm)
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
 	
-	
+	accumulatedDtWeapon = 0;
 	
 	background = LTexture();
 
@@ -122,7 +122,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					x = 30;
 					break;
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
-					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
+ 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(), accumulatedDtWeapon))
+						accumulatedDtWeapon = 0;
 					break;
 				case SDLK_UP:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);
@@ -254,6 +255,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 void PlayState::Update(float dt)
 {
+	accumulatedDtWeapon += dt; //accumulate Dt
+
 	currentLevel->Update(dt);
 
 	// TODO: fix dynamic FPS count

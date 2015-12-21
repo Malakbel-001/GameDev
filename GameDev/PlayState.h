@@ -14,7 +14,6 @@ class PlayState :
 	public IGameState
 {
 	private:
-	
 		LevelConfig levelConfig;
 
 		Player* player;
@@ -23,6 +22,9 @@ class PlayState :
 		bool gameOver;
 		bool victory;
 		int levelToLoad;
+
+		float accumulatedDtWeapon;
+
 	public:
 		PlayState(int lvl);
 		void Init(GameStateManager *gsm);

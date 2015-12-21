@@ -15,10 +15,8 @@ ShotGun::ShotGun()
 ShotGun::~ShotGun()
 {
 }
-void ShotGun::Shoot(EntityFactory* eF){
-
-
-	if (SDL_GetTicks() > timecounter + fireSpeed){
+bool ShotGun::Shoot(EntityFactory* eF, float accumulatedDt){
+	if (accumulatedDt > fireSpeed){
 		if (ammo > 2){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
@@ -46,9 +44,12 @@ void ShotGun::Shoot(EntityFactory* eF){
 
 			}
 			ammo = ammo - 3;
-			timecounter = SDL_GetTicks();
+
+			return true;
 		}
 	}
+
+	return false;
 }
 
 Weapon* ShotGun::EmptyClone(){

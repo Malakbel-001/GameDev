@@ -109,7 +109,11 @@ void Level::Update(float dt)
 
 			//this is so the bullets always keep flying (I guess - MJ)
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
-				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
+				b2Vec2 vector = actors->operator[](x)->GetDirection();
+				vector.x *= dt / 16;
+				std::cout << vector.x << std::endl;
+				vector.y *= dt / 16;
+				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
 		}
 	}
