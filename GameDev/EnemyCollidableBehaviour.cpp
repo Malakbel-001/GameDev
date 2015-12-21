@@ -13,8 +13,20 @@ void EnemyCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			//SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 			break;
 		case EntityType::PLANT:
-			//do something
+		{
+			b2Vec2 vec = ent->GetBody()->GetLinearVelocity();
+			if (vec.x >= 0)
+			{
+				vec.x = -vec.x;
+			}
+			else
+			{
+				vec.x = fabs(vec.x);
+			}
+
+			ent->GetBody()->SetLinearVelocity(vec);
 			break;
+		}
 		case EntityType::PLANTBOSS:
 			//do something
 			break;

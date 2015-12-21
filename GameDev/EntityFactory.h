@@ -23,10 +23,9 @@ public:
 	Actor* CreateActor(int _hitdmg, int _healt, float x, float y, float height, float width, EntityType type);
 	Actor* CreateActor(float x, float y, EntityType type);
 	Player* CreatePlayer(int _hitdmg, int _healt, float x, float y, float height, float width, Player* _player);
-	Bullet* CreateBullet(float x, float y, int width, int height, int dmg, b2Vec2 direction, EntityType type);
-	b2Body* CreateActorBody(float x, float y, float height, float width, float den, EntityType type);
-	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);
+	Bullet* CreateBullet(float x, float y, int width, int height, int dmg, b2Vec2 direction, EntityType type);	
 	Weapon* CreateWeapon(float x, float y, EntityType type);
+	b2Body* CreateActorBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
 private:
