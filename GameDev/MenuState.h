@@ -7,6 +7,7 @@
 #include "PlayState.h"
 #include "SoundBank.h"
 #include "MenuBase.h"
+#include "ParallaxBackground.h"
 //#include "HelpMenu.h"
 #include "SettingsConfig.h"
 class MainMenu;
@@ -29,6 +30,8 @@ private:
 	CreditMenu* creditMenu;
 	OptionMenu* optionMenu;
 	PlayMenu* playMenu;
+
+	ParallaxBackground* parallaxBackground;
 	
 public:
 	MenuState();
@@ -68,14 +71,7 @@ public:
 	void Background();
 
 	virtual ~MenuState();
-
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
-
+	
 	void updateMenu(MenuEnum);
 	
 private:
