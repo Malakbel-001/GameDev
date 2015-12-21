@@ -14,7 +14,6 @@ void PlayState::Init(GameStateManager* gsm)
 	player = new Player();
 	
 	
-	
 	background = LTexture();
 
 	hud = new HUD();
@@ -282,15 +281,23 @@ void PlayState::SetCurrentLevel(Level* lvl)
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
-	this->currentLevel = lvl;
+
+	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
 
 	//Note CurrentLevel is now new level
+
 	this->currentLevel->Init(bf);
+	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
+
 	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
 	this->hud->SetTimer(currentLevel->GetTimer());
+
 }
 
 

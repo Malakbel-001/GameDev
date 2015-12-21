@@ -274,6 +274,12 @@
     <ClCompile Include="HighscoreMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KeyMapping.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadedLevel.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -572,6 +578,15 @@
     </ClInclude>
     <ClInclude Include="HighscoreMenu.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMapping.h">
+      <Filter>Header Files\Model\SettingsConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Controller\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadedLevel.h">
+      <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
