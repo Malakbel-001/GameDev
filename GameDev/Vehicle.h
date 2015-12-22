@@ -6,5 +6,13 @@ class Vehicle :
 public:
 	Vehicle();
 	~Vehicle();
+
+	void SetPassenger(Object* _passenger);
+	Object* GetPassenger();
+
+	void Shoot() override;
+
+private:
+	Object* passenger;
 };
 

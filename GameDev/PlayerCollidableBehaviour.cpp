@@ -16,10 +16,10 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 		case EntityType::BULLET:
 			break;
 		case EntityType::MECH:
-			dynamic_cast<Player*>(ent)->SetVehicleNearby(cb->GetActor());
+			dynamic_cast<Player*>(ent)->SetVehicle(dynamic_cast<Player*>(cb->GetActor()));
 			break;
 		case EntityType::TANK:
-			dynamic_cast<Player*>(ent)->SetVehicleNearby(cb->GetActor());
+			dynamic_cast<Player*>(ent)->SetVehicle(dynamic_cast<Player*>(cb->GetActor()));
 			break;
 		default:
 
@@ -44,10 +44,10 @@ void PlayerCollidableBehaviour::Unhit(CollidableBehaviour* cb){
 		case EntityType::BULLET:
 			break;
 		case EntityType::MECH:
-			dynamic_cast<Player*>(ent)->SetVehicleNearby(nullptr);
+			dynamic_cast<Player*>(ent)->SetVehicle(nullptr);
 			break;
 		case EntityType::TANK:
-			dynamic_cast<Player*>(ent)->SetVehicleNearby(nullptr);
+			dynamic_cast<Player*>(ent)->SetVehicle(nullptr);
 			break;
 		default:
 			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);

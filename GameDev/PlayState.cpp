@@ -71,6 +71,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
+		Vehicle* vehicle = nullptr;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 
 			if (it->second)
@@ -106,11 +107,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					x = 5;
 					break;
-				case SDLK_z:					
+				case SDLK_z:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
-					break;
 				case SDLK_e:
-					currentLevel->GetPlayer()->EnterVehicle();
+					currentLevel->EnterVehicle();
 					break;
 				case SDLK_UP:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);

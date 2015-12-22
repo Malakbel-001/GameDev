@@ -34,6 +34,19 @@ void Object::SetShouldDraw(bool _shoulddraw){
 EntityType Object::GetType(){
 	return type;
 }
+
+DrawableBehaviour* Object::GetDrawableBehaviour()
+{
+	return draw;
+}
+
+void Object::SetDrawableBehaviour(DrawableBehaviour* behaviour)
+{
+
+	draw = behaviour;
+}
+
+
 Object::~Object()
 {
 	

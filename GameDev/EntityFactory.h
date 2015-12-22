@@ -1,8 +1,6 @@
 #pragma once
-#include "Entity.h"
-#include "Actor.h"
 #include "Npc.h"
-#include "Player.h"
+#include "Vehicle.h"
 #include <iostream>
 #include <unordered_map>
 #include "BehaviourFactory.h"

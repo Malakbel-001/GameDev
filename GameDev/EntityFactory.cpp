@@ -7,8 +7,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 {
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
 		{ EntityType::ACTOR, new Actor() },
-		{ EntityType::TANK, new Npc() },
-		{ EntityType::MECH, new Npc() },
+		{ EntityType::TANK, new Vehicle() },
+		{ EntityType::MECH, new Vehicle() },
 		{ EntityType::NPC, new Npc() },
 		{ EntityType::PLAYER, new Player() },
 		{ EntityType::PLANT, new Npc() },

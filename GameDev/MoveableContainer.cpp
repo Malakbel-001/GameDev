@@ -23,7 +23,7 @@ void MoveableContainer::Move(float dt)
 		behaviour->Move(dt);
 	}
 }
-void MoveableContainer::Delete(Entity* ent){
+void MoveableContainer::Delete(Object* ent){
 	bool found = false;
 	size_t i = 0;
 	for (; i < behaviours.size() && !found; i++)

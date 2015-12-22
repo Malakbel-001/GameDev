@@ -1,6 +1,5 @@
 #pragma message("level ")
 #pragma once
-#include "Entity.h"
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
@@ -69,4 +68,6 @@ public:
 
 	int GetLevelId() { return levelId; };
 	std::string GetBackgroundPath() { return backgroundPath; };
+
+	void EnterVehicle();
 };

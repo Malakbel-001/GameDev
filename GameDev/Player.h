@@ -7,7 +7,7 @@ class Player :
 {
 	private:
 		// stuff
-		Object* vehicleNearby;
+		Player* vehicle;
 		int score;
 		int currentwep;
 		vector<Weapon*> weps;
@@ -24,6 +24,7 @@ class Player :
 		b2Body* GetBody();
 		virtual void AddWeapon(Weapon* wep);
 		virtual Weapon* GetCurrentWeapon();
+		vector<Weapon*> GetWeapons();
 		bool ContainsWeapons();
 		
 		virtual void SwitchWeapon(int x);
@@ -34,6 +35,9 @@ class Player :
 		void AddScore(int _score);
 		int GetScore();
 
-		void SetVehicleNearby(Object* vehicle);
+		virtual void Shoot();
+
+		void SetVehicle(Player* _vehicle);
+		Player* GetVehicle();
 		void EnterVehicle();
 };
