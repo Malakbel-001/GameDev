@@ -75,11 +75,6 @@ int Player::GetScore() {
 	return score;
 }
 
-void Player::Shoot()
-{
-	printf("Player shooting");
-}
-
 void Player::SetVehicle(Player* _vehicle)
 {
 	vehicle = _vehicle;
@@ -88,8 +83,4 @@ void Player::SetVehicle(Player* _vehicle)
 Player* Player::GetVehicle()
 {
 	return vehicle;
-}
-
-void Player::EnterVehicle()
-{	
 }

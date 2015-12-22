@@ -19,8 +19,3 @@ Object* Vehicle::GetPassenger()
 {
 	return passenger;
 }
-
-void Vehicle::Shoot()
-{
-	printf("Vehicle shooting");
-}

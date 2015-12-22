@@ -22,6 +22,7 @@ EntityState Object::GetState(){
 	return state;
 }
 void Object::SetState(EntityState _state){
+	draw->GetSprite()->SetAnimationSet(_state);
 	state = _state;
 }
 bool Object::ShouldDraw(){

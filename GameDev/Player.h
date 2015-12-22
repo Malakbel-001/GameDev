@@ -34,10 +34,7 @@ class Player :
 
 		void AddScore(int _score);
 		int GetScore();
-
-		virtual void Shoot();
-
+		
 		void SetVehicle(Player* _vehicle);
 		Player* GetVehicle();
-		void EnterVehicle();
 };

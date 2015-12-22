@@ -11,7 +11,6 @@ void Level3::Init(BehaviourFactory* bf)
 	entityFactory = new EntityFactory(*world, actors, entities, bf, this, drawableContainer, moveableContainer);
 
 	entityFactory->CreateEntity(0, 570, 1075, 30, EntityType::DESERTFLOOR);
-	entityFactory->CreateActor(500, 450, EntityType::TANK);
 	entityFactory->CreateActor(700, 450, EntityType::MECH);
 }
 
