@@ -7,7 +7,7 @@
 #include "Ground.h"
 #include "Bullet.h"
 #include "BareEntity.h"
-#include "Weapon.h"
+#include "Cannon.h"
 #include "Shotgun.h"
 #include "Acorn.h"
 #include "NpcStatsContainer.h"

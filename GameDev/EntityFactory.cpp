@@ -14,6 +14,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::PLANT, new Npc() },
 		{ EntityType::PLANTBOSS, new Npc() },
 		{ EntityType::BULLET, new Bullet() },
+		{ EntityType::CANNONSHOT, new Bullet() },
 		{ EntityType::ACORN, new Acorn() },
 		{ EntityType::PINGUIN, new Npc() },
 		{ EntityType::HEALTH, new Actor()},
@@ -37,10 +38,12 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	weaponRegistery = std::unordered_map < EntityType, Weapon* > {
 			{ EntityType::WEAPON, new Weapon() },
 			{ EntityType::SHOTGUN, new ShotGun() },
+			{ EntityType::CANNON, new Cannon() },
 	};
 
 	bulletRegistery = std::unordered_map < EntityType, Bullet* > {
-			{ EntityType::BULLET ,new Bullet() }
+			{ EntityType::BULLET ,new Bullet() },
+			{ EntityType::CANNONSHOT, new Bullet() }
 
 	};
 	
@@ -141,6 +144,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::BAR, entDef },
 
 		{ EntityType::BULLET, Bullet },
+		{ EntityType::CANNONSHOT, Bullet },
 		{ EntityType::HEALTH, Health },
 		{ EntityType::AMMO, Ammo },
 		{ EntityType::ACORN, AcornDef },
