@@ -1,5 +1,5 @@
  #include "MoveableBehaviour.h"
-
+#include "Npc.h"
 
 MoveableBehaviour::MoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands)
 {
@@ -28,5 +28,5 @@ MoveableBehaviour* MoveableBehaviour::EmptyClone()
 
 void MoveableBehaviour::Move(float dt)
 {
-
+	
 }
