@@ -20,6 +20,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::HEALTH, new Actor()},
 		{ EntityType::AMMO, new Actor() },
 		{ EntityType::SNOWMAN, new Npc() },
+		{ EntityType::APC, new Npc() },
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -157,6 +158,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		//level3
 		{ EntityType::DESERTFLOOR, entDef },
 		{ EntityType::TANK, TankDef },
+		{ EntityType::APC, TankDef },
 		{ EntityType::MECH, MechDef },
 	};
 		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
@@ -165,6 +167,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
 			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
+			{ EntityType::APC, new NpcStatsContainer(0, 500, 0, 143, 128) },
 			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
 		};
 }

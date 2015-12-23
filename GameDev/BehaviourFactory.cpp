@@ -14,6 +14,7 @@
 #include "AmmoSprite.h"
 #include "GunSprite.h"
 #include "CannonshotSprite.h"
+#include "ApcSprite.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -50,6 +51,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	TankSprite* tankSprite = new TankSprite(renderer);
 	tankSprite->LoadMedia("MetalSlugTank.png");
 	tankSprite->SetAnimationSet(EntityState::IDLE);
+
+	ApcSprite* apcSprite = new ApcSprite(renderer);
+	apcSprite->LoadMedia("apc_template.png");
 
 	MechSprite* mechSprite = new MechSprite(renderer);
 	mechSprite->LoadMedia("mech.png");
@@ -104,6 +108,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(acornSprite);
 	sprites.push_back(playerSprite);
 	sprites.push_back(tankSprite);
+	sprites.push_back(apcSprite);
 	sprites.push_back(healthSprite);
 	sprites.push_back(bulletSprite); 
 	sprites.push_back(cannonshotSprite);
@@ -142,6 +147,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
 		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
 		{ EntityType::MECH, new AnimatedDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
+		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
 	};
 	
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
@@ -158,6 +164,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 		{ EntityType::TANK, new EnemyCollidableBehaviour() },
 		{ EntityType::MECH, new EnemyCollidableBehaviour() },
+		{ EntityType::APC, new EnemyCollidableBehaviour() },
 	};
 
 	IdleCommand* idle = new IdleCommand();
@@ -193,7 +200,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::TANK, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
-		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) }
+		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::APC, new MoveableBehaviour(defaultCommands) }
 	};
 }
 

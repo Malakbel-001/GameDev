@@ -1,7 +1,7 @@
 #include "Actor.h"
 #include "Weapon.h"
 #include "StepCollidableBehaviour.h"
-
+#include "SensorCollidableBehaviour.h"
 Actor::Actor()
 {
 	col = nullptr;
@@ -40,6 +40,8 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 		stepRightSensor = new StepCollidableBehaviour();
 		stepRightSensor->Init(this);
 
+		
+
 		b2PolygonShape boxShape;
 
 		//fixture for stepping left
@@ -56,7 +58,22 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 		rightStepDef.shape = &boxShape;
 		rightStepDef.isSensor = true;
 		auto rightStepFixture = _body->CreateFixture(&rightStepDef);
-		rightStepFixture->SetUserData(stepRightSensor);
+		rightStepFixture->SetUserData(stepRightSensor);		
+	}
+
+	if (_type == EntityType::PLANTBOSS)
+	{
+		playerSensor = new SensorCollidableBehaviour();
+		playerSensor->Init(this);
+
+		b2PolygonShape boxShape;
+		//fixture for detecting player
+		boxShape.SetAsBox(10, 10);
+		b2FixtureDef sensorDef;
+		sensorDef.shape = &boxShape;
+		sensorDef.isSensor = true;
+		auto sensorFixture = _body->CreateFixture(&sensorDef);
+		sensorFixture->SetUserData(playerSensor);
 	}
 
 	//direction = b2Vec2(0, 0);

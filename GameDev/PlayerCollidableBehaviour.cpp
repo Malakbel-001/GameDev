@@ -21,9 +21,12 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 		case EntityType::TANK:
 			dynamic_cast<Player*>(ent)->SetVehicle(dynamic_cast<Player*>(cb->GetActor()));
 			break;
+		case EntityType::PLANT:
+			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
+			break;
 		default:
 
-			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
+			
 			//TODO different sound
 			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 

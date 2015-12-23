@@ -95,6 +95,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="AmmoCollidableBehaviour.cpp" />
     <ClCompile Include="AmmoSprite.cpp" />
     <ClCompile Include="AnimatedDrawableBehaviour.cpp" />
+    <ClCompile Include="ApcSprite.cpp" />
     <ClCompile Include="BareEntity.cpp" />
     <ClCompile Include="BarObstacleSprite.cpp" />
     <ClCompile Include="BaseCommand.cpp" />
@@ -130,6 +131,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlantMoveableBehaviour.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
+    <ClCompile Include="SensorCollidableBehaviour.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="CreditMenu.cpp" />
@@ -191,6 +193,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="AmmoCollidableBehaviour.h" />
     <ClInclude Include="AmmoSprite.h" />
     <ClInclude Include="AnimatedDrawableBehaviour.h" />
+    <ClInclude Include="ApcSprite.h" />
     <ClInclude Include="BareEntity.h" />
     <ClInclude Include="BarObstacleSprite.h" />
     <ClInclude Include="BaseCommand.h" />
@@ -230,6 +233,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="PlantBossSprite.h" />
     <ClInclude Include="PlantMoveableBehaviour.h" />
     <ClInclude Include="PlayerDrawableBehaviour.h" />
+    <ClInclude Include="SensorCollidableBehaviour.h" />
     <ClInclude Include="SettingsConfig.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="CreditMenu.h" />

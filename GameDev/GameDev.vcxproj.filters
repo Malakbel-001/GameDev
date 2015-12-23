@@ -283,6 +283,12 @@
     <ClCompile Include="CannonshotSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ApcSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorCollidableBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -598,6 +604,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CannonshotSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApcSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SensorCollidableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
