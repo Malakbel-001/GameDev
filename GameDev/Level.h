@@ -15,8 +15,6 @@ class PlayState;
 class Level //abstract class now because of pure virtual method: SetPlayer() and CreateLevel(), this class cannot be instantiated anymore
 {
 private:
-	MoveableContainer* moveableContainer;
-
 	float startXpos;
 	float startYpos;
 	b2ContactListener* contact;
@@ -25,7 +23,6 @@ protected:
 	EntityFactory* entityFactory;
 	DrawableContainer* drawableContainer;
 	MoveableContainer* moveableContainer;
-	b2World* world;
 	SDL_Texture* tileSheet;
 	Timer* timer;
 

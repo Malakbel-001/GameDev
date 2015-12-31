@@ -21,8 +21,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::AMMO, new Actor() },
 		{ EntityType::SNOWMAN, new Npc(this) },
 		{ EntityType::APC, new Npc(this) },
-		{ EntityType::SNOWMAN, new Npc() },
-		{ EntityType::SNOWBOSS, new Npc() },
+		{ EntityType::SNOWMAN, new Npc(this) },
+		{ EntityType::SNOWBOSS, new Npc(this) },
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -243,10 +243,10 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 	}
 	else {
 		NpcStatsContainer* npcStats = npcStatsRegistery.at(type);
+		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 
-		b2Body* body;
 		if (type == EntityType::SNOWBOSS){
-			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
+			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 			b2CircleShape circleShape;
 			circleShape.m_p.Set(0, 0); //position, relative to body position
 			circleShape.m_radius = 1; //radius
@@ -258,7 +258,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 			body->ApplyLinearImpulse(b2Vec2(0, 0), body->GetWorldCenter(),true);
 		}
 		else{
-			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
+			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 		}
 		
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()

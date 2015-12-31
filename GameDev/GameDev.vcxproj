@@ -183,7 +183,6 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="StaticDrawableBehaviour.cpp" />
     <ClCompile Include="TankSprite.cpp" />
     <ClCompile Include="StepCollidableBehaviour.cpp" />
-    <ClCompile Include="TileLoader.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Utilities.cpp" />
     <ClCompile Include="main.cpp" />
@@ -312,7 +311,6 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="StaticDrawableBehaviour.h" />
     <ClInclude Include="TankSprite.h" />
     <ClInclude Include="StepCollidableBehaviour.h" />
-    <ClInclude Include="TileLoader.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="MoveableBehaviour.h" />
     <ClInclude Include="MoveableContainer.h" />

@@ -155,7 +155,7 @@ MoveableContainer* Level::GetMoveableContainer()
 #pragma endregion Get, Set
 
 void Level::SetEntityFactory(BehaviourFactory* bf) {
-	entityFactory = new EntityFactory(*world, actors, entities, bf, drawableContainer);
+	entityFactory = new EntityFactory(*world, actors, entities, bf, this, drawableContainer, moveableContainer);
 }
 void Level::CreateTimer() {
 	timer = new Timer();

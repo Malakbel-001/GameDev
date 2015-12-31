@@ -32,15 +32,6 @@ void AnimatedDrawableBehaviour::Draw()
 		{
 			currentFrame = 0;
 		}
-
-		ypos = ypos - sprite->GetFrameYOffSet(currentFrame );
-		xpos = xpos - sprite->GetFrameXOffSet(currentFrame );
-
-
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetState());
-
-		//Go to next frame 
-		++currentFrame;		
 	}
 }
 

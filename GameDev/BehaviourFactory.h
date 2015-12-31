@@ -41,6 +41,7 @@ class BehaviourFactory
 		BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
 		~BehaviourFactory();
 
+	ParallaxBackground* CreateEmptyParallaxBehaviour();
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
 	CollidableBehaviour* CreateCollidableBehaviour(EntityType type, Actor* actor);
 	CollidableBehaviour* CreateStepCollidableBehaviour();
@@ -49,12 +50,6 @@ class BehaviourFactory
 	void ClearCamera();
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 
-	ParallaxBackground* CreateEmptyParallaxBehaviour();
-	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
-	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
-	SDL_Renderer* GetRenderer();
-	void ClearCamera();
-	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 private:
 	Camera* camera;
 

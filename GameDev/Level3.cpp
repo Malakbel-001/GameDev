@@ -5,15 +5,23 @@ Level3::Level3(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 	levelId = 3;
 }
 
-void Level3::Init(BehaviourFactory* bf)
-{
-	backgroundPath = "level1.jpg";
-	entityFactory = new EntityFactory(*world, actors, entities, bf, this, drawableContainer, moveableContainer);
-
+void Level3::CreateMap() {
 	entityFactory->CreateEntity(0, 570, 1075, 30, EntityType::DESERTFLOOR);
 	entityFactory->CreateEntity(1075, 570, 1075, 30, EntityType::DESERTFLOOR);
+}
+
+void Level3::CreateNPCs() {
 	entityFactory->CreateActor(700, 450, EntityType::MECH);
 	entityFactory->CreateActor(1400, 450, EntityType::APC);
+}
+
+void Level3::CreateParallaxBackground(BehaviourFactory* bf) {
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-bg.png", 0, 0, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountain-far.png", 0, 0.5f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountains.png", 0, 1, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-trees.png", 0, 2, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-foreground-trees.png", 0, 3, 255);
 }
 
 Level* Level3::CreateLevel()
