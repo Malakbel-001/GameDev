@@ -17,12 +17,15 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			break;
 		case EntityType::MECH:
 			dynamic_cast<Player*>(ent)->SetVehicle(dynamic_cast<Player*>(cb->GetActor()));
+			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 			break;
 		case EntityType::TANK:
 			dynamic_cast<Player*>(ent)->SetVehicle(dynamic_cast<Player*>(cb->GetActor()));
+			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 			break;
 		case EntityType::PLANT:
 			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
+			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 			break;
 		default:
 
@@ -48,9 +51,11 @@ void PlayerCollidableBehaviour::Unhit(CollidableBehaviour* cb){
 			break;
 		case EntityType::MECH:
 			dynamic_cast<Player*>(ent)->SetVehicle(nullptr);
+			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
 			break;
 		case EntityType::TANK:
 			dynamic_cast<Player*>(ent)->SetVehicle(nullptr);
+			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
 			break;
 		default:
 			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);

@@ -1,6 +1,7 @@
 #pragma once
 #include "Actor.h"
 
+class EntityFactory;
 class Npc :
 	public Actor
 {
@@ -8,7 +9,7 @@ private:
 	int score;
 
 public:
-	Npc();
+	Npc(EntityFactory* _factory);
 	
 	virtual ~Npc();
 	virtual Actor* EmptyClone();
@@ -17,7 +18,10 @@ public:
 
 	void SetScore(int _score);
 	int GetScore();
+
+	EntityFactory* GetFactory();
 protected:
-	
+
+	EntityFactory* factory;
 };
 

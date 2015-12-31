@@ -18,9 +18,9 @@ void MoveableContainer::Add(MoveableBehaviour* behaviour)
 
 void MoveableContainer::Move(float dt)
 {
-	for each (MoveableBehaviour* behaviour in behaviours)
+	for (int i = 0; i < behaviours.size(); i++)
 	{
-		behaviour->Move(dt);
+		behaviours[i]->Move(dt);
 	}
 }
 void MoveableContainer::Delete(Object* ent){

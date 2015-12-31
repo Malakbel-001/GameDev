@@ -9,6 +9,7 @@
 #include "AmmoCollidableBehaviour.h"
 #include "JumpSensorCollidableBehaviour.h"
 #include "StepCollidableBehaviour.h"
+#include "ApcMoveableBehaviour.h"
 #include "HealthSprite.h"
 #include "BulletSprite.h"
 #include "AmmoSprite.h"
@@ -178,7 +179,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityState::IDLE, patrol },
 		{ EntityState::PATROL, idle }
 	};
-
+	
 	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
 		{ EntityType::ACORN, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::AMMO, new MoveableBehaviour(defaultCommands) },
@@ -201,7 +202,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },
-		{ EntityType::APC, new MoveableBehaviour(defaultCommands) }
+		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) }
 	};
 }
 

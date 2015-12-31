@@ -289,6 +289,9 @@
     <ClCompile Include="SensorCollidableBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ApcMoveableBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -610,6 +613,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SensorCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApcMoveableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

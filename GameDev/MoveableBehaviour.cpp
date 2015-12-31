@@ -1,5 +1,7 @@
  #include "MoveableBehaviour.h"
 #include "Npc.h"
+#include "IdleCommand.h"
+#include "DefaultPatrolCommand.h"
 
 MoveableBehaviour::MoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands)
 {

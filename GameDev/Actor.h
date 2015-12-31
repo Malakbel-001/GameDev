@@ -40,6 +40,7 @@ protected:
 	CollidableBehaviour* stepLeftSensor;
 	CollidableBehaviour* stepRightSensor;
 	CollidableBehaviour* playerSensor;
+
 private:
 	bool dead;
 	int health;
