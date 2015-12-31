@@ -11,6 +11,7 @@ class Player :
 		int score;
 		int currentwep;
 		vector<Weapon*> weps;
+		vector<Uint32> timeplayed;
 	protected:
 		// stuff
 		
@@ -33,8 +34,10 @@ class Player :
 
 
 		void AddScore(int _score);
-		int GetScore();
-		
+		int GetScore();		
 		void SetVehicle(Player* _vehicle);
 		Player* GetVehicle();
+
+		void AddPlayTime(uint32, uint32);
+		vector<Uint32> GetPlayTime();
 };

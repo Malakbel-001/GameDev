@@ -1,0 +1,5 @@
+#pragma once
+enum Input
+{
+	JUMP,LEFT,RIGHT,DOWN,SHOOT,AIM_UP,AIM_DOWN,AIM_LEFT,AIM_RIGHT,ESC
+};

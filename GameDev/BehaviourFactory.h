@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include "ParallaxBackground.h"
 #include "BehaviourType.h"
 #include "DrawableBehaviour.h"
 #include "PlayerDrawableBehaviour.h"
@@ -28,20 +29,29 @@
 #include "SnowmanSprite.h"
 #include "IdleCommand.h"
 #include "DefaultPatrolCommand.h"
+#include "BigGroundSprite.h"
+#include "SnowBossSprite.h"
 
 class Camera;
 class CollidableBehaviour;
 
 class BehaviourFactory
 {
-public:
-	BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
-	~BehaviourFactory();
+	public:
+		BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
+		~BehaviourFactory();
 
 	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
 	CollidableBehaviour* CreateCollidableBehaviour(EntityType type, Actor* actor);
 	CollidableBehaviour* CreateStepCollidableBehaviour();
 	MoveableBehaviour* CreateMoveableBehaviour(EntityType type);
+	SDL_Renderer* GetRenderer();
+	void ClearCamera();
+	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
+
+	ParallaxBackground* CreateEmptyParallaxBehaviour();
+	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
+	CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
 	SDL_Renderer* GetRenderer();
 	void ClearCamera();
 	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);

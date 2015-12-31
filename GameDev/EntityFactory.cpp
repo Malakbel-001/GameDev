@@ -21,6 +21,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::AMMO, new Actor() },
 		{ EntityType::SNOWMAN, new Npc(this) },
 		{ EntityType::APC, new Npc(this) },
+		{ EntityType::SNOWMAN, new Npc() },
+		{ EntityType::SNOWBOSS, new Npc() },
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -31,6 +33,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level2
 		{ EntityType::GROUNDLVL2, new Ground() },
+		{ EntityType::GROUND2LVL2, new Ground() },
 
 		//level3
 		{ EntityType::DESERTFLOOR, new Ground() },
@@ -133,6 +136,14 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	SnowmanDef.angularDamping = 1;
 	SnowmanDef.type = b2BodyType::b2_dynamicBody;
 
+	b2BodyDef SnowBossDef = b2BodyDef();
+	SnowBossDef.angle = 0.25f * b2_pi;
+	SnowBossDef.gravityScale = 0.0f;
+	SnowBossDef.fixedRotation = true;
+	SnowBossDef.linearDamping = 0;
+	SnowBossDef.angularDamping = 0.01f;
+	SnowBossDef.type = b2BodyType::b2_dynamicBody;
+
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
 		{ EntityType::ENTITY, entDef },
 		{ EntityType::ACTOR, ActorDef },
@@ -154,6 +165,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::GROUNDLVL2, entDef },
 		{ EntityType::PINGUIN, PlantDef },
 		{ EntityType::SNOWMAN, SnowmanDef },
+		{ EntityType::GROUND2LVL2, entDef },
+		{ EntityType::SNOWBOSS, SnowBossDef },
 
 		//level3
 		{ EntityType::DESERTFLOOR, entDef },
@@ -169,6 +182,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 			{ EntityType::APC, new NpcStatsContainer(0, 500, 0, 143, 128) },
 			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
+			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
 		};
 }
 
@@ -229,7 +243,24 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 	}
 	else {
 		NpcStatsContainer* npcStats = npcStatsRegistery.at(type);
-		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
+
+		b2Body* body;
+		if (type == EntityType::SNOWBOSS){
+			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
+			b2CircleShape circleShape;
+			circleShape.m_p.Set(0, 0); //position, relative to body position
+			circleShape.m_radius = 1; //radius
+
+			b2FixtureDef myFixtureDef;
+			myFixtureDef.shape = &circleShape; //this is a pointer to the shape above
+			body->CreateFixture(&myFixtureDef); //add a fixture to the body
+
+			body->ApplyLinearImpulse(b2Vec2(0, 0), body->GetWorldCenter(),true);
+		}
+		else{
+			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
+		}
+		
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer, moveContainer);
 
@@ -293,6 +324,24 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 
 	return b2body;
 }
+
+/*b2Body* EntityFactory::CreateActorBodyRound(float x, float y, float height, float width, float den, EntityType type){
+	b2CircleShape circleShape;
+	circleShape.m_p.Set(0, 0);
+	circleShape.m_radius = 1;
+
+	height = height / 2;
+	width = width / 2;
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+	float newHeight = (height*Ratio);
+	float newWidth = (width*Ratio);
+
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.shape = &circleShape; //this is a pointer to the shape above
+	//SnowBossDef->CreateFixture(&myFixtureDef); //add a fixture to the body
+}*/
 
 b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, float den,EntityType type)
 {

@@ -85,6 +85,10 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	DesertGroundSprite* desertgroundSprite = new DesertGroundSprite(renderer);
 	desertgroundSprite->LoadMedia("Desert.png");
 
+
+	BigGroundSprite* bigGroundSprite = new BigGroundSprite(renderer);
+	bigGroundSprite->LoadMedia("snow2.png");
+
 	PinguinSprite* pinguinSprite = new PinguinSprite(renderer);
 	pinguinSprite->LoadMedia("pinguin.png");
 	pinguinSprite->SetAnimationSet(EntityState::IDLE);
@@ -99,6 +103,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	SnowmanSprite* snowman = new SnowmanSprite(renderer);
 	snowman->LoadMedia("yeti.png");
 	snowman->SetAnimationSet(EntityState::IDLE);
+
+	SnowBossSprite* snowBoss = new SnowBossSprite(renderer);
+	snowBoss->LoadMedia("snowball.png");
 
 	sprites.push_back(snowman);
 	sprites.push_back(groundSprite);
@@ -121,6 +128,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(treeSprite);
 	sprites.push_back(shotgun);
 	sprites.push_back(cannon);
+	sprites.push_back(bigGroundSprite);
+	sprites.push_back(snowBoss);
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -143,6 +152,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
 		{ EntityType::SNOWMAN, new AnimatedDrawableBehaviour(renderer, snowman, screenWidth, screenHeight) },
 		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
+		{ EntityType::GROUND2LVL2, new StaticDrawableBehaviour(renderer, bigGroundSprite, screenWidth, screenHeight) },
+		{ EntityType::SNOWBOSS, new StaticDrawableBehaviour(renderer, snowBoss, screenWidth, screenHeight) },
 	
 	//level3
 		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
@@ -150,7 +161,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::MECH, new AnimatedDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
 		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
 	};
-	
+
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 		{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 		{ EntityType::PLANT, new EnemyCollidableBehaviour() },
@@ -166,6 +177,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::TANK, new EnemyCollidableBehaviour() },
 		{ EntityType::MECH, new EnemyCollidableBehaviour() },
 		{ EntityType::APC, new EnemyCollidableBehaviour() },
+		{ EntityType::SNOWBOSS, new EnemyCollidableBehaviour() },
 	};
 
 	IdleCommand* idle = new IdleCommand();
@@ -213,6 +225,7 @@ SDL_Renderer* BehaviourFactory::GetRenderer(){
 }
 
 
+
 BehaviourFactory::~BehaviourFactory()
 {
 	for each(auto var in sprites){
@@ -234,6 +247,10 @@ BehaviourFactory::~BehaviourFactory()
 	}
 	collideRegistery.clear();
 	delete camera;
+}
+
+ParallaxBackground* BehaviourFactory::CreateEmptyParallaxBehaviour() {
+	return new ParallaxBackground(renderer, camera);
 }
 
 DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)

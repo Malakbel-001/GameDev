@@ -17,7 +17,16 @@ void AnimatedDrawableBehaviour::Draw()
 		float xpos = ((entity->GetXpos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
 		float ypos = entity->GetYpos() / Ratio;
 
-		int size = sprite->GetAnimationSize();
+		ypos = ypos - sprite->GetFrameYOffSet(currentFrame / 3);
+		xpos = xpos - sprite->GetFrameXOffSet(currentFrame / 3);
+
+
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame / 3), entity->GetFlipped());
+
+		//Go to next frame 
+		++currentFrame;
+		int size = sprite->GetAnimationSize(entity->GetState());
+
 		//Cycle animation 
 		if (currentFrame >= size)
 		{

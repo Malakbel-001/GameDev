@@ -22,10 +22,13 @@ public:
 
 	//Renders texture at given point 
 	void render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip);
-	void render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, EntityState state);
+	void render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, bool flip);
 
 	//Gets image dimensions 
 	int getWidth(); int getHeight();
+
+	//Sets transparency texture
+	void SetTextureAlphaMod(int alpha);
 
 private:
 	//The actual hardware texture 
