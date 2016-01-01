@@ -27,6 +27,8 @@ private:
 	CreditMenu* creditMenu;
 	OptionMenu* optionMenu;
 
+	ParallaxBackground* parallaxBackground;
+
 public:
 	PauseState();
 	

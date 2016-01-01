@@ -84,4 +84,6 @@ private:
 	int hoverX;
 	int hoverY;
 	int score;
+
+	ParallaxBackground* parallaxBackground;
 };

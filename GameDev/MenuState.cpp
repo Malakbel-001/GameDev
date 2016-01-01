@@ -23,7 +23,7 @@ void MenuState::Init(GameStateManager *gsm){
 	mainMenu = new MainMenu(this, renderer, textFont, titleFont);
 	helpMenu = new HelpMenu(this, renderer, textFont, titleFont);
 	creditMenu = new CreditMenu(this, renderer, textFont, titleFont);
-	optionMenu = new OptionMenu(this, renderer, textFont, titleFont);
+	optionMenu = new OptionMenu(this, renderer, textFont, titleFont, parallaxBackground);
 	playMenu = new PlayMenu(this, renderer, textFont, titleFont);
 	currentMenu = mainMenu;
 	Update(0);
