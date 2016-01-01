@@ -30,8 +30,22 @@ Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
 	entities = new std::vector<Entity*>();
+}
 
-
+//clean level for level editor
+Level::Level(int _lvlWidth, int _lvlHeight) : lvlWidth(_lvlWidth), lvlHeight(_lvlHeight){
+	entityFactory = nullptr;
+	player = nullptr;
+	timer = nullptr;
+	startXpos = 100;
+	startYpos = 10;
+	actors = new std::vector<Actor*>();
+	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
+	contact = new ContactListener();
+	world->SetContactListener(contact);
+	drawableContainer = new DrawableContainer();
+	entities = new std::vector<Entity*>();
+	parallaxBackground = nullptr;
 }
 
 
@@ -42,7 +56,6 @@ void Level::Init(BehaviourFactory* bf) { //TODO get this to work
 	CreateNPCs();
 	CreateTimer();
 	CreateParallaxBackground(bf);
-
 }
 
 Level::~Level()
@@ -127,6 +140,29 @@ void Level::Update(float dt)
 	}
 }
 
+#pragma region Empty functions
+void Level::CreateMap() {
+	//empty level
+}
+
+void Level::CreateNPCs() {
+	//empty level
+}
+
+void Level::CreateParallaxBackground(BehaviourFactory* bf) {
+	//empty level
+}
+
+Player* Level::SetPlayer(Player* _player) {
+	//empty level (and empty player)
+	return nullptr;
+}
+
+Level* Level::CreateLevel() {
+	//empty level
+	return nullptr;
+}
+#pragma endregion
 #pragma region Get, Set, & more
 Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
 	if (!_player->GetBody() != NULL) {

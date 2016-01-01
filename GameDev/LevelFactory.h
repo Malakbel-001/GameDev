@@ -22,6 +22,8 @@ public:
 	static bool SaveLevel(Level* l,std::string name);
 	static Level* GetSpecificLevel(PlayState* play,int lvl);
 	static void DeletePointers();
+
+	static Level* GetEmptyLevel();
 private:
 	LevelFactory();
 	~LevelFactory();

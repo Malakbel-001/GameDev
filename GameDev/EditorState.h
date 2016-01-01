@@ -2,7 +2,7 @@
 
 class EditorState :	public IGameState {
 	private:
-
+		Level* newLevel;
 
 	public:
 		EditorState();

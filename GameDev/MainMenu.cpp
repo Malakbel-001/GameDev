@@ -252,7 +252,7 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						
 						//temp disabled
-						//menu->GetGSM()->CreateGameState(GameStateType::EditorState);
+						menu->GetGSM()->CreateGameState(GameStateType::EditorState);
 
 						break;
 					//case 7, aka the menuTitle, does not need to be clickable

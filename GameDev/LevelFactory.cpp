@@ -205,3 +205,11 @@ void LevelFactory::DeletePointers(){
 		delete *it;
 	}
 }
+
+Level* LevelFactory::GetEmptyLevel() {
+	//standard lvl
+	int lvlWidth = 2000;
+	int lvlHeight = 120;
+
+	return new Level(lvlWidth, lvlHeight);
+}

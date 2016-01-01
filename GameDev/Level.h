@@ -39,18 +39,20 @@ protected:
 	ParallaxBackground* parallaxBackground;
 	//Initialization / Create Level
 	virtual void SetEntityFactory(BehaviourFactory*);
-	virtual void CreateMap() = 0;									//pure virtual
-	virtual void CreateNPCs() = 0;									//pure virtual
+	virtual void CreateMap();									//before pure virtual function
+	virtual void CreateNPCs();									//before pure virtual function
 	virtual void CreateTimer();
-	virtual void CreateParallaxBackground(BehaviourFactory*) = 0;	//pure virtual
+	virtual void CreateParallaxBackground(BehaviourFactory*);	//before pure virtual function
 
 public:
+	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
+	Level(int _lvlWidth, int _lvlHeight); //clean level for level editor
+
 	Player* GetPlayer();
 	std::vector<Actor*>* GetActors();
 	std::vector<Entity*>* GetEntities();
 	DrawableContainer* GetDrawableContainer();
-	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
-	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
 	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();
 
@@ -62,17 +64,14 @@ public:
 	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
 	
-					//TODO get this to work
 	void Draw();
 	void Update(float dt);
 	void GameOver();
 	void Victory();
 	virtual b2World* GetWorld();
 
-							//probably not public!
-
-	virtual Player* SetPlayer(Player* _player) = 0;					//pure virtual
-	virtual Level* CreateLevel() = 0;								//pure virtual
+	virtual Player* SetPlayer(Player* _player);					//before pure virtual function
+	virtual Level* CreateLevel();								//before pure virtual function
 	ParallaxBackground* GetParallaxBackGround();
 	Timer* GetTimer();
 
@@ -81,5 +80,4 @@ public:
 	virtual void SetLvlHeight(int _lvlHeight);
 
 	int GetLevelId() { return levelId; };
-
 };
