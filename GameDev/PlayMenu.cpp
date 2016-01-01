@@ -215,14 +215,14 @@ void PlayMenu::HandleMouseEvents(SDL_Event mainEvent)
 					//level1
 					if (levelsMap->at("Level1")){
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 1);
+						mainMenu->GetGSM()->CreatePlayState(1);
 					}
 					break;
 				case 2:
 					//level2
 					if (levelsMap->at("Level2")){
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 2);
+						mainMenu->GetGSM()->CreatePlayState(2);
 					}
 					break;
 				/*case 3:
@@ -235,7 +235,7 @@ void PlayMenu::HandleMouseEvents(SDL_Event mainEvent)
 					//level2
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						levelconfig.ResetLevels();
-						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 1);
+						mainMenu->GetGSM()->CreatePlayState(1);
 					break;
 				}
 			}

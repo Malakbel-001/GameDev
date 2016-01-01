@@ -15,9 +15,17 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 
 }
 
-void GameStateManager::CreateGameState(GameStateType state, int lvl)
+//Give level, Create PlayState with Level
+void GameStateManager::CreatePlayState(int lvl)
 {
-	IGameState* gamestate = GetNewState(state, lvl);
+	IGameState* gamestate = GetNewState(GameStateType::PlayState, lvl);
+	PushGameState(gamestate);
+}
+
+//Give GameState, Creates new GameState
+void GameStateManager::CreateGameState(GameStateType state)
+{
+	IGameState* gamestate = GetNewState(state, 0);
 	PushGameState(gamestate);
 }
 
@@ -52,13 +60,14 @@ IGameState* GameStateManager::GetNewState(GameStateType state, int lvl)
 	return gamestate;
 }
 
-
+//TODO, private / protected state? Would make more sense
 void GameStateManager::PushGameState(IGameState* gameState)
 {
 	states.push_back(gameState);
 	states.back()->Init(this);
 }
 
+//TODO, private / protected state? Would make more sense
 void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 	IGameState* a = states.back();
 		states.pop_back(); //pop loadState
@@ -66,6 +75,7 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 	states.push_back(gameState);
 	states.back()->Resume();
 }
+
 void GameStateManager::PopPrevState(){
 	if (states.size() > 1){
 		IGameState* a = states[states.size() - 2];
@@ -74,6 +84,7 @@ void GameStateManager::PopPrevState(){
 	//	delete a;
 	}
 }
+
 void GameStateManager::PopState()
 {
 	if (!states.empty())
