@@ -280,6 +280,9 @@
     <ClCompile Include="LoadedLevel.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
+    <ClCompile Include="EditorState.cpp">
+      <Filter>Source Files\Model\GameState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -587,6 +590,9 @@
     </ClInclude>
     <ClInclude Include="LoadedLevel.h">
       <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorState.h">
+      <Filter>Header Files\Model\GameState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
