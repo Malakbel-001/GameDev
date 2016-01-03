@@ -283,6 +283,9 @@
     <ClCompile Include="EditorState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
     </ClCompile>
+    <ClCompile Include="EntityStatsContainer.cpp">
+      <Filter>Source Files\Model\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -593,6 +596,9 @@
     </ClInclude>
     <ClInclude Include="EditorState.h">
       <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityStatsContainer.h">
+      <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

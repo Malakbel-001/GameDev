@@ -12,6 +12,9 @@ class Camera
 		double lvlWidth;
 		double lvlHeight;
 
+		double camX = 0;
+		double camY = 0;
+
 		Player* player;
 
 	public:
@@ -20,7 +23,9 @@ class Camera
 		double GetY();
 		double GetWidth();
 		double GetHeight();
-		void Init(Player* _player, double _levelwidth,double _levelheight);
+		void Init(Player* _player, double _levelwidth, double _levelheight);
+		void Init(double _levelwidth, double _levelheight);
+
 		b2Body* GetB2Body();
 
 		void SetX(double _x);

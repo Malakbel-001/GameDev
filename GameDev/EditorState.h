@@ -1,8 +1,23 @@
+#pragma once
 #include "IGameState.h"
+#include "LevelFactory.h"
+#include <vector>
 
 class EditorState :	public IGameState {
 	private:
 		Level* newLevel;
+		BehaviourFactory* behaviourFactory;
+		Camera* manualCamera;
+
+		//not sure to save this
+		int hoverX;
+		int hoverY;
+
+		std::vector<EntityType>* actorTypeList;
+		std::vector<EntityType>* entityTypeList;
+
+		DrawableContainer* editorDrawableContainer;
+		BareEntity* selectedEntity;
 
 	public:
 		EditorState();

@@ -36,10 +36,13 @@ class BehaviourFactory
 
 		ParallaxBackground* CreateEmptyParallaxBehaviour();
 		DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
+		DrawableBehaviour* CreateEditorVersionDrawableBehaviour(EntityType type);
 		CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
 		SDL_Renderer* GetRenderer();
 		void ClearCamera();
 		void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
+
+		Camera* SetManualCamera(double levelWidth, double levelHeight);
 	private:
 		Camera* camera;
 

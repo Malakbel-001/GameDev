@@ -108,6 +108,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="EditorState.cpp" />
+    <ClCompile Include="EntityStatsContainer.cpp" />
     <ClCompile Include="FramesPerSecond.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="KeyMapping.cpp" />
@@ -205,6 +206,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="EditorState.h" />
+    <ClInclude Include="EntityStatsContainer.h" />
     <ClInclude Include="FramesPerSecond.h" />
     <ClInclude Include="HighscoreConfig.h" />
     <ClInclude Include="HighscoreMenu.h" />

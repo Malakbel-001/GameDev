@@ -139,13 +139,26 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::GROUND2LVL2, entDef },
 		{ EntityType::SNOWBOSS, SnowBossDef },
 	};
-		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
-			{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
-			{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
-			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
-			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
-			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
-		};
+
+	//Please Update This
+	entityStatsRegistery = std::unordered_map < EntityType, EntityStatsContainer* > {
+		{ EntityType::GROUND, new EntityStatsContainer(250, 120) },
+		{ EntityType::GROUND2, new EntityStatsContainer(137, 120) },
+		{ EntityType::BAR, new EntityStatsContainer(250, 10) },
+
+		//level2
+		{ EntityType::GROUNDLVL2, new EntityStatsContainer(250, 120) },
+		{ EntityType::GROUND2LVL2, new EntityStatsContainer(250, 250) },
+	};
+
+	//Please Update This
+	npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
+		{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
+		{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
+		{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
+		{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
+		{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
+	};
 }
 
 EntityFactory::~EntityFactory()
@@ -176,8 +189,8 @@ Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 	return wep;
 }
 
+//temporarily still here, DEPRECATED!
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type){
-	
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateBody(x, y, height, width, type);
 
@@ -188,8 +201,22 @@ Entity* EntityFactory::CreateEntity(float x, float y, float height, float width,
 
 	return ent;
 }
+Entity* EntityFactory::CreateEntity(float x, float y, EntityType type) {
+	Entity* ent = entityRegistery.at(type)->EmptyClone();
+	if (entityStatsRegistery.find(type) == entityStatsRegistery.end()) { //error handling, avoid crashing
+		std::cout << "Entity: " << "[insert EntityType here] " << "is not found in the entityStatsRegistery - CreateEntity!" << std::endl;
+	}
+	else {
+		EntityStatsContainer* entityStats = entityStatsRegistery.at(type);
+		b2Body* body = CreateActorBody(x, y, entityStats->GetHeight(), entityStats->GetWidth(), 1, type);
+		ent->Init(body, entityStats->GetWidth(), entityStats->GetHeight(), type, bf, drawContainer);
+		entities->push_back(ent);
+	}
 
-//temporarily still here
+	return ent;
+}
+
+//temporarily still here, DEPRECATED!
 Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, float height, float width, EntityType type){
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateActorBody(x, y, height, width,1, type);
@@ -198,7 +225,6 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, flo
 
 	return ent;
 }
-
 Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
 	if (npcStatsRegistery.find(type) == npcStatsRegistery.end()) { //error handling, avoid crashing
@@ -363,4 +389,26 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, E
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 	
 	return b2body;
+}
+
+//return list of actors
+std::vector<EntityType>* EntityFactory::GetActorTypeList() {
+	std::vector<EntityType>* actorTypeList = new std::vector<EntityType>();
+
+	for (std::pair<EntityType, Actor*> entType : actorRegistery) { //at least for now
+		actorTypeList->push_back(entType.first);
+	}
+
+	return actorTypeList;
+}
+
+//return list of entities(/map objects)
+std::vector<EntityType>* EntityFactory::GetEntityTypeList() {
+	std::vector<EntityType>* entityTypeList = new std::vector<EntityType>();
+
+	for (std::pair<EntityType, Entity*> entType : entityRegistery) { //at least for now
+		entityTypeList->push_back(entType.first);
+	}
+
+	return entityTypeList;
 }

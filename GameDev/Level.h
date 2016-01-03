@@ -37,8 +37,10 @@ protected:
 	Player* player;
 	std::string backgroundPath;
 	ParallaxBackground* parallaxBackground;
+public:
 	//Initialization / Create Level
-	virtual void SetEntityFactory(BehaviourFactory*);
+	virtual void SetEntityFactory(BehaviourFactory*);			//needs to be public for level editor
+private:
 	virtual void CreateMap();									//before pure virtual function
 	virtual void CreateNPCs();									//before pure virtual function
 	virtual void CreateTimer();

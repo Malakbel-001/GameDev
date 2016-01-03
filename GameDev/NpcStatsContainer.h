@@ -1,16 +1,15 @@
-class NpcStatsContainer {
-	private:
+#pragma once
+#include "EntityStatsContainer.h"
+
+class NpcStatsContainer : public EntityStatsContainer {
+	protected:
 		int hitdmg;
 		int health;
 		int score;
-		float height;
-		float width;
 	public:
-		NpcStatsContainer(int _hitdmg, int _health, int _score, float height, float width);
+		NpcStatsContainer(int _hitdmg, int _health, int _score, float _height, float _width);
 		~NpcStatsContainer();
-		int GetHitDmg();
-		int GetHealth();
-		int GetScore();
-		float GetHeight();
-		float GetWidth();
+		virtual int GetHitDmg();
+		virtual int GetHealth();
+		virtual int GetScore();
 };

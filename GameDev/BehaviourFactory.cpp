@@ -191,6 +191,10 @@ CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type
 void BehaviourFactory::ClearCamera(){
 	camera->Init(nullptr, 0, 0);
 }
-void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
-	camera->Init(player, levelWidth, levelheight);
+void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelHeight){
+	camera->Init(player, levelWidth, levelHeight);
+}
+Camera* BehaviourFactory::SetManualCamera(double levelWidth, double levelHeight) {
+	camera->Init(levelWidth, levelHeight);
+	return camera;
 }

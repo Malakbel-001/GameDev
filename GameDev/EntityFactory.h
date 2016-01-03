@@ -12,7 +12,7 @@
 #include "Weapon.h"
 #include "Shotgun.h"
 #include "Acorn.h"
-#include "NpcStatsContainer.h"
+#include "NpcStatsContainer.h" //indirectly included EntityStatsContainer
 
 class EntityFactory
 {
@@ -20,6 +20,7 @@ public:
 	EntityFactory(b2World& world, std::vector<Actor*>* _actor,std::vector<Entity*>*_ent,BehaviourFactory* _bf, DrawableContainer* _drawContainer);
 	~EntityFactory();
 	Entity* CreateEntity(float x, float y, float height, float width, EntityType type);
+	Entity* CreateEntity(float x, float y, EntityType type);
 	Actor* CreateActor(int _hitdmg, int _healt, float x, float y, float height, float width, EntityType type);
 	Actor* CreateActor(float x, float y, EntityType type);
 	Player* CreatePlayer(int _hitdmg, int _healt, float x, float y, float height, float width, Player* _player);
@@ -30,6 +31,10 @@ public:
 	Weapon* CreateWeapon(float x, float y, EntityType type);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
+	//Level Editor functions
+	std::vector<EntityType>* GetActorTypeList();
+	std::vector<EntityType>* GetEntityTypeList();
+
 private:
 	DrawableContainer* drawContainer;
 	BehaviourFactory* bf;
@@ -38,7 +43,9 @@ private:
 	std::unordered_map<EntityType, Actor*> actorRegistery;
 	std::unordered_map<EntityType, b2BodyDef > bodyRegistery;
 	std::unordered_map<EntityType, Bullet* > bulletRegistery;
+
 	std::unordered_map<EntityType, NpcStatsContainer*> npcStatsRegistery;
+	std::unordered_map<EntityType, EntityStatsContainer*> entityStatsRegistery;
 
 	b2World& world;
 	std::vector<Actor*>* actor;
