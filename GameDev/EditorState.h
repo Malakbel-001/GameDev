@@ -9,9 +9,11 @@ class EditorState :	public IGameState {
 		BehaviourFactory* behaviourFactory;
 		Camera* manualCamera;
 
-		//not sure to save this
+		//not sure if to save this
 		int hoverX;
 		int hoverY;
+
+		int scroll;
 
 		std::vector<EntityType>* actorTypeList;
 		std::vector<EntityType>* entityTypeList;
@@ -35,5 +37,7 @@ class EditorState :	public IGameState {
 		void Update(float);
 		void Draw();
 
+	private:
+		void SetSelectedEntity();
 
 };
