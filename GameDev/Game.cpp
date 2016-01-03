@@ -13,7 +13,7 @@ Game::Game()
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	gsm = new GameStateManager(bf);
-	gsm->CreatePlayState(0);
+	gsm->CreateGameState(GameStateType::MenuState);
 
 	fps = new FramesPerSecond(sdlInitializer->GetRenderer());
 	//Non-threaded

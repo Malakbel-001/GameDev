@@ -161,6 +161,7 @@ Player* Level::SetPlayer(Player* _player) {
 Level* Level::CreateLevel() {
 	//empty level
 	return nullptr;
+	//return new Level(lvlWidth, lvlHeight, playState);
 }
 #pragma endregion
 #pragma region Get, Set, & more
