@@ -20,9 +20,9 @@ void DrawableContainer::Add(DrawableBehaviour* behaviour)
 	behaviours.push_back(behaviour);
 }
 
-void DrawableContainer::Draw(float dt)
+void DrawableContainer::Draw(float dt, float manipulatorSpeed)
 {
-	bool cycle = CycleFrames(dt);
+	bool cycle = CycleFrames(dt, manipulatorSpeed);
 
 	for each (DrawableBehaviour* behaviour in behaviours)
 	{
@@ -30,10 +30,13 @@ void DrawableContainer::Draw(float dt)
 	}
 }
 
-bool DrawableContainer::CycleFrames(float dt) {
+bool DrawableContainer::CycleFrames(float dt, float manipulatorSpeed) {
 	dtAccumulator += dt;
-	bool cycle = dtAccumulator > dtCycleFrame;
-	dtAccumulator = static_cast<float>((int)dtAccumulator % (int)dtCycleFrame); //dunno
+	bool cycle = dtAccumulator > dtCycleFrame / manipulatorSpeed;
+	std::cout << "dtAccumulator: " << dtAccumulator << std::endl;
+	std::cout << "dtCycleFrame: " << dtCycleFrame / manipulatorSpeed << std::endl;
+	std::cout << std::endl;
+	dtAccumulator = static_cast<float>((int)dtAccumulator % (int)(dtCycleFrame / manipulatorSpeed)); //dunno
 	return cycle;
 }
 

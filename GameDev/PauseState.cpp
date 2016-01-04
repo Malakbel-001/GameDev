@@ -18,7 +18,6 @@ void PauseState::Init(GameStateManager *gsm){
 	creditMenu = new CreditMenu(this, renderer, textFont, titleFont);
 	optionMenu = new OptionMenu(this, renderer, textFont, titleFont);
 	currentMenu = pauseMenu;
-	Update(0);
 }
 
 PauseState::PauseState()
@@ -141,7 +140,7 @@ void PauseState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
-void PauseState::Update(float dt){
+void PauseState::Update(float dt, float manipulatorSpeed){
 
 }
 
@@ -183,7 +182,7 @@ void PauseState::updateMenu(MenuEnum menu){
 		break;
 	}
 }
-void PauseState::Draw(float dt){
+void PauseState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	currentMenu->Draw();

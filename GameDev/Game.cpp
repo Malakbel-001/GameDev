@@ -77,18 +77,15 @@ void Game::GameLoop()
 	{
 		float dt = SDL_GetTicks() - preLoopTime;;
 		
-		//manipulate game speed
-		dt *= gameSpeedManipulator->GetManipulator();
-
 		preLoopTime = SDL_GetTicks();
 
 		SDLEvents();
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
 		inputManager->ResetMouseInput();
-		gsm->GetCurrentState()->Update(dt);
+		gsm->GetCurrentState()->Update(dt, gameSpeedManipulator->GetManipulator());
 		SDL_RenderClear(sdlInitializer->GetRenderer());
-		gsm->GetCurrentState()->Draw(dt);
+		gsm->GetCurrentState()->Draw(dt, gameSpeedManipulator->GetManipulator());
 		
 		fps->HandleKeyEvents(inputManager->GetKeyInput());
 		fps->UpdateCount(); //NEW

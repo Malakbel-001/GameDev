@@ -123,15 +123,15 @@ void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
 	//temp nothing
 }
 
-void LoadState::Update(float dt) {
+void LoadState::Update(float dt, float manipulatorSpeed) {
 	//nope
 }
 
-void LoadState::Draw(float dt) {
+void LoadState::Draw(float dt, float manipulatorSpeed) {
 	//temp bg
 	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, &backgroundRect); //TEMP!
 
-	drawableContainer->Draw(dt);
+	drawableContainer->Draw(dt, manipulatorSpeed);
 
 	if (!loadedPlay) {	//Loading...
 		SDL_RenderCopy(renderer, loadingTexture, nullptr, &loadingRect);

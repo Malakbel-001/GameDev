@@ -63,8 +63,8 @@ public:
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
-	void Update(float);
-	void Draw(float);
+	void Update(float dt, float manipulatorSpeed);
+	void Draw(float dt, float manipulatorSpeed);
 	void Background();
 
 	virtual ~MenuState();

@@ -20,7 +20,6 @@ void VictoryState::Init(GameStateManager *gsm){
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::YOU);*/
 	//SDL_Delay(2000);
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
-	Update(0);
 }
 
 VictoryState::VictoryState()
@@ -278,16 +277,11 @@ void VictoryState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _event
 	//std::cout << "Key events not implemented yet";
 }
 
-void VictoryState::Update(float dt){
-	/*while (!quit){
-
-	HandleEvents();
-
-	Draw();
-	}*/
+void VictoryState::Update(float dt, float manipulatorSpeed){
+	//nothing to see here, move on
 }
 
-void VictoryState::Draw(float dt){
+void VictoryState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 
 	background.render(renderer, 0, 0,0, &backgroundRect);

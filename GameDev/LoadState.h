@@ -46,6 +46,6 @@ public:
 
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
-	void Update(float dt);
-	void Draw(float dt);
+	void Update(float dt, float manipulatorSpeed);
+	void Draw(float dt, float manipulatorSpeed);
 };

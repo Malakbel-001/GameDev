@@ -26,7 +26,6 @@ void MenuState::Init(GameStateManager *gsm){
 	optionMenu = new OptionMenu(this, renderer, textFont, titleFont);
 	playMenu = new PlayMenu(this, renderer, textFont, titleFont);
 	currentMenu = mainMenu;
-	Update(0);
 }
 
 MenuState::MenuState()
@@ -150,8 +149,8 @@ void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
-void MenuState::Update(float dt){
-
+void MenuState::Update(float dt, float manipulatorSpeed){
+	//nothing
 }
 
 void MenuState::updateMenu(MenuEnum menu){
@@ -186,7 +185,7 @@ void MenuState::updateMenu(MenuEnum menu){
 		break;
 	}
 }
-void MenuState::Draw(float dt){
+void MenuState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	currentMenu->Draw();

@@ -253,8 +253,9 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	}
 }
 
-void PlayState::Update(float dt)
+void PlayState::Update(float dt, float manipulatorSpeed)
 {
+	//TODO use manipulatorSpeed
 	accumulatedDtWeapon += dt; //accumulate Dt
 
 	currentLevel->Update(dt);
@@ -263,10 +264,12 @@ void PlayState::Update(float dt)
 	// do last
 }
 
-void PlayState::Draw(float dt)
+void PlayState::Draw(float dt, float manipulatorSpeed)
 {
+	//TODO use manipulatorSpeed
+
 	currentLevel->GetParallaxBackGround()->Draw();
-	currentLevel->GetDrawableContainer()->Draw(dt);
+	currentLevel->GetDrawableContainer()->Draw(dt, manipulatorSpeed);
 	hud->Draw(dt);
 }
 

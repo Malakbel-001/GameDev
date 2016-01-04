@@ -17,7 +17,6 @@ void GameOverState::Init(GameStateManager *gsm){
 	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
 	SDL_Delay(2000);*/
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
-	Update(0);
 }
 
 GameOverState::GameOverState()
@@ -230,16 +229,11 @@ void GameOverState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _even
 	//std::cout << "Key events not implemented yet";
 }
 
-void GameOverState::Update(float dt){
-	/*while (!quit){
-
-	HandleEvents();
-
-	Draw();
-	}*/
+void GameOverState::Update(float dt, float manipulatorSpeed){
+	//empty, move on
 }
 
-void GameOverState::Draw(float dt){
+void GameOverState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 
 	background.render(renderer, 0, 0,0, &backgroundRect);
