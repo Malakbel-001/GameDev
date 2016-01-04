@@ -172,3 +172,31 @@ void Level::Victory()
 {
 	playState->Victory();
 }
+
+void Level::EnterVehicle()
+{
+	if (player->GetVehicle())
+	{		
+		auto vehicle = player->GetVehicle();
+
+		for each (Weapon* var in player->GetWeapons())
+		{
+			drawableContainer->Delete(var);
+			moveableContainer->Delete(var);
+		}
+
+		drawableContainer->Delete(player);		
+		moveableContainer->Delete(player);
+		player->setBody(vehicle->GetBody());
+		player = vehicle;
+
+		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::CANNON);
+		wep->Pickup(player, b2Vec2(1000, 0));
+		player->AddWeapon(wep);
+		//drawableContainer->Delete(player->GetCurrentWeapon());
+		
+		////dynamic_cast<Vehicle*>(player->GetVehicle())->SetPassenger(player);
+		//player->setBody(player->GetVehicle()->GetBody());
+		//player->SetState(EntityState::IDLE);
+	}
+}

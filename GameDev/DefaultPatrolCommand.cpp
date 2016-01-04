@@ -12,10 +12,11 @@ DefaultPatrolCommand::~DefaultPatrolCommand()
 
 void DefaultPatrolCommand::Execute(Actor* actor)
 {
-	b2Vec2 dir = actor->GetDirection();
-	if (dir.x == 0)
-	{
-		dir.x = 1;
-		actor->SetDirection(dir);
-	}
+	b2Vec2 dir = actor->GetBody()->GetLinearVelocity();
+	if (dir.x >= 0)
+		dir.x = dir.x + 0.2;
+	else
+		dir.x = dir.x - 0.2;
+
+	actor->GetBody()->SetLinearVelocity(dir);
 }

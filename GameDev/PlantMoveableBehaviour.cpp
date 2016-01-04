@@ -19,12 +19,4 @@ PlantMoveableBehaviour* PlantMoveableBehaviour::EmptyClone()
 void PlantMoveableBehaviour::Move(float dt)
 {	
 	commands[entity->GetState()]->Execute(dynamic_cast<Actor*>(entity));
-
-	/*auto plant = dynamic_cast<Npc*>(entity);
-	auto level = plant->GetLevel();
-
-	b2Vec2 vel = plant->GetBody()->GetLinearVelocity();	
-	b2Vec2 dir = plant->GetDirection();
-	vel.x = vel.x - 0.1;
-	plant->GetBody()->SetLinearVelocity(dir);*/
 }

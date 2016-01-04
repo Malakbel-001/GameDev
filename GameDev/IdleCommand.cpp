@@ -1,8 +1,9 @@
 #include "IdleCommand.h"
-#include "Actor.h"
-
+#include "Npc.h"
+#include "EntityFactory.h"
 IdleCommand::IdleCommand()
 {
+	timecounter = 0;
 }
 
 
@@ -11,11 +12,15 @@ IdleCommand::~IdleCommand()
 }
 
 void IdleCommand::Execute(Actor* actor)
-{
-	b2Vec2 dir = actor->GetDirection();
-	if (dir.x != 0)
+{	
+	if (actor->GetType() == EntityType::APC)
 	{
-		dir.x = 0;
-		actor->SetDirection(dir);
-	}	
+		int firespeed = 800;
+
+		if (SDL_GetTicks() > timecounter + firespeed){
+			b2Vec2 vec = b2Vec2(0, -1000);
+			dynamic_cast<Npc*>(actor)->GetFactory()->CreateActor(actor->GetBody()->GetPosition().x, actor->GetBody()->GetPosition().y, EntityType::PLANT);
+			timecounter = SDL_GetTicks();
+		}
+	}
 }

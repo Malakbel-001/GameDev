@@ -9,5 +9,8 @@ public:
 	~IdleCommand();
 
 	virtual void Execute(Actor* actor) override;
+
+private:
+	int timecounter;
 };
 

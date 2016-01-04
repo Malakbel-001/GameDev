@@ -15,7 +15,7 @@ public:
 
 	void Add(MoveableBehaviour* behaviour);
 	void Move(float dt);
-	void Delete(Entity* ent);
+	void Delete(Object* ent);
 private:
 	std::vector<MoveableBehaviour*> behaviours;
 };

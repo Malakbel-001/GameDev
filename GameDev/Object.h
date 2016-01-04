@@ -18,6 +18,8 @@ public:
 	EntityType GetType();
 	virtual bool ShouldDraw();
 	void SetShouldDraw(bool _shoulddraw);
+	DrawableBehaviour* GetDrawableBehaviour();
+	void SetDrawableBehaviour(DrawableBehaviour* behaviour);
 protected:
 	bool shouldDraw = true;
 	DrawableBehaviour* draw;

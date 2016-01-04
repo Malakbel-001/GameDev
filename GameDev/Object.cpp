@@ -22,6 +22,7 @@ EntityState Object::GetState(){
 	return state;
 }
 void Object::SetState(EntityState _state){
+	draw->GetSprite()->SetAnimationSet(_state);
 	state = _state;
 }
 bool Object::ShouldDraw(){
@@ -34,6 +35,19 @@ void Object::SetShouldDraw(bool _shoulddraw){
 EntityType Object::GetType(){
 	return type;
 }
+
+DrawableBehaviour* Object::GetDrawableBehaviour()
+{
+	return draw;
+}
+
+void Object::SetDrawableBehaviour(DrawableBehaviour* behaviour)
+{
+
+	draw = behaviour;
+}
+
+
 Object::~Object()
 {
 	

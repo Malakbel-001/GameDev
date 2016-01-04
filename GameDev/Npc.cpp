@@ -1,12 +1,13 @@
 #include "Npc.h"
+#include "EntityFactory.h"
 
-
-Npc::Npc()
+Npc::Npc(EntityFactory* _factory)
 {
 	score = 0;
+	factory = _factory;
 }
 Actor* Npc::EmptyClone(){
-	return new Npc();
+	return new Npc(factory);
 }
 
 Npc::~Npc()
@@ -30,4 +31,9 @@ void Npc::SetScore(int _score) {
 
 int Npc::GetScore() {
 	return score;
+}
+
+EntityFactory* Npc::GetFactory()
+{
+	return factory;
 }

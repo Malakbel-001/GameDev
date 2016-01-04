@@ -16,7 +16,7 @@ public:
 		
 	void Add(DrawableBehaviour* behaviour);
 	void Draw();
-	void Delete(Entity* behaviour);
+	void Delete(Object* behaviour);
 private:
 	vector<DrawableBehaviour*> behaviours;
 };
