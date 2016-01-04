@@ -12,9 +12,8 @@ void Level2::Init(BehaviourFactory* bf)
 	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
 	LoadParallaxBackgroundSettings();
 
-
 	//Entities Initialization
-	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
+	entityFactory = new EntityFactory(*world, actors,entities, bf, this, drawableContainer, moveableContainer);
 
 	//obstacles--------------------
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);

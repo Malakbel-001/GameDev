@@ -10,7 +10,7 @@ class Actor :
 public:
 	Actor();
 	virtual ~Actor();
-	virtual void InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
+	virtual void InitActor(b2Body* _body, int _hitdmg, int _health, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer);
 
 	
 	virtual Actor* EmptyClone();
@@ -27,13 +27,20 @@ public:
 	int GetNumFootContacts();
 	void SetNumFootContacts(int x);
 
+	CollidableBehaviour* GetCollidableBehaviour();
+	CollidableBehaviour* GetLeftSensorBehaviour();
+	CollidableBehaviour* GetRightSensorBehaviour();
+
 protected:
 	int numFootContacts;
 	int m_jumpTimeout;
 	b2Vec2 direction;
 	Weapon* currentWep = nullptr;
 	CollidableBehaviour* col;
-	
+	CollidableBehaviour* stepLeftSensor;
+	CollidableBehaviour* stepRightSensor;
+	CollidableBehaviour* playerSensor;
+
 private:
 	bool dead;
 	int health;

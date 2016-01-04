@@ -79,6 +79,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
+		Vehicle* vehicle = nullptr;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 
 			if (it->second)
@@ -114,8 +115,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					x = 5;
 					break;
-				case SDLK_z:					
+				case SDLK_z:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory());
+				case SDLK_e:
+					currentLevel->EnterVehicle();
 					break;
 				case SDLK_UP:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);
@@ -248,7 +251,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 void PlayState::Update(float dt)
 {
 	currentLevel->Update(dt);
-
+	Draw();
+	Move(dt);
 	// TODO: fix dinemic FPS count
 	// do last
 	
@@ -265,6 +269,10 @@ void PlayState::Draw()
 	currentLevel->GetDrawableContainer()->Draw();
 
 	hud->Draw();
+}
+
+void PlayState::Move(float dt){
+	currentLevel->GetMoveableContainer()->Move(dt);
 }
 
 Level* PlayState::GetCurrentLevel()

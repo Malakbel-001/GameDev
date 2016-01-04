@@ -279,6 +279,7 @@ void VictoryState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _event
 }
 
 void VictoryState::Update(float dt){
+	Draw();
 	/*while (!quit){
 
 	HandleEvents();
@@ -293,4 +294,7 @@ void VictoryState::Draw(){
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
+}
+
+void VictoryState::Move(float dt){
 }

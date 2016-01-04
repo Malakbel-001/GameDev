@@ -54,6 +54,7 @@ public:
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void Update(float);
 	void Draw();
+	void Move(float dt);
 	void Background();
 
 	virtual ~GameOverState();

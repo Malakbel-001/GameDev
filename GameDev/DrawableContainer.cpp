@@ -27,7 +27,7 @@ void DrawableContainer::Draw()
 		behaviour->Draw();
 	}
 }
-void DrawableContainer::Delete(Entity* ent){
+void DrawableContainer::Delete(Object* ent){
 	bool found = false;
 	size_t i = 0;
 	for (;i < behaviours.size() && !found; i++)

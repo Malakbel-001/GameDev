@@ -142,7 +142,7 @@ void PauseState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 }
 
 void PauseState::Update(float dt){
-
+	Draw();
 }
 
 void PauseState::updateMenu(MenuEnum menu){
@@ -188,4 +188,7 @@ void PauseState::Draw(){
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	currentMenu->Draw();
 	SDL_RenderPresent(renderer);
+}
+
+void PauseState::Move(float dt){
 }

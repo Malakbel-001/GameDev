@@ -231,6 +231,7 @@ void GameOverState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _even
 }
 
 void GameOverState::Update(float dt){
+	Draw();
 	/*while (!quit){
 
 	HandleEvents();
@@ -245,4 +246,7 @@ void GameOverState::Draw(){
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
+}
+
+void GameOverState::Move(float dt){
 }

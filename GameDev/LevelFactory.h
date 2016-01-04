@@ -3,6 +3,7 @@
 #include "Box2D\Box2D.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Level3.h"
 #include "GameStateManager.h"
 
 

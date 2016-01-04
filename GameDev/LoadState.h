@@ -11,6 +11,7 @@ private:
 	SDL_Renderer* renderer;
 
 	DrawableContainer* drawableContainer;
+	MoveableContainer* moveableContainer;
 	IGameState* playState;
 	BareEntity* bare;
 
@@ -48,4 +49,5 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void Update(float dt);
 	void Draw();
+	void Move(float dt);
 };

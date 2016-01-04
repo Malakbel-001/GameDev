@@ -9,7 +9,7 @@ class Weapon : public BareEntity
 public:
 	Weapon();
 	~Weapon();
-	void Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
+	void Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer);
 	void Pickup(Actor* _actor, b2Vec2 _defaultShootingDirection);
 	virtual void Shoot(EntityFactory* eF);
 	virtual void AddAmmo(int ammo);

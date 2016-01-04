@@ -13,7 +13,7 @@ void Level1::Init(BehaviourFactory* bf)
 	LoadParallaxBackgroundSettings();
 
 	//Entities Initialization
-	entityFactory = new EntityFactory(*world, actors,entities, bf, drawableContainer);
+	entityFactory = new EntityFactory(*world, actors, entities, bf, this, drawableContainer, moveableContainer);
 
 	//obstacles--------------
 //	entityFactory->CreateWeapon(0, 500, EntityType::WEAPON);
@@ -55,7 +55,7 @@ void Level1::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(4750, 570, 250, 140, EntityType::GROUND);
 	//enemies-----------------	
 
-	entityFactory->CreateActor(800, 450, EntityType::PLANT);
+	entityFactory->CreateActor(400, 400, EntityType::PLANT);
 
 	entityFactory->CreateActor(900, 450, EntityType::PLANT);
 	entityFactory->CreateActor(1200, 300, EntityType::PLANT);
@@ -104,6 +104,10 @@ void Level1::LoadParallaxBackgroundSettings() {
 	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
+ParallaxBackground* Level1::GetParallaxBackGround() {
+	return parallaxBackground;
+}
+
 Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
@@ -117,9 +121,7 @@ Player* Level1::SetPlayer(Player* _player) {
 	return player;
 }
 
-ParallaxBackground* Level1::GetParallaxBackGround() {
-	return parallaxBackground;
-}
+
 void Level1::Cleanup() {}
 
 

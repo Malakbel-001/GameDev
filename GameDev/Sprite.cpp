@@ -1,5 +1,5 @@
 #include "Sprite.h"
-
+#include <iostream>
 
 Sprite::Sprite(SDL_Renderer* _renderer)
 {
@@ -70,7 +70,7 @@ SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
 	case EntityState::IDLE:
 		return &idleSprites->at(frame);
 		break;
-	case EntityState::WALKINGLEFT:
+	case EntityState::WALKINGLEFT:		
 		return &walkSprites->at(frame);
 		break;
 	case EntityState::WALKINGRIGHT:

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Level.h"
 #include "ShotGun.h"
 Player::Player() {
 	numFootContacts = 0;
@@ -6,6 +7,7 @@ Player::Player() {
 	currentwep = 0;
 	weps = vector<Weapon*>();
 	score = 0;
+	vehicle = nullptr;
 }
 
 Player::~Player() { 
@@ -31,8 +33,12 @@ void Player::AddWeapon(Weapon* wep){
 	
 }
 Weapon* Player::GetCurrentWeapon(){
-	weps.at(currentwep)->SetShouldDraw(true);
-	return weps.at(currentwep);
+	if (weps.at(currentwep))
+	{
+		weps.at(currentwep)->SetShouldDraw(true);
+		return weps.at(currentwep);
+	}
+	return nullptr;
 }
 bool Player::ContainsWeapons() {
 	return !weps.empty();
@@ -45,9 +51,13 @@ void Player::SwitchWeapon(int x){
 	}
 
 }
-void Player::DeletePrevProp() {
 
-	
+vector<Weapon*> Player::GetWeapons()
+{
+	return weps;
+}
+
+void Player::DeletePrevProp() {
 	for (auto weapon : weps) {
 		delete weapon;
 		weapon = nullptr;
@@ -63,4 +73,14 @@ void Player::AddScore(int _score) {
 }
 int Player::GetScore() {
 	return score;
+}
+
+void Player::SetVehicle(Player* _vehicle)
+{
+	vehicle = _vehicle;
+}
+
+Player* Player::GetVehicle()
+{
+	return vehicle;
 }

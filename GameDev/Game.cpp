@@ -80,9 +80,10 @@ void Game::GameLoop()
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
 		inputManager->ResetMouseInput();
-		gsm->GetCurrentState()->Update(dt);
+		
 		SDL_RenderClear(sdlInitializer->GetRenderer());
-		gsm->GetCurrentState()->Draw();
+		gsm->GetCurrentState()->Update(dt);
+		//gsm->GetCurrentState()->Draw();
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
 		afterLoopTime = SDL_GetTicks();

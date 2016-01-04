@@ -1,6 +1,5 @@
 #pragma message("level ")
 #pragma once
-#include "Entity.h"
 #include <vector>
 #include "header_loader.h"
 #include "Box2D\Box2D.h"
@@ -15,8 +14,6 @@ class PlayState;
 class Level //abstract class now because of pure virtual method: SetPlayer() and CreateLevel(), this class cannot be instantiated anymore
 {
 private:
-	MoveableContainer* moveableContainer;
-
 	float startXpos;
 	float startYpos;
 	b2ContactListener* contact;
@@ -26,6 +23,7 @@ protected:
 	int tileWidth, tileHeight;
 	int lvlWidth, lvlHeight;
 	DrawableContainer* drawableContainer;
+	MoveableContainer* moveableContainer;
 	b2World* world;
 	SDL_Texture* tileSheet;
 
@@ -40,6 +38,7 @@ public:
 	Player* GetPlayer();
 
 	DrawableContainer* GetDrawableContainer();
+	MoveableContainer* GetMoveableContainer();
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
 	virtual void Init(BehaviourFactory* bf) = 0;				//pure virtual
 	virtual ~Level();
@@ -67,6 +66,7 @@ public:
 	virtual b2World* GetWorld();
 
 	int GetLevelId() { return levelId; };
-
 	virtual ParallaxBackground* GetParallaxBackGround() = 0;	//pure virtual
+
+	void EnterVehicle();
 };

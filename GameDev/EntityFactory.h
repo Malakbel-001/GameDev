@@ -1,15 +1,13 @@
 #pragma once
-#include "Entity.h"
-#include "Actor.h"
 #include "Npc.h"
-#include "Player.h"
+#include "Vehicle.h"
 #include <iostream>
 #include <unordered_map>
 #include "BehaviourFactory.h"
 #include "Ground.h"
 #include "Bullet.h"
 #include "BareEntity.h"
-#include "Weapon.h"
+#include "Cannon.h"
 #include "Shotgun.h"
 #include "Acorn.h"
 #include "NpcStatsContainer.h"
@@ -17,7 +15,7 @@
 class EntityFactory
 {
 public:
-	EntityFactory(b2World& world, std::vector<Actor*>* _actor,std::vector<Entity*>*_ent,BehaviourFactory* _bf, DrawableContainer* _drawContainer);
+	EntityFactory(b2World& world, std::vector<Actor*>* _actor,std::vector<Entity*>*_ent,BehaviourFactory* _bf, Level* _level, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer);
 	~EntityFactory();
 	Entity* CreateEntity(float x, float y, float height, float width, EntityType type);
 	Actor* CreateActor(int _hitdmg, int _healt, float x, float y, float height, float width, EntityType type);
@@ -28,10 +26,12 @@ public:
 	//b2Body* CreateActorBodyRound(float x, float y, float height, float width, float den, EntityType type);
 	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);
 	Weapon* CreateWeapon(float x, float y, EntityType type);
+	b2Body* CreateActorBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
 private:
 	DrawableContainer* drawContainer;
+	MoveableContainer* moveContainer;
 	BehaviourFactory* bf;
 	std::unordered_map<EntityType, Weapon*> weaponRegistery;
 	std::unordered_map<EntityType, Entity*> entityRegistery;
@@ -43,5 +43,6 @@ private:
 	b2World& world;
 	std::vector<Actor*>* actor;
 	std::vector<Entity*>* entities;
+	Level* level;
 };
 
