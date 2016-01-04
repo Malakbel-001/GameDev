@@ -87,7 +87,7 @@ void Level::Update(float dt)
 	float _y = 10;
 	float Ratio = _x / _y;
 
-	world->Step((dt / 100), 5, 5);
+	world->Step((dt / 200), 5, 5);
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
 	//	LevelFactory::SaveLevel(this,"test");
@@ -98,7 +98,8 @@ void Level::Update(float dt)
 		for (int x = 0; actors->size() > x; x++)
 		{
 			if (actors->operator[](x)->IsDead()){
-				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS)
+				player->AddScore(actors->operator[](x)->GetScore());
+				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
 				{
 					Victory();
 
@@ -113,7 +114,6 @@ void Level::Update(float dt)
 					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
 			
 				}
-				player->AddScore(actors->operator[](x)->GetScore());
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				moveableContainer->Delete(actors->operator[](x));

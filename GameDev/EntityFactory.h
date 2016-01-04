@@ -27,6 +27,7 @@ public:
 	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);
 	Weapon* CreateWeapon(float x, float y, EntityType type);
 	b2Body* CreateActorBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent);
+	b2Body* CreateActorRoundBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
 private:
