@@ -80,7 +80,6 @@ void Level2::CreateNPCs() {
 	entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);*/
 	//boss
 	entityFactory->CreateActor(5000, 350, EntityType::SNOWBOSS);
-	//entityFactory->CreateActor(200, 0, EntityType::SNOWBOSS);
 }
 
 void Level2::CreateParallaxBackground(BehaviourFactory* bf) {

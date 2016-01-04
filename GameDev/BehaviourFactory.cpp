@@ -16,6 +16,7 @@
 #include "GunSprite.h"
 #include "CannonshotSprite.h"
 #include "ApcSprite.h"
+#include "SnowBossMoveableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -182,6 +183,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 
 	IdleCommand* idle = new IdleCommand();
 	DefaultPatrolCommand* patrol = new DefaultPatrolCommand();
+	SnowBossPatrolCommand* snowBossPatrol = new SnowBossPatrolCommand();
 
 	defaultCommands = std::unordered_map<EntityState, BaseCommand*> {
 		{ EntityState::IDLE, idle }
@@ -191,7 +193,12 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityState::IDLE, patrol },
 		{ EntityState::PATROL, idle }
 	};
-	
+
+	snowBossCommands = std::unordered_map<EntityState, BaseCommand*> {
+		{ EntityState::IDLE, snowBossPatrol },
+		{ EntityState::PATROL, idle }
+	};
+
 	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
 		{ EntityType::ACORN, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::AMMO, new MoveableBehaviour(defaultCommands) },
@@ -214,7 +221,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },
-		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) }
+		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) },
+		{ EntityType::GROUND2LVL2, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::SNOWBOSS, new SnowBossMoveableBehaviour(snowBossCommands) }
 	};
 }
 

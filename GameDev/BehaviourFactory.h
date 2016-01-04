@@ -31,6 +31,7 @@
 #include "DefaultPatrolCommand.h"
 #include "BigGroundSprite.h"
 #include "SnowBossSprite.h"
+#include "SnowBossPatrolCommand.h"
 
 class Camera;
 class CollidableBehaviour;
@@ -62,6 +63,7 @@ private:
 	std::unordered_map<EntityType, Sprite*> spriteRegistery;
 	std::unordered_map<EntityState, BaseCommand*> defaultCommands;
 	std::unordered_map<EntityState, BaseCommand*> plantCommands;
+	std::unordered_map<EntityState, BaseCommand*> snowBossCommands;
 	std::vector<Sprite*> sprites;
 };
 

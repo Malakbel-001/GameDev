@@ -27,6 +27,10 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
 			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
 			break;
+		case EntityType::SNOWBOSS:
+			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
+			ent->SetNumFootContacts(ent->GetNumFootContacts() + 1);
+			break;
 		default:
 
 			

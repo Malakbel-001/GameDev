@@ -27,9 +27,7 @@ void EnemyCollidableBehaviour::Hit(CollidableBehaviour* cb){
 			ent->GetBody()->SetLinearVelocity(vec);
 			break;
 		}
-		case EntityType::PLANTBOSS:
-			//do something
-			break;
+
 		default:
 
 			break;

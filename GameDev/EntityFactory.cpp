@@ -182,7 +182,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 			{ EntityType::APC, new NpcStatsContainer(0, 500, 0, 143, 128) },
 			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
-			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
+			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 200, 2500, 120, 122) },
 		};
 }
 
@@ -237,6 +237,9 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, flo
 }
 
 Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
 	if (npcStatsRegistery.find(type) == npcStatsRegistery.end()) { //error handling, avoid crashing
 		std::cout << "Actor: " << "[insert EntityType here] " << "is not found in the npcStatsRegistery - CreateActor!" << std::endl;
@@ -246,7 +249,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 
 		if (type == EntityType::SNOWBOSS){
-			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
+			//body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 			b2CircleShape circleShape;
 			circleShape.m_p.Set(0, 0); //position, relative to body position
 			circleShape.m_radius = 1; //radius
@@ -255,7 +258,8 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 			myFixtureDef.shape = &circleShape; //this is a pointer to the shape above
 			body->CreateFixture(&myFixtureDef); //add a fixture to the body
 
-			body->ApplyLinearImpulse(b2Vec2(0, 0), body->GetWorldCenter(),true);
+			body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
+			//body->ApplyLinearImpulse(b2Vec2(0, 100), body->GetWorldCenter(),true);
 		}
 		else{
 			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
