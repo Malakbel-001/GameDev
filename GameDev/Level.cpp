@@ -57,14 +57,14 @@ Level::~Level()
 		delete timer;
 }
 
-void Level::Update(float dt)
+void Level::Update(float dt, float manipulatorSpeed)
 {
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
 
 	//The all important World Step for Box2D
-	world->Step((dt / 1000), 5, 5);
+	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
 
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
@@ -110,9 +110,16 @@ void Level::Update(float dt)
 			//this is so the bullets always keep flying (I guess - MJ)
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				b2Vec2 vector = actors->operator[](x)->GetDirection();
-				/*vector.x *= dt / 16;
-				std::cout << vector.x << std::endl;
-				vector.y *= dt / 16;*/
+
+				std::cout << "xbe4: " << vector.x << std::endl;
+				std::cout << "ybe4: " << vector.y << std::endl;
+
+				vector.x *= manipulatorSpeed;
+				vector.y *= manipulatorSpeed;
+
+				std::cout << "xaft: " << vector.x << std::endl;
+				std::cout << "yaft: " << vector.y << std::endl;
+
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
 		}

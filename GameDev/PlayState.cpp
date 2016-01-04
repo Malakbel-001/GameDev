@@ -108,13 +108,11 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_a:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
 					currentLevel->GetPlayer()->SetFlipped(true);
-					//		cout << "e" << x;
 					x = -30;
-					//		cout << " - " << x;
 
 					break;
 				case SDLK_s:
-					//y = 5; //temp disabled
+					//disabled for player
 					break;
 				case SDLK_d:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
@@ -122,13 +120,16 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					x = 30;
 					break;
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
- 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(), accumulatedDtWeapon))
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
+						accumulatedDtWeapon, currentManipulatorSpeed)) 
+					{
 						accumulatedDtWeapon = 0;
+					}
 					break;
 				case SDLK_UP:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);
+					break;
 
-						break;
 				case SDLK_DOWN:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+1000);
 					break;
@@ -139,7 +140,6 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 				case SDLK_RIGHT:
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+1000);
-
 					break;
 
 				case SDLK_1:
@@ -172,16 +172,13 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				
 				case SDLK_ESCAPE:
 					pause = true;
-					
 					break;
-
 				case SDLK_l:
 					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
 					break;
-				case SDLK_k:
+				case SDLK_k: //TODO cheat mode and not normal key for normal player
 					Victory();
 					break;
-
 				}
 			}
 			else
@@ -255,13 +252,10 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 
 void PlayState::Update(float dt, float manipulatorSpeed)
 {
-	//TODO use manipulatorSpeed
 	accumulatedDtWeapon += dt; //accumulate Dt
+	currentManipulatorSpeed = manipulatorSpeed;
 
-	currentLevel->Update(dt);
-
-	// TODO: fix dynamic FPS count
-	// do last
+	currentLevel->Update(dt, manipulatorSpeed);
 }
 
 void PlayState::Draw(float dt, float manipulatorSpeed)

@@ -15,8 +15,8 @@ ShotGun::ShotGun()
 ShotGun::~ShotGun()
 {
 }
-bool ShotGun::Shoot(EntityFactory* eF, float accumulatedDt){
-	if (accumulatedDt > fireSpeed){
+bool ShotGun::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed){
+	if (accumulatedDt > (fireSpeed/manipulatorSpeed)){
 		if (ammo > 2){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){

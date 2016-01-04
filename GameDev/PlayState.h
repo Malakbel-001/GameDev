@@ -24,6 +24,7 @@ class PlayState :
 		int levelToLoad;
 
 		float accumulatedDtWeapon;
+		float currentManipulatorSpeed;
 
 	public:
 		PlayState(int lvl);

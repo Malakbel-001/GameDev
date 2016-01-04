@@ -50,7 +50,7 @@ public:
 	virtual void Init(BehaviourFactory* bf);						//TODO get this to work
 	virtual ~Level();
 	void Draw();
-	void Update(float dt);
+	void Update(float dt, float manipulatorSpeed);
 	void GameOver();
 	void Victory();
 	virtual b2World* GetWorld();

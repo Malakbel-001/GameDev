@@ -88,7 +88,7 @@ void Game::GameLoop()
 		gsm->GetCurrentState()->Draw(dt, gameSpeedManipulator->GetManipulator());
 		
 		fps->HandleKeyEvents(inputManager->GetKeyInput());
-		fps->UpdateCount(); //NEW
+		fps->UpdateCount();
 		fps->Draw();
 
 		gameSpeedManipulator->HandleKeyEvents(inputManager->GetKeyInput());
