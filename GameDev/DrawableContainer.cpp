@@ -33,9 +33,6 @@ void DrawableContainer::Draw(float dt, float manipulatorSpeed)
 bool DrawableContainer::CycleFrames(float dt, float manipulatorSpeed) {
 	dtAccumulator += dt;
 	bool cycle = dtAccumulator > dtCycleFrame / manipulatorSpeed;
-	std::cout << "dtAccumulator: " << dtAccumulator << std::endl;
-	std::cout << "dtCycleFrame: " << dtCycleFrame / manipulatorSpeed << std::endl;
-	std::cout << std::endl;
 	dtAccumulator = static_cast<float>((int)dtAccumulator % (int)(dtCycleFrame / manipulatorSpeed)); //dunno
 	return cycle;
 }
