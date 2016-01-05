@@ -19,7 +19,6 @@ void MenuState::Init(GameStateManager *gsm){
 	}
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT2);
 	//menuState = mainMenu;
-	cout << "MenuState \n";
 	
 	mainMenu = new MainMenu(this, renderer, textFont, titleFont);
 	helpMenu = new HelpMenu(this, renderer, textFont, titleFont);
