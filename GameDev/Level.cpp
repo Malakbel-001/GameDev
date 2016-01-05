@@ -181,16 +181,12 @@ void Level::EnterVehicle()
 
 		drawableContainer->Delete(player);		
 		moveableContainer->Delete(player);
+		vehicle->SetPassenger(player);
 		player->setBody(vehicle->GetBody());
 		player = vehicle;
 
 		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::CANNON);
 		wep->Pickup(player, b2Vec2(1000, 0));
 		player->AddWeapon(wep);
-		//drawableContainer->Delete(player->GetCurrentWeapon());
-		
-		////dynamic_cast<Vehicle*>(player->GetVehicle())->SetPassenger(player);
-		//player->setBody(player->GetVehicle()->GetBody());
-		//player->SetState(EntityState::IDLE);
 	}
 }

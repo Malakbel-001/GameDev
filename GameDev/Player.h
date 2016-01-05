@@ -8,6 +8,7 @@ class Player :
 	private:
 		// stuff
 		Player* vehicle;
+		Player* passenger;
 		int score;
 		int currentwep;
 		vector<Weapon*> weps;
@@ -35,6 +36,8 @@ class Player :
 		void AddScore(int _score);
 		int GetScore();
 		
+		void SetPassenger(Player* _passenger);
+
 		void SetVehicle(Player* _vehicle);
 		Player* GetVehicle();
 };

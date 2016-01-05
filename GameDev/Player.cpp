@@ -8,6 +8,7 @@ Player::Player() {
 	weps = vector<Weapon*>();
 	score = 0;
 	vehicle = nullptr;
+	passenger = nullptr;
 }
 
 Player::~Player() { 
@@ -69,10 +70,18 @@ b2Body* Player::GetBody()
 	return body;
 }
 void Player::AddScore(int _score) {
+	if (passenger)
+		passenger->AddScore(_score);
+
 	score = score + _score;
 }
 int Player::GetScore() {
 	return score;
+}
+
+void Player::SetPassenger(Player* _passenger)
+{
+	passenger = _passenger;
 }
 
 void Player::SetVehicle(Player* _vehicle)
