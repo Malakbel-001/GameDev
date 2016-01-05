@@ -120,11 +120,15 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 }
 
 void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
-	//temp nothing
+	
+}
+
+void LoadState::HandleTextInputEvents(SDL_Event event){
+
 }
 
 void LoadState::Update(float dt, float manipulatorSpeed) {
-	//nope
+	
 }
 
 void LoadState::Draw(float dt, float manipulatorSpeed) {

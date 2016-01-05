@@ -9,10 +9,12 @@ void VictoryState::Init(GameStateManager *gsm){
 	}
 	PlayState* playState = (PlayState*)gsm->GetPreviousState();
 	score = playState->GetPlayer()->GetScore();
+	time = playState->GetPlayer()->GetPlayTime();
 	MakeNextLevelText(textColor);
 	MakeQuitText(textColor);
 	MakeVictorytitle(textColor);
 	MakeScoreText(textColor);
+	MakeTimeText(textColor);
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 
 //	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
@@ -34,6 +36,7 @@ void VictoryState::loadQuitMenu(){
 	SDL_RenderCopy(renderer, nextTexture, nullptr, &nextRect);
 	SDL_RenderCopy(renderer, victoryTitleTexture, nullptr, &victoryTitleRect);
 	SDL_RenderCopy(renderer, scoreTexture, nullptr, &scoreRect);
+	SDL_RenderCopy(renderer, timeTexture, nullptr, &timeRect);
 }
 
 // Initialization ++
@@ -103,6 +106,16 @@ void VictoryState::MakeScoreText(SDL_Color color){
 	scoreRect.x = 15;
 	scoreRect.y = quitRect.y + quitRect.h + 40;
 	pos[3] = scoreRect;
+}
+void VictoryState::MakeTimeText(SDL_Color color){
+	string string = "You played " + to_string(time.at(0)) + " minutes and " + to_string(time.at(1)) + " seconds so far!";
+	SDL_Surface* time = TTF_RenderText_Blended(textFont, string.c_str(), color);
+	timeTexture = SurfaceToTexture(time);
+
+	SDL_QueryTexture(timeTexture, NULL, NULL, &timeRect.w, &timeRect.h);
+	timeRect.x = 15;
+	timeRect.y = scoreRect.y + scoreRect.h + 40;
+	pos[4] = timeRect;
 }
 
 
@@ -277,8 +290,12 @@ void VictoryState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _event
 	//std::cout << "Key events not implemented yet";
 }
 
+void VictoryState::HandleTextInputEvents(SDL_Event event){
+
+}
+
 void VictoryState::Update(float dt, float manipulatorSpeed){
-	//nothing to see here, move on
+
 }
 
 void VictoryState::Draw(float dt, float manipulatorSpeed){

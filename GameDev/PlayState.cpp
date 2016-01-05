@@ -32,11 +32,14 @@ void PlayState::InitStartLevel(int lvl){
 }
 
 void PlayState::GameOver(){
+	//SoundBank::GetInstance()->StopMusic(); //not needed
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
 	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
 
 void PlayState::Victory(){
 	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
 	gsm->CreateGameState(GameStateType::VictoryState,0);
 }
 
@@ -249,8 +252,11 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	}
 }
 
-void PlayState::Update(float dt, float manipulatorSpeed)
-{
+void PlayState::HandleTextInputEvents(SDL_Event event) {
+
+}
+
+void PlayState::Update(float dt, float manipulatorSpeed) {
 	accumulatedDtWeapon += dt; //accumulate Dt
 	currentManipulatorSpeed = manipulatorSpeed;
 
@@ -278,15 +284,22 @@ void PlayState::SetCurrentLevel(Level* lvl)
 		delete currentLevel;
 		currentLevel = nullptr;
 	}
-	this->currentLevel = lvl;
 
+	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
 	//Note CurrentLevel is now new level
+
 	this->currentLevel->Init(bf);
+	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
+
 	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
 	this->hud->SetTimer(currentLevel->GetTimer());
+
 }
 
 

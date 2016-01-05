@@ -262,14 +262,29 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
-    <ClCompile Include="GameSpeedManipulator.cpp">
-      <Filter>Source Files\Controller\Services</Filter>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMapping.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadedLevel.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionFilterContainer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FPS.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionFilterContainer.cpp">
-      <Filter>Source Files\Model\Entity</Filter>
+    <ClCompile Include="GameSpeedManipulator.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreConfig.cpp">
+      <Filter>Source Files\Model\SettingsConfig</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreMenu.cpp">
+      <Filter>Source Files\View\Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -552,23 +567,44 @@
     <ClInclude Include="HUD.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="FramesPerSecond.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
     <ClInclude Include="Utitilies.h">
       <Filter>Header Files\Model\Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
-    <ClInclude Include="GameSpeedManipulator.h">
+    <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMapping.h">
+      <Filter>Header Files\Model\SettingsConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
       <Filter>Header Files\Controller\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadedLevel.h">
+      <Filter>Header Files\Model\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionFilterContainer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FPS.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
+    <ClInclude Include="GameSpeedManipulator.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreConfig.h">
+      <Filter>Header Files\Model\SettingsConfig</Filter>
+    </ClInclude>
     <ClInclude Include="CollisionType.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionFilterContainer.h">
-      <Filter>Header Files\Model\Entity</Filter>
+    <ClInclude Include="HighscoreMenu.h">
+      <Filter>Header Files\View\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

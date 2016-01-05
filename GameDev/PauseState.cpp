@@ -144,6 +144,12 @@ void PauseState::Update(float dt, float manipulatorSpeed){
 
 }
 
+void PauseState::HandleTextInputEvents(SDL_Event event){
+
+}
+
+
+
 void PauseState::updateMenu(MenuEnum menu){
 	switch (menu)
 	{
