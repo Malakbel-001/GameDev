@@ -98,11 +98,6 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 				dir = true;
 			}
 
-			/*float xPos = actor->GetBody()->GetWorldCenter().x;
-			if (vec.x > 0) {
-
-			}*/
-
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, 
 				actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
@@ -111,13 +106,9 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 				vec.x = 0;
 				vec.y = 0;
 			}
-
-			std::cout << "true" << std::endl;
 			return true;
 		}
 	}
-
-	std::cout << "false" << std::endl;
 	return false;
 }
 

@@ -27,8 +27,6 @@ protected:
 	Actor* actor;
 	int ammo;
 	float fireSpeed;
-	//float timecounter;
-	//float accumulatorDt;
 	b2Vec2 vec;
 	b2Vec2 defaultShootingDirection;
 	int maxAmmo;
