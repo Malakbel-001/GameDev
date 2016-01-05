@@ -1,19 +1,19 @@
 #include "OptionMenu.h"
 #include "MenuState.h"
 #include "PauseState.h"
-OptionMenu::OptionMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont, ParallaxBackground* parallaxBackground)
+OptionMenu::OptionMenu(MenuState* _menu, SDL_Renderer* _renderer, TTF_Font* _textfont, TTF_Font* _titlefont, ParallaxBackground* _parallaxBackground)
 {
-	this->mainMenu = menu;
+	this->mainMenu = _menu;
 
-	InitClass(renderer, textFont, titleFont, parallaxBackground);
+	InitClass(_renderer, _textfont, _titlefont, _parallaxBackground);
 }
 
-OptionMenu::OptionMenu(PauseState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont, ParallaxBackground* parallaxBackground)
+OptionMenu::OptionMenu(PauseState* _menu, SDL_Renderer* _renderer, TTF_Font* _textfont, TTF_Font* _titlefont, ParallaxBackground* _parallaxBackground)
 {
 	mainMenu = nullptr;
-	this->pauseMenu = menu;
+	this->pauseMenu = _menu;
 
-	InitClass(renderer, textFont, titleFont, parallaxBackground);
+	InitClass(_renderer, _textfont, _titlefont, _parallaxBackground);
 }
 
 void OptionMenu::InitClass(SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont, ParallaxBackground* parallaxBackground){
