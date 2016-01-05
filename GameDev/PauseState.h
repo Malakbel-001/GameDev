@@ -155,13 +155,6 @@ public:
 
 	virtual ~PauseState();
 
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
-
 	void updateMenu(MenuEnum);
 
 };

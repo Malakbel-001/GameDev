@@ -58,12 +58,6 @@ public:
 
 	virtual ~GameOverState();
 
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
 	void Highlight(int);
 	void MakeBackToMainText(SDL_Color);
 	void MakeGameOverTitle(SDL_Color);
@@ -74,4 +68,6 @@ private:
 	vector<SDL_Rect> pos;
 	int hoverX;
 	int hoverY;
+
+	ParallaxBackground* parallaxBackground;
 };

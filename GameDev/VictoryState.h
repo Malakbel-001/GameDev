@@ -64,12 +64,6 @@ public:
 
 	virtual ~VictoryState();
 
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
 	void Highlight(int);
 	void MakeNextLevelText(SDL_Color);
 	void MakeQuitText(SDL_Color);

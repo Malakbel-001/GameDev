@@ -288,8 +288,7 @@ void VictoryState::Update(float dt){
 
 void VictoryState::Draw(float dt){
 	SDL_RenderClear(renderer);
-
-	background.render(renderer, 0, 0,0, &backgroundRect);
+	parallaxBackground->Draw();
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
 }
