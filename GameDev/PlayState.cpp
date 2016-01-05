@@ -106,7 +106,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_a:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
 					currentLevel->GetPlayer()->SetFlipped(true);
-					x = -30;
+					x = -25;
 
 					break;
 				case SDLK_s:
@@ -115,7 +115,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_d:
 					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
 					currentLevel->GetPlayer()->SetFlipped(false);
-					x = 30;
+					x = 25;
 					break;
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
@@ -125,19 +125,19 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					}
 					break;
 				case SDLK_UP:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-50);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-100);
 					break;
 
 				case SDLK_DOWN:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+50);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+100);
 					break;
 
 				case SDLK_LEFT:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(-50);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(-100);
 					break;
 
 				case SDLK_RIGHT:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+50);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+100);
 					break;
 
 				case SDLK_1:
@@ -198,27 +198,27 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
 					break;
 				case SDLK_UP:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == -50){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == -100){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
 					}
 
 					break;
 				case SDLK_DOWN:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == 50){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == 100){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
 					}
 				
 					break;
 
 				case SDLK_LEFT:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -50){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -100){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
 					}
 
 					break;
 
 				case SDLK_RIGHT:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 50 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 100 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
 					}
 
@@ -263,7 +263,7 @@ void PlayState::Draw(float dt, float manipulatorSpeed)
 
 	currentLevel->GetParallaxBackGround()->Draw();
 	currentLevel->GetDrawableContainer()->Draw(dt, manipulatorSpeed);
-	hud->Draw(dt);
+	hud->Draw(dt, manipulatorSpeed);
 }
 
 Level* PlayState::GetCurrentLevel()

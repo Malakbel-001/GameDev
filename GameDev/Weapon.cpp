@@ -90,8 +90,6 @@ float Weapon::GetAngle(){
 	return angle;
 }
 bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed){
-	std::cout << "accumulatedDt: " << accumulatedDt << std::endl;
-	std::cout << "fspeed: " << (fireSpeed / manipulatorSpeed) << std::endl;
 	if (accumulatedDt > (fireSpeed / manipulatorSpeed)) {
 		if (ammo > 0){
 			bool dir = false;
