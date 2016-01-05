@@ -22,7 +22,6 @@ void VictoryState::Init(GameStateManager *gsm){
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::YOU);*/
 	//SDL_Delay(2000);
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
-	Update(0);
 }
 
 VictoryState::VictoryState()
@@ -173,12 +172,11 @@ void VictoryState::SetupRenderer()
 	// Set size of renderer to the same as window
 	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
-	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "menu.jpg");
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	parallaxBackground = new ParallaxBackground(gsm->GetBehaviour()->GetRenderer(), 1);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
 
@@ -295,19 +293,13 @@ void VictoryState::HandleTextInputEvents(SDL_Event event){
 
 }
 
-void VictoryState::Update(float dt){
-	/*while (!quit){
+void VictoryState::Update(float dt, float manipulatorSpeed){
 
-	HandleEvents();
-
-	Draw();
-	}*/
 }
 
-void VictoryState::Draw(){
+void VictoryState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
-
-	background.render(renderer, 0, 0,0, &backgroundRect);
+	parallaxBackground->Draw();
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
 }

@@ -9,7 +9,10 @@
 class ParallaxBackground {
 	private:
 		SDL_Renderer* renderer;
-		Camera* camera;
+
+		Camera* camera;	//follow camera
+		float autoAdd;	//autoscroll
+
 		std::vector<LayerContainer*> layerContainers;
 
 		int* screenWidth;
@@ -19,8 +22,11 @@ class ParallaxBackground {
 
 		bool wasFullScreen; //was before
 
+		void Initialize(SDL_Renderer*);
+
 	public:
 		ParallaxBackground(SDL_Renderer*, Camera*);
+		ParallaxBackground(SDL_Renderer*, float _autoAdd);
 		~ParallaxBackground();
 
 		void InitializeFixXPos();

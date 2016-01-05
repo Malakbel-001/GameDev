@@ -19,16 +19,14 @@ void MenuState::Init(GameStateManager *gsm){
 	}
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT2);
 	//menuState = mainMenu;
-	cout << "MenuState \n";
 	
 	mainMenu = new MainMenu(this, renderer, textFont, titleFont);
 	helpMenu = new HelpMenu(this, renderer, textFont, titleFont);
 	creditMenu = new CreditMenu(this, renderer, textFont, titleFont);
-	optionMenu = new OptionMenu(this, renderer, textFont, titleFont);
+	optionMenu = new OptionMenu(this, renderer, textFont, titleFont, parallaxBackground);
 	playMenu = new PlayMenu(this, renderer, textFont, titleFont);
 	highscoreMenu = new HighscoreMenu(this, renderer, textFont, titleFont);
 	currentMenu = mainMenu;
-	Update(0);
 }
 
 MenuState::MenuState()
@@ -111,12 +109,11 @@ void MenuState::SetupRenderer()
 	// Set size of renderer to the same as window
 	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
-	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "menu.jpg");
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	parallaxBackground = new ParallaxBackground(gsm->GetBehaviour()->GetRenderer(), 1);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
 
@@ -127,6 +124,7 @@ MenuState::~MenuState()
 	delete creditMenu;
 	delete optionMenu;
 	delete playMenu;
+	delete parallaxBackground;
 	delete highscoreMenu;
 }
 
@@ -157,8 +155,8 @@ void MenuState::HandleTextInputEvents(SDL_Event event){
 
 }
 
-void MenuState::Update(float dt){
-
+void MenuState::Update(float dt, float manipulatorSpeed){
+	
 }
 
 void MenuState::updateMenu(MenuEnum menu){
@@ -199,9 +197,9 @@ void MenuState::updateMenu(MenuEnum menu){
 		break;
 	}
 }
-void MenuState::Draw(){
+void MenuState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
-	background.render(renderer, 0, 0,0, &backgroundRect);
+	parallaxBackground->Draw();
 	currentMenu->Draw();
 	SDL_RenderPresent(renderer);
 }

@@ -67,7 +67,7 @@ public:
 	std::vector<SDL_Rect> getTileCrops();
 	
 	void Draw();
-	void Update(float dt);
+	void Update(float dt, float manipulatorSpeed);
 	void GameOver();
 	void Victory();
 	virtual b2World* GetWorld();

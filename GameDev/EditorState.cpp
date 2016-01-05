@@ -117,18 +117,18 @@ void EditorState::HandleTextInputEvents(SDL_Event event) {
 	//new stuff hmm
 }
 
-void EditorState::Update(float dt) {
+void EditorState::Update(float dt, float gameSpeedManipulator) {
 	//don't know what to update
 }
 
-void EditorState::Draw() {
+void EditorState::Draw(float dt, float gameSpeedManipulator) {
 	//display current level
 	if (newLevel->GetParallaxBackGround()) {
 		newLevel->GetParallaxBackGround()->Draw();
 	}
 
 	if (newLevel->GetDrawableContainer()) {
-		newLevel->GetDrawableContainer()->Draw();
+		newLevel->GetDrawableContainer()->Draw(dt, gameSpeedManipulator);
 	}
 
 	//no HUD at the moment
@@ -138,7 +138,7 @@ void EditorState::Draw() {
 	//selectedEntity->SetXpos(static_cast<float>(hoverX)); //cast to float
 	//selectedEntity->SetYpos(static_cast<float>(hoverY)); //cast to float
 
-	editorDrawableContainer->Draw();
+	editorDrawableContainer->Draw(dt, gameSpeedManipulator);
 }
 
 void EditorState::SetSelectedEntity() {

@@ -34,8 +34,8 @@ class EditorState :	public IGameState {
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void HandleTextInputEvents(SDL_Event event);
-		void Update(float);
-		void Draw();
+		void Update(float dt, float gameSpeedManipulator);
+		void Draw(float dt, float gameSpeedManipulator);
 
 	private:
 		void SetSelectedEntity();

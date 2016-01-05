@@ -1,6 +1,20 @@
 #include "ParallaxBackground.h"
 
 ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera) {
+	autoAdd = 0;
+	camera = _camera;
+
+	Initialize(_renderer);
+}
+
+ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, float _autoAdd) {
+	autoAdd = _autoAdd;
+	camera = nullptr;
+
+	Initialize(_renderer);
+}
+
+void ParallaxBackground::Initialize(SDL_Renderer* _renderer) {
 	renderer = _renderer;
 
 	screenWidth = new int;
@@ -8,8 +22,6 @@ ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera)
 	//set screenWidth & screenHeight
 	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
 	wasFullScreen = Utilities::IsFullScreen();
-
-	camera = _camera;
 
 	layerContainers = std::vector<LayerContainer*>();
 }
@@ -46,9 +58,16 @@ void ParallaxBackground::Draw() {
 	//IfScreenSizeChangedLoadAgainLayerContainers();
 
 	float drawPosition = 0;
-
-	float addX = camera->GetX() - previousXPos;
+	float addX;
 	float modAddX;
+
+	//when camera exists, use camera, else use autoscroll
+	if (camera)	{ 
+		addX = camera->GetX() - previousXPos; 
+	}
+	else { 
+		addX = autoAdd; 
+	}
 
 	//loop and draw layers
 	for (auto layerContainer : layerContainers) {
@@ -69,7 +88,8 @@ void ParallaxBackground::Draw() {
 		}
 	}
 
-	previousXPos = camera->GetX();
+	if (camera)
+		previousXPos = camera->GetX();
 }
 
 //if screen changed, reload all layerContainers

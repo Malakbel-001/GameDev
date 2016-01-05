@@ -61,18 +61,14 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleTextInputEvents(SDL_Event event);
+	void Update(float dt, float manipulatorSpeed);
+	void Draw(float dt, float manipulatorSpeed);
 	void Update(float);
 	void Draw();
 	void Background();
 
 	virtual ~VictoryState();
 
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
 	void Highlight(int);
 	void MakeNextLevelText(SDL_Color);
 	void MakeQuitText(SDL_Color);
@@ -88,5 +84,7 @@ private:
 	int hoverX;
 	int hoverY;
 	int score;
+
+	ParallaxBackground* parallaxBackground;
 	vector<Uint32> time;
 };

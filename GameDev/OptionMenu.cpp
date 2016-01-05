@@ -1,37 +1,30 @@
 #include "OptionMenu.h"
 #include "MenuState.h"
 #include "PauseState.h"
-OptionMenu::OptionMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
+OptionMenu::OptionMenu(MenuState* _menu, SDL_Renderer* _renderer, TTF_Font* _textfont, TTF_Font* _titlefont, ParallaxBackground* _parallaxBackground)
 {
-	settingsConfig = SettingsConfig();
-	LoadSettings(settingsConfig.LoadSettings());
-	textColor = { 255, 255, 255, 255 }; // white;
-	hoverTextColor = { 255, 0, 0, 255 }; // red
-	this->mainMenu = menu;
-	this->renderer = renderer;
-	this->textFont = textfont;
-	this->titleFont = titlefont;
-	MakeBackToMain(textColor);
-	MakeSfxOn(textColor);
-	MakeSfxOff(textColor);
-	MakeMusicOn(textColor);
-	MakeMusicOff(textColor);
-	MakeFullScreenOn(textColor);
-	MakeFullScreenOff(textColor);
-	MakeOptionTitle(textColor);
+	this->mainMenu = _menu;
+
+	InitClass(_renderer, _textfont, _titlefont, _parallaxBackground);
 }
 
-OptionMenu::OptionMenu(PauseState* menu, SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont)
+OptionMenu::OptionMenu(PauseState* _menu, SDL_Renderer* _renderer, TTF_Font* _textfont, TTF_Font* _titlefont, ParallaxBackground* _parallaxBackground)
 {
-	settingsConfig = SettingsConfig();
-	LoadSettings(settingsConfig.LoadSettings());
 	mainMenu = nullptr;
+	this->pauseMenu = _menu;
+
+	InitClass(_renderer, _textfont, _titlefont, _parallaxBackground);
+}
+
+void OptionMenu::InitClass(SDL_Renderer* renderer, TTF_Font* textfont, TTF_Font* titlefont, ParallaxBackground* parallaxBackground){
+	settingsConfig = SettingsConfig();
+	LoadSettings(settingsConfig.LoadSettings());
 	textColor = { 255, 255, 255, 255 }; // white;
 	hoverTextColor = { 255, 0, 0, 255 }; // red
-	this->pauseMenu = menu;
 	this->renderer = renderer;
 	this->textFont = textfont;
 	this->titleFont = titlefont;
+	this->parallaxBackground = parallaxBackground;
 	MakeBackToMain(textColor);
 	MakeSfxOn(textColor);
 	MakeSfxOff(textColor);
@@ -42,8 +35,8 @@ OptionMenu::OptionMenu(PauseState* menu, SDL_Renderer* renderer, TTF_Font* textf
 	MakeOptionTitle(textColor);
 }
 
-void OptionMenu::Init(){
-
+void OptionMenu::Init() {
+	//empty
 }
 
 void OptionMenu::MakeBackToMain(SDL_Color color){
@@ -313,6 +306,8 @@ void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 						SoundBank::GetInstance()->IsEnabledSFX(),
 						(flags & SDL_WINDOW_FULLSCREEN_DESKTOP) != SDL_WINDOW_FULLSCREEN_DESKTOP);
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+
+					parallaxBackground->CheckIfScreenSizeChanged();
 					break;
 				}
 			}
@@ -323,4 +318,12 @@ void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 
 OptionMenu::~OptionMenu()
 {
+	/*SDL_DestroyTexture(backToMainTexture);
+	SDL_DestroyTexture(optionsTitleTexture);
+	SDL_DestroyTexture(sfxOnTexture);
+	SDL_DestroyTexture(sfxOffTexture);
+	SDL_DestroyTexture(musicOnTexture);
+	SDL_DestroyTexture(musicOffTexture);
+	SDL_DestroyTexture(fullScreenOnTexture);
+	SDL_DestroyTexture(fullScreenOffTexture);*/
 }

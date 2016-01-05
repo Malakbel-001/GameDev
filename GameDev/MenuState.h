@@ -7,6 +7,7 @@
 #include "PlayState.h"
 #include "SoundBank.h"
 #include "MenuBase.h"
+#include "ParallaxBackground.h"
 //#include "HelpMenu.h"
 #include "SettingsConfig.h"
 class MainMenu;
@@ -29,10 +30,12 @@ private:
 	CreditMenu* creditMenu;
 	OptionMenu* optionMenu;
 	PlayMenu* playMenu;
+	
+	ParallaxBackground* parallaxBackground;
+	
 	HighscoreMenu* highscoreMenu;
 public:
 	MenuState();
-	
 
 	void Highlight(int);
 
@@ -64,19 +67,12 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleTextInputEvents(SDL_Event event);
-	void Update(float);
-	void Draw();
+	void Update(float dt, float manipulatorSpeed);
+	void Draw(float dt, float manipulatorSpeed);
 	void Background();
 
 	virtual ~MenuState();
-
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
-
+	
 	void updateMenu(MenuEnum);
 	
 private:
