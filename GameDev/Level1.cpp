@@ -100,9 +100,9 @@ Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
+	wep->Pickup(player, b2Vec2(50, 0));
 	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
-	shot->Pickup(player, b2Vec2(1000, 0));
+	shot->Pickup(player, b2Vec2(50, 0));
 	player->AddWeapon(wep);
 	player->AddWeapon(shot);
 

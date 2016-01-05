@@ -125,19 +125,19 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					}
 					break;
 				case SDLK_UP:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-1000);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-50);
 					break;
 
 				case SDLK_DOWN:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+1000);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+50);
 					break;
 
 				case SDLK_LEFT:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(-1000);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(-50);
 					break;
 
 				case SDLK_RIGHT:
-					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+1000);
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+50);
 					break;
 
 				case SDLK_1:
@@ -198,27 +198,27 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
 					break;
 				case SDLK_UP:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == -1000){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == -50){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
 					}
 
 					break;
 				case SDLK_DOWN:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == 1000){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == 50){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
 					}
 				
 					break;
 
 				case SDLK_LEFT:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -1000){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -50){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
 					}
 
 					break;
 
 				case SDLK_RIGHT:
-					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 1000 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 50 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
 						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
 					}
 
