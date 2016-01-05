@@ -17,6 +17,23 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	entities = new std::vector<Entity*>();
 	parallaxBackground = nullptr;
 }
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+{
+	entityFactory = nullptr;
+	player = nullptr;
+	startXpos = 100;
+	startYpos = 10;
+	actors = new std::vector<Actor*>();
+	world = new b2World(vec);
+	contact = new ContactListener();
+	world->SetContactListener(contact);
+	drawableContainer = new DrawableContainer();
+	entities = new std::vector<Entity*>();
+
+
+}
+
 
 //Always perform these procedures
 void Level::Init(BehaviourFactory* bf) { //TODO get this to work
@@ -25,6 +42,7 @@ void Level::Init(BehaviourFactory* bf) { //TODO get this to work
 	CreateNPCs();
 	CreateTimer();
 	CreateParallaxBackground(bf);
+
 }
 
 Level::~Level()
@@ -57,18 +75,24 @@ Level::~Level()
 		delete timer;
 }
 
-void Level::Update(float dt)
+std::vector<Actor*>* Level::GetActors(){
+	return actors;
+}
+std::vector<Entity*>* Level::GetEntities(){
+	return entities;
+}
+void Level::Update(float dt, float manipulatorSpeed)
 {
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
 
 	//The all important World Step for Box2D
-	world->Step((dt / 1000), 5, 5);
+	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
 
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
-
+	//	LevelFactory::SaveLevel(this,"test");
 		GameOver();
 	}
 	else {
@@ -110,9 +134,10 @@ void Level::Update(float dt)
 			//this is so the bullets always keep flying (I guess - MJ)
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				b2Vec2 vector = actors->operator[](x)->GetDirection();
-				vector.x *= dt / 16;
-				std::cout << vector.x << std::endl;
-				vector.y *= dt / 16;
+
+				vector.x *= manipulatorSpeed*0.5; //0.5 because it seems more reasonable
+				vector.y *= manipulatorSpeed*0.5; //0.5 because it seems more reasonable
+
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
 		}

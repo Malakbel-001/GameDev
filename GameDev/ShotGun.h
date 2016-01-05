@@ -8,7 +8,7 @@ class ShotGun :
 public:
 	ShotGun();
 	~ShotGun();
-	virtual bool Shoot(EntityFactory* eF, float accumulatedDt);
+	virtual bool Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed);
 
 	Weapon* EmptyClone();
 

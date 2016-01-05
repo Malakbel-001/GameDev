@@ -20,6 +20,17 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::SNOWBOSS, new Npc() },
 	};
 
+	//collision filtering flags
+	entityCollisionRegistery = std::unordered_map<EntityType, CollisionType> {
+		{ EntityType::PLAYER, CollisionType::ALLY },
+
+		{ EntityType::PLANT, CollisionType::ENEMY },
+		{ EntityType::PLANTBOSS, CollisionType::ENEMY },
+		{ EntityType::PINGUIN, CollisionType::ENEMY },
+		{ EntityType::SNOWMAN, CollisionType::ENEMY },
+		{ EntityType::SNOWBOSS, CollisionType::ENEMY },
+	};
+
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
 		{ EntityType::ENTITY, new Entity() },	
 		{ EntityType::GROUND, new Ground() },
@@ -161,7 +172,6 @@ EntityFactory::~EntityFactory()
 	{
 		delete it->second;
 	}
-	
 	for (auto it = entityRegistery.begin(); it != entityRegistery.end(); ++it)
 	{
 		delete it->second;
@@ -174,7 +184,10 @@ EntityFactory::~EntityFactory()
 	{
 		delete it->second;
 	}
-
+	for (auto it = npcStatsRegistery.begin(); it != npcStatsRegistery.end(); ++it) 
+	{
+		delete it->second;
+	}
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
@@ -249,12 +262,43 @@ Player* EntityFactory::CreatePlayer(int _hitdmg, int _health, float x, float y, 
 	return _player;
 }
 
-Bullet* EntityFactory::CreateBullet(float x, float y,int width,int height, int dmg,b2Vec2 direction, EntityType type){
+//Creates Bullet
+//ally -> when the Bullet is fired from an Ally, which will only hit the enemy
+//type -> refers to the Bullet EntityType
+//b2Vec2 direction -> direction the Bullet flies including speed
+Bullet* EntityFactory::CreateBullet(float x, float y, int width, int height, int dmg, 
+		b2Vec2 direction, uint16 categoryBits, EntityType type){
+
 	Bullet* bullet = bulletRegistery.at(type)->EmptyClone();
-	bullet->InitActor(CreateBody(x*10 -10, y*10 -10, height, width,500, type), dmg,1, width, height, type, bf, drawContainer);
+	b2Body* b2body = CreateBody(x * 10 - 10, y * 10 - 10, height, width, 500, type);
+	//b2body->SetGravityScale(0); //this would set the Bullet to gravity 0, probably. Might be useful
+	//bodyDef.bullet = true; //look at the box2d manual. Might be useful
+
+	b2Filter collisionFilter = b2body->GetFixtureList()->GetFilterData();
+
+	//collision filtering, bullet collides with stuff
+	if (categoryBits == (uint16)CollisionType::ALLY) {
+		//this bullet is now classified as Ally
+		collisionFilter.categoryBits = (uint16)CollisionType::ALLYBULLET;
+		//and will only collide with OTHER
+		collisionFilter.maskBits = (uint16)CollisionType::OTHER | (uint16)CollisionType::ENEMY;
+		//collisionFilter.maskBits = (uint16)CollisionType::ENEMY; //this for example, makes the bullets fly through walls =D
+	}
+	else {
+		//this bullet is now classified as EnemyBullet
+		collisionFilter.categoryBits = (uint16)CollisionType::ENEMYBULLET;
+		//and will only collide with OTHER
+		collisionFilter.maskBits = (uint16)CollisionType::OTHER | (uint16)CollisionType::ALLY;
+	}
+
+	//adds the Collision Filtering to the Bullet body
+	b2body->GetFixtureList()->SetFilterData(collisionFilter);
+
+	bullet->InitActor(b2body, dmg, 1, width, height, type, bf, drawContainer);
 	bullet->SetDirection(direction);
+
 	actor->push_back(bullet);
-	 return bullet;
+	return bullet;
 }
 
 b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type){
@@ -275,10 +319,18 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 
 	boxFixtureDef.density = den;
 
-	boxFixtureDef.friction = 0.1;
+	//categorising the body in a collision filter
+	if (entityCollisionRegistery.find(type) == entityCollisionRegistery.end())
+		boxFixtureDef.filter.categoryBits = (uint16)CollisionType::OTHER;
+	else //FYI: define collision types for entities in entityCollisionRegistery
+		boxFixtureDef.filter.categoryBits = (uint16)entityCollisionRegistery.at(type);
+
+	//friction is applied when an Entity glides on the ground. More friction -> entity slows down faster
+	boxFixtureDef.friction = 10; //changed - old value:0.1 -> new value: 10
+
 	if (restitutionRegistery.find(type) == restitutionRegistery.end())
 		boxFixtureDef.restitution = 0.7;
-	else //define other restitution in the restitutionRegistery
+	else //FYI: define other restitution in the restitutionRegistery
 		boxFixtureDef.restitution = restitutionRegistery.at(type);
 
 	b2BodyDef bodydef = bodyRegistery.at(type);

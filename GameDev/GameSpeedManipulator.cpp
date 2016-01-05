@@ -70,8 +70,12 @@ void GameSpeedManipulator::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>
 }
 
 void GameSpeedManipulator::Draw() {
+	std::stringstream stream;
+	stream << std::fixed << std::setprecision(2) << manipulator;
+	std::string display = stream.str();
+
 	if (run) {
-		Utilities::DrawTextHelper(renderer, font, std::to_string(manipulator), 100, 10, Utilities::GetColor(255, 0, 0, 255), *screenWidth);
+		Utilities::DrawTextHelper(renderer, font, display + "X", 100, 10, Utilities::GetColor(255, 0, 0, 255), *screenWidth);
 	}
 }
 

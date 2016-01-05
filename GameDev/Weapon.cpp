@@ -89,8 +89,8 @@ float Weapon::GetAngle(){
 	
 	return angle;
 }
-bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt){
-	if (accumulatedDt > fireSpeed){ //HERE!
+bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed){
+	if (accumulatedDt > (fireSpeed / manipulatorSpeed)) {
 		if (ammo > 0){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
@@ -98,19 +98,17 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt){
 				dir = true;
 			}
 
-
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, 
+				actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
 				vec.x = 0;
 				vec.y = 0;
 			}
-
 			return true;
 		}
 	}
-
 	return false;
 }
 

@@ -57,7 +57,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)Libraries\SDL2-2.0.3\lib\x86;$(ProjectDir)Libraries\SDL2_mixer-2.0.0\lib\x86;$(ProjectDir)Libraries\Box2D;$(ProjectDir)Libraries\SDL2_image-2.0.0\lib\x86;$(projectDir)Libraries\SDL2_ttf-2.0.12\lib\x86;$(projectDir)Libraries\rapidxml-1.13;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_mixer.lib;SDL2_image.lib;Box2D.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
@@ -107,9 +107,14 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="CollisionFilterContainer.cpp" />
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="GameSpeedManipulator.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
+    <ClCompile Include="KeyMapping.cpp" />
+    <ClCompile Include="LoadedLevel.cpp" />
+    <ClCompile Include="HighscoreConfig.cpp" />
+    <ClCompile Include="HighscoreMenu.cpp" />
     <ClCompile Include="LayerContainer.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="LevelConfig.cpp" />
@@ -127,6 +132,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlantBossSprite.cpp" />
     <ClCompile Include="PlayerDrawableBehaviour.cpp" />
     <ClCompile Include="PlayMenu.cpp" />
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="SettingsConfig.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="CreditMenu.cpp" />
@@ -199,11 +205,20 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CheatLoadDrawableBehaviour.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="CollisionFilterContainer.h" />
+    <ClInclude Include="CollisionType.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameSpeedManipulator.h" />
+    <ClInclude Include="FramesPerSecond.h" />
+    <ClInclude Include="HighscoreConfig.h" />
+    <ClInclude Include="HighscoreMenu.h" />
+    <ClInclude Include="Score.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Utitilies.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="KeyMapping.h" />
+    <ClInclude Include="LoadedLevel.h" />
     <ClInclude Include="LayerContainer.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="LevelConfig.h" />

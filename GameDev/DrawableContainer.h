@@ -15,12 +15,12 @@ public:
 	virtual ~DrawableContainer();
 		
 	void Add(DrawableBehaviour* behaviour);
-	void Draw(float dt);
+	void Draw(float dt, float manipulatorSpeed);
 	void Delete(Entity* behaviour);
 private:
 	vector<DrawableBehaviour*> behaviours;
 
-	bool CycleFrames(float dt);
+	bool CycleFrames(float dt, float manipulatorSpeed);
 	//target FPS = 16ms, (60fps) times 3 for smooth amount of cycling on the frames
 	const float dtCycleFrame = 3 * 16;
 	float dtAccumulator;

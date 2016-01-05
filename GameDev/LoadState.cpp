@@ -120,18 +120,22 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 }
 
 void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
-	//temp nothing
+	
 }
 
-void LoadState::Update(float dt) {
-	//nope
+void LoadState::HandleTextInputEvents(SDL_Event event){
+
 }
 
-void LoadState::Draw(float dt) {
+void LoadState::Update(float dt, float manipulatorSpeed) {
+	
+}
+
+void LoadState::Draw(float dt, float manipulatorSpeed) {
 	//temp bg
 	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, &backgroundRect); //TEMP!
 
-	drawableContainer->Draw(dt);
+	drawableContainer->Draw(dt, manipulatorSpeed);
 
 	if (!loadedPlay) {	//Loading...
 		SDL_RenderCopy(renderer, loadingTexture, nullptr, &loadingRect);
