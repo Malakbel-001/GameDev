@@ -49,7 +49,10 @@ void Camera::Init(double _levelWidth, double _levelHeight) {
 	lvlHeight = _levelHeight;
 }
 
+void Camera::SetX(double _x) {
+	camX = _x;
+}
 
-
-
-
+void Camera::SetY(double _y) {
+	camY = _y;
+}

@@ -9,6 +9,8 @@ class EditorState :	public IGameState {
 		BehaviourFactory* behaviourFactory;
 		Camera* manualCamera;
 
+		Uint32 lockButtonTicks;
+
 		//not sure if to save this
 		int hoverX;
 		int hoverY;

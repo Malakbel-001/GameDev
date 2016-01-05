@@ -13,6 +13,7 @@ class DrawableContainer :
 public:
 	DrawableContainer();
 	virtual ~DrawableContainer();
+	void Cleanup();
 		
 	void Add(DrawableBehaviour* behaviour);
 	void Draw(float dt, float manipulatorSpeed);

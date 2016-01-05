@@ -2,9 +2,11 @@
 
 EditorState::EditorState() {
 	newLevel = LevelFactory::GetEmptyLevel();
+	
 	editorDrawableContainer = new DrawableContainer();
 	selectedEntity = nullptr;
 	scroll = 0;
+	lockButtonTicks = SDL_GetTicks();
 }
 
 EditorState::~EditorState() {
@@ -74,41 +76,54 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 			switch (it->first) {
 				case SDLK_w: {
 					//move camera up
+					manualCamera->SetY(manualCamera->GetY() + 1);
 					break;
 				}
 				case SDLK_a: {
 					//move camera left
+					manualCamera->SetX(manualCamera->GetX() - 1);
 				}
 				case SDLK_s: {
 					//move camera down
+					manualCamera->SetY(manualCamera->GetY() - 1);
 					break;
 				}
 				case SDLK_d: {
 					//move camera right
+					manualCamera->SetX(manualCamera->GetX() + 1);
 					break;
 				}
 
 				case SDLK_UP: {
-					if (scroll < entityTypeList->size()) {
-						scroll++;
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						if (scroll < entityTypeList->size()) {
+							scroll++;
+						}
+						else {
+							scroll = 0;
+						}
+						SetSelectedEntity();
+						lockButtonTicks = SDL_GetTicks();
 					}
-					else {
-						scroll = 0;
-					}
-					SetSelectedEntity();
 					break;
 				}
 				case SDLK_DOWN: {
-					if (scroll > 0) {
-						scroll--;
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						if (scroll > 0) {
+							scroll--;
+						}
+						else {
+							scroll = entityTypeList->size() - 1;
+						}
+						SetSelectedEntity();
+						lockButtonTicks = SDL_GetTicks();
 					}
-					else {
-						scroll = entityTypeList->size() - 1;
-					}
-					SetSelectedEntity();
 					break;
 				}
 			}
+			std::cout << "camX: " << manualCamera->GetX() << std::endl;
+			std::cout << "camY: " << manualCamera->GetY() << std::endl;
+			std::cout << std::endl;
 		}
 	}
 }
@@ -131,19 +146,24 @@ void EditorState::Draw(float dt, float gameSpeedManipulator) {
 		newLevel->GetDrawableContainer()->Draw(dt, gameSpeedManipulator);
 	}
 
-	//no HUD at the moment
-
 	selectedEntity->SetXpos(0);
 	selectedEntity->SetYpos(0);
+
+	//std::cout << "Ypos: " << selectedEntity->GetYpos() << std::endl;
+
 	//selectedEntity->SetXpos(static_cast<float>(hoverX)); //cast to float
 	//selectedEntity->SetYpos(static_cast<float>(hoverY)); //cast to float
 
 	editorDrawableContainer->Draw(dt, gameSpeedManipulator);
+
+	//no HUD at the moment
 }
 
 void EditorState::SetSelectedEntity() {
+	editorDrawableContainer->Cleanup();
+	
 	if (selectedEntity) {
-		delete selectedEntity; //this one is important probably hehe
+		delete selectedEntity; //this one is important
 		selectedEntity = nullptr; //just in case
 	}
 
