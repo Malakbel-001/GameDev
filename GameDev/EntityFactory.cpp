@@ -184,8 +184,10 @@ EntityFactory::~EntityFactory()
 	{
 		delete it->second;
 	}
-
-	//TODO all dem registeries!
+	for (auto it = npcStatsRegistery.begin(); it != npcStatsRegistery.end(); ++it) 
+	{
+		delete it->second;
+	}
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
