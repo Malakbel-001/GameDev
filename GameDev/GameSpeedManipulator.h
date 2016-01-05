@@ -3,6 +3,8 @@
 #include <SDL.h> //TODO get this outta here probs
 #include "SDL_ttf.h" //maybe this 1, 2
 #include "Utitilies.h"
+#include <sstream>
+#include <iomanip>
 
 class GameSpeedManipulator {
 	private:
