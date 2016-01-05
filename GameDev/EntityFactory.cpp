@@ -137,7 +137,6 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	SnowmanDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef SnowBossDef = b2BodyDef();
-	//SnowBossDef.angle = 0.25f * b2_pi;
 	SnowBossDef.gravityScale = 0.0f;
 	SnowBossDef.fixedRotation = true;
 	SnowBossDef.linearDamping = 0;
@@ -182,7 +181,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 			{ EntityType::APC, new NpcStatsContainer(0, 500, 0, 143, 128) },
 			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
-			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 200, 2500, 120, 122) },
+			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 380, 2500, 120, 122) },
 		};
 }
 

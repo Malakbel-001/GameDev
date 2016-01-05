@@ -105,7 +105,7 @@ void Level::Update(float dt)
 
 				}
 
-				if (actors->operator[](x)->GetType() == EntityType::PLANT){
+				if (actors->operator[](x)->GetType() == EntityType::PLANT || actors->operator[](x)->GetType() == EntityType::PINGUIN || actors->operator[](x)->GetType() == EntityType::SNOWMAN){
 					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
 					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
 					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
