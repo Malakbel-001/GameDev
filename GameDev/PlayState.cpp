@@ -32,13 +32,13 @@ void PlayState::InitStartLevel(int lvl){
 void PlayState::GameOver(){
 	//SoundBank::GetInstance()->StopMusic(); //not needed
 	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
-	gsm->CreatePlayState(0);
+	gsm->CreateGameState(GameStateType::GameOverState);
 }
 
 void PlayState::Victory(){
 	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
 	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
-	gsm->CreatePlayState(0);
+	gsm->CreateGameState(GameStateType::VictoryState);
 }
 
 void PlayState::LoadGame()
@@ -53,7 +53,7 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	gsm->CreatePlayState(0);
+	gsm->CreateGameState(GameStateType::PauseState);
 }
 
 void PlayState::Resume()
