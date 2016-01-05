@@ -25,8 +25,8 @@ void Cannon::Shoot(EntityFactory* eF){
 
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CANNON);
 
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y - 1 + vec.y / 200, 1, 1, 100, vec, EntityType::BULLET);
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y - 3 + vec.y / 200, 1, 1, 100, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 100, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y + 1 + vec.y / 200, 1, 1, 100, vec, EntityType::BULLET);
 			cout << actor->GetBody()->GetWorldCenter().x + vec.x / 200 << endl;
 			cout << actor->GetBody()->GetWorldCenter().y + vec.y / 200 << endl;
 

@@ -17,7 +17,7 @@ void Level3::Init(BehaviourFactory* bf)
 	entityFactory->CreateEntity(1075, 570, 1075, 30, EntityType::DESERTFLOOR);
 	entityFactory->CreateActor(700, 450, EntityType::MECH);
 	entityFactory->CreateActor(1400, 450, EntityType::APC);
-	entityFactory->CreateActor(1200, 450, EntityType::MINIGUNNER);
+	//entityFactory->CreateActor(1200, 450, EntityType::MINIGUNNER);
 }
 
 Level* Level3::CreateLevel()

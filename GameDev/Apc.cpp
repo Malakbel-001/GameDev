@@ -3,7 +3,6 @@
 
 Apc::Apc(EntityFactory* _factory) : Npc(_factory)
 {
-	troopsCount = 0;
 }
 
 
@@ -11,19 +10,24 @@ Apc::~Apc()
 {
 }
 
-int Apc::GetTroopsCount()
+vector<Actor*> Apc::GetTroops()
 {
-	return troopsCount;
+	return passengers;
 }
 
-void Apc::SetTroopsCount(int count)
+void Apc::SetTroops(vector<Actor*> troops)
 {
-	troopsCount = count;
+	passengers = troops;
 }
 
-void Apc::AddTroopsCount()
+void Apc::AddTroops(Actor* passenger)
 {
-	troopsCount = troopsCount++;
+	passengers.push_back(passenger);
+}
+
+void Apc::RemoveTroops(Actor* passenger)
+{
+	passengers.erase(std::remove(passengers.begin(), passengers.end(), passenger), passengers.end());
 }
 
 Actor* Apc::EmptyClone(){

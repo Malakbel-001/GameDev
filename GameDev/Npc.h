@@ -5,8 +5,6 @@ class EntityFactory;
 class Npc :
 	public Actor
 {
-private:
-	int score;
 
 public:
 	Npc(EntityFactory* _factory);
@@ -19,9 +17,15 @@ public:
 	void SetScore(int _score);
 	int GetScore();
 
-	EntityFactory* GetFactory();
-protected:
+	virtual void SetHealth(int _health);
 
+	EntityFactory* GetFactory();
+
+	void SetVehicle(Npc* _vehicle);
+	Npc* GetVehicle();
+protected:
+	Npc* vehicle;
+	int score;
 	EntityFactory* factory;
 };
 

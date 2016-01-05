@@ -7,11 +7,13 @@ public:
 	Apc(EntityFactory* _factory);
 	~Apc();
 
-	int GetTroopsCount();
-	void SetTroopsCount(int count);
-	void AddTroopsCount();
+	vector<Actor*> GetTroops();
+	void SetTroops(vector<Actor*> troops);
+	void AddTroops(Actor* passenger);
+	void RemoveTroops(Actor* passenger);
 	virtual Actor* EmptyClone();
+
 private:
-	int troopsCount;
+	vector<Actor*> passengers;
 };
 

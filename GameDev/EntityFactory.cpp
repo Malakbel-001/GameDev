@@ -190,7 +190,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 			{ EntityType::APC, new NpcStatsContainer(0, 500, 0, 143, 128) },
-			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
+			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 193, 85) },
 			{ EntityType::MINIGUNNER, new NpcStatsContainer(0, 150, 200, 42, 63) },
 		};
 }

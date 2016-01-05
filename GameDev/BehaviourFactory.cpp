@@ -58,7 +58,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	apcSprite->LoadMedia("apc_template.png");
 
 	MechSprite* mechSprite = new MechSprite(renderer);
-	mechSprite->LoadMedia("mech.png");
+	mechSprite->LoadMedia("mech2.png");
 	mechSprite->SetAnimationSet(EntityState::IDLE);
 
 	HealthSprite* healthSprite = new HealthSprite(renderer);
@@ -164,7 +164,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	//level3
 		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
 		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
-		{ EntityType::MECH, new AnimatedDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
+		{ EntityType::MECH, new StaticDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
 		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
 		{ EntityType::MINIGUNNER, new StaticDrawableBehaviour(renderer, minigunnerSprite, screenWidth, screenHeight) },
 	};

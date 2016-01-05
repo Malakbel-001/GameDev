@@ -14,6 +14,7 @@ void PlayerCollidableBehaviour::Hit(CollidableBehaviour* cb){
 	if (cb){
 		switch (cb->GetActor()->GetType()){
 		case EntityType::BULLET:
+			ent->SetHealth(ent->GetHealth() - cb->GetActor()->GetDamage());
 			break;
 		case EntityType::MECH:
 			dynamic_cast<Player*>(ent)->SetVehicle(dynamic_cast<Player*>(cb->GetActor()));
