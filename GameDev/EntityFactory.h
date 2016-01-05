@@ -13,6 +13,8 @@
 #include "Shotgun.h"
 #include "Acorn.h"
 #include "NpcStatsContainer.h"
+#include "CollisionFilterContainer.h"
+#include "CollisionType.h"
 
 class EntityFactory
 {
@@ -40,6 +42,7 @@ private:
 	std::unordered_map<EntityType, Bullet* > bulletRegistery;
 	std::unordered_map<EntityType, NpcStatsContainer*> npcStatsRegistery;
 	std::unordered_map<EntityType, float> restitutionRegistery;
+	std::unordered_map<EntityType, CollisionFilterContainer*> collissionFilterRegistery;
 
 	b2World& world;
 	std::vector<Actor*>* actor;

@@ -100,6 +100,10 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 				dir = true;
 			}
 
+			/*float xPos = actor->GetBody()->GetWorldCenter().x;
+			if (vec.x > 0) {
+
+			}*/
 
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);

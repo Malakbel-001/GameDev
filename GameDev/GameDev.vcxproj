@@ -107,6 +107,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="CollisionFilterContainer.cpp" />
     <ClCompile Include="FPS.cpp" />
     <ClCompile Include="GameSpeedManipulator.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
@@ -199,6 +200,8 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CheatLoadDrawableBehaviour.h" />
     <ClInclude Include="CollidableBehaviour.h" />
     <ClInclude Include="CollidableContainer.h" />
+    <ClInclude Include="CollisionFilterContainer.h" />
+    <ClInclude Include="CollisionType.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameSpeedManipulator.h" />
     <ClInclude Include="Timer.h" />

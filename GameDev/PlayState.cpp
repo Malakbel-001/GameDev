@@ -232,7 +232,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		}
 		
 		if (!jump){
-			if (currentLevel->GetPlayer()->GetState() == EntityState::IDLE) { //TODO not sure, at least fix for now
+			//temporary solution. Makes controlling player lot easier
+			if (currentLevel->GetPlayer()->GetState() == EntityState::IDLE) { 
 				x = 0;
 			}
 			vel.Set(x, y);

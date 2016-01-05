@@ -153,6 +153,16 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::PLAYER, 0.0f }
 		//SnowBoss?
 	};
+
+	//0x0002 = friendly
+	//0x0004 = enemy
+	//friendly+enemy should have colission, friendly+friendly and enemy+enemy should not have colission
+	collissionFilterRegistery = std::unordered_map < EntityType, CollisionFilterContainer* > {
+		//{ EntityType::PLAYER, new CollisionFilterContainer(CollisionType::ALLY, CollisionType::OTHER | CollisionType::ENEMY) }, //friendly
+		//{ EntityType::PLANT, new CollisionFilterContainer(CollisionType::ENEMY, CollisionType::OTHER | CollisionType::ALLY) },
+	};
+
+	
 }
 
 EntityFactory::~EntityFactory()
@@ -175,6 +185,7 @@ EntityFactory::~EntityFactory()
 		delete it->second;
 	}
 
+	//TODO all dem registeries!
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
@@ -275,7 +286,14 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 
 	boxFixtureDef.density = den;
 
-	boxFixtureDef.friction = 0.1;
+	//TODO MAKE THIS WORK!
+	if (collissionFilterRegistery.find(type) != collissionFilterRegistery.end()) {
+		boxFixtureDef.filter.categoryBits = collissionFilterRegistery.at(type)->GetCategoryBits();
+		boxFixtureDef.filter.maskBits = collissionFilterRegistery.at(type)->GetMaskBits();
+	}
+	//else do nothing
+
+	boxFixtureDef.friction = 10; //changed from 0.1 -> 10
 	if (restitutionRegistery.find(type) == restitutionRegistery.end())
 		boxFixtureDef.restitution = 0.7;
 	else //define other restitution in the restitutionRegistery
