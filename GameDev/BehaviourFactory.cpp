@@ -16,6 +16,7 @@
 #include "GunSprite.h"
 #include "CannonshotSprite.h"
 #include "ApcSprite.h"
+#include "MinigunnerSprite.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -88,6 +89,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	DesertGroundSprite* desertgroundSprite = new DesertGroundSprite(renderer);
 	desertgroundSprite->LoadMedia("Desert.png");
 
+	MinigunnerSprite* minigunnerSprite = new MinigunnerSprite(renderer);
+	minigunnerSprite->LoadMedia("trooper_template.png");
+
 	PinguinSprite* pinguinSprite = new PinguinSprite(renderer);
 	pinguinSprite->LoadMedia("pinguin.png");
 	pinguinSprite->SetAnimationSet(EntityState::IDLE);
@@ -130,6 +134,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(bigGroundSprite);
 	sprites.push_back(snowBoss);
 	sprites.push_back(cannon);
+	sprites.push_back(minigunnerSprite);
 
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
@@ -161,6 +166,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
 		{ EntityType::MECH, new AnimatedDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
 		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
+		{ EntityType::MINIGUNNER, new StaticDrawableBehaviour(renderer, minigunnerSprite, screenWidth, screenHeight) },
 	};
 	
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
@@ -179,6 +185,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::TANK, new EnemyCollidableBehaviour() },
 		{ EntityType::MECH, new EnemyCollidableBehaviour() },
 		{ EntityType::APC, new EnemyCollidableBehaviour() },
+		{ EntityType::MINIGUNNER, new EnemyCollidableBehaviour() },
 	};
 
 	IdleCommand* idle = new IdleCommand();
@@ -217,7 +224,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },
-		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) }
+		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) },
+		{ EntityType::MINIGUNNER, new ApcMoveableBehaviour(defaultCommands) }
 	};
 }
 

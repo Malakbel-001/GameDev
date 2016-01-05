@@ -17,8 +17,8 @@ ApcSprite::~ApcSprite()
 }
 void ApcSprite::SetAnimations()
 {
-	defaultSprite.x = 12;
-	defaultSprite.y = 22;
-	defaultSprite.w = 143;
-	defaultSprite.h = 128;
+	defaultSprite.x = 226;
+	defaultSprite.y = 24;
+	defaultSprite.w = 142;
+	defaultSprite.h = 123;
 }

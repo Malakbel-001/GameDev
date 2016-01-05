@@ -262,6 +262,60 @@
     <ClCompile Include="Acorn.cpp">
       <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="ApcMoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Moveables</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantBossMoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Moveables</Filter>
+    </ClCompile>
+    <ClCompile Include="PlantMoveableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Moveables</Filter>
+    </ClCompile>
+    <ClCompile Include="ApcSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="CannonshotSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="DesertGroundSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="TankSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="MechSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Vehicle.cpp">
+      <Filter>Source Files\Model\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SensorCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="StepCollidableBehaviour.cpp">
+      <Filter>Source Files\Model\Behaviour\Collidables</Filter>
+    </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files\Model\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseCommand.cpp">
+      <Filter>Source Files\Model\Behaviour\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultPatrolCommand.cpp">
+      <Filter>Source Files\Model\Behaviour\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleCommand.cpp">
+      <Filter>Source Files\Model\Behaviour\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MinigunnerSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Apc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -549,6 +603,69 @@
     <ClInclude Include="LevelConfig.h">
       <Filter>Header Files\Model\SettingsConfig</Filter>
     </ClInclude>
+    <ClInclude Include="ApcMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ApcSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CannonshotSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultPatrolCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DesertGroundSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityDirection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftStepCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MechSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBossMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SensorCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TankSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StepCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MinigunnerSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Apc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -682,6 +799,9 @@
     </Filter>
     <Filter Include="Header Files\View\Parallax Background">
       <UniqueIdentifier>{a7dd8566-00e0-40fa-986c-e88257e9eee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Behaviour\Commands">
+      <UniqueIdentifier>{1950c5b0-871c-493c-90cf-8c0fb6624fd6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

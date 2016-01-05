@@ -21,7 +21,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::AMMO, new Actor() },
 		{ EntityType::SNOWBOSS, new Npc(this) },
 		{ EntityType::SNOWMAN, new Npc(this) },
-		{ EntityType::APC, new Npc(this) },
+		{ EntityType::APC, new Apc(this) },
+		{ EntityType::MINIGUNNER, new Npc(this) },
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
@@ -143,6 +144,13 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	SnowBossDef.angularDamping = 0.01f;
 	SnowBossDef.type = b2BodyType::b2_dynamicBody;
 
+	b2BodyDef MinigunnerDef = b2BodyDef();
+	MinigunnerDef.gravityScale = 1;
+	MinigunnerDef.fixedRotation = true;
+	MinigunnerDef.linearDamping = 0.5f;
+	MinigunnerDef.angularDamping = 1;
+	MinigunnerDef.type = b2BodyType::b2_dynamicBody;
+
 	bodyRegistery = std::unordered_map<EntityType, b2BodyDef>{
 		{ EntityType::ENTITY, entDef },
 		{ EntityType::ACTOR, ActorDef },
@@ -172,6 +180,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::TANK, TankDef },
 		{ EntityType::APC, TankDef },
 		{ EntityType::MECH, MechDef },
+		{ EntityType::MINIGUNNER, MinigunnerDef },
 	};
 		npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
 			{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
@@ -182,6 +191,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 			{ EntityType::APC, new NpcStatsContainer(0, 500, 0, 143, 128) },
 			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 180, 150) },
+			{ EntityType::MINIGUNNER, new NpcStatsContainer(0, 150, 200, 42, 63) },
 		};
 }
 
