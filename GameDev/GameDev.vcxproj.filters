@@ -269,7 +269,7 @@
       <Filter>Source Files\View</Filter>
     </ClCompile>
     <ClCompile Include="CollisionFilterContainer.cpp">
-      <Filter>Source Files\Model\Factory</Filter>
+      <Filter>Source Files\Model\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -564,10 +564,10 @@
     <ClInclude Include="FPS.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionFilterContainer.h">
-      <Filter>Header Files\Model\Factory</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionType.h">
+      <Filter>Header Files\Model\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionFilterContainer.h">
       <Filter>Header Files\Model\Entity</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,8 +15,6 @@ void PlayState::Init(GameStateManager* gsm)
 	
 	accumulatedDtWeapon = 0;
 	
-	background = LTexture();
-
 	hud = new HUD();
 	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));

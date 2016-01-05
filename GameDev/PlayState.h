@@ -49,15 +49,7 @@ class PlayState :
 		void LoadGame();
 
 		void SetFileToLoad(std::string fileName);		
-		
 
 		virtual ~PlayState();
-
-		//temp
-		LTexture background;
-		//background
-		SDL_Rect backgroundRect;
-		//background
-		SDL_Texture* backgroundTexture;
 };
 

@@ -105,7 +105,8 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 
 			}*/
 
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, 
+				actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
