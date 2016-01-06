@@ -8,6 +8,7 @@
 #include "EntityFactory.h"
 #include "ContactListener.h"
 #include "ParallaxBackground.h"
+#include "Timer.h"
 
 
 class PlayState;
@@ -18,39 +19,41 @@ private:
 	float startYpos;
 	b2ContactListener* contact;
 protected:
-	int levelId;
+	b2World* world;
 	EntityFactory* entityFactory;
-	int tileWidth, tileHeight;
-	int lvlWidth, lvlHeight;
 	DrawableContainer* drawableContainer;
 	MoveableContainer* moveableContainer;
-	b2World* world;
 	SDL_Texture* tileSheet;
+	Timer* timer;
+
+	int levelId;
+	int lvlWidth, lvlHeight;
 
 	PlayState* playState;
 	
 	std::vector<Actor*>* actors;
+	std::vector<Entity*>* entities;
 	Player* player;
-
+	std::string backgroundPath;
 	ParallaxBackground* parallaxBackground;
-	virtual void LoadParallaxBackgroundSettings() = 0;			//pure virtual
+	//Initialization / Create Level
+	virtual void SetEntityFactory(BehaviourFactory*);
+	virtual void CreateMap() = 0;									//pure virtual
+	virtual void CreateNPCs() = 0;									//pure virtual
+	virtual void CreateTimer();
+	virtual void CreateParallaxBackground(BehaviourFactory*) = 0;	//pure virtual
+
 public:
 	Player* GetPlayer();
-
+	std::vector<Actor*>* GetActors();
+	std::vector<Entity*>* GetEntities();
 	DrawableContainer* GetDrawableContainer();
 	MoveableContainer* GetMoveableContainer();
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
-	virtual void Init(BehaviourFactory* bf) = 0;				//pure virtual
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
+	virtual void Init(BehaviourFactory* bf);
 	virtual ~Level();
 
-	virtual Player* SetPlayer(Player* _player) = 0;				//pure virtual
-	virtual Level* CreateLevel() = 0;							//pure virtual
-
-	Player* SetPlayerPosition(Player* _player, float x, float y);
-	virtual void SetLvlWidth(int _lvlWidth);
-	virtual void SetLvlHeight(int _lvlHeight);
-
-	SDL_Texture* GetTileSheet();
 
 	int GetLvlWidth();
 	int GetLvlHeight();
@@ -58,15 +61,26 @@ public:
 	int GetTotalDiffrentTiles();
 	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
-	std::vector<Entity*>* entities;
+	
+					//TODO get this to work
 	void Draw();
 	void Update(float dt);
 	void GameOver();
 	void Victory();
 	virtual b2World* GetWorld();
 
+							//probably not public!
+
+	virtual Player* SetPlayer(Player* _player) = 0;					//pure virtual
+	virtual Level* CreateLevel() = 0;								//pure virtual
+	ParallaxBackground* GetParallaxBackGround();
+	Timer* GetTimer();
+
+	Player* SetPlayerPosition(Player* _player, float x, float y);
+	virtual void SetLvlWidth(int _lvlWidth);
+	virtual void SetLvlHeight(int _lvlHeight);
+
 	int GetLevelId() { return levelId; };
-	virtual ParallaxBackground* GetParallaxBackGround() = 0;	//pure virtual
 
 	void EnterVehicle();
 };

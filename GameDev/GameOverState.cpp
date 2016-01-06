@@ -1,6 +1,6 @@
 #include "GameOverState.h"
 
-const int renderItems = 18;
+const int renderItems = 4;
 
 
 void GameOverState::Init(GameStateManager *gsm){
@@ -8,8 +8,18 @@ void GameOverState::Init(GameStateManager *gsm){
 	if (!InitEverything()){
 		std::cout << "-1";
 	}
+	highscoreConfig = highscoreConfig;
+	PlayState* playState = (PlayState*)gsm->GetPreviousState();
+	score = playState->GetPlayer()->GetScore();
+	time = playState->GetPlayer()->GetPlayTime();
+	text = "";
 	MakeBackToMainText(textColor);
 	MakeGameOverTitle(textColor);
+	MakeScoreText(textColor);
+	MakeTimeText(textColor);
+	MakeSave(textColor);
+	MakeSaveText(textColor);
+	MakeInputText(textColor);
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
@@ -18,6 +28,8 @@ void GameOverState::Init(GameStateManager *gsm){
 	SDL_Delay(2000);*/
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
 	Update(0);
+
+	SDL_StartTextInput();
 }
 
 GameOverState::GameOverState()
@@ -30,6 +42,11 @@ GameOverState::GameOverState()
 void GameOverState::loadQuitMenu(){
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &quitRect);
 	SDL_RenderCopy(renderer, gameoverTitleTexture, nullptr, &gameoverTitleRect);
+	SDL_RenderCopy(renderer, scoreTexture, nullptr, &scoreRect);
+	SDL_RenderCopy(renderer, timeTexture, nullptr, &timeRect);
+	SDL_RenderCopy(renderer, saveTexture, nullptr, &saveRect);
+	SDL_RenderCopy(renderer, saveTextTexture, nullptr, &saveTextRect);
+	SDL_RenderCopy(renderer, inputTexture, nullptr, &inputRect);
 }
 
 // Initialization ++
@@ -79,9 +96,58 @@ void GameOverState::MakeGameOverTitle(SDL_Color color){
 	SDL_QueryTexture(gameoverTitleTexture, NULL, NULL, &gameoverTitleRect.w, &gameoverTitleRect.h);
 	gameoverTitleRect.x = 540 - (gameoverTitleRect.w / 2);
 	gameoverTitleRect.y = 5;
-	pos[1] = gameoverTitleRect;
+	pos[6] = gameoverTitleRect;
 }
+void GameOverState::MakeScoreText(SDL_Color color){
+	string string = "You scored " + to_string(score) + " points so far!";
+	SDL_Surface* score = TTF_RenderText_Blended(textFont, string.c_str(), color);
+	scoreTexture = SurfaceToTexture(score);
 
+	SDL_QueryTexture(scoreTexture, NULL, NULL, &scoreRect.w, &scoreRect.h);
+	scoreRect.x = 15;
+	scoreRect.y = quitRect.y + quitRect.h + 40;
+	pos[2] = scoreRect;
+}
+void GameOverState::MakeTimeText(SDL_Color color){
+	string string = "You played " + to_string(time.at(0)) + " minutes and " + to_string(time.at(1)) + " seconds so far!";
+	SDL_Surface* time = TTF_RenderText_Blended(textFont, string.c_str(), color);
+	timeTexture = SurfaceToTexture(time);
+
+	SDL_QueryTexture(timeTexture, NULL, NULL, &timeRect.w, &timeRect.h);
+	timeRect.x = 15;
+	timeRect.y = scoreRect.y + scoreRect.h + 40;
+	pos[3] = timeRect;
+}
+void GameOverState::MakeInputText(SDL_Color color){
+	//const char* temp = text.c_str();
+	SDL_Surface* input = TTF_RenderText_Blended(textFont, text.c_str(), color);
+	inputTexture = SurfaceToTexture(input);
+
+	SDL_QueryTexture(inputTexture, NULL, NULL, &inputRect.w, &inputRect.h);
+	inputRect.x = saveTextRect.x + saveTextRect.w + 5;
+	inputRect.y = timeRect.y + timeRect.h + 40;
+	pos[4] = inputRect;
+}
+void GameOverState::MakeSave(SDL_Color color){
+	//const char* temp = text.c_str();
+	SDL_Surface* save = TTF_RenderText_Blended(textFont, "->Opslaan<-", color);
+	saveTexture = SurfaceToTexture(save);
+
+	SDL_QueryTexture(saveTexture, NULL, NULL, &saveRect.w, &saveRect.h);
+	saveRect.x = 15;
+	saveRect.y = timeRect.y + timeRect.h + 40;
+	pos[1] = saveRect;
+}
+void GameOverState::MakeSaveText(SDL_Color color){
+	//const char* temp = text.c_str();
+	SDL_Surface* savetext = TTF_RenderText_Blended(textFont, " onder deze naam: ", color);
+	saveTextTexture = SurfaceToTexture(savetext);
+
+	SDL_QueryTexture(saveTextTexture, NULL, NULL, &saveTextRect.w, &saveTextRect.h);
+	saveTextRect.x = saveRect.x + saveRect.w + 5;
+	saveTextRect.y = timeRect.y + timeRect.h + 40;
+	pos[5] = saveTextRect;
+}
 // Convert an SDL_Surface to SDL_Texture. We've done this before, so I'll keep it short
 SDL_Texture* GameOverState::SurfaceToTexture(SDL_Surface* surf)
 {
@@ -160,10 +226,11 @@ void GameOverState::Resume() {}
 void GameOverState::Pause() {}
 
 void GameOverState::Quit(){
+	SDL_StopTextInput();
 	gsm->PopPrevState();
 	gsm->PopState();
-	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-	tempState->updateMenu(MenuEnum::Previous);
+	//MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+	//tempState->updateMenu(MenuEnum::Previous);
 }
 
 void GameOverState::Highlight(int item){
@@ -171,11 +238,17 @@ void GameOverState::Highlight(int item){
 	case -1:
 	{
 		MakeBackToMainText(textColor);
+		MakeSave(textColor);
 		break;
 	}
 	case 0:
 	{
 		MakeBackToMainText(hoverTextColor);
+		break;
+	}
+	case 1:
+	{
+		MakeSave(hoverTextColor);
 		break;
 	}
 	}
@@ -190,7 +263,7 @@ void GameOverState::HandleMouseEvents(SDL_Event mainEvent)
 	case SDL_MOUSEMOTION:
 	{hoverX = mainEvent.motion.x;
 	hoverY = mainEvent.motion.y;
-	for (int ii = 0; ii < 6; ii++)
+	for (int ii = 0; ii < renderItems; ii++)
 	{
 		if (hoverX >= pos[ii].x && hoverX <= pos[ii].x + pos[ii].w && hoverY >= pos[ii].y && hoverY <= pos[ii].y + pos[ii].h){
 			Highlight(ii);
@@ -218,16 +291,56 @@ void GameOverState::HandleMouseEvents(SDL_Event mainEvent)
 					quit = true;
 					Quit();
 					break;
+				case 1:
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+					SoundBank::GetInstance()->StopMusic();
+					//save highscore
+					//string tempMin = to_string(time.at(0));
+					//string tempSec = to_string(time.at(1));
+					highscoreConfig.SaveHighscore(text, score, to_string(time.at(0)), to_string(time.at(1)));
+					//vector<Score>* temp = highscoreConfig.GetHighscore();
+					quit = true;
+					Quit();
+					break;
 				}
 			}
-			break;
 		}
 	}
 }
 
 void GameOverState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-	//std::cout << "Key events not implemented yet";
+	bool backspaced = false;
+	for (auto it = _events->begin(); it != _events->end(); ++it){
+
+		if (it->second)
+		{
+			switch (it->first){
+			case SDLK_BACKSPACE:
+				if (text.length() > 0 && !backspaced){
+					text = text.substr(0, text.length() - 1);
+					backspaced = true;
+					MakeInputText(textColor);
+				}
+				break;
+			}
+		}
+	}
+}
+
+void GameOverState::HandleTextInputEvents(SDL_Event event)
+{
+	switch (event.type){
+	case SDL_TEXTINPUT:
+		if (/*event.type == SDL_KEYDOWN && */event.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0){
+			text = text.substr(0, text.length() - 1);
+		}
+		else if (SDL_TEXTINPUT){
+			text += event.text.text;
+		}
+		MakeInputText(textColor);
+		break;
+	}
 }
 
 void GameOverState::Update(float dt){

@@ -4,14 +4,14 @@ class Level3 :
 	public Level
 {
 protected:
-
-	virtual void LoadParallaxBackgroundSettings();
+	virtual void CreateMap();
+	virtual void CreateNPCs();
+	virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 public:
 	Level3(int _lvlWidth, int _lvlHeight, PlayState* play);
 	virtual ~Level3();
 
-	void Init(BehaviourFactory* bf);
 	void Cleanup();
 
 	virtual Level* CreateLevel();

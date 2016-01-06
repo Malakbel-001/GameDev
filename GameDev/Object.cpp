@@ -4,6 +4,7 @@
 Object::Object()
 {
 	draw = nullptr;
+	flipped = false;
 }
 void Object::Init(EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer){
 	type = _type;
@@ -30,6 +31,15 @@ bool Object::ShouldDraw(){
 }
 void Object::SetShouldDraw(bool _shoulddraw){
 	shouldDraw = _shoulddraw;
+}
+
+void Object::SetFlipped(bool _flipped)
+{
+	flipped = _flipped;
+}
+bool Object::GetFlipped()
+{
+	return flipped;
 }
 
 EntityType Object::GetType(){

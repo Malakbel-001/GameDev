@@ -2,34 +2,49 @@
 #include "Player.h"
 #include "SDL_ttf.h"
 #include <iostream>
+#include "Utitilies.h"
+#include "Timer.h"
 
 class HUD {
 	public:
-		HUD(SDL_Renderer* renderer, Player* player);
+		HUD();
 		~HUD();
 
 	private:
 		SDL_Renderer* renderer;
 		Player* player;
 
-		void SetRectangles(int x, int y);
-		void SetHUDFont(char* path, int ptsize);
+		int* screenWidth;
+		int* screenHeight;
 
-		SDL_Color Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
+		void SetSurfacesAndTextures();
+
+		const int y = 20;
+		void SetUpperLeftRectangles(int x, int y);
+		void SetUpperMiddleRectangles(int y);
+		void SetUpperRightRectangles(int y);
 
 		void DrawHealth();
 		void DrawAmmo();
 		void DrawScore();
-		void DrawTextHelper(std::string, int x, int y);
-		//draw timer
+		void DrawTimer();
+		void CheckIfScreenSizeChanged();
+
+		bool wasFullScreen; //was before
 
 	public:
+		void Initialize(SDL_Renderer* _renderer, Player* _player);
 		void Draw();
 		void Cleanup();
+		void ResumeChecks();
+		void SetTimer(Timer* timer);
+		Timer* GetTimer();
 
 	private:
 		TTF_Font* hudFont;
+		TTF_Font* timerFont;
 		SDL_Color oldColor;
+		Timer* timer;
 		
 		SDL_Rect drawHPRect;
 		SDL_Rect fillHPRect;
@@ -48,4 +63,6 @@ class HUD {
 		SDL_Surface* hpSurface;
 		SDL_Texture* hpTexture;
 		SDL_Rect hpRect;
+
+		SDL_Rect timerRect;
 };

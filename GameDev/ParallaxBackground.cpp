@@ -7,7 +7,7 @@ ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, Camera* _camera)
 	screenHeight = new int;
 	//set screenWidth & screenHeight
 	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
-
+	wasFullScreen = Utilities::IsFullScreen();
 
 	camera = _camera;
 
@@ -72,19 +72,9 @@ void ParallaxBackground::Draw() {
 	previousXPos = camera->GetX();
 }
 
-//returns boolean if the game is currently in fullscreen or not
-bool ParallaxBackground::CheckFullScreen() {
-	SDL_Window* window = SDL_GetWindowFromID(1); //works as long as we have only 1 window
-	Uint32 flags = SDL_GetWindowFlags(window); //sdl window flags including fullscreen desktop flag
-
-	bool isFullScreen = (flags & SDL_WINDOW_FULLSCREEN_DESKTOP) == SDL_WINDOW_FULLSCREEN_DESKTOP;
-
-	return isFullScreen;
-}
-
 //if screen changed, reload all layerContainers
 void ParallaxBackground::CheckIfScreenSizeChanged() {
-	bool isFullScreen = CheckFullScreen();
+	bool isFullScreen = Utilities::IsFullScreen();
 
 	//check if the screen changed
 	if (wasFullScreen != isFullScreen) {

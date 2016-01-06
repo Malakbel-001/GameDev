@@ -91,11 +91,32 @@ SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
 	}
 }
 
-int Sprite::GetAnimationSize()
+int Sprite::GetAnimationSize(EntityState state)
 {
-	if (currentSprites == nullptr)
+	switch (state)
+	{
+	case EntityState::IDLE:
+		return idleSprites->size();
+		break;
+	case EntityState::WALKINGLEFT:
+		return walkSprites->size();
+		break;
+	case EntityState::WALKINGRIGHT:
+		return walkSprites->size();
+		break;
+	case EntityState::JUMPING:
+		break;
+	case EntityState::SHOOTING:
+		break;
+	case EntityState::DYING:
+		return dyingSprites->size();
+		break;
+	case EntityState::DEFAULT:
 		return 1;
-	return currentSprites->size();
+	default:
+		return 1;
+		break;
+	}
 }
 
 void Sprite::SetAnimationSet(EntityState state)

@@ -1,54 +1,75 @@
 #include "HUD.h"
 #include "Weapon.h"
 
-HUD::HUD(SDL_Renderer* renderer, Player* player) {
-	this->renderer = renderer;
-	this->player = player;
+void HUD::Initialize(SDL_Renderer* _renderer, Player* _player) {
+	this->renderer = _renderer;
+	this->player = _player;
+	
+	SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+	wasFullScreen = Utilities::IsFullScreen();
 
-	SetHUDFont("Resources/fonts/manaspc.ttf", 12);
-	SetRectangles(20, 20);
+	hudFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 12);
+	timerFont = Utilities::SetFont("Resources/fonts/manaspc.ttf", 20);
+	SetSurfacesAndTextures();
+	SetUpperLeftRectangles(20, y);
+	SetUpperMiddleRectangles(y);
+	SetUpperRightRectangles(y);
+}
+
+HUD::HUD() { 
+	this->renderer = nullptr;
+	this->player = nullptr;
+	this->timer = nullptr;
+	wasFullScreen = true;
+	screenWidth = new int;
+	screenHeight = new int;
 }
 
 HUD::~HUD() {
 	this->Cleanup();
 }
 
-//setDrawRect & fillRect
-void HUD::SetRectangles(int x, int y) {
+void HUD::SetUpperLeftRectangles(int x, int y) {
+	//HP Upper Left, Always Standard
 	int hpWidth = 200;
 	int hpHeight = 30;
 
 	drawHPRect = { x, y, hpWidth, hpHeight };
 	fillHPRect = { x, y, hpWidth, hpHeight };
 
-	amountHPRect =	{ drawHPRect.x + 20, drawHPRect.y + drawHPRect.h, drawHPRect.w - 40, 20 };
-	hpRect =		{ amountHPRect.x + 30, amountHPRect.y + 5, hpSurface->w, hpSurface->h };
-
-	drawStatsRect = { drawHPRect.x + 50 + hpWidth, y, 120, 50 }; //temp width
-	ammoRect =		{ drawStatsRect.x + 10, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
-	scoreRect =		{ ammoRect.x + ammoRect.w + 20, ammoRect.y, scoreSurface->w, scoreSurface->h };
-
-	drawStatsRect.w = (scoreRect.x + scoreRect.w + 10) - drawStatsRect.x; //dynamic / fix width
+	amountHPRect = { drawHPRect.x + 20, drawHPRect.y + drawHPRect.h, drawHPRect.w - 40, 20 };
+	hpRect = { amountHPRect.x + 30, amountHPRect.y + 5, hpSurface->w, hpSurface->h };
 }
 
-void HUD::SetHUDFont(char* path, int ptsize) {
-	if (TTF_Init() == -1) //initialize TTF
-		std::cout << " Failed to initialize TTF : " << TTF_GetError() << std::endl;
+void HUD::SetUpperMiddleRectangles(int y) {
+	//Stats Upper Middle, Calculate Width!
+	int spaceFromStatsRect = 10;
+	int spaceInBetween = 20;
+	int calcWidthStats = spaceFromStatsRect + ammoSurface->w + spaceInBetween + scoreSurface->w + spaceFromStatsRect;
+	//height = magic number, durr.
 
-	hudFont = TTF_OpenFont(path, ptsize);
+	int middleX = (*screenWidth / 2) - (calcWidthStats / 2);
+	drawStatsRect = { middleX, y, calcWidthStats, 50 };
+	ammoRect = { drawStatsRect.x + spaceFromStatsRect, drawStatsRect.y + 10, ammoSurface->w, ammoSurface->h };
+	scoreRect = { ammoRect.x + ammoRect.w + spaceInBetween, ammoRect.y, scoreSurface->w, scoreSurface->h };
+}
 
-	if (hudFont == nullptr)
-		std::cout << " Failed to load font : " << TTF_GetError() << std::endl;
+void HUD::SetUpperRightRectangles(int y) {
+	//Timer Upper Right
+	int rightX = *screenWidth - 100;
+	timerRect = { rightX, y, 95, 35 };
+}
 
+void HUD::SetSurfacesAndTextures() {
 	//FWApplication would normally create use and SDL_FreeSurface() + SDL_DestroyTexture()
 	//this is better for performance reasons (when it's possible), create once, reuse whenever, FreeSurface() and DestroyTexture() in Cleanup()
-	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Color(255, 255, 255, 255));
+	ammoSurface = TTF_RenderText_Blended(hudFont, "Ammo", Utilities::GetColor(255, 255, 255, 255));
 	ammoTexture = SDL_CreateTextureFromSurface(renderer, ammoSurface); //set ammoTexture
 
-	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Color(255, 255, 255, 255));
+	scoreSurface = TTF_RenderText_Blended(hudFont, "Score", Utilities::GetColor(255, 255, 255, 255));
 	scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
 
-	hpSurface = TTF_RenderText_Blended(hudFont, "Health:", Color(255, 255, 255, 255));
+	hpSurface = TTF_RenderText_Blended(hudFont, "Health:", Utilities::GetColor(255, 255, 255, 255));
 	hpTexture = SDL_CreateTextureFromSurface(renderer, hpSurface);
 }
 
@@ -57,7 +78,7 @@ void HUD::Draw() {
 
 	SDL_GetRenderDrawColor(renderer, &oldColor.r, &oldColor.g, &oldColor.g, &oldColor.a); //keep old draw color for later
 
-	DrawHealth(); //NEW - little bit alpha
+	DrawHealth(); //little bit alpha / transparency
 
 	//draw Stats Border/Container
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 100); //alpha number = 100 in order to make it transparent
@@ -68,7 +89,7 @@ void HUD::Draw() {
 
 	DrawAmmo();
 	DrawScore();
-	//Optional: Draw Timer()
+	DrawTimer();
 
 	SDL_SetRenderDrawColor(renderer, oldColor.r, oldColor.g, oldColor.b, oldColor.a); //set old draw color back
 }
@@ -96,7 +117,8 @@ void HUD::DrawHealth() {
 
 	SDL_RenderCopy(renderer, hpTexture, NULL, &hpRect);
 
-	DrawTextHelper(std::to_string(player->GetHealth()), hpRect.x + hpRect.w + 10, hpRect.y);
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetHealth()), hpRect.x + hpRect.w + 10, 
+		hpRect.y, Utilities::GetColor(255, 255, 255, 255));
 }
 
 void HUD::DrawAmmo() {
@@ -104,7 +126,8 @@ void HUD::DrawAmmo() {
 	SDL_RenderCopy(renderer, ammoTexture, NULL, &ammoRect);
 
 	//Draw AmmoCounter / Amount
-	DrawTextHelper(std::to_string(player->GetCurrentWeapon()->GetAmmo()), ammoRect.x, ammoRect.y + ammoRect.h + 5);
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetCurrentWeapon()->GetAmmo()), ammoRect.x, 
+		ammoRect.y + ammoRect.h + 5, Utilities::GetColor(255, 255, 255, 255));
 }
 
 void HUD::DrawScore() {
@@ -112,33 +135,85 @@ void HUD::DrawScore() {
 	SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
 
 	//Draw ScoreCounter / Amount
-	DrawTextHelper(std::to_string(player->GetScore()), scoreRect.x, scoreRect.y + scoreRect.h + 5);
+	Utilities::DrawTextHelper(renderer, hudFont, std::to_string(player->GetScore()), scoreRect.x, 
+		scoreRect.y + scoreRect.h + 5, Utilities::GetColor(255, 255, 255, 255));
 }
 
-//code reducer helper
-void HUD::DrawTextHelper(std::string text, int x, int y) {
-	SDL_Surface* counterSurface = TTF_RenderText_Blended(hudFont, text.c_str(), Color(255, 255, 255, 255));
-	SDL_Texture* counterTexture = SDL_CreateTextureFromSurface(renderer, counterSurface);
-	SDL_Rect counterRect = { x, y, counterSurface->w, counterSurface->h };
+void HUD::DrawTimer() {
+	//Draw Timer Rectangle & Border
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 225);
+	SDL_RenderFillRect(renderer, &timerRect);
 
-	SDL_RenderCopy(renderer, counterTexture, NULL, &counterRect);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //black border
+	SDL_RenderDrawRect(renderer, &timerRect);
 
-	//cleanup counter stuff after using them
-	SDL_FreeSurface(counterSurface);
-	SDL_DestroyTexture(counterTexture);
-}
+	//Draw Timer
+	if (timer != nullptr) {
+		timer->CalcDifference();
 
-//color - Returns an SDL_Color with the appropriate values
-SDL_Color HUD::Color(Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
-	SDL_Color col = { r, g, b, a };
-	return col;
+		if (timer->GetCurrentMinutes() < 10) {
+			Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer->GetCurrentMinutes()), *screenWidth - 90,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+		else {
+			Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer->GetCurrentMinutes()), *screenWidth - 90,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+		Utilities::DrawTextHelper(renderer, timerFont,":", *screenWidth - 60,
+			drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		if (timer->GetCurrentSeconds() < 10) {
+			Utilities::DrawTextHelper(renderer, timerFont, "0" + std::to_string(timer->GetCurrentSeconds()), *screenWidth - 40,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+		else {
+			Utilities::DrawTextHelper(renderer, timerFont, std::to_string(timer->GetCurrentSeconds()), *screenWidth - 40,
+				drawStatsRect.y + 10, Utilities::GetColor(255, 255, 255, 255));
+		}
+	}
 }
 
 void HUD::Cleanup() {
 	//pointers
 	SDL_FreeSurface(ammoSurface);
 	SDL_DestroyTexture(ammoTexture);
-	
+	SDL_FreeSurface(scoreSurface);
+	SDL_DestroyTexture(scoreTexture);
+	SDL_FreeSurface(hpSurface);
+	SDL_DestroyTexture(hpTexture);
+
 	//fonts
 	TTF_CloseFont(hudFont);
+	TTF_CloseFont(timerFont);
+}
+
+void HUD::ResumeChecks() {
+	if (timer != nullptr)
+		timer->ResumeTimer();
+
+	CheckIfScreenSizeChanged();
+}
+
+void HUD::CheckIfScreenSizeChanged() {
+	//Screen Changed
+	bool isFullScreen = Utilities::IsFullScreen();
+
+	//check if the screen changed
+	if (wasFullScreen != isFullScreen) {
+		//set screenWidth & screenHeight
+		SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+		//this will also update the screenWidth and screenHeight inside the LayerContainers, because they have int pointers
+
+		SetUpperMiddleRectangles(y); //set again on the right positions
+		SetUpperRightRectangles(y);
+	}
+
+	wasFullScreen = isFullScreen; //keep the result for later check
+}
+
+void HUD::SetTimer(Timer* _timer) {
+	this->timer = _timer;
+}
+
+Timer* HUD::GetTimer() {
+	return timer;
 }
