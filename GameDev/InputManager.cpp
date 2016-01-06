@@ -83,6 +83,7 @@ void InputManager::SetKeyInput(SDL_Keycode key)
 		gta2CheatsCounter = 0;
 		if (konamCheatsCounter > konamiCheats.size() - 1){
 			cheating = true;
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
 			printf("Cheats enabled");
 			konamCheatsCounter = 0;
 		}
@@ -92,6 +93,7 @@ void InputManager::SetKeyInput(SDL_Keycode key)
 		konamCheatsCounter = 0;
 		if (gta2CheatsCounter > gta2Cheats.size() - 1){
 			cheating = true;
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
 			printf("Cheats enabled");
 			gta2CheatsCounter = 0;
 		}

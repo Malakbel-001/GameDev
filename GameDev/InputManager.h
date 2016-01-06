@@ -4,7 +4,7 @@
 #include <vector>
 #include "Input.h"
 #include "KeyMapping.h"
-
+#include "SoundBank.h"
 class InputManager
 {
 	private:

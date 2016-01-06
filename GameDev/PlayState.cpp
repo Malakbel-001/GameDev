@@ -178,7 +178,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetWeaponDmg(1000000);
 					break;
 				case SDLK_F15:
-					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(0.1)));
+					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(2)));
 					break;
 				case SDLK_F16:
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() > 10){
@@ -216,7 +216,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->GetCurrentWeapon()->SetWeaponDmg(20);
 					break;
 				case SDLK_F15:
-					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(1.81)));
+					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(50)));
 					break;
 				case SDLK_F16:
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() < 250){
