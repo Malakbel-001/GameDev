@@ -161,7 +161,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 	//bounciness
 	restitutionRegistery = std::unordered_map < EntityType, float > {
-		{ EntityType::PLAYER, 0.0f }
+		{ EntityType::PLAYER, 0.2f }
 		//SnowBoss?
 	};
 }
