@@ -11,18 +11,24 @@
 #include "LTexture.h"
 #include "GameStateManager.h"
 #include "Level.h"
+#include "FPS.h"
+#include "GameSpeedManipulator.h"
 
 class Game
 {
+	
 	public:
+		static bool running;
 		Game();
 		~Game();
 
 		void GameLoop();
-	
+		
 	private:
+		FPS* fps;									//TODO this shouldn't be a pointer
+		GameSpeedManipulator* gameSpeedManipulator;	//TODO this shouldn't be a pointer
+
 		BehaviourFactory* bf;
-		bool running = true;
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;
 		IGameState* gameState;

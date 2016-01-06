@@ -1,20 +1,20 @@
 #pragma once
 #include "Box2D\Box2D.h"
-#include "DrawableBehaviour.h"
+
 #include "BehaviourFactory.h"
 #include "DrawableContainer.h"
+#include "CollidableBehaviour.h"
+#include "Object.h"
 
-class Entity
+class Entity : public Object
 {
 	private:
+	
+	protected:
 		float width;
 		float height;
-
-	protected:
-		b2Body* body;
-		DrawableBehaviour* draw;
-		EntityType type;
-
+		b2Body* body;	
+	
 	public:
 		Entity();
 		virtual ~Entity();
@@ -22,6 +22,11 @@ class Entity
 		virtual Entity* EmptyClone();
 		virtual int GetWidth();
 		virtual int GetHeight();
-		virtual int GetXPos();
-		virtual int GetYPos();
+		virtual float GetXpos();
+		virtual float GetYpos();
+		virtual float GetAngle();
+		virtual void SetScore(int _score);	//NPC needed method
+		virtual int GetScore();				//NPC needed method
+
+		b2Body* GetBody();
 };

@@ -3,13 +3,15 @@
 
 Npc::Npc()
 {
+	score = 0;
 }
-Entity* Npc::EmptyClone(){
+Actor* Npc::EmptyClone(){
 	return new Npc();
 }
 
 Npc::~Npc()
 {
+
 }
 
 void Npc::setBody(b2Body* _body)
@@ -20,4 +22,12 @@ void Npc::setBody(b2Body* _body)
 b2Body* Npc::GetBody()
 {
 	return body;
+}
+
+void Npc::SetScore(int _score) {
+	score = _score;
+}
+
+int Npc::GetScore() {
+	return score;
 }

@@ -89,6 +89,8 @@ void SDLInitializer::RenderToScreen(int x, int y, SDL_Texture* texture, SDL_Rect
 
 SDLInitializer::~SDLInitializer()
 {
-	SDL_DestroyRenderer(this->renderer);
+	if (renderer) //crash @ close in LoadState, because of 2nd thread
+		SDL_DestroyRenderer(this->renderer);
+
 	SDL_DestroyWindow(this->window);
 }

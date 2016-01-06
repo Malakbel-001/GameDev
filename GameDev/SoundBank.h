@@ -7,6 +7,7 @@
 #include "SoundChunk.h"
 #include <iostream>
 #include <string>
+#include <queue>
 
 class SoundBank {
 private:
@@ -15,13 +16,26 @@ private:
 	std::unordered_map<SoundBgmType, char*> bgmPathList;
 	std::unordered_map<SoundEffectType, SoundChunk*> playingChunks;
 	static SoundBank* instance;
+	std::queue<SoundEffectType> soundQueue;
+
+	const int musicVolume = 64; // [0 - 128]
+	const int sfxVolume = 64; // [0 - 128]
+	bool musicEnabled = true;
+	bool sfxEnabled = true;
+	SoundBgmType currentBGM;
 public:
 	~SoundBank();
 	static SoundBank* GetInstance();
 
-	void Play(SoundEffectType type, int volume);
-	void PlayBGM(SoundBgmType type, int volume); //TODO
+	void PlaySFX(SoundEffectType type);
+	void PlayAtChannel(int channel, SoundEffectType type);
+	void PlayBGM(SoundBgmType type);
 	void PauseOrResume();
 	void StopMusic(); //arguably not needed
 	void FreeMemory();
+
+	void ToggleMusic();
+	bool IsEnabledMusic();
+	void ToggleSFX();
+	bool IsEnabledSFX();
 };

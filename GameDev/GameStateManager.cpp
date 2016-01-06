@@ -1,9 +1,11 @@
 #include "GameStateManager.h"
-#include "IGameState.h"
-#include "MenuState.h"
 #include "PlayState.h"
+#include "LoadState.h"
+#include "PauseState.h"
+#include "GameOverState.h"
+#include "VictoryState.h"
+#include "MenuState.h"
 #include <iostream>
-
 
 GameStateManager::GameStateManager(BehaviourFactory* _bf)
 {
@@ -12,59 +14,80 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 	//TODO states onthouden
 
 }
-void GameStateManager::CreateGameState(GameStateType state)
+
+void GameStateManager::CreateGameState(GameStateType state, int lvl)
+{
+	IGameState* gamestate = GetNewState(state, lvl);
+	PushGameState(gamestate);
+}
+
+//Create / Load State
+IGameState* GameStateManager::GetNewState(GameStateType state, int lvl) 
 {
 	IGameState* gamestate;
 	switch (state)
 	{
 	case GameStateType::PlayState:
-		gamestate = new PlayState();
-
+		gamestate = new PlayState(lvl);
 		break;
 	case GameStateType::PauseState:
-		//state = new PauseState();
+		gamestate = new PauseState();
 		break;
 	case GameStateType::MenuState:
 		gamestate = new MenuState();
+		break;
+	case GameStateType::LoadState:
+		gamestate = new LoadState(lvl);
+		break;
+	case GameStateType::GameOverState:
+		gamestate = new GameOverState();
+		break;
+	case GameStateType::VictoryState:
+		gamestate = new VictoryState();
 		break;
 	default:
 		break;
 	}
 
-
-	PushGameState(gamestate);
+	return gamestate;
 }
 
-void GameStateManager::ChangeGameState()
-{
-	if (!states.empty())
-	{
-		states.back()->Cleanup();
-		states.pop_back();
-	}
-
-}
 
 void GameStateManager::PushGameState(IGameState* gameState)
 {
-
-
 	states.push_back(gameState);
 	states.back()->Init(this);
 }
 
+void GameStateManager::PushGameStateOnly(IGameState* gameState) {
+	IGameState* a = states.back();
+		states.pop_back(); //pop loadState
+		delete a;
+	states.push_back(gameState);
+	states.back()->Resume();
+}
+void GameStateManager::PopPrevState(){
+	if (states.size() > 1){
+		IGameState* a = states[states.size() - 2];
+
+		states.erase(----states.end());
+		delete a;
+	}
+}
 void GameStateManager::PopState()
 {
 	if (!states.empty())
 	{
-		states.back()->Cleanup();
+		IGameState* a = states.back();
+		//states.back()->Cleanup();
+		
 		states.pop_back();
+		delete a;
+
+		states.back()->Resume(); //tell the state it is being resumed
 	}
 
-	if (!states.empty())
-	{
-		states.back()->Resume();
-	}
+	
 }
 
 
@@ -74,7 +97,7 @@ void GameStateManager::Cleanup()
 	while (!states.empty())
 	{
 		//Peek at top state and clean that state
-		states.back()->Cleanup();
+		
 
 		//Remove top state
 		states.pop_back();
@@ -85,6 +108,11 @@ IGameState* GameStateManager::GetCurrentState()
 	return states.back();
 }
 
+IGameState* GameStateManager::GetPreviousState()
+{
+	return states.at(states.size() -2);
+
+}
 GameStateManager::~GameStateManager()
 {
 	while (!states.empty())

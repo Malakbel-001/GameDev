@@ -1,94 +1,208 @@
 #include "Level.h"
 #include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
+	entityFactory = nullptr;
+	player = nullptr;
+	timer = nullptr;
+	startXpos = 100;
+	startYpos = 10;
+	actors = new std::vector<Actor*>();
+	world = new b2World(b2Vec2(0.0, static_cast<float>(50)));
+	contact = new ContactListener();
+	world->SetContactListener(contact);
+	drawableContainer = new DrawableContainer();
+	entities = new std::vector<Entity*>();
+	parallaxBackground = nullptr;
+}
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
+{
+	entityFactory = nullptr;
 	player = nullptr;
 	startXpos = 100;
 	startYpos = 10;
-
-	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
-
+	actors = new std::vector<Actor*>();
+	world = new b2World(vec);
+	contact = new ContactListener();
+	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
-	this->tileLoader = nullptr;
+	entities = new std::vector<Entity*>();
+
 
 }
 
-void Level::Init(BehaviourFactory* bf)
-{
-	cout << " jajaa ";
-}
 
-b2World* Level::GetWorld()
-{
-	return world;
-}
-
-void Level::Update(float dt)
-{
-	world->Step((dt / 100), 5, 5);
-	if (player->GetYPos() > lvlHeight)
-	{
-
-		GameOver();
-	}
-}
-
-#pragma region Get, Set
-Player* Level::SetPlayer(Player* _player)
-{
-	//	player = _player;
-	player = dynamic_cast<Player*>(entityFactory->CreateEntity(20, 100, 15, 15, EntityType::PLAYER));
-	return player;
+//Always perform these procedures
+void Level::Init(BehaviourFactory* bf,PlayState* play) { //TODO get this to work
+	playState = play;
+	SetEntityFactory(bf);
+	CreateMap();
+	CreateNPCs();
+	CreateTimer();
+	CreateParallaxBackground(bf);
 
 }
-Player* Level::GetPlayer()
-{
-	return player;
-}
-DrawableContainer* Level::GetDrawableContainer()
-{
-	return drawableContainer;
-}
-#pragma endregion Get, Set
 
 Level::~Level()
 {
+	if (parallaxBackground)
+		delete parallaxBackground;
+	delete contact;
 	delete world;
 	delete drawableContainer;
-	delete entityFactory;
+	if (entityFactory){
+		delete entityFactory;
+	}
+	for each (Actor* var in *actors)
+	{
+		if (var){
+			delete var;
+			var = nullptr;
+		}
+	}
+	delete actors;
+	for each (Entity* var in *entities)
+	{
+		if (var){
+			delete var;
+			var = nullptr;
+		}
+	}
+	delete entities;
+	if (timer)
+		delete timer;
 }
-void Level::SetLvlWidth(int _lvlWidth)
+
+std::vector<Actor*>* Level::GetActors(){
+	return actors;
+}
+std::vector<Entity*>* Level::GetEntities(){
+	return entities;
+}
+void Level::Update(float dt, float manipulatorSpeed)
 {
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+
+	//The all important World Step for Box2D
+	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
+
+	if (player->GetYpos() > lvlHeight || player->IsDead())
+	{
+	//	LevelFactory::SaveLevel(this,"test");
+		GameOver();
+	}
+	else {
+		
+		//le levelle loopeh
+		for (int x = 0; actors->size() > x; x++)
+		{
+			if (actors->operator[](x)->IsDead()){
+				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS)
+				{
+					Victory();
+
+				}
+
+				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
+				//or the right function should be called, depending on the Entity.
+				//This stuff should be set within some sort of factory, maybe Entity Factory
+				if (actors->operator[](x)->GetType() == EntityType::PLANT){ 
+					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
+					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
+					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y, 7, 7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y,7,7, EntityType::HEALTH);
+					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
+			
+				}
+				//for example
+				//actors->operator[](x)->GetDrops()
+				//Again, drops should be set within the Entity Factory, just as the Score and that stuff is set within the Entity Factory
+
+				player->AddScore(actors->operator[](x)->GetScore());
+				world->DestroyBody(actors->operator[](x)->GetBody());
+				drawableContainer->Delete(actors->operator[](x));
+				delete actors->operator[](x);
+				actors->operator[](x) = nullptr;
+				actors->erase(actors->begin() + x);
+			}
+
+			//this is so the bullets always keep flying (I guess - MJ)
+			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
+				b2Vec2 vector = actors->operator[](x)->GetDirection();
+
+				vector.x *= manipulatorSpeed;
+				vector.y *= manipulatorSpeed;
+
+				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
+			}
+		}
+	}
+}
+
+#pragma region Get, Set, & more
+Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
+	if (!_player->GetBody() != NULL) {
+		player = dynamic_cast<Player*>(entityFactory->CreateActor(0, 100, x, y, 15, 35, EntityType::PLAYER));
+	}
+	else {
+		player = entityFactory->CreatePlayer(0, 100, x, y, 15, 35, _player);
+		player->SetNumFootContacts(0);
+		player->DeletePrevProp();
+
+	}
+	return player;
+}
+Player* Level::GetPlayer() {
+	return player;
+}
+DrawableContainer* Level::GetDrawableContainer() {
+	return drawableContainer;
+}
+
+
+void Level::SetEntityFactory(BehaviourFactory* bf) {
+	entityFactory = new EntityFactory(*world, actors, entities, bf, drawableContainer);
+}
+void Level::CreateTimer() {
+	timer = new Timer();
+}
+
+
+b2World* Level::GetWorld() {
+	return world;
+}
+
+ParallaxBackground* Level::GetParallaxBackGround() {
+	return parallaxBackground;
+}
+Timer* Level::GetTimer() {
+	return timer;
+}
+void Level::SetLvlWidth(int _lvlWidth) {
 	this->lvlWidth = _lvlWidth;
 }
-
-void Level::SetLvlHeight(int _lvlHeight)
-{
+void Level::SetLvlHeight(int _lvlHeight) {
 	this->lvlHeight = _lvlHeight;
 }
-
-SDL_Texture* Level::GetTileSheet()
-{
-	return this->tileSheet;
-}
-
-int Level::GetLvlHeight()
-{
+int Level::GetLvlHeight() {
 	return this->lvlHeight;
 }
-
-int Level::GetLvlWidth()
-{
+EntityFactory* Level::GetEntityFactory() {
+	return entityFactory;
+}
+int Level::GetLvlWidth() {
 	return this->lvlWidth;
 }
-Level* Level::CreateLevel()
-{
-
-	return new Level(lvlWidth, lvlHeight, playState);
-}
-void Level::GameOver()
-{
+void Level::GameOver() {
 	playState->GameOver();
 }
+void Level::Victory() {
+	playState->Victory();
+}
+#pragma endregion Get, Set, & more

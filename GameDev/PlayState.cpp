@@ -1,36 +1,46 @@
-
 #include "PlayState.h"
-
-
-
-
+PlayState::PlayState(int lvl){
+	levelToLoad = lvl;
+}
 void PlayState::Init(GameStateManager* gsm)
 {
-	this->gsm = gsm;
+
+	levelConfig = LevelConfig();
+ 	this->gsm = gsm;
 
 	this->gameOver = false;
-
+	currentLevel = nullptr;
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
 	
-	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "level1.jpg");
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
-
-	SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	accumulatedDtWeapon = 0;
+	
+	hud = new HUD();
+	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
 	// flush userinput to prevent crash during loadscreen
 
-	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
+	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
+	
+	hud->Initialize(gsm->GetBehaviour()->GetRenderer(), player);
+}
 
-	std::cout << "PlayState \n";
+void PlayState::InitStartLevel(int lvl){
+	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, lvl));
 }
+
 void PlayState::GameOver(){
-	SoundBank::GetInstance()->StopMusic();
-	gsm->ChangeGameState();
+	//SoundBank::GetInstance()->StopMusic(); //not needed
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
+	gsm->CreateGameState(GameStateType::GameOverState,0);
 }
+
+void PlayState::Victory(){
+	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
+	gsm->CreateGameState(GameStateType::VictoryState,0);
+}
+
 void PlayState::LoadGame()
 {
 	
@@ -43,12 +53,17 @@ void PlayState::SetFileToLoad(std::string fileName)
 
 void PlayState::Pause()
 {
-	std::cout << "Pause not implemented yet";
+	gsm->CreateGameState(GameStateType::PauseState,0);
 }
 
 void PlayState::Resume()
 {
-	std::cout << "Resume not implemented yet";
+	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LETSROCK);
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
+	//if screen changed, reload all layerContainers
+	currentLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
+	hud->ResumeChecks();
 }
 
 void PlayState::HandleMouseEvents(SDL_Event mainEvent)
@@ -62,7 +77,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		b2Vec2 vel = currentLevel->GetPlayer()->GetBody()->GetLinearVelocity();
 
 		bool jump = false;
-		bool quit = false;
+		bool pause = false;
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
@@ -73,71 +88,186 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				switch (it->first)
 				{
 				case SDLK_w:
+					if (currentLevel->GetPlayer()->GetNumFootContacts() >  0){
+						if (!(currentLevel->GetPlayer()->GetJumpTimeOut() > 0)){
 
+							jump = true;
+							impulse = 210; //temp
+							//SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 
-					if (!currentLevel->GetPlayer()->GetBody()->GetLinearVelocity().y > 0){
-						jump = true;
-						impulse = 100;
-						SoundBank::GetInstance()->Play(SoundEffectType::CORRECT, 32);
-						currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
+							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
+							currentLevel->GetPlayer()->SetJumpTimeOut(15);
+
+							//TODO fix bounce effect -> jumping higher than intended! Not good.
+						}
+				
 
 					}
 					break;
 				case SDLK_a:
-
-					//		cout << "e" << x;
-					x = -5;
-					//		cout << " - " << x;
+					currentLevel->GetPlayer()->SetState(EntityState::WALKINGLEFT);
+					currentLevel->GetPlayer()->SetFlipped(true);
+					x = -25;
 
 					break;
 				case SDLK_s:
-					y = 5;
+					//disabled for player
 					break;
 				case SDLK_d:
-					x = 5;
+					currentLevel->GetPlayer()->SetState(EntityState::WALKINGRIGHT);
+					currentLevel->GetPlayer()->SetFlipped(false);
+					x = 25;
 					break;
+				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
+						accumulatedDtWeapon, currentManipulatorSpeed)) 
+					{
+						accumulatedDtWeapon = 0;
+					}
+					break;
+				case SDLK_UP:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(-100);
+					break;
+
+				case SDLK_DOWN:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(+100);
+					break;
+
+				case SDLK_LEFT:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(-100);
+					break;
+
+				case SDLK_RIGHT:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(+100);
+					break;
+
+				case SDLK_1:
+					currentLevel->GetPlayer()->SwitchWeapon(0);
+					break;
+				case SDLK_2:
+					currentLevel->GetPlayer()->SwitchWeapon(1);
+					break;
+				case SDLK_3:
+					currentLevel->GetPlayer()->SwitchWeapon(2);
+					break;
+				case SDLK_4:
+					currentLevel->GetPlayer()->SwitchWeapon(3);
+					break;
+				case SDLK_5:
+					currentLevel->GetPlayer()->SwitchWeapon(4);
+					break;
+				case SDLK_6:
+					currentLevel->GetPlayer()->SwitchWeapon(5);
+					break;
+				case SDLK_7:
+					currentLevel->GetPlayer()->SwitchWeapon(6);
+					break;
+				case SDLK_8:
+					currentLevel->GetPlayer()->SwitchWeapon(7);
+					break;
+				case SDLK_9:
+					currentLevel->GetPlayer()->SwitchWeapon(8);
+					break;
+				
 				case SDLK_ESCAPE:
-					quit = true;
+					pause = true;
+					break;
+				case SDLK_l:
+					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
+					break;
+				case SDLK_k: //TODO cheat mode and not normal key for normal player
+					Victory();
+					break;
+				}
+			}
+			else
+			{
+				switch (it->first)
+				{
+				case SDLK_w:
+
+					break;
+				case SDLK_a:
+					if (currentLevel->GetPlayer()->GetState() == EntityState::WALKINGLEFT)
+						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
+					break;
+				case SDLK_s:
 					
+					break;
+				case SDLK_d:
+					if (currentLevel->GetPlayer()->GetState() == EntityState::WALKINGRIGHT)
+						currentLevel->GetPlayer()->SetState(EntityState::IDLE);
+					break;
+				case SDLK_UP:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == -100){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
+					}
+
+					break;
+				case SDLK_DOWN:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y == 100){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetYVec(0);
+					}
+				
+					break;
+
+				case SDLK_LEFT:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == -100){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
+					}
+
+					break;
+
+				case SDLK_RIGHT:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().x == 100 && currentLevel->GetPlayer()->GetCurrentWeapon()->GetVec().y != 0){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetXVec(0);
+					}
+
 					break;
 
 				}
 			}
+
 		}
-		
 		
 		if (!jump){
+			//temporary solution. Makes controlling player lot easier
+			if (currentLevel->GetPlayer()->GetState() == EntityState::IDLE) { 
+				x = 0;
+			}
 			vel.Set(x, y);
 			//	currentLevel->GetPlayer()->GetBody()->ApplyForce(vel, currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
-
-
 			currentLevel->GetPlayer()->GetBody()->SetLinearVelocity(vel);
 		}
-		if (quit){
-			GameOver();
+	
+		if (currentLevel->GetPlayer()->GetJumpTimeOut() > 0){
+			currentLevel->GetPlayer()->SetJumpTimeOut(currentLevel->GetPlayer()->GetJumpTimeOut() - 1);
 		}
-		
+
+		if (pause){
+			Pause();
+		}
 	}
+}
+
+void PlayState::HandleTextInputEvents(SDL_Event event) {
 
 }
 
-void PlayState::Update(float dt)
-{
-	currentLevel->Update(dt);
+void PlayState::Update(float dt, float manipulatorSpeed) {
+	accumulatedDtWeapon += dt; //accumulate Dt
+	currentManipulatorSpeed = manipulatorSpeed;
 
-	// TODO: fix dinemic FPS count
-	// do last
-	
-	
+	currentLevel->Update(dt, manipulatorSpeed);
 }
 
-void PlayState::Draw()
+void PlayState::Draw(float dt, float manipulatorSpeed)
 {
+	//TODO use manipulatorSpeed
 
-	background.render(gsm->GetBehaviour()->GetRenderer(), 0, -450, &backgroundRect); //TEMP!
-
-	currentLevel->GetDrawableContainer()->Draw();
-
+	currentLevel->GetParallaxBackGround()->Draw();
+	currentLevel->GetDrawableContainer()->Draw(dt, manipulatorSpeed);
+	hud->Draw(dt, manipulatorSpeed);
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -147,14 +277,27 @@ Level* PlayState::GetCurrentLevel()
 
 void PlayState::SetCurrentLevel(Level* lvl)
 {
-
 	BehaviourFactory* bf = gsm->GetBehaviour();
-	this->currentLevel = lvl;
-	this->currentLevel->Init(bf);
+	if (currentLevel != nullptr){
+		delete currentLevel;
+		currentLevel = nullptr;
+	}
+
+	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
+	//Note CurrentLevel is now new level
+
+	this->currentLevel->Init(bf,this);
+	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
 	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
-	SoundBank::GetInstance()->PlayBGM(SoundBgmType::THUNDERSTRUCK, 64);
+
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+
+
+	this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this to fix XPos after the player is set in the current level
+	this->hud->SetTimer(currentLevel->GetTimer());
+
 }
 
 
@@ -166,13 +309,14 @@ Player* PlayState::GetPlayer()
 
 void PlayState::Cleanup()
 {
+	gsm->GetBehaviour()->ClearCamera();
 	delete player;
-	
 	delete currentLevel;
+	delete hud;
 
 	player = nullptr;
-
 	currentLevel = nullptr;
+	hud = nullptr;
 }
 
 PlayState::~PlayState()
