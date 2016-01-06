@@ -54,7 +54,7 @@ SDL_Keycode InputManager::RemapKey(SDL_Keycode key){
 }
 void InputManager::SetKeyInput(SDL_Keycode key)
 {
-<<<<<<< HEAD
+
 	if (cheating){
 		auto cheatKey = cheatConverter.find(key);
 		if (cheatKey != cheatConverter.end()){
@@ -102,14 +102,14 @@ void InputManager::SetKeyInput(SDL_Keycode key)
 	}
 
 
-	if (input->find(key) == input->end())
-	SDL_Keycode inputkey = RemapKey(key);
-	
+	if (input->find(key) == input->end())	
 	{
+		SDL_Keycode inputkey = RemapKey(key);
 		input->insert({ inputkey, true });
 	}
 	else
 	{
+		SDL_Keycode inputkey = RemapKey(key);
 		input->at(inputkey) = true;
 	}
 
