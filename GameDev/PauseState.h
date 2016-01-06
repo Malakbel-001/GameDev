@@ -27,8 +27,10 @@ private:
 	CreditMenu* creditMenu;
 	OptionMenu* optionMenu;
 
+	ParallaxBackground* parallaxBackground;
+
 public:
-	PauseState();
+	
 	
 
 
@@ -148,19 +150,12 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleTextInputEvents(SDL_Event event);
-	void Update(float);
-	void Draw();
 	void Move(float dt);
+	void Update(float dt, float manipulatorSpeed);
+	void Draw(float dt, float manipulatorSpeed);
 	void Background();
 
 	virtual ~PauseState();
-
-	//temp
-	LTexture background;
-	//background
-	SDL_Rect backgroundRect;
-	//background
-	SDL_Texture* backgroundTexture;
 
 	void updateMenu(MenuEnum);
 

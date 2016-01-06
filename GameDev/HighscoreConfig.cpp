@@ -56,4 +56,5 @@ vector<Score>* HighscoreConfig::GetHighscore(){
 
 HighscoreConfig::~HighscoreConfig()
 {
+	//delete highscores;
 }

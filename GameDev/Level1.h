@@ -11,7 +11,7 @@ class Level1 :
 		virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 	public:
-		Level1(int _lvlWidth, int _lvlHeight , PlayState* play);
+		Level1(int _lvlWidth, int _lvlHeight);
 		virtual ~Level1();
 		
 		void Cleanup();

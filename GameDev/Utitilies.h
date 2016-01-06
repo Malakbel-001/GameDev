@@ -12,4 +12,5 @@ namespace Utilities {
 	void DrawTextHelper(SDL_Renderer* renderer, TTF_Font* font, std::string text, int minusX, int y, SDL_Color color, int screenWidth);
 	SDL_Color GetColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a);
 	TTF_Font* SetFont(char* path, int ptsize);
+	bool ToggleDraw(Uint32 lockButtonTicks, int* screenWidth, int* screenHeight, bool run);
 };

@@ -49,9 +49,11 @@ public:
 	std::vector<Entity*>* GetEntities();
 	DrawableContainer* GetDrawableContainer();
 	MoveableContainer* GetMoveableContainer();
-	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
-	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
-	virtual void Init(BehaviourFactory* bf);
+	Level(int _lvlWidth, int _lvlHeight);
+
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
+	virtual void Init(BehaviourFactory* bf, PlayState* play);
+
 	virtual ~Level();
 
 
@@ -64,7 +66,7 @@ public:
 	
 					//TODO get this to work
 	void Draw();
-	void Update(float dt);
+	void Update(float dt, float manipulatorSpeed);
 	void GameOver();
 	void Victory();
 	virtual b2World* GetWorld();

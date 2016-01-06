@@ -15,8 +15,8 @@ Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::strin
 	xml_node<>* levelnode = doc.first_node();
 
 
-	LoadedLevel* lvl = new LoadedLevel(2000, 200, b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())), play);
-	lvl->Init(bf);
+	LoadedLevel* lvl = new LoadedLevel(2000, 200, b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())));
+	lvl->Init(bf,play);
 	EntityFactory* ent = lvl->GetEntityFactory();
 
 	xml_node<>* currentnode = levelnode->first_node("entities")->first_node();
@@ -144,9 +144,9 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 void LevelFactory::Init(PlayState* play)
 {
 	levels = {
-		new Level1(2000, 120,play), 
-		new Level2(2000,120, play),
-		new Level3(2000, 120, play),
+		new Level1(2000, 120), 
+		new Level2(2000,120),
+		new Level3(2000, 120),
 		//TODO add , new Level1() , new level2()
 	};
 }

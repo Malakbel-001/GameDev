@@ -13,10 +13,10 @@ Cannon::~Cannon()
 {
 }
 
-void Cannon::Shoot(EntityFactory* eF){
+bool Cannon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed){
 
 
-	if (SDL_GetTicks() > timecounter + fireSpeed){
+	if (accumulatedDt > (fireSpeed / manipulatorSpeed)) {
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
 				vec.x = 1000;
@@ -25,8 +25,8 @@ void Cannon::Shoot(EntityFactory* eF){
 
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CANNON);
 
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 100, vec, EntityType::BULLET);
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y + 1 + vec.y / 200, 1, 1, 100, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 100, vec, actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + 6 + vec.x / 200, actor->GetBody()->GetWorldCenter().y + 1 + vec.y / 200, 1, 1, 100, vec, actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			cout << actor->GetBody()->GetWorldCenter().x + vec.x / 200 << endl;
 			cout << actor->GetBody()->GetWorldCenter().y + vec.y / 200 << endl;
 
@@ -35,8 +35,9 @@ void Cannon::Shoot(EntityFactory* eF){
 				vec.x = 0;
 
 			}
-			timecounter = SDL_GetTicks();
+			return true;
 	}
+	return false;
 }
 
 Weapon* Cannon::EmptyClone(){

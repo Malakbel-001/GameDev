@@ -9,7 +9,7 @@ protected:
 	virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 public:
-	Level3(int _lvlWidth, int _lvlHeight, PlayState* play);
+	Level3(int _lvlWidth, int _lvlHeight);
 	virtual ~Level3();
 
 	void Cleanup();

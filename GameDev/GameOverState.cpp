@@ -27,8 +27,6 @@ void GameOverState::Init(GameStateManager *gsm){
 	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
 	SDL_Delay(2000);*/
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
-	Update(0);
-
 	SDL_StartTextInput();
 }
 
@@ -37,6 +35,7 @@ GameOverState::GameOverState()
 	textColor = { 255, 255, 255, 255 }; // white
 	hoverTextColor = { 255, 0, 0, 255 }; // red
 	pos.resize(renderItems);
+	lockButtonTicks = SDL_GetTicks();
 }
 
 void GameOverState::loadQuitMenu(){
@@ -201,12 +200,11 @@ void GameOverState::SetupRenderer()
 	// Set size of renderer to the same as window
 	//SDL_RenderSetLogicalSize(renderer, windowRect.w, windowRect.h);
 
-	background = LTexture();
-	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "menu.jpg");
-	backgroundRect.h = background.getHeight();
-	backgroundRect.w = background.getWidth();
-	backgroundRect.x = 0;
-	backgroundRect.y = 0;
+	parallaxBackground = new ParallaxBackground(gsm->GetBehaviour()->GetRenderer(), 1);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
 
@@ -219,6 +217,8 @@ void GameOverState::Cleanup(){
 	// Clean up font
 	TTF_CloseFont(titleFont);
 	TTF_CloseFont(textFont);
+
+	delete parallaxBackground;
 }
 
 void GameOverState::Resume() {}
@@ -229,6 +229,7 @@ void GameOverState::Quit(){
 	SDL_StopTextInput();
 	gsm->PopPrevState();
 	gsm->PopState();
+
 	//MenuState* tempState = (MenuState*)gsm->GetCurrentState();
 	//tempState->updateMenu(MenuEnum::Previous);
 }
@@ -318,9 +319,13 @@ void GameOverState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _even
 			switch (it->first){
 			case SDLK_BACKSPACE:
 				if (text.length() > 0 && !backspaced){
-					text = text.substr(0, text.length() - 1);
-					backspaced = true;
-					MakeInputText(textColor);
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						text = text.substr(0, text.length() - 1);
+						backspaced = true;
+						MakeInputText(textColor);
+
+						lockButtonTicks = SDL_GetTicks();
+					}
 				}
 				break;
 			}
@@ -343,20 +348,13 @@ void GameOverState::HandleTextInputEvents(SDL_Event event)
 	}
 }
 
-void GameOverState::Update(float dt){
-	Draw();
-	/*while (!quit){
-
-	HandleEvents();
-
-	Draw();
-	}*/
+void GameOverState::Update(float dt, float manipulatorSpeed){
+	//empty, move on
 }
 
-void GameOverState::Draw(){
+void GameOverState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
-
-	background.render(renderer, 0, 0,0, &backgroundRect);
+	parallaxBackground->Draw();
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
 }

@@ -6,7 +6,6 @@ Weapon::Weapon(){
 	ammo = 100;
 	maxAmmo = 200;
 	fireSpeed = 250;
-	timecounter = 0;
 	vec = b2Vec2(0, 0);
 	actor = nullptr;
 }
@@ -90,10 +89,8 @@ float Weapon::GetAngle(){
 	
 	return angle;
 }
-void Weapon::Shoot(EntityFactory* eF){
-
-
-	if (SDL_GetTicks() > timecounter + fireSpeed){
+bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed){
+	if (accumulatedDt > (fireSpeed / manipulatorSpeed)) {
 		if (ammo > 0){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
@@ -101,18 +98,18 @@ void Weapon::Shoot(EntityFactory* eF){
 				dir = true;
 			}
 
-
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, 
+				actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
 				vec.x = 0;
 				vec.y = 0;
 			}
-			timecounter = SDL_GetTicks();
+			return true;
 		}
-
 	}
+	return false;
 }
 
 int Weapon::GetAmmo() {

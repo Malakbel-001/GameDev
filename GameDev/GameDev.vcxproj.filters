@@ -313,9 +313,6 @@
     <ClCompile Include="BigGroundSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FramesPerSecond.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GroundLvl2Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -371,6 +368,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SnowBossPatrolCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FPS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameSpeedManipulator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -693,9 +696,6 @@
     <ClInclude Include="MechSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FramesPerSecond.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="HighscoreConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -728,43 +728,43 @@
     </ClInclude>
     <ClInclude Include="PlantMoveableBehaviour.h">
       <Filter>Header Files</Filter>
-	  </ClInclude>
+    </ClInclude>
     <ClInclude Include="Level2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SensorCollidableBehaviour.h">
       <Filter>Header Files</Filter>
-	  </ClInclude>
+    </ClInclude>
     <ClInclude Include="LevelConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TankSprite.h">
       <Filter>Header Files</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="ParallaxBackground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StepCollidableBehaviour.h">
       <Filter>Header Files</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="PlayMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vehicle.h">
       <Filter>Header Files</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="SnowBossSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MinigunnerSprite.h">
       <Filter>Header Files</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="Level1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Apc.h">
       <Filter>Header Files</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="GroundLvl2Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -775,6 +775,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SnowBossPatrolCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FPS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSpeedManipulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlantBossMoveableBehaviour.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

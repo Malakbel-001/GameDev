@@ -6,7 +6,7 @@ class Cannon :
 public:
 	Cannon();
 	~Cannon();
-	virtual void Shoot(EntityFactory* eF);
+	virtual bool Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed);
 
 	Weapon* EmptyClone();
 };

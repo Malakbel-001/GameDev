@@ -118,7 +118,8 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="IdleCommand.cpp" />
     <ClCompile Include="Level2.cpp" />
     <ClCompile Include="Level3.cpp" />
-    <ClCompile Include="FramesPerSecond.cpp" />
+    <ClCompile Include="FPS.cpp" />
+    <ClCompile Include="GameSpeedManipulator.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="KeyMapping.cpp" />
     <ClCompile Include="LoadedLevel.cpp" />
@@ -238,7 +239,9 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="LeftStepCollidableBehaviour.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
-    <ClInclude Include="FramesPerSecond.h" />
+    <ClInclude Include="CollisionType.h" />
+    <ClInclude Include="FPS.h" />
+    <ClInclude Include="GameSpeedManipulator.h" />
     <ClInclude Include="HighscoreConfig.h" />
     <ClInclude Include="HighscoreMenu.h" />
     <ClInclude Include="Score.h" />

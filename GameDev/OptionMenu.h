@@ -1,6 +1,8 @@
+#pragma once
 #include "MenuBase.h"
 #include "LTexture.h"
 #include "SettingsConfig.h"
+#include "ParallaxBackground.h"
 class MenuState;
 class PauseState;
 class OptionMenu : public MenuBase
@@ -47,14 +49,19 @@ private:
 	SDL_Texture* musicOffTexture; //14
 	SDL_Texture* fullScreenOnTexture; //16
 	SDL_Texture* fullScreenOffTexture; //16
-public:
 
+private:
+	ParallaxBackground* parallaxBackground;
+
+	void InitClass(SDL_Renderer*, TTF_Font*, TTF_Font*, ParallaxBackground*);
+
+public:
 	void LoadSettings(map<string, bool>);
-	OptionMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
-	OptionMenu(PauseState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
-	void Init();
+	OptionMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*, ParallaxBackground*);
+	OptionMenu(PauseState*, SDL_Renderer*, TTF_Font*, TTF_Font*, ParallaxBackground*);
 	~OptionMenu();
 
+	void Init();
 	void MakeBackToMain(SDL_Color);
 	void MakeOptionText(SDL_Color);
 	void MakeSfxOn(SDL_Color);

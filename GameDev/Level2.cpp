@@ -1,7 +1,7 @@
 #include "Level2.h"
 
 
-Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth, _lvlHeight, play)
+Level2::Level2(int _lvlWidth, int _lvlHeight) : Level(_lvlWidth, _lvlHeight)
 {
 	levelId = 2;
 }
@@ -93,16 +93,16 @@ void Level2::CreateParallaxBackground(BehaviourFactory* bf) {
 
 Level* Level2::CreateLevel()
 {
-	return new Level2(lvlWidth, lvlHeight, playState);
+	return new Level2(lvlWidth, lvlHeight);
 }
 
 Player* Level2::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 40, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
+	wep->Pickup(player, b2Vec2(100, 0));
 	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
-	shot->Pickup(player, b2Vec2(1000, 0));
+	shot->Pickup(player, b2Vec2(100, 0));
 	player->AddWeapon(wep);
 	player->AddWeapon(shot);
 
