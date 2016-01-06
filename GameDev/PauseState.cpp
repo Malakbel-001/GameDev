@@ -111,6 +111,8 @@ PauseState::~PauseState()
 	delete helpMenu;
 	delete creditMenu;
 	delete optionMenu;
+	delete parallaxBackground;
+
 }
 
 void PauseState::Cleanup(){

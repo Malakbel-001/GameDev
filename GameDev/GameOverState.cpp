@@ -217,6 +217,8 @@ void GameOverState::Cleanup(){
 	// Clean up font
 	TTF_CloseFont(titleFont);
 	TTF_CloseFont(textFont);
+
+	delete parallaxBackground;
 }
 
 void GameOverState::Resume() {}

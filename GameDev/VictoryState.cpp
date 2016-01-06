@@ -189,6 +189,8 @@ void VictoryState::Cleanup(){
 	// Clean up font
 	TTF_CloseFont(titleFont);
 	TTF_CloseFont(textFont);
+
+	delete parallaxBackground;
 }
 
 void VictoryState::Resume() {}
@@ -196,11 +198,8 @@ void VictoryState::Resume() {}
 void VictoryState::Pause() {}
 
 void VictoryState::Quit(){
+	gsm->PopPrevState();
 	gsm->PopState();
-	gsm->PopState();
-	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-	tempState->updateMenu(MenuEnum::Previous);
-
 }
 
 void VictoryState::Highlight(int item){
