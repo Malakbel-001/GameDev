@@ -28,7 +28,7 @@ private:
 	OptionMenu* optionMenu;
 
 public:
-	PauseState();
+	
 	
 
 

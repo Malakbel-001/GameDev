@@ -1,8 +1,8 @@
 #include "Level.h"
 #include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
 	player = nullptr;
@@ -17,8 +17,8 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	entities = new std::vector<Entity*>();
 	parallaxBackground = nullptr;
 }
-Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
 	player = nullptr;
@@ -36,7 +36,8 @@ Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 
 
 //Always perform these procedures
-void Level::Init(BehaviourFactory* bf) { //TODO get this to work
+void Level::Init(BehaviourFactory* bf,PlayState* play) { //TODO get this to work
+	playState = play;
 	SetEntityFactory(bf);
 	CreateMap();
 	CreateNPCs();
