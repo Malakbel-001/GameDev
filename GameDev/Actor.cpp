@@ -61,24 +61,7 @@ void Actor::InitActor(b2Body* _body, int _hitdmg, int _health, float _width, flo
 		rightStepFixture->SetUserData(stepRightSensor);		
 	}
 
-	//if (_type == EntityType::PLANTBOSS)
-	//{
-	//	playerSensor = new SensorCollidableBehaviour();
-	//	playerSensor->Init(this);
-
-	//	b2PolygonShape boxShape;
-	//	//fixture for detecting player
-	//	boxShape.SetAsBox(10, 10);
-	//	b2FixtureDef sensorDef;
-	//	sensorDef.shape = &boxShape;
-	//	sensorDef.isSensor = true;
-	//	auto sensorFixture = _body->CreateFixture(&sensorDef);
-	//	sensorFixture->SetUserData(playerSensor);
-	//}
-
-	//direction = b2Vec2(0, 0);
 	m_jumpTimeout = 0;
-
 }
 Actor* Actor::EmptyClone(){
 
