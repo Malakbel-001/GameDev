@@ -232,7 +232,6 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="DefaultPatrolCommand.h" />
     <ClInclude Include="DesertGroundSprite.h" />
-    <ClInclude Include="EntityDirection.h" />
     <ClInclude Include="GroundLvl2Sprite.h" />
     <ClInclude Include="IdleCommand.h" />
     <ClInclude Include="IdleMoveableBehaviour.h" />
