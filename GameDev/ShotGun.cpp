@@ -20,7 +20,7 @@ bool ShotGun::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpe
 		if (ammo > 2){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
-				vec.x = 1000;
+				vec.x = defaultShootingDirection.x;
 				dir = true;
 			}
 

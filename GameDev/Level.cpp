@@ -135,8 +135,8 @@ void Level::Update(float dt, float manipulatorSpeed)
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				b2Vec2 vector = actors->operator[](x)->GetDirection();
 
-				vector.x *= manipulatorSpeed*0.5; //0.5 because it seems more reasonable
-				vector.y *= manipulatorSpeed*0.5; //0.5 because it seems more reasonable
+				vector.x *= manipulatorSpeed;
+				vector.y *= manipulatorSpeed;
 
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
