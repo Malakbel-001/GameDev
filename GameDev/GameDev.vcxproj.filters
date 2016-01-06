@@ -271,9 +271,6 @@
     <ClCompile Include="LoadedLevel.cpp">
       <Filter>Source Files\Model\Level</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionFilterContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FPS.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -588,9 +585,6 @@
     <ClInclude Include="LoadedLevel.h">
       <Filter>Header Files\Model\Level</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionFilterContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FPS.h">
       <Filter>Header Files\View</Filter>
     </ClInclude>
@@ -655,9 +649,6 @@
     </Filter>
     <Filter Include="Source Files\Model\Container">
       <UniqueIdentifier>{d86f9ddc-c66e-49ef-a13b-d64baa601c1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Model\Entity">
-      <UniqueIdentifier>{8ee9b35a-8423-482b-bc34-3bf2a87a60d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Model\Factory">
       <UniqueIdentifier>{f401c3d6-a5f7-4da6-9940-d3213274716e}</UniqueIdentifier>
@@ -739,6 +730,9 @@
     </Filter>
     <Filter Include="Header Files\Model\Utilities">
       <UniqueIdentifier>{aa772841-302f-45ad-9a60-3fa60f92e8cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model\Entity">
+      <UniqueIdentifier>{8ee9b35a-8423-482b-bc34-3bf2a87a60d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
