@@ -17,6 +17,9 @@ ParallaxBackground::ParallaxBackground(SDL_Renderer* _renderer, float _autoAdd) 
 void ParallaxBackground::Initialize(SDL_Renderer* _renderer) {
 	renderer = _renderer;
 
+	previousXPos = 0; //nothing lost, just in case. Prevent endless loop in Draw.
+	//Still, please use InitializeFixXPos()
+
 	screenWidth = new int;
 	screenHeight = new int;
 	//set screenWidth & screenHeight
@@ -26,6 +29,8 @@ void ParallaxBackground::Initialize(SDL_Renderer* _renderer) {
 	layerContainers = std::vector<LayerContainer*>();
 }
 
+//Sets the previousXPos, activate this after the camera/player is set
+//do not forget this, or you are going to have a BAD time.
 void ParallaxBackground::InitializeFixXPos() {
 	previousXPos = camera->GetX();
 }

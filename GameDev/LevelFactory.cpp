@@ -7,6 +7,9 @@ LevelFactory::~LevelFactory() {
 
 
 }
+
+
+
 Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::string name){
 	file<> xmlFile(name.c_str()); // Default template is char
 	xml_document<> doc;
@@ -141,14 +144,8 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 	return true;
 
 }
-void LevelFactory::Init(PlayState* play)
-{
-	levels = {
-		new Level1(2000, 120,play), 
-		new Level2(2000,120, play),
-		//TODO add , new Level1() , new level2()
-	};
-}
+
+
 
 Level* LevelFactory::GetFirstLevel(PlayState* play)
 {
@@ -199,6 +196,14 @@ Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 	return levels[lvl-1]->CreateLevel();
 }
 
+Level* LevelFactory::GetSpecificLevel(int lvl) {
+	if (!(levels.size() > 0))
+	{
+		Init(nullptr);
+	}
+	return levels[lvl - 1]->CreateLevel();
+}
+
 void LevelFactory::DeletePointers(){
 	for (auto it = levels.begin(); it != levels.end(); ++it)
 	{
@@ -212,4 +217,23 @@ Level* LevelFactory::GetEmptyLevel() {
 	int lvlHeight = 120;
 
 	return new Level(lvlWidth, lvlHeight);
+}
+
+//Fill Levels array, mind you, these Levels are not yet initialized (Level1->Init();)
+//This method also accepts nullptr, for use in the Level Editor
+void LevelFactory::Init(PlayState* play)
+{
+	if (play) {
+		levels = {
+			new Level1(2000, 120, play),
+			new Level2(2000, 120, play),
+			//TODO add , new Level1() , new level2()
+		};
+	}
+	else {
+		levels = {
+			new Level1(2000, 120),
+			new Level2(2000, 120),
+		};
+	}
 }

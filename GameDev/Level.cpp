@@ -167,7 +167,12 @@ void Level::CreateNPCs() {
 }
 
 void Level::CreateParallaxBackground(BehaviourFactory* bf) {
-	//empty level
+	//standard background
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
 }
 
 Player* Level::SetPlayer(Player* _player) {

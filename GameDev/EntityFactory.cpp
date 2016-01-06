@@ -6,8 +6,8 @@
 EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor), bf(_bf), drawContainer(_drawContainer), entities(_ent)
 {
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
-		{ EntityType::ACTOR, new Actor() },
-		{ EntityType::NPC, new Npc() },
+		/*{ EntityType::ACTOR, new Actor() },			//disabled and will probs get deleted unless this is needed
+		{ EntityType::NPC, new Npc() },*/
 		{ EntityType::PLAYER, new Player() },
 		{ EntityType::PLANT, new Npc() },
 		{ EntityType::PLANTBOSS, new Npc() },
@@ -32,7 +32,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
-		{ EntityType::ENTITY, new Entity() },	
+		//{ EntityType::ENTITY, new Entity() },			//disabled and will probs get deleted unless this is needed
 		{ EntityType::GROUND, new Ground() },
 		{ EntityType::GROUND2, new Ground() },
 		{ EntityType::BAR, new Ground() },

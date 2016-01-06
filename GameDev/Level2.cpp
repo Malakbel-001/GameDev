@@ -6,6 +6,11 @@ Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth
 	levelId = 2;
 }
 
+Level2::Level2(int _lvlWidth, int _lvlHeight) : Level(_lvlWidth, _lvlHeight)
+{
+	levelId = 2;
+}
+
 void Level2::CreateMap() {
 	//obstacles--------------------
 	entityFactory->CreateEntity(1375, 450, 250, 120, EntityType::GROUNDLVL2);
@@ -94,7 +99,12 @@ void Level2::CreateParallaxBackground(BehaviourFactory* bf) {
 
 Level* Level2::CreateLevel()
 {
-	return new Level2(lvlWidth, lvlHeight, playState);
+	if (playState) {
+		return new Level2(lvlWidth, lvlHeight, playState);
+	}
+	else {
+		return new Level2(lvlWidth, lvlHeight);
+	}
 }
 
 Player* Level2::SetPlayer(Player* _player) {

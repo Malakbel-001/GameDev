@@ -2,6 +2,7 @@
 
 EditorState::EditorState() {
 	newLevel = LevelFactory::GetEmptyLevel();
+	//newLevel = LevelFactory::GetSpecificLevel(2);
 	
 	editorDrawableContainer = new DrawableContainer();
 	selectedEntity = nullptr;
@@ -18,13 +19,18 @@ void EditorState::Cleanup() {
 }
 
 void EditorState::Init(GameStateManager *gsm) {
+	//beware!
+	//newLevel->Init(gsm->GetBehaviour());
+
 	behaviourFactory = gsm->GetBehaviour(); //need this to create (temporary) drawableBehaviours
 
-	newLevel->SetEntityFactory(gsm->GetBehaviour());
+	//newLevel->SetEntityFactory(gsm->GetBehaviour());
+	newLevel->Init(gsm->GetBehaviour());
 	actorTypeList = newLevel->GetEntityFactory()->GetActorTypeList();
 	entityTypeList = newLevel->GetEntityFactory()->GetEntityTypeList();
 
 	manualCamera = behaviourFactory->SetManualCamera(newLevel->GetLvlWidth(), newLevel->GetLvlHeight());
+	newLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this after PBG and the Camera is set
 
 	//grab first entity from the list and set it
 	SetSelectedEntity();
@@ -96,7 +102,7 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 
 				case SDLK_UP: {
 					if (lockButtonTicks + 100 < SDL_GetTicks()) {
-						if (scroll < entityTypeList->size()) {
+						if (scroll < entityTypeList->size() - 1) {
 							scroll++;
 						}
 						else {

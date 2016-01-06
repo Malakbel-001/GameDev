@@ -16,6 +16,7 @@ void DrawableContainer::Cleanup() {
 	{
 		delete var;
 	}
+	behaviours.clear();
 }
 
 void DrawableContainer::Add(DrawableBehaviour* behaviour)

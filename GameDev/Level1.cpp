@@ -6,6 +6,12 @@ Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
 	levelId = 1;
 }
 
+Level1::Level1(int _lvlWidth, int _lvlHeight)
+	: Level(_lvlWidth, _lvlHeight)
+{
+	levelId = 1;
+}
+
 void Level1::CreateMap() {
 	//obstacles--------------
 	//	entityFactory->CreateWeapon(0, 500, EntityType::WEAPON);
@@ -92,7 +98,12 @@ void Level1::CreateParallaxBackground(BehaviourFactory* bf) {
 
 Level* Level1::CreateLevel()
 {
-	return new Level1(lvlWidth, lvlHeight, playState);
+	if (playState) {
+		return new Level1(lvlWidth, lvlHeight, playState);
+	}
+	else {
+		return new Level1(lvlWidth, lvlHeight);
+	}
 }
 
 
