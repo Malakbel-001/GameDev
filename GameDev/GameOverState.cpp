@@ -35,6 +35,7 @@ GameOverState::GameOverState()
 	textColor = { 255, 255, 255, 255 }; // white
 	hoverTextColor = { 255, 0, 0, 255 }; // red
 	pos.resize(renderItems);
+	lockButtonTicks = SDL_GetTicks();
 }
 
 void GameOverState::loadQuitMenu(){
@@ -316,9 +317,13 @@ void GameOverState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _even
 			switch (it->first){
 			case SDLK_BACKSPACE:
 				if (text.length() > 0 && !backspaced){
-					text = text.substr(0, text.length() - 1);
-					backspaced = true;
-					MakeInputText(textColor);
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						text = text.substr(0, text.length() - 1);
+						backspaced = true;
+						MakeInputText(textColor);
+
+						lockButtonTicks = SDL_GetTicks();
+					}
 				}
 				break;
 			}
