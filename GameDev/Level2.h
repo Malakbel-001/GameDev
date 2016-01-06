@@ -9,7 +9,7 @@ class Level2 : public Level
 		virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 	public:
-		Level2(int _lvlWidth, int _lvlHeight, PlayState* play);
+		Level2(int _lvlWidth, int _lvlHeight);
 		virtual ~Level2();
 
 		void Cleanup();

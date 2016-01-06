@@ -49,9 +49,10 @@ public:
 	std::vector<Actor*>* GetActors();
 	std::vector<Entity*>* GetEntities();
 	DrawableContainer* GetDrawableContainer();
-	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
-	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
-	virtual void Init(BehaviourFactory* bf);
+	Level(int _lvlWidth, int _lvlHeight);
+
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
+	virtual void Init(BehaviourFactory* bf, PlayState* play);
 	virtual ~Level();
 
 

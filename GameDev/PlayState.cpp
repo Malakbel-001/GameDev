@@ -288,7 +288,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
 	//Note CurrentLevel is now new level
 
-	this->currentLevel->Init(bf);
+	this->currentLevel->Init(bf,this);
 	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);
