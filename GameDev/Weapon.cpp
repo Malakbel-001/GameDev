@@ -9,6 +9,14 @@ Weapon::Weapon(){
 	timecounter = 0;
 	vec = b2Vec2(0, 0);
 	actor = nullptr;
+	weaponDmg = 20;
+}
+
+void Weapon::SetWeaponDmg(int _weaponDmg){
+	weaponDmg = _weaponDmg;
+}
+int Weapon::GetWeaponDmg(){
+	return weaponDmg;
 }
 void Weapon::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
 	BareEntity::Init(_xpos, _ypos, _angle, _state, _type, bf, drawContainer);
@@ -102,7 +110,7 @@ void Weapon::Shoot(EntityFactory* eF){
 			}
 
 
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, weaponDmg, vec, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
@@ -113,6 +121,14 @@ void Weapon::Shoot(EntityFactory* eF){
 		}
 
 	}
+}
+
+
+void Weapon::SetFireSpeed(float speed){
+	fireSpeed = speed;
+}
+float Weapon::GetFireSpeed(){
+	return fireSpeed;
 }
 
 int Weapon::GetAmmo() {

@@ -7,7 +7,7 @@ class Player :
 {
 	private:
 		// stuff
-		
+		bool godmode = false;
 		int score;
 		int currentwep;
 		vector<Weapon*> weps;
@@ -26,12 +26,12 @@ class Player :
 		virtual void AddWeapon(Weapon* wep);
 		virtual Weapon* GetCurrentWeapon();
 		bool ContainsWeapons();
-		
+		void GodMode(bool cheat);
 		virtual void SwitchWeapon(int x);
 
 		void DeletePrevProp();
 
-
+		virtual void SetHealth(int _health);
 		void AddScore(int _score);
 
 		int GetScore();

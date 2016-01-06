@@ -1,13 +1,19 @@
 #pragma once
 #include <SDL.h>
 #include <unordered_map>
+#include <vector>
 class InputManager
 {
 	private:
 		std::unordered_map<SDL_Keycode, bool>* input;
 		SDL_Event mouseEvent;
 		SDL_Event TextInputEvent;
-
+		std::vector<SDL_Keycode> konamiCheats;
+		std::vector<SDL_Keycode> gta2Cheats;
+		std::unordered_map<SDL_Keycode, SDL_Keycode> cheatConverter;
+		int konamCheatsCounter = 0;
+		int gta2CheatsCounter = 0;
+		bool cheating = false;
 	public:
 		InputManager();
 		~InputManager();

@@ -8,6 +8,7 @@ ShotGun::ShotGun()
 	ammo = 100;
 	maxAmmo = 150;
 	fireSpeed = 500;
+	weaponDmg = 20;
 
 }
 
@@ -28,19 +29,19 @@ void ShotGun::Shoot(EntityFactory* eF){
 
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::SHOTGUN);
 
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, weaponDmg, vec, EntityType::BULLET);
 
 			b2Vec2 temp = (vec);
 
 
 			temp.x = temp.x - (temp.y / 10);
 			temp.y = temp.y - (temp.x / 10);
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + temp.x / 200, actor->GetBody()->GetWorldCenter().y + temp.y / 200, 1, 1, 20, temp, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + temp.x / 200, actor->GetBody()->GetWorldCenter().y + temp.y / 200, 1, 1, weaponDmg, temp, EntityType::BULLET);
 			temp = (vec);
 
 			temp.x = temp.x + (temp.y / 10);
 			temp.y = temp.y + (temp.x / 10);
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + temp.x / 200, actor->GetBody()->GetWorldCenter().y + temp.y / 200, 1, 1, 20, temp, EntityType::BULLET);
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + temp.x / 200, actor->GetBody()->GetWorldCenter().y + temp.y / 200, 1, 1, weaponDmg, temp, EntityType::BULLET);
 			if (dir){
 				vec.x = 0;
 

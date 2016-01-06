@@ -170,18 +170,35 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_9:
 					currentLevel->GetPlayer()->SwitchWeapon(8);
 					break;
-				
+				case SDLK_F13:
+					currentLevel->GetPlayer()->GodMode(true);
+						break;
+				case SDLK_F14:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetWeaponDmg(1000000);
+					break;
+				case SDLK_F15:
+					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(0.1)));
+					break;
+				case SDLK_F16:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() > 10){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetFireSpeed(currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() / 10);
+					}
+					
+					break;
+				case SDLK_F17:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->AddAmmo(1000);
+					break;
+				case SDLK_F18:			
+					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
+					
+					break;
 				case SDLK_ESCAPE:
 					pause = true;
 					
 					break;
 
-				case SDLK_l:
-					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
-					break;
-				case SDLK_k:
-					Victory();
-					break;
+			
+				
 
 				}
 			}
@@ -189,6 +206,24 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 			{
 				switch (it->first)
 				{
+				case SDLK_F13:
+					currentLevel->GetPlayer()->GodMode(false);
+					break;				
+				case SDLK_F14:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetWeaponDmg(20);
+					break;
+				case SDLK_F15:
+					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(1.81)));
+					break;
+				case SDLK_F16:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() < 250){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetFireSpeed(currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() * 10);
+					}
+					break;
+				case SDLK_F17:
+			
+
+					break;
 				case SDLK_w:
 
 					break;
