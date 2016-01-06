@@ -37,6 +37,7 @@ protected:
 	b2Vec2 direction;
 	Weapon* currentWep = nullptr;
 	CollidableBehaviour* col;
+
 	CollidableBehaviour* stepLeftSensor;
 	CollidableBehaviour* stepRightSensor;
 	CollidableBehaviour* playerSensor;
@@ -45,6 +46,9 @@ protected:
 	int health;
 	int maxHealth; //NEW
 	int hitdmg;
+	
+private:
+
 	
 	CollidableBehaviour* jumpsensor;
 	ActorState* state;

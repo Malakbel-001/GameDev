@@ -7,8 +7,12 @@ class Player :
 {
 	private:
 		// stuff
+
+		bool godmode = false;
+
 		Player* vehicle;
 		Player* passenger;
+
 		int score;
 		int currentwep;
 		vector<Weapon*> weps;
@@ -28,12 +32,12 @@ class Player :
 		virtual Weapon* GetCurrentWeapon();
 		vector<Weapon*> GetWeapons();
 		bool ContainsWeapons();
-		
+		void GodMode(bool cheat);
 		virtual void SwitchWeapon(int x);
 
 		void DeletePrevProp();
 
-
+		virtual void SetHealth(int _health);
 		void AddScore(int _score);
 		int GetScore();		
 		void SetPassenger(Player* _passenger);

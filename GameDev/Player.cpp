@@ -22,6 +22,25 @@ Player::~Player() {
 	}
 }
 
+void Player::GodMode(bool cheat){
+	godmode = cheat;
+}
+
+void Player::SetHealth(int _health){
+	if (!godmode){
+		if (_health <= 0){
+			dead = true;
+			health = _health;
+		}
+		else if (_health > maxHealth) {
+			health = maxHealth;
+		}
+		else{
+			health = _health;
+		}
+	}
+}
+
 Actor* Player::EmptyClone()
 {
 	return new Player();
