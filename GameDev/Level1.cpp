@@ -1,7 +1,7 @@
 #include "Level1.h"
 
-Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
-	: Level(_lvlWidth, _lvlHeight, play)
+Level1::Level1(int _lvlWidth, int _lvlHeight)
+	: Level(_lvlWidth, _lvlHeight)
 {
 	levelId = 1;
 }
@@ -92,7 +92,7 @@ void Level1::CreateParallaxBackground(BehaviourFactory* bf) {
 
 Level* Level1::CreateLevel()
 {
-	return new Level1(lvlWidth, lvlHeight, playState);
+	return new Level1(lvlWidth, lvlHeight);
 }
 
 
@@ -100,9 +100,9 @@ Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
+	wep->Pickup(player, b2Vec2(100, 0));
 	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
-	shot->Pickup(player, b2Vec2(1000, 0));
+	shot->Pickup(player, b2Vec2(100, 0));
 	player->AddWeapon(wep);
 	player->AddWeapon(shot);
 

@@ -15,7 +15,9 @@ Game::Game()
 	gsm = new GameStateManager(bf);
 	gsm->CreateGameState(GameStateType::MenuState,0);
 
-	fps = new FramesPerSecond(sdlInitializer->GetRenderer());
+	fps = new FPS(sdlInitializer->GetRenderer());
+	gameSpeedManipulator = new GameSpeedManipulator(sdlInitializer->GetRenderer());
+
 	//Non-threaded
 	this->GameLoop();
 
@@ -76,8 +78,8 @@ void Game::GameLoop()
 	while (running)
 	{
 		float dt = SDL_GetTicks() - preLoopTime;;
+		
 		preLoopTime = SDL_GetTicks();
-
 
 		SDLEvents();
 		gsm->GetCurrentState()->HandleKeyEvents(inputManager->GetKeyInput());		
@@ -85,18 +87,21 @@ void Game::GameLoop()
 		gsm->GetCurrentState()->HandleTextInputEvents(inputManager->GetTextInput());
 		inputManager->ResetMouseInput();
 		inputManager->ResetTextInput();
-		gsm->GetCurrentState()->Update(dt);
+		gsm->GetCurrentState()->Update(dt, gameSpeedManipulator->GetManipulator());
 		SDL_RenderClear(sdlInitializer->GetRenderer());
-		gsm->GetCurrentState()->Draw();
+		gsm->GetCurrentState()->Draw(dt, gameSpeedManipulator->GetManipulator());
 		
 		fps->HandleKeyEvents(inputManager->GetKeyInput());
-		fps->UpdateCount(); //NEW
-		fps->DrawFPS();
+		fps->UpdateCount();
+		fps->Draw();
+
+		gameSpeedManipulator->HandleKeyEvents(inputManager->GetKeyInput());
+		gameSpeedManipulator->Draw();
 		
 		SDL_RenderPresent(sdlInitializer->GetRenderer());
 	
 		afterLoopTime = SDL_GetTicks();
-		if (!((afterLoopTime - preLoopTime) > TARGET_FPS))
+		if (!((afterLoopTime - preLoopTime) > TARGET_FPS)) //Ensures 60 FPS
 		{
 			SDL_Delay(TARGET_FPS - (afterLoopTime - preLoopTime));
 		}

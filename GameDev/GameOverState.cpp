@@ -27,8 +27,6 @@ void GameOverState::Init(GameStateManager *gsm){
 	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
 	SDL_Delay(2000);*/
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
-	Update(0);
-
 	SDL_StartTextInput();
 }
 
@@ -37,6 +35,7 @@ GameOverState::GameOverState()
 	textColor = { 255, 255, 255, 255 }; // white
 	hoverTextColor = { 255, 0, 0, 255 }; // red
 	pos.resize(renderItems);
+	lockButtonTicks = SDL_GetTicks();
 }
 
 void GameOverState::loadQuitMenu(){
@@ -229,8 +228,8 @@ void GameOverState::Quit(){
 	SDL_StopTextInput();
 	gsm->PopPrevState();
 	gsm->PopState();
-	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-	tempState->updateMenu(MenuEnum::Previous);
+//	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+//	tempState->updateMenu(MenuEnum::Previous);
 }
 
 void GameOverState::Highlight(int item){
@@ -318,9 +317,13 @@ void GameOverState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _even
 			switch (it->first){
 			case SDLK_BACKSPACE:
 				if (text.length() > 0 && !backspaced){
-					text = text.substr(0, text.length() - 1);
-					backspaced = true;
-					MakeInputText(textColor);
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						text = text.substr(0, text.length() - 1);
+						backspaced = true;
+						MakeInputText(textColor);
+
+						lockButtonTicks = SDL_GetTicks();
+					}
 				}
 				break;
 			}
@@ -343,16 +346,11 @@ void GameOverState::HandleTextInputEvents(SDL_Event event)
 	}
 }
 
-void GameOverState::Update(float dt){
-	/*while (!quit){
-
-	HandleEvents();
-
-	Draw();
-	}*/
+void GameOverState::Update(float dt, float manipulatorSpeed){
+	//empty, move on
 }
 
-void GameOverState::Draw(){
+void GameOverState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 
 	background.render(renderer, 0, 0,0, &backgroundRect);

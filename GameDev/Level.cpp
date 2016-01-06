@@ -1,8 +1,8 @@
 #include "Level.h"
 #include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
 	player = nullptr;
@@ -10,15 +10,15 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	startXpos = 100;
 	startYpos = 10;
 	actors = new std::vector<Actor*>();
-	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
+	world = new b2World(b2Vec2(0.0, static_cast<float>(50)));
 	contact = new ContactListener();
 	world->SetContactListener(contact);
 	drawableContainer = new DrawableContainer();
 	entities = new std::vector<Entity*>();
 	parallaxBackground = nullptr;
 }
-Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
 	player = nullptr;
@@ -36,7 +36,8 @@ Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 
 
 //Always perform these procedures
-void Level::Init(BehaviourFactory* bf) { //TODO get this to work
+void Level::Init(BehaviourFactory* bf,PlayState* play) { //TODO get this to work
+	playState = play;
 	SetEntityFactory(bf);
 	CreateMap();
 	CreateNPCs();
@@ -74,19 +75,22 @@ Level::~Level()
 	if (timer)
 		delete timer;
 }
+
 std::vector<Actor*>* Level::GetActors(){
 	return actors;
 }
 std::vector<Entity*>* Level::GetEntities(){
 	return entities;
 }
-void Level::Update(float dt)
+void Level::Update(float dt, float manipulatorSpeed)
 {
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
 
-	world->Step((dt / 100), 5, 5);
+	//The all important World Step for Box2D
+	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
+
 	if (player->GetYpos() > lvlHeight || player->IsDead())
 	{
 	//	LevelFactory::SaveLevel(this,"test");
@@ -94,6 +98,7 @@ void Level::Update(float dt)
 	}
 	else {
 		
+		//le levelle loopeh
 		for (int x = 0; actors->size() > x; x++)
 		{
 			if (actors->operator[](x)->IsDead()){
@@ -103,7 +108,10 @@ void Level::Update(float dt)
 
 				}
 
-				if (actors->operator[](x)->GetType() == EntityType::PLANT){
+				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
+				//or the right function should be called, depending on the Entity.
+				//This stuff should be set within some sort of factory, maybe Entity Factory
+				if (actors->operator[](x)->GetType() == EntityType::PLANT){ 
 					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
 					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
 					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
@@ -112,16 +120,26 @@ void Level::Update(float dt)
 					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
 			
 				}
+				//for example
+				//actors->operator[](x)->GetDrops()
+				//Again, drops should be set within the Entity Factory, just as the Score and that stuff is set within the Entity Factory
+
 				player->AddScore(actors->operator[](x)->GetScore());
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				delete actors->operator[](x);
 				actors->operator[](x) = nullptr;
 				actors->erase(actors->begin() + x);
-			
 			}
+
+			//this is so the bullets always keep flying (I guess - MJ)
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
-				actors->operator[](x)->GetBody()->SetLinearVelocity(actors->operator[](x)->GetDirection());
+				b2Vec2 vector = actors->operator[](x)->GetDirection();
+
+				vector.x *= manipulatorSpeed;
+				vector.y *= manipulatorSpeed;
+
+				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
 		}
 	}

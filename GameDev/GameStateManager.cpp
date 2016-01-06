@@ -48,7 +48,7 @@ IGameState* GameStateManager::GetNewState(GameStateType state, int lvl)
 	default:
 		break;
 	}
-	
+
 	return gamestate;
 }
 
@@ -71,7 +71,7 @@ void GameStateManager::PopPrevState(){
 		IGameState* a = states[states.size() - 2];
 
 		states.erase(----states.end());
-	//	delete a;
+		delete a;
 	}
 }
 void GameStateManager::PopState()
@@ -82,7 +82,7 @@ void GameStateManager::PopState()
 		//states.back()->Cleanup();
 		
 		states.pop_back();
-	//	delete a;
+		delete a;
 
 		states.back()->Resume(); //tell the state it is being resumed
 	}

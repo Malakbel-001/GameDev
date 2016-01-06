@@ -22,7 +22,6 @@ void VictoryState::Init(GameStateManager *gsm){
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::YOU);*/
 	//SDL_Delay(2000);
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
-	Update(0);
 }
 
 VictoryState::VictoryState()
@@ -295,16 +294,11 @@ void VictoryState::HandleTextInputEvents(SDL_Event event){
 
 }
 
-void VictoryState::Update(float dt){
-	/*while (!quit){
+void VictoryState::Update(float dt, float manipulatorSpeed){
 
-	HandleEvents();
-
-	Draw();
-	}*/
 }
 
-void VictoryState::Draw(){
+void VictoryState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 
 	background.render(renderer, 0, 0,0, &backgroundRect);

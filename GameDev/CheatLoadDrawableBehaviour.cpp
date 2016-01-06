@@ -10,22 +10,24 @@ CheatLoadDrawableBehaviour::~CheatLoadDrawableBehaviour()
 {
 }
 
-void CheatLoadDrawableBehaviour::Draw()
+void CheatLoadDrawableBehaviour::Draw(bool cycle)
 {
 	// Render current frame SCREEN SIZE NOT YET SET!!!
 	float xpos = 20;
 	float ypos = 20;
 
-	sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0,sprite->GetAnimationFrame(EntityState::WALKINGRIGHT, currentFrame/3));
+	sprite->GetSpritesheet()->render(renderer, xpos, ypos, 0,sprite->GetAnimationFrame(EntityState::WALKINGRIGHT, currentFrame)); // /3
 
-	//Go to next frame 
-	++currentFrame;
-	int size = sprite->GetAnimationSize(EntityState::WALKINGRIGHT) / 3;
-	//Cycle animation 
+	if (cycle) {
+		int size = sprite->GetAnimationSize(EntityState::WALKINGRIGHT); // /3
+		//Cycle animation 
 
-	if (currentFrame >= size)
-	{
-		currentFrame = 0;
+		if (currentFrame >= size)
+		{
+			currentFrame = 0;
+		}
+
+		currentFrame++;
 	}
 }
 

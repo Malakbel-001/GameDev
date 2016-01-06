@@ -4,7 +4,7 @@
 #include "Utitilies.h"
 #include "SoundBank.h"
 
-class FramesPerSecond {
+class FPS {
 	private:
 		SDL_Renderer* renderer;
 		TTF_Font* fpsFont;
@@ -18,14 +18,12 @@ class FramesPerSecond {
 		int fpsCounter;
 		int currentFPS;
 
-		void ToggleFps();
-
 	public:
-		FramesPerSecond(SDL_Renderer* renderer);
-		~FramesPerSecond();
+		FPS(SDL_Renderer* renderer);
+		~FPS();
 		void Cleanup();
 		void UpdateCount();
-		void DrawFPS();
+		void Draw();
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 
 };

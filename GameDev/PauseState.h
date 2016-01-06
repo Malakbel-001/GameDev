@@ -28,7 +28,7 @@ private:
 	OptionMenu* optionMenu;
 
 public:
-	PauseState();
+	
 	
 
 
@@ -148,8 +148,8 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleTextInputEvents(SDL_Event event);
-	void Update(float);
-	void Draw();
+	void Update(float dt, float manipulatorSpeed);
+	void Draw(float dt, float manipulatorSpeed);
 	void Background();
 
 	virtual ~PauseState();

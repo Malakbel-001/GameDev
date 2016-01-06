@@ -14,7 +14,6 @@ class PlayState :
 	public IGameState
 {
 	private:
-	
 		LevelConfig levelConfig;
 
 		Player* player;
@@ -23,6 +22,10 @@ class PlayState :
 		bool gameOver;
 		bool victory;
 		int levelToLoad;
+
+		float accumulatedDtWeapon;
+		float currentManipulatorSpeed;
+
 	public:
 		PlayState(int lvl);
 		void Init(GameStateManager *gsm);
@@ -34,8 +37,8 @@ class PlayState :
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void HandleTextInputEvents(SDL_Event event);
-		void Update(float);
-		void Draw();
+		void Update(float dt, float manipulatorSpeed);
+		void Draw(float dt, float manipulatorSpeed);
 		void GameOver();
 		void Victory();
 
@@ -47,15 +50,7 @@ class PlayState :
 		void LoadGame();
 
 		void SetFileToLoad(std::string fileName);		
-		
 
 		virtual ~PlayState();
-
-		//temp
-		LTexture background;
-		//background
-		SDL_Rect backgroundRect;
-		//background
-		SDL_Texture* backgroundTexture;
 };
 

@@ -18,12 +18,9 @@ void PauseState::Init(GameStateManager *gsm){
 	creditMenu = new CreditMenu(this, renderer, textFont, titleFont);
 	optionMenu = new OptionMenu(this, renderer, textFont, titleFont);
 	currentMenu = pauseMenu;
-	Update(0);
 }
 
-PauseState::PauseState()
-{
-}
+
 // Initialization ++
 // ==================================================================
 bool PauseState::SetupTTF(const std::string &fontName, const std::string &fontName2)
@@ -141,13 +138,15 @@ void PauseState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
+void PauseState::Update(float dt, float manipulatorSpeed){
+
+}
+
 void PauseState::HandleTextInputEvents(SDL_Event event){
 
 }
 
-void PauseState::Update(float dt){
 
-}
 
 void PauseState::updateMenu(MenuEnum menu){
 	switch (menu)
@@ -162,10 +161,11 @@ void PauseState::updateMenu(MenuEnum menu){
 	case MenuEnum::Main:
 	{
 		PreviousMenu = nullptr;
+		gsm->PopPrevState();
+	//	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+		//tempState->updateMenu(MenuEnum::Previous);
 		gsm->PopState();
-		gsm->PopState();
-		MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-		tempState->updateMenu(MenuEnum::Previous);
+	
 		break;
 	}
 	case MenuEnum::Help:
@@ -187,7 +187,7 @@ void PauseState::updateMenu(MenuEnum menu){
 		break;
 	}
 }
-void PauseState::Draw(){
+void PauseState::Draw(float dt, float manipulatorSpeed){
 	SDL_RenderClear(renderer);
 	background.render(renderer, 0, 0,0, &backgroundRect);
 	currentMenu->Draw();
