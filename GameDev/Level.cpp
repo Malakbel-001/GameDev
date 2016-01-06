@@ -1,8 +1,8 @@
 #include "Level.h"
 #include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
 	player = nullptr;
@@ -17,8 +17,8 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	entities = new std::vector<Entity*>();
 	parallaxBackground = nullptr;
 }
-Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
 	player = nullptr;
@@ -36,7 +36,8 @@ Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 
 
 //Always perform these procedures
-void Level::Init(BehaviourFactory* bf) { //TODO get this to work
+void Level::Init(BehaviourFactory* bf,PlayState* play) { //TODO get this to work
+	playState = play;
 	SetEntityFactory(bf);
 	CreateMap();
 	CreateNPCs();
@@ -135,8 +136,8 @@ void Level::Update(float dt, float manipulatorSpeed)
 			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
 				b2Vec2 vector = actors->operator[](x)->GetDirection();
 
-				vector.x *= manipulatorSpeed*0.5; //0.5 because it seems more reasonable
-				vector.y *= manipulatorSpeed*0.5; //0.5 because it seems more reasonable
+				vector.x *= manipulatorSpeed;
+				vector.y *= manipulatorSpeed;
 
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}

@@ -86,6 +86,7 @@ void Game::GameLoop()
 		gsm->GetCurrentState()->HandleMouseEvents(inputManager->GetMouseInput());
 		gsm->GetCurrentState()->HandleTextInputEvents(inputManager->GetTextInput());
 		inputManager->ResetMouseInput();
+		inputManager->ResetTextInput();
 		gsm->GetCurrentState()->Update(dt, gameSpeedManipulator->GetManipulator());
 		SDL_RenderClear(sdlInitializer->GetRenderer());
 		gsm->GetCurrentState()->Draw(dt, gameSpeedManipulator->GetManipulator());

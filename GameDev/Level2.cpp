@@ -1,7 +1,7 @@
 #include "Level2.h"
 
 
-Level2::Level2(int _lvlWidth, int _lvlHeight, PlayState* play) : Level(_lvlWidth, _lvlHeight, play)
+Level2::Level2(int _lvlWidth, int _lvlHeight) : Level(_lvlWidth, _lvlHeight)
 {
 	levelId = 2;
 }
@@ -94,7 +94,7 @@ void Level2::CreateParallaxBackground(BehaviourFactory* bf) {
 
 Level* Level2::CreateLevel()
 {
-	return new Level2(lvlWidth, lvlHeight, playState);
+	return new Level2(lvlWidth, lvlHeight);
 }
 
 Player* Level2::SetPlayer(Player* _player) {

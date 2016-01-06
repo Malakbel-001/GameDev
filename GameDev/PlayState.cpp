@@ -92,7 +92,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 						if (!(currentLevel->GetPlayer()->GetJumpTimeOut() > 0)){
 
 							jump = true;
-							impulse = 200; //temp
+							impulse = 210; //temp
 							//SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 
 							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
@@ -286,7 +286,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
 	//Note CurrentLevel is now new level
 
-	this->currentLevel->Init(bf);
+	this->currentLevel->Init(bf,this);
 	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);

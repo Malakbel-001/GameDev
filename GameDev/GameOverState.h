@@ -91,4 +91,6 @@ private:
 	vector<Uint32> time;
 	string text;
 	HighscoreConfig highscoreConfig;
+
+	uint16 lockButtonTicks;
 };

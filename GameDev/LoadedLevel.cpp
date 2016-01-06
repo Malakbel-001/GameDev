@@ -1,8 +1,8 @@
 #include "LoadedLevel.h"
 
 
-LoadedLevel::LoadedLevel(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* play)
-	: Level(_lvlWidth, _lvlHeight, vec, play)
+LoadedLevel::LoadedLevel(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
+	: Level(_lvlWidth, _lvlHeight, vec)
 {
 
 }
@@ -23,7 +23,7 @@ Player* LoadedLevel::SetPlayer(Player* _player){
 
 }
 Level* LoadedLevel::CreateLevel(){
-	return new LoadedLevel(lvlWidth, lvlHeight,world->GetGravity(), playState);
+	return new LoadedLevel(lvlWidth, lvlHeight,world->GetGravity());
 }
 
 

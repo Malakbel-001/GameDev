@@ -33,7 +33,7 @@ void GameSpeedManipulator::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>
 				case SDLK_PAGEUP:
 					// times 1
 					if (lockButtonTicks + 100 < SDL_GetTicks()) {
-						if (limitCounter < limit) {
+						if (limitCounter < limit - 1) { //4x speed disabled
 							manipulator *= 2;
 							limitCounter++;
 							lockButtonTicks = SDL_GetTicks();

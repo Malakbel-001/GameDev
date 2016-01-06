@@ -20,9 +20,7 @@ void PauseState::Init(GameStateManager *gsm){
 	currentMenu = pauseMenu;
 }
 
-PauseState::PauseState()
-{
-}
+
 // Initialization ++
 // ==================================================================
 bool PauseState::SetupTTF(const std::string &fontName, const std::string &fontName2)
@@ -162,10 +160,11 @@ void PauseState::updateMenu(MenuEnum menu){
 	case MenuEnum::Main:
 	{
 		PreviousMenu = nullptr;
+		gsm->PopPrevState();
+	//	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+		//tempState->updateMenu(MenuEnum::Previous);
 		gsm->PopState();
-		gsm->PopState();
-		MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-		tempState->updateMenu(MenuEnum::Previous);
+	
 		break;
 	}
 	case MenuEnum::Help:

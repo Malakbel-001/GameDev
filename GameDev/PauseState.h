@@ -30,7 +30,7 @@ private:
 	ParallaxBackground* parallaxBackground;
 
 public:
-	PauseState();
+	
 	
 
 
