@@ -16,7 +16,6 @@ Bullet::~Bullet()
 }
 
 
-
 void Bullet::SetBody(b2Body* _body)
 {
 	body = _body;

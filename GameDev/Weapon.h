@@ -9,9 +9,9 @@ class Weapon : public BareEntity
 public:
 	Weapon();
 	~Weapon();
-	void Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
+	void Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer);
 	void Pickup(Actor* _actor, b2Vec2 _defaultShootingDirection);
-	virtual void Shoot(EntityFactory* eF);
+	virtual bool Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpeed);
 	virtual void AddAmmo(int ammo);
 	void SetXVec(float x);
 	void SetYVec(float y);
@@ -30,7 +30,6 @@ protected:
 	Actor* actor;
 	int ammo;
 	float fireSpeed;
-	float timecounter;
 	b2Vec2 vec;
 	b2Vec2 defaultShootingDirection;
 	int maxAmmo;

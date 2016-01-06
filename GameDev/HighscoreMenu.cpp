@@ -284,4 +284,5 @@ void HighscoreMenu::HandleMouseEvents(SDL_Event mainEvent)
 
 HighscoreMenu::~HighscoreMenu()
 {
+	delete highscores;
 }

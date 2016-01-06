@@ -3,6 +3,7 @@
 InputManager::InputManager()
 {
 	input = new std::unordered_map<SDL_Keycode, bool>();
+
 	konamiCheats = std::vector<SDL_Keycode>();
 	konamiCheats.push_back(SDLK_UP);
 	konamiCheats.push_back(SDLK_UP);
@@ -33,15 +34,27 @@ InputManager::InputManager()
 	cheatConverter.insert({ SDLK_p, SDLK_F17 });
 	cheatConverter.insert({ SDLK_l, SDLK_F18 });
 
+
+	KeyMapping k = KeyMapping();
+	remap = k.GetKeyMap();
+	
 }
 
 InputManager::~InputManager()
 {
 	delete input;
 }
-
+SDL_Keycode InputManager::RemapKey(SDL_Keycode key){
+	
+	auto it = remap.find(key);
+	if (it != remap.end()){
+		return it->second;
+	}
+	return key;
+}
 void InputManager::SetKeyInput(SDL_Keycode key)
 {
+<<<<<<< HEAD
 	if (cheating){
 		auto cheatKey = cheatConverter.find(key);
 		if (cheatKey != cheatConverter.end()){
@@ -90,18 +103,21 @@ void InputManager::SetKeyInput(SDL_Keycode key)
 
 
 	if (input->find(key) == input->end())
+	SDL_Keycode inputkey = RemapKey(key);
+	
 	{
-		input->insert({ key, true });
+		input->insert({ inputkey, true });
 	}
 	else
 	{
-		input->at(key) = true;
+		input->at(inputkey) = true;
 	}
 
 }
 
 void InputManager::ResetKeyInput(SDL_Keycode key)
 {
+
 	if (cheating){
 		if (key == SDLK_l){
 			
@@ -121,9 +137,12 @@ void InputManager::ResetKeyInput(SDL_Keycode key)
 
 		}
 	}
-	if (!(input->find(key) == input->end()))
+	
+	SDL_Keycode inputkey = RemapKey(key);
+	if (!(input->find(inputkey) == input->end()))
+
 	{
-		input->at(key) = false;
+		input->at(inputkey) = false;
 	}
 }
 

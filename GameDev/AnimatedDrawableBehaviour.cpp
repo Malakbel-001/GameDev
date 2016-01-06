@@ -10,27 +10,29 @@ AnimatedDrawableBehaviour::~AnimatedDrawableBehaviour()
 {
 }
 
-void AnimatedDrawableBehaviour::Draw()
+void AnimatedDrawableBehaviour::Draw(bool cycle)
 {
 	if (entity->ShouldDraw()){
 		// Render current frame SCREEN SIZE NOT YET SET!!!
 		float xpos = ((entity->GetXpos() / Ratio) - (camera->GetX() / Ratio)) + ((screenWidth / 2) - (screenWidth / 4));
 		float ypos = entity->GetYpos() / Ratio;
 
-		ypos = ypos - sprite->GetFrameYOffSet(currentFrame / 3);
-		xpos = xpos - sprite->GetFrameXOffSet(currentFrame / 3);
+		ypos = ypos - sprite->GetFrameYOffSet(currentFrame); // /3
+		xpos = xpos - sprite->GetFrameXOffSet(currentFrame); // /3
 
 
-		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame / 3), entity->GetFlipped());
+		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetFlipped()); // /3
 
-		//Go to next frame 
-		++currentFrame;
-		int size = sprite->GetAnimationSize(entity->GetState());
-		//Cycle animation 
+		if (cycle) {
+			++currentFrame;
 
-		if (currentFrame/3 >= size)
-		{
-			currentFrame = 0;
+			int size = sprite->GetAnimationSize(entity->GetState());
+			//Cycle animation 
+
+			if (currentFrame >= size) // /3
+			{
+				currentFrame = 0;
+			}
 		}
 	}
 }

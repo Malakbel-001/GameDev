@@ -11,7 +11,7 @@ ContactListener::~ContactListener()
 }
 void ContactListener::BeginContact(b2Contact* contact){
 	
-	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+	void* bodyUserData = contact->GetFixtureA()->GetUserData();
 	CollidableBehaviour* beh = nullptr;
 	CollidableBehaviour* beh2 = nullptr;
 	
@@ -20,7 +20,7 @@ void ContactListener::BeginContact(b2Contact* contact){
 	}
 
 
-	void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+	void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
 	if (bodyUserData2){
 		beh2 = static_cast<CollidableBehaviour*>(bodyUserData2);
 		beh2->Hit(beh);
@@ -32,7 +32,7 @@ void ContactListener::BeginContact(b2Contact* contact){
 
 }
 void ContactListener::EndContact(b2Contact* contact){
-	void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
+	void* bodyUserData = contact->GetFixtureA()->GetUserData();
 	CollidableBehaviour* beh = nullptr;
 	CollidableBehaviour* beh2 = nullptr;
 	if (bodyUserData){
@@ -40,7 +40,7 @@ void ContactListener::EndContact(b2Contact* contact){
 	}
 
 
-	void* bodyUserData2 = contact->GetFixtureB()->GetBody()->GetUserData();
+	void* bodyUserData2 = contact->GetFixtureB()->GetUserData();
 	if (bodyUserData2){
 		beh2 = static_cast<CollidableBehaviour*>(bodyUserData2);
 		beh2->Unhit(beh);

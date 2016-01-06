@@ -6,7 +6,7 @@ class BareEntity :
 public:
 	BareEntity();
 	~BareEntity();
-	virtual void Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer);
+	virtual void Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer);
 
 	virtual float GetXpos();
 	virtual float GetYpos();

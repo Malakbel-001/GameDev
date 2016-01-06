@@ -21,8 +21,9 @@ void LoadState::Init(GameStateManager* gsm) {
 
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	drawableContainer = new DrawableContainer();
+	moveableContainer = new MoveableContainer();
 	bare = new BareEntity();
-	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer);
+	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer, moveableContainer);
 
 
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
@@ -93,12 +94,12 @@ void LoadState::Cleanup() {
 	drawableContainer = nullptr;
 
 	delete bare;
-	//Bugged. Uhhm? Maybe SDL deletes those pointers himself anyway?
-	/*delete loadingTexture;
-	delete finishedTexture;*/
 
-	/*loadingTexture = nullptr;
-	finishedTexture = nullptr;*/
+	//Delete/Destroy texture pointers and make them null
+	SDL_DestroyTexture(loadingTexture);
+	SDL_DestroyTexture(finishedTexture);
+	loadingTexture = nullptr;
+	finishedTexture = nullptr;
 }
 
 void LoadState::Pause() {
@@ -113,33 +114,28 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 	if (loadedPlay) {
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
-				switch (it->first) {
-					default: //don't know how to remove warning except for creating an empty case
-						gsm->PushGameStateOnly(playState); //any key
-						break;
-				}
+				gsm->PushGameStateOnly(playState); //any key
 			}
 		}
 	}
 }
 
 void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
-	//temp nothing
+	
 }
 
 void LoadState::HandleTextInputEvents(SDL_Event event){
 
 }
 
-void LoadState::Update(float dt) {
-	//nope
+void LoadState::Update(float dt, float manipulatorSpeed) {
 }
 
-void LoadState::Draw() {
+void LoadState::Draw(float dt, float manipulatorSpeed) {
 	//temp bg
 	//background.render(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, &backgroundRect); //TEMP!
 
-	drawableContainer->Draw();
+	drawableContainer->Draw(dt, manipulatorSpeed);
 
 	if (!loadedPlay) {	//Loading...
 		SDL_RenderCopy(renderer, loadingTexture, nullptr, &loadingRect);
@@ -149,4 +145,7 @@ void LoadState::Draw() {
 	}
 
 	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
+}
+
+void LoadState::Move(float dt){
 }

@@ -6,9 +6,9 @@ Entity::Entity()
 {
 	
 }
-void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer)
+void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer)
 {
-	Object::Init(_type, bf,drawContainer);
+	Object::Init(_type, bf,drawContainer, moveContainer);
 	body = _body;
 	width = _width;
 	height = _height;
@@ -16,9 +16,6 @@ void Entity::Init(b2Body* _body, float _width, float _height, EntityType _type, 
 
 Entity::~Entity()
 {
-	
-	
-
 }
 
 int Entity::GetWidth()
@@ -63,4 +60,14 @@ void Entity::SetScore(int _score) {
 int Entity::GetScore() {
 	//implement in NPC
 	return 0; //score
+}
+
+Level* Entity::GetLevel()
+{
+	return level;
+}
+
+void Entity::SetLevel(Level* _level)
+{
+	level = _level;
 }

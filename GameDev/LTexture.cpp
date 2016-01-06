@@ -86,6 +86,10 @@ void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SD
 	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, SDL_FLIP_NONE);
 }
 
+void LTexture::SetTextureAlphaMod(int alpha) {
+	SDL_SetTextureAlphaMod(texture, alpha);
+}
+
 void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, bool flip)
 {
 	SDL_RendererFlip renderFlip = SDL_FLIP_NONE;
@@ -104,10 +108,6 @@ void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SD
 
 	//Render to screen
 	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, renderFlip);
-}
-
-void LTexture::SetTextureAlphaMod(int alpha) {
-	SDL_SetTextureAlphaMod(texture, alpha);
 }
 
 int LTexture::getWidth()

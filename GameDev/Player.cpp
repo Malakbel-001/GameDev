@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Level.h"
 #include "ShotGun.h"
 Player::Player() {
 	numFootContacts = 0;
@@ -6,10 +7,11 @@ Player::Player() {
 	currentwep = 0;
 	weps = vector<Weapon*>();
 	score = 0;
+	vehicle = nullptr;
+	passenger = nullptr;
 	timeplayed.resize(2);
 	timeplayed.at(0) = 0;
 	timeplayed.at(1) = 0;
-
 }
 
 Player::~Player() { 
@@ -54,8 +56,12 @@ void Player::AddWeapon(Weapon* wep){
 	
 }
 Weapon* Player::GetCurrentWeapon(){
-	weps.at(currentwep)->SetShouldDraw(true);
-	return weps.at(currentwep);
+	if (weps.at(currentwep))
+	{
+		weps.at(currentwep)->SetShouldDraw(true);
+		return weps.at(currentwep);
+	}
+	return nullptr;
 }
 bool Player::ContainsWeapons() {
 	return !weps.empty();
@@ -68,9 +74,13 @@ void Player::SwitchWeapon(int x){
 	}
 
 }
-void Player::DeletePrevProp() {
 
-	
+vector<Weapon*> Player::GetWeapons()
+{
+	return weps;
+}
+
+void Player::DeletePrevProp() {
 	for (auto weapon : weps) {
 		delete weapon;
 		weapon = nullptr;
@@ -82,11 +92,30 @@ b2Body* Player::GetBody()
 	return body;
 }
 void Player::AddScore(int _score) {
+	if (passenger)
+		passenger->AddScore(_score);
+
 	score = score + _score;
 }
 int Player::GetScore() {
 	return score;
 }
+
+void Player::SetPassenger(Player* _passenger)
+{
+	passenger = _passenger;
+}
+
+void Player::SetVehicle(Player* _vehicle)
+{
+	vehicle = _vehicle;
+}
+
+Player* Player::GetVehicle()
+{
+	return vehicle;
+}
+
 void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
 	timeplayed.at(0) += timeMin;
 	if (timeplayed.at(1) + timeSec > 60){
@@ -97,6 +126,7 @@ void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
 		timeplayed.at(1) += timeSec;
 	}
 }
+
 vector<Uint32> Player::GetPlayTime(){
 	return timeplayed;
 }

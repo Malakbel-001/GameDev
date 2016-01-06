@@ -20,14 +20,24 @@ void DrawableContainer::Add(DrawableBehaviour* behaviour)
 	behaviours.push_back(behaviour);
 }
 
-void DrawableContainer::Draw()
+void DrawableContainer::Draw(float dt, float manipulatorSpeed)
 {
+	bool cycle = CycleFrames(dt, manipulatorSpeed);
+
 	for each (DrawableBehaviour* behaviour in behaviours)
 	{
-		behaviour->Draw();
+		behaviour->Draw(cycle);
 	}
 }
-void DrawableContainer::Delete(Entity* ent){
+
+bool DrawableContainer::CycleFrames(float dt, float manipulatorSpeed) {
+	dtAccumulator += dt;
+	bool cycle = dtAccumulator > dtCycleFrame / manipulatorSpeed;
+	dtAccumulator = static_cast<float>((int)dtAccumulator % (int)(dtCycleFrame / manipulatorSpeed)); //dunno
+	return cycle;
+}
+
+void DrawableContainer::Delete(Object* ent){
 	bool found = false;
 	size_t i = 0;
 	for (;i < behaviours.size() && !found; i++)
