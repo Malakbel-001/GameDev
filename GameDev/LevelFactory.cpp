@@ -146,6 +146,7 @@ void LevelFactory::Init(PlayState* play)
 	levels = {
 		new Level1(2000, 120), 
 		new Level2(2000,120),
+		new Level3(2000, 120),
 		//TODO add , new Level1() , new level2()
 	};
 }

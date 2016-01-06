@@ -302,3 +302,6 @@ void VictoryState::Draw(float dt, float manipulatorSpeed){
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
 }
+
+void VictoryState::Move(float dt){
+}

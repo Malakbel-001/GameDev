@@ -50,7 +50,7 @@ void Level1::CreateMap() {
 void Level1::CreateNPCs() {
 	//enemies-----------------	
 
-	entityFactory->CreateActor(800, 450, EntityType::PLANT);
+	entityFactory->CreateActor(400, 400, EntityType::PLANT);
 
 	entityFactory->CreateActor(900, 450, EntityType::PLANT);
 	entityFactory->CreateActor(1200, 300, EntityType::PLANT);
@@ -95,6 +95,10 @@ Level* Level1::CreateLevel()
 	return new Level1(lvlWidth, lvlHeight);
 }
 
+
+ParallaxBackground* Level1::GetParallaxBackGround() {
+	return parallaxBackground;
+}
 
 Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);

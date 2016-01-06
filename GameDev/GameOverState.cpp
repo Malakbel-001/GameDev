@@ -229,8 +229,9 @@ void GameOverState::Quit(){
 	SDL_StopTextInput();
 	gsm->PopPrevState();
 	gsm->PopState();
-//	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-//	tempState->updateMenu(MenuEnum::Previous);
+
+	//MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+	//tempState->updateMenu(MenuEnum::Previous);
 }
 
 void GameOverState::Highlight(int item){
@@ -356,4 +357,7 @@ void GameOverState::Draw(float dt, float manipulatorSpeed){
 	parallaxBackground->Draw();
 	loadQuitMenu();
 	SDL_RenderPresent(renderer);
+}
+
+void GameOverState::Move(float dt){
 }

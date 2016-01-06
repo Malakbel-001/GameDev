@@ -37,7 +37,7 @@ bool DrawableContainer::CycleFrames(float dt, float manipulatorSpeed) {
 	return cycle;
 }
 
-void DrawableContainer::Delete(Entity* ent){
+void DrawableContainer::Delete(Object* ent){
 	bool found = false;
 	size_t i = 0;
 	for (;i < behaviours.size() && !found; i++)

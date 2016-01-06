@@ -24,8 +24,7 @@ bool ShotGun::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpe
 				dir = true;
 			}
 
-			SoundBank::GetInstance()->PlaySFX(SoundEffectType::SHOTGUN);
-
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::SHOTGUN);	
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 
 			b2Vec2 temp = (vec);

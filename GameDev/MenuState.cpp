@@ -203,3 +203,6 @@ void MenuState::Draw(float dt, float manipulatorSpeed){
 	currentMenu->Draw();
 	SDL_RenderPresent(renderer);
 }
+
+void MenuState::Move(float dt){
+}

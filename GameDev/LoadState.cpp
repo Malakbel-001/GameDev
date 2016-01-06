@@ -21,8 +21,9 @@ void LoadState::Init(GameStateManager* gsm) {
 
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	drawableContainer = new DrawableContainer();
+	moveableContainer = new MoveableContainer();
 	bare = new BareEntity();
-	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer);
+	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer, moveableContainer);
 
 
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
@@ -128,7 +129,6 @@ void LoadState::HandleTextInputEvents(SDL_Event event){
 }
 
 void LoadState::Update(float dt, float manipulatorSpeed) {
-	
 }
 
 void LoadState::Draw(float dt, float manipulatorSpeed) {
@@ -145,4 +145,7 @@ void LoadState::Draw(float dt, float manipulatorSpeed) {
 	}
 
 	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
+}
+
+void LoadState::Move(float dt){
 }

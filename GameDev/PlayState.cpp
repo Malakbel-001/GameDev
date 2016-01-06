@@ -81,6 +81,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
+		Vehicle* vehicle = nullptr;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 
 			if (it->second)
@@ -118,6 +119,8 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetFlipped(false);
 					x = 25;
 					break;
+				case SDLK_e:
+					currentLevel->EnterVehicle();
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
 						accumulatedDtWeapon, currentManipulatorSpeed)) 
@@ -259,6 +262,7 @@ void PlayState::Update(float dt, float manipulatorSpeed) {
 	currentManipulatorSpeed = manipulatorSpeed;
 
 	currentLevel->Update(dt, manipulatorSpeed);
+	Move(dt);
 }
 
 void PlayState::Draw(float dt, float manipulatorSpeed)
@@ -268,6 +272,10 @@ void PlayState::Draw(float dt, float manipulatorSpeed)
 	currentLevel->GetParallaxBackGround()->Draw();
 	currentLevel->GetDrawableContainer()->Draw(dt, manipulatorSpeed);
 	hud->Draw(dt, manipulatorSpeed);
+}
+
+void PlayState::Move(float dt){
+	currentLevel->GetMoveableContainer()->Move(dt);
 }
 
 Level* PlayState::GetCurrentLevel()

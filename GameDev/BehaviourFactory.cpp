@@ -2,17 +2,22 @@
 #include "BehaviourFactory.h"
 #include "Camera.h"
 #include "CollidableBehaviour.h"
-#include "Player.h"
 #include "PlayerCollidableBehaviour.h"
 #include "EnemyCollidableBehaviour.h"
 #include "BulletCollidableBehaviour.h"
 #include "HealthCollidableBehaviour.h"
 #include "AmmoCollidableBehaviour.h"
+#include "JumpSensorCollidableBehaviour.h"
+#include "StepCollidableBehaviour.h"
+#include "ApcMoveableBehaviour.h"
 #include "HealthSprite.h"
 #include "BulletSprite.h"
 #include "AmmoSprite.h"
 #include "GunSprite.h"
-#include "JumpSensorCollidableBehaviour.h"
+#include "CannonshotSprite.h"
+#include "ApcSprite.h"
+#include "MinigunnerSprite.h"
+#include "SnowBossMoveableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
 {
@@ -46,6 +51,17 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
 
+	TankSprite* tankSprite = new TankSprite(renderer);
+	tankSprite->LoadMedia("MetalSlugTank.png");
+	tankSprite->SetAnimationSet(EntityState::IDLE);
+
+	ApcSprite* apcSprite = new ApcSprite(renderer);
+	apcSprite->LoadMedia("apc_template.png");
+
+	MechSprite* mechSprite = new MechSprite(renderer);
+	mechSprite->LoadMedia("mech2.png");
+	mechSprite->SetAnimationSet(EntityState::IDLE);
+
 	HealthSprite* healthSprite = new HealthSprite(renderer);
 	healthSprite->LoadMedia("HealthSprite.png");
 
@@ -54,17 +70,28 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	BulletSprite* bulletSprite = new BulletSprite(renderer);
 	bulletSprite->LoadMedia("Bullet.png");
 
+	CannonshotSprite* cannonshotSprite = new CannonshotSprite(renderer);
+	cannonshotSprite->LoadMedia("M484BulletCollection1.png");
+
 	AmmoSprite* ammoSprite = new AmmoSprite(renderer);
 	ammoSprite->LoadMedia("AmmoBox.png");
 
 	GunSprite* gun = new GunSprite(renderer);
 	gun->LoadMedia("Gun.png");
 
+	GunSprite* cannon = new GunSprite(renderer);
+
 	GroundLvl2Sprite* groundlvl2Sprite = new GroundLvl2Sprite(renderer);
 	groundlvl2Sprite->LoadMedia("snow2.png");
 
 	BigGroundSprite* bigGroundSprite = new BigGroundSprite(renderer);
 	bigGroundSprite->LoadMedia("snow2.png");
+
+	DesertGroundSprite* desertgroundSprite = new DesertGroundSprite(renderer);
+	desertgroundSprite->LoadMedia("Desert.png");
+
+	MinigunnerSprite* minigunnerSprite = new MinigunnerSprite(renderer);
+	minigunnerSprite->LoadMedia("trooper_template.png");
 
 	PinguinSprite* pinguinSprite = new PinguinSprite(renderer);
 	pinguinSprite->LoadMedia("pinguin.png");
@@ -92,16 +119,24 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(plantBossSprite);
 	sprites.push_back(acornSprite);
 	sprites.push_back(playerSprite);
+	sprites.push_back(tankSprite);
+	sprites.push_back(mechSprite);
+	sprites.push_back(apcSprite);
 	sprites.push_back(healthSprite);
-	sprites.push_back(bulletSprite);
+	sprites.push_back(bulletSprite); 
+	sprites.push_back(cannonshotSprite);
 	sprites.push_back(ammoSprite);
 	sprites.push_back(gun);
 	sprites.push_back(groundlvl2Sprite);
+	sprites.push_back(desertgroundSprite);
 	sprites.push_back(pinguinSprite); 
 	sprites.push_back(treeSprite);
 	sprites.push_back(shotgun);
 	sprites.push_back(bigGroundSprite);
 	sprites.push_back(snowBoss);
+	sprites.push_back(cannon);
+	sprites.push_back(minigunnerSprite);
+
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -113,9 +148,12 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::AMMO, new StaticDrawableBehaviour(renderer,ammoSprite,screenWidth,screenHeight)},
 		{ EntityType::WEAPON, new StaticDrawableBehaviour(renderer, gun, screenWidth, screenHeight) },
 		{ EntityType::SHOTGUN, new StaticDrawableBehaviour(renderer, shotgun, screenWidth, screenHeight) },
+		{ EntityType::CANNON, new StaticDrawableBehaviour(renderer, cannon, screenWidth, screenHeight) },
 		{ EntityType::BULLET, new StaticDrawableBehaviour(renderer, bulletSprite, screenWidth, screenHeight) },
 		{ EntityType::ACORN, new AnimatedDrawableBehaviour(renderer, acornSprite, screenWidth, screenHeight) },
+		{ EntityType::CANNONSHOT, new StaticDrawableBehaviour(renderer, cannonshotSprite, screenWidth, screenHeight) },
 	//	{ EntityType::CHEATLOAD, new CheatLoadDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },	
+	
 	//level2
 		{ EntityType::GROUNDLVL2, new StaticDrawableBehaviour(renderer, groundlvl2Sprite, screenWidth, screenHeight) },
 		{ EntityType::PINGUIN, new AnimatedDrawableBehaviour(renderer, pinguinSprite, screenWidth, screenHeight) },
@@ -123,14 +161,21 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::PLAYERSPRITE, new AnimatedDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::GROUND2LVL2, new StaticDrawableBehaviour(renderer, bigGroundSprite, screenWidth, screenHeight) },
 		{ EntityType::SNOWBOSS, new StaticDrawableBehaviour(renderer, snowBoss, screenWidth, screenHeight) },
-
+	
+	//level3
+		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
+		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
+		{ EntityType::MECH, new StaticDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
+		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
+		{ EntityType::MINIGUNNER, new StaticDrawableBehaviour(renderer, minigunnerSprite, screenWidth, screenHeight) },
 	};
-
+	
 	collideRegistery = std::unordered_map < EntityType, CollidableBehaviour* > {
 		{ EntityType::PLAYER, new PlayerCollidableBehaviour()},
 		{ EntityType::PLANT, new EnemyCollidableBehaviour() },
 		{ EntityType::PLANTBOSS, new EnemyCollidableBehaviour() },
 		{ EntityType::BULLET, new BulletCollidableBehaviour() },
+		{ EntityType::CANNONSHOT, new BulletCollidableBehaviour() },
 		{ EntityType::ACORN, new BulletCollidableBehaviour() },
 		{ EntityType::PINGUIN, new EnemyCollidableBehaviour() },
 		{ EntityType::HEALTH, new HealthCollidableBehaviour() },
@@ -138,6 +183,56 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 		{ EntityType::SNOWBOSS, new EnemyCollidableBehaviour() },
+		{ EntityType::TANK, new EnemyCollidableBehaviour() },
+		{ EntityType::MECH, new EnemyCollidableBehaviour() },
+		{ EntityType::APC, new EnemyCollidableBehaviour() },
+		{ EntityType::MINIGUNNER, new EnemyCollidableBehaviour() },
+	};
+
+	IdleCommand* idle = new IdleCommand();
+	DefaultPatrolCommand* patrol = new DefaultPatrolCommand();
+	SnowBossPatrolCommand* snowBossPatrol = new SnowBossPatrolCommand();
+
+	defaultCommands = std::unordered_map<EntityState, BaseCommand*> {
+		{ EntityState::IDLE, idle }
+	};
+
+	plantCommands = std::unordered_map<EntityState, BaseCommand*> {
+		{ EntityState::IDLE, patrol },
+		{ EntityState::PATROL, idle }
+	};
+
+	snowBossCommands = std::unordered_map<EntityState, BaseCommand*> {
+		{ EntityState::IDLE, snowBossPatrol },
+		{ EntityState::PATROL, idle }
+	};
+
+	moveRegistery = std::unordered_map < EntityType, MoveableBehaviour* > {
+		{ EntityType::ACORN, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::AMMO, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::BAR, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::BULLET, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::CANNONSHOT, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::GROUND, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::GROUND2, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::GROUNDLVL2, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::GROUND2LVL2, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::DESERTFLOOR, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::HEALTH, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::PINGUIN, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::PLANT, new PlantMoveableBehaviour(plantCommands) },
+		{ EntityType::PLAYER, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::PLAYERSPRITE, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::PLANTBOSS, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::SHOTGUN, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::SNOWMAN, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::SNOWBOSS, new SnowBossMoveableBehaviour(snowBossCommands) },
+		{ EntityType::TANK, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) },
+		{ EntityType::MINIGUNNER, new ApcMoveableBehaviour(defaultCommands) }
 	};
 }
 
@@ -183,14 +278,28 @@ DrawableBehaviour* BehaviourFactory::CreateDrawableBehaviour(EntityType type)
 	return behaviour;
 }
 
-CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type)
+CollidableBehaviour* BehaviourFactory::CreateCollidableBehaviour(EntityType type, Actor* actor)
 {
 	CollidableBehaviour* behaviour = collideRegistery.at(type)->EmptyClone();
+	
 	return behaviour;
 }
+
+CollidableBehaviour* BehaviourFactory::CreateStepCollidableBehaviour()
+{
+	return new StepCollidableBehaviour();
+}
+
+MoveableBehaviour* BehaviourFactory::CreateMoveableBehaviour(EntityType type)
+{ 
+	MoveableBehaviour* behaviour = moveRegistery.at(type)->EmptyClone();
+	return behaviour;
+}
+
 void BehaviourFactory::ClearCamera(){
 	camera->Init(nullptr, 0, 0);
 }
+
 void BehaviourFactory::SetLevelToCamera(Player* player,double levelWidth,double levelheight){
 	camera->Init(player, levelWidth, levelheight);
 }

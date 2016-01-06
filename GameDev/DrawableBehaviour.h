@@ -2,7 +2,6 @@
 #include <vector>
 #include <SDL.h>
 #include "Behaviour.h"
-#include "LTexture.h"
 #include "Camera.h"
 #include "Sprite.h"
 

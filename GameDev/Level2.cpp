@@ -53,7 +53,7 @@ void Level2::CreateMap() {
 
 void Level2::CreateNPCs() {
 	//enemy pinguin
-	/*entityFactory->CreateActor(400, 450, EntityType::PINGUIN);
+	entityFactory->CreateActor(400, 450, EntityType::PINGUIN);
 	entityFactory->CreateActor(450, 450, EntityType::PINGUIN);
 	entityFactory->CreateActor(500, 450, EntityType::PINGUIN);
 	entityFactory->CreateActor(550, 450, EntityType::PINGUIN);
@@ -77,10 +77,9 @@ void Level2::CreateNPCs() {
 	entityFactory->CreateActor(3000, 450, EntityType::SNOWMAN);
 	entityFactory->CreateActor(3050, 450, EntityType::SNOWMAN);
 	entityFactory->CreateActor(3300, 450, EntityType::SNOWMAN);
-	entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);*/
+	entityFactory->CreateActor(3420, 450, EntityType::SNOWMAN);
 	//boss
 	entityFactory->CreateActor(5000, 350, EntityType::SNOWBOSS);
-	//entityFactory->CreateActor(200, 0, EntityType::SNOWBOSS);
 }
 
 void Level2::CreateParallaxBackground(BehaviourFactory* bf) {
@@ -98,7 +97,7 @@ Level* Level2::CreateLevel()
 }
 
 Player* Level2::SetPlayer(Player* _player) {
-	player = Level::SetPlayerPosition(_player, 20, 100);
+	player = Level::SetPlayerPosition(_player, 40, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
 	wep->Pickup(player, b2Vec2(100, 0));
