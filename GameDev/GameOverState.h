@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SoundBank.h"
 #include "MenuState.h"
+#include "HighscoreConfig.h"
 class GameOverState :
 	public IGameState
 {
@@ -30,12 +31,22 @@ public:
 #pragma region textures
 	SDL_Texture* quitTexture; //2
 	SDL_Texture* gameoverTitleTexture; //3
+	SDL_Texture* scoreTexture;
+	SDL_Texture* timeTexture;
+	SDL_Texture* inputTexture;
+	SDL_Texture* saveTexture;
+	SDL_Texture* saveTextTexture;
 #pragma endregion textures
 
 #pragma region rects
 	//mainmenu
 	SDL_Rect quitRect;
 	SDL_Rect gameoverTitleRect;
+	SDL_Rect scoreRect;
+	SDL_Rect timeRect;
+	SDL_Rect inputRect;
+	SDL_Rect saveRect;
+	SDL_Rect saveTextRect;
 #pragma endregion rects
 
 	SDL_Renderer* renderer;
@@ -52,6 +63,7 @@ public:
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
+	void HandleTextInputEvents(SDL_Event event);
 	void Update(float);
 	void Draw();
 	void Move(float dt);
@@ -68,11 +80,20 @@ public:
 	void Highlight(int);
 	void MakeBackToMainText(SDL_Color);
 	void MakeGameOverTitle(SDL_Color);
+	void MakeScoreText(SDL_Color);
+	void MakeTimeText(SDL_Color);
+	void MakeInputText(SDL_Color);
+	void MakeSave(SDL_Color);
+	void MakeSaveText(SDL_Color);
 private:
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
-	const int renderItems = 18;
+	const int renderItems = 7;
 	vector<SDL_Rect> pos;
 	int hoverX;
 	int hoverY;
+	int score;
+	vector<Uint32> time;
+	string text;
+	HighscoreConfig highscoreConfig;
 };

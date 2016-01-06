@@ -137,7 +137,6 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	SnowmanDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef SnowBossDef = b2BodyDef();
-	SnowBossDef.angle = 0.25f * b2_pi;
 	SnowBossDef.gravityScale = 0.0f;
 	SnowBossDef.fixedRotation = true;
 	SnowBossDef.linearDamping = 0;
@@ -187,7 +186,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 			{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
 			{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
 			{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
-			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 2000, 2500, 120, 122) },
+			{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 400, 2500, 120, 122) },
 			{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 			{ EntityType::APC, new NpcStatsContainer(0, 500, 4000, 143, 128) },
 			{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 193, 85) },
@@ -246,26 +245,22 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, flo
 }
 
 Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
 	if (npcStatsRegistery.find(type) == npcStatsRegistery.end()) { //error handling, avoid crashing
 		std::cout << "Actor: " << "[insert EntityType here] " << "is not found in the npcStatsRegistery - CreateActor!" << std::endl;
 	}
 	else {
 		NpcStatsContainer* npcStats = npcStatsRegistery.at(type);
-		b2Body* body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
+		b2Body* body;
 		if (type == EntityType::SNOWBOSS){
-			//body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
-			b2CircleShape circleShape;
-			circleShape.m_p.Set(0, 0); //position, relative to body position
-			circleShape.m_radius = 1; //radius
-
-			b2FixtureDef myFixtureDef;
-			myFixtureDef.shape = &circleShape; //this is a pointer to the shape above
-			body->CreateFixture(&myFixtureDef); //add a fixture to the body
-
-			body->ApplyLinearImpulse(b2Vec2(0, 0), body->GetWorldCenter(),true);
+			body = CreateActorRoundBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
 		}
-
+		else {
+			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
+		}
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer, moveContainer);
 
@@ -324,6 +319,33 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	boxFixtureDef.friction = 0.1;
 	boxFixtureDef.restitution = 0.7;
 	b2body->CreateFixture(&boxFixtureDef);
+
+	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
+
+	return b2body;
+}
+b2Body* EntityFactory::CreateActorRoundBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent){
+
+	height = height / 2;
+	width = width / 2;
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+	float newHeight = (height*Ratio);
+	float newWidth = (width*Ratio);
+
+	b2BodyDef bodydef = bodyRegistery.at(type);
+	bodydef.position.Set(x*Ratio, y*Ratio);
+	b2Body* b2body = world.CreateBody(&bodydef);
+
+	b2CircleShape circleShape;
+	circleShape.m_p.Set((newWidth), (newHeight)); //position, relative to body position
+	circleShape.m_radius = newWidth; //radius
+
+	//fixture for jumping
+	b2FixtureDef myFixtureDef;
+	myFixtureDef.shape = &circleShape; //this is a pointer to the shape above
+	b2body->CreateFixture(&myFixtureDef); //add a fixture to the body
 
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 

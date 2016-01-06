@@ -33,6 +33,7 @@ class PlayState :
 
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+		void HandleTextInputEvents(SDL_Event event);
 		void Update(float);
 		void Draw();
 		void Move(float dt);

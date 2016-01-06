@@ -20,11 +20,14 @@ public:
 	void SetShouldDraw(bool _shoulddraw);
 	DrawableBehaviour* GetDrawableBehaviour();
 	void SetDrawableBehaviour(DrawableBehaviour* behaviour);
+	void SetFlipped(bool _flipped);
+	bool GetFlipped();
 protected:
 	bool shouldDraw = true;
 	DrawableBehaviour* draw;
 	MoveableBehaviour* move;
 	EntityType type;
-	EntityState state;	
+	EntityState state;
+	bool flipped;
 };
 

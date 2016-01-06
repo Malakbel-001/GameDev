@@ -64,13 +64,14 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 		states.pop_back(); //pop loadState
 		delete a;
 	states.push_back(gameState);
+	states.back()->Resume();
 }
 void GameStateManager::PopPrevState(){
 	if (states.size() > 1){
 		IGameState* a = states[states.size() - 2];
 
 		states.erase(----states.end());
-	//	delete a;
+		//delete a;
 	}
 }
 void GameStateManager::PopState()
@@ -81,7 +82,7 @@ void GameStateManager::PopState()
 		//states.back()->Cleanup();
 		
 		states.pop_back();
-	//	delete a;
+		//delete a;
 
 		states.back()->Resume(); //tell the state it is being resumed
 	}

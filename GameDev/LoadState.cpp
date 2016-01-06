@@ -128,6 +128,10 @@ void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
 	//temp nothing
 }
 
+void LoadState::HandleTextInputEvents(SDL_Event event){
+
+}
+
 void LoadState::Update(float dt) {
 	Draw();
 }

@@ -9,6 +9,9 @@ Player::Player() {
 	score = 0;
 	vehicle = nullptr;
 	passenger = nullptr;
+	timeplayed.resize(2);
+	timeplayed.at(0) = 0;
+	timeplayed.at(1) = 0;
 }
 
 Player::~Player() { 
@@ -92,4 +95,19 @@ void Player::SetVehicle(Player* _vehicle)
 Player* Player::GetVehicle()
 {
 	return vehicle;
+}
+
+void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
+	timeplayed.at(0) += timeMin;
+	if (timeplayed.at(1) + timeSec > 60){
+		timeplayed.at(0) += 1;
+		timeplayed.at(1) = (timeplayed.at(1) + timeSec)-60;
+	}
+	else {
+		timeplayed.at(1) += timeSec;
+	}
+}
+
+vector<Uint32> Player::GetPlayTime(){
+	return timeplayed;
 }

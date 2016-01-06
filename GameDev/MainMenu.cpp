@@ -10,10 +10,11 @@ MainMenu::MainMenu(MenuState* menu, SDL_Renderer* renderer, TTF_Font* textfont, 
 	this->textFont = textfont;
 	this->titleFont = titlefont;
 	MakePlayText(textColor);
+	MakeHighscoreText(textColor);
 	MakeHelpText(textColor);
 	MakeCreditText(textColor);
 	MakeOptionText(textColor);
-	MakeQuitText(textColor);
+	MakeQuitText(textColor);	
 	MakeMainTitle(textColor);
 }
 
@@ -37,7 +38,7 @@ void MainMenu::MakeHelpText(SDL_Color color){
 
 	SDL_QueryTexture(helpTexture, NULL, NULL, &blendedRect.w, &blendedRect.h);
 	blendedRect.x = 15;
-	blendedRect.y = solidRect.y + solidRect.h + 20;
+	blendedRect.y = highscoreRect.y + highscoreRect.h + 20;
 	pos[1] = blendedRect;
 }
 
@@ -71,6 +72,16 @@ void MainMenu::MakeOptionText(SDL_Color color){
 		pos[3] = optionsRect;
 	}
 
+void MainMenu::MakeHighscoreText(SDL_Color color){
+	SDL_Surface* highscore = TTF_RenderText_Blended(textFont, "Highscore", color);
+	highscoreTexture = SurfaceToTexture(highscore);
+
+	SDL_QueryTexture(highscoreTexture, NULL, NULL, &highscoreRect.w, &highscoreRect.h);
+	highscoreRect.x = 15;
+	highscoreRect.y = solidRect.y + solidRect.h + 20;
+	pos[5] = highscoreRect;
+}
+
 void MainMenu::MakeMainTitle(SDL_Color color){
 	SDL_Surface* mainTitle = TTF_RenderText_Blended(titleFont, "Jark Hunt", color);
 	mainTitleTexture = SurfaceToTexture(mainTitle);
@@ -78,7 +89,7 @@ void MainMenu::MakeMainTitle(SDL_Color color){
 	SDL_QueryTexture(mainTitleTexture, NULL, NULL, &mainTitleRect.w, &mainTitleRect.h);
 	mainTitleRect.x = 540 - (mainTitleRect.w / 2);
 	mainTitleRect.y = 5;
-	pos[5] = mainTitleRect;
+	pos[6] = mainTitleRect;
 }
 
 SDL_Texture* MainMenu::SurfaceToTexture(SDL_Surface* surf)
@@ -98,6 +109,7 @@ void MainMenu::SetupRenderer(){
 
 void MainMenu::Draw(){
 	SDL_RenderCopy(renderer, playTexture, nullptr, &solidRect);
+	SDL_RenderCopy(renderer, highscoreTexture, nullptr, &highscoreRect);
 	SDL_RenderCopy(renderer, helpTexture, nullptr, &blendedRect);
 	SDL_RenderCopy(renderer, optionsTexture, nullptr, &optionsRect); //NEW
 	SDL_RenderCopy(renderer, quitTexture, nullptr, &shadedRect);
@@ -114,6 +126,7 @@ void MainMenu::Highlight(int item){
 	case -1:
 	{
 		MakePlayText(textColor);
+		MakeHighscoreText(textColor);
 		MakeHelpText(textColor);
 		MakeQuitText(textColor);
 		MakeCreditText(textColor);
@@ -143,6 +156,11 @@ void MainMenu::Highlight(int item){
 	case 4:
 	{
 		MakeQuitText(hoverTextColor);
+		break;
+	}
+	case 5:
+	{
+		MakeHighscoreText(hoverTextColor);
 		break;
 	}
 	}
@@ -205,6 +223,11 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 					//quit
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					Game::running = false;
+					break;
+				case 5:
+					//highscore
+					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+					menu->updateMenu(MenuEnum::Highscore);
 					break;
 				}
 			}

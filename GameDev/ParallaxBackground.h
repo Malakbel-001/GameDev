@@ -4,6 +4,7 @@
 #include "LTexture.h"
 #include "LayerContainer.h"
 #include <vector>
+#include "Utitilies.h"
 
 class ParallaxBackground {
 	private:
@@ -17,7 +18,6 @@ class ParallaxBackground {
 		float previousXPos;
 
 		bool wasFullScreen; //was before
-		bool CheckFullScreen();
 
 	public:
 		ParallaxBackground(SDL_Renderer*, Camera*);

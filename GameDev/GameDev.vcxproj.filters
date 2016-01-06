@@ -58,9 +58,6 @@
     <ClCompile Include="Container.cpp">
       <Filter>Source Files\Model\Container</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Source Files\Model</Filter>
-    </ClCompile>
     <ClCompile Include="BehaviourFactory.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
@@ -86,9 +83,6 @@
       <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
     <ClCompile Include="SpritesLoader.cpp">
-      <Filter>Source Files\Controller\Services</Filter>
-    </ClCompile>
-    <ClCompile Include="TileLoader.cpp">
       <Filter>Source Files\Controller\Services</Filter>
     </ClCompile>
     <ClCompile Include="ContactListener.cpp">
@@ -316,6 +310,69 @@
     <ClCompile Include="Apc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BigGroundSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FramesPerSecond.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundLvl2Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMapping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadedLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HighscoreMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParallaxBackground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowBossSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundLvl2Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowBossMoveableBehaviour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SnowBossPatrolCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -375,9 +432,6 @@
     <ClInclude Include="resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Header Files\Model</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files\Controller\Main</Filter>
     </ClInclude>
@@ -421,9 +475,6 @@
       <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
     <ClInclude Include="SpritesLoader.h">
-      <Filter>Header Files\Controller\Services</Filter>
-    </ClInclude>
-    <ClInclude Include="TileLoader.h">
       <Filter>Header Files\Controller\Services</Filter>
     </ClInclude>
     <ClInclude Include="DrawableBehaviour.h">
@@ -642,28 +693,88 @@
     <ClInclude Include="MechSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlantBossMoveableBehaviour.h">
+    <ClInclude Include="FramesPerSecond.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HighscoreMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utitilies.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GroundLvl2Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMapping.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadedLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlantMoveableBehaviour.h">
       <Filter>Header Files</Filter>
+	  </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SensorCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+	  </ClInclude>
+    <ClInclude Include="LevelConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TankSprite.h">
       <Filter>Header Files</Filter>
+	</ClInclude>
+    <ClInclude Include="ParallaxBackground.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StepCollidableBehaviour.h">
+      <Filter>Header Files</Filter>
+	</ClInclude>
+    <ClInclude Include="PlayMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vehicle.h">
       <Filter>Header Files</Filter>
+	</ClInclude>
+    <ClInclude Include="SnowBossSprite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MinigunnerSprite.h">
       <Filter>Header Files</Filter>
+	</ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Apc.h">
+      <Filter>Header Files</Filter>
+	</ClInclude>
+    <ClInclude Include="GroundLvl2Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowBossMoveableBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SnowBossPatrolCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

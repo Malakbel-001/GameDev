@@ -11,6 +11,7 @@
 #include "LTexture.h"
 #include "GameStateManager.h"
 #include "Level.h"
+#include "FramesPerSecond.h"
 
 class Game
 {
@@ -25,6 +26,7 @@ class Game
 	private:
 		BehaviourFactory* bf;
 		
+		FramesPerSecond* fps;
 		SDLInitializer* sdlInitializer;
 		GameStateManager* gsm;
 		IGameState* gameState;

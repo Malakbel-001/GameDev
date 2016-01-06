@@ -69,7 +69,7 @@ void LTexture::free()
 	}
 }
 
-void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip = NULL)
+void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip)
 {
 
 	//Set rendering space and render to screen
@@ -90,11 +90,11 @@ void LTexture::SetTextureAlphaMod(int alpha) {
 	SDL_SetTextureAlphaMod(texture, alpha);
 }
 
-void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, EntityState state)
+void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SDL_Rect* clip, bool flip)
 {
-	SDL_RendererFlip flip = SDL_FLIP_NONE;
-	if (state == EntityState::WALKINGLEFT)
-		flip = SDL_FLIP_HORIZONTAL;
+	SDL_RendererFlip renderFlip = SDL_FLIP_NONE;
+	if (flip)
+		renderFlip = SDL_FLIP_HORIZONTAL;
 
 	//Set rendering space and render to screen
 	SDL_Rect renderQuad = { x, y, mWidth, mHeight };
@@ -107,7 +107,7 @@ void LTexture::render(SDL_Renderer* renderer, float x, float y, double angle, SD
 	}
 
 	//Render to screen
-	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, flip);
+	SDL_RenderCopyEx(renderer, texture, clip, &renderQuad, angle, NULL, renderFlip);
 }
 
 int LTexture::getWidth()
