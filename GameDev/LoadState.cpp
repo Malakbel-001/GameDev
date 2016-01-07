@@ -135,10 +135,15 @@ void LoadState::Resume() {
 
 void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	if (loadedPlay) {
+		bool keypressed = false;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
-				gsm->PushGameStateOnly(playState); //any key
+				keypressed = true;
+				 //any key
 			}
+		}
+		if (keypressed){
+			gsm->PushGameStateOnly(playState);
 		}
 	}
 }
