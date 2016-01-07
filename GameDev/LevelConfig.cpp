@@ -37,6 +37,7 @@ void LevelConfig::LoadLevels(){
 }
 
 void LevelConfig::SaveLevelProgress(string s){
+	LoadLevels();
 	ofstream levels;
 	levels.open(levelsChar);
 	for (auto it = levelsMap->begin(); it != levelsMap->end(); it++){
