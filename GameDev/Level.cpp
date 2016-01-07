@@ -217,7 +217,7 @@ void Level::Victory() {
 void Level::EnterVehicle()
 {
 	if (player->GetVehicle())
-	{		
+	{
 		auto vehicle = player->GetVehicle();
 
 		for each (Weapon* var in player->GetWeapons())
@@ -226,7 +226,7 @@ void Level::EnterVehicle()
 			moveableContainer->Delete(var);
 		}
 
-		drawableContainer->Delete(player);		
+		drawableContainer->Delete(player);
 		moveableContainer->Delete(player);
 		vehicle->SetPassenger(player);
 		player->setBody(vehicle->GetBody());
@@ -235,6 +235,35 @@ void Level::EnterVehicle()
 		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::CANNON);
 		wep->Pickup(player, b2Vec2(1000, 0));
 		player->AddWeapon(wep);
+	}
+}
+
+void Level::ExitVehicle()
+{
+	if (player->GetPassenger())
+	{
+		auto passenger = dynamic_cast<Vehicle*>(player)->GetPassenger();
+
+		for each (Weapon* var in player->GetWeapons())
+		{
+			drawableContainer->Delete(var);
+			moveableContainer->Delete(var);
+		}
+
+		drawableContainer->Delete(player);
+		moveableContainer->Delete(player);
+
+		passenger = SetPlayerPosition(dynamic_cast<Vehicle*>(passenger), player->GetBody()->GetWorldCenter().x, player->GetBody()->GetWorldCenter().y + 20);
+
+		player->setBody(dynamic_cast<Vehicle*>(passenger)->GetBody());
+		player = dynamic_cast<Vehicle*>(passenger);
+
+		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
+		wep->Pickup(player, b2Vec2(100, 0));
+		Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
+		shot->Pickup(player, b2Vec2(100, 0));
+		player->AddWeapon(wep);
+		player->AddWeapon(shot);
 	}
 }
 #pragma endregion Get, Set, & more

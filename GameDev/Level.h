@@ -85,4 +85,5 @@ public:
 	int GetLevelId() { return levelId; };
 
 	void EnterVehicle();
+	void ExitVehicle();
 };

@@ -1,5 +1,5 @@
 #include "PlayerCollidableBehaviour.h"
-#include "Player.h"
+#include "Vehicle.h"
 
 PlayerCollidableBehaviour::PlayerCollidableBehaviour()
 {

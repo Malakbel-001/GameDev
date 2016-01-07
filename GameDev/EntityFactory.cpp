@@ -61,7 +61,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 	bulletRegistery = std::unordered_map < EntityType, Bullet* > {
 			{ EntityType::BULLET ,new Bullet() },
-			{ EntityType::CANNONSHOT, new Bullet() }
+			{ EntityType::CANNONSHOT, new Bullet() },
+			{ EntityType::ACORN, new Bullet() }
 
 	};
 	

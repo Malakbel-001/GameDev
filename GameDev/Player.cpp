@@ -92,6 +92,11 @@ void Player::SetVehicle(Player* _vehicle)
 	vehicle = _vehicle;
 }
 
+Player* Player::GetPassenger()
+{
+	return passenger;
+}
+
 Player* Player::GetVehicle()
 {
 	return vehicle;
