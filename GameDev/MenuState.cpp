@@ -138,7 +138,8 @@ void MenuState::Pause(){
 
 }
 void MenuState::Resume(){
-
+	//if screen changed, reload all layerContainers
+	parallaxBackground->CheckIfScreenSizeChanged();
 }
 
 void MenuState::HandleMouseEvents(SDL_Event mainEvent)
