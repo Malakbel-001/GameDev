@@ -79,6 +79,7 @@ void LoadState::LoadPlayState() {
 
 //path = path of the advertisement image
 void LoadState::Advertisement() {
+	bool correctPic = false;
 	adsList = new vector<string>();
 	const string path = "Resources/advertisements/ads.txt";
 	ifstream scoreStream;
@@ -90,24 +91,28 @@ void LoadState::Advertisement() {
 	{
 		adsList->push_back(temp);
 	}
+	while (!correctPic){
+		int index = rand() % adsList->size();
+		string adsPath = "Resources/advertisements/" + adsList->at(index);
+		int* screenHeight = new int;
+		int* screenWidth = new int;
+		SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
 
-	int index = rand() % adsList->size();
-	string adsPath = "Resources/advertisements/" + adsList->at(index);
-
-	/*
-	random int kiezen van adslist.size
-	new path is adslist.at(random)
-
-	*/
-
-
-
-	advertisementPic = LTexture();
-	advertisementPic.loadFromFile(renderer, adsPath);
-	advertisementRect.h = advertisementPic.getHeight();
-	advertisementRect.w = advertisementPic.getWidth();
-	advertisementRect.x = 0;
-	advertisementRect.y = 0;
+		advertisementPic = LTexture();
+		advertisementPic.loadFromFile(renderer, adsPath);
+		if (advertisementPic.getHeight() < (*screenHeight - 96) && advertisementPic.getWidth() < (*screenWidth - 50)){
+			advertisementRect.h = advertisementPic.getHeight();
+			advertisementRect.w = advertisementPic.getWidth();
+			advertisementRect.x = 0;
+			advertisementRect.y = 0;
+			delete screenWidth;
+			delete screenHeight;
+			correctPic = true;
+		}
+		else {
+			cout << "error, wrong advertisement size";
+		}
+	}
 }
 
 void LoadState::Cleanup() {
