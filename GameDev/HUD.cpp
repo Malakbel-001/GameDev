@@ -214,3 +214,8 @@ void HUD::SetTimer(Timer* _timer) {
 Timer* HUD::GetTimer() {
 	return timer;
 }
+
+//use with vehicle switching
+void HUD::SetPlayer(Player* newPlayer) {
+	player = newPlayer;
+}
