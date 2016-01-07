@@ -382,7 +382,7 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 		boxFixtureDef.filter.categoryBits = (uint16)entityCollisionRegistery.at(type);
 
 	//friction is applied when an Entity glides on the ground. More friction -> entity slows down faster
-	boxFixtureDef.friction = 10; //changed - old value:0.1 -> new value: 10
+	boxFixtureDef.friction = 2; //changed - old value:0.1 -> new value: 10
 
 	if (restitutionRegistery.find(type) == restitutionRegistery.end()){
 		boxFixtureDef.restitution = 0.7;

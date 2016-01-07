@@ -103,15 +103,15 @@ void InputManager::SetKeyInput(SDL_Keycode key)
 		konamCheatsCounter = 0;
 	}
 
-
-	if (input->find(key) == input->end())	
+	SDL_Keycode inputkey = RemapKey(key);
+	if (input->find(inputkey) == input->end())
 	{
-		SDL_Keycode inputkey = RemapKey(key);
+		
 		input->insert({ inputkey, true });
 	}
 	else
 	{
-		SDL_Keycode inputkey = RemapKey(key);
+		
 		input->at(inputkey) = true;
 	}
 
