@@ -61,7 +61,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	//Fyi: Error handling, compared to menuState methods @InitializationEverything, here is baddy bad bad, at least for now unless not needed.
 
 	//Advertisement placeholder
-	Advertisement("Resources/images/ad.png");
+	Advertisement();
 
 	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "Resources/backgrounds/loadscreen.png");
 	backgroundRect.h = background.getHeight();
@@ -78,9 +78,32 @@ void LoadState::LoadPlayState() {
 }
 
 //path = path of the advertisement image
-void LoadState::Advertisement(char* path) {
+void LoadState::Advertisement() {
+	adsList = new vector<string>();
+	const string path = "Resources/advertisements/ads.txt";
+	ifstream scoreStream;
+	scoreStream.open(path);
+	stringstream ss;
+	ss << scoreStream.rdbuf();
+	string temp = "";
+	while (getline(ss, temp, ','))
+	{
+		adsList->push_back(temp);
+	}
+
+	int index = rand() % adsList->size();
+	string adsPath = "Resources/advertisements/" + adsList->at(index);
+
+	/*
+	random int kiezen van adslist.size
+	new path is adslist.at(random)
+
+	*/
+
+
+
 	advertisementPic = LTexture();
-	advertisementPic.loadFromFile(renderer, path);
+	advertisementPic.loadFromFile(renderer, adsPath);
 	advertisementRect.h = advertisementPic.getHeight();
 	advertisementRect.w = advertisementPic.getWidth();
 	advertisementRect.x = 0;

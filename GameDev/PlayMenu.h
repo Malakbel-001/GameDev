@@ -34,14 +34,14 @@ private:
 	SDL_Rect newGameRect;
 	SDL_Rect level1Rect;
 	SDL_Rect level2Rect;
-	//SDL_Rect level3Rect;
+	SDL_Rect level3Rect;
 
 	SDL_Texture* backToMainTexture;
 	SDL_Texture* playTitleTexture;
 	SDL_Texture* newGameTexture;
 	SDL_Texture* level1Texture;
 	SDL_Texture* level2Texture;
-	//SDL_Texture* level3Texture;
+	SDL_Texture* level3Texture;
 public:
 	PlayMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	void LoadLevels();
