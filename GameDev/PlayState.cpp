@@ -121,6 +121,9 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					break;
 				case SDLK_e:
 					currentLevel->EnterVehicle();
+					if (currentLevel->GetPlayer()->IsVehicle()) {
+						hud->SetPlayer(currentLevel->GetPlayer());
+					}
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
 						accumulatedDtWeapon, currentManipulatorSpeed)) 
