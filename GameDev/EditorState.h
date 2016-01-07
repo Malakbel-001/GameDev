@@ -5,6 +5,8 @@
 
 class EditorState :	public IGameState {
 	private:
+		float Ratio = 1.0F / 10.0F; //TODO!!!
+
 		Level* newLevel;
 		BehaviourFactory* behaviourFactory;
 		Camera* manualCamera;

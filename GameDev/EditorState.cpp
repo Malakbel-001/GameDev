@@ -152,13 +152,13 @@ void EditorState::Draw(float dt, float gameSpeedManipulator) {
 		newLevel->GetDrawableContainer()->Draw(dt, gameSpeedManipulator);
 	}
 
-	selectedEntity->SetXpos(0);
-	selectedEntity->SetYpos(0);
+	//selectedEntity->SetXpos(0);
+	//selectedEntity->SetYpos(0);
 
 	//std::cout << "Ypos: " << selectedEntity->GetYpos() << std::endl;
 
-	//selectedEntity->SetXpos(static_cast<float>(hoverX)); //cast to float
-	//selectedEntity->SetYpos(static_cast<float>(hoverY)); //cast to float
+	selectedEntity->SetXpos(static_cast<float>(hoverX * Ratio)); //cast to float
+	selectedEntity->SetYpos(static_cast<float>(hoverY * Ratio)); //cast to float
 
 	editorDrawableContainer->Draw(dt, gameSpeedManipulator);
 

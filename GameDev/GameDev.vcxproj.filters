@@ -612,6 +612,9 @@
     <ClInclude Include="EntityStatsContainer.h">
       <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="EditorState.h">
+      <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

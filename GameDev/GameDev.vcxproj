@@ -209,6 +209,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="CollisionFilterContainer.h" />
     <ClInclude Include="CollisionType.h" />
+    <ClInclude Include="EditorState.h" />
     <ClInclude Include="EntityStatsContainer.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameSpeedManipulator.h" />
