@@ -130,3 +130,9 @@ void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
 vector<Uint32> Player::GetPlayTime(){
 	return timeplayed;
 }
+
+bool Player::IsVehicle() {
+	if (passenger)
+		return true;
+	return false;
+}
