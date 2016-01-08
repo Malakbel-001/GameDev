@@ -5,9 +5,10 @@
 
 class EditorState :	public IGameState {
 	private:
-		float ratio = 1.0F / 10.0F; //TODO!!!
+		float ratio = 1.0F / 10.0F; //magic numberino, TODO -> smarter solution.
 
 		Level* newLevel;
+		std::string loadLevel = ""; // equivalent of NULL I guess
 		BehaviourFactory* behaviourFactory;
 		Camera* manualCamera;
 
@@ -29,6 +30,9 @@ class EditorState :	public IGameState {
 
 	public:
 		EditorState();
+		EditorState(int level);
+		EditorState(std::string loadLevel);
+
 		~EditorState();
 
 		void Init(GameStateManager *gsm);

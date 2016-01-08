@@ -65,6 +65,9 @@ void Game::SDLEvents()
 		{
 			inputManager->SetMouseMotion(events);
 		}
+		if (events.type == SDL_MOUSEWHEEL) {
+			inputManager->SetMouseInput(events);
+		}
 	}
 }
 

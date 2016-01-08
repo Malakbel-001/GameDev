@@ -1,13 +1,49 @@
 #include "EditorState.h"
 
+//get empty level / clean level
 EditorState::EditorState() {
-	//newLevel = LevelFactory::GetEmptyLevel();
-	newLevel = LevelFactory::GetSpecificLevel(2);
-	
+	newLevel = LevelFactory::GetEmptyLevel();
+}
+
+//load specific level 1 - 3
+EditorState::EditorState(int level) {
+	newLevel = LevelFactory::GetSpecificLevel(level);
+}
+
+//load level from file: HomeCooked Levels
+EditorState::EditorState(std::string _loadLevel) {
+	this->loadLevel = _loadLevel;
+}
+
+void EditorState::Init(GameStateManager *gsm) {
+	//Standard @Initialization
 	editorDrawableContainer = new DrawableContainer();
 	selectedEntity = nullptr;
 	scroll = 0;
 	lockButtonTicks = SDL_GetTicks();
+
+	behaviourFactory = gsm->GetBehaviour(); //need this to create (temporary) drawableBehaviours
+
+	//Load a level if the loadLevel constructor was used
+	if (loadLevel != "") {
+		newLevel = LevelFactory::LoadLevel(behaviourFactory, loadLevel);
+	}
+
+	//initialize level
+	newLevel->Init(gsm->GetBehaviour());
+
+	//initialize entities for use in the level editor
+	actorTypeList = newLevel->GetEntityFactory()->GetActorTypeList();
+	entityTypeList = newLevel->GetEntityFactory()->GetEntityTypeList();
+
+	//set the camera
+	manualCamera = behaviourFactory->SetManualCamera(newLevel->GetLvlWidth(), newLevel->GetLvlHeight());
+
+	//set the background
+	newLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this after PBG and the Camera is set
+
+	//grab first entity from the list and set it
+	SetSelectedEntity();
 }
 
 EditorState::~EditorState() {
@@ -16,24 +52,6 @@ EditorState::~EditorState() {
 
 void EditorState::Cleanup() {
 	//TODO don't forget!
-}
-
-void EditorState::Init(GameStateManager *gsm) {
-	//beware!
-	//newLevel->Init(gsm->GetBehaviour());
-
-	behaviourFactory = gsm->GetBehaviour(); //need this to create (temporary) drawableBehaviours
-
-	//newLevel->SetEntityFactory(gsm->GetBehaviour());
-	newLevel->Init(gsm->GetBehaviour());
-	actorTypeList = newLevel->GetEntityFactory()->GetActorTypeList();
-	entityTypeList = newLevel->GetEntityFactory()->GetEntityTypeList();
-
-	manualCamera = behaviourFactory->SetManualCamera(newLevel->GetLvlWidth(), newLevel->GetLvlHeight());
-	newLevel->GetParallaxBackGround()->InitializeFixXPos(); //use this after PBG and the Camera is set
-
-	//grab first entity from the list and set it
-	SetSelectedEntity();
 }
 
 void EditorState::Pause() {
@@ -45,44 +63,46 @@ void EditorState::Resume() {
 }
 
 void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
-	//follow mouse movements, show level entity
-
 	switch (mainEvent.type) {
 		case SDL_MOUSEMOTION: {
 			hoverX = mainEvent.motion.x;
 			hoverY = mainEvent.motion.y;
 
-			//debugging
-			std::cout << "HoverX " << hoverX << std::endl;
-			std::cout << "HoverY " << hoverY << std::endl;
-			std::cout << std::endl;
-
 			break;
 		}
 		case SDL_MOUSEWHEEL: { //TODO don't know how this works
 			//scroll through list of entities
-			std::cout << "inside" << std::endl;
-
-
-			std::cout << "scroll: " << mainEvent.wheel.y << std::endl; //doesn't work
+			if (mainEvent.wheel.y > 0) {
+				if (scroll < entityTypeList->size() - 1) {
+					scroll++;
+				}
+				else {
+					scroll = 0;
+				}
+			}
+			else {
+				if (scroll > 0) {
+					scroll--;
+				}
+				else {
+					scroll = entityTypeList->size() - 1;
+				}
+			}
+			SetSelectedEntity();
 			break;
 		}
 		case SDL_MOUSEBUTTONDOWN: {
 			if (mainEvent.button.button == SDL_BUTTON_LEFT) {
 				//place entity
-				std::cout << "sdl_leftmousebutton" << std::endl;
-
-				newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio), static_cast<float>(hoverY), entityTypeList->at(scroll));
-
+				newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio), 
+					static_cast<float>(hoverY), entityTypeList->at(scroll));
 			}
 			else if (mainEvent.button.button == SDL_BUTTON_RIGHT) {
 				//delete
 				std::cout << "sdl_rightmousebutton" << std::endl;
 
-				
+				//EntityFactory -> Delete(float x, float y);
 			}
-
-
 			break;
 		}
 	}
@@ -96,9 +116,18 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 
 		if (it->second)	{
 			switch (it->first) {
+				case SDLK_ESCAPE: {
+					//go to the Level subMenu
+					
+					//in the subMenu, you can save the Level and set the name
+					//or open another level
+
+					//LevelFactory has the Save Function
+				}
+
 				case SDLK_w: {
-					//move camera up
-					manualCamera->SetY(manualCamera->GetY() + 1);
+					//move camera up - DISABLED
+					//manualCamera->SetY(manualCamera->GetY() + 1);
 					break;
 				}
 				case SDLK_a: {
@@ -106,8 +135,8 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 					manualCamera->SetX(manualCamera->GetX() - 1);
 				}
 				case SDLK_s: {
-					//move camera down
-					manualCamera->SetY(manualCamera->GetY() - 1);
+					//move camera down - DISABLED
+					//manualCamera->SetY(manualCamera->GetY() - 1);
 					break;
 				}
 				case SDLK_d: {
@@ -143,9 +172,6 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 					break;
 				}
 			}
-			std::cout << "camX: " << manualCamera->GetX() << std::endl;
-			std::cout << "camY: " << manualCamera->GetY() << std::endl;
-			std::cout << std::endl;
 		}
 	}
 }
@@ -168,13 +194,14 @@ void EditorState::Draw(float dt, float gameSpeedManipulator) {
 		newLevel->GetDrawableContainer()->Draw(dt, gameSpeedManipulator);
 	}
 
-	selectedEntity->SetXpos(GetXPositionEntity()); //temporary
+	selectedEntity->SetXpos(GetXPositionEntity());
 	selectedEntity->SetYpos(GetYPositionEntity());
 
 	editorDrawableContainer->Draw(dt, gameSpeedManipulator);
 
 	//no HUD at the moment
 }
+
 
 void EditorState::SetSelectedEntity() {
 	editorDrawableContainer->Cleanup();
@@ -192,7 +219,6 @@ float EditorState::GetXPositionEntity() {
 	//400 * ratio is temporary fix!
 	return static_cast<float>((hoverX * ratio) + (manualCamera->GetX()) - 400 * ratio);
 }
-
 float EditorState::GetYPositionEntity() {
 	return static_cast<float>(hoverY * ratio);
 }
