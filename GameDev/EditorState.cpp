@@ -1,8 +1,8 @@
 #include "EditorState.h"
 
 EditorState::EditorState() {
-	newLevel = LevelFactory::GetEmptyLevel();
-	//newLevel = LevelFactory::GetSpecificLevel(2);
+	//newLevel = LevelFactory::GetEmptyLevel();
+	newLevel = LevelFactory::GetSpecificLevel(2);
 	
 	editorDrawableContainer = new DrawableContainer();
 	selectedEntity = nullptr;
@@ -61,12 +61,28 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 		}
 		case SDL_MOUSEWHEEL: { //TODO don't know how this works
 			//scroll through list of entities
+			std::cout << "inside" << std::endl;
+
 
 			std::cout << "scroll: " << mainEvent.wheel.y << std::endl; //doesn't work
 			break;
 		}
 		case SDL_MOUSEBUTTONDOWN: {
-			//place entity
+			if (mainEvent.button.button == SDL_BUTTON_LEFT) {
+				//place entity
+				std::cout << "sdl_leftmousebutton" << std::endl;
+
+				newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio), static_cast<float>(hoverY), entityTypeList->at(scroll));
+
+			}
+			else if (mainEvent.button.button == SDL_BUTTON_RIGHT) {
+				//delete
+				std::cout << "sdl_rightmousebutton" << std::endl;
+
+				
+			}
+
+
 			break;
 		}
 	}
@@ -152,13 +168,8 @@ void EditorState::Draw(float dt, float gameSpeedManipulator) {
 		newLevel->GetDrawableContainer()->Draw(dt, gameSpeedManipulator);
 	}
 
-	//selectedEntity->SetXpos(0);
-	//selectedEntity->SetYpos(0);
-
-	//std::cout << "Ypos: " << selectedEntity->GetYpos() << std::endl;
-
-	selectedEntity->SetXpos(static_cast<float>(hoverX * Ratio)); //cast to float
-	selectedEntity->SetYpos(static_cast<float>(hoverY * Ratio)); //cast to float
+	selectedEntity->SetXpos(GetXPositionEntity()); //temporary
+	selectedEntity->SetYpos(GetYPositionEntity());
 
 	editorDrawableContainer->Draw(dt, gameSpeedManipulator);
 
@@ -175,4 +186,13 @@ void EditorState::SetSelectedEntity() {
 
 	selectedEntity = new BareEntity();
 	selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer);
+}
+
+float EditorState::GetXPositionEntity() {
+	//400 * ratio is temporary fix!
+	return static_cast<float>((hoverX * ratio) + (manualCamera->GetX()) - 400 * ratio);
+}
+
+float EditorState::GetYPositionEntity() {
+	return static_cast<float>(hoverY * ratio);
 }

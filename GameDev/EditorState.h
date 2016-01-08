@@ -5,13 +5,15 @@
 
 class EditorState :	public IGameState {
 	private:
-		float Ratio = 1.0F / 10.0F; //TODO!!!
+		float ratio = 1.0F / 10.0F; //TODO!!!
 
 		Level* newLevel;
 		BehaviourFactory* behaviourFactory;
 		Camera* manualCamera;
 
 		Uint32 lockButtonTicks;
+
+		int screenWidth = 1080; //temp!!! TODO
 
 		//not sure if to save this
 		int hoverX;
@@ -43,5 +45,6 @@ class EditorState :	public IGameState {
 
 	private:
 		void SetSelectedEntity();
-
+		float GetXPositionEntity();
+		float GetYPositionEntity();
 };
