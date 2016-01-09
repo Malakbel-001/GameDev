@@ -39,5 +39,6 @@ private:
 
 	static std::vector<Level*> levels;
 	
+	static Level* GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::string name);
 };
 

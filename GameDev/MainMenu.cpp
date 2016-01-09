@@ -249,10 +249,13 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 						menu->updateMenu(MenuEnum::Highscore);
 						break;
 					case 6:
+						//level editor
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						
-						//temp disabled
-						menu->GetGSM()->CreateGameState(GameStateType::EditorState);
+						//3 options, TODO -> level editor subMenu
+						//menu->GetGSM()->CreateGameState(GameStateType::EditorState);
+						//menu->GetGSM()->CreateEditorState(1);
+						menu->GetGSM()->CreateEditorState("test");
 
 						break;
 					//case 7, aka the menuTitle, does not need to be clickable

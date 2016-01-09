@@ -46,10 +46,13 @@ private:
 	virtual void CreateTimer();
 	virtual void CreateParallaxBackground(BehaviourFactory*);	//before pure virtual function
 
+	void ConstructorLevel();
 public:
 	Level(int _lvlWidth, int _lvlHeight, PlayState* ps);
 	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* ps);
 	Level(int _lvlWidth, int _lvlHeight); //clean level for level editor
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
+
 
 	Player* GetPlayer();
 	std::vector<Actor*>* GetActors();

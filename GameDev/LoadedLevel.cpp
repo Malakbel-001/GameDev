@@ -7,6 +7,12 @@ LoadedLevel::LoadedLevel(int _lvlWidth, int _lvlHeight, b2Vec2 vec, PlayState* p
 
 }
 
+LoadedLevel::LoadedLevel(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
+	: Level(_lvlWidth, _lvlHeight, vec) 
+{
+
+}
+
 
 LoadedLevel::~LoadedLevel()
 {

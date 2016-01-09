@@ -8,17 +8,30 @@ LevelFactory::~LevelFactory() {
 
 }
 
-
+Level* LevelFactory::LoadLevel(BehaviourFactory* bf, std::string name) {
+	return GetLoadedLevel(nullptr, bf, name);
+}
 
 Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::string name){
+	return GetLoadedLevel(play, bf, name);
+}
+
+Level* LevelFactory::GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::string name) {
 	file<> xmlFile(name.c_str()); // Default template is char
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 	doc.first_node()->first_attribute();
 	xml_node<>* levelnode = doc.first_node();
 
-
-	LoadedLevel* lvl = new LoadedLevel(2000, 200, b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())), play);
+	LoadedLevel* lvl;
+	if (play) {
+		lvl = new LoadedLevel(2000, 200, 
+			b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())), play);
+	}
+	else {
+		lvl = new LoadedLevel(2000, 200, 
+			b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())));
+	}
 	lvl->Init(bf);
 	EntityFactory* ent = lvl->GetEntityFactory();
 
@@ -38,20 +51,20 @@ Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::strin
 	}
 
 
-	 currentnode = levelnode->first_node("actors")->first_node();
+	currentnode = levelnode->first_node("actors")->first_node();
 	while (currentnode != nullptr){
 		ent->CreateActor(atoi(currentnode->first_node("xpos")->value()), atoi(currentnode->first_node("ypos")->value())
 			, static_cast<EntityType>(atoi(currentnode->first_node("type")->value())));
-		
+
 
 		currentnode = currentnode->next_sibling();
 
 	}
 
-	//Level* lvl = new Level(2000,200,play);
-
 	return lvl;
 }
+
+
 bool LevelFactory::SaveLevel(Level* l,std::string name){
 	xml_document<> doc;
 

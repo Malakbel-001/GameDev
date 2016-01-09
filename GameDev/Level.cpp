@@ -1,9 +1,7 @@
 #include "Level.h"
 #include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
-{
+void Level::ConstructorLevel() {
 	entityFactory = nullptr;
 	player = nullptr;
 	timer = nullptr;
@@ -17,35 +15,24 @@ Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
 	entities = new std::vector<Entity*>();
 	parallaxBackground = nullptr;
 }
+
+Level::Level(int _lvlWidth, int _lvlHeight, PlayState* ps)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
+{
+	ConstructorLevel();
+}
 Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec,PlayState* ps)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight), playState(ps)
 {
-	entityFactory = nullptr;
-	player = nullptr;
-	startXpos = 100;
-	startYpos = 10;
-	actors = new std::vector<Actor*>();
-	world = new b2World(vec);
-	contact = new ContactListener();
-	world->SetContactListener(contact);
-	drawableContainer = new DrawableContainer();
-	entities = new std::vector<Entity*>();
+	ConstructorLevel();
 }
 
 //clean level for level editor
 Level::Level(int _lvlWidth, int _lvlHeight) : lvlWidth(_lvlWidth), lvlHeight(_lvlHeight){
-	entityFactory = nullptr;
-	player = nullptr;
-	timer = nullptr;
-	startXpos = 100;
-	startYpos = 10;
-	actors = new std::vector<Actor*>();
-	world = new b2World(b2Vec2(0.0, static_cast<float>(1.81)));
-	contact = new ContactListener();
-	world->SetContactListener(contact);
-	drawableContainer = new DrawableContainer();
-	entities = new std::vector<Entity*>();
-	parallaxBackground = nullptr;
+	ConstructorLevel();
+}
+Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec) : lvlWidth(_lvlWidth), lvlHeight(_lvlHeight) {
+	ConstructorLevel();
 }
 
 
