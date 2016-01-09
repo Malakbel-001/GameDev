@@ -6,6 +6,7 @@
 #include "VictoryState.h"
 #include "MenuState.h"
 #include "EditorState.h"
+#include "EditorSubState.h"
 #include <iostream>
 
 GameStateManager::GameStateManager(BehaviourFactory* _bf)
@@ -76,6 +77,8 @@ IGameState* GameStateManager::GetNewState(GameStateType state, int lvl, std::str
 	case GameStateType::VictoryState:
 		gamestate = new VictoryState();
 		break;
+	case GameStateType::EditorSubState:
+		gamestate = new EditorSubState();
 	default:
 		break;
 	}

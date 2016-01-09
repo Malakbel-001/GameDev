@@ -292,6 +292,9 @@
     <ClCompile Include="EntityStatsContainer.cpp">
       <Filter>Source Files\Model\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="EditorSubState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -614,6 +617,9 @@
     </ClInclude>
     <ClInclude Include="EditorState.h">
       <Filter>Header Files\Model\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorSubState.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

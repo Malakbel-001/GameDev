@@ -66,6 +66,11 @@ Level* LevelFactory::GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::
 
 
 bool LevelFactory::SaveLevel(Level* l,std::string name){
+	//temp----------
+	if (name == ""){
+		name = "testing";
+	}
+	//-------
 	xml_document<> doc;
 
 	xml_node<> *node = doc.allocate_node(node_element, "level");

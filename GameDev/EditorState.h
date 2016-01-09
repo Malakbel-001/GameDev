@@ -2,7 +2,7 @@
 #include "IGameState.h"
 #include "LevelFactory.h"
 #include <vector>
-
+#include <Windows.h>
 class EditorState :	public IGameState {
 	private:
 		float ratio = 1.0F / 10.0F; //magic numberino, TODO -> smarter solution.
@@ -46,6 +46,9 @@ class EditorState :	public IGameState {
 		void HandleTextInputEvents(SDL_Event event);
 		void Update(float dt, float gameSpeedManipulator);
 		void Draw(float dt, float gameSpeedManipulator);
+
+		Level* GetLevel();
+		string GetLevelPath();
 
 	private:
 		void SetSelectedEntity();

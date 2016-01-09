@@ -17,6 +17,7 @@ EditorState::EditorState(std::string _loadLevel) {
 
 void EditorState::Init(GameStateManager *gsm) {
 	//Standard @Initialization
+	this->gsm = gsm;
 	editorDrawableContainer = new DrawableContainer();
 	selectedEntity = nullptr;
 	scroll = 0;
@@ -117,6 +118,8 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 		if (it->second)	{
 			switch (it->first) {
 				case SDLK_ESCAPE: {
+					gsm->CreateGameState(GameStateType::EditorSubState);
+					break;
 					//go to the Level subMenu
 					
 					//in the subMenu, you can save the Level and set the name
@@ -200,6 +203,14 @@ void EditorState::Draw(float dt, float gameSpeedManipulator) {
 	editorDrawableContainer->Draw(dt, gameSpeedManipulator);
 
 	//no HUD at the moment
+}
+
+Level* EditorState::GetLevel(){
+	return newLevel;
+}
+
+string EditorState::GetLevelPath(){
+	return loadLevel;
 }
 
 

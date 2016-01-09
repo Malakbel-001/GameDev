@@ -45,8 +45,9 @@ void SoundBank::PlaySFX(SoundEffectType type) {
 		SoundChunk* soundChunk = new SoundChunk(tempSound);
 
 		//Change Volume depending on the given volume in the parameters
-		Mix_VolumeChunk(tempSound, musicVolume); //volume = between [0 - 128], 64 = neutral
-
+		if (tempSound != nullptr){
+			Mix_VolumeChunk(tempSound, musicVolume); //volume = between [0 - 128], 64 = neutral
+		}
 		//soundChunk->Play();
 		//and let SoundChunk remember its channel (which doesn't work correctly yet)
 		soundChunk->Play();

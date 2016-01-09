@@ -1,5 +1,6 @@
 #include "MenuBase.h"
 #include "LTexture.h"
+#include <Windows.h>
 class MenuState;
 class MainMenu : public MenuBase
 {
