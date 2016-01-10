@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <vector>
 #include <sstream>
+#include "PlayState.h"
 
 class LoadState : public IGameState {
 private:

@@ -200,6 +200,8 @@ Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 	return levels[lvl-1]->CreateLevel();
 }
 
+
+
 void LevelFactory::DeletePointers(){
 	for (auto it = levels.begin(); it != levels.end(); ++it)
 	{

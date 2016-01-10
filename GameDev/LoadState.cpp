@@ -71,8 +71,18 @@ void LoadState::Init(GameStateManager* gsm) {
 }
 
 void LoadState::LoadPlayState() {
-	playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
-	playState->Init(gsm);
+	PlayState* state = gsm->GetPlayState();
+	if (!state){
+
+
+		playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
+		playState->Init(gsm);
+	}
+	else{
+		
+		state->InitStartLevel(levelToLoad);
+		playState = state;
+	}
 	//playState->InitStartLevel(levelToLoad);
 	loadedPlay = true;
 }
@@ -143,7 +153,22 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 		bool keypressed = false;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
-				keypressed = true;
+				switch (it->first){
+				case SDLK_F13:
+				case SDLK_F14:
+				case SDLK_F15:
+				case SDLK_F16:
+				case SDLK_F17:
+				case SDLK_F18:
+				case SDLK_F19:
+				case SDLK_F20:
+					break;
+						
+				default:
+					keypressed = true;
+					break;
+				}
+			
 				 //any key
 			}
 		}
