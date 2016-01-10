@@ -481,11 +481,14 @@ std::vector<EntityType>* EntityFactory::GetEntityTypeList() {
 	return entityTypeList;
 }
 
-void EntityFactory::DeleteEntity(float x, float y) {
+//give x and y, find entities using world.query() that intersect with that position, delete those entities
+void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer) {
+	//magic number ratio
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
 
+	//setting the point, x and y
 	b2AABB point; //b2AABB is an area
 	b2Vec2 vector;
 	vector.x = x*Ratio;
@@ -502,15 +505,27 @@ void EntityFactory::DeleteEntity(float x, float y) {
 		for each (Actor* act in *actor) {
 			if (act->GetBody() == body) {
 				act->SetShouldDraw(false); //temp test
-				//world.DestroyBody(body);
 
+				//Delete(entity)
 			}
 		}
 		for each (Entity* ent in *entities) {
 			if (ent->GetBody() == body) {
 				ent->SetShouldDraw(false); //temp test
+
+				//Delete(entity)
 			}
 		}
 	}
+}
 
+//Delete the Entity from the world/Box2D and delete its behaviours (kinda dirty imho but stuff)
+void EntityFactory::DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer) {
+	world.DestroyBody(entity->GetBody());
+	drawableContainer->Delete(entity);
+	//moveable
+	//collideable
+	/*delete actors->operator[](x);
+	actors->operator[](x) = nullptr;
+	actors->erase(actors->begin() + x);*/
 }

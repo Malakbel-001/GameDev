@@ -15,6 +15,8 @@
 #include "NpcStatsContainer.h" //indirectly included EntityStatsContainer
 #include "CollisionType.h"
 #include "DeleteQueryCallback.h"
+#include "CollidableContainer.h"
+#include "MoveableContainer.h"
 
 class EntityFactory
 {
@@ -33,7 +35,8 @@ public:
 	Weapon* CreateWeapon(float x, float y, EntityType type);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
-	void DeleteEntity(float x, float y);
+	void ClickAndDeleteEntity(float x, float y, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer);
+	void DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer);
 
 	//Level Editor functions
 	std::vector<EntityType>* GetActorTypeList();
