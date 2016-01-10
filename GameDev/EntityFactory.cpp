@@ -5,6 +5,8 @@
 
 EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, DrawableContainer* _drawContainer) : world(b2world), actor(_actor), bf(_bf), drawContainer(_drawContainer), entities(_ent)
 {
+	deleteQueryCallback = new DeleteQueryCallback();
+
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
 		/*{ EntityType::ACTOR, new Actor() },			//disabled and will probs get deleted unless this is needed
 		{ EntityType::NPC, new Npc() },*/
@@ -200,6 +202,12 @@ EntityFactory::~EntityFactory()
 	{
 		delete it->second;
 	}
+	for (auto it = entityStatsRegistery.begin(); it != entityStatsRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+
+	delete deleteQueryCallback;
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
@@ -359,6 +367,7 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
+	
 	b2body->CreateFixture(&boxFixtureDef);
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 	/*
@@ -470,4 +479,38 @@ std::vector<EntityType>* EntityFactory::GetEntityTypeList() {
 	}
 
 	return entityTypeList;
+}
+
+void EntityFactory::DeleteEntity(float x, float y) {
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+
+	b2AABB point; //b2AABB is an area
+	b2Vec2 vector;
+	vector.x = x*Ratio;
+	vector.y = y*Ratio;
+	point.lowerBound = vector;
+	point.upperBound = vector;
+
+	//search in given area (point) and return the fixtures / bodies to DeleteQueryCallback
+	world.QueryAABB(deleteQueryCallback, point);
+
+	//get the fixtures / bodies found in the given area (point)
+	bool foundActor = false;
+	for each (b2Body* body in deleteQueryCallback->foundBodies) {
+		for each (Actor* act in *actor) {
+			if (act->GetBody() == body) {
+				act->SetShouldDraw(false); //temp test
+				//world.DestroyBody(body);
+
+			}
+		}
+		for each (Entity* ent in *entities) {
+			if (ent->GetBody() == body) {
+				ent->SetShouldDraw(false); //temp test
+			}
+		}
+	}
+
 }

@@ -108,6 +108,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
     <ClCompile Include="CollisionFilterContainer.cpp" />
+    <ClCompile Include="DeleteQueryCallback.cpp" />
     <ClCompile Include="EditorState.cpp" />
     <ClCompile Include="EditorSubState.cpp" />
     <ClCompile Include="EntityStatsContainer.cpp" />
@@ -210,6 +211,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="CollidableContainer.h" />
     <ClInclude Include="CollisionFilterContainer.h" />
     <ClInclude Include="CollisionType.h" />
+    <ClInclude Include="DeleteQueryCallback.h" />
     <ClInclude Include="EditorState.h" />
     <ClInclude Include="EditorSubState.h" />
     <ClInclude Include="EntityStatsContainer.h" />

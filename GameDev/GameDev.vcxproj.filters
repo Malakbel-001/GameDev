@@ -295,6 +295,9 @@
     <ClCompile Include="EditorSubState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DeleteQueryCallback.cpp">
+      <Filter>Source Files\Model\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -620,6 +623,9 @@
     </ClInclude>
     <ClInclude Include="EditorSubState.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteQueryCallback.h">
+      <Filter>Header Files\Model\Factory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

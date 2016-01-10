@@ -102,7 +102,8 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 				//delete
 				std::cout << "sdl_rightmousebutton" << std::endl;
 
-				//EntityFactory -> Delete(float x, float y);
+				newLevel->GetEntityFactory()->DeleteEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio),
+					static_cast<float>(hoverY));
 			}
 			break;
 		}

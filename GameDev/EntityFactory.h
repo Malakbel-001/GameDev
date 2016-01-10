@@ -14,6 +14,7 @@
 #include "Acorn.h"
 #include "NpcStatsContainer.h" //indirectly included EntityStatsContainer
 #include "CollisionType.h"
+#include "DeleteQueryCallback.h"
 
 class EntityFactory
 {
@@ -31,6 +32,8 @@ public:
 	b2Body* CreateBody(float x, float y, float height, float width, EntityType type);
 	Weapon* CreateWeapon(float x, float y, EntityType type);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
+
+	void DeleteEntity(float x, float y);
 
 	//Level Editor functions
 	std::vector<EntityType>* GetActorTypeList();
@@ -54,5 +57,7 @@ private:
 	b2World& world;
 	std::vector<Actor*>* actor;
 	std::vector<Entity*>* entities;
+
+	DeleteQueryCallback* deleteQueryCallback;
 };
 
