@@ -21,6 +21,7 @@ public:
 	DrawableBehaviour* GetDrawableBehaviour();
 	MoveableBehaviour* GetMoveableBehaviour();
 	void SetDrawableBehaviour(DrawableBehaviour* behaviour);
+	void SetMoveableBehaviour(MoveableBehaviour* behaviour);
 	void SetFlipped(bool _flipped);
 	bool GetFlipped();
 protected:

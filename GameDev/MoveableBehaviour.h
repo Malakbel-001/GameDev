@@ -18,9 +18,12 @@ public:
 	MoveableBehaviour* EmptyClone();
 
 	virtual void Move(float dt);
-
+	
+	bool GetDisabled();
+	void SetDisabled(bool disable);
 protected:
 	Object* entity;
+	bool disabled;
 	std::unordered_map<EntityState, BaseCommand*> commands;
 };
 

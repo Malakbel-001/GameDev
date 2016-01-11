@@ -28,16 +28,16 @@ Level* Level3::CreateLevel()
 }
 
 Player* Level3::SetPlayer(Player* _player) {
-	player = Level::SetPlayerPosition(_player, 20, 100);
+	currentPlayer = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
+	wep->Pickup(currentPlayer, b2Vec2(1000, 0));
 	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
-	shot->Pickup(player, b2Vec2(1000, 0));
-	player->AddWeapon(wep);
-	player->AddWeapon(shot);
+	shot->Pickup(currentPlayer, b2Vec2(1000, 0));
+	currentPlayer->AddWeapon(wep);
+	currentPlayer->AddWeapon(shot);
 
-	return player;
+	return currentPlayer;
 }
 void Level3::Cleanup() {}
 

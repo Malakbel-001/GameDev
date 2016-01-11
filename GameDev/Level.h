@@ -34,6 +34,8 @@ protected:
 	std::vector<Actor*>* actors;
 	std::vector<Entity*>* entities;
 	Player* player;
+	Player* vehicle;
+	Player* currentPlayer;
 	std::string backgroundPath;
 	ParallaxBackground* parallaxBackground;
 	//Initialization / Create Level
