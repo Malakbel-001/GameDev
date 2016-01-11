@@ -226,8 +226,9 @@ void VictoryState::Highlight(int item){
 void VictoryState::Next(){
 	if(PlayState* state = dynamic_cast <PlayState*>(gsm->GetPreviousState()))
 	{
-		state->SetCurrentLevel(LevelFactory::GetNextLevel(state->GetCurrentLevel(), state));
-		gsm->PopState();
+		gsm->CreateGameState(GameStateType::LoadState,state->GetCurrentLevel()->GetLevelId() + 1);
+	//	state->SetCurrentLevel(, state));
+		gsm->PopPrevState();
 	}	
 }
 

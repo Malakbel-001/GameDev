@@ -18,11 +18,8 @@ void Level3::CreateNPCs() {
 
 void Level3::CreateParallaxBackground(BehaviourFactory* bf) {
 	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-bg.png", 0, 0, 255);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountain-far.png", 0, 0.5f, 255);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-mountains.png", 0, 1, 255);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-trees.png", 0, 2, 255);
-	parallaxBackground->SetLayer("Resources/backgrounds/game/level2/parallax-mountain-foreground-trees.png", 0, 3, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level3/desert-bg.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level3/desert-foreground.png", 0, 3, 255);
 }
 
 Level* Level3::CreateLevel()

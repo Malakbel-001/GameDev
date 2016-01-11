@@ -39,6 +39,7 @@ class HUD {
 		void ResumeChecks();
 		void SetTimer(Timer* timer);
 		Timer* GetTimer();
+		void SetPlayer(Player* newPlayer);
 
 	private:
 		TTF_Font* hudFont;

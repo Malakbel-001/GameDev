@@ -24,7 +24,7 @@ void SDLInitializer::Init(const char* title, int width, int height, bool fullscr
 	// Set amount of SoundMixer Sound(Effect/)Chunk Channels to 100, temporarily.
 	// Later this will most likely be changed to a dynamic amount using SoundBank and a cleanup loop every ?? seconds/updates
 	// It's probably not a good idea to change the size 1000 times a second though.
-	Mix_AllocateChannels(100); //Temporarily Hardcoded 100 Channels available.
+	Mix_AllocateChannels(500); //Temporarily Hardcoded 100 Channels available.
 
 	// Set window icon
 	/*SDL_Surface *surfice = IMG_Load("FilePath");

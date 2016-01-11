@@ -19,6 +19,7 @@ class GameStateManager
 		GameStateManager(BehaviourFactory* _bf);
 		void SetBehaviour(BehaviourFactory* _bf);
 		void Cleanup();
+		PlayState* GetPlayState();
 	
 		void PushGameState(IGameState* gameState);
 		void PushGameStateOnly(IGameState* gameState);

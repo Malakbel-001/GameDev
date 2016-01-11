@@ -81,6 +81,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	PlayerDef.fixedRotation = true;
 	PlayerDef.linearDamping = 0.5f;
 	PlayerDef.angularDamping = 1;
+	
 	PlayerDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef TankDef;
@@ -105,7 +106,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	PlantDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef PlantBossDef = b2BodyDef();
-	PlantBossDef.gravityScale = 1;
+	PlantBossDef.gravityScale = 5;
 	PlantBossDef.fixedRotation = true;
 	PlantBossDef.linearDamping = 0.5f;
 	PlantBossDef.angularDamping = 1;
@@ -211,7 +212,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 	//bounciness
 	restitutionRegistery = std::unordered_map < EntityType, float > {
-		{ EntityType::PLAYER, 0.0f }
+		{ EntityType::PLAYER, 0.5f },
+		{ EntityType::SNOWBOSS ,20.0f},
 		//SnowBoss?
 	};
 }
@@ -281,6 +283,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		b2Body* body;
 		if (type == EntityType::SNOWBOSS){
 			body = CreateActorRoundBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
+		
 		}
 		else {
 			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
@@ -380,13 +383,14 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 		boxFixtureDef.filter.categoryBits = (uint16)entityCollisionRegistery.at(type);
 
 	//friction is applied when an Entity glides on the ground. More friction -> entity slows down faster
-	boxFixtureDef.friction = 10; //changed - old value:0.1 -> new value: 10
+	boxFixtureDef.friction = 2; //changed - old value:0.1 -> new value: 10
 
-	if (restitutionRegistery.find(type) == restitutionRegistery.end())
+	if (restitutionRegistery.find(type) == restitutionRegistery.end()){
 		boxFixtureDef.restitution = 0.7;
-	else //FYI: define other restitution in the restitutionRegistery
+	}
+	else{ //FYI: define other restitution in the restitutionRegistery
 		boxFixtureDef.restitution = restitutionRegistery.at(type);
-
+	}
 	b2body->CreateFixture(&boxFixtureDef);
 
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);

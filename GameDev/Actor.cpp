@@ -96,6 +96,7 @@ void Actor::SetHealth(int _health){
 		health = _health;
 	}
 }
+
 bool Actor::IsDead(){
 	return dead;
 }

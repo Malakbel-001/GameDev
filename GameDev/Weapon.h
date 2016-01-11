@@ -21,9 +21,12 @@ public:
 	virtual float GetYpos();
 	virtual float GetAngle();
 	int GetAmmo();
-
+	void SetWeaponDmg(int _weaponDmg);
+	int GetWeaponDmg();
+	void SetFireSpeed(float speed);
+	float GetFireSpeed();
 protected:
-	
+	int weaponDmg;
 	Actor* actor;
 	int ammo;
 	float fireSpeed;
