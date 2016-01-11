@@ -209,8 +209,6 @@ void EditorSubState::Quit(){
 	SDL_StopTextInput();
 	gsm->PopPrevState();
 	gsm->PopState();
-	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-	tempState->updateMenu(MenuEnum::Previous);
 }
 
 void EditorSubState::Highlight(int item){
