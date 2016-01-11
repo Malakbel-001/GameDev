@@ -16,7 +16,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	this->renderer = gsm->GetBehaviour()->GetRenderer();
 
 	//Create and load Thread, see also the LoadPlayState method
-	std::thread loadingThread(&LoadState::LoadPlayState,this);
+	std::thread loadingThread(&LoadState::LoadPlayState, this);
 	loadingThread.detach();
 
 	BehaviourFactory* bf = gsm->GetBehaviour();
@@ -29,9 +29,9 @@ void LoadState::Init(GameStateManager* gsm) {
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
 
 	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
-	
+
 	//cheatLoad->LoadMedia();
-//	drawableContainer->Add(cheatLoad);
+	//	drawableContainer->Add(cheatLoad);
 
 	//Textures / Display Text Loading... and Press any key to Continue
 	TTF_Init(); //Init Font
@@ -73,13 +73,10 @@ void LoadState::Init(GameStateManager* gsm) {
 void LoadState::LoadPlayState() {
 	PlayState* state = gsm->GetPlayState();
 	if (!state){
-
-
 		playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
 		playState->Init(gsm);
 	}
 	else{
-		
 		state->InitStartLevel(levelToLoad);
 		playState = state;
 	}
@@ -154,22 +151,20 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
 				switch (it->first){
-				case SDLK_F13:
-				case SDLK_F14:
-				case SDLK_F15:
-				case SDLK_F16:
-				case SDLK_F17:
-				case SDLK_F18:
-				case SDLK_F19:
-				case SDLK_F20:
-					break;
-						
+					case SDLK_F13:
+					case SDLK_F14:
+					case SDLK_F15:
+					case SDLK_F16:
+					case SDLK_F17:
+					case SDLK_F18:
+					case SDLK_F19:
+					case SDLK_F20:
+						break;
 				default:
 					keypressed = true;
 					break;
 				}
-			
-				 //any key
+				//any key
 			}
 		}
 		if (keypressed){
@@ -179,7 +174,7 @@ void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) 
 }
 
 void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
-	
+
 }
 
 void LoadState::HandleTextInputEvents(SDL_Event event){
@@ -202,7 +197,7 @@ void LoadState::Draw(float dt, float manipulatorSpeed) {
 		SDL_RenderCopy(renderer, finishedTexture, nullptr, &finishedRect);
 	}
 
-	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
+	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0, &advertisementRect);
 }
 
 void LoadState::Move(float dt){
