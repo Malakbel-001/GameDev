@@ -138,7 +138,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 			}
 
 			//this is so the bullets always keep flying (I guess - MJ)
-			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
+			else if (actors->operator[](x)->GetType() == EntityType::BULLET || actors->operator[](x)->GetType() == EntityType::ACORN || actors->operator[](x)->GetType() == EntityType::CANNONSHOT){
 				b2Vec2 vector = actors->operator[](x)->GetDirection();
 
 				vector.x *= manipulatorSpeed;
@@ -242,7 +242,7 @@ void Level::ExitVehicle()
 {
 	if (player->GetPassenger())
 	{
-		auto passenger = dynamic_cast<Vehicle*>(player)->GetPassenger();
+		auto passenger = player->GetPassenger();
 
 		for each (Weapon* var in player->GetWeapons())
 		{
@@ -253,10 +253,12 @@ void Level::ExitVehicle()
 		drawableContainer->Delete(player);
 		moveableContainer->Delete(player);
 
-		passenger = SetPlayerPosition(dynamic_cast<Vehicle*>(passenger), player->GetBody()->GetWorldCenter().x, player->GetBody()->GetWorldCenter().y + 20);
+		//passenger = SetPlayerPosition(passenger, player->GetBody()->GetWorldCenter().x, player->GetBody()->GetWorldCenter().y + 20);
 
-		player->setBody(dynamic_cast<Vehicle*>(passenger)->GetBody());
-		player = dynamic_cast<Vehicle*>(passenger);
+		player->SetPassenger(nullptr);
+
+		player->setBody(passenger->GetBody());
+		player = passenger;
 
 		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
 		wep->Pickup(player, b2Vec2(100, 0));
