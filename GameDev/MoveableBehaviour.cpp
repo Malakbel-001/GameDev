@@ -6,6 +6,7 @@
 MoveableBehaviour::MoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands)
 {
 	commands = _commands;
+	disabled = false;
 }
 
 
@@ -31,4 +32,14 @@ MoveableBehaviour* MoveableBehaviour::EmptyClone()
 void MoveableBehaviour::Move(float dt)
 {
 	
+}
+
+bool MoveableBehaviour::GetDisabled()
+{
+	return disabled;
+}
+
+void MoveableBehaviour::SetDisabled(bool disable)
+{
+	disabled = disable;
 }

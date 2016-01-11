@@ -34,6 +34,11 @@ void DrawableBehaviour::SetSprite(Sprite* _sprite)
 void DrawableBehaviour::SetCamera(Camera* _camera){
 	camera = _camera;
 }
+
+Camera* DrawableBehaviour::GetCamera()
+{
+	return camera;
+}
 Object* DrawableBehaviour::GetEntity(){
 	return entity;
 }

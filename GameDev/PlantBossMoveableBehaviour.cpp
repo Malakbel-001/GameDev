@@ -17,5 +17,6 @@ PlantBossMoveableBehaviour* PlantBossMoveableBehaviour::EmptyClone()
 
 void PlantBossMoveableBehaviour::Move(float dt)
 {
-	commands[entity->GetState()]->Execute(dynamic_cast<Actor*>(entity));
+	if (!disabled)
+		commands[entity->GetState()]->Execute(dynamic_cast<Actor*>(entity));
 }

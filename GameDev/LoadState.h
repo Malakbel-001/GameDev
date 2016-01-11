@@ -4,6 +4,10 @@
 #include "SoundBank.h"
 #include <thread>
 #include "SDL_ttf.h"
+#include <windows.h>
+#include <vector>
+#include <sstream>
+#include "PlayState.h"
 
 class LoadState : public IGameState {
 private:
@@ -33,6 +37,7 @@ private:
 	SDL_Texture* backgroundTexture;
 
 	int levelToLoad;
+	vector<string>* adsList;
 public:
 	LoadState(int lvl);
 	virtual ~LoadState();
@@ -40,7 +45,7 @@ public:
 	void LoadPlayState();
 	void Init(GameStateManager* gsm);
 	void Cleanup();
-	void Advertisement(char* path);
+	void Advertisement();
 
 	void Pause();
 	void Resume();

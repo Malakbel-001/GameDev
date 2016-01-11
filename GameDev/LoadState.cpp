@@ -16,7 +16,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	this->renderer = gsm->GetBehaviour()->GetRenderer();
 
 	//Create and load Thread, see also the LoadPlayState method
-	std::thread loadingThread(&LoadState::LoadPlayState,this);
+	std::thread loadingThread(&LoadState::LoadPlayState, this);
 	loadingThread.detach();
 
 	BehaviourFactory* bf = gsm->GetBehaviour();
@@ -29,9 +29,9 @@ void LoadState::Init(GameStateManager* gsm) {
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
 
 	//Icon loading, temporary, will use sprite class after this instead of this cheatDrawBehaviour + cheatDrawContainer
-	
+
 	//cheatLoad->LoadMedia();
-//	drawableContainer->Add(cheatLoad);
+	//	drawableContainer->Add(cheatLoad);
 
 	//Textures / Display Text Loading... and Press any key to Continue
 	TTF_Init(); //Init Font
@@ -61,7 +61,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	//Fyi: Error handling, compared to menuState methods @InitializationEverything, here is baddy bad bad, at least for now unless not needed.
 
 	//Advertisement placeholder
-	Advertisement("Resources/images/ad.png");
+	Advertisement();
 
 	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "Resources/backgrounds/loadscreen.png");
 	backgroundRect.h = background.getHeight();
@@ -71,20 +71,55 @@ void LoadState::Init(GameStateManager* gsm) {
 }
 
 void LoadState::LoadPlayState() {
-	playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
-	playState->Init(gsm);
+	PlayState* state = gsm->GetPlayState();
+	if (!state){
+		playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
+		playState->Init(gsm);
+	}
+	else{
+		state->InitStartLevel(levelToLoad);
+		playState = state;
+	}
 	//playState->InitStartLevel(levelToLoad);
 	loadedPlay = true;
 }
 
 //path = path of the advertisement image
-void LoadState::Advertisement(char* path) {
-	advertisementPic = LTexture();
-	advertisementPic.loadFromFile(renderer, path);
-	advertisementRect.h = advertisementPic.getHeight();
-	advertisementRect.w = advertisementPic.getWidth();
-	advertisementRect.x = 0;
-	advertisementRect.y = 0;
+void LoadState::Advertisement() {
+	bool correctPic = false;
+	adsList = new vector<string>();
+	const string path = "Resources/advertisements/ads.txt";
+	ifstream scoreStream;
+	scoreStream.open(path);
+	stringstream ss;
+	ss << scoreStream.rdbuf();
+	string temp = "";
+	while (getline(ss, temp, ','))
+	{
+		adsList->push_back(temp);
+	}
+	while (!correctPic){
+		int index = rand() % adsList->size();
+		string adsPath = "Resources/advertisements/" + adsList->at(index);
+		int* screenHeight = new int;
+		int* screenWidth = new int;
+		SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+
+		advertisementPic = LTexture();
+		advertisementPic.loadFromFile(renderer, adsPath);
+		if (advertisementPic.getHeight() < (*screenHeight - 96) && advertisementPic.getWidth() < (*screenWidth - 50)){
+			advertisementRect.h = advertisementPic.getHeight();
+			advertisementRect.w = advertisementPic.getWidth();
+			advertisementRect.x = 0;
+			advertisementRect.y = 0;
+			delete screenWidth;
+			delete screenHeight;
+			correctPic = true;
+		}
+		else {
+			cout << "error, wrong advertisement size";
+		}
+	}
 }
 
 void LoadState::Cleanup() {
@@ -112,16 +147,34 @@ void LoadState::Resume() {
 
 void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	if (loadedPlay) {
+		bool keypressed = false;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
-				gsm->PushGameStateOnly(playState); //any key
+				switch (it->first){
+					case SDLK_F13:
+					case SDLK_F14:
+					case SDLK_F15:
+					case SDLK_F16:
+					case SDLK_F17:
+					case SDLK_F18:
+					case SDLK_F19:
+					case SDLK_F20:
+						break;
+				default:
+					keypressed = true;
+					break;
+				}
+				//any key
 			}
+		}
+		if (keypressed){
+			gsm->PushGameStateOnly(playState);
 		}
 	}
 }
 
 void LoadState::HandleMouseEvents(SDL_Event mainEvent) {
-	
+
 }
 
 void LoadState::HandleTextInputEvents(SDL_Event event){
@@ -144,7 +197,7 @@ void LoadState::Draw(float dt, float manipulatorSpeed) {
 		SDL_RenderCopy(renderer, finishedTexture, nullptr, &finishedRect);
 	}
 
-	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
+	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0, &advertisementRect);
 }
 
 void LoadState::Move(float dt){

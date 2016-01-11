@@ -17,5 +17,6 @@ SnowBossMoveableBehaviour* SnowBossMoveableBehaviour::EmptyClone()
 
 void SnowBossMoveableBehaviour::Move(float dt)
 {
-	commands[entity->GetState()]->Execute(dynamic_cast<Actor*>(entity));
+	if (!disabled)
+		commands[entity->GetState()]->Execute(dynamic_cast<Actor*>(entity));
 }

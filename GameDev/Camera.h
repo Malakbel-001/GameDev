@@ -26,6 +26,8 @@ class Camera
 		void SetX(double _x);
 		void SetY(double _y);
 
+		Player* GetPlayer();
+		void SetPlayer(Player* _player);
 		
 		virtual ~Camera();
 };
