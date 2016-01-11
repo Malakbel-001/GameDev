@@ -51,6 +51,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level3
 		{ EntityType::DESERTFLOOR, new Ground() },
+		{ EntityType::SMALLDESERTFLOOR, new Ground() },
 	};
 
 	weaponRegistery = std::unordered_map < EntityType, Weapon* > {
@@ -192,6 +193,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level3
 		{ EntityType::DESERTFLOOR, entDef },
+		{ EntityType::SMALLDESERTFLOOR, entDef },
 		{ EntityType::TANK, TankDef },
 		{ EntityType::APC, TankDef },
 		{ EntityType::MECH, MechDef },

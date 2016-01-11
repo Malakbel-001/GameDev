@@ -376,6 +376,9 @@
     <ClCompile Include="Score.cpp">
       <Filter>Source Files\View\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="smallDesertSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -785,6 +788,9 @@
     </ClInclude>
     <ClInclude Include="Score.h">
       <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="smallDesertSprite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

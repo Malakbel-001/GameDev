@@ -112,7 +112,18 @@ void Level::Update(float dt, float manipulatorSpeed)
 				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
 				{
 					Victory();
+				}
 
+				if (actors->operator[](x)->GetType() == EntityType::APC)
+				{
+					if (levelId = 3)
+					{
+						dynamic_cast<Level3*>(this)->DecrementBossCount();
+						if (dynamic_cast<Level3*>(this)->GetBossCount() == 0)
+						{
+							Victory();
+						}
+					}
 				}
 
 				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 

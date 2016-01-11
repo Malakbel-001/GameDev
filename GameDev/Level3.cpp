@@ -3,16 +3,37 @@
 Level3::Level3(int _lvlWidth, int _lvlHeight) : Level(_lvlWidth, _lvlHeight)
 {
 	levelId = 3;
+	bossCount = 0;
 }
 
 void Level3::CreateMap() {
+	entityFactory->CreateEntity(0, 400, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(135, 400, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(270, 400, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(600, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
+
+	entityFactory->CreateEntity(1000, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(1350, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(1700, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(2050, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
 	entityFactory->CreateEntity(0, 570, 1075, 30, EntityType::DESERTFLOOR);
 	entityFactory->CreateEntity(1075, 570, 1075, 30, EntityType::DESERTFLOOR);
 }
 
 void Level3::CreateNPCs() {
-	entityFactory->CreateActor(700, 450, EntityType::MECH);
-	entityFactory->CreateActor(1400, 450, EntityType::APC);
+	entityFactory->CreateActor(120, 350, EntityType::MECH);
+
+	entityFactory->CreateActor(970, 150, EntityType::APC);
+	bossCount++;
+
+	entityFactory->CreateActor(1220, 150, EntityType::APC);
+	bossCount++;
+
+	entityFactory->CreateActor(1670, 150, EntityType::APC);
+	bossCount++;
+
+	entityFactory->CreateActor(2020, 150, EntityType::APC);
+	bossCount++;
 	//entityFactory->CreateActor(1200, 450, EntityType::MINIGUNNER);
 }
 
@@ -55,6 +76,15 @@ ParallaxBackground* Level3::GetParallaxBackGround() {
 	return parallaxBackground;
 }
 
+int Level3::GetBossCount()
+{
+	return bossCount;
+}
+
+void Level3::DecrementBossCount()
+{
+	bossCount--;
+}
 
 Level3::~Level3()
 {

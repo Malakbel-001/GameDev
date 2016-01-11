@@ -4,11 +4,17 @@
 IdleCommand::IdleCommand()
 {
 	timecounter = 0;
+	timecounter2 = 0;
 }
 
 
 IdleCommand::~IdleCommand()
 {
+}
+
+BaseCommand* IdleCommand::EmptyClone()
+{
+	return new IdleCommand();
 }
 
 void IdleCommand::Execute(Actor* actor)
@@ -17,7 +23,7 @@ void IdleCommand::Execute(Actor* actor)
 	{
 		int firespeed = 2000;
 		
-		if (SDL_GetTicks() > timecounter + firespeed && dynamic_cast<Apc*>(actor)->GetTroops().size() < 1){
+		if (SDL_GetTicks() > timecounter + firespeed && dynamic_cast<Apc*>(actor)->GetTroops().size() < 1 ){
 			b2Vec2 vec = b2Vec2(0, -1000);
 			auto passenger = dynamic_cast<Npc*>(actor)->GetFactory()->CreateActor(actor->GetBody()->GetPosition().x * 10, actor->GetBody()->GetPosition().y * 10 + 30, EntityType::MINIGUNNER);
 			dynamic_cast<Npc*>(passenger)->SetVehicle(dynamic_cast<Npc*>(actor));
@@ -31,12 +37,12 @@ void IdleCommand::Execute(Actor* actor)
 	{
 		int firespeed = 500;
 
-		if (SDL_GetTicks() > timecounter + firespeed){
+		if (SDL_GetTicks() > timecounter2 + firespeed){
 			b2Vec2 vec = b2Vec2(-1000, 0);
 
 			dynamic_cast<Npc*>(actor)->GetFactory()->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200 + 2, 1, 1, 20, vec, actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
-			timecounter = SDL_GetTicks();
+			timecounter2 = SDL_GetTicks();
 		}
 	}
 

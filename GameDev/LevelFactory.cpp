@@ -197,7 +197,10 @@ Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 	{
 		Init(play);
 	}
-	return levels[lvl-1]->CreateLevel();
+	if (lvl > levels.size())
+		return levels[0]->CreateLevel();
+	else
+		return levels[lvl-1]->CreateLevel();
 }
 
 

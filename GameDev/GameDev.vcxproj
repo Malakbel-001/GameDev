@@ -175,6 +175,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="PlayerCollidableBehaviour.cpp" />
     <ClCompile Include="ShotGun.cpp" />
     <ClCompile Include="ShotgunSprite.cpp" />
+    <ClCompile Include="smallDesertSprite.cpp" />
     <ClCompile Include="SnowBossMoveableBehaviour.cpp" />
     <ClCompile Include="SnowBossPatrolCommand.cpp" />
     <ClCompile Include="SnowBossSprite.cpp" />
@@ -244,6 +245,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="HighscoreConfig.h" />
     <ClInclude Include="HighscoreMenu.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="smallDesertSprite.h" />
     <ClInclude Include="SnowBossMoveableBehaviour.h" />
     <ClInclude Include="SnowBossPatrolCommand.h" />
     <ClInclude Include="Timer.h" />
