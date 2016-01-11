@@ -8,10 +8,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	deleteQueryCallback = new DeleteQueryCallback();
 
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
-		{ EntityType::ACTOR, new Actor() },
 		{ EntityType::TANK, new Vehicle() },
 		{ EntityType::MECH, new Vehicle() },
-		{ EntityType::NPC, new Npc(this) },
 		{ EntityType::PLAYER, new Player() },
 		{ EntityType::PLANT, new Npc(this) },
 		{ EntityType::PLANTBOSS, new Npc(this) },

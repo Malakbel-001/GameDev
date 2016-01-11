@@ -56,6 +56,7 @@ class EditorState :	public IGameState {
 		bool activatedEntityTypeList;
 		bool holdY;
 
+		void Scroll(bool scrollpp);
 		void SetSelectedEntity();
 		float GetXPositionEntity();
 		float GetYPositionEntity();

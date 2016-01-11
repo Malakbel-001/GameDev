@@ -79,20 +79,10 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 		case SDL_MOUSEWHEEL: { //TODO don't know how this works
 			//scroll through list of entities
 			if (mainEvent.wheel.y > 0) {
-				if (scroll < entityTypeList->size() - 1) {
-					scroll++;
-				}
-				else {
-					scroll = 0;
-				}
+				Scroll(true);
 			}
 			else {
-				if (scroll > 0) {
-					scroll--;
-				}
-				else {
-					scroll = entityTypeList->size() - 1;
-				}
+				Scroll(false);
 			}
 			SetSelectedEntity();
 			break;
@@ -100,14 +90,14 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 		case SDL_MOUSEBUTTONDOWN: {
 			if (mainEvent.button.button == SDL_BUTTON_LEFT) {
 				//place entity
-				newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio), 
+				newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX + manualCamera->GetX() / ratio - ((screenWidth / 2) - (screenWidth / 4))),
 					static_cast<float>(hoverY), entityTypeList->at(scroll));
 			}
 			else if (mainEvent.button.button == SDL_BUTTON_RIGHT) {
 				//delete
 				std::cout << "sdl_rightmousebutton" << std::endl;
 
-				newLevel->GetEntityFactory()->ClickAndDeleteEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio),
+				newLevel->GetEntityFactory()->ClickAndDeleteEntity(static_cast<float>(hoverX + manualCamera->GetX() / ratio - ((screenWidth / 2) - (screenWidth / 4))),
 					static_cast<float>(hoverY), newLevel->GetDrawableContainer(), newLevel->GetMoveableContainer(), nullptr);
 			}
 			break;
@@ -172,12 +162,7 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 
 				case SDLK_UP: {
 					if (lockButtonTicks + 100 < SDL_GetTicks()) {
-						if (scroll < entityTypeList->size() - 1) {
-							scroll++;
-						}
-						else {
-							scroll = 0;
-						}
+						Scroll(true);
 						SetSelectedEntity();
 						lockButtonTicks = SDL_GetTicks();
 					}
@@ -185,12 +170,7 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 				}
 				case SDLK_DOWN: {
 					if (lockButtonTicks + 100 < SDL_GetTicks()) {
-						if (scroll > 0) {
-							scroll--;
-						}
-						else {
-							scroll = entityTypeList->size() - 1;
-						}
+						Scroll(false);
 						SetSelectedEntity();
 						lockButtonTicks = SDL_GetTicks();
 					}
@@ -239,6 +219,32 @@ string EditorState::GetLevelPath(){
 	return loadLevel;
 }
 
+void EditorState::Scroll(bool scrollpp) {
+	int size;
+	if (activatedEntityTypeList) {
+		size = entityTypeList->size() - 1;
+	}
+	else {
+		size = actorTypeList->size() - 1;
+	}
+
+	if (scrollpp) {
+		if (scroll < size) {
+			scroll++;
+		}
+		else {
+			scroll = 0;
+		}
+	}
+	else {
+		if (scroll > 0) {
+			scroll--;
+		}
+		else {
+			scroll = size;
+		}
+	}
+}
 
 void EditorState::SetSelectedEntity() {
 	editorDrawableContainer->Cleanup();
@@ -249,20 +255,20 @@ void EditorState::SetSelectedEntity() {
 	}
 
 	selectedEntity = new BareEntity();
-	selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
-
 	//TODO switch lists
-	/*if (activatedEntityTypeList) {
+	if (activatedEntityTypeList) {
 		selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
 	}
 	else {
 		selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, actorTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
-	}*/
+	}
 }
 
 float EditorState::GetXPositionEntity() {
 	//400 * ratio is temporary fix!
-	return static_cast<float>((hoverX * ratio) + (manualCamera->GetX()) - 400 * ratio);
+
+
+	return static_cast<float>((hoverX * ratio) + (manualCamera->GetX()) - ((screenWidth / 2) - (screenWidth / 4)) * ratio);
 }
 float EditorState::GetYPositionEntity() {
 	return static_cast<float>(hoverY * ratio);
