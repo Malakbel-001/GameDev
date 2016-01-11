@@ -28,6 +28,6 @@ int main(int argc, char* argv[])
 	delete game;
 	
 	SDL_Quit();
-	_CrtDumpMemoryLeaks();
+
 	return 0;
 }

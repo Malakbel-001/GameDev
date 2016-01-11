@@ -81,6 +81,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 		float x = vel.x;
 		float y = vel.y;
 		float impulse;
+		Vehicle* vehicle = nullptr;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 
 			if (it->second)
@@ -92,7 +93,7 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 						if (!(currentLevel->GetPlayer()->GetJumpTimeOut() > 0)){
 
 							jump = true;
-							impulse = 200; //temp
+							impulse = 210; //temp
 							//SoundBank::GetInstance()->Play(SoundEffectType::CORRECT);
 
 							currentLevel->GetPlayer()->GetBody()->ApplyLinearImpulse(b2Vec2(0, -impulse), currentLevel->GetPlayer()->GetBody()->GetWorldCenter(), true);
@@ -118,6 +119,11 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->SetFlipped(false);
 					x = 25;
 					break;
+				case SDLK_e:
+					currentLevel->EnterVehicle();
+					if (currentLevel->GetPlayer()->IsVehicle()) {
+						hud->SetPlayer(currentLevel->GetPlayer());
+					}
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
 						accumulatedDtWeapon, currentManipulatorSpeed)) 
@@ -168,22 +174,62 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 				case SDLK_9:
 					currentLevel->GetPlayer()->SwitchWeapon(8);
 					break;
-				
+				case SDLK_F13:
+					currentLevel->GetPlayer()->GodMode(true);
+						break;
+				case SDLK_F14:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetWeaponDmg(1000000);
+					break;
+				case SDLK_F15:
+					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(2)));
+					break;
+				case SDLK_F16:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() > 10){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetFireSpeed(currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() / 10);
+					}
+					
+					break;
+				case SDLK_F17:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->AddAmmo(1000);
+					break;
+				case SDLK_F18:			
+
+					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
+					
+					break;
+
 				case SDLK_ESCAPE:
 					pause = true;
+					
 					break;
-				case SDLK_l:
-					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
-					break;
-				case SDLK_k: //TODO cheat mode and not normal key for normal player
-					Victory();
-					break;
+
+			
+				
+
 				}
 			}
 			else
 			{
 				switch (it->first)
 				{
+				case SDLK_F13:
+					currentLevel->GetPlayer()->GodMode(false);
+					break;				
+				case SDLK_F14:
+					currentLevel->GetPlayer()->GetCurrentWeapon()->SetWeaponDmg(20);
+					break;
+				case SDLK_F15:
+					currentLevel->GetWorld()->SetGravity(b2Vec2(0.0, static_cast<float>(50)));
+					break;
+				case SDLK_F16:
+					if (currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() < 250){
+						currentLevel->GetPlayer()->GetCurrentWeapon()->SetFireSpeed(currentLevel->GetPlayer()->GetCurrentWeapon()->GetFireSpeed() * 10);
+					}
+					break;
+				case SDLK_F17:
+			
+
+					break;
 				case SDLK_w:
 
 					break;
@@ -259,6 +305,7 @@ void PlayState::Update(float dt, float manipulatorSpeed) {
 	currentManipulatorSpeed = manipulatorSpeed;
 
 	currentLevel->Update(dt, manipulatorSpeed);
+	Move(dt);
 }
 
 void PlayState::Draw(float dt, float manipulatorSpeed)
@@ -268,6 +315,10 @@ void PlayState::Draw(float dt, float manipulatorSpeed)
 	currentLevel->GetParallaxBackGround()->Draw();
 	currentLevel->GetDrawableContainer()->Draw(dt, manipulatorSpeed);
 	hud->Draw(dt, manipulatorSpeed);
+}
+
+void PlayState::Move(float dt){
+	currentLevel->GetMoveableContainer()->Move(dt);
 }
 
 Level* PlayState::GetCurrentLevel()
@@ -286,7 +337,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 	this->currentLevel = lvl;// LevelFactory::LoadLevel(this, bf, "test");
 	//Note CurrentLevel is now new level
 
-	this->currentLevel->Init(bf);
+	this->currentLevel->Init(bf,this);
 	//LevelFactory::SaveLevel(lvl, "test");
 	gsm->SetBehaviour(bf);
 	player = this->currentLevel->SetPlayer(player);

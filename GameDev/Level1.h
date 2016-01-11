@@ -11,7 +11,6 @@ class Level1 :
 		virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
 	public:
-		Level1(int _lvlWidth, int _lvlHeight, PlayState* play);
 		Level1(int _lvlWidth, int _lvlHeight);
 		virtual ~Level1();
 		
@@ -20,4 +19,6 @@ class Level1 :
 		virtual Level* CreateLevel();
 		virtual Player* SetPlayer(Player* _player);
 		void HandleEvents(SDL_Event mainEvent);
+
+		virtual ParallaxBackground* GetParallaxBackGround();
 };

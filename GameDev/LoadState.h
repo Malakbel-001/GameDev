@@ -4,6 +4,9 @@
 #include "SoundBank.h"
 #include <thread>
 #include "SDL_ttf.h"
+#include <windows.h>
+#include <vector>
+#include <sstream>
 
 class LoadState : public IGameState {
 private:
@@ -11,6 +14,7 @@ private:
 	SDL_Renderer* renderer;
 
 	DrawableContainer* drawableContainer;
+	MoveableContainer* moveableContainer;
 	IGameState* playState;
 	BareEntity* bare;
 
@@ -32,6 +36,7 @@ private:
 	SDL_Texture* backgroundTexture;
 
 	int levelToLoad;
+	vector<string>* adsList;
 public:
 	LoadState(int lvl);
 	virtual ~LoadState();
@@ -39,7 +44,7 @@ public:
 	void LoadPlayState();
 	void Init(GameStateManager* gsm);
 	void Cleanup();
-	void Advertisement(char* path);
+	void Advertisement();
 
 	void Pause();
 	void Resume();
@@ -47,6 +52,7 @@ public:
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleTextInputEvents(SDL_Event event);
+	void Move(float dt);
 	void Update(float dt, float manipulatorSpeed);
 	void Draw(float dt, float manipulatorSpeed);
 };

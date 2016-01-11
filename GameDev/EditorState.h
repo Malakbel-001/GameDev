@@ -26,6 +26,7 @@ class EditorState :	public IGameState {
 		std::vector<EntityType>* entityTypeList;
 
 		DrawableContainer* editorDrawableContainer;
+		MoveableContainer* uselessMoveableContainer;
 		BareEntity* selectedEntity;
 
 	public:
@@ -44,6 +45,7 @@ class EditorState :	public IGameState {
 		void HandleMouseEvents(SDL_Event mainEvent);
 		void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 		void HandleTextInputEvents(SDL_Event event);
+		void Move(float dt);
 		void Update(float dt, float gameSpeedManipulator);
 		void Draw(float dt, float gameSpeedManipulator);
 

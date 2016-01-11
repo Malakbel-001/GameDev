@@ -4,8 +4,8 @@
 BareEntity::BareEntity(){
 	
 }
-void BareEntity::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
-	Object::Init(_type, bf, drawContainer);
+void BareEntity::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer){
+	Object::Init(_type, bf, drawContainer, moveContainer);
 	
 	xpos = _xpos;
 	ypos = _ypos;

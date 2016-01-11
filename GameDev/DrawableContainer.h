@@ -16,8 +16,9 @@ public:
 	void Cleanup();
 		
 	void Add(DrawableBehaviour* behaviour);
+
 	void Draw(float dt, float manipulatorSpeed);
-	void Delete(Entity* behaviour);
+	void Delete(Object* behaviour);
 private:
 	vector<DrawableBehaviour*> behaviours;
 

@@ -275,7 +275,7 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 							cout << GetOpenFileNameA(&ofn) << endl;
 							cout << Buffer << endl;
 							//menu->GetGSM()->CreateEditorState("test");
-							menu->GetGSM()->CreateEditorState(Buffer);
+							menu->GetGSM()->CreateGameState(GameStateType::EditorState, Buffer);
 						}
 						else{
 							cout << "clicked cancel";

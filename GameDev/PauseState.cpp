@@ -20,9 +20,7 @@ void PauseState::Init(GameStateManager *gsm){
 	currentMenu = pauseMenu;
 }
 
-PauseState::PauseState()
-{
-}
+
 // Initialization ++
 // ==================================================================
 bool PauseState::SetupTTF(const std::string &fontName, const std::string &fontName2)
@@ -113,6 +111,8 @@ PauseState::~PauseState()
 	delete helpMenu;
 	delete creditMenu;
 	delete optionMenu;
+	delete parallaxBackground;
+
 }
 
 void PauseState::Cleanup(){
@@ -162,10 +162,11 @@ void PauseState::updateMenu(MenuEnum menu){
 	case MenuEnum::Main:
 	{
 		PreviousMenu = nullptr;
+		gsm->PopPrevState();
+	//	MenuState* tempState = (MenuState*)gsm->GetCurrentState();
+		//tempState->updateMenu(MenuEnum::Previous);
 		gsm->PopState();
-		gsm->PopState();
-		MenuState* tempState = (MenuState*)gsm->GetCurrentState();
-		tempState->updateMenu(MenuEnum::Previous);
+	
 		break;
 	}
 	case MenuEnum::Help:
@@ -180,8 +181,8 @@ void PauseState::updateMenu(MenuEnum menu){
 		currentMenu = optionMenu;
 		PreviousMenu = pauseMenu;
 		break;
-	case MenuEnum::Play:
-		gsm->CreatePlayState(0);
+	case MenuEnum::Play: //TODO this is probably useless code, there isn't supposed to be a play button in the pause menu isn't it? Only resume
+		gsm->CreateGameState(GameStateType::PlayState, 0);
 		break;
 	default:
 		break;
@@ -192,4 +193,7 @@ void PauseState::Draw(float dt, float manipulatorSpeed){
 	parallaxBackground->Draw();
 	currentMenu->Draw();
 	SDL_RenderPresent(renderer);
+}
+
+void PauseState::Move(float dt){
 }

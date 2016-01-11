@@ -71,7 +71,7 @@ void PlayMenu::MakeLevel2(SDL_Color color){
 }
 
 void PlayMenu::MakeLevel3(SDL_Color color){
-	/*if (!levelsMap->at("level3")){
+	if (!levelsMap->at("Level3")){
 		color = disabledTextColor;
 	}
 	SDL_Surface* level3Button = TTF_RenderText_Blended(textFont, "Level 3", color);
@@ -80,7 +80,7 @@ void PlayMenu::MakeLevel3(SDL_Color color){
 	SDL_QueryTexture(level3Texture, NULL, NULL, &level3Rect.w, &level3Rect.h);
 	level3Rect.x = 15;
 	level3Rect.y = level2Rect.y + level2Rect.h + 20;
-	pos[3] = level3Rect;*/
+	pos[3] = level3Rect;
 }
 
 void PlayMenu::MakePlayTitle(SDL_Color color){
@@ -113,7 +113,7 @@ void PlayMenu::Draw(){
 	SDL_RenderCopy(renderer, newGameTexture, nullptr, &newGameRect);
 	SDL_RenderCopy(renderer, level1Texture, nullptr, &level1Rect);
 	SDL_RenderCopy(renderer, level2Texture, nullptr, &level2Rect);
-	//SDL_RenderCopy(renderer, level3Texture, nullptr, &level3Rect);
+	SDL_RenderCopy(renderer, level3Texture, nullptr, &level3Rect);
 	SDL_RenderCopy(renderer, backToMainTexture, nullptr, &backToMainRect);
 }
 
@@ -215,27 +215,28 @@ void PlayMenu::HandleMouseEvents(SDL_Event mainEvent)
 					//level1
 					if (levelsMap->at("Level1")){
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-						mainMenu->GetGSM()->CreatePlayState(1);
+						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 1);
 					}
 					break;
 				case 2:
 					//level2
 					if (levelsMap->at("Level2")){
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-						mainMenu->GetGSM()->CreatePlayState(2);
+						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 2);
 					}
 					break;
-				/*case 3:
+				case 3:
 					//level3
 					if (levelsMap->at("Level3")){
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 3);
 					}
-					break;*/
+					break;
 				case 4:
 					//level2
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 						levelconfig.ResetLevels();
-						mainMenu->GetGSM()->CreatePlayState(1);
+						mainMenu->GetGSM()->CreateGameState(GameStateType::LoadState, 1);
 					break;
 				}
 			}

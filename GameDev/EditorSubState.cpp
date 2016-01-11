@@ -360,8 +360,12 @@ void EditorSubState::HandleTextInputEvents(SDL_Event event)
 	}
 }
 
+void EditorSubState::Move(float dt) {
+	//no entities to move
+}
+
 void EditorSubState::Update(float dt, float manipulatorSpeed){
-	//empty, move on
+	//nothing to update
 }
 
 void EditorSubState::Draw(float dt, float manipulatorSpeed){

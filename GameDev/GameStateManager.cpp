@@ -17,25 +17,18 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 
 }
 
-//Give level, Create PlayState with Level
-void GameStateManager::CreatePlayState(int lvl)
+//Give level, Create State with Level (if the lvl constructor is available)
+void GameStateManager::CreateGameState(GameStateType state, int lvl)
 {
-	IGameState* gamestate = GetNewState(GameStateType::PlayState, lvl, "");
+	IGameState* gamestate = GetNewState(state, lvl, "");
 	PushGameState(gamestate);
 }
 
-//Give level, Create EditorState with Level
-void GameStateManager::CreateEditorState(int lvl)
+//Give level from (text)file, Create State with Level (if the std::string levelName constructor is available)
+void GameStateManager::CreateGameState(GameStateType state, std::string levelName)
 {
-	IGameState* gamestate = GetNewState(GameStateType::EditorState, lvl, "");
+	IGameState* gamestate = GetNewState(state, 0, levelName);
 	PushGameState(gamestate);
-}
-
-void GameStateManager::CreateEditorState(std::string levelName)
-{
-	IGameState* gamestate = GetNewState(GameStateType::EditorState, 0, levelName);
-	PushGameState(gamestate);
-	//IGameState* gamestate = GetNewState(GameStateType::EditorState)
 }
 
 //Give GameState, Creates new GameState
@@ -82,7 +75,7 @@ IGameState* GameStateManager::GetNewState(GameStateType state, int lvl, std::str
 	default:
 		break;
 	}
-	
+
 	return gamestate;
 }
 
@@ -107,7 +100,7 @@ void GameStateManager::PopPrevState(){
 		IGameState* a = states[states.size() - 2];
 
 		states.erase(----states.end());
-	//	delete a;
+		delete a;
 	}
 }
 
@@ -119,7 +112,7 @@ void GameStateManager::PopState()
 		//states.back()->Cleanup();
 		
 		states.pop_back();
-	//	delete a;
+		delete a;
 
 		states.back()->Resume(); //tell the state it is being resumed
 	}

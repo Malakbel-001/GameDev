@@ -18,6 +18,7 @@ void PlayerDrawableBehaviour::Draw(bool cycle)
 		float xpos = ((screenWidth / 2) - (screenWidth / 4));//( / Ratio) - (camera->GetX() / Ratio);
 		float ypos = (entity->GetYpos() / Ratio);// - (camera->GetY() / Ratio);
 
+
 		int size = sprite->GetAnimationSize(entity->GetState());
 		if (currentFrame >= size) // /3
 			currentFrame = 0;

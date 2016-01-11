@@ -24,15 +24,13 @@ Level* LevelFactory::GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::
 	xml_node<>* levelnode = doc.first_node();
 
 	LoadedLevel* lvl;
+	lvl = new LoadedLevel(2000, 200, 
+		b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())));
 	if (play) {
-		lvl = new LoadedLevel(2000, 200, 
-			b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())), play);
-	}
-	else {
-		lvl = new LoadedLevel(2000, 200, 
-			b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())));
+		lvl->SetPlayState(play);
 	}
 	lvl->Init(bf);
+
 	EntityFactory* ent = lvl->GetEntityFactory();
 
 	xml_node<>* currentnode = levelnode->first_node("entities")->first_node();
@@ -164,12 +162,20 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 }
 
 
+void LevelFactory::Init()
+{
+	levels = {
+		new Level1(2000, 120), 
+		new Level2(2000, 120),
+		new Level3(2000, 120),
+	};
+}
 
 Level* LevelFactory::GetFirstLevel(PlayState* play)
 {
 	if (!(levels.size() > 0))
 	{
-		Init(play);
+		Init();
 	}
 	return levels[0]->CreateLevel();
 }
@@ -178,7 +184,7 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 {
 	if (!(levels.size() > 0))
 	{
-		Init(play);
+		Init();
 	}
 	bool foundLevel = false;
 	for (size_t i = 0; i < levels.size(); i++)
@@ -209,7 +215,7 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 	if (!(levels.size() > 0))
 	{
-		Init(play);
+		Init();
 	}
 	return levels[lvl-1]->CreateLevel();
 }
@@ -217,7 +223,7 @@ Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 Level* LevelFactory::GetSpecificLevel(int lvl) {
 	if (!(levels.size() > 0))
 	{
-		Init(nullptr);
+		Init();
 	}
 	return levels[lvl - 1]->CreateLevel();
 }
@@ -235,23 +241,4 @@ Level* LevelFactory::GetEmptyLevel() {
 	int lvlHeight = 120;
 
 	return new Level(lvlWidth, lvlHeight);
-}
-
-//Fill Levels array, mind you, these Levels are not yet initialized (Level1->Init();)
-//This method also accepts nullptr, for use in the Level Editor
-void LevelFactory::Init(PlayState* play)
-{
-	if (play) {
-		levels = {
-			new Level1(2000, 120, play),
-			new Level2(2000, 120, play),
-			//TODO add , new Level1() , new level2()
-		};
-	}
-	else {
-		levels = {
-			new Level1(2000, 120),
-			new Level2(2000, 120),
-		};
-	}
 }

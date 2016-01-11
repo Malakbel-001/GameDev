@@ -19,6 +19,7 @@ void EditorState::Init(GameStateManager *gsm) {
 	//Standard @Initialization
 	this->gsm = gsm;
 	editorDrawableContainer = new DrawableContainer();
+	uselessMoveableContainer = new MoveableContainer();
 	selectedEntity = nullptr;
 	scroll = 0;
 	lockButtonTicks = SDL_GetTicks();
@@ -102,8 +103,8 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 				//delete
 				std::cout << "sdl_rightmousebutton" << std::endl;
 
-				newLevel->GetEntityFactory()->DeleteEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio),
-					static_cast<float>(hoverY));
+				newLevel->GetEntityFactory()->ClickAndDeleteEntity(static_cast<float>(hoverX - 400 + manualCamera->GetX() / ratio),
+					static_cast<float>(hoverY), newLevel->GetDrawableContainer(), newLevel->GetMoveableContainer(), nullptr);
 			}
 			break;
 		}
@@ -181,11 +182,15 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 }
 
 void EditorState::HandleTextInputEvents(SDL_Event event) {
-	//new stuff hmm
+	//no input text to handle
+}
+
+void EditorState::Move(float dt) {
+	//nothing to move
 }
 
 void EditorState::Update(float dt, float gameSpeedManipulator) {
-	//don't know what to update
+	//nothing to update
 }
 
 void EditorState::Draw(float dt, float gameSpeedManipulator) {
@@ -224,7 +229,7 @@ void EditorState::SetSelectedEntity() {
 	}
 
 	selectedEntity = new BareEntity();
-	selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer);
+	selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
 }
 
 float EditorState::GetXPositionEntity() {

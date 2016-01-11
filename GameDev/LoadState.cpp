@@ -21,8 +21,9 @@ void LoadState::Init(GameStateManager* gsm) {
 
 	BehaviourFactory* bf = gsm->GetBehaviour();
 	drawableContainer = new DrawableContainer();
+	moveableContainer = new MoveableContainer();
 	bare = new BareEntity();
-	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer);
+	bare->Init(-20, 2, 0, EntityState::WALKINGRIGHT, EntityType::PLAYERSPRITE, bf, drawableContainer, moveableContainer);
 
 
 	SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 0, 0, 0, 255);
@@ -60,7 +61,7 @@ void LoadState::Init(GameStateManager* gsm) {
 	//Fyi: Error handling, compared to menuState methods @InitializationEverything, here is baddy bad bad, at least for now unless not needed.
 
 	//Advertisement placeholder
-	Advertisement("Resources/images/ad.png");
+	Advertisement();
 
 	background.loadFromFile(gsm->GetBehaviour()->GetRenderer(), "Resources/backgrounds/loadscreen.png");
 	backgroundRect.h = background.getHeight();
@@ -77,13 +78,41 @@ void LoadState::LoadPlayState() {
 }
 
 //path = path of the advertisement image
-void LoadState::Advertisement(char* path) {
-	advertisementPic = LTexture();
-	advertisementPic.loadFromFile(renderer, path);
-	advertisementRect.h = advertisementPic.getHeight();
-	advertisementRect.w = advertisementPic.getWidth();
-	advertisementRect.x = 0;
-	advertisementRect.y = 0;
+void LoadState::Advertisement() {
+	bool correctPic = false;
+	adsList = new vector<string>();
+	const string path = "Resources/advertisements/ads.txt";
+	ifstream scoreStream;
+	scoreStream.open(path);
+	stringstream ss;
+	ss << scoreStream.rdbuf();
+	string temp = "";
+	while (getline(ss, temp, ','))
+	{
+		adsList->push_back(temp);
+	}
+	while (!correctPic){
+		int index = rand() % adsList->size();
+		string adsPath = "Resources/advertisements/" + adsList->at(index);
+		int* screenHeight = new int;
+		int* screenWidth = new int;
+		SDL_GetWindowSize(SDL_GetWindowFromID(1), screenWidth, screenHeight);
+
+		advertisementPic = LTexture();
+		advertisementPic.loadFromFile(renderer, adsPath);
+		if (advertisementPic.getHeight() < (*screenHeight - 96) && advertisementPic.getWidth() < (*screenWidth - 50)){
+			advertisementRect.h = advertisementPic.getHeight();
+			advertisementRect.w = advertisementPic.getWidth();
+			advertisementRect.x = 0;
+			advertisementRect.y = 0;
+			delete screenWidth;
+			delete screenHeight;
+			correctPic = true;
+		}
+		else {
+			cout << "error, wrong advertisement size";
+		}
+	}
 }
 
 void LoadState::Cleanup() {
@@ -111,10 +140,15 @@ void LoadState::Resume() {
 
 void LoadState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events) {
 	if (loadedPlay) {
+		bool keypressed = false;
 		for (auto it = _events->begin(); it != _events->end(); ++it){
 			if (it->second)	{
-				gsm->PushGameStateOnly(playState); //any key
+				keypressed = true;
+				 //any key
 			}
+		}
+		if (keypressed){
+			gsm->PushGameStateOnly(playState);
 		}
 	}
 }
@@ -128,7 +162,6 @@ void LoadState::HandleTextInputEvents(SDL_Event event){
 }
 
 void LoadState::Update(float dt, float manipulatorSpeed) {
-	
 }
 
 void LoadState::Draw(float dt, float manipulatorSpeed) {
@@ -145,4 +178,7 @@ void LoadState::Draw(float dt, float manipulatorSpeed) {
 	}
 
 	advertisementPic.render(renderer, 50, loadingRect.y + loadingRect.h + 50, 0,&advertisementRect);
+}
+
+void LoadState::Move(float dt){
 }

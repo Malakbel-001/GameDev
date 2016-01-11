@@ -1,11 +1,5 @@
 #include "Level1.h"
 
-Level1::Level1(int _lvlWidth, int _lvlHeight, PlayState* play)
-	: Level(_lvlWidth, _lvlHeight, play)
-{
-	levelId = 1;
-}
-
 Level1::Level1(int _lvlWidth, int _lvlHeight)
 	: Level(_lvlWidth, _lvlHeight)
 {
@@ -56,7 +50,7 @@ void Level1::CreateMap() {
 void Level1::CreateNPCs() {
 	//enemies-----------------	
 
-	entityFactory->CreateActor(800, 450, EntityType::PLANT);
+	entityFactory->CreateActor(400, 400, EntityType::PLANT);
 
 	entityFactory->CreateActor(900, 450, EntityType::PLANT);
 	entityFactory->CreateActor(1200, 300, EntityType::PLANT);
@@ -98,14 +92,13 @@ void Level1::CreateParallaxBackground(BehaviourFactory* bf) {
 
 Level* Level1::CreateLevel()
 {
-	if (playState) {
-		return new Level1(lvlWidth, lvlHeight, playState);
-	}
-	else {
-		return new Level1(lvlWidth, lvlHeight);
-	}
+	return new Level1(lvlWidth, lvlHeight);
 }
 
+
+ParallaxBackground* Level1::GetParallaxBackGround() {
+	return parallaxBackground;
+}
 
 Player* Level1::SetPlayer(Player* _player) {
 	player = Level::SetPlayerPosition(_player, 20, 100);

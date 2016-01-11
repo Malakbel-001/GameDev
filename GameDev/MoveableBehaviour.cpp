@@ -1,8 +1,11 @@
-#include "MoveableBehaviour.h"
+ #include "MoveableBehaviour.h"
+#include "Npc.h"
+#include "IdleCommand.h"
+#include "DefaultPatrolCommand.h"
 
-
-MoveableBehaviour::MoveableBehaviour()
+MoveableBehaviour::MoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> _commands)
 {
+	commands = _commands;
 }
 
 
@@ -10,12 +13,22 @@ MoveableBehaviour::~MoveableBehaviour()
 {
 }
 
-MoveableBehaviour* MoveableBehaviour::EmptyClone()
+void MoveableBehaviour::SetEntity(Object* _entity)
 {
-	return new MoveableBehaviour();
+	entity = _entity;
 }
 
-void MoveableBehaviour::Move()
+Object* MoveableBehaviour::GetEntity()
 {
+	return entity;
+}
 
+MoveableBehaviour* MoveableBehaviour::EmptyClone()
+{
+	return new MoveableBehaviour(commands);
+}
+
+void MoveableBehaviour::Move(float dt)
+{
+	
 }

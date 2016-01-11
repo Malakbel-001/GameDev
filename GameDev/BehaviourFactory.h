@@ -8,26 +8,34 @@
 #include "StaticDrawableBehaviour.h"
 #include "MoveableBehaviour.h"
 #include "EntityType.h"
-#include "CheatLoadDrawableBehaviour.h" //temp
+#include "CheatLoadDrawableBehaviour.h" 
+
+#include "PlantMoveableBehaviour.h"
+
 #include "GroundSprite.h"
 #include "GroundObstacleSprite.h"
 #include "BarObstacleSprite.h"
 #include "PlantSprite.h"
 #include "PlantBossSprite.h"
 #include "PlayerSprite.h"
+#include "TankSprite.h"
+#include "MechSprite.h"
 #include "AcornSprite.h"
 #include "ShotgunSprite.h"
-//level2
 #include "GroundLvl2Sprite.h"
+#include "DesertGroundSprite.h"
 #include "PinguinSprite.h"
 #include "TreeSprite.h"
 #include "SnowmanSprite.h"
 #include "BigGroundSprite.h"
 #include "SnowBossSprite.h"
+#include "IdleCommand.h"
+#include "DefaultPatrolCommand.h"
+#include "SnowBossPatrolCommand.h"
 
 class Camera;
-class Player;
 class CollidableBehaviour;
+
 class BehaviourFactory
 {
 	public:
@@ -37,7 +45,9 @@ class BehaviourFactory
 		ParallaxBackground* CreateEmptyParallaxBehaviour();
 		DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
 		DrawableBehaviour* CreateEditorVersionDrawableBehaviour(EntityType type);
-		CollidableBehaviour* CreateCollidableBehaviour(EntityType type);
+		CollidableBehaviour* CreateCollidableBehaviour(EntityType type, Actor* actor);
+		CollidableBehaviour* CreateStepCollidableBehaviour();
+		MoveableBehaviour* CreateMoveableBehaviour(EntityType type);
 		SDL_Renderer* GetRenderer();
 		void ClearCamera();
 		void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
@@ -53,5 +63,10 @@ class BehaviourFactory
 		std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
 		std::unordered_map<EntityType, Sprite*> spriteRegistery;
 		std::vector<Sprite*> sprites;
+
+		std::unordered_map<EntityType, MoveableBehaviour*> moveRegistery;
+		std::unordered_map<EntityState, BaseCommand*> defaultCommands;
+		std::unordered_map<EntityState, BaseCommand*> plantCommands;
+		std::unordered_map<EntityState, BaseCommand*> snowBossCommands;
 };
 

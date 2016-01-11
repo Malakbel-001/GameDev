@@ -64,6 +64,7 @@ public:
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void HandleTextInputEvents(SDL_Event event);
+	void Move(float dt);
 	void Update(float dt, float manipulatorSpeed);
 	void Draw(float dt, float manipulatorSpeed);
 	void Background();
@@ -91,4 +92,6 @@ private:
 	vector<Uint32> time;
 	string text;
 	HighscoreConfig highscoreConfig;
+
+	uint16 lockButtonTicks;
 };

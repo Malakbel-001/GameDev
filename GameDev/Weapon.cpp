@@ -8,9 +8,17 @@ Weapon::Weapon(){
 	fireSpeed = 250;
 	vec = b2Vec2(0, 0);
 	actor = nullptr;
+	weaponDmg = 20;
 }
-void Weapon::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer){
-	BareEntity::Init(_xpos, _ypos, _angle, _state, _type, bf, drawContainer);
+
+void Weapon::SetWeaponDmg(int _weaponDmg){
+	weaponDmg = _weaponDmg;
+}
+int Weapon::GetWeaponDmg(){
+	return weaponDmg;
+}
+void Weapon::Init(float _xpos, float _ypos, float _angle, EntityState _state, EntityType _type, BehaviourFactory* bf, DrawableContainer* drawContainer, MoveableContainer* moveContainer){
+	BareEntity::Init(_xpos, _ypos, _angle, _state, _type, bf, drawContainer, moveContainer);
 
 }
 void Weapon::Pickup(Actor* _actor, b2Vec2 _defaultShootingDirection)
@@ -97,9 +105,9 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 				vec = defaultShootingDirection;
 				dir = true;
 			}
-
-			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, 20, vec, 
+			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, weaponDmg, vec, 
 				actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
+
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			ammo--;
 			if (dir){
@@ -110,6 +118,14 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 		}
 	}
 	return false;
+}
+
+
+void Weapon::SetFireSpeed(float speed){
+	fireSpeed = speed;
+}
+float Weapon::GetFireSpeed(){
+	return fireSpeed;
 }
 
 int Weapon::GetAmmo() {

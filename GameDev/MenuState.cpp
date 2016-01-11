@@ -138,7 +138,11 @@ void MenuState::Pause(){
 
 }
 void MenuState::Resume(){
-
+	//if screen changed, reload all layerContainers
+	parallaxBackground->CheckIfScreenSizeChanged();
+	if (currentMenu == playMenu){
+		static_cast<PlayMenu*>(currentMenu)->LoadLevels();
+	}
 }
 
 void MenuState::HandleMouseEvents(SDL_Event mainEvent)
@@ -202,4 +206,7 @@ void MenuState::Draw(float dt, float manipulatorSpeed){
 	parallaxBackground->Draw();
 	currentMenu->Draw();
 	SDL_RenderPresent(renderer);
+}
+
+void MenuState::Move(float dt){
 }

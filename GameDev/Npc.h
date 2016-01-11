@@ -1,14 +1,13 @@
 #pragma once
 #include "Actor.h"
 
+class EntityFactory;
 class Npc :
 	public Actor
 {
-private:
-	int score;
 
 public:
-	Npc();
+	Npc(EntityFactory* _factory);
 	
 	virtual ~Npc();
 	virtual Actor* EmptyClone();
@@ -17,7 +16,16 @@ public:
 
 	void SetScore(int _score);
 	int GetScore();
+
+	virtual void SetHealth(int _health);
+
+	EntityFactory* GetFactory();
+
+	void SetVehicle(Npc* _vehicle);
+	Npc* GetVehicle();
 protected:
-	
+	Npc* vehicle;
+	int score;
+	EntityFactory* factory;
 };
 

@@ -1,12 +1,14 @@
 #include "Npc.h"
+#include "EntityFactory.h"
 
-
-Npc::Npc()
+Npc::Npc(EntityFactory* _factory)
 {
 	score = 0;
+	factory = _factory;
+	vehicle = nullptr;
 }
 Actor* Npc::EmptyClone(){
-	return new Npc();
+	return new Npc(factory);
 }
 
 Npc::~Npc()
@@ -30,4 +32,41 @@ void Npc::SetScore(int _score) {
 
 int Npc::GetScore() {
 	return score;
+}
+
+EntityFactory* Npc::GetFactory()
+{
+	return factory;
+}
+
+void Npc::SetHealth(int _health){
+
+	if (_health <= 0){
+		dead = true;
+		health = _health;
+
+		if (vehicle != nullptr)
+		{
+			if (vehicle->GetType() == EntityType::APC)
+			{
+				dynamic_cast<Apc*>(vehicle)->RemoveTroops(this);
+			}
+		}
+	}
+	else if (_health > maxHealth) {
+		health = maxHealth;
+	}
+	else{
+		health = _health;
+	}
+}
+
+void Npc::SetVehicle(Npc* _vehicle)
+{
+	vehicle = _vehicle;
+}
+
+Npc* Npc::GetVehicle()
+{
+	return vehicle;
 }

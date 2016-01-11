@@ -23,7 +23,6 @@ void AnimatedDrawableBehaviour::Draw(bool cycle)
 
 		sprite->GetSpritesheet()->render(renderer, xpos, ypos, (entity->GetAngle() * 90), sprite->GetAnimationFrame(entity->GetState(), currentFrame), entity->GetFlipped()); // /3
 
-		//Go to next frame 
 		if (cycle) {
 			++currentFrame;
 
