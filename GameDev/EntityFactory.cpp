@@ -574,8 +574,11 @@ void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* dr
 void EntityFactory::DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer) {
 	world.DestroyBody(entity->GetBody());
 	drawableContainer->Delete(entity);
-	//moveable
-	//collideable
+	moveableContainer->Delete(entity);
+	//collidableContainer->Delete(entity); TODO make this work or have a different solution
+
+	//for each() entity / actor
+
 	/*delete actors->operator[](x);
 	actors->operator[](x) = nullptr;
 	actors->erase(actors->begin() + x);*/

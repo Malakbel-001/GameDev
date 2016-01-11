@@ -23,6 +23,9 @@ void EditorState::Init(GameStateManager *gsm) {
 	selectedEntity = nullptr;
 	scroll = 0;
 	lockButtonTicks = SDL_GetTicks();
+	holdY = false;
+	hoverX = 0;
+	hoverY = 0;
 
 	behaviourFactory = gsm->GetBehaviour(); //need this to create (temporary) drawableBehaviours
 
@@ -68,8 +71,9 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 	switch (mainEvent.type) {
 		case SDL_MOUSEMOTION: {
 			hoverX = mainEvent.motion.x;
-			hoverY = mainEvent.motion.y;
-
+			if (!holdY) { //hoverY stays the same as long as holdX is activated
+				hoverY = mainEvent.motion.y;
+			}
 			break;
 		}
 		case SDL_MOUSEWHEEL: { //TODO don't know how this works
@@ -147,6 +151,22 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 				case SDLK_d: {
 					//move camera right
 					manualCamera->SetX(manualCamera->GetX() + 1);
+					break;
+				}
+
+				case SDLK_SPACE: {
+					//switch entityTypeList
+					activatedEntityTypeList = !activatedEntityTypeList; //switch bool
+					scroll = 0;
+					SetSelectedEntity();
+					break;
+				}
+
+				case SDLK_e: {
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						holdY = !holdY; //switch bool
+						lockButtonTicks = SDL_GetTicks();
+					}
 					break;
 				}
 
@@ -230,6 +250,14 @@ void EditorState::SetSelectedEntity() {
 
 	selectedEntity = new BareEntity();
 	selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
+
+	//TODO switch lists
+	/*if (activatedEntityTypeList) {
+		selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, entityTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
+	}
+	else {
+		selectedEntity->Init(0, 0, 0, EntityState::DEFAULT, actorTypeList->at(scroll), behaviourFactory, editorDrawableContainer, uselessMoveableContainer);
+	}*/
 }
 
 float EditorState::GetXPositionEntity() {

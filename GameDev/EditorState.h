@@ -53,6 +53,9 @@ class EditorState :	public IGameState {
 		string GetLevelPath();
 
 	private:
+		bool activatedEntityTypeList;
+		bool holdY;
+
 		void SetSelectedEntity();
 		float GetXPositionEntity();
 		float GetYPositionEntity();

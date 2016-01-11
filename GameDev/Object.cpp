@@ -60,5 +60,5 @@ void Object::SetDrawableBehaviour(DrawableBehaviour* behaviour)
 
 Object::~Object()
 {
-	
+	//TODO delete stuff
 }
