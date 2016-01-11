@@ -121,7 +121,8 @@ void Level::Update(float dt, float manipulatorSpeed)
 						dynamic_cast<Level3*>(this)->DecrementBossCount();
 						if (dynamic_cast<Level3*>(this)->GetBossCount() == 0)
 						{
-							Victory();
+							ExitVehicle();
+							GameOver();
 						}
 					}
 				}

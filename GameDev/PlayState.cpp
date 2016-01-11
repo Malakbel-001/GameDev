@@ -360,7 +360,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 
 Player* PlayState::GetPlayer()
 {
-	return this->player;
+	return currentLevel->GetPlayer();
 }
 
 
