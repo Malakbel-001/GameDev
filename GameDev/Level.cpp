@@ -221,30 +221,47 @@ void Level::Victory() {
 }
 void Level::EnterVehicle()
 {
-	if (currentPlayer->GetVehicle())
+	if (currentPlayer->GetType() == EntityType::PLAYER && currentPlayer->GetVehicle())
 	{
 		vehicle = player->GetVehicle();
-
-		vehicle->GetDrawableBehaviour()->SetCamera(player->GetDrawableBehaviour()->GetCamera());
+		vehicle->AddScore(player->GetScore());
+		player->AddScore(-player->GetScore());
 
 		player->SetShouldDraw(false);
 		player->GetMoveableBehaviour()->SetDisabled(true);
+
+		vehicle->GetDrawableBehaviour()->SetCamera(player->GetDrawableBehaviour()->GetCamera());
 
 		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::CANNON);
 		wep->Pickup(vehicle, b2Vec2(1000, 0));
 		vehicle->AddWeapon(wep);
 		currentPlayer = vehicle;
 		player->GetDrawableBehaviour()->GetCamera()->SetPlayer(vehicle);
+
+		b2Vec2 position;
+		position.x = -100;
+		position.y = -100;
+		player->GetBody()->SetTransform(position, 0);
 	}
 }
 
 void Level::ExitVehicle()
 {
-	currentPlayer = player;
+	if (currentPlayer->GetType() == EntityType::MECH)
+	{
+		player->AddScore(vehicle->GetScore());
+		vehicle->AddScore(-vehicle->GetScore());
 
-	currentPlayer->SetShouldDraw(true);
-	currentPlayer->GetMoveableBehaviour()->SetDisabled(false);
+		b2Vec2 position;
+		position.x = vehicle->GetBody()->GetPosition().x + 5;
+		position.y = vehicle->GetBody()->GetPosition().y - 5;
+		player->GetBody()->SetTransform(position, 0);
+		currentPlayer = player;
 
-	vehicle->GetDrawableBehaviour()->GetCamera()->SetPlayer(player);
+		currentPlayer->SetShouldDraw(true);
+		currentPlayer->GetMoveableBehaviour()->SetDisabled(false);
+
+		vehicle->GetDrawableBehaviour()->GetCamera()->SetPlayer(player);
+	}
 }
 #pragma endregion Get, Set, & more
