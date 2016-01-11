@@ -256,9 +256,11 @@ void Level::ExitVehicle()
 		//passenger = SetPlayerPosition(passenger, player->GetBody()->GetWorldCenter().x, player->GetBody()->GetWorldCenter().y + 20);
 
 		player->SetPassenger(nullptr);
-
+		
 		player->setBody(passenger->GetBody());
-		player = passenger;
+		
+		drawableContainer->Add(passenger->GetDrawableBehaviour());
+		moveableContainer->Add(passenger->GetMoveableBehaviour());
 
 		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
 		wep->Pickup(player, b2Vec2(100, 0));

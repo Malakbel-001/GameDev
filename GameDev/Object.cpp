@@ -51,6 +51,11 @@ DrawableBehaviour* Object::GetDrawableBehaviour()
 	return draw;
 }
 
+MoveableBehaviour* Object::GetMoveableBehaviour()
+{
+	return move;
+}
+
 void Object::SetDrawableBehaviour(DrawableBehaviour* behaviour)
 {
 
