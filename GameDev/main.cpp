@@ -13,7 +13,7 @@
 int main(int argc, char* argv[])
 {
 
-	rapidjson::Document document;
+//	rapidjson::Document document;
 
 	// Initialize SDL.
 

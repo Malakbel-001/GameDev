@@ -280,30 +280,49 @@ void GameOverState::HandleMouseEvents(SDL_Event mainEvent)
 	case SDL_MOUSEBUTTONDOWN:
 		int x = mainEvent.button.x;
 		int y = mainEvent.button.y;
-		for (int i = 0; i < renderItems; i++)
+		int temp = -1;
+		bool found = false;
+		for (int i = 0; i < renderItems && !found; i++)
 		{
 			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
 				switch (i){
 					//item 1, mainmenu play
 				case 0:
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					SoundBank::GetInstance()->StopMusic();
 
-					quit = true;
-					Quit();
+					temp = 0;
+					found = true;
 					break;
 				case 1:
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					SoundBank::GetInstance()->StopMusic();
-					//save highscore
-					//string tempMin = to_string(time.at(0));
-					//string tempSec = to_string(time.at(1));
-					highscoreConfig.SaveHighscore(text, score, to_string(time.at(0)), to_string(time.at(1)));
-					//vector<Score>* temp = highscoreConfig.GetHighscore();
-					quit = true;
-					Quit();
+					temp = 1;
+					found = true;
 					break;
 				}
+			}
+		}
+		if (found){
+			
+			switch (temp){
+				//item 1, mainmenu play
+			case 0:
+				found = true;
+				SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+				SoundBank::GetInstance()->StopMusic();
+
+				quit = true;
+				Quit();
+				break;
+			case 1:
+				found = true;
+				SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+				SoundBank::GetInstance()->StopMusic();
+				//save highscore
+				//string tempMin = to_string(time.at(0));
+				//string tempSec = to_string(time.at(1));
+				highscoreConfig.SaveHighscore(text, score, to_string(time.at(0)), to_string(time.at(1)));
+				//vector<Score>* temp = highscoreConfig.GetHighscore();
+				quit = true;
+				Quit();
+				break;
 			}
 		}
 	}
