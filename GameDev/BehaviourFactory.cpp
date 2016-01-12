@@ -237,8 +237,8 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },
-		{ EntityType::APC, new ApcMoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> {{ EntityState::IDLE, new IdleCommand() }}) },
-		{ EntityType::MINIGUNNER, new ApcMoveableBehaviour(std::unordered_map<EntityState, BaseCommand*> {{ EntityState::IDLE, new IdleCommand() }}) }
+		{ EntityType::APC, new ApcMoveableBehaviour(defaultCommands) },
+		{ EntityType::MINIGUNNER, new ApcMoveableBehaviour(defaultCommands) }
 	};
 }
 

@@ -12,7 +12,14 @@ PlantBossMoveableBehaviour::~PlantBossMoveableBehaviour()
 
 PlantBossMoveableBehaviour* PlantBossMoveableBehaviour::EmptyClone()
 {
-	return new PlantBossMoveableBehaviour(commands);
+	std::unordered_map<EntityState, BaseCommand*> clone;
+
+	for each (auto var in commands)
+	{
+		clone[var.first] = commands[var.first]->EmptyClone();
+	}
+
+	return new PlantBossMoveableBehaviour(clone);
 }
 
 void PlantBossMoveableBehaviour::Move(float dt)

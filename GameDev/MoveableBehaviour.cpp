@@ -26,7 +26,14 @@ Object* MoveableBehaviour::GetEntity()
 
 MoveableBehaviour* MoveableBehaviour::EmptyClone()
 {
-	return new MoveableBehaviour(commands);
+	std::unordered_map<EntityState, BaseCommand*> clone;
+
+	for each (auto var in commands)
+	{
+		clone[var.first] = commands[var.first]->EmptyClone();
+	}
+
+	return new MoveableBehaviour(clone);
 }
 
 void MoveableBehaviour::Move(float dt)
