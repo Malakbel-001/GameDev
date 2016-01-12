@@ -114,6 +114,10 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="CheatLoadDrawableBehaviour.cpp" />
     <ClCompile Include="CollidableBehaviour.cpp" />
     <ClCompile Include="CollidableContainer.cpp" />
+    <ClCompile Include="DeleteQueryCallback.cpp" />
+    <ClCompile Include="EditorState.cpp" />
+    <ClCompile Include="EditorSubState.cpp" />
+    <ClCompile Include="EntityStatsContainer.cpp" />
     <ClCompile Include="DefaultPatrolCommand.cpp" />
     <ClCompile Include="DesertGroundSprite.cpp" />
     <ClCompile Include="IdleCommand.cpp" />
@@ -123,6 +127,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="GameSpeedManipulator.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="KeyMapping.cpp" />
+    <ClCompile Include="LevelEditorMenu.cpp" />
     <ClCompile Include="LoadedLevel.cpp" />
     <ClCompile Include="HighscoreConfig.cpp" />
     <ClCompile Include="HighscoreMenu.cpp" />
@@ -241,10 +246,15 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
     <ClInclude Include="CollisionType.h" />
+    <ClInclude Include="DeleteQueryCallback.h" />
+    <ClInclude Include="EditorState.h" />
+    <ClInclude Include="EditorSubState.h" />
+    <ClInclude Include="EntityStatsContainer.h" />
     <ClInclude Include="FPS.h" />
     <ClInclude Include="GameSpeedManipulator.h" />
     <ClInclude Include="HighscoreConfig.h" />
     <ClInclude Include="HighscoreMenu.h" />
+    <ClInclude Include="LevelEditorMenu.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="smallDesertSprite.h" />
     <ClInclude Include="SnowBossMoveableBehaviour.h" />

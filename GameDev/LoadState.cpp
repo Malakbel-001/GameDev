@@ -73,7 +73,7 @@ void LoadState::Init(GameStateManager* gsm) {
 void LoadState::LoadPlayState() {
 	PlayState* state = gsm->GetPlayState();
 	if (!state){
-		playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad);
+		playState = gsm->GetNewState(GameStateType::PlayState, levelToLoad, "", nullptr);
 		playState->Init(gsm);
 	}
 	else{

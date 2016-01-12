@@ -24,9 +24,12 @@ class GameStateManager
 		void PushGameState(IGameState* gameState);
 		void PushGameStateOnly(IGameState* gameState);
 		void PopState();
+		void CreateGameState(GameStateType state);
 		void CreateGameState(GameStateType state, int lvl);
+		void CreateGameState(GameStateType state, std::string nameLevel);
+		void CreateGameState(GameStateType state, Level* customLevel);
 		void PopPrevState();
-		IGameState* GetNewState(GameStateType state, int lvl);
+		IGameState* GetNewState(GameStateType state, int lvl, std::string name, Level* customLevel);
 		IGameState* GetCurrentState();
 		IGameState* GetPreviousState();
 		virtual ~GameStateManager();

@@ -1,4 +1,4 @@
-<level gravity_x="0.000000" gravity_y="1.810000">
+<level gravity_x="0.000000" gravity_y="50.000000">
 	<actors>
 		<actor>
 			<xpos>800.000000</xpos>
@@ -321,6 +321,34 @@
 			<xpos>4750.000000</xpos>
 			<ypos>570.000000</ypos>
 			<width>140</width>
+			<height>250</height>
+			<type>8</type>
+		</entity>
+		<entity>
+			<xpos>141.000000</xpos>
+			<ypos>161.000000</ypos>
+			<width>120</width>
+			<height>250</height>
+			<type>8</type>
+		</entity>
+		<entity>
+			<xpos>-25.000000</xpos>
+			<ypos>345.000000</ypos>
+			<width>120</width>
+			<height>250</height>
+			<type>8</type>
+		</entity>
+		<entity>
+			<xpos>-140.000000</xpos>
+			<ypos>188.000015</ypos>
+			<width>120</width>
+			<height>250</height>
+			<type>8</type>
+		</entity>
+		<entity>
+			<xpos>-24.000000</xpos>
+			<ypos>225.000000</ypos>
+			<width>120</width>
 			<height>250</height>
 			<type>8</type>
 		</entity>

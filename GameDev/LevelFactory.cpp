@@ -7,16 +7,32 @@ LevelFactory::~LevelFactory() {
 
 
 }
+
+Level* LevelFactory::LoadLevel(BehaviourFactory* bf, std::string name) {
+	return GetLoadedLevel(nullptr, bf, name);
+}
+
 Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::string name){
-	file<> xmlFile(name.c_str()); // Default template is char
+	return GetLoadedLevel(play, bf, name);
+}
+
+Level* LevelFactory::GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::string name) {
+	string path = "Resources\\level editor levels\\";
+	string pathToLoad = path + name;
+	file<> xmlFile(pathToLoad.c_str()); // Default template is char
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 	doc.first_node()->first_attribute();
 	xml_node<>* levelnode = doc.first_node();
 
+	LoadedLevel* lvl;
+	lvl = new LoadedLevel(2000, 200, 
+		b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())));
+	if (play) {
+		lvl->SetPlayState(play);
+	}
+	lvl->Init(bf);
 
-	LoadedLevel* lvl = new LoadedLevel(2000, 200, b2Vec2(atoi(levelnode->first_attribute("gravity_x")->value()), atoi(levelnode->first_attribute("gravity_y")->value())));
-	lvl->Init(bf,play);
 	EntityFactory* ent = lvl->GetEntityFactory();
 
 	xml_node<>* currentnode = levelnode->first_node("entities")->first_node();
@@ -35,21 +51,27 @@ Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::strin
 	}
 
 
-	 currentnode = levelnode->first_node("actors")->first_node();
+	currentnode = levelnode->first_node("actors")->first_node();
 	while (currentnode != nullptr){
 		ent->CreateActor(atoi(currentnode->first_node("xpos")->value()), atoi(currentnode->first_node("ypos")->value())
 			, static_cast<EntityType>(atoi(currentnode->first_node("type")->value())));
-		
+
 
 		currentnode = currentnode->next_sibling();
 
 	}
 
-	//Level* lvl = new Level(2000,200,play);
-
 	return lvl;
 }
+
+
 bool LevelFactory::SaveLevel(Level* l,std::string name){
+	string path = "Resources\\level editor levels\\";
+	//temp----------
+	/*if (name == ""){
+		name = "hallojeroen";
+	}*/
+	//-------
 	xml_document<> doc;
 
 	xml_node<> *node = doc.allocate_node(node_element, "level");
@@ -125,7 +147,8 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 
 
 	std::ofstream settings;
-	settings.open(name);
+	string pathToSave = path + name;
+	settings.open(pathToSave);
 	
 	if (settings.is_open()) {
 		//save all settings (will automatically overwrite previous settings)
@@ -141,13 +164,14 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 	return true;
 
 }
-void LevelFactory::Init(PlayState* play)
+
+
+void LevelFactory::Init()
 {
 	levels = {
 		new Level1(2000, 120), 
-		new Level2(2000,120),
+		new Level2(2000, 120),
 		new Level3(2000, 120),
-		//TODO add , new Level1() , new level2()
 	};
 }
 
@@ -155,7 +179,7 @@ Level* LevelFactory::GetFirstLevel(PlayState* play)
 {
 	if (!(levels.size() > 0))
 	{
-		Init(play);
+		Init();
 	}
 	return levels[0]->CreateLevel();
 }
@@ -164,7 +188,7 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 {
 	if (!(levels.size() > 0))
 	{
-		Init(play);
+		Init();
 	}
 	bool foundLevel = false;
 	for (size_t i = 0; i < levels.size(); i++)
@@ -195,7 +219,7 @@ Level* LevelFactory::GetNextLevel(Level* level, PlayState* play)
 Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 	if (!(levels.size() > 0))
 	{
-		Init(play);
+		Init();
 	}
 	if (lvl > levels.size())
 		return levels[0]->CreateLevel();
@@ -203,11 +227,26 @@ Level* LevelFactory::GetSpecificLevel(PlayState* play, int lvl){
 		return levels[lvl-1]->CreateLevel();
 }
 
-
+//LevelFactory
+Level* LevelFactory::GetSpecificLevel(int lvl) {
+	if (!(levels.size() > 0))
+	{
+		Init();
+	}
+	return levels[lvl - 1]->CreateLevel();
+}
 
 void LevelFactory::DeletePointers(){
 	for (auto it = levels.begin(); it != levels.end(); ++it)
 	{
 		delete *it;
 	}
+}
+
+Level* LevelFactory::GetEmptyLevel() {
+	//standard lvl
+	int lvlWidth = 2000;
+	int lvlHeight = 120;
+
+	return new Level(lvlWidth, lvlHeight);
 }

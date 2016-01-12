@@ -181,8 +181,8 @@ void PauseState::updateMenu(MenuEnum menu){
 		currentMenu = optionMenu;
 		PreviousMenu = pauseMenu;
 		break;
-	case MenuEnum::Play:
-		gsm->CreateGameState(GameStateType::PlayState,0);
+	case MenuEnum::Play: //TODO this is probably useless code, there isn't supposed to be a play button in the pause menu isn't it? Only resume
+		gsm->CreateGameState(GameStateType::PlayState, 0);
 		break;
 	default:
 		break;

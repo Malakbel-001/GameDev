@@ -84,7 +84,15 @@ SDL_Rect* Sprite::GetAnimationFrame(EntityState state, int frame)
 		return &dyingSprites->at(frame);
 		break;
 	case EntityState::DEFAULT:
-		return &defaultSprite;
+		if (idleSprites->size() > 0) {
+			return &idleSprites->at(frame);
+		}
+		else if (walkSprites->size() > 0) {
+			return &walkSprites->at(frame);
+		}
+		else {
+			return &defaultSprite;
+		}
 	default:
 		return &defaultSprite;
 		break;
@@ -112,6 +120,12 @@ int Sprite::GetAnimationSize(EntityState state)
 		return dyingSprites->size();
 		break;
 	case EntityState::DEFAULT:
+		if (idleSprites->size() > 0) {
+			return idleSprites->size();
+		}
+		else if (walkSprites->size() > 0) {
+			return walkSprites->size();
+		}
 		return 1;
 	default:
 		return 1;

@@ -1,0 +1,13 @@
+<level gravity_x="0.000000" gravity_y="50.000000">
+	<actors/>
+	<entities>
+		<entity>
+			<xpos>-262.000000</xpos>
+			<ypos>622.000000</ypos>
+			<width>30</width>
+			<height>1075</height>
+			<type>6</type>
+		</entity>
+	</entities>
+</level>
+

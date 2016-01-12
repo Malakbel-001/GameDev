@@ -5,6 +5,8 @@
 #include "GameOverState.h"
 #include "VictoryState.h"
 #include "MenuState.h"
+#include "EditorState.h"
+#include "EditorSubState.h"
 #include <iostream>
 
 GameStateManager::GameStateManager(BehaviourFactory* _bf)
@@ -15,11 +17,30 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 
 }
 
+//Give level, Create State with Level (if the lvl constructor is available)
 void GameStateManager::CreateGameState(GameStateType state, int lvl)
 {
-	IGameState* gamestate = GetNewState(state, lvl);
+	IGameState* gamestate = GetNewState(state, lvl, "", nullptr);
 	PushGameState(gamestate);
 }
+//Give level from (text)file, Create State with Level (if the std::string levelName constructor is available)
+void GameStateManager::CreateGameState(GameStateType state, std::string levelName)
+{
+	IGameState* gamestate = GetNewState(state, 0, levelName, nullptr);
+	PushGameState(gamestate);
+}
+//Give GameState, Creates new GameState
+void GameStateManager::CreateGameState(GameStateType state)
+{
+	IGameState* gamestate = GetNewState(state, 0, "", nullptr);
+	PushGameState(gamestate);
+}
+//Give Level*, Create GameState with Level* (if the GameState has a constructor with Level* available)
+void GameStateManager::CreateGameState(GameStateType state, Level* customLevel) {
+	IGameState* gamestate = GetNewState(state, 0, "", customLevel);
+	PushGameState(gamestate);
+}
+
 
 PlayState* GameStateManager::GetPlayState(){
 	for (auto it : states){
@@ -34,13 +55,26 @@ PlayState* GameStateManager::GetPlayState(){
 }
 
 //Create / Load State
-IGameState* GameStateManager::GetNewState(GameStateType state, int lvl) 
+IGameState* GameStateManager::GetNewState(GameStateType state, int lvl, std::string name, Level* customLevel) 
 {
 	IGameState* gamestate;
 	switch (state)
 	{
 	case GameStateType::PlayState:
-		gamestate = new PlayState(lvl);
+		if (customLevel) { //custom level play
+			gamestate = new PlayState(customLevel);
+		}
+		else { //standard story mode play
+			gamestate = new PlayState(lvl);
+		}
+		break;
+	case GameStateType::EditorState:
+		if (name != "")
+			gamestate = new EditorState(name);
+		else if (lvl != 0)
+			gamestate = new EditorState(lvl);
+		else
+			gamestate = new EditorState();
 		break;
 	case GameStateType::PauseState:
 		gamestate = new PauseState();
@@ -57,6 +91,8 @@ IGameState* GameStateManager::GetNewState(GameStateType state, int lvl)
 	case GameStateType::VictoryState:
 		gamestate = new VictoryState();
 		break;
+	case GameStateType::EditorSubState:
+		gamestate = new EditorSubState();
 	default:
 		break;
 	}
@@ -64,13 +100,14 @@ IGameState* GameStateManager::GetNewState(GameStateType state, int lvl)
 	return gamestate;
 }
 
-
+//TODO, private / protected state? Would make more sense
 void GameStateManager::PushGameState(IGameState* gameState)
 {
 	states.push_back(gameState);
 	states.back()->Init(this);
 }
 
+//TODO, private / protected state? Would make more sense
 void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 	IGameState* a = states.back();
 		states.pop_back(); //pop loadState
@@ -82,6 +119,7 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 		}
 	states.back()->Resume();
 }
+
 void GameStateManager::PopPrevState(){
 	std::cout << "popprevstate \n";
 	if (states.size() > 1){
@@ -91,6 +129,7 @@ void GameStateManager::PopPrevState(){
 		delete a;
 	}
 }
+
 void GameStateManager::PopState()
 {
 	std::cout << "popstate \n";

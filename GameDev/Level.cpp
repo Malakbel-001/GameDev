@@ -1,9 +1,7 @@
 #include "Level.h"
 #include "PlayState.h"
 
-Level::Level(int _lvlWidth, int _lvlHeight)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
-{
+void Level::ConstructorLevel() {
 	entityFactory = nullptr;
 	currentPlayer = nullptr;
 	player = nullptr;
@@ -20,35 +18,33 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	entities = new std::vector<Entity*>();
 	parallaxBackground = nullptr;
 }
+
+Level::Level(int _lvlWidth, int _lvlHeight)
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight) {
+	ConstructorLevel();
+}
 Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
-	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
-{
-	entityFactory = nullptr;
-	currentPlayer = nullptr;
-	player = nullptr;
-	vehicle = nullptr;
-	startXpos = 100;
-	startYpos = 10;
-	actors = new std::vector<Actor*>();
-	world = new b2World(vec);
-	contact = new ContactListener();
-	world->SetContactListener(contact);
-	drawableContainer = new DrawableContainer();
-	entities = new std::vector<Entity*>();
-
-
+	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight) {
+	ConstructorLevel();
 }
 
+void Level::Init(BehaviourFactory* bf, PlayState* play) {
+	SetPlayState(play);
+	Init(bf);
+}
 
 //Always perform these procedures
-void Level::Init(BehaviourFactory* bf,PlayState* play) { //TODO get this to work
-	playState = play;
+void Level::Init(BehaviourFactory* bf) {
 	SetEntityFactory(bf);
 	CreateMap();
 	CreateNPCs();
 	CreateTimer();
 	CreateParallaxBackground(bf);
+}
 
+//(Level) EditorState -> PlayState
+void Level::SetPlayState(PlayState* play) {
+	playState = play;
 }
 
 Level::~Level()
@@ -103,7 +99,9 @@ void Level::Update(float dt, float manipulatorSpeed)
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
-	
+
+	bool victory = false;
+
 	//The all important World Step for Box2D
 	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
 
@@ -122,7 +120,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 				currentPlayer->AddScore(actors->operator[](x)->GetScore());
 				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
 				{
-					Victory();
+					victory = true;
 				}
 
 				if (actors->operator[](x)->GetType() == EntityType::APC)
@@ -145,7 +143,6 @@ void Level::Update(float dt, float manipulatorSpeed)
 						moveableContainer->Delete(weapon);
 					}
 				}
-
 				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
 				//or the right function should be called, depending on the Entity.
 				//This stuff should be set within some sort of factory, maybe Entity Factory
@@ -183,9 +180,43 @@ void Level::Update(float dt, float manipulatorSpeed)
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
 		}
+
+		if (victory) {
+			Victory();
+		}
 	}
 }
 
+#pragma region Empty functions
+void Level::CreateMap() {
+	//empty level
+}
+
+void Level::CreateNPCs() {
+	//empty level
+}
+
+void Level::CreateParallaxBackground(BehaviourFactory* bf) {
+	//standard background
+	parallaxBackground = bf->CreateEmptyParallaxBehaviour();
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-back-trees.png", 0, 0.9f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-lights.png", 0, 0.7f, 120); //cool transparency feature
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-middle-trees.png", 0, 1.2f, 255);
+	parallaxBackground->SetLayer("Resources/backgrounds/game/level1/parallax-forest-front-trees.png", 0, 1.5f, 255);
+}
+
+Player* Level::SetPlayer(Player* _player) {
+	//empty level (and empty player)
+
+	return nullptr;
+}
+
+Level* Level::CreateLevel() {
+	//empty level
+	return nullptr;
+	//return new Level(lvlWidth, lvlHeight, playState);
+}
+#pragma endregion
 #pragma region Get, Set, & more
 Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
 	if (!_player->GetBody() != NULL) {

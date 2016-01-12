@@ -42,30 +42,31 @@ class BehaviourFactory
 		BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight);
 		~BehaviourFactory();
 
-	ParallaxBackground* CreateEmptyParallaxBehaviour();
-	DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
-	CollidableBehaviour* CreateCollidableBehaviour(EntityType type, Actor* actor);
-	CollidableBehaviour* CreateStepCollidableBehaviour();
-	MoveableBehaviour* CreateMoveableBehaviour(EntityType type);
-	SDL_Renderer* GetRenderer();
-	void ClearCamera();
-	void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
+		ParallaxBackground* CreateEmptyParallaxBehaviour();
+		DrawableBehaviour* CreateDrawableBehaviour(EntityType type);
+		DrawableBehaviour* CreateEditorVersionDrawableBehaviour(EntityType type);
+		CollidableBehaviour* CreateCollidableBehaviour(EntityType type, Actor* actor);
+		CollidableBehaviour* CreateStepCollidableBehaviour();
+		MoveableBehaviour* CreateMoveableBehaviour(EntityType type);
+		SDL_Renderer* GetRenderer();
+		void ClearCamera();
+		void SetLevelToCamera(Player* player, double levelWidth, double levelheight);
 
-private:
-	Camera* camera;
+		Camera* SetManualCamera(double levelWidth, double levelHeight);
+	private:
+		Camera* camera;
 
-	int screenWidth;
-	int screenHeight;
-	SDL_Renderer* renderer;
-	std::unordered_map<EntityType, DrawableBehaviour*> registery;
-	std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
-	std::unordered_map<EntityType, Sprite*> spriteRegistery;
-		
-	
-	std::unordered_map<EntityType, MoveableBehaviour*> moveRegistery;
-	std::unordered_map<EntityState, BaseCommand*> defaultCommands;
-	std::unordered_map<EntityState, BaseCommand*> plantCommands;
-	std::unordered_map<EntityState, BaseCommand*> snowBossCommands;
-	std::vector<Sprite*> sprites;
+		int screenWidth;
+		int screenHeight;
+		SDL_Renderer* renderer;
+		std::unordered_map<EntityType, DrawableBehaviour*> registery;
+		std::unordered_map<EntityType, CollidableBehaviour*> collideRegistery;
+		std::unordered_map<EntityType, Sprite*> spriteRegistery;
+		std::vector<Sprite*> sprites;
+
+		std::unordered_map<EntityType, MoveableBehaviour*> moveRegistery;
+		std::unordered_map<EntityState, BaseCommand*> defaultCommands;
+		std::unordered_map<EntityState, BaseCommand*> plantCommands;
+		std::unordered_map<EntityState, BaseCommand*> snowBossCommands;
 };
 

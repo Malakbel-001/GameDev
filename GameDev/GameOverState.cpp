@@ -22,10 +22,9 @@ void GameOverState::Init(GameStateManager *gsm){
 	MakeInputText(textColor);
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 
-	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
-	SDL_Delay(2000);
-	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
-	SDL_Delay(2000);*/
+	//SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
+	//SDL_Delay(2000); //prefer not to have this
+
 	if (playState->GetCurrentLevel()->GetLevelId() == 3)
 	{
 		SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);

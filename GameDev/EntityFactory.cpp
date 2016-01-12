@@ -5,11 +5,11 @@
 
 EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, Level* _level, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer) : world(b2world), actor(_actor), bf(_bf), level(_level), drawContainer(_drawContainer), moveContainer(_moveContainer), entities(_ent)
 {
+	deleteQueryCallback = new DeleteQueryCallback();
+
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
-		{ EntityType::ACTOR, new Actor() },
 		{ EntityType::TANK, new Vehicle() },
 		{ EntityType::MECH, new Vehicle() },
-		{ EntityType::NPC, new Npc(this) },
 		{ EntityType::PLAYER, new Player() },
 		{ EntityType::PLANT, new Npc(this) },
 		{ EntityType::PLANTBOSS, new Npc(this) },
@@ -19,6 +19,17 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::PINGUIN, new Npc(this) },
 		{ EntityType::HEALTH, new Actor()},
 		{ EntityType::AMMO, new Actor() },
+		{ EntityType::SNOWBOSS, new Npc(this) },
+		{ EntityType::SNOWMAN, new Npc(this) },
+		{ EntityType::APC, new Apc(this) },
+		{ EntityType::MINIGUNNER, new Npc(this) },
+	};
+
+	editorActorRegistery = std::unordered_map<EntityType, Actor*>{
+		{ EntityType::MECH, new Vehicle() },
+		{ EntityType::PLANT, new Npc(this) },
+		{ EntityType::PLANTBOSS, new Npc(this) },
+		{ EntityType::PINGUIN, new Npc(this) },
 		{ EntityType::SNOWBOSS, new Npc(this) },
 		{ EntityType::SNOWMAN, new Npc(this) },
 		{ EntityType::APC, new Apc(this) },
@@ -40,7 +51,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	};
 
 	entityRegistery = std::unordered_map<EntityType, Entity*>{
-		{ EntityType::ENTITY, new Entity() },	
+		//{ EntityType::ENTITY, new Entity() },			//disabled and will probs get deleted unless this is needed
 		{ EntityType::GROUND, new Ground() },
 		{ EntityType::GROUND2, new Ground() },
 		{ EntityType::BAR, new Ground() },
@@ -200,6 +211,21 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::MINIGUNNER, MinigunnerDef },
 	};
 
+	//Please Update This
+	entityStatsRegistery = std::unordered_map < EntityType, EntityStatsContainer* > {
+		{ EntityType::GROUND, new EntityStatsContainer(250, 120) },
+		{ EntityType::GROUND2, new EntityStatsContainer(137, 120) },
+		{ EntityType::BAR, new EntityStatsContainer(250, 10) },
+
+		//level2
+		{ EntityType::GROUNDLVL2, new EntityStatsContainer(250, 120) },
+		{ EntityType::GROUND2LVL2, new EntityStatsContainer(250, 250) },
+
+		//level3
+		{ EntityType::DESERTFLOOR, new EntityStatsContainer(1075, 30) },
+	};
+
+	//Please Update This
 	npcStatsRegistery = std::unordered_map < EntityType, NpcStatsContainer* > {
 		{ EntityType::PLANT, new NpcStatsContainer(25, 50, 100, 40, 45) },
 		{ EntityType::PLANTBOSS, new NpcStatsContainer(50, 500, 1000, 100, 100) },
@@ -242,6 +268,12 @@ EntityFactory::~EntityFactory()
 	{
 		delete it->second;
 	}
+	for (auto it = entityStatsRegistery.begin(); it != entityStatsRegistery.end(); ++it)
+	{
+		delete it->second;
+	}
+
+	delete deleteQueryCallback;
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
@@ -250,8 +282,8 @@ Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
 	return wep;
 }
 
+//temporarily still here, DEPRECATED!
 Entity* EntityFactory::CreateEntity(float x, float y, float height, float width, EntityType type){
-	
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 	b2Body* body = CreateBody(x, y, height, width, 1, type);
 
@@ -261,17 +293,30 @@ Entity* EntityFactory::CreateEntity(float x, float y, float height, float width,
 	ent->SetLevel(level);
 	return ent;
 }
+Entity* EntityFactory::CreateEntity(float x, float y, EntityType type) {
+	Entity* ent = entityRegistery.at(type)->EmptyClone();
+	if (entityStatsRegistery.find(type) == entityStatsRegistery.end()) { //error handling, avoid crashing
+		std::cout << "Entity: " << "[insert EntityType here] " << "is not found in the entityStatsRegistery - CreateEntity!" << std::endl;
+	}
+	else {
+		EntityStatsContainer* entityStats = entityStatsRegistery.at(type);
+		b2Body* body = CreateActorBody(x, y, entityStats->GetHeight(), entityStats->GetWidth(), 1, type);
+		ent->Init(body, entityStats->GetWidth(), entityStats->GetHeight(), type, bf, drawContainer, moveContainer);
+		entities->push_back(ent);
+	}
 
-//temporarily still here
+	return ent;
+}
+
+//temporarily still here, DEPRECATED!
 Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, float height, float width, EntityType type){
 	Actor* ent = actorRegistery.at(type)->EmptyClone();
-	b2Body* body = CreateActorBody(x, y, height, width,1, type, ent);
+	b2Body* body = CreateActorBody(x, y, height, width,1, type);
 	ent->InitActor(body, _hitdmg, _health, width, height, type, bf, drawContainer, moveContainer);
 	actor->push_back(ent);
 	ent->SetLevel(level);
 	return ent;
 }
-
 Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 	float _x = 1;
 	float _y = 10;
@@ -288,7 +333,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		
 		}
 		else {
-			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type, ent);
+			body = CreateActorBody(x, y, npcStats->GetHeight(), npcStats->GetWidth(), 1, type);
 		}
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer, moveContainer);
@@ -308,8 +353,7 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 }
 
 Player* EntityFactory::CreatePlayer(int _hitdmg, int _health, float x, float y, float height, float width, Player* _player) {
-
-	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER, _player);
+	b2Body* body = CreateActorBody(x, y, height, width, 1, EntityType::PLAYER);
 
 	_player->InitActor(body, _hitdmg, _health, width, height, EntityType::PLAYER, bf, drawContainer, moveContainer);
 	return _player;
@@ -356,7 +400,7 @@ Bullet* EntityFactory::CreateBullet(float x, float y, int width, int height, int
 	return bullet;
 }
 
-b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent){
+b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float width, float den, EntityType type){
 
 	height = height / 2;
 	width = width / 2;
@@ -413,7 +457,7 @@ b2Body* EntityFactory::CreateActorRoundBody(float x, float y, float height, floa
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);
 	b2Body* b2body = world.CreateBody(&bodydef);
-
+	
 	b2CircleShape circleShape;
 	circleShape.m_p.Set((newWidth), (newHeight)); //position, relative to body position
 	circleShape.m_radius = newWidth; //radius
@@ -476,4 +520,73 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, f
 	b2body->SetTransform(b2Vec2(x*Ratio, y*Ratio), 0);
 
 	return b2body;
+}
+
+//return list of actors
+std::vector<EntityType>* EntityFactory::GetActorTypeList() {
+	std::vector<EntityType>* editorActorTypeList = new std::vector<EntityType>();
+
+	for (std::pair<EntityType, Actor*> entType : editorActorRegistery) { //at least for now
+		editorActorTypeList->push_back(entType.first);
+	}
+
+	return editorActorTypeList;
+}
+
+//return list of entities(/map objects)
+std::vector<EntityType>* EntityFactory::GetEntityTypeList() {
+	std::vector<EntityType>* entityTypeList = new std::vector<EntityType>();
+
+	for (std::pair<EntityType, Entity*> entType : entityRegistery) { //at least for now
+		entityTypeList->push_back(entType.first);
+	}
+
+	return entityTypeList;
+}
+
+//give x and y, find entities using world.query() that intersect with that position, delete those entities
+void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer) {
+	//magic number ratio
+	float _x = 1;
+	float _y = 10;
+	float Ratio = _x / _y;
+
+	//setting the point, x and y
+	b2AABB point; //b2AABB is an area
+	b2Vec2 vector;
+	vector.x = x*Ratio;
+	vector.y = y*Ratio;
+	point.lowerBound = vector;
+	point.upperBound = vector;
+
+	//search in given area (point) and return the fixtures / bodies to DeleteQueryCallback
+	world.QueryAABB(deleteQueryCallback, point);
+
+	//get the fixtures / bodies found in the given area (point)
+	bool foundActor = false;
+	for each (b2Body* body in deleteQueryCallback->foundBodies) {
+		for (int x = 0; actor->size() > x; x++) {
+			if (actor->operator[](x)->GetBody() == body) {
+				DeleteEntity(actor->operator[](x), drawableContainer, moveContainer, collidableContainer);
+				actor->erase(actor->begin() + x);
+			}
+		}
+		for (int x = 0; entities->size() > x; x++) {
+			if (entities->operator[](x)->GetBody() == body) {
+				DeleteEntity(entities->operator[](x), drawableContainer, moveContainer, collidableContainer);
+				entities->erase(entities->begin() + x);
+			}
+		}
+	}
+}
+
+//Delete the Entity from the world/Box2D and delete its behaviours (kinda dirty imho but stuff)
+void EntityFactory::DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer) {
+	world.DestroyBody(entity->GetBody());
+	drawableContainer->Delete(entity);
+	moveableContainer->Delete(entity);
+	//collidableContainer->Delete(entity); TODO make this work or have a different solution
+
+	delete entity;
+	entity = nullptr;
 }

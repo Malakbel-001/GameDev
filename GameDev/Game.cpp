@@ -13,7 +13,7 @@ Game::Game()
 	bf = new BehaviourFactory(sdlInitializer->GetRenderer(), SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	gsm = new GameStateManager(bf);
-	gsm->CreateGameState(GameStateType::MenuState,0);
+	gsm->CreateGameState(GameStateType::MenuState);
 
 	fps = new FPS(sdlInitializer->GetRenderer());
 	gameSpeedManipulator = new GameSpeedManipulator(sdlInitializer->GetRenderer());
@@ -64,6 +64,9 @@ void Game::SDLEvents()
 		if (events.type == SDL_MOUSEMOTION)
 		{
 			inputManager->SetMouseMotion(events);
+		}
+		if (events.type == SDL_MOUSEWHEEL) {
+			inputManager->SetMouseInput(events);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 #include "MenuBase.h"
 #include "LTexture.h"
+#include <Windows.h>
 class MenuState;
 class MainMenu : public MenuBase
 {
@@ -17,7 +18,7 @@ private:
 	//background
 	SDL_Texture* backgroundTexture;
 
-	SDL_Rect pos[7];
+	SDL_Rect pos[8];
 
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
@@ -26,6 +27,7 @@ private:
 	TTF_Font* textFont;
 
 	SDL_Rect solidRect;
+	SDL_Rect editorRect;
 	SDL_Rect blendedRect;
 	SDL_Rect shadedRect;
 	SDL_Rect mainTitleRect;
@@ -33,11 +35,12 @@ private:
 	SDL_Rect optionsRect;
 	SDL_Rect highscoreRect;
 
-	SDL_Texture* playTexture; //0
-	SDL_Texture* helpTexture; //1
-	SDL_Texture* quitTexture; //2
-	SDL_Texture* mainTitleTexture; //3
-	SDL_Texture* creditTexture; //9
+	SDL_Texture* playTexture;
+	SDL_Texture* editorTexture;
+	SDL_Texture* helpTexture;
+	SDL_Texture* quitTexture;
+	SDL_Texture* mainTitleTexture;
+	SDL_Texture* creditTexture;
 	SDL_Texture* optionsTexture;
 	SDL_Texture* highscoreTexture;
 public:
@@ -46,6 +49,7 @@ public:
 	~MainMenu();
 	
 	void MakePlayText(SDL_Color);
+	void MakeLevelEditorText(SDL_Color);
 	void MakeHelpText(SDL_Color);
 	void MakeQuitText(SDL_Color);
 	void MakeCreditText(SDL_Color);
@@ -61,6 +65,7 @@ public:
 	void Draw();
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+	void HandleTextInputEvents(SDL_Event event);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void Update(float dt);
 };

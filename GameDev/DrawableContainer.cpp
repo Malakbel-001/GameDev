@@ -8,11 +8,15 @@ DrawableContainer::DrawableContainer()
 
 
 DrawableContainer::~DrawableContainer() { 
+	Cleanup();
+}
+
+void DrawableContainer::Cleanup() {
 	for each (DrawableBehaviour* var in behaviours)
 	{
 		delete var;
 	}
-
+	behaviours.clear();
 }
 
 void DrawableContainer::Add(DrawableBehaviour* behaviour)

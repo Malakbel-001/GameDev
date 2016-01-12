@@ -15,6 +15,7 @@ SoundBank::SoundBank() {
 		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" },
 		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" },
 		{ SoundEffectType::GUNSHOT, "Resources/sound/sfx/gunshot.wav"},
+		{ SoundEffectType::CANNON, "Resources/sound/sfx/Laser_Shot_3.wav"},
 		{ SoundEffectType::PLANTSHOT, "Resources/sound/sfx/monster_-Brian_Kl-8153_hifi.wav" },
 		{ SoundEffectType::CANNON, "Resources/sound/sfx/Laser_Shot_3.wav"}
 
@@ -26,7 +27,8 @@ SoundBank::SoundBank() {
 		{ SoundBgmType::TESTBGM2, "Resources/sound/bg/lastcave.mp3" },
 		{ SoundBgmType::THUNDERSTRUCK, "Resources/sound/bg/thunderstruck.mp3" },
 		{ SoundBgmType::REDALERT1, "Resources/sound/bg/17-ost-allied_combat_2-daw.mp3" },
-		{ SoundBgmType::REDALERT2, "Resources/sound/bg/33-ost-allied_-_up_yours-daw.mp3" }
+		{ SoundBgmType::REDALERT2, "Resources/sound/bg/33-ost-allied_-_up_yours-daw.mp3" },
+		{ SoundBgmType::PLANTATION, "Resources/sound/bg/plantation.mp3" },
 	};
 }
 
@@ -47,8 +49,9 @@ void SoundBank::PlaySFX(SoundEffectType type) {
 		SoundChunk* soundChunk = new SoundChunk(tempSound);
 
 		//Change Volume depending on the given volume in the parameters
-		Mix_VolumeChunk(tempSound, musicVolume); //volume = between [0 - 128], 64 = neutral
-
+		if (tempSound != nullptr){
+			Mix_VolumeChunk(tempSound, musicVolume); //volume = between [0 - 128], 64 = neutral
+		}
 		//soundChunk->Play();
 		//and let SoundChunk remember its channel (which doesn't work correctly yet)
 		soundChunk->Play();

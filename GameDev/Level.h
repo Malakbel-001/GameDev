@@ -23,7 +23,6 @@ protected:
 	EntityFactory* entityFactory;
 	DrawableContainer* drawableContainer;
 	MoveableContainer* moveableContainer;
-	SDL_Texture* tileSheet;
 	Timer* timer;
 
 	int levelId;
@@ -38,23 +37,28 @@ protected:
 	Player* currentPlayer;
 	std::string backgroundPath;
 	ParallaxBackground* parallaxBackground;
-	//Initialization / Create Level
-	virtual void SetEntityFactory(BehaviourFactory*);
-	virtual void CreateMap() = 0;									//pure virtual
-	virtual void CreateNPCs() = 0;									//pure virtual
-	virtual void CreateTimer();
-	virtual void CreateParallaxBackground(BehaviourFactory*) = 0;	//pure virtual
-
 public:
+	//Initialization / Create Level
+	virtual void SetEntityFactory(BehaviourFactory*);			//needs to be public for level editor
+private:
+	virtual void CreateMap();									//before pure virtual function
+	virtual void CreateNPCs();									//before pure virtual function
+	virtual void CreateTimer();
+	virtual void CreateParallaxBackground(BehaviourFactory*);	//before pure virtual function
+
+	void ConstructorLevel();
+public:
+	Level(int _lvlWidth, int _lvlHeight);
+	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
+
 	Player* GetPlayer();
 	std::vector<Actor*>* GetActors();
 	std::vector<Entity*>* GetEntities();
 	DrawableContainer* GetDrawableContainer();
 	MoveableContainer* GetMoveableContainer();
-	Level(int _lvlWidth, int _lvlHeight);
-
-	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
+	void SetPlayState(PlayState* play);
 	virtual void Init(BehaviourFactory* bf, PlayState* play);
+	virtual void Init(BehaviourFactory* bf);
 
 	virtual ~Level();
 
@@ -66,17 +70,14 @@ public:
 	EntityFactory* GetEntityFactory();
 	std::vector<SDL_Rect> getTileCrops();
 	
-					//TODO get this to work
 	void Draw();
 	void Update(float dt, float manipulatorSpeed);
 	void GameOver();
 	void Victory();
 	virtual b2World* GetWorld();
 
-							//probably not public!
-
-	virtual Player* SetPlayer(Player* _player) = 0;					//pure virtual
-	virtual Level* CreateLevel() = 0;								//pure virtual
+	virtual Player* SetPlayer(Player* _player);					//before pure virtual function
+	virtual Level* CreateLevel();								//before pure virtual function
 	ParallaxBackground* GetParallaxBackGround();
 	Timer* GetTimer();
 
