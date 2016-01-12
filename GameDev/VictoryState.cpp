@@ -258,28 +258,45 @@ void VictoryState::HandleMouseEvents(SDL_Event mainEvent)
 	case SDL_MOUSEBUTTONDOWN:
 		int x = mainEvent.button.x;
 		int y = mainEvent.button.y;
-		for (int i = 0; i < renderItems; i++)
+		bool found = false;
+		int temp = -1;
+		for (int i = 0; i < renderItems && !found; i++)
 		{
 			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
 				switch (i){
 					//item 1, mainmenu play
 				case 0:
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					SoundBank::GetInstance()->StopMusic();
-
-					quit = true;
-					Next();
+					found = true;
+					temp = 0;
 					break;
 				case 1:
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					SoundBank::GetInstance()->StopMusic();
-
-					quit = true;
-					Quit();
+					found = true;
+					temp = 1;
 					break;
 				}
 			}
 			
+		}
+		if (found){
+			switch (temp){
+				//item 1, mainmenu play
+			case 0:
+
+				SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+				SoundBank::GetInstance()->StopMusic();
+
+				quit = true;
+				Next();
+				break;
+			case 1:
+
+				SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+				SoundBank::GetInstance()->StopMusic();
+
+				quit = true;
+				Quit();
+				break;
+			}
 		}
 	}
 }

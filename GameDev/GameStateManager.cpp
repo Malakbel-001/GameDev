@@ -83,6 +83,7 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 	states.back()->Resume();
 }
 void GameStateManager::PopPrevState(){
+	std::cout << "popprevstate \n";
 	if (states.size() > 1){
 		IGameState* a = states[states.size() - 2];
 
@@ -92,6 +93,7 @@ void GameStateManager::PopPrevState(){
 }
 void GameStateManager::PopState()
 {
+	std::cout << "popstate \n";
 	if (!states.empty())
 	{
 		IGameState* a = states.back();
