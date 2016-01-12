@@ -17,7 +17,9 @@ Level* LevelFactory::LoadLevel(PlayState* play, BehaviourFactory* bf, std::strin
 }
 
 Level* LevelFactory::GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::string name) {
-	file<> xmlFile(name.c_str()); // Default template is char
+	string path = "Resources\\level editor levels\\";
+	string pathToLoad = path + name;
+	file<> xmlFile(pathToLoad.c_str()); // Default template is char
 	xml_document<> doc;
 	doc.parse<0>(xmlFile.data());
 	doc.first_node()->first_attribute();
@@ -64,10 +66,11 @@ Level* LevelFactory::GetLoadedLevel(PlayState* play, BehaviourFactory* bf, std::
 
 
 bool LevelFactory::SaveLevel(Level* l,std::string name){
+	string path = "Resources\\level editor levels\\";
 	//temp----------
-	if (name == ""){
-		name = "testing";
-	}
+	/*if (name == ""){
+		name = "hallojeroen";
+	}*/
 	//-------
 	xml_document<> doc;
 
@@ -144,7 +147,8 @@ bool LevelFactory::SaveLevel(Level* l,std::string name){
 
 
 	std::ofstream settings;
-	settings.open(name);
+	string pathToSave = path + name;
+	settings.open(pathToSave);
 	
 	if (settings.is_open()) {
 		//save all settings (will automatically overwrite previous settings)

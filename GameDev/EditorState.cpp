@@ -10,9 +10,20 @@ EditorState::EditorState(int level) {
 	newLevel = LevelFactory::GetSpecificLevel(level);
 }
 
+void EditorState::SetName(string text){
+	loadLevel = text;
+}
+
 //load level from file: HomeCooked Levels
 EditorState::EditorState(std::string _loadLevel) {
-	this->loadLevel = _loadLevel;
+	vector<string> internal;
+	stringstream ss(_loadLevel); // Turn the string into a stream.
+	string tok;
+
+	while (getline(ss, tok, '\\')) {
+		internal.push_back(tok);
+	}
+	this->loadLevel = internal.back();
 }
 
 void EditorState::Init(GameStateManager *gsm) {

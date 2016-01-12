@@ -369,7 +369,7 @@
     </ClCompile>
     <ClCompile Include="DeleteQueryCallback.cpp">
       <Filter>Source Files\Model\Factory</Filter>
-   </ClCompile>
+    </ClCompile>
     <ClCompile Include="FPS.cpp">
       <Filter>Source Files\View</Filter>
     </ClCompile>
@@ -387,6 +387,9 @@
     </ClCompile>
     <ClCompile Include="Score.cpp">
       <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelEditorMenu.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -651,9 +654,6 @@
     <ClInclude Include="GroundLvl2Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Utitilies.h">
-      <Filter>Header Files\Model\Utilities</Filter>
-	</ClInclude>
     <ClInclude Include="LayerContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -812,6 +812,12 @@
     </ClInclude>
     <ClInclude Include="DeleteQueryCallback.h">
       <Filter>Header Files\Model\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Utitilies.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelEditorMenu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

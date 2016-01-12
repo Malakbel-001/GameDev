@@ -190,6 +190,9 @@ void MainMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
+void MainMenu::HandleTextInputEvents(SDL_Event event){
+}
+
 void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
@@ -251,41 +254,11 @@ void MainMenu::HandleMouseEvents(SDL_Event mainEvent)
 					case 6:
 						//level editor
 						SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-						
+						menu->updateMenu(MenuEnum::LevelEditor);
 						//3 options, TODO -> level editor subMenu
 						//menu->GetGSM()->CreateGameState(GameStateType::EditorState);
 						//menu->GetGSM()->CreateEditorState(1);
 						
-
-						OPENFILENAMEA ofn = { 0 };
-						char Buffer[300];
-						fill(Buffer, Buffer + 300, '\0');
-						ofn.lStructSize = sizeof(OPENFILENAMEA);
-						//ofn.hwndOwner = hWnd;
-						ofn.lpstrFile = Buffer;
-						ofn.nMaxFile = 300;
-						ofn.Flags = OFN_EXPLORER | OFN_NOCHANGEDIR;
-						ofn.lpstrFilter = NULL;
-						ofn.lpstrCustomFilter = NULL;
-						ofn.nFilterIndex = 0;
-						ofn.lpstrFileTitle = NULL;
-						ofn.lpstrInitialDir = NULL;
-						ofn.lpstrTitle = NULL;
-						if (GetOpenFileName){
-							cout << GetOpenFileNameA(&ofn) << endl;
-							cout << Buffer << endl;
-							//menu->GetGSM()->CreateEditorState("test");
-							menu->GetGSM()->CreateGameState(GameStateType::EditorState, Buffer);
-						}
-						else{
-							cout << "clicked cancel";
-						}
-
-
-
-
-						
-
 						break;
 					//case 7, aka the menuTitle, does not need to be clickable
 				}

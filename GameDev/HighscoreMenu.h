@@ -82,6 +82,7 @@ public:
 	void Draw();
 
 	void HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events);
+	void HandleTextInputEvents(SDL_Event event);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void Update(float dt);
 
