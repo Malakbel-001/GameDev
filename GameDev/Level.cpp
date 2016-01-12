@@ -138,6 +138,14 @@ void Level::Update(float dt, float manipulatorSpeed)
 					}
 				}
 
+				if (actors->operator[](x)->GetType() == EntityType::MECH)
+				{
+					for (auto weapon : vehicle->GetWeapons()) {
+						drawableContainer->Delete(weapon);
+						moveableContainer->Delete(weapon);
+					}
+				}
+
 				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
 				//or the right function should be called, depending on the Entity.
 				//This stuff should be set within some sort of factory, maybe Entity Factory
@@ -284,7 +292,7 @@ void Level::ExitVehicle()
 		currentPlayer->SetShouldDraw(true);
 		currentPlayer->GetMoveableBehaviour()->SetDisabled(false);
 
-		vehicle->GetDrawableBehaviour()->GetCamera()->SetPlayer(player);
+		vehicle->GetDrawableBehaviour()->GetCamera()->SetPlayer(player);		
 	}
 }
 #pragma endregion Get, Set, & more
