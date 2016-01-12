@@ -43,7 +43,7 @@ void CreditMenu::MakeBackToMain(SDL_Color color){
 }
 
 void CreditMenu::MakeCreditText(SDL_Color color){
-	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "In dit stukje tekst bedanken wij alle spelers voor het spelen van ons spel. De makers van deze game zijn:\n-Thomas de Brouwer\n-Jeroen Guelen\n-Mark-Jan de Jong\n-Daniel Eijkelenboom", color, 1000);
+	SDL_Surface* creditText = TTF_RenderText_Blended_Wrapped(textFont, "Made by:\n-Thomas de Brouwer\n-Jeroen Guelen\n-Mark-Jan de Jong\n-Daniel Eijkelenboom", color, 1000);
 	creditTextTexture = SurfaceToTexture(creditText);
 
 	SDL_QueryTexture(creditTextTexture, NULL, NULL, &creditTextRect.w, &creditTextRect.h);

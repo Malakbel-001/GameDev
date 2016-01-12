@@ -43,12 +43,12 @@ void HelpMenu::MakeBackToMain(SDL_Color color){
 }
 
 void HelpMenu::MakeHelpText(SDL_Color color){
-	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Het Spel bestuur je doormiddel van het toetsenboard. Je gebruik de volgende knoppen om de speler te besturen:\n-W = Springen/Klimmen.\n-A = Naar links lopen.\n-S = Naar beneden klimmen.\n-D = Naar rechts lopen.\n-Z = Schieten.\n\nGebruik de Pijltjestoetsen om het geweer te richten.", color, 1000);
+	SDL_Surface* helpText = TTF_RenderText_Blended_Wrapped(textFont, "Please read the Jark Hunt ReadMe pdf \n\nGame Mode: WASD - Move \nE - Enter vehicle \nSpaceBar - Shoot \n1 & 2 - Choose Weapons \nArrowkeys - Shoot direction \n\nEditor mode: WASD - Camera \nSPACE + UP & DOWN \nMOUSE L&R-CLICK & SCROLL \n\nRead the PDF for more details", color, 1000);
 	helpTextTexture = SurfaceToTexture(helpText);
 
 	SDL_QueryTexture(helpTextTexture, NULL, NULL, &helpTextRect.w, &helpTextRect.h);
 	helpTextRect.x = 15;
-	helpTextRect.y = 225;
+	helpTextRect.y = 125;
 	pos[1] = helpTextRect;
 }
 
