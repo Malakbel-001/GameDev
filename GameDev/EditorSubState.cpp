@@ -280,7 +280,7 @@ void EditorSubState::HandleMouseEvents(SDL_Event mainEvent)
 		{
 			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
 				switch (i){
-				case 0:
+				case 0: //quit
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					gsm->PopState();
 					/*SoundBank::GetInstance()->StopMusic();
@@ -288,21 +288,23 @@ void EditorSubState::HandleMouseEvents(SDL_Event mainEvent)
 					quit = true;
 					Quit();*/
 					break;
-				case 1:
+				case 1: //play
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+					gsm->CreateGameState(GameStateType::PlayState, static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel());
+
 					/*SoundBank::GetInstance()->StopMusic();
 
 					quit = true;
 					Quit();
 					break;*/
-				case 2:
+				case 2: //saveNew
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					/*SoundBank::GetInstance()->StopMusic();
 
 					quit = true;
 					Quit();*/
 					break;
-				case 3:
+				case 3: //saveSame
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					//gebruiken om op te slaan. todo
 
@@ -312,9 +314,9 @@ void EditorSubState::HandleMouseEvents(SDL_Event mainEvent)
 					quit = true;
 					Quit();*/
 					break;
-				case 4:
+				case 4: //backToMain
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					SoundBank::GetInstance()->StopMusic();
+					//SoundBank::GetInstance()->StopMusic();
 
 					quit = true;
 					Quit();

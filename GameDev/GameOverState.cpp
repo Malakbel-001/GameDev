@@ -23,10 +23,10 @@ void GameOverState::Init(GameStateManager *gsm){
 	SoundBank::GetInstance()->PlayBGM(SoundBgmType::TESTBGM1);
 
 	SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
-	SDL_Delay(2000);
+	//SDL_Delay(2000); //gotta lose this one
 	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
 	SDL_Delay(2000);*/
-	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
+	//SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
 	SDL_StartTextInput();
 }
 

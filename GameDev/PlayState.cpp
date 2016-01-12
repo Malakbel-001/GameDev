@@ -1,27 +1,35 @@
 #include "PlayState.h"
+//CustomLevelMode
+PlayState::PlayState(Level* lvl) {
+	customLevelMode = true;
+	this->currentLevel = lvl;
+}
+//Standard Mode
 PlayState::PlayState(int lvl){
+	customLevelMode = false;
 	levelToLoad = lvl;
 }
+
 void PlayState::Init(GameStateManager* gsm)
 {
-
-	levelConfig = LevelConfig();
  	this->gsm = gsm;
 
 	this->gameOver = false;
-	currentLevel = nullptr;
 	//TODO LOAD PLAYER FROM FILE
 	player = new Player();
-	
 	accumulatedDtWeapon = 0;
-	
 	hud = new HUD();
-	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
-	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
-	// flush userinput to prevent crash during loadscreen
 
-	//SDL_SetRenderDrawColor(gsm->GetBehaviour()->GetRenderer(), 80, 30, 30, 255);
-	
+	if (!customLevelMode) {
+		customLevelMode = false;
+		levelConfig = LevelConfig();
+		currentLevel = nullptr;
+		SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
+	}
+	else {
+		SetCustomLevel();
+	}
+
 	hud->Initialize(gsm->GetBehaviour()->GetRenderer(), player);
 }
 
@@ -30,15 +38,27 @@ void PlayState::InitStartLevel(int lvl){
 }
 
 void PlayState::GameOver(){
-	//SoundBank::GetInstance()->StopMusic(); //not needed
-	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
-	gsm->CreateGameState(GameStateType::GameOverState);
+	if (!customLevelMode) {
+		//SoundBank::GetInstance()->StopMusic(); //not needed
+		currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
+		gsm->CreateGameState(GameStateType::GameOverState);
+	}
+	else {
+		SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
+		gsm->PopState(); //go back to editor
+	}
 }
 
 void PlayState::Victory(){
-	levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
-	currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
-	gsm->CreateGameState(GameStateType::VictoryState);
+	if (!customLevelMode) {
+		levelConfig.SaveLevelProgress("Level" + to_string(currentLevel->GetLevelId() + 1));
+		currentLevel->GetPlayer()->AddPlayTime(currentLevel->GetTimer()->GetCurrentMinutes(), currentLevel->GetTimer()->GetCurrentSeconds());
+		gsm->CreateGameState(GameStateType::VictoryState);
+	}
+	else { //customLevelMode - level editor
+		SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
+		gsm->PopState(); //go back to editor
+	}
 }
 
 void PlayState::LoadGame()
@@ -193,14 +213,13 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					currentLevel->GetPlayer()->GetCurrentWeapon()->AddAmmo(1000);
 					break;
 				case SDLK_F18:			
-
-					SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
-					
+					if (!customLevelMode) {
+						SetCurrentLevel(LevelFactory::GetNextLevel(currentLevel, this));
+					}
 					break;
 
 				case SDLK_ESCAPE:
 					pause = true;
-					
 					break;
 
 			
@@ -351,6 +370,19 @@ void PlayState::SetCurrentLevel(Level* lvl)
 
 }
 
+void PlayState::SetCustomLevel() {
+	BehaviourFactory* bf = gsm->GetBehaviour();
+	gsm->SetBehaviour(bf);
+	player = this->currentLevel->SetPlayer(player);
+	this->gsm->GetBehaviour()->SetLevelToCamera(player, currentLevel->GetLvlHeight(), currentLevel->GetLvlWidth());
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT1);
+	//this->currentLevel->GetParallaxBackGround()->InitializeFixXPos(); //not needed, already set in editor mode
+	this->hud->SetTimer(currentLevel->GetTimer());
+
+	//do not forget
+	this->currentLevel->SetPlayState(this);
+}
+
 
 Player* PlayState::GetPlayer()
 {
@@ -375,3 +407,6 @@ PlayState::~PlayState()
 	this->Cleanup();
 }
 
+bool PlayState::IsCustomLevelModeActivated() {
+	return customLevelMode;
+}

@@ -20,32 +20,41 @@ GameStateManager::GameStateManager(BehaviourFactory* _bf)
 //Give level, Create State with Level (if the lvl constructor is available)
 void GameStateManager::CreateGameState(GameStateType state, int lvl)
 {
-	IGameState* gamestate = GetNewState(state, lvl, "");
+	IGameState* gamestate = GetNewState(state, lvl, "", nullptr);
 	PushGameState(gamestate);
 }
-
 //Give level from (text)file, Create State with Level (if the std::string levelName constructor is available)
 void GameStateManager::CreateGameState(GameStateType state, std::string levelName)
 {
-	IGameState* gamestate = GetNewState(state, 0, levelName);
+	IGameState* gamestate = GetNewState(state, 0, levelName, nullptr);
 	PushGameState(gamestate);
 }
-
 //Give GameState, Creates new GameState
 void GameStateManager::CreateGameState(GameStateType state)
 {
-	IGameState* gamestate = GetNewState(state, 0, "");
+	IGameState* gamestate = GetNewState(state, 0, "", nullptr);
+	PushGameState(gamestate);
+}
+//Give Level*, Create GameState with Level* (if the GameState has a constructor with Level* available)
+void GameStateManager::CreateGameState(GameStateType state, Level* customLevel) {
+	IGameState* gamestate = GetNewState(state, 0, "", customLevel);
 	PushGameState(gamestate);
 }
 
+
 //Create / Load State
-IGameState* GameStateManager::GetNewState(GameStateType state, int lvl, std::string name) 
+IGameState* GameStateManager::GetNewState(GameStateType state, int lvl, std::string name, Level* customLevel) 
 {
 	IGameState* gamestate;
 	switch (state)
 	{
 	case GameStateType::PlayState:
-		gamestate = new PlayState(lvl);
+		if (customLevel) { //custom level play
+			gamestate = new PlayState(customLevel);
+		}
+		else { //standard story mode play
+			gamestate = new PlayState(lvl);
+		}
 		break;
 	case GameStateType::EditorState:
 		if (name != "")

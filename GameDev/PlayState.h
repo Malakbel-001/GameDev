@@ -14,6 +14,7 @@ class PlayState :
 	public IGameState
 {
 	private:
+		bool customLevelMode;
 		LevelConfig levelConfig;
 
 		Player* player;
@@ -27,6 +28,7 @@ class PlayState :
 		float currentManipulatorSpeed;
 
 	public:
+		PlayState(Level* lvl);
 		PlayState(int lvl);
 		void Init(GameStateManager *gsm);
 		void Cleanup();
@@ -48,10 +50,13 @@ class PlayState :
 		Level* GetCurrentLevel();
 		void InitStartLevel(int lvl);
 		void SetCurrentLevel(Level* lvl);
+		void SetCustomLevel();
 		void LoadGame();
 
 		void SetFileToLoad(std::string fileName);		
 
 		virtual ~PlayState();
+
+		bool IsCustomLevelModeActivated();
 };
 
