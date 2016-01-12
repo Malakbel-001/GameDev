@@ -15,7 +15,7 @@ SoundBank::SoundBank() {
 		{ SoundEffectType::WIN, "Resources/sound/sfx/Announcer/ACDDATA_0084.wav" },
 		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" },
 		{ SoundEffectType::GUNSHOT, "Resources/sound/sfx/gunshot.wav"},
-		{ SoundEffectType::CANNON, "Resources/sound/sfx/Laser_Shot_3.wav"}
+		{ SoundEffectType::CANNON, "Resources/sound/sfx/Laser_Shot_3.wav"},
 
 	};
 
@@ -25,7 +25,8 @@ SoundBank::SoundBank() {
 		{ SoundBgmType::TESTBGM2, "Resources/sound/bg/lastcave.mp3" },
 		{ SoundBgmType::THUNDERSTRUCK, "Resources/sound/bg/thunderstruck.mp3" },
 		{ SoundBgmType::REDALERT1, "Resources/sound/bg/17-ost-allied_combat_2-daw.mp3" },
-		{ SoundBgmType::REDALERT2, "Resources/sound/bg/33-ost-allied_-_up_yours-daw.mp3" }
+		{ SoundBgmType::REDALERT2, "Resources/sound/bg/33-ost-allied_-_up_yours-daw.mp3" },
+		{ SoundBgmType::PLANTATION, "Resources/sound/bg/plantation.mp3" },
 	};
 }
 

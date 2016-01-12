@@ -27,6 +27,8 @@ EditorState::EditorState(std::string _loadLevel) {
 }
 
 void EditorState::Init(GameStateManager *gsm) {
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::PLANTATION);
+
 	//Standard @Initialization
 	this->gsm = gsm;
 	editorDrawableContainer = new DrawableContainer();

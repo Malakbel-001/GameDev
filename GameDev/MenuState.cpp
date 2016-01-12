@@ -141,6 +141,8 @@ void MenuState::Pause(){
 
 }
 void MenuState::Resume(){
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::REDALERT2);
+
 	//if screen changed, reload all layerContainers
 	parallaxBackground->CheckIfScreenSizeChanged();
 	if (currentMenu == playMenu){

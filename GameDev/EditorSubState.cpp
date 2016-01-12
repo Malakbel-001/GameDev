@@ -176,7 +176,9 @@ void EditorSubState::Cleanup(){
 	TTF_CloseFont(textFont);
 }
 
-void EditorSubState::Resume() {}
+void EditorSubState::Resume() {
+	SoundBank::GetInstance()->PlayBGM(SoundBgmType::PLANTATION);
+}
 
 void EditorSubState::Pause() {}
 
