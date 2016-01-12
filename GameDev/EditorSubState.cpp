@@ -261,6 +261,7 @@ void EditorSubState::HandleMouseEvents(SDL_Event mainEvent)
 					quit = true;
 					Quit();
 					break;*/
+					break;
 				case 2: //saveNew
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
 					/*SoundBank::GetInstance()->StopMusic();
