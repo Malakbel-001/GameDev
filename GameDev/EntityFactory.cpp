@@ -216,6 +216,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::GROUND, new EntityStatsContainer(250, 120) },
 		{ EntityType::GROUND2, new EntityStatsContainer(137, 120) },
 		{ EntityType::BAR, new EntityStatsContainer(250, 10) },
+		
 
 		//level2
 		{ EntityType::GROUNDLVL2, new EntityStatsContainer(250, 120) },
@@ -223,6 +224,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level3
 		{ EntityType::DESERTFLOOR, new EntityStatsContainer(1075, 30) },
+		{ EntityType::SMALLDESERTFLOOR, new EntityStatsContainer(135, 10) },
 	};
 
 	//Please Update This

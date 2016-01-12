@@ -125,7 +125,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 
 				if (actors->operator[](x)->GetType() == EntityType::APC)
 				{
-					if (levelId = 3)
+					if (levelId == 3)
 					{
 						dynamic_cast<Level3*>(this)->DecrementBossCount();
 						if (dynamic_cast<Level3*>(this)->GetBossCount() == 0)

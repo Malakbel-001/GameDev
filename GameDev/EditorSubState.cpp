@@ -246,50 +246,76 @@ void EditorSubState::HandleMouseEvents(SDL_Event mainEvent)
 	case SDL_MOUSEBUTTONDOWN:
 		int x = mainEvent.button.x;
 		int y = mainEvent.button.y;
+		int clicked = -1;
 		for (int i = 0; i < renderItems; i++)
 		{
 			if (x >= pos[i].x && x <= pos[i].x + pos[i].w && y >= pos[i].y && y <= pos[i].y + pos[i].h){
 				switch (i){
 				case 0: //quit
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					gsm->PopState();
+					clicked = 0;
+			
 					break;
 				case 1: //play
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-
-					LevelFactory::SaveLevel(static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel(), "temp");
-
-					gsm->CreateGameState(GameStateType::PlayState, LevelFactory::LoadLevel(gsm->GetBehaviour(), "temp"));
-
-					/*SoundBank::GetInstance()->StopMusic();
-
-					quit = true;
-					Quit();
-					break;*/
+					clicked = 1;
+			
 					break;
 				case 2: //saveNew
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					/*SoundBank::GetInstance()->StopMusic();
-
-					quit = true;
-					Quit();*/
-
-					// playbutton
-
-					break;
+					clicked = 2;
+			break;
 				case 3: //saveSame
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					LevelFactory::SaveLevel(static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel(), (static_cast<EditorState*>(gsm->GetPreviousState())->GetLevelPath()));
+					clicked = 3;
 					break;
 				case 4: //backToMain
-					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					//SoundBank::GetInstance()->StopMusic();
-
-					quit = true;
-					Quit();
+					clicked = 4;
+				
 					break;
 				}
 			}
+		}
+		switch (clicked){
+		case 0: //quit
+			
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+			gsm->PopState();
+			break;
+		case 1: //play
+			
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+
+			LevelFactory::SaveLevel(static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel(), "temp");
+
+			gsm->CreateGameState(GameStateType::PlayState, LevelFactory::LoadLevel(gsm->GetBehaviour(), "temp"));
+
+			/*SoundBank::GetInstance()->StopMusic();
+
+			quit = true;
+			Quit();
+			break;*/
+			break;
+		case 2: //saveNew
+			
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+			/*SoundBank::GetInstance()->StopMusic();
+
+			quit = true;
+			Quit();*/
+
+			// playbutton
+
+			break;
+		case 3: //saveSame
+		
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+			LevelFactory::SaveLevel(static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel(), (static_cast<EditorState*>(gsm->GetPreviousState())->GetLevelPath()));
+			break;
+		case 4: //backToMain
+			
+			SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
+			//SoundBank::GetInstance()->StopMusic();
+
+			quit = true;
+			Quit();
+			break;
 		}
 	}
 }
