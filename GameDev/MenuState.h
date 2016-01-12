@@ -16,6 +16,7 @@ class CreditMenu;
 class OptionMenu;
 class PlayMenu;
 class HighscoreMenu;
+class LevelEditorMenu;
 class MenuState :
 	public IGameState
 {
@@ -34,6 +35,7 @@ private:
 	ParallaxBackground* parallaxBackground;
 	
 	HighscoreMenu* highscoreMenu;
+	LevelEditorMenu* levelEditorMenu;
 public:
 	MenuState();
 

@@ -106,6 +106,8 @@ void HelpMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
 	//std::cout << "Key events not implemented yet";
 }
+void HelpMenu::HandleTextInputEvents(SDL_Event event){
+}
 
 void HelpMenu::HandleMouseEvents(SDL_Event mainEvent)
 {

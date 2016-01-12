@@ -5,6 +5,7 @@
 #include "OptionMenu.h"
 #include "PlayMenu.h"
 #include "HighscoreMenu.h"
+#include "LevelEditorMenu.h"
 const int renderItems = 20;
 SDL_Rect pos[renderItems];
 
@@ -26,6 +27,7 @@ void MenuState::Init(GameStateManager *gsm){
 	optionMenu = new OptionMenu(this, renderer, textFont, titleFont, parallaxBackground);
 	playMenu = new PlayMenu(this, renderer, textFont, titleFont);
 	highscoreMenu = new HighscoreMenu(this, renderer, textFont, titleFont);
+	levelEditorMenu = new LevelEditorMenu(this, renderer, textFont, titleFont);
 	currentMenu = mainMenu;
 }
 
@@ -126,6 +128,7 @@ MenuState::~MenuState()
 	delete playMenu;
 	delete parallaxBackground;
 	delete highscoreMenu;
+	delete levelEditorMenu;
 }
 
 void MenuState::Cleanup(){
@@ -152,11 +155,11 @@ void MenuState::HandleMouseEvents(SDL_Event mainEvent)
 
 void MenuState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
-	//std::cout << "Key events not implemented yet";
+	currentMenu->HandleKeyEvents(_events);//std::cout << "Key events not implemented yet";
 }
 
 void MenuState::HandleTextInputEvents(SDL_Event event){
-
+	currentMenu->HandleTextInputEvents(event);
 }
 
 void MenuState::Update(float dt, float manipulatorSpeed){
@@ -195,6 +198,11 @@ void MenuState::updateMenu(MenuEnum menu){
 		highscoreMenu->LoadScores();
 		highscoreMenu->UpdateScore();
 		currentMenu = highscoreMenu;
+		PreviousMenu = mainMenu;
+		break;
+	case MenuEnum::LevelEditor:
+		currentMenu = levelEditorMenu;
+		SDL_StartTextInput();
 		PreviousMenu = mainMenu;
 		break;
 	default:

@@ -1,8 +1,10 @@
+#pragma once
 #include "MenuBase.h"
 #include "LTexture.h"
+#include <Windows.h>
+#include "EditorState.h"
 class MenuState;
-class PauseState;
-class HelpMenu : public MenuBase
+class LevelEditorMenu : public MenuBase
 {
 private:
 	int hoverX;
@@ -10,16 +12,14 @@ private:
 	int selectedCounter;
 	SDL_Renderer* renderer;
 	MenuState* mainMenu;
-	PauseState* pauseMenu;
 
-	//temp
 	LTexture background;
 	//background
 	SDL_Rect backgroundRect;
 	//background
 	SDL_Texture* backgroundTexture;
 
-	SDL_Rect pos[3];
+	SDL_Rect pos[5];
 
 	SDL_Color textColor;
 	SDL_Color hoverTextColor;
@@ -28,21 +28,29 @@ private:
 	TTF_Font* textFont;
 
 	SDL_Rect backToMainRect;
-	SDL_Rect helpTextRect;
-	SDL_Rect helpTitleRect;
+	SDL_Rect editorTitleRect;
+	SDL_Rect newLevelRect;
+	SDL_Rect OpenRect;
+	SDL_Rect inputRect;
 
-	SDL_Texture* backToMainTexture; //0
-	SDL_Texture* helpTextTexture; //1
-	SDL_Texture* helpTitleTexture; //2
+	SDL_Texture* backToMainTexture;
+	SDL_Texture* editorTitleTexture;
+	SDL_Texture* newLevelTexture;
+	SDL_Texture* openTexture;
+	SDL_Texture* inputTexture;
+
+	Uint32 lockButtonTicks;
+	std::string text;
 public:
-	HelpMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
-	HelpMenu(PauseState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
+	LevelEditorMenu(MenuState*, SDL_Renderer*, TTF_Font*, TTF_Font*);
 	void Init();
-	~HelpMenu();
 
 	void MakeBackToMain(SDL_Color);
-	void MakeHelpText(SDL_Color);
-	void MakeHelpTitle(SDL_Color);
+	void MakeEditorTitle(SDL_Color);
+	void MakeNewLevel(SDL_Color);
+	void MakeOpen(SDL_Color);
+	void MakeInput(SDL_Color);
+
 	SDL_Texture* SurfaceToTexture(SDL_Surface*);
 
 	void Highlight(int);
@@ -55,4 +63,6 @@ public:
 	void HandleTextInputEvents(SDL_Event event);
 	void HandleMouseEvents(SDL_Event mainEvent);
 	void Update(float dt);
+	~LevelEditorMenu();
 };
+

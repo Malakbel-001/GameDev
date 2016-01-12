@@ -3,6 +3,7 @@
 #include "LevelFactory.h"
 #include <vector>
 #include <Windows.h>
+#include <sstream>
 class EditorState :	public IGameState {
 	private:
 		float ratio = 1.0F / 10.0F; //magic numberino, TODO -> smarter solution.
@@ -51,6 +52,7 @@ class EditorState :	public IGameState {
 
 		Level* GetLevel();
 		string GetLevelPath();
+		void SetName(string text);
 
 	private:
 		bool activatedEntityTypeList;

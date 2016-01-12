@@ -126,6 +126,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClCompile Include="GameSpeedManipulator.cpp" />
     <ClCompile Include="GroundLvl2Sprite.cpp" />
     <ClCompile Include="KeyMapping.cpp" />
+    <ClCompile Include="LevelEditorMenu.cpp" />
     <ClCompile Include="LoadedLevel.cpp" />
     <ClCompile Include="HighscoreConfig.cpp" />
     <ClCompile Include="HighscoreMenu.cpp" />
@@ -251,6 +252,7 @@ copy "$(ProjectDir)Libraries\SDL2_ttf-2.0.12\lib\x86\*" "$(OutDir)*"</Command>
     <ClInclude Include="GameSpeedManipulator.h" />
     <ClInclude Include="HighscoreConfig.h" />
     <ClInclude Include="HighscoreMenu.h" />
+    <ClInclude Include="LevelEditorMenu.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="SnowBossMoveableBehaviour.h" />
     <ClInclude Include="SnowBossPatrolCommand.h" />
