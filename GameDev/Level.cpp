@@ -87,6 +87,8 @@ void Level::Update(float dt, float manipulatorSpeed)
 	float _y = 10;
 	float Ratio = _x / _y;
 
+	bool victory = false;
+
 	//The all important World Step for Box2D
 	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
 
@@ -104,10 +106,8 @@ void Level::Update(float dt, float manipulatorSpeed)
 				player->AddScore(actors->operator[](x)->GetScore());
 				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
 				{
-					Victory();
-
+					victory = true;
 				}
-
 				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
 				//or the right function should be called, depending on the Entity.
 				//This stuff should be set within some sort of factory, maybe Entity Factory
@@ -144,6 +144,10 @@ void Level::Update(float dt, float manipulatorSpeed)
 
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
+		}
+
+		if (victory) {
+			Victory();
 		}
 	}
 }

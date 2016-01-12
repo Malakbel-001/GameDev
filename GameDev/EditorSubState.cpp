@@ -254,7 +254,10 @@ void EditorSubState::HandleMouseEvents(SDL_Event mainEvent)
 					break;
 				case 1: //play
 					SoundBank::GetInstance()->PlaySFX(SoundEffectType::CORRECT);
-					gsm->CreateGameState(GameStateType::PlayState, static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel());
+
+					LevelFactory::SaveLevel(static_cast<EditorState*>(gsm->GetPreviousState())->GetLevel(), "temp");
+
+					gsm->CreateGameState(GameStateType::PlayState, LevelFactory::LoadLevel(gsm->GetBehaviour(), "temp"));
 
 					/*SoundBank::GetInstance()->StopMusic();
 

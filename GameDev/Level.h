@@ -23,7 +23,6 @@ protected:
 	EntityFactory* entityFactory;
 	DrawableContainer* drawableContainer;
 	MoveableContainer* moveableContainer;
-	SDL_Texture* tileSheet;
 	Timer* timer;
 
 	int levelId;
@@ -47,9 +46,8 @@ private:
 
 	void ConstructorLevel();
 public:
-	Level(int _lvlWidth, int _lvlHeight); //clean level for level editor
+	Level(int _lvlWidth, int _lvlHeight);
 	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
-
 
 	Player* GetPlayer();
 	std::vector<Actor*>* GetActors();

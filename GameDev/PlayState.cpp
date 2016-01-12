@@ -323,8 +323,8 @@ void PlayState::Update(float dt, float manipulatorSpeed) {
 	accumulatedDtWeapon += dt; //accumulate Dt
 	currentManipulatorSpeed = manipulatorSpeed;
 
-	currentLevel->Update(dt, manipulatorSpeed);
 	Move(dt);
+	currentLevel->Update(dt, manipulatorSpeed);
 }
 
 void PlayState::Draw(float dt, float manipulatorSpeed)
