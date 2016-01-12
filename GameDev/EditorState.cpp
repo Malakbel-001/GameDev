@@ -63,11 +63,14 @@ void EditorState::Init(GameStateManager *gsm) {
 }
 
 EditorState::~EditorState() {
-	//Cleanup();
+	Cleanup();
 }
 
 void EditorState::Cleanup() {
-	//TODO don't forget!
+	delete newLevel;
+	delete editorDrawableContainer;
+	delete uselessMoveableContainer;
+	delete selectedEntity;
 }
 
 void EditorState::Pause() {
@@ -282,9 +285,6 @@ void EditorState::SetSelectedEntity() {
 }
 
 float EditorState::GetXPositionEntity() {
-	//400 * ratio is temporary fix!
-
-
 	return static_cast<float>((hoverX * ratio) + (manualCamera->GetX()) - ((screenWidth / 2) - (screenWidth / 4)) * ratio);
 }
 float EditorState::GetYPositionEntity() {
