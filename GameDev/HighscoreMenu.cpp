@@ -241,6 +241,9 @@ void HighscoreMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _even
 	//std::cout << "Key events not implemented yet";
 }
 
+void HighscoreMenu::HandleTextInputEvents(SDL_Event event){
+}
+
 void HighscoreMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)

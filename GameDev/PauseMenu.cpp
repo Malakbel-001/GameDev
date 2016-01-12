@@ -152,6 +152,9 @@ void PauseMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
+void PauseMenu::HandleTextInputEvents(SDL_Event event){
+}
+
 void PauseMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)

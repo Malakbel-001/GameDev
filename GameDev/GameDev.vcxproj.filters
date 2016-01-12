@@ -387,6 +387,9 @@
     </ClCompile>
     <ClCompile Include="EditorSubState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
+	</ClCompile>
+    <ClCompile Include="LevelEditorMenu.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -812,6 +815,9 @@
     </ClInclude>
     <ClInclude Include="EditorSubState.h">
       <Filter>Header Files\Model\GameState</Filter>
+	</ClInclude>
+    <ClInclude Include="LevelEditorMenu.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

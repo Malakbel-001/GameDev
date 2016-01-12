@@ -176,6 +176,8 @@ void PlayMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
 	//std::cout << "Key events not implemented yet";
 }
+void PlayMenu::HandleTextInputEvents(SDL_Event event){
+}
 
 void PlayMenu::HandleMouseEvents(SDL_Event mainEvent)
 {

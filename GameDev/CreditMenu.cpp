@@ -106,6 +106,8 @@ void CreditMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 {
 	//std::cout << "Key events not implemented yet";
 }
+void CreditMenu::HandleTextInputEvents(SDL_Event event){
+}
 
 void CreditMenu::HandleMouseEvents(SDL_Event mainEvent)
 {

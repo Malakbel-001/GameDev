@@ -237,6 +237,9 @@ void OptionMenu::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 	//std::cout << "Key events not implemented yet";
 }
 
+void OptionMenu::HandleTextInputEvents(SDL_Event event){
+}
+
 void OptionMenu::HandleMouseEvents(SDL_Event mainEvent)
 {
 	switch (mainEvent.type)
