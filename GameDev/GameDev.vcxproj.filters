@@ -387,9 +387,12 @@
     </ClCompile>
     <ClCompile Include="EditorSubState.cpp">
       <Filter>Source Files\Model\GameState</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="LevelEditorMenu.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\View\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="smallDesertSprite.cpp">
+      <Filter>Source Files\Model\Sprites</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -815,9 +818,12 @@
     </ClInclude>
     <ClInclude Include="EditorSubState.h">
       <Filter>Header Files\Model\GameState</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="LevelEditorMenu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\View\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="smallDesertSprite.h">
+      <Filter>Header Files\Model\Sprites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

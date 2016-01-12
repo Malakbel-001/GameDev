@@ -2,8 +2,8 @@
 	<actors/>
 	<entities>
 		<entity>
-			<xpos>-256.000000</xpos>
-			<ypos>573.000000</ypos>
+			<xpos>-253.000015</xpos>
+			<ypos>582.000000</ypos>
 			<width>30</width>
 			<height>1075</height>
 			<type>6</type>

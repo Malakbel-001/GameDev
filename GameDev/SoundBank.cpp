@@ -16,6 +16,8 @@ SoundBank::SoundBank() {
 		{ SoundEffectType::LETSROCK, "Resources/sound/sfx/Announcer/ACDDATA_0102.wav" },
 		{ SoundEffectType::GUNSHOT, "Resources/sound/sfx/gunshot.wav"},
 		{ SoundEffectType::CANNON, "Resources/sound/sfx/Laser_Shot_3.wav"},
+		{ SoundEffectType::PLANTSHOT, "Resources/sound/sfx/monster_-Brian_Kl-8153_hifi.wav" },
+		{ SoundEffectType::CANNON, "Resources/sound/sfx/Laser_Shot_3.wav"}
 
 	};
 

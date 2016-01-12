@@ -42,11 +42,19 @@ void Camera::Init(Player* _player, double _levelwidth, double _levelheight){
 	lvlHeight = _levelheight;
 	player = _player;
 }
+void Camera::Init(double _levelwidth, double _levelheight) {
+	lvlWidth = _levelwidth;
+	lvlHeight = _levelheight;
+}
 
-//manual camera unlocked
-void Camera::Init(double _levelWidth, double _levelHeight) {
-	lvlWidth = _levelWidth;
-	lvlHeight = _levelHeight;
+Player* Camera::GetPlayer()
+{
+	return player;
+}
+
+void Camera::SetPlayer(Player* _player)
+{
+	player = _player;
 }
 
 void Camera::SetX(double _x) {

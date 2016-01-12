@@ -11,15 +11,13 @@ LoadedLevel::~LoadedLevel()
 {
 }
 Player* LoadedLevel::SetPlayer(Player* _player){
-	player = Level::SetPlayerPosition(_player, 20, 100);
+	currentPlayer = Level::SetPlayerPosition(_player, 20, 100);
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
-	wep->Pickup(player, b2Vec2(1000, 0));
-	player->AddWeapon(wep);
-	
+	wep->Pickup(currentPlayer, b2Vec2(1000, 0));
+	currentPlayer->AddWeapon(wep);
 
-	return player;
-
+	return currentPlayer;
 }
 Level* LoadedLevel::CreateLevel(){
 	return new LoadedLevel(lvlWidth, lvlHeight,world->GetGravity());

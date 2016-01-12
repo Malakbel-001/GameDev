@@ -15,7 +15,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::PLANTBOSS, new Npc(this) },
 		{ EntityType::BULLET, new Bullet() },
 		{ EntityType::CANNONSHOT, new Bullet() },
-		{ EntityType::ACORN, new Acorn() },
+		{ EntityType::ACORN, new Bullet() },
 		{ EntityType::PINGUIN, new Npc(this) },
 		{ EntityType::HEALTH, new Actor()},
 		{ EntityType::AMMO, new Actor() },
@@ -62,6 +62,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level3
 		{ EntityType::DESERTFLOOR, new Ground() },
+		{ EntityType::SMALLDESERTFLOOR, new Ground() },
 	};
 
 	weaponRegistery = std::unordered_map < EntityType, Weapon* > {
@@ -72,7 +73,8 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 	bulletRegistery = std::unordered_map < EntityType, Bullet* > {
 			{ EntityType::BULLET ,new Bullet() },
-			{ EntityType::CANNONSHOT, new Bullet() }
+			{ EntityType::CANNONSHOT, new Bullet() },
+			{ EntityType::ACORN, new Bullet() }
 
 	};
 	
@@ -191,7 +193,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::CANNONSHOT, Bullet },
 		{ EntityType::HEALTH, Health },
 		{ EntityType::AMMO, Ammo },
-		{ EntityType::ACORN, AcornDef },
+		{ EntityType::ACORN, Bullet },
 		
 		//level2
 		{ EntityType::GROUNDLVL2, entDef },
@@ -202,6 +204,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 		//level3
 		{ EntityType::DESERTFLOOR, entDef },
+		{ EntityType::SMALLDESERTFLOOR, entDef },
 		{ EntityType::TANK, TankDef },
 		{ EntityType::APC, TankDef },
 		{ EntityType::MECH, MechDef },
