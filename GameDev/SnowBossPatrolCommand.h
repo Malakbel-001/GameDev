@@ -8,5 +8,6 @@ public:
 	~SnowBossPatrolCommand();
 
 	virtual void Execute(Actor* actor) override;
+	virtual BaseCommand* EmptyClone() override;
 };
 

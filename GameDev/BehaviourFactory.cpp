@@ -17,6 +17,7 @@
 #include "CannonshotSprite.h"
 #include "ApcSprite.h"
 #include "MinigunnerSprite.h"
+#include "smallDesertSprite.h"
 #include "SnowBossMoveableBehaviour.h"
 
 BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, int screenheight)
@@ -90,6 +91,9 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	DesertGroundSprite* desertgroundSprite = new DesertGroundSprite(renderer);
 	desertgroundSprite->LoadMedia("Desert.png");
 
+	smallDesertSprite* smalldesertgroundSprite = new smallDesertSprite(renderer);
+	smalldesertgroundSprite->LoadMedia("Desert.png");
+
 	MinigunnerSprite* minigunnerSprite = new MinigunnerSprite(renderer);
 	minigunnerSprite->LoadMedia("trooper_template.png");
 
@@ -136,7 +140,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(snowBoss);
 	sprites.push_back(cannon);
 	sprites.push_back(minigunnerSprite);
-
+	sprites.push_back(smalldesertgroundSprite);
 	registery = std::unordered_map<EntityType, DrawableBehaviour*>{
 		{ EntityType::PLAYER, new PlayerDrawableBehaviour(renderer, playerSprite, screenWidth, screenHeight) },
 		{ EntityType::PLANT, new AnimatedDrawableBehaviour(renderer, plantSprite, screenWidth, screenHeight) },
@@ -164,6 +168,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	
 	//level3
 		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
+		{ EntityType::SMALLDESERTFLOOR, new StaticDrawableBehaviour(renderer, smalldesertgroundSprite, screenWidth, screenHeight) },
 		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
 		{ EntityType::MECH, new StaticDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
 		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
@@ -218,12 +223,13 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::GROUNDLVL2, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::GROUND2LVL2, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::DESERTFLOOR, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::SMALLDESERTFLOOR, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::HEALTH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::PINGUIN, new PlantMoveableBehaviour(plantCommands) },
 		{ EntityType::PLANT, new PlantMoveableBehaviour(plantCommands) },
 		{ EntityType::PLAYER, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::PLAYERSPRITE, new MoveableBehaviour(defaultCommands) },
-		{ EntityType::PLANTBOSS, new MoveableBehaviour(defaultCommands) },
+		{ EntityType::PLANTBOSS, new PlantMoveableBehaviour(defaultCommands) },
 		{ EntityType::SHOTGUN, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::SNOWMAN, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::SNOWBOSS, new SnowBossMoveableBehaviour(snowBossCommands) },

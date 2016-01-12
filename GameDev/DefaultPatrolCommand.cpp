@@ -10,6 +10,11 @@ DefaultPatrolCommand::~DefaultPatrolCommand()
 {
 }
 
+BaseCommand* DefaultPatrolCommand::EmptyClone()
+{
+	return new DefaultPatrolCommand();
+}
+
 void DefaultPatrolCommand::Execute(Actor* actor)
 {
 	b2Vec2 dir = actor->GetBody()->GetLinearVelocity();

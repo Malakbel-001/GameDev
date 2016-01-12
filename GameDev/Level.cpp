@@ -5,7 +5,9 @@ Level::Level(int _lvlWidth, int _lvlHeight)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
+	currentPlayer = nullptr;
 	player = nullptr;
+	vehicle = nullptr;
 	timer = nullptr;
 	startXpos = 100;
 	startYpos = 10;
@@ -22,7 +24,9 @@ Level::Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec)
 	: lvlWidth(_lvlWidth), lvlHeight(_lvlHeight)
 {
 	entityFactory = nullptr;
+	currentPlayer = nullptr;
 	player = nullptr;
+	vehicle = nullptr;
 	startXpos = 100;
 	startYpos = 10;
 	actors = new std::vector<Actor*>();
@@ -99,11 +103,12 @@ void Level::Update(float dt, float manipulatorSpeed)
 	float _x = 1;
 	float _y = 10;
 	float Ratio = _x / _y;
-
+	
 	//The all important World Step for Box2D
 	world->Step((dt / (1000/manipulatorSpeed)), 5, 5);
 
-	if (player->GetYpos() > lvlHeight || player->IsDead())
+	
+	if (currentPlayer->GetYpos() > lvlHeight || currentPlayer->IsDead())
 	{
 	//	LevelFactory::SaveLevel(this,"test");
 		GameOver();
@@ -114,11 +119,31 @@ void Level::Update(float dt, float manipulatorSpeed)
 		for (int x = 0; actors->size() > x; x++)
 		{
 			if (actors->operator[](x)->IsDead()){
-				player->AddScore(actors->operator[](x)->GetScore());
+				currentPlayer->AddScore(actors->operator[](x)->GetScore());
 				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
 				{
 					Victory();
+				}
 
+				if (actors->operator[](x)->GetType() == EntityType::APC)
+				{
+					if (levelId = 3)
+					{
+						dynamic_cast<Level3*>(this)->DecrementBossCount();
+						if (dynamic_cast<Level3*>(this)->GetBossCount() == 0)
+						{
+							ExitVehicle();
+							GameOver();
+						}
+					}
+				}
+
+				if (actors->operator[](x)->GetType() == EntityType::MECH)
+				{
+					for (auto weapon : vehicle->GetWeapons()) {
+						drawableContainer->Delete(weapon);
+						moveableContainer->Delete(weapon);
+					}
 				}
 
 				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
@@ -138,7 +163,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 				//actors->operator[](x)->GetDrops()
 				//Again, drops should be set within the Entity Factory, just as the Score and that stuff is set within the Entity Factory
 
-				player->AddScore(actors->operator[](x)->GetScore());
+				currentPlayer->AddScore(actors->operator[](x)->GetScore());
 
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
@@ -149,7 +174,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 			}
 
 			//this is so the bullets always keep flying (I guess - MJ)
-			else if (actors->operator[](x)->GetType() == EntityType::BULLET){
+			else if (actors->operator[](x)->GetType() == EntityType::BULLET || actors->operator[](x)->GetType() == EntityType::ACORN || actors->operator[](x)->GetType() == EntityType::CANNONSHOT){
 				b2Vec2 vector = actors->operator[](x)->GetDirection();
 
 				vector.x *= manipulatorSpeed;
@@ -175,7 +200,7 @@ Player* Level::SetPlayerPosition(Player* _player, float x, float y) {
 	return player;
 }
 Player* Level::GetPlayer() {
-	return player;
+	return currentPlayer;
 }
 DrawableContainer* Level::GetDrawableContainer() {
 	return drawableContainer;
@@ -227,25 +252,47 @@ void Level::Victory() {
 }
 void Level::EnterVehicle()
 {
-	if (player->GetVehicle())
-	{		
-		auto vehicle = player->GetVehicle();
+	if (currentPlayer->GetType() == EntityType::PLAYER && currentPlayer->GetVehicle())
+	{
+		vehicle = player->GetVehicle();
+		vehicle->AddScore(player->GetScore());
+		player->AddScore(-player->GetScore());
 
-		for each (Weapon* var in player->GetWeapons())
-		{
-			drawableContainer->Delete(var);
-			moveableContainer->Delete(var);
-		}
+		player->SetShouldDraw(false);
+		player->GetMoveableBehaviour()->SetDisabled(true);
 
-		drawableContainer->Delete(player);		
-		moveableContainer->Delete(player);
-		vehicle->SetPassenger(player);
-		player->setBody(vehicle->GetBody());
-		player = vehicle;
+		vehicle->GetDrawableBehaviour()->SetCamera(player->GetDrawableBehaviour()->GetCamera());
 
 		Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::CANNON);
-		wep->Pickup(player, b2Vec2(1000, 0));
-		player->AddWeapon(wep);
+		wep->Pickup(vehicle, b2Vec2(1000, 0));
+		vehicle->AddWeapon(wep);
+		currentPlayer = vehicle;
+		player->GetDrawableBehaviour()->GetCamera()->SetPlayer(vehicle);
+
+		b2Vec2 position;
+		position.x = -100;
+		position.y = -100;
+		player->GetBody()->SetTransform(position, 0);
+	}
+}
+
+void Level::ExitVehicle()
+{
+	if (currentPlayer->GetType() == EntityType::MECH)
+	{
+		player->AddScore(vehicle->GetScore());
+		vehicle->AddScore(-vehicle->GetScore());
+
+		b2Vec2 position;
+		position.x = vehicle->GetBody()->GetPosition().x + 5;
+		position.y = vehicle->GetBody()->GetPosition().y - 5;
+		player->GetBody()->SetTransform(position, 0);
+		currentPlayer = player;
+
+		currentPlayer->SetShouldDraw(true);
+		currentPlayer->GetMoveableBehaviour()->SetDisabled(false);
+
+		vehicle->GetDrawableBehaviour()->GetCamera()->SetPlayer(player);		
 	}
 }
 #pragma endregion Get, Set, & more

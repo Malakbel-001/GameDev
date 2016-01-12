@@ -26,7 +26,14 @@ void GameOverState::Init(GameStateManager *gsm){
 	SDL_Delay(2000);
 	/*SoundBank::GetInstance()->Play(SoundEffectType::YOU);
 	SDL_Delay(2000);*/
-	SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
+	if (playState->GetCurrentLevel()->GetLevelId() == 3)
+	{
+		SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
+	}
+	else
+	{
+		SoundBank::GetInstance()->PlaySFX(SoundEffectType::LOSE);
+	}
 	SDL_StartTextInput();
 }
 

@@ -8,6 +8,7 @@ protected:
 	virtual void CreateNPCs();
 	virtual void CreateParallaxBackground(BehaviourFactory* bf);
 
+	int bossCount;
 public:
 	Level3(int _lvlWidth, int _lvlHeight);
 	virtual ~Level3();
@@ -19,5 +20,7 @@ public:
 	void HandleEvents(SDL_Event mainEvent);
 
 	virtual ParallaxBackground* GetParallaxBackGround();
+	int GetBossCount();
+	void DecrementBossCount();
 };
 

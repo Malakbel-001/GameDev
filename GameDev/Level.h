@@ -34,6 +34,8 @@ protected:
 	std::vector<Actor*>* actors = nullptr;
 	std::vector<Entity*>* entities;
 	Player* player;
+	Player* vehicle;
+	Player* currentPlayer;
 	std::string backgroundPath;
 	ParallaxBackground* parallaxBackground;
 	//Initialization / Create Level
@@ -85,4 +87,5 @@ public:
 	int GetLevelId() { return levelId; };
 
 	void EnterVehicle();
+	void ExitVehicle();
 };

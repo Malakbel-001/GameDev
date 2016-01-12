@@ -14,7 +14,7 @@ void PlayState::Init(GameStateManager* gsm)
 	player = new Player();
 	
 	accumulatedDtWeapon = 0;
-	
+
 	hud = new HUD();
 	//SetCurrentLevel(LevelFactory::GetFirstLevel(this));
 	SetCurrentLevel(LevelFactory::GetSpecificLevel(this, levelToLoad));
@@ -120,10 +120,16 @@ void PlayState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events)
 					x = 25;
 					break;
 				case SDLK_e:
-					currentLevel->EnterVehicle();
-					if (currentLevel->GetPlayer()->IsVehicle()) {
+						if (currentLevel->GetPlayer()->GetType() == EntityType::PLAYER) {
+							currentLevel->EnterVehicle();
+						}
+						else if (currentLevel->GetPlayer()->GetType() == EntityType::MECH) {
+							currentLevel->ExitVehicle();
+						}
 						hud->SetPlayer(currentLevel->GetPlayer());
-					}
+
+						it->second = false;
+					break;
 				case SDLK_SPACE: //temp changed W -> SPACE =P. Until remapping
 					if (currentLevel->GetPlayer()->GetCurrentWeapon()->Shoot(currentLevel->GetEntityFactory(),
 						accumulatedDtWeapon, currentManipulatorSpeed)) 
@@ -354,7 +360,7 @@ void PlayState::SetCurrentLevel(Level* lvl)
 
 Player* PlayState::GetPlayer()
 {
-	return this->player;
+	return currentLevel->GetPlayer();
 }
 
 

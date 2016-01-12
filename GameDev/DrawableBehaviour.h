@@ -34,6 +34,7 @@ public:
 	Object* GetEntity();
 	virtual DrawableBehaviour* EmptyClone();
 	void SetCamera(Camera* _camera);
+	Camera* GetCamera();
 	void SetSprite(Sprite* _sprite);
 	virtual void Draw(bool cycle) = 0; //pure virtual
 	

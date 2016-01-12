@@ -42,6 +42,16 @@ void Camera::Init(Player* _player, double _levelwidth, double _levelheight){
 	player = _player;
 }
 
+Player* Camera::GetPlayer()
+{
+	return player;
+}
+
+void Camera::SetPlayer(Player* _player)
+{
+	player = _player;
+}
+
 
 
 

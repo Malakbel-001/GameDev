@@ -10,6 +10,11 @@ SnowBossPatrolCommand::~SnowBossPatrolCommand()
 {
 }
 
+BaseCommand* SnowBossPatrolCommand::EmptyClone()
+{
+	return new SnowBossPatrolCommand();
+}
+
 void SnowBossPatrolCommand::Execute(Actor* actor)
 {
 	b2Vec2 dir = actor->GetBody()->GetLinearVelocity();

@@ -8,5 +8,6 @@ public:
 	~BaseCommand();
 
 	virtual void Execute(Actor* actor) = 0;
+	virtual BaseCommand* EmptyClone() = 0;
 };
 
