@@ -40,7 +40,7 @@ void IdleCommand::Execute(Actor* actor)
 		if (SDL_GetTicks() > timecounter2 + firespeed){
 			b2Vec2 vec = b2Vec2(-1000, 0);
 
-			dynamic_cast<Npc*>(actor)->GetFactory()->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200 + 2, 1, 1, 20, vec, actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
+			dynamic_cast<Npc*>(actor)->GetFactory()->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200 + 2, 1, 1, 8, vec, actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 			SoundBank::GetInstance()->PlaySFX(SoundEffectType::GUNSHOT);
 			timecounter2 = SDL_GetTicks();
 		}
