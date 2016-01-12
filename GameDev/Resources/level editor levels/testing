@@ -8,13 +8,6 @@
 			<height>250</height>
 			<type>14</type>
 		</entity>
-		<entity>
-			<xpos>40.000000</xpos>
-			<ypos>292.000000</ypos>
-			<width>30</width>
-			<height>1075</height>
-			<type>6</type>
-		</entity>
 	</entities>
 </level>
 

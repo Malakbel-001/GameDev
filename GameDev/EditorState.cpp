@@ -100,9 +100,6 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 				}
 			}
 			else if (mainEvent.button.button == SDL_BUTTON_RIGHT) {
-				//delete
-				std::cout << "sdl_rightmousebutton" << std::endl;
-
 				newLevel->GetEntityFactory()->ClickAndDeleteEntity(static_cast<float>(hoverX + manualCamera->GetX() / ratio - ((screenWidth / 2) - (screenWidth / 4))),
 					static_cast<float>(hoverY), newLevel->GetDrawableContainer(), newLevel->GetMoveableContainer(), nullptr);
 			}
