@@ -25,6 +25,17 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::MINIGUNNER, new Npc(this) },
 	};
 
+	editorActorRegistery = std::unordered_map<EntityType, Actor*>{
+		{ EntityType::MECH, new Vehicle() },
+		{ EntityType::PLANT, new Npc(this) },
+		{ EntityType::PLANTBOSS, new Npc(this) },
+		{ EntityType::PINGUIN, new Npc(this) },
+		{ EntityType::SNOWBOSS, new Npc(this) },
+		{ EntityType::SNOWMAN, new Npc(this) },
+		{ EntityType::APC, new Apc(this) },
+		{ EntityType::MINIGUNNER, new Npc(this) },
+	};
+
 	//collision filtering flags
 	entityCollisionRegistery = std::unordered_map<EntityType, CollisionType> {
 		{ EntityType::PLAYER, CollisionType::ALLY },
@@ -510,13 +521,13 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, f
 
 //return list of actors
 std::vector<EntityType>* EntityFactory::GetActorTypeList() {
-	std::vector<EntityType>* actorTypeList = new std::vector<EntityType>();
+	std::vector<EntityType>* editorActorTypeList = new std::vector<EntityType>();
 
-	for (std::pair<EntityType, Actor*> entType : actorRegistery) { //at least for now
-		actorTypeList->push_back(entType.first);
+	for (std::pair<EntityType, Actor*> entType : editorActorRegistery) { //at least for now
+		editorActorTypeList->push_back(entType.first);
 	}
 
-	return actorTypeList;
+	return editorActorTypeList;
 }
 
 //return list of entities(/map objects)
@@ -551,18 +562,16 @@ void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* dr
 	//get the fixtures / bodies found in the given area (point)
 	bool foundActor = false;
 	for each (b2Body* body in deleteQueryCallback->foundBodies) {
-		for each (Actor* act in *actor) {
-			if (act->GetBody() == body) {
-				act->SetShouldDraw(false); //temp test
-
-				//Delete(entity)
+		for (int x = 0; actor->size() > x; x++) {
+			if (actor->operator[](x)->GetBody() == body) {
+				DeleteEntity(actor->operator[](x), drawableContainer, moveContainer, collidableContainer);
+				actor->erase(actor->begin() + x);
 			}
 		}
-		for each (Entity* ent in *entities) {
-			if (ent->GetBody() == body) {
-				ent->SetShouldDraw(false); //temp test
-
-				//Delete(entity)
+		for (int x = 0; entities->size() > x; x++) {
+			if (entities->operator[](x)->GetBody() == body) {
+				DeleteEntity(entities->operator[](x), drawableContainer, moveContainer, collidableContainer);
+				entities->erase(entities->begin() + x);
 			}
 		}
 	}
@@ -575,9 +584,6 @@ void EntityFactory::DeleteEntity(Entity* entity, DrawableContainer* drawableCont
 	moveableContainer->Delete(entity);
 	//collidableContainer->Delete(entity); TODO make this work or have a different solution
 
-	//for each() entity / actor
-
-	/*delete actors->operator[](x);
-	actors->operator[](x) = nullptr;
-	actors->erase(actors->begin() + x);*/
+	delete entity;
+	entity = nullptr;
 }

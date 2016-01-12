@@ -35,8 +35,10 @@ public:
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
 	void ClickAndDeleteEntity(float x, float y, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer);
+private:
 	void DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer);
 
+public:
 	//Level Editor functions
 	std::vector<EntityType>* GetActorTypeList();
 	std::vector<EntityType>* GetEntityTypeList();
@@ -52,6 +54,7 @@ private:
 	std::unordered_map<EntityType, b2BodyDef > bodyRegistery;
 	std::unordered_map<EntityType, Bullet* > bulletRegistery;
 
+	std::unordered_map<EntityType, Actor*> editorActorRegistery;
 	std::unordered_map<EntityType, NpcStatsContainer*> npcStatsRegistery;
 	std::unordered_map<EntityType, EntityStatsContainer*> entityStatsRegistery;
 	std::unordered_map<EntityType, float> restitutionRegistery;

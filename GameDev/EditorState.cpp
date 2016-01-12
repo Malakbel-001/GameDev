@@ -90,8 +90,14 @@ void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
 		case SDL_MOUSEBUTTONDOWN: {
 			if (mainEvent.button.button == SDL_BUTTON_LEFT) {
 				//place entity
-				newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX + manualCamera->GetX() / ratio - ((screenWidth / 2) - (screenWidth / 4))),
-					static_cast<float>(hoverY), entityTypeList->at(scroll));
+				if (activatedEntityTypeList) {
+					newLevel->GetEntityFactory()->CreateEntity(static_cast<float>(hoverX + manualCamera->GetX() / ratio - ((screenWidth / 2) - (screenWidth / 4))),
+						static_cast<float>(hoverY), entityTypeList->at(scroll));
+				}
+				else { //actor
+					newLevel->GetEntityFactory()->CreateActor(static_cast<float>(hoverX + manualCamera->GetX() / ratio - ((screenWidth / 2) - (screenWidth / 4))),
+						static_cast<float>(hoverY), actorTypeList->at(scroll));
+				}
 			}
 			else if (mainEvent.button.button == SDL_BUTTON_RIGHT) {
 				//delete
@@ -146,9 +152,12 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 
 				case SDLK_SPACE: {
 					//switch entityTypeList
-					activatedEntityTypeList = !activatedEntityTypeList; //switch bool
-					scroll = 0;
-					SetSelectedEntity();
+					if (lockButtonTicks + 100 < SDL_GetTicks()) {
+						activatedEntityTypeList = !activatedEntityTypeList; //switch bool
+						scroll = 0;
+						SetSelectedEntity();
+						lockButtonTicks = SDL_GetTicks();
+					}
 					break;
 				}
 
