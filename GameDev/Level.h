@@ -30,7 +30,7 @@ protected:
 
 	PlayState* playState;
 	
-	std::vector<Actor*>* actors;
+	std::vector<Actor*>* actors = nullptr;
 	std::vector<Entity*>* entities;
 	Player* player;
 	std::string backgroundPath;

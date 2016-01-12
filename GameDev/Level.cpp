@@ -54,15 +54,24 @@ Level::~Level()
 	delete drawableContainer;
 	if (entityFactory){
 		delete entityFactory;
+		entityFactory = nullptr;
 	}
-	for each (Actor* var in *actors)
-	{
-		if (var){
-			delete var;
-			var = nullptr;
+	if (actors){
+
+		for (auto it = actors->begin(); it != actors->end() && actors; it++)
+		{
+			if (*it){
+				Actor* act = *it;
+				//TODO fix this , 
+				//delete act;
+				
+			}
 		}
+		
+		delete actors;
+		actors = nullptr;
+
 	}
-	delete actors;
 	for each (Entity* var in *entities)
 	{
 		if (var){
@@ -71,8 +80,10 @@ Level::~Level()
 		}
 	}
 	delete entities;
+	entities = nullptr;
 	if (timer)
 		delete timer;
+	timer = nullptr;
 }
 
 std::vector<Actor*>* Level::GetActors(){

@@ -42,6 +42,18 @@ void GameStateManager::CreateGameState(GameStateType state, Level* customLevel) 
 }
 
 
+PlayState* GameStateManager::GetPlayState(){
+	for (auto it : states){
+		PlayState* play = dynamic_cast<PlayState*>(it);
+		if (play != NULL)
+		{
+			return play;
+		}
+		
+	}
+	return nullptr;
+}
+
 //Create / Load State
 IGameState* GameStateManager::GetNewState(GameStateType state, int lvl, std::string name, Level* customLevel) 
 {
@@ -100,11 +112,16 @@ void GameStateManager::PushGameStateOnly(IGameState* gameState) {
 	IGameState* a = states.back();
 		states.pop_back(); //pop loadState
 		delete a;
-	states.push_back(gameState);
+
+		
+		if (!this->GetPlayState()){
+			states.push_back(gameState);
+		}
 	states.back()->Resume();
 }
 
 void GameStateManager::PopPrevState(){
+	std::cout << "popprevstate \n";
 	if (states.size() > 1){
 		IGameState* a = states[states.size() - 2];
 
@@ -115,6 +132,7 @@ void GameStateManager::PopPrevState(){
 
 void GameStateManager::PopState()
 {
+	std::cout << "popstate \n";
 	if (!states.empty())
 	{
 		IGameState* a = states.back();
