@@ -45,10 +45,6 @@ void PlayerCollidableBehaviour::Unhit(CollidableBehaviour* cb){
 			dynamic_cast<Player*>(ent)->SetVehicle(nullptr);
 			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
 			break;
-		case EntityType::TANK:
-			dynamic_cast<Player*>(ent)->SetVehicle(nullptr);
-			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
-			break;
 		default:
 			ent->SetNumFootContacts(ent->GetNumFootContacts() - 1);
 			break;

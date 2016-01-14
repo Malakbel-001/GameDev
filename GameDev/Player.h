@@ -40,8 +40,6 @@ class Player :
 		virtual void SetHealth(int _health);
 		void AddScore(int _score);
 		int GetScore();		
-		void SetPassenger(Player* _passenger);
-		Player* GetPassenger();
 
 		void SetVehicle(Player* _vehicle);
 		Player* GetVehicle();

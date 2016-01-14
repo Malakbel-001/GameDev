@@ -234,7 +234,6 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 		{ EntityType::PINGUIN, new NpcStatsContainer(34, 75, 200, 24, 36) },
 		{ EntityType::SNOWMAN, new NpcStatsContainer(45, 130, 250, 42, 34) },
 		{ EntityType::SNOWBOSS, new NpcStatsContainer(30, 400, 2500, 120, 122) },
-		{ EntityType::TANK, new NpcStatsContainer(0, 500, 0, 55, 65) },
 		{ EntityType::APC, new NpcStatsContainer(0, 500, 4000, 143, 128) },
 		{ EntityType::MECH, new NpcStatsContainer(0, 500, 0, 193, 85) },
 		{ EntityType::MINIGUNNER, new NpcStatsContainer(0, 150, 200, 42, 63) },

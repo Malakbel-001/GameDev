@@ -6,9 +6,5 @@ class Vehicle :
 public:
 	Vehicle();
 	~Vehicle();
-
-
-private:
-	Object* passenger;
 };
 
