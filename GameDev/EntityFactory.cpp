@@ -5,8 +5,6 @@
 
 EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, Level* _level, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer) : world(b2world), actor(_actor), bf(_bf), level(_level), drawContainer(_drawContainer), moveContainer(_moveContainer), entities(_ent)
 {
-	deleteQueryCallback = new DeleteQueryCallback();
-
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
 		{ EntityType::TANK, new Vehicle() },
 		{ EntityType::MECH, new Vehicle() },
@@ -274,8 +272,6 @@ EntityFactory::~EntityFactory()
 	{
 		delete it->second;
 	}
-
-	delete deleteQueryCallback;
 }
 
 Weapon* EntityFactory::CreateWeapon(float x, float y, EntityType type){
@@ -561,11 +557,11 @@ void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* dr
 	point.lowerBound = vector;
 	point.upperBound = vector;
 
+	DeleteQueryCallback* deleteQueryCallback = new DeleteQueryCallback();
 	//search in given area (point) and return the fixtures / bodies to DeleteQueryCallback
 	world.QueryAABB(deleteQueryCallback, point);
 
 	//get the fixtures / bodies found in the given area (point)
-	bool foundActor = false;
 	for each (b2Body* body in deleteQueryCallback->foundBodies) {
 		for (int x = 0; actor->size() > x; x++) {
 			if (actor->operator[](x)->GetBody() == body) {
@@ -580,6 +576,8 @@ void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* dr
 			}
 		}
 	}
+
+	delete deleteQueryCallback;
 }
 
 //Delete the Entity from the world/Box2D and delete its behaviours (kinda dirty imho but stuff)

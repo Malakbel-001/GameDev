@@ -38,11 +38,17 @@ double Camera::GetY(){
 
 //camera locked on the player
 void Camera::Init(Player* _player, double _levelwidth, double _levelheight){
-	lvlWidth = _levelwidth;
-	lvlHeight = _levelheight;
 	player = _player;
+	Init(_levelwidth, _levelheight);
 }
+
+//use manual camera
 void Camera::Init(double _levelwidth, double _levelheight) {
+	//reset camera positions
+	camX = 0;
+	camY = 0;
+
+	//lvlWidth + Height set
 	lvlWidth = _levelwidth;
 	lvlHeight = _levelheight;
 }

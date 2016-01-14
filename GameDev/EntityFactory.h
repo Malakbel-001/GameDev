@@ -64,7 +64,6 @@ private:
 	std::vector<Actor*>* actor;
 	std::vector<Entity*>* entities;
 
-	DeleteQueryCallback* deleteQueryCallback;
 	Level* level;
 };
 

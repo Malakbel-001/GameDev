@@ -80,7 +80,8 @@ void EditorState::Pause() {
 }
 
 void EditorState::Resume() {
-	//nothing to resume yet
+	//if screen changed, reload all layerContainers
+	newLevel->GetParallaxBackGround()->CheckIfScreenSizeChanged();
 }
 
 void EditorState::HandleMouseEvents(SDL_Event mainEvent) {
@@ -151,6 +152,7 @@ void EditorState::HandleKeyEvents(std::unordered_map<SDL_Keycode, bool>* _events
 				case SDLK_a: {
 					//move camera left
 					manualCamera->SetX(manualCamera->GetX() - 1);
+					break;
 				}
 				case SDLK_s: {
 					//move camera down - DISABLED
