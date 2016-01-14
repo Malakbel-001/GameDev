@@ -34,6 +34,9 @@ public:
 	b2Body* CreateActorRoundBody(float x, float y, float height, float width, float den, EntityType type, Actor* ent);
 	b2Body* CreateBody(float x, float y, float height, float width, float den, EntityType type);
 
+	int GetBossCount();
+	void DecrementBossCount();
+
 	void ClickAndDeleteEntity(float x, float y, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer);
 private:
 	void DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer);
@@ -66,5 +69,6 @@ private:
 
 	DeleteQueryCallback* deleteQueryCallback;
 	Level* level;
+	int bossCount;
 };
 

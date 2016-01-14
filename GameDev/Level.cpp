@@ -119,21 +119,13 @@ void Level::Update(float dt, float manipulatorSpeed)
 		{
 			if (actors->operator[](x)->IsDead() || actors->operator[](x)->GetYpos() > lvlHeight){
 				currentPlayer->AddScore(actors->operator[](x)->GetScore());
-				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
+				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS || actors->operator[](x)->GetType() == EntityType::APC)
 				{
-					victory = true;
-				}
-
-				if (actors->operator[](x)->GetType() == EntityType::APC)
-				{
-					if (levelId == 3)
+					entityFactory->DecrementBossCount();
+         			if (GetBossCount() == 0)
 					{
-						dynamic_cast<Level3*>(this)->DecrementBossCount();
-						if (dynamic_cast<Level3*>(this)->GetBossCount() == 0)
-						{
-							ExitVehicle();
-							GameOver();
-						}
+						ExitVehicle();
+						victory = true;
 					}
 				}
 
@@ -337,5 +329,15 @@ void Level::ExitVehicle()
 
 		vehicle->GetDrawableBehaviour()->GetCamera()->SetPlayer(player);		
 	}
+}
+
+int Level::GetBossCount()
+{
+	return entityFactory->GetBossCount();
+}
+
+void Level::DecrementBossCount()
+{
+	entityFactory->DecrementBossCount();
 }
 #pragma endregion Get, Set, & more

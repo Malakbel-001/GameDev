@@ -5,6 +5,7 @@
 
 EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std::vector<Entity*>* _ent, BehaviourFactory* _bf, Level* _level, DrawableContainer* _drawContainer, MoveableContainer* _moveContainer) : world(b2world), actor(_actor), bf(_bf), level(_level), drawContainer(_drawContainer), moveContainer(_moveContainer), entities(_ent)
 {
+	bossCount = 0;
 	deleteQueryCallback = new DeleteQueryCallback();
 
 	actorRegistery = std::unordered_map<EntityType, Actor*>{
@@ -104,7 +105,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 	TankDef.type = b2BodyType::b2_dynamicBody;
 
 	b2BodyDef MechDef;
-	MechDef.gravityScale = 1;
+	MechDef.gravityScale = 2;
 	MechDef.fixedRotation = true;
 	MechDef.linearDamping = 0.5f;
 	MechDef.angularDamping = 1;
@@ -292,8 +293,10 @@ Entity* EntityFactory::CreateEntity(float x, float y, float height, float width,
 	
 	entities->push_back(ent);
 	ent->SetLevel(level);
+	
 	return ent;
 }
+
 Entity* EntityFactory::CreateEntity(float x, float y, EntityType type) {
 	Entity* ent = entityRegistery.at(type)->EmptyClone();
 	if (entityStatsRegistery.find(type) == entityStatsRegistery.end()) { //error handling, avoid crashing
@@ -316,6 +319,9 @@ Actor* EntityFactory::CreateActor(int _hitdmg,int _health, float x, float y, flo
 	ent->InitActor(body, _hitdmg, _health, width, height, type, bf, drawContainer, moveContainer);
 	actor->push_back(ent);
 	ent->SetLevel(level);
+
+	if (type == EntityType::APC || type == EntityType::PLANTBOSS || type == EntityType::SNOWBOSS)
+		bossCount++;
 	return ent;
 }
 Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
@@ -339,6 +345,8 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		ent->InitActor(body, npcStats->GetHitDmg(), npcStats->GetHealth(), npcStats->GetWidth(), npcStats->GetHeight()
 			, type, bf, drawContainer, moveContainer);
 
+		if (type == EntityType::APC || type == EntityType::PLANTBOSS || type == EntityType::SNOWBOSS)
+			bossCount++;
 
 		ent->SetScore(npcStats->GetScore());
 		ent->SetLevel(level);
@@ -348,6 +356,8 @@ Actor* EntityFactory::CreateActor(float x, float y, EntityType type) {
 		dir.x = 0;
 		ent->SetDirection(dir);
 		actor->push_back(ent);
+
+		
 	}
 
 	return ent;
@@ -583,6 +593,9 @@ void EntityFactory::ClickAndDeleteEntity(float x, float y, DrawableContainer* dr
 
 //Delete the Entity from the world/Box2D and delete its behaviours (kinda dirty imho but stuff)
 void EntityFactory::DeleteEntity(Entity* entity, DrawableContainer* drawableContainer, MoveableContainer* moveableContainer, CollidableContainer* collidableContainer) {
+	if (entity->GetType() == EntityType::APC || entity->GetType() == EntityType::PLANTBOSS || entity->GetType() == EntityType::SNOWBOSS)
+		DecrementBossCount();
+
 	world.DestroyBody(entity->GetBody());
 	drawableContainer->Delete(entity);
 	moveableContainer->Delete(entity);
@@ -590,4 +603,14 @@ void EntityFactory::DeleteEntity(Entity* entity, DrawableContainer* drawableCont
 
 	delete entity;
 	entity = nullptr;
+}
+
+int EntityFactory::GetBossCount()
+{
+	return bossCount;
+}
+
+void EntityFactory::DecrementBossCount()
+{
+	bossCount--;
 }
