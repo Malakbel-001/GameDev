@@ -442,7 +442,7 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 	boxFixtureDef.friction = 1; //changed - old value:0.1 -> new value: 10
 
 	if (restitutionRegistery.find(type) == restitutionRegistery.end()){
-		boxFixtureDef.restitution = 0.7;
+		boxFixtureDef.restitution = 0.3;
 	}
 	else{ //FYI: define other restitution in the restitutionRegistery
 		boxFixtureDef.restitution = restitutionRegistery.at(type);
