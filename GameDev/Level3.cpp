@@ -9,8 +9,9 @@ void Level3::CreateMap() {
 	entityFactory->CreateEntity(0, 400, 135, 10, EntityType::SMALLDESERTFLOOR);
 	entityFactory->CreateEntity(135, 400, 135, 10, EntityType::SMALLDESERTFLOOR);
 	entityFactory->CreateEntity(270, 400, 135, 10, EntityType::SMALLDESERTFLOOR);
-	entityFactory->CreateEntity(600, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
+	entityFactory->CreateEntity(500, 280, 135, 10, EntityType::SMALLDESERTFLOOR);
 
+	entityFactory->CreateEntity(700, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
 	entityFactory->CreateEntity(1000, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
 	entityFactory->CreateEntity(1350, 250, 135, 10, EntityType::SMALLDESERTFLOOR);
 	entityFactory->CreateEntity(1700, 250, 135, 10, EntityType::SMALLDESERTFLOOR);

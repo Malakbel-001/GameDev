@@ -102,9 +102,16 @@ bool Weapon::Shoot(EntityFactory* eF, float accumulatedDt, float manipulatorSpee
 		if (ammo > 0){
 			bool dir = false;
 			if (vec.x == 0 && vec.y == 0){
-				vec = defaultShootingDirection;
+				SetXVec(defaultShootingDirection.x);
+				SetYVec(defaultShootingDirection.y);
 				dir = true;
 			}
+
+			if (actor->GetFlipped())
+			{
+				SetXVec(-100);
+			} 				
+
 			eF->CreateBullet(actor->GetBody()->GetWorldCenter().x + vec.x / 200, actor->GetBody()->GetWorldCenter().y + vec.y / 200, 1, 1, weaponDmg, vec, 
 				actor->GetBody()->GetFixtureList()->GetFilterData().categoryBits, EntityType::BULLET);
 
