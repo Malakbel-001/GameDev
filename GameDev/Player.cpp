@@ -101,24 +101,14 @@ int Player::GetScore() {
 	return score;
 }
 
-void Player::SetPassenger(Player* _passenger)
+Player* Player::GetVehicle()
 {
-	passenger = _passenger;
+	return vehicle;
 }
 
 void Player::SetVehicle(Player* _vehicle)
 {
 	vehicle = _vehicle;
-}
-
-Player* Player::GetPassenger()
-{
-	return passenger;
-}
-
-Player* Player::GetVehicle()
-{
-	return vehicle;
 }
 
 void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
@@ -131,7 +121,9 @@ void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
 		timeplayed.at(1) += timeSec;
 	}
 }
-
+void Player::setDead(bool b){
+	dead = b;
+}
 vector<Uint32> Player::GetPlayTime(){
 	return timeplayed;
 }

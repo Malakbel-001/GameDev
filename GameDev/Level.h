@@ -18,6 +18,7 @@ private:
 	float startXpos;
 	float startYpos;
 	b2ContactListener* contact;
+
 protected:
 	b2World* world;
 	EntityFactory* entityFactory;
@@ -47,6 +48,8 @@ private:
 	virtual void CreateParallaxBackground(BehaviourFactory*);	//before pure virtual function
 
 	void ConstructorLevel();
+
+
 public:
 	Level(int _lvlWidth, int _lvlHeight);
 	Level(int _lvlWidth, int _lvlHeight, b2Vec2 vec);
@@ -86,6 +89,9 @@ public:
 	virtual void SetLvlHeight(int _lvlHeight);
 
 	int GetLevelId() { return levelId; };
+
+	int GetBossCount();
+	void DecrementBossCount();
 
 	void EnterVehicle();
 	void ExitVehicle();

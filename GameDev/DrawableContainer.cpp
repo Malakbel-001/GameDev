@@ -42,6 +42,9 @@ bool DrawableContainer::CycleFrames(float dt, float manipulatorSpeed) {
 }
 
 void DrawableContainer::Delete(Object* ent){
+	if (ent->GetType() == EntityType::MECH){
+		printf("delete eg daw");
+	}
 	bool found = false;
 	size_t i = 0;
 	for (;i < behaviours.size() && !found; i++)

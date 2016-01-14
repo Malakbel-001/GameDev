@@ -3,7 +3,6 @@
 Level3::Level3(int _lvlWidth, int _lvlHeight) : Level(_lvlWidth, _lvlHeight)
 {
 	levelId = 3;
-	bossCount = 0;
 }
 
 void Level3::CreateMap() {
@@ -25,16 +24,12 @@ void Level3::CreateNPCs() {
 	entityFactory->CreateActor(120, 350, EntityType::MECH);
 
 	entityFactory->CreateActor(970, 150, EntityType::APC);
-	bossCount++;
 
 	entityFactory->CreateActor(1220, 150, EntityType::APC);
-	bossCount++;
 
 	entityFactory->CreateActor(1670, 150, EntityType::APC);
-	bossCount++;
 
 	entityFactory->CreateActor(2020, 150, EntityType::APC);
-	bossCount++;
 	//entityFactory->CreateActor(1200, 450, EntityType::MINIGUNNER);
 }
 
@@ -75,16 +70,6 @@ void Level3::HandleEvents(SDL_Event mainEvent) { }
 
 ParallaxBackground* Level3::GetParallaxBackGround() {
 	return parallaxBackground;
-}
-
-int Level3::GetBossCount()
-{
-	return bossCount;
-}
-
-void Level3::DecrementBossCount()
-{
-	bossCount--;
 }
 
 Level3::~Level3()

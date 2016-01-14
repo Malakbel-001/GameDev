@@ -52,10 +52,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	PlayerSprite* playerSprite = new PlayerSprite(renderer);
 	playerSprite->LoadMedia("sprites.png");
 
-	TankSprite* tankSprite = new TankSprite(renderer);
-	tankSprite->LoadMedia("MetalSlugTank.png");
-	tankSprite->SetAnimationSet(EntityState::IDLE);
-
 	ApcSprite* apcSprite = new ApcSprite(renderer);
 	apcSprite->LoadMedia("apc_template.png");
 
@@ -123,7 +119,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	sprites.push_back(plantBossSprite);
 	sprites.push_back(acornSprite);
 	sprites.push_back(playerSprite);
-	sprites.push_back(tankSprite);
 	sprites.push_back(mechSprite);
 	sprites.push_back(apcSprite);
 	sprites.push_back(healthSprite);
@@ -169,7 +164,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 	//level3
 		{ EntityType::DESERTFLOOR, new StaticDrawableBehaviour(renderer, desertgroundSprite, screenWidth, screenHeight) },
 		{ EntityType::SMALLDESERTFLOOR, new StaticDrawableBehaviour(renderer, smalldesertgroundSprite, screenWidth, screenHeight) },
-		{ EntityType::TANK, new AnimatedDrawableBehaviour(renderer, tankSprite, screenWidth, screenHeight) },
 		{ EntityType::MECH, new StaticDrawableBehaviour(renderer, mechSprite, screenWidth, screenHeight) },
 		{ EntityType::APC, new StaticDrawableBehaviour(renderer, apcSprite, screenWidth, screenHeight) },
 		{ EntityType::MINIGUNNER, new StaticDrawableBehaviour(renderer, minigunnerSprite, screenWidth, screenHeight) },
@@ -188,8 +182,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::JUMP, new JumpSensorCollidableBehaviour()},
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 		{ EntityType::SNOWBOSS, new EnemyCollidableBehaviour() },
-		{ EntityType::TANK, new EnemyCollidableBehaviour() },
-		{ EntityType::MECH, new EnemyCollidableBehaviour() },
+		{ EntityType::MECH, new PlayerCollidableBehaviour() },
 		{ EntityType::APC, new EnemyCollidableBehaviour() },
 		{ EntityType::MINIGUNNER, new EnemyCollidableBehaviour() },
 	};
@@ -233,7 +226,6 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SHOTGUN, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::SNOWMAN, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::SNOWBOSS, new SnowBossMoveableBehaviour(snowBossCommands) },
-		{ EntityType::TANK, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::MECH, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::CANNON, new MoveableBehaviour(defaultCommands) },
 		{ EntityType::WEAPON, new MoveableBehaviour(defaultCommands) },

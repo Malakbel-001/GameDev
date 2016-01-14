@@ -27,7 +27,7 @@ Game::Game()
 
 Game::~Game()
 {
-	
+	std::cout << "wtf";
 	delete inputManager;
 	delete bf;
 

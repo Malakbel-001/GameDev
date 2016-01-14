@@ -3,19 +3,12 @@
 
 Vehicle::Vehicle()
 {	
+
 }
 
 
 Vehicle::~Vehicle()
 {
+	std::cout << "delete vehicle";
 }
 
-void Vehicle::SetPassenger(Object* _passenger)
-{
-	passenger = _passenger;
-}
-
-Object* Vehicle::GetPassenger()
-{
-	return passenger;
-}

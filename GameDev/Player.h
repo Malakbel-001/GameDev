@@ -40,12 +40,12 @@ class Player :
 		virtual void SetHealth(int _health);
 		void AddScore(int _score);
 		int GetScore();		
-		void SetPassenger(Player* _passenger);
-		Player* GetPassenger();
 
 		void SetVehicle(Player* _vehicle);
 		Player* GetVehicle();
 
 		void AddPlayTime(uint32, uint32);
 		vector<Uint32> GetPlayTime();
+
+		void setDead(bool b);
 };
