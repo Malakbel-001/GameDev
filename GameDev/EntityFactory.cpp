@@ -242,7 +242,7 @@ EntityFactory::EntityFactory(b2World& b2world, std::vector<Actor*>* _actor, std:
 
 	//bounciness
 	restitutionRegistery = std::unordered_map < EntityType, float > {
-		{ EntityType::PLAYER, 0.5f },
+		{ EntityType::PLAYER, 0 },
 		{ EntityType::SNOWBOSS ,20.0f},
 		//SnowBoss?
 	};
@@ -431,7 +431,7 @@ b2Body* EntityFactory::CreateActorBody(float x, float y, float height, float wid
 		boxFixtureDef.filter.categoryBits = (uint16)entityCollisionRegistery.at(type);
 
 	//friction is applied when an Entity glides on the ground. More friction -> entity slows down faster
-	boxFixtureDef.friction = 2; //changed - old value:0.1 -> new value: 10
+	boxFixtureDef.friction = 1; //changed - old value:0.1 -> new value: 10
 
 	if (restitutionRegistery.find(type) == restitutionRegistery.end()){
 		boxFixtureDef.restitution = 0.7;
@@ -512,7 +512,7 @@ b2Body* EntityFactory::CreateBody(float x, float y, float height, float width, f
 	boxFixtureDef.density = den;
 
 	boxFixtureDef.friction = 0.1;
-	boxFixtureDef.restitution = 0.7;
+	boxFixtureDef.restitution = 0.1;
 
 	b2BodyDef bodydef = bodyRegistery.at(type);
 	bodydef.position.Set(x*Ratio, y*Ratio);

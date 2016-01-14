@@ -25,7 +25,7 @@ void GameOverState::Init(GameStateManager *gsm){
 	//SoundBank::GetInstance()->PlaySFX(SoundEffectType::GAMEOVER);
 	//SDL_Delay(2000); //prefer not to have this
 
-	if (playState->GetCurrentLevel()->GetLevelId() == 3)
+	if (playState->GetPlayer()->GetHealth() > 0)
 	{
 		SoundBank::GetInstance()->PlaySFX(SoundEffectType::WIN);
 	}
