@@ -21,13 +21,12 @@ void IdleCommand::Execute(Actor* actor)
 {	
 	if (actor->GetType() == EntityType::APC)
 	{
-		int firespeed = 2000;
+		int firespeed = 7000;
 		
-		if (SDL_GetTicks() > timecounter + firespeed && dynamic_cast<Apc*>(actor)->GetTroops().size() < 1 ){
+		if (SDL_GetTicks() > timecounter + firespeed){
 			b2Vec2 vec = b2Vec2(0, -1000);
 			auto passenger = dynamic_cast<Npc*>(actor)->GetFactory()->CreateActor(actor->GetBody()->GetPosition().x * 10, actor->GetBody()->GetPosition().y * 10 + 30, EntityType::MINIGUNNER);
-			dynamic_cast<Npc*>(passenger)->SetVehicle(dynamic_cast<Npc*>(actor));
-			dynamic_cast<Apc*>(actor)->AddTroops(passenger);
+		
 
 			timecounter = SDL_GetTicks();
 		}

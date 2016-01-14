@@ -109,6 +109,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 	if (currentPlayer->GetYpos() > lvlHeight || currentPlayer->IsDead())
 	{
 	//	LevelFactory::SaveLevel(this,"test");
+		currentPlayer->setDead(true);
 		GameOver();
 	}
 	else {
@@ -116,7 +117,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 		//le levelle loopeh
 		for (int x = 0; actors->size() > x; x++)
 		{
-			if (actors->operator[](x)->IsDead()){
+			if (actors->operator[](x)->IsDead() || actors->operator[](x)->GetYpos() > lvlHeight){
 				currentPlayer->AddScore(actors->operator[](x)->GetScore());
 				if (actors->operator[](x)->GetType() == EntityType::PLANTBOSS || actors->operator[](x)->GetType() == EntityType::SNOWBOSS)
 				{
@@ -138,22 +139,25 @@ void Level::Update(float dt, float manipulatorSpeed)
 
 				if (actors->operator[](x)->GetType() == EntityType::MECH)
 				{
-					for (auto weapon : vehicle->GetWeapons()) {
-						drawableContainer->Delete(weapon);
-						moveableContainer->Delete(weapon);
+					Vehicle* a = dynamic_cast<Vehicle*>(actors->operator[](x));
+					if (a){
+						for (auto weapon : a->GetWeapons()) {
+							drawableContainer->Delete(weapon);
+							moveableContainer->Delete(weapon);
+						}
 					}
 				}
 				//TODO, this stuff should be done depending on the Entity and should be set within the Entity, 
 				//or the right function should be called, depending on the Entity.
 				//This stuff should be set within some sort of factory, maybe Entity Factory
 				if (actors->operator[](x)->GetType() == EntityType::PLANT || actors->operator[](x)->GetType() == EntityType::PINGUIN || actors->operator[](x)->GetType() == EntityType::SNOWMAN){
-					float z = actors->operator[](x)->GetBody()->GetPosition().x /Ratio;
+					float z = actors->operator[](x)->GetBody()->GetPosition().x / Ratio;
 					float y = (actors->operator[](x)->GetBody()->GetPosition().y - 4) / Ratio;
-					entityFactory->CreateActor(-10, 1, z,y, 7,7, EntityType::HEALTH);
 					entityFactory->CreateActor(-10, 1, z, y, 7, 7, EntityType::HEALTH);
-					entityFactory->CreateActor(-10, 1, z, y,7,7, EntityType::HEALTH);
-					entityFactory->CreateActor(0, 1, z, y, 50,17, EntityType::AMMO);
-			
+					entityFactory->CreateActor(-10, 1, z, y, 7, 7, EntityType::HEALTH);
+					entityFactory->CreateActor(-10, 1, z, y, 7, 7, EntityType::HEALTH);
+					entityFactory->CreateActor(0, 1, z, y, 50, 17, EntityType::AMMO);
+
 				}
 
 				//for example
@@ -161,13 +165,20 @@ void Level::Update(float dt, float manipulatorSpeed)
 				//Again, drops should be set within the Entity Factory, just as the Score and that stuff is set within the Entity Factory
 
 				currentPlayer->AddScore(actors->operator[](x)->GetScore());
+				if (actors->operator[](x)->GetType() != EntityType::MECH){
 
+				
 				world->DestroyBody(actors->operator[](x)->GetBody());
 				drawableContainer->Delete(actors->operator[](x));
 				moveableContainer->Delete(actors->operator[](x));
+
+			
+
 				delete actors->operator[](x);
 				actors->operator[](x) = nullptr;
 				actors->erase(actors->begin() + x);
+				}
+			
 			}
 
 			//this is so the bullets always keep flying (I guess - MJ)
@@ -180,7 +191,7 @@ void Level::Update(float dt, float manipulatorSpeed)
 				actors->operator[](x)->GetBody()->SetLinearVelocity(vector);
 			}
 		}
-
+		
 		if (victory) {
 			Victory();
 		}
@@ -304,6 +315,7 @@ void Level::EnterVehicle()
 		position.x = -100;
 		position.y = -100;
 		player->GetBody()->SetTransform(position, 0);
+		player->SetVehicle(nullptr);
 	}
 }
 
@@ -313,7 +325,7 @@ void Level::ExitVehicle()
 	{
 		player->AddScore(vehicle->GetScore());
 		vehicle->AddScore(-vehicle->GetScore());
-
+		
 		b2Vec2 position;
 		position.x = vehicle->GetBody()->GetPosition().x + 5;
 		position.y = vehicle->GetBody()->GetPosition().y - 5;

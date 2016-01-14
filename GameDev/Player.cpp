@@ -110,11 +110,11 @@ void Player::SetVehicle(Player* _vehicle)
 {
 	vehicle = _vehicle;
 }
-
 Player* Player::GetPassenger()
 {
 	return passenger;
 }
+
 
 Player* Player::GetVehicle()
 {
@@ -131,7 +131,9 @@ void Player::AddPlayTime(Uint32 timeMin, Uint32 timeSec){
 		timeplayed.at(1) += timeSec;
 	}
 }
-
+void Player::setDead(bool b){
+	dead = b;
+}
 vector<Uint32> Player::GetPlayTime(){
 	return timeplayed;
 }

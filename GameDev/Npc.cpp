@@ -45,13 +45,7 @@ void Npc::SetHealth(int _health){
 		dead = true;
 		health = _health;
 
-		if (vehicle != nullptr)
-		{
-			if (vehicle->GetType() == EntityType::APC)
-			{
-				dynamic_cast<Apc*>(vehicle)->RemoveTroops(this);
-			}
-		}
+	
 	}
 	else if (_health > maxHealth) {
 		health = maxHealth;

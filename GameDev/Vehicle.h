@@ -7,9 +7,6 @@ public:
 	Vehicle();
 	~Vehicle();
 
-	void SetPassenger(Object* _passenger);
-	Object* GetPassenger();
-
 
 private:
 	Object* passenger;

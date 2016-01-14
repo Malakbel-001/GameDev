@@ -48,4 +48,6 @@ class Player :
 
 		void AddPlayTime(uint32, uint32);
 		vector<Uint32> GetPlayTime();
+
+		void setDead(bool b);
 };
