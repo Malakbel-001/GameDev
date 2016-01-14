@@ -189,7 +189,7 @@ BehaviourFactory::BehaviourFactory(SDL_Renderer* sdl_renderer, int screenwidth, 
 		{ EntityType::SNOWMAN, new EnemyCollidableBehaviour() },
 		{ EntityType::SNOWBOSS, new EnemyCollidableBehaviour() },
 		{ EntityType::TANK, new EnemyCollidableBehaviour() },
-		{ EntityType::MECH, new EnemyCollidableBehaviour() },
+		{ EntityType::MECH, new PlayerCollidableBehaviour() },
 		{ EntityType::APC, new EnemyCollidableBehaviour() },
 		{ EntityType::MINIGUNNER, new EnemyCollidableBehaviour() },
 	};

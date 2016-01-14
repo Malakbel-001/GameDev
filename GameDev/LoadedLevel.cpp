@@ -15,7 +15,10 @@ Player* LoadedLevel::SetPlayer(Player* _player){
 
 	Weapon* wep = entityFactory->CreateWeapon(0, 0, EntityType::WEAPON);
 	wep->Pickup(currentPlayer, b2Vec2(1000, 0));
+	Weapon* shot = entityFactory->CreateWeapon(0, 0, EntityType::SHOTGUN);
+	shot->Pickup(currentPlayer, b2Vec2(100, 0));
 	currentPlayer->AddWeapon(wep);
+	currentPlayer->AddWeapon(shot);
 
 	return currentPlayer;
 }

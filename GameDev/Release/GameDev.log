@@ -1,202 +1,11 @@
-﻿Build started 11-1-2016 14:43:22.
-     1>Project "C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\GameDev.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 14-1-2016 14:26:30.
+     1>Project "C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\GameDev.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2-2.0.3\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_image-2.0.0\include" /I"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\include" /I"C:\Program Files (x86)\Visual Leak Detector\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHa /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Acorn.cpp AcornSprite.cpp Actor.cpp AmmoCollidableBehaviour.cpp AmmoSprite.cpp AnimatedDrawableBehaviour.cpp Apc.cpp ApcMoveableBehaviour.cpp ApcSprite.cpp BareEntity.cpp BarObstacleSprite.cpp BaseCommand.cpp Behaviour.cpp BehaviourFactory.cpp BigGroundSprite.cpp Bullet.cpp BulletCollidableBehaviour.cpp BulletSprite.cpp Camera.cpp Cannon.cpp CannonshotSprite.cpp CheatLoadDrawableBehaviour.cpp CollidableBehaviour.cpp CollidableContainer.cpp DefaultPatrolCommand.cpp DesertGroundSprite.cpp IdleCommand.cpp Level2.cpp Level3.cpp FPS.cpp GameSpeedManipulator.cpp GroundLvl2Sprite.cpp KeyMapping.cpp LoadedLevel.cpp HighscoreConfig.cpp HighscoreMenu.cpp LayerContainer.cpp LevelConfig.cpp LoadState.cpp ContactListener.cpp GunSprite.cpp HealthCollidableBehaviour.cpp HealthSprite.cpp JumpSensorCollidableBehaviour.cpp MechSprite.cpp MinigunnerSprite.cpp NpcStatsContainer.cpp Object.cpp HUD.cpp ParallaxBackground.cpp PinguinSprite.cpp PlantBossMoveableBehaviour.cpp PlantBossSprite.cpp PlantMoveableBehaviour.cpp PlayerDrawableBehaviour.cpp SensorCollidableBehaviour.cpp PlayMenu.cpp Score.cpp SettingsConfig.cpp Container.cpp CreditMenu.cpp DrawableBehaviour.cpp DrawableContainer.cpp EnemyCollidableBehaviour.cpp Entity.cpp EntityFactory.cpp Game.cpp GameOverState.cpp GameStateManager.cpp Ground.cpp GroundObstacleSprite.cpp GroundSprite.cpp HelpMenu.cpp IGameState.cpp InputManager.cpp Level.cpp LevelFactory.cpp LTexture.cpp PlantSprite.cpp PlayerSprite.cpp MenuBase.cpp OptionMenu.cpp PauseMenu.cpp PlayerCollidableBehaviour.cpp ShotGun.cpp ShotgunSprite.cpp SnowBossMoveableBehaviour.cpp SnowBossPatrolCommand.cpp SnowBossSprite.cpp SnowmanSprite.cpp SoundBank.cpp SoundChunk.cpp Sprite.cpp SpritesLoader.cpp StaticDrawableBehaviour.cpp TankSprite.cpp StepCollidableBehaviour.cpp Timer.cpp Utilities.cpp main.cpp MainMenu.cpp MenuState.cpp MoveableBehaviour.cpp MoveableContainer.cpp Npc.cpp PauseState.cpp Player.cpp PlayState.cpp SDLInitializer.cpp Level1.cpp TreeSprite.cpp Vehicle.cpp VictoryState.cpp Weapon.cpp
-         Acorn.cpp
-         AcornSprite.cpp
-         Actor.cpp
-         AmmoCollidableBehaviour.cpp
-         AmmoSprite.cpp
-         AnimatedDrawableBehaviour.cpp
-     1>AnimatedDrawableBehaviour.cpp(17): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-         Apc.cpp
-         ApcMoveableBehaviour.cpp
-         level 
-         ApcSprite.cpp
-         BareEntity.cpp
-         BarObstacleSprite.cpp
-         BaseCommand.cpp
-         Behaviour.cpp
-         BehaviourFactory.cpp
-         BigGroundSprite.cpp
-         Bullet.cpp
-         BulletCollidableBehaviour.cpp
-     1>BulletCollidableBehaviour.cpp(19): warning C4065: switch statement contains 'default' but no 'case' labels
-         BulletSprite.cpp
-         Camera.cpp
-         Cannon.cpp
-         Compiling...
-         CannonshotSprite.cpp
-         CheatLoadDrawableBehaviour.cpp
-         CollidableBehaviour.cpp
-         CollidableContainer.cpp
-         DefaultPatrolCommand.cpp
-     1>DefaultPatrolCommand.cpp(17): warning C4244: '=' : conversion from 'double' to 'float32', possible loss of data
-     1>DefaultPatrolCommand.cpp(19): warning C4244: '=' : conversion from 'double' to 'float32', possible loss of data
-         DesertGroundSprite.cpp
-         IdleCommand.cpp
-     1>IdleCommand.cpp(20): warning C4018: '>' : signed/unsigned mismatch
-     1>IdleCommand.cpp(34): warning C4018: '>' : signed/unsigned mismatch
-         Level2.cpp
-         level 
-         Level3.cpp
-         level 
-         FPS.cpp
-         GameSpeedManipulator.cpp
-         GroundLvl2Sprite.cpp
-         KeyMapping.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries" /I"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2-2.0.3\include" /I"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\include" /I"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2_image-2.0.0\include" /I"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHa /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt LoadedLevel.cpp
          LoadedLevel.cpp
          level 
-         HighscoreConfig.cpp
-         HighscoreMenu.cpp
-         level 
-     1>HighscoreMenu.cpp(159): warning C4018: '<=' : signed/unsigned mismatch
-         LayerContainer.cpp
-         LevelConfig.cpp
-         LoadState.cpp
-         level 
-     1>LoadState.cpp(200): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-         ContactListener.cpp
-         Compiling...
-         GunSprite.cpp
-         HealthCollidableBehaviour.cpp
-         HealthSprite.cpp
-         JumpSensorCollidableBehaviour.cpp
-         MechSprite.cpp
-         MinigunnerSprite.cpp
-         NpcStatsContainer.cpp
-         Object.cpp
-         HUD.cpp
-     1>HUD.cpp(102): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>HUD.cpp(105): warning C4244: 'argument' : conversion from 'float' to 'Uint8', possible loss of data
-         ParallaxBackground.cpp
-     1>ParallaxBackground.cpp(30): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>ParallaxBackground.cpp(53): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>ParallaxBackground.cpp(66): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>ParallaxBackground.cpp(92): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-         PinguinSprite.cpp
-         PlantBossMoveableBehaviour.cpp
-         PlantBossSprite.cpp
-         PlantMoveableBehaviour.cpp
-         level 
-         PlayerDrawableBehaviour.cpp
-     1>PlayerDrawableBehaviour.cpp(18): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-         SensorCollidableBehaviour.cpp
-         PlayMenu.cpp
-         level 
-         Score.cpp
-         SettingsConfig.cpp
-         Container.cpp
-         Compiling...
-         CreditMenu.cpp
-         level 
-         DrawableBehaviour.cpp
-         DrawableContainer.cpp
-         EnemyCollidableBehaviour.cpp
-         Entity.cpp
-         EntityFactory.cpp
-     1>EntityFactory.cpp(116): warning C4305: '=' : truncation from 'double' to 'float32'
-     1>EntityFactory.cpp(140): warning C4305: '=' : truncation from 'double' to 'float32'
-     1>EntityFactory.cpp(324): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>EntityFactory.cpp(348): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>EntityFactory.cpp(388): warning C4305: '=' : truncation from 'double' to 'float32'
-     1>EntityFactory.cpp(465): warning C4305: '=' : truncation from 'double' to 'float32'
-     1>EntityFactory.cpp(466): warning C4305: '=' : truncation from 'double' to 'float32'
-         Game.cpp
-         level 
-     1>Game.cpp(80): warning C4244: 'initializing' : conversion from 'Uint32' to 'float', possible loss of data
-     1>Game.cpp(108): warning C4244: 'argument' : conversion from 'float' to 'Uint32', possible loss of data
-         GameOverState.cpp
-         level 
-     1>GameOverState.cpp(341): warning C4018: '<' : signed/unsigned mismatch
-         GameStateManager.cpp
-         level 
-         Ground.cpp
-         GroundObstacleSprite.cpp
-         GroundSprite.cpp
-         HelpMenu.cpp
-         level 
-         IGameState.cpp
-         level 
-         InputManager.cpp
-     1>InputManager.cpp(84): warning C4018: '>' : signed/unsigned mismatch
-     1>InputManager.cpp(94): warning C4018: '>' : signed/unsigned mismatch
-         Level.cpp
-         level 
-     1>Level.cpp(120): warning C4018: '>' : signed/unsigned mismatch
-         LevelFactory.cpp
-         level 
-     1>LevelFactory.cpp(18): warning C4244: 'argument' : conversion from 'int' to 'float32', possible loss of data
-     1>LevelFactory.cpp(30): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>LevelFactory.cpp(41): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\rapidxml-1.13\rapidxml_utils.hpp(40): warning C4244: 'initializing' : conversion from 'std::streamoff' to 'size_t', possible loss of data
-                 C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\rapidxml-1.13\rapidxml_utils.hpp(28) : while compiling class template member function 'rapidxml::file<char>::file(const char *)'
-                 LevelFactory.cpp(11) : see reference to function template instantiation 'rapidxml::file<char>::file(const char *)' being compiled
-                 LevelFactory.cpp(11) : see reference to class template instantiation 'rapidxml::file<char>' being compiled
-         LTexture.cpp
-     1>LTexture.cpp(76): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>LTexture.cpp(100): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-         PlantSprite.cpp
-         PlayerSprite.cpp
-         Compiling...
-         MenuBase.cpp
-         OptionMenu.cpp
-         level 
-         PauseMenu.cpp
-         level 
-         PlayerCollidableBehaviour.cpp
-         ShotGun.cpp
-         ShotgunSprite.cpp
-         SnowBossMoveableBehaviour.cpp
-         SnowBossPatrolCommand.cpp
-     1>SnowBossPatrolCommand.cpp(17): warning C4244: '=' : conversion from 'double' to 'float32', possible loss of data
-     1>SnowBossPatrolCommand.cpp(18): warning C4244: '=' : conversion from 'double' to 'float32', possible loss of data
-     1>SnowBossPatrolCommand.cpp(21): warning C4244: '=' : conversion from 'double' to 'float32', possible loss of data
-     1>SnowBossPatrolCommand.cpp(22): warning C4244: '=' : conversion from 'double' to 'float32', possible loss of data
-         SnowBossSprite.cpp
-         SnowmanSprite.cpp
-         SoundBank.cpp
-         SoundChunk.cpp
-         Sprite.cpp
-         SpritesLoader.cpp
-         StaticDrawableBehaviour.cpp
-     1>StaticDrawableBehaviour.cpp(16): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
-         TankSprite.cpp
-         StepCollidableBehaviour.cpp
-         Timer.cpp
-         Utilities.cpp
-         main.cpp
-         level 
-         Compiling...
-         MainMenu.cpp
-         level 
-         MenuState.cpp
-         level 
-         MoveableBehaviour.cpp
-         MoveableContainer.cpp
-     1>MoveableContainer.cpp(21): warning C4018: '<' : signed/unsigned mismatch
-         Npc.cpp
-         PauseState.cpp
-         level 
-         Player.cpp
-         level 
-     1>Player.cpp(20): warning C4150: deletion of pointer to incomplete type 'CollidableBehaviour'; no destructor called
-                 c:\users\jeroen\documents\github\project1\gamedev\gamedev\BehaviourFactory.h(37) : see declaration of 'CollidableBehaviour'
-     1>Player.cpp(70): warning C4018: '<' : signed/unsigned mismatch
-         PlayState.cpp
-         level 
-         SDLInitializer.cpp
-         Level1.cpp
-         level 
-         TreeSprite.cpp
-         Vehicle.cpp
-         VictoryState.cpp
-         level 
-         Weapon.cpp
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Release\GameDev.res" GameDev.rc 
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2-2.0.3\lib\x86" /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\lib\x86" /LIBPATH:C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\Box2D /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_image-2.0.0\lib\x86" /LIBPATH:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\lib\x86" /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" SDL2main.lib SDL2.lib SDL2_mixer.lib SDL2_image.lib ..\\Box2Drelease\Box2D.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.lib" /MACHINE:X86 /SAFESEH Release\GameDev.res
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\MJ.MJ-PC\Documents\GameDev\Release\GameDev.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2-2.0.3\lib\x86" /LIBPATH:"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2_mixer-2.0.0\lib\x86" /LIBPATH:"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\Box2D" /LIBPATH:"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2_image-2.0.0\lib\x86" /LIBPATH:"C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\Libraries\SDL2_ttf-2.0.12\lib\x86" SDL2main.lib SDL2.lib SDL2_mixer.lib SDL2_image.lib ..\\Box2Drelease\Box2D.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\MJ.MJ-PC\Documents\GameDev\Release\GameDev.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\MJ.MJ-PC\Documents\GameDev\Release\GameDev.lib" /MACHINE:X86 /SAFESEH Release\GameDev.res
          Release\Acorn.obj
          Release\AcornSprite.obj
          Release\Actor.obj
@@ -221,6 +30,10 @@
          Release\CheatLoadDrawableBehaviour.obj
          Release\CollidableBehaviour.obj
          Release\CollidableContainer.obj
+         Release\DeleteQueryCallback.obj
+         Release\EditorState.obj
+         Release\EditorSubState.obj
+         Release\EntityStatsContainer.obj
          Release\DefaultPatrolCommand.obj
          Release\DesertGroundSprite.obj
          Release\IdleCommand.obj
@@ -230,6 +43,7 @@
          Release\GameSpeedManipulator.obj
          Release\GroundLvl2Sprite.obj
          Release\KeyMapping.obj
+         Release\LevelEditorMenu.obj
          Release\LoadedLevel.obj
          Release\HighscoreConfig.obj
          Release\HighscoreMenu.obj
@@ -283,6 +97,7 @@
          Release\PlayerCollidableBehaviour.obj
          Release\ShotGun.obj
          Release\ShotgunSprite.obj
+         Release\smallDesertSprite.obj
          Release\SnowBossMoveableBehaviour.obj
          Release\SnowBossPatrolCommand.obj
          Release\SnowBossSprite.obj
@@ -312,12 +127,12 @@
          Release\VictoryState.obj
          Release\Weapon.obj
          Generating code
-     1>c:\users\jeroen\documents\github\project1\gamedev\gamedev\sprite.cpp(120): warning C4715: 'Sprite::GetAnimationSize' : not all control paths return a value
-     1>c:\users\jeroen\documents\github\project1\gamedev\gamedev\sprite.cpp(92): warning C4715: 'Sprite::GetAnimationFrame' : not all control paths return a value
+     1>c:\users\mj.mj-pc\documents\gamedev\gamedev\sprite.cpp(134): warning C4715: 'Sprite::GetAnimationSize' : not all control paths return a value
+     1>c:\users\mj.mj-pc\documents\gamedev\gamedev\sprite.cpp(100): warning C4715: 'Sprite::GetAnimationFrame' : not all control paths return a value
          Finished generating code
-         GameDev.vcxproj -> C:\Users\Jeroen\Documents\GitHub\project1\GameDev\Release\GameDev.exe
-     1>Done Building Project "C:\Users\Jeroen\Documents\GitHub\project1\GameDev\GameDev\GameDev.vcxproj" (Rebuild target(s)).
+         GameDev.vcxproj -> C:\Users\MJ.MJ-PC\Documents\GameDev\Release\GameDev.exe
+     1>Done Building Project "C:\Users\MJ.MJ-PC\Documents\GameDev\GameDev\GameDev.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:01:17.77
+Time Elapsed 00:00:23.03
